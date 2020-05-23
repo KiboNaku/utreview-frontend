@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
+import NavBar from './../_components/NavBar';
 
 class CourseResults extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			courses: [
-				{ courseNum: 'EE302', courseName: 'Introduction to Electrical Engineering', professors: ['Tutuc', 'Yu']},
-				// professors: [{ lastName: 'Tutuc' }, { lastName: 'Yu' }] },
-				{ courseNum: 'EE306', courseName: 'Introduction to Computing', professors: ['Yeraballi', 'Abraham', 'Patt']}
-				// professors: [{ lastName: 'Yeraballi' }, { lastName: 'Abraham' }, { lastName: 'Patt' }] }
+				{ courseNum: 'EE302', courseName: 'Introduction to Electrical Engineering', professors: ['Tutuc', 'Yu'] },
+				{ courseNum: 'EE306', courseName: 'Introduction to Computing', professors: ['Yerraballi', 'Abraham', 'Patt'] }
 			]
 		}
 
 		this.setData = this.setData.bind(this);
-		this.getProfData = this.getProfData.bind(this);
-	}
-
-	getProfData() {
-
 	}
 
 	setData() {
@@ -27,14 +21,20 @@ class CourseResults extends Component {
 			return (
 				<tr key={courseNum}>
 					<td>{courseNum}</td>
-					<td>{courseName}</td>
 					<td>{
-						professors.map(names => {
-							return (names + " ")
+						<a href='https://www.google.com'> {courseName} </a>
+					}</td>
+					<td>{
+						professors.map((names, i) => {
+							let link;
+							if (i === (professors.length - 1)) {
+								link = <a href='https://www.google.com'> {names} </a>
+							} else {
+								link = <span><a href='https://www.google.com'> {names}</a> | </span>
+							}
+							return link;
 						})
 					}</td>
-
-					{/* {professors.map(lastName => <td>{lastName}</td>)} */}
 				</tr>
 			)
 		})
@@ -43,8 +43,9 @@ class CourseResults extends Component {
 	render() {
 		return (
 			<div>
-				<table id='courseResults' class='table table-hover'>
-					<thead class="thead-dark">
+				<NavBar />
+				<table id='courseResults' className='table table-hover'>
+					<thead className="thead-dark">
 						<tr>
 							<th scope="col">Course Number</th>
 							<th scope="col">Course Name</th>
