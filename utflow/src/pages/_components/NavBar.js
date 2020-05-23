@@ -1,41 +1,31 @@
 import React, {Component} from 'react'
+import SearchBar from './SearchBar'
 import "./NavBar.css"
 
 class NavBar extends Component {
-
+    
     render(){
+
+
+        console.log(this.props)
+        console.log(this.props.showSearch + " " + this.props.showSearch ? "hello": "bye")
+
         return (
             
-            <nav style={{padding: 20}} className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light py-4">
 
-                <a sclassName="navbar-brand" href="#">UT Flow</a>
-                
-                <button 
-                    className="navbar-toggler" 
-                    type="button">
+                <span className="nav-padding d-none d-md-inline col-lg-1"></span>
+                <a className="navbar-brand" href="#" className="d-none d-md-inline col-md-2 col-lg-1 font-weight-bold">UT Flow</a>
 
-                    <span className="navbar-toggler-icon"></span>
+                <span className={(this.props.showSearch && "d-none ") + "col-9 col-md-8"}></span>
 
-                </button>
+                <span className={(!this.props.showSearch && "d-none ") + "col-9 col-md-8"}>
+                    <SearchBar/>
+                </span>
 
-                <form className="form-inline">
-
-                    <div className="input-group">
-                        
-                        <div className="input-group-prepend">
-                            <span className="input-group-text" id="basic-addon1">
-                            <i class="fas fa-search"></i>
-                            </span>
-                        </div>
-
-                        <input type="text" className="form-control " placeholder="Search for courses or professors"/>
-                    </div>
-
-                </form>
-
-                <div>
-                    <button type="button" class="btn">Log in</button>
-                </div>
+                <span className="col-3 col-md-2 float-right">
+                    <button type="button" className="btn">Log in</button>
+                </span>
                         
             </nav>
         )
