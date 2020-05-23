@@ -9,7 +9,9 @@ class Home extends Component {
             <div>
                 <NavBar/>
                 <main>
-                    <SearchBar />
+                    <div className="col-sm-12 col-md-8 col-lg-6 col-xl-6">
+                        <SearchBar/>
+                    </div>
                 </main>
             </div>
         )
