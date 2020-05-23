@@ -1,9 +1,10 @@
 import React from 'react';
-import Home from './pages/home'
+import NavBar from './pages/_components/NavBar'
 
 function AppTestAndy() {
     return (
         <div className="App">
+            <NavBar/>
         </div>
     );
 }
