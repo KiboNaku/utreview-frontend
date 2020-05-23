@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import SearchBar from './SearchBar'
 import "./NavBar.css"
 
 class NavBar extends Component {
@@ -18,20 +19,7 @@ class NavBar extends Component {
 
                 </button>
 
-                <form className="form-inline">
-
-                    <div className="input-group">
-                        
-                        <div className="input-group-prepend">
-                            <span className="input-group-text" id="basic-addon1">
-                            <i class="fas fa-search"></i>
-                            </span>
-                        </div>
-
-                        <input type="text" className="form-control " placeholder="Search for courses or professors"/>
-                    </div>
-
-                </form>
+                <SearchBar/>
 
                 <div>
                     <button type="button" class="btn">Log in</button>
