@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppTestAndy from './AppTestAndy';
+import AppTestVina from './AppTestVina';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<AppTestAndy />
+		<AppTestVina />
 	</React.StrictMode>,
 	document.getElementById('root')
 );
