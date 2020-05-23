@@ -8,7 +8,9 @@ class CourseResults extends Component {
 			courses: [
 				{ courseNum: 'EE302', courseName: 'Introduction to Electrical Engineering', professors: ['Tutuc', 'Yu'] },
 				{ courseNum: 'EE306', courseName: 'Introduction to Computing', professors: ['Yerraballi', 'Abraham', 'Patt'] }
-			]
+			],
+			sortBy: 'courseNum',
+			sortUp: false
 		}
 
 		this.setData = this.setData.bind(this);
@@ -25,12 +27,12 @@ class CourseResults extends Component {
 						<a href='https://www.google.com'> {courseName} </a>
 					}</td>
 					<td>{
-						professors.map((names, i) => {
+						professors.map((lastName, i) => {
 							let link;
 							if (i === (professors.length - 1)) {
-								link = <a href='https://www.google.com'> {names} </a>
+								link = <a href='https://www.google.com'> {lastName} </a>
 							} else {
-								link = <span><a href='https://www.google.com'> {names}</a> | </span>
+								link = <span><a href='https://www.google.com'> {lastName}</a> | </span>
 							}
 							return link;
 						})
@@ -41,14 +43,21 @@ class CourseResults extends Component {
 	}
 
 	render() {
+		let sortIcon;
+		if(this.state.sortUp){
+			sortIcon= <i class="fas fa-sort-up"></i>
+		} else {
+			sortIcon= <i class="fas fa-sort-down"></i>
+		}
+
 		return (
 			<div>
 				<NavBar />
 				<table id='courseResults' className='table table-hover'>
-					<thead className="thead-dark">
+					<thead className='thead-dark'>
 						<tr>
-							<th scope="col">Course Number</th>
-							<th scope="col">Course Name</th>
+							<th scope="col">Course Number {sortIcon}</th>
+							<th scope="col">Course Name {sortIcon}</th>
 							<th scope="col">Professors</th>
 						</tr>
 					</thead>
