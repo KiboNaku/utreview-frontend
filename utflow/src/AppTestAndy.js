@@ -1,10 +1,10 @@
 import React from 'react';
-import NavBar from './pages/_components/NavBar'
+import Popup from './pages/popups/Popup'
 
 function AppTestAndy() {
     return (
         <div className="App">
-            <NavBar/>
+            <Popup/>
         </div>
     );
 }
