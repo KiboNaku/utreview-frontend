@@ -5,7 +5,8 @@ class Popup extends Component {
 
     render() {
         return (
-            <div className="col-9 col-sm-7 col-md-6 col-lg-4">
+
+            <div className="border rounded col-9 col-sm-7 col-md-5 col-lg-4 col-xl-3 pt-5">
                 <Login/>
             </div>
         )
