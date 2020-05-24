@@ -17,7 +17,7 @@ class CourseResults extends Component {
 	}
 
 	setData() {
-		return this.state.courses.map(course => {
+		return this.props.courses.map(course => {
 			const { courseNum, courseName, professors } = course
 
 			return (
@@ -45,9 +45,9 @@ class CourseResults extends Component {
 	render() {
 		let sortIcon;
 		if(this.state.sortUp){
-			sortIcon= <i class="fas fa-sort-up"></i>
+			sortIcon= <i className="fas fa-sort-up"></i>
 		} else {
-			sortIcon= <i class="fas fa-sort-down"></i>
+			sortIcon= <i className="fas fa-sort-down"></i>
 		}
 
 		return (
