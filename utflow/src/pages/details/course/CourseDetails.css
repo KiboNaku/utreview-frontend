@@ -1,0 +1,14 @@
+.progress{
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.userDes{
+    word-wrap: break-word;
+    width: 100px;
+    font-size: small;
+}
+
+.d-flex{
+    justify-content: space-between;
+}
