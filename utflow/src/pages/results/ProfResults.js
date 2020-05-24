@@ -6,8 +6,8 @@ class ProfResults extends Component {
 		super(props);
 		this.state = {
 			professors: [
-				{ firstName: 'firstname', lastName: 'lastname', courses: ['EE302', 'EE411']},
-				{ firstName: 'firstname2', lastName: 'lastname2', courses: ['EE306', 'EE319K']}
+				{ id: 1, firstName: 'firstname', lastName: 'lastname', courses: ['EE302', 'EE411']},
+				{ id: 2, firstName: 'firstname2', lastName: 'lastname2', courses: ['EE306', 'EE319K']}
 			]
 		}
 
@@ -15,11 +15,11 @@ class ProfResults extends Component {
 	}
 
 	setData() {
-		return this.state.professors.map(professor => {
-			const { firstName, lastName, courses } = professor
+		return this.props.professors.map(professor => {
+			const { id, firstName, lastName, courses } = professor
 
 			return (
-				<tr key={firstName+lastName}>
+				<tr key={id}>
 					<td>{
 						<a href='https://www.google.com'> {firstName + " " + lastName} </a>
 					}</td>
@@ -29,7 +29,7 @@ class ProfResults extends Component {
 							if (i === (courses.length - 1)) {
 								link = <a href='https://www.google.com'> {course} </a>
 							} else {
-								link = <span><a href='https://www.google.com'> {course}</a> | </span>
+								link = <span><a href='https://www.google.com'> {course} </a> | </span>
 							}
 							return link;
 						})
