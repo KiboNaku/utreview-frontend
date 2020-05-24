@@ -1,10 +1,10 @@
 import React from 'react';
-import Popup from './pages/popups/Popup'
+import Home from './pages/home/Home'
 
 function AppTestAndy() {
     return (
         <div className="App">
-            <Popup/>
+            <Home/>
         </div>
     );
 }
