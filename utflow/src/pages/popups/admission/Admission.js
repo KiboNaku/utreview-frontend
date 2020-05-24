@@ -20,10 +20,13 @@ class Admission extends Component {
 
                     <h3 className="pb-2"><strong>{signup? "Sign up" : "Log in"}</strong></h3>
 
-                    <div className={`form-label-group ${!signup && "d-none"}`}  >
-                        <input type="text" id="inputEmail" className="form-control d-inline col-6" placeholder="first name" required autoFocus />
-                        <input type="text" id="inputEmail" className="form-control d-inline col-6" placeholder="last name" required autoFocus />
-                    </div>
+                    {signup &&
+                        <div className="form-label-group">
+                            <input type="text" id="firstName" className="form-control d-inline col-6" placeholder="first name" required autoFocus />
+                            <input type="text" id="lastName" className="form-control d-inline col-6" placeholder="last name" required autoFocus />
+                            <input type="text" id="major" className="form-control mt-3" placeholder="major" required autoFocus />
+                        </div>
+                    }
 
                     <div className="form-label-group mt-3">
                         <span className="d-flex">
@@ -36,17 +39,24 @@ class Admission extends Component {
                         <input type="password" id="inputPassword" className="form-control" placeholder="password" required />
                     </div>
 
-                    <div className={signup ? "form-label-group mt-3" : "d-none"}>
-                        <input type="password" id="confirmPassword" className="form-control" placeholder="confirm password" requred={signup ? "true" : "false"} />
-                    </div>
+                    {signup &&
+                        <div className={"form-label-group mt-3"}>
+                            <input type="password" id="confirmPassword" className="form-control" placeholder="confirm password" required />
+                        </div>
+                    }
 
-                    <div className={signup ? "d-none" : "checkbox mt-1"}>
-                        <label>
-                            <input type="checkbox" value="remember-me" /> Remember me
-                        </label>
-                    </div>
+                    {!signup &&
+                        <div className="checkbox mt-1">
+                            <label>
+                                <input type="checkbox" value="remember-me" /> Remember me
+                            </label>
+                        </div>
+                    }
+
                     <button className="btn btn-lg btn-primary btn-block mt-3" type="submit">{signup ? "Sign up" : "Log in"}</button>
-                    <a href="#" className={signup && "d-none"}><p className="text-center">Forgot password?</p></a>
+                    {!signup  && 
+                        <a href="#"><p className="text-center">Forgot password?</p></a>
+                    }
                 </form>
 
                 <div className="text-center my-3">
