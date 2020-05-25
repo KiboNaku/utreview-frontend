@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -8,27 +9,100 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded';
 import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import Rating from '@material-ui/lab/Rating';
 import './CourseDetails.css'
 
+/* 
+    Properties:
+    liked
+    review
+    profPic (img URL)
+    profName
+    difficulty
+    workload
+    usefulness
+    numLiked
+    numDisliked
+*/
+
 function CourseReviewEntry(props) {
-    let thumbsIcon = props.liked ? 
-    <ThumbUpRoundedIcon style={{fill: 'blue'}}/> : <ThumbDownRoundedIcon style={{fill: 'red'}}/>
+    let thumbsIcon = props.review.liked ?
+        <ThumbUpRoundedIcon style={{ fill: 'blue' }} /> : <ThumbDownRoundedIcon style={{ fill: 'red' }} />
+
+    let likeIcon = props.review.likePressed ?
+        <ThumbUpRoundedIcon style={{ fill: 'blue' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
+    let dislikeIcon = props.review.dislikePressed ?
+        <ThumbDownRoundedIcon style={{ fill: 'red' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
+    const useStyles = makeStyles((theme) => ({
+        large: {
+            width: theme.spacing(7),
+            height: theme.spacing(7),
+        },
+    }));
+    const classes = useStyles()
+    const StyledRating = withStyles({
+        iconFilled: {
+            color: '#0080ff',
+        },
+    })(Rating);
     return (
         <div className="list-group-item">
             <div className="d-flex">
-                <div className="userDes"> 
-                    <Avatar src={props.profPic}>  </Avatar>
-                    <span> {props.userMajor} student, taught by </span>
-                    <a href = "https://www.google.com" > {props.profName} </a>
+                <div className="userDes">
+                    <Avatar className={classes.large} src={props.review.profPic}>  </Avatar>
+                    <span> {props.review.userMajor} student, taught by </span>
+                    <a href="https://www.google.com" > {props.review.profName} </a>
                 </div>
-                <div>
-                    <span>{props.review}</span>
+                <div className="userRev">
+                    <span>{props.review.review}</span>
+                    <div className="LikeDislike">
+                        <button 
+                            className="likeButton" 
+                            onClick={() => props.handleLike(props.review.key)}
+                            >
+                            {likeIcon}
+                        </button>
+                        <span> {props.review.numLiked} </span>
+                        <button 
+                            className="dislikeButton" 
+                            onClick={() => props.handleDislike(props.review.key)}
+                            >
+                            {dislikeIcon}
+                        </button>
+                        <span> {props.review.numDisliked} </span>
+                    </div>
                 </div>
-                <div>
+                <div className="userRat">
                     {thumbsIcon}
-                    <p> Difficulty: {props.difficulty} </p>
-                    <p> Workload {props.workload} </p>
-                    <p> Usefulness: {props.usefulness} </p>
+                    <div>
+                        <p className="p-review"> Difficulty: </p>
+                        <StyledRating
+                            defaultValue={props.review.difficulty}
+                            icon={<RadioButtonCheckedIcon />}
+                            emptyIcon={<RadioButtonUncheckedIcon />}
+                            readOnly
+                        />
+                    </div>
+                    <div>
+                        <p className="p-review"> Workload: </p>
+                        <StyledRating
+                            defaultValue={props.review.workload}
+                            icon={<RadioButtonCheckedIcon />}
+                            emptyIcon={<RadioButtonUncheckedIcon />}
+                            readOnly
+                        />
+                    </div>
+                    <div>
+                        <p className="p-review"> Usefulness: </p>
+                        <StyledRating
+                            defaultValue={props.review.usefulness}
+                            icon={<RadioButtonCheckedIcon />}
+                            emptyIcon={<RadioButtonUncheckedIcon />}
+                            readOnly
+                        />
+                    </div>
                 </div>
             </div>
         </div>
