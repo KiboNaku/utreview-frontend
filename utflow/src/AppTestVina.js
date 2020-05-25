@@ -1,10 +1,10 @@
 import React from 'react';
-import CourseResults from './pages/results/CourseResults';
+import ReviewForm from './pages/review/ReviewForm';
 
 function AppTestVina() {
 	return (
 		<div className="App">
-			<CourseResults />
+			<ReviewForm />
 		</div>
 	);
 }
