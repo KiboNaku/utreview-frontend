@@ -3,10 +3,12 @@ import CourseInfo from './CourseInfo';
 import CourseRatings from './CourseRatings';
 import CourseProfs from './CourseProfs';
 import CourseReviews from './CourseReviews';
+import CourseAddReview from './CourseAddReview';
+import './CourseDetails.css'
 
 class CourseDetails extends React.Component {
-    constructor(){
-        super() 
+    constructor() {
+        super()
         const courseInfo = {
             courseDep: "EE",
             courseNo: 302,
@@ -28,23 +30,29 @@ class CourseDetails extends React.Component {
         }
     }
 
-    render(){
+    render() {
 
         return (
             <div className="CourseDetails">
-                <CourseInfo 
-                    {...this.state.courseInfo}
-                />
-                <CourseRatings
-                    {...this.state.courseRatings}
-                />
+                <div className="d-flex">
+                    <CourseRatings
+                        {...this.state.courseRatings}
+                    />
+                    <CourseInfo
+                        {...this.state.courseInfo}
+                    />
+
+                </div>
                 <br />
                 <CourseProfs />
+                <CourseAddReview
+                    {...this.state.courseInfo}
+                />
                 <CourseReviews />
             </div>
         );
     }
-  
+
 }
 
 export default CourseDetails;
