@@ -6,9 +6,12 @@ class NavBar extends Component {
     
     render(){
 
-
-        console.log(this.props)
-        console.log(this.props.showSearch + " " + this.props.showSearch ? "hello": "bye")
+        /**
+         * Properties:
+         * 1. showSearch: show search bar on the navbar
+         *    values = "true", "false"
+         *    default value = "false"
+         */
 
         return (
             

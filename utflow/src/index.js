@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AppTestAndy from './AppTestAndy';
-import AppTestIris from './AppTestIris';
 import * as serviceWorker from './serviceWorker';
-// hello
 
 ReactDOM.render(
 	<React.StrictMode>
-		<AppTestIris />
+		<AppTestAndy />
 	</React.StrictMode>,
 	document.getElementById('root')
 );
