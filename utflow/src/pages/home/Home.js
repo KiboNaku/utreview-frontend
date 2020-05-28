@@ -7,7 +7,6 @@ class Home extends Component {
     render(){
         return (
             <div>
-                <NavBar/>
                 <main>
                     <div className="col-sm-12 col-md-8 col-lg-6 col-xl-6">
                         <SearchBar/>
