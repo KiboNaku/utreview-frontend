@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import NavBar from './../_components/NavBar'
 import SearchBar from './../_components/SearchBar'
+import Footer from './../_components/Footer'
 import './home.css'
 
 class Home extends Component {
@@ -12,6 +13,7 @@ class Home extends Component {
                         <SearchBar/>
                     </div>
                 </main>
+                <Footer/>
             </div>
         )
     }

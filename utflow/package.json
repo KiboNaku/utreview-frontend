@@ -18,8 +18,10 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
+		"start-backend": "cd .. && cd utflow-backend && flask run --no-debugger",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
+		"test-backend": "cd .. && cd utflow-backend && flask test",
 		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {
@@ -36,5 +38,6 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
-	}
+	},
+	"proxy": "http://localhost:5000"
 }
