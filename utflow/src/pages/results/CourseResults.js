@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter, Link} from 'react-router-dom'
 import NavBar from './../_components/NavBar';
 
 class CourseResults extends Component {
@@ -6,8 +7,8 @@ class CourseResults extends Component {
 		super(props);
 		this.state = {
 			courses: [
-				{ courseNum: 'EE302', courseName: 'Introduction to Electrical Engineering', professors: ['Tutuc', 'Yu'] },
-				{ courseNum: 'EE306', courseName: 'Introduction to Computing', professors: ['Yerraballi', 'Abraham', 'Patt'] }
+				{ courseNum: 'EE 302', courseName: 'Introduction to Electrical Engineering', professors: ['Tutuc', 'Yu'] },
+				{ courseNum: 'EE 306', courseName: 'Introduction to Computing', professors: ['Yerraballi', 'Abraham', 'Patt'] }
 			],
 			sortBy: 'courseNum',
 			sortUp: false
@@ -17,14 +18,14 @@ class CourseResults extends Component {
 	}
 
 	setData() {
-		return this.props.courses.map(course => {
+		return this.state.courses.map(course => {
 			const { courseNum, courseName, professors } = course
 
 			return (
 				<tr key={courseNum}>
 					<td>{courseNum}</td>
 					<td>{
-						<a href='https://www.google.com'> {courseName} </a>
+						<Link to={`${this.props.match.url}/${courseNum}`}> {courseName} </Link>
 					}</td>
 					<td>{
 						professors.map((lastName, i) => {
@@ -42,7 +43,7 @@ class CourseResults extends Component {
 		})
 	}
 
-	render() {
+	render () {
 		let sortIcon;
 		if(this.state.sortUp){
 			sortIcon= <i className="fas fa-sort-up"></i>
@@ -52,7 +53,6 @@ class CourseResults extends Component {
 
 		return (
 			<div>
-				<NavBar />
 				<table id='courseResults' className='table table-hover'>
 					<thead className='thead-dark'>
 						<tr>
@@ -70,4 +70,4 @@ class CourseResults extends Component {
 	}
 }
 
-export default CourseResults;
+export default withRouter(CourseResults);

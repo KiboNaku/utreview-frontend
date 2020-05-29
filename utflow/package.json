@@ -12,13 +12,16 @@
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-rating": "^2.0.5",
+		"react-router-dom": "^5.2.0",
 		"react-scripts": "3.4.1",
 		"react-simple-user-feedback": "^0.1.3"
 	},
 	"scripts": {
 		"start": "react-scripts start",
+		"start-backend": "cd .. && cd utflow-backend && flask run --no-debugger",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
+		"test-backend": "cd .. && cd utflow-backend && flask test",
 		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {
@@ -35,5 +38,6 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
-	}
+	},
+	"proxy": "http://localhost:5000"
 }

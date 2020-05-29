@@ -1,5 +1,6 @@
 import React from 'react';
 import CourseProfEntry from './CourseProfEntry'
+import './CourseDetails.css'
 
 class CourseProfs extends React.Component {
     constructor(){
@@ -31,6 +32,7 @@ class CourseProfs extends React.Component {
             courseProfs: courseProfs
         }
     }
+    
     render() {
         const courseProfList = this.state.courseProfs.map(prof => {
             return (
