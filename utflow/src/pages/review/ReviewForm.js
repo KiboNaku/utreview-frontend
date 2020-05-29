@@ -12,12 +12,12 @@ class ReviewForm extends Component {
 		super(props);
 
 		this.state = {
-			CourseApproval: "",
+			CourseApproval: false,
 			Usefulness: 0,
 			Difficulty: 0,
 			Workload: 0,
 			CourseComment: "",
-			ProfessorApproval: "",
+			ProfessorApproval: false,
 			Clear: 0,
 			Engaging: 0,
 			Helpful: 0,
@@ -27,6 +27,8 @@ class ReviewForm extends Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.handlePositiveClick = this.handlePositiveClick.bind(this);
+		this.handleNegativeClick = this.handleNegativeClick.bind(this);
 	}
 
 	//TODO 
@@ -36,6 +38,19 @@ class ReviewForm extends Component {
 
 	handleChange() {
 
+	}
+
+	handlePositiveClick() {
+		this.setState(
+			{CourseApproval: true}
+		)
+	}
+
+	handleNegativeClick(event) {
+		const {name} = event.target
+		console.log(name);
+		this.setState({[name]: false})
+		alert(this.state.CourseApproval)
 	}
 
 	render() {
@@ -61,13 +76,16 @@ class ReviewForm extends Component {
 								<tr>
 									<td> Approval: </td>
 									<td> <BinaryFeedback
+										type="binaryFeedback"
 										name="CourseApproval"
-										onChange={this.handleChange}
+										onPositiveClick={this.handlePositiveClick}
+										onNegativeClick={this.handleNegativeClick}
 									/></td>
 								</tr>
 								<tr>
 									<td> Usefulness: </td>
 									<td> <StyledRating
+										type="rating"
 										icon={<RadioButtonCheckedIcon />}
 										emptyIcon={<RadioButtonUncheckedIcon />}
 										name="Usefulness"
@@ -77,6 +95,7 @@ class ReviewForm extends Component {
 								<tr>
 									<td> Difficulty: </td>
 									<td> <StyledRating
+										type="rating"
 										icon={<RadioButtonCheckedIcon />}
 										emptyIcon={<RadioButtonUncheckedIcon />}
 										name="Difficulty"
@@ -86,6 +105,7 @@ class ReviewForm extends Component {
 								<tr>
 									<td> Workload: </td>
 									<td> <StyledRating
+										type="rating"
 										icon={<RadioButtonCheckedIcon />}
 										emptyIcon={<RadioButtonUncheckedIcon />}
 										name="Workload"
@@ -95,6 +115,7 @@ class ReviewForm extends Component {
 							</tbody>
 						</table>
 						<textarea
+							type="textArea"
 							placeholder="Comments"
 							name="CourseComment"
 							onChange={this.handleChange}
@@ -110,13 +131,16 @@ class ReviewForm extends Component {
 								<tr>
 									<td> Approval: </td>
 									<td> <BinaryFeedback
+										type="binaryFeedback"
 										name="ProfessorApproval"
-										onChange={this.handleChange}
+										onPositiveClick={this.handlePositiveClick}
+										onNegativeClick={this.handleNegativeClick}
 									/></td>
 								</tr>
 								<tr>
 									<td> Clear: </td>
 									<td> <StyledRating
+										type="rating"
 										icon={<RadioButtonCheckedIcon />}
 										emptyIcon={<RadioButtonUncheckedIcon />}
 										name="Clear"
@@ -126,6 +150,7 @@ class ReviewForm extends Component {
 								<tr>
 									<td> Engaging: </td>
 									<td> <StyledRating
+										type="rating"
 										icon={<RadioButtonCheckedIcon />}
 										emptyIcon={<RadioButtonUncheckedIcon />}
 										name="Engaging"
@@ -135,6 +160,7 @@ class ReviewForm extends Component {
 								<tr>
 									<td> Helpful: </td>
 									<td> <StyledRating
+										type="rating"
 										icon={<RadioButtonCheckedIcon />}
 										emptyIcon={<RadioButtonUncheckedIcon />}
 										name="Helpful"
@@ -144,6 +170,7 @@ class ReviewForm extends Component {
 								<tr>
 									<td> Grading Difficulty: </td>
 									<td> <StyledRating
+										type="rating"
 										icon={<RadioButtonCheckedIcon />}
 										emptyIcon={<RadioButtonUncheckedIcon />}
 										name="GradingDifficulty"
@@ -153,6 +180,7 @@ class ReviewForm extends Component {
 							</tbody>
 						</table>
 						<textarea
+							type="textArea"
 							placeholder="Comments"
 							name="CourseComment"
 							onChange={this.handleChange}
