@@ -72,6 +72,12 @@ p{
 .courseProfs{
     margin-right: 50px;
     margin-left: 50px;
+    width: 80%;
+}
+
+.courseRequisites{
+    margin-right: 50px;
+    margin-left: 50px;
 }
 
 .likeButton{
