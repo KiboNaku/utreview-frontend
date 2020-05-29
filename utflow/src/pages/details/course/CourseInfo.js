@@ -1,11 +1,17 @@
 import React from 'react';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 
 function CourseInfo(props) {
 	return (
 		<div className="CourseInfo">
-			<h1> {props.courseDep} {props.courseNo} </h1>
+			<div className="parentCircle">
+				<div className="circle"></div>
+				<div className="childCourseName">
+					<h1> {props.courseDep} {props.courseNo} </h1>
+				</div>
+			</div>			
 			<p> {props.courseName} </p>
-			<p> {props.courseDes}</p>
+			<p> Description: {props.courseDes}</p>
 		</div>
 	);
 }
