@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavBar from './../_components/NavBar';
 import { BinaryFeedback } from 'react-simple-user-feedback';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter, Link } from 'react-router-dom'
 import Rating from '@material-ui/lab/Rating';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
@@ -31,7 +32,7 @@ class ReviewForm extends Component {
 
 	//TODO 
 	handleSubmit() {
-
+		this.props.history.push("/course-results")
 	}
 
 	handleChange() {
@@ -47,7 +48,6 @@ class ReviewForm extends Component {
 
 		return (
 			<div>
-				<NavBar />
 				<div className="container-sm">
 					<form onSubmit={this.handleSubmit}>
 						<table className="table col-4" id='CourseReview'>
@@ -160,7 +160,7 @@ class ReviewForm extends Component {
 
 						<br />
 						<br />
-						<input type="submit" value="Submit" />
+						<input type="submit" value="Submit" onSubmit={this.handleSubmit}/>
 					</form>
 				</div>
 			</div>
@@ -168,4 +168,4 @@ class ReviewForm extends Component {
 	}
 }
 
-export default ReviewForm;
+export default withRouter(ReviewForm);
