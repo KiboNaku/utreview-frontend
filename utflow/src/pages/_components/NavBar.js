@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import SearchBar from './SearchBar'
+import {Link, Route, Switch} from 'react-router-dom';
 
 class NavBar extends Component {
-    
-    render(){
+
+    render() {
 
         /**
          * Properties:
@@ -13,23 +14,31 @@ class NavBar extends Component {
          */
 
         return (
-            
-            <nav className="navbar navbar-expand-lg navbar-light bg-light py-4">
+            <div>
+                <nav className="navbar navbar-expand-lg navbar-light bg-light py-4">
 
-                <span className="nav-padding d-none d-md-inline col-lg-1"></span>
-                <a className="navbar-brand" href="#" className="d-none d-md-inline col-md-2 col-lg-1 font-weight-bold">UT Flow</a>
+                    <span className="nav-padding d-none d-md-inline col-lg-1"></span>
+                    <div className="navbar-brand" className="d-none d-md-inline col-md-2 col-lg-1 font-weight-bold">
+                        <Link to="/">
+                            UT Flow
+                        </Link>
+                    </div>
 
-                <span className={(this.props.showSearch && "d-none ") + "col-9 col-md-8"}></span>
+                    <span className={(this.props.showSearch && "d-none ") + "col-9 col-md-8"}></span>
 
-                <span className={(!this.props.showSearch && "d-none ") + "col-9 col-md-8"}>
-                    <SearchBar/>
-                </span>
+                    <span className={(!this.props.showSearch && "d-none ") + "col-9 col-md-8"}>
+                        <SearchBar />
+                    </span>
 
-                <span className="col-3 col-md-2 float-right">
-                    <button type="button" className="btn">Log in</button>
-                </span>
-                        
-            </nav>
+                    <span className="col-3 col-md-2 float-right">
+                        <Link to="/login">
+                            <button type="button" className="btn">Log in</button>
+                        </Link>
+                    </span>
+
+                </nav>
+            </div>
+
         )
     }
 }
