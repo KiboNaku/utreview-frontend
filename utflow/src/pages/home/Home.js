@@ -13,7 +13,6 @@ class Home extends Component {
                         <SearchBar/>
                     </div>
                 </main>
-                <Footer/>
             </div>
         )
     }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import SearchBar from './SearchBar'
 import {Link, Route, Switch} from 'react-router-dom';
-import "./NavBar.css"
 
 class NavBar extends Component {
 
