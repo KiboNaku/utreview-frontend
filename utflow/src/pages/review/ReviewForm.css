@@ -1,15 +1,12 @@
-table {
-	table-layout: fixed;
-	width: 300px;
+
+.ReviewForm {
+    border-radius: 5px;
+    width: 30%;
+    margin: 0px auto;
+	float: none;
+	border-style: hidden;
 }
 
-tr, td {
-	padding-left: 5px;
-	padding-bottom: 5px;
-	vertical-align: middle;
-}
-
-textarea {
-	padding-left: 5px;
-	width: 280px;
+.ReviewForm thead {
+	font-size: larger;
 }
