@@ -1,10 +1,35 @@
 import React, { Component } from 'react'
 import SearchBar from './SearchBar'
-import {Link, Route, Switch} from 'react-router-dom';
+import { Link, Route, Switch, withRouter } from 'react-router-dom';
 
 class NavBar extends Component {
 
+    logOut(e) {
+        e.preventDefault()
+        localStorage.removeItem('usertoken')
+        this.props.history.push(`/`)
+    }
+
     render() {
+
+        const login = (
+            <span className="col-3 col-md-2 float-right" >
+                <Link to="/login">
+                    <button type="button" className="btn">Log in</button>
+                </Link>
+            </span >
+        )
+
+        const logout = (
+
+            <span className="col-3 col-md-2 float-right" >
+                <button type="button" className="btn" onClick={this.logOut.bind(this)}>Log out</button>
+                <Link to="/profile">
+                    <button type="button" className="btn">Profile</button>
+                </Link>
+            </span >
+
+        )
 
         /**
          * Properties:
@@ -29,18 +54,13 @@ class NavBar extends Component {
                     <span className={(!this.props.showSearch && "d-none ") + "col-9 col-md-8"}>
                         <SearchBar />
                     </span>
-
-                    <span className="col-3 col-md-2 float-right">
-                        <Link to="/login">
-                            <button type="button" className="btn">Log in</button>
-                        </Link>
-                    </span>
+                    {localStorage.usertoken ? logout : login}
 
                 </nav>
-            </div>
+            </div >
 
         )
     }
 }
 
-export default NavBar
+export default withRouter(NavBar)
