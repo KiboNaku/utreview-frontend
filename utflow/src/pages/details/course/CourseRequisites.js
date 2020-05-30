@@ -15,19 +15,19 @@ function CourseRequisites(props) {
 		<div className="courseRequisites">
 			<h1> Requisites </h1>	
             <div>
-                <h3> Prerequisites </h3>
+                <h5> Prerequisites </h5>
                 <ul>
                     {prerequisites}
                 </ul>
             </div>
             <div>
-                <h3> Corequisites </h3>
+                <h5> Corequisites </h5>
                 <ul>
                     {corequisites}
                 </ul>
             </div>
             <div>
-                <h3> Antirequisites </h3>
+                <h5> Antirequisites </h5>
                 <ul>
                     {antirequisites}
                 </ul>
