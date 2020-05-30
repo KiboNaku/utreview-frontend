@@ -13,11 +13,13 @@ class ReviewForm extends Component {
 		super(props);
 
 		this.state = {
+			CourseNumber: "",
 			CourseApproval: null,
 			Usefulness: 0,
 			Difficulty: 0,
 			Workload: 0,
 			CourseComment: "",
+			ProfessorName: "",
 			ProfessorApproval: null,
 			Clear: 0,
 			Engaging: 0,
@@ -25,10 +27,12 @@ class ReviewForm extends Component {
 			GradingDifficulty: 0,
 			ProfessorComment: "",
 
+			CourseNumberError: "",
 			CourseApprovalError: "",
 			UsefulnessError: "",
 			DifficultyError: "",
 			WorkloadError: "",
+			ProfessorNameError: "",
 			ProfessorApprovalError: "",
 			ClearError: "",
 			EngagingError: "",
@@ -44,10 +48,12 @@ class ReviewForm extends Component {
 	}
 
 	validate() {
+		let CourseNumberError = "";
 		let CourseApprovalError = "";
 		let UsefulnessError = "";
 		let DifficultyError = "";
 		let WorkloadError = "";
+		let ProfessorNameError = "";
 		let ProfessorApprovalError = "";
 		let ClearError = "";
 		let EngagingError = "";
@@ -56,10 +62,12 @@ class ReviewForm extends Component {
 
 		let emptyErrorMessage = 'This field cannot be empty.';
 
+		if (this.state.CourseNumberError === "") { CourseNumberError = emptyErrorMessage; }
 		if (this.state.CourseApproval === null) { CourseApprovalError = emptyErrorMessage; }
 		if (this.state.Usefulness === 0) { UsefulnessError = emptyErrorMessage; }
 		if (this.state.Difficulty === 0) { DifficultyError = emptyErrorMessage; }
 		if (this.state.Workload === 0) { WorkloadError = emptyErrorMessage; }
+		if (this.state.ProfessorNameError === "") { ProfessorNameError = emptyErrorMessage; }
 		if (this.state.ProfessorApproval === null) { ProfessorApprovalError = emptyErrorMessage; }
 		if (this.state.Clear === 0) { ClearError = emptyErrorMessage; }
 		if (this.state.Engaging === 0) { EngagingError = emptyErrorMessage; }
@@ -68,20 +76,24 @@ class ReviewForm extends Component {
 
 		console.log(CourseApprovalError)
 
-		if (CourseApprovalError ||
+		if (CourseNumberError || 
+			CourseApprovalError ||
 			UsefulnessError ||
 			DifficultyError ||
 			WorkloadError ||
+			ProfessorNameError ||
 			ProfessorApprovalError ||
 			ClearError ||
 			EngagingError ||
 			HelpfulError ||
 			GradingDifficultyError) {
 			this.setState({
+				CourseNumberError: CourseNumberError,
 				CourseApprovalError: CourseApprovalError,
 				UsefulnessError: UsefulnessError,
 				DifficultyError: DifficultyError,
 				WorkloadError: WorkloadError,
+				ProfessorNameError: ProfessorNameError,
 				ProfessorApprovalError: ProfessorApprovalError,
 				ClearError: ClearError,
 				EngagingError: EngagingError,
@@ -133,6 +145,18 @@ class ReviewForm extends Component {
 								</tr>
 							</thead>
 							<tbody>
+								<tr>
+									<td> Course Number:
+										{this.state.CourseNumberError ? (
+											<td>
+												<small className="text-danger">{this.state.CourseNumberError}</small>
+											</td>
+										) : null}
+									</td>
+									<td>
+										{/* add dropdown for course number */}
+									</td>
+								</tr>
 								<tr>
 									<td> Approval:
 										{this.state.CourseApprovalError ? (
@@ -220,6 +244,18 @@ class ReviewForm extends Component {
 								</tr>
 							</thead>
 							<tbody>
+								<tr>
+									<td> Professor Name:
+										{this.state.ProfessorNameError ? (
+											<td>
+												<small className="text-danger">{this.state.ProfessorNameError}</small>
+											</td>
+										) : null}
+									</td>
+									<td>
+										{/* add dropdown for professor name */}
+									</td>
+								</tr>
 								<tr>
 									<td> Approval: 
 										{this.state.ProfessorApprovalError ? (
