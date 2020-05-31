@@ -3,9 +3,11 @@ import NavBar from './../_components/NavBar';
 import { BinaryFeedback } from 'react-simple-user-feedback';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter, Link } from 'react-router-dom'
+import Select from 'react-select'
 import Rating from '@material-ui/lab/Rating';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import { getCourseNum, getProfessorNames } from './ReviewFormFunctions.js'
 import './ReviewForm.css'
 
 class ReviewForm extends Component {
@@ -45,6 +47,8 @@ class ReviewForm extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handlePositiveClick = this.handlePositiveClick.bind(this);
 		this.handleNegativeClick = this.handleNegativeClick.bind(this);
+		this.handleCourseNumberChange = this.handleCourseNumberChange.bind(this);
+		this.handleProfessorNameChange = this.handleProfessorNameChange.bind(this);
 	}
 
 	validate() {
@@ -76,7 +80,7 @@ class ReviewForm extends Component {
 
 		console.log(CourseApprovalError)
 
-		if (CourseNumberError || 
+		if (CourseNumberError ||
 			CourseApprovalError ||
 			UsefulnessError ||
 			DifficultyError ||
@@ -128,12 +132,39 @@ class ReviewForm extends Component {
 		this.setState({ [name]: false })
 	}
 
+	handleCourseNumberChange = (inputValue, { action }) => {
+		if(inputValue !== null) {
+			this.setState({CourseNumber: inputValue.value})
+		}
+	}
+
+	handleProfessorNameChange = (inputValue, { action }) => {
+		if(inputValue !== null) {
+			this.setState({ProfessorName: inputValue.value})
+		}
+	}
+
 	render() {
 		const StyledRating = withStyles({
 			iconFilled: {
 				color: '#0080ff',
 			},
 		})(Rating);
+
+		const courseList = getCourseNum().map((courseNum) => {
+			return {
+				value: courseNum,
+				label: courseNum
+			}
+		});
+
+		const professorList = getProfessorNames().map((profName) => {
+			return {
+				value: profName,
+				label: profName
+			}
+		});
+
 		return (
 			<div>
 				<div className="container-fluid">
@@ -154,7 +185,16 @@ class ReviewForm extends Component {
 										) : null}
 									</td>
 									<td>
-										{/* add dropdown for course number */}
+										<Select
+											className="basic-single"
+											classNamePrefix="select"
+											name="courseNumber"
+											options={courseList}
+											onChange={this.handleCourseNumberChange}
+											placeholder="Select course..."
+											isClearable={true}
+											isSearchable={true}
+										/>
 									</td>
 								</tr>
 								<tr>
@@ -253,11 +293,20 @@ class ReviewForm extends Component {
 										) : null}
 									</td>
 									<td>
-										{/* add dropdown for professor name */}
+										<Select
+											className="basic-single"
+											classNamePrefix="select"
+											name="ProfessorName"
+											options={professorList}
+											onChange={this.handleProfessorNameChange}
+											placeholder="Select professor..."
+											isClearable={true}
+											isSearchable={true}
+										/>
 									</td>
 								</tr>
 								<tr>
-									<td> Approval: 
+									<td> Approval:
 										{this.state.ProfessorApprovalError ? (
 											<td>
 												<small className="text-danger">{this.state.ProfessorApprovalError}</small>
@@ -273,7 +322,7 @@ class ReviewForm extends Component {
 									/></td>
 								</tr>
 								<tr>
-									<td> Clear: 
+									<td> Clear:
 										{this.state.ClearError ? (
 											<td>
 												<small className="text-danger">{this.state.ClearError}</small>
@@ -290,7 +339,7 @@ class ReviewForm extends Component {
 									/></td>
 								</tr>
 								<tr>
-									<td> Engaging: 
+									<td> Engaging:
 										{this.state.EngagingError ? (
 											<td>
 												<small className="text-danger">{this.state.EngagingError}</small>
@@ -307,7 +356,7 @@ class ReviewForm extends Component {
 									/></td>
 								</tr>
 								<tr>
-									<td> Helpful: 
+									<td> Helpful:
 										{this.state.HelpfulError ? (
 											<td>
 												<small className="text-danger">{this.state.HelpfulError}</small>
@@ -324,7 +373,7 @@ class ReviewForm extends Component {
 									/></td>
 								</tr>
 								<tr>
-									<td> Grading Difficulty: 
+									<td> Grading Difficulty:
 										{this.state.GradingDifficultyError ? (
 											<td>
 												<small className="text-danger">{this.state.GradingDifficultyError}</small>
