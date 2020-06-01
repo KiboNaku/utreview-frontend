@@ -54,29 +54,38 @@ class CourseDetails extends React.Component {
         this.state = {
             courseInfo: courseInfo,
             courseRatings: courseRatings,
-            courseRequisites: courseRequisites
+            courseRequisites: courseRequisites,
+            loaded: false
         }
-    }
 
-    componentDidMount() {
         const { courseNum } = this.props.location.state
+        console.log(courseNum)
         const course = {
             courseNum: courseNum
         }
-
+        console.log("hello")
         getCourseInfo(course).then(res => {
             if (res.error) {
                 alert(res.error)
             }else{
-				let courseData = res.courses
-                this.setState({courseInfo: courseData})
+                let courseData = res.course_info
+                let courseRating = res.course_rating
+                this.setState({courseInfo: courseData, courseRatings: courseRating, loaded: true})
             }
         })
     }
 
+    componentDidMount() {
+        
+    }
+
     render() {
 
-        return (
+        let loading = (
+            <h1> Loading... </h1>
+        )
+
+        let content = (
             <div className="CourseDetails">
                 <div className="d-flex">
                     <CourseRatings
@@ -100,6 +109,12 @@ class CourseDetails extends React.Component {
                 />
                 <CourseReviews />
             </div>
+        )
+        return (
+            <div>
+                {this.state.loaded ? content: loading}
+            </div>
+            
         );
     }
 
