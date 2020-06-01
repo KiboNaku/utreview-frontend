@@ -10,7 +10,7 @@ class CourseResults extends Component {
 		this.state = {
 			courses: [],
 			sortBy: 'courseNum',
-			sortUp: false
+			currentSort: 'default'
 		}
 
 		this.setData = this.setData.bind(this);
