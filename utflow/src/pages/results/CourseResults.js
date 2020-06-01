@@ -9,8 +9,8 @@ class CourseResults extends Component {
 		super(props);
 		this.state = {
 			courses: [],
-			sortBy: 'courseNum',
-			sortUp: false
+			sortBy: '',
+			currentSort: 'default'
 		}
 
 		this.setData = this.setData.bind(this);
@@ -53,7 +53,15 @@ class CourseResults extends Component {
 				<tr key={courseNum}>
 					<td>{courseNum}</td>
 					<td>{
-						<Link to={`${this.props.match.url}/${courseNum}`}> {courseName} </Link>
+						<Link 
+							to={{
+								pathname: `${this.props.match.url}/${courseNum}`,
+								state: {
+									courseNum: courseNum
+								}
+							}}
+							> {courseName} 
+						</Link>
 					}</td>
 					<td>{
 						professors.map((lastName, i) => {

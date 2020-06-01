@@ -24,7 +24,7 @@ function App() {
 					<Route path="/profile" component={Profile} />
 					<Route path="/about" component={About} />
 					<Route exact path="/course-results" component={CourseResults} />
-					<Route path={"/course-results/:courseId"}
+					<Route path={"/course-results/:courseNum"}
 						render={(props) => <CourseDetails />} />
 					<Route path="/add-review" component={ReviewForm} />
 				</Switch>
