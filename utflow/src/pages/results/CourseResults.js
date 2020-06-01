@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
+import {populateCourses} from './ResultsFunctions'
 import NavBar from './../_components/NavBar';
 // import { sortTypes } from './sortTypes';
 
@@ -7,16 +8,24 @@ class CourseResults extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			courses: [
-				{ courseNum: 'EE 302', courseName: 'Introduction to Electrical Engineering', professors: ['Tutuc', 'Yu'] },
-				{ courseNum: 'EE 306', courseName: 'Introduction to Computing', professors: ['Yerraballi', 'Abraham', 'Patt'] }
-			],
-			sortBy: '',
-			currentSort: 'default'
+			courses: [],
+			sortBy: 'courseNum',
+			sortUp: false
 		}
 
 		this.setData = this.setData.bind(this);
 		this.onSortChange = this.onSortChange.bind(this);
+	}
+
+	componentDidMount(){
+		populateCourses().then(res => {
+            if (res.error) {
+                alert(res.error)
+            }else{
+				let courseData = res.courses
+                this.setState({courses: courseData})
+            }
+        })
 	}
 
 	setData() {
