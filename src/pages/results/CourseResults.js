@@ -9,7 +9,7 @@ class CourseResults extends Component {
 		super(props);
 		this.state = {
 			courses: [],
-			sortBy: '',
+			sortBy: 'courseNum',
 			currentSort: 'default'
 		}
 

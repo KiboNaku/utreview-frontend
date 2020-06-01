@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 // import { Link } from 'react-router-dom'
 import { login } from './UserFunctions'
 import './../../css/utcolors.css'
+import UTEmail from "./UTEmail"
+import ModalHeader from "./ModalHeader"
+import GoogleButton from "./GoogleButton"
 
 class Login extends Component {
 
@@ -43,36 +46,22 @@ class Login extends Component {
 
         return (
 
-            <div className="modal fade" id="login-modal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="login-modal" role="dialog">
+
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
 
-                        <div className="modal-header">
-                            <h5 className="modal-title">Log In</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                        <ModalHeader text="Log In" />
 
                         <div className="modal-body">
 
-                            <form className="form-signin pt-3" onSubmit={this.onSubmit}>
+                            <form className="form-signin mt-3" onSubmit={this.onSubmit}>
 
-                                <div className="form-label-group mt-3">
-                                    <span className="d-flex">
-                                        <input
-                                            type="text"
-                                            name="email"
-                                            className="form-control d-inline"
-                                            value={this.state.email}
-                                            onChange={this.onChange}
-                                            placeholder="email"
-                                            required autoFocus />
-                                        <label className="px-2 float-right" style={{ marginTop: 6 }}>@utexas.edu</label>
-                                    </span>
+                                <div className="my-3">
+                                    <UTEmail email={this.state.email} onChange={this.onChange} />
                                 </div>
 
-                                <div className="form-label-group mt-3">
+                                <div className="form-group my-3">
                                     <input
                                         type="password"
                                         name="password"
@@ -83,30 +72,24 @@ class Login extends Component {
                                         required />
                                 </div>
 
-                                <div className="checkbox mt-1">
-
+                                <div className="form-label-group checkbox my-1">
                                     <input type="checkbox" value="remember-me" />
                                     <label className="pl-2">Remember me</label>
                                 </div>
 
-                                <button className="btn btn-lg btn-primary btn-block mt-3" type="submit"> Log In </button>
+                                <button className="btn btn-lg btn-primary btn-block mt-2" type="submit">Log In</button>
 
                                 <a href="#"><p className="text-center">Forgot password?</p></a>
 
                             </form>
 
-                            <div className="text-center mb-3">
+                            <div className="text-center my-3">
                                 <h5><strong>OR</strong></h5>
                             </div>
 
-                            <div>
-                                <form className="form-signin">
-                                    <button className="btn btn-lg btn-dark btn-block" type="submit">
-                                        <span className="fab fa-google px-3"></span>
-                                        Log In with Google
-                                    </button>
-                                </form>
-                            </div>
+                            <form className="mb-3">
+                                <GoogleButton text="Log In with Google" />
+                            </form>
                         </div>
 
                         <div className="modal-footer d-block" align="center">
