@@ -1,7 +1,11 @@
 import axios from 'axios'
 
-const testData = [
-	"EE302", "EE306"
+export const testData = [
+	"EE302", "EE306", "AAS 301"
+]
+
+export const testProfData = [
+	"Tang, Eric"
 ]
 
 export function getCourseNum() {
