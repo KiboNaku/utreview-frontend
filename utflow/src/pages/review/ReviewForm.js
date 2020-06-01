@@ -15,6 +15,9 @@ class ReviewForm extends Component {
 		super(props);
 
 		this.state = {
+			courseNumList: null,
+			professorNameList: null,
+
 			CourseNumber: "",
 			CourseApproval: null,
 			Usefulness: 0,
@@ -133,15 +136,25 @@ class ReviewForm extends Component {
 	}
 
 	handleCourseNumberChange = (inputValue, { action }) => {
-		if(inputValue !== null) {
-			this.setState({CourseNumber: inputValue.value})
+		if (inputValue !== null) {
+			this.setState({ CourseNumber: inputValue.value })
 		}
 	}
 
 	handleProfessorNameChange = (inputValue, { action }) => {
-		if(inputValue !== null) {
-			this.setState({ProfessorName: inputValue.value})
+		if (inputValue !== null) {
+			this.setState({ ProfessorName: inputValue.value })
 		}
+	}
+
+	componentDidMount() {
+		let courseList = getCourseNum
+		let profList = getProfessorNames
+
+		this.setState({
+			courseNumList: courseList,
+			professorNameList: profList
+		})
 	}
 
 	render() {
@@ -151,12 +164,12 @@ class ReviewForm extends Component {
 			},
 		})(Rating);
 
-		const courseList = getCourseNum().map((courseNum) => {
+		const courseList = this.state.courseNumList.map((courseNum) => {
 			return {
 				value: courseNum,
 				label: courseNum
-			}
-		});
+			};
+		})
 
 		const professorList = getProfessorNames().map((profName) => {
 			return {
@@ -412,7 +425,7 @@ class ReviewForm extends Component {
 						</div>
 					</form>
 				</div>
-			</div>
+			</div >
 		)
 	}
 }
