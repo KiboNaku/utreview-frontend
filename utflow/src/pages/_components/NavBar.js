@@ -1,6 +1,10 @@
+
 import React, { Component } from 'react'
-import SearchBar from './SearchBar'
 import { Link, Route, Switch, withRouter } from 'react-router-dom';
+
+import SearchBar from './SearchBar'
+import Login from './../popups/Login'
+import Signup from './../popups/Signup'
 
 class NavBar extends Component {
 
@@ -14,9 +18,7 @@ class NavBar extends Component {
 
         const login = (
             <span className="col-3 col-md-2 float-right" >
-                <Link to="/login">
-                    <button type="button" className="btn">Log in</button>
-                </Link>
+                <button type="button" className="btn" data-toggle="modal" data-target="#login-modal">Log In</button>
             </span >
         )
 
@@ -24,9 +26,9 @@ class NavBar extends Component {
 
             <span className="col-3 col-md-2 float-right" >
                 <button type="button" className="btn" onClick={this.logOut.bind(this)}>Log out</button>
-                <Link to="/profile">
+                {/* <Link to="/profile">
                     <button type="button" className="btn">Profile</button>
-                </Link>
+                </Link> */}
             </span >
 
         )
@@ -54,8 +56,11 @@ class NavBar extends Component {
                     <span className={(!this.props.showSearch && "d-none ") + "col-9 col-md-8"}>
                         <SearchBar />
                     </span>
+
                     {localStorage.usertoken ? logout : login}
 
+                    <Login/>
+                    <Signup/>
                 </nav>
             </div >
 

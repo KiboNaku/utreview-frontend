@@ -8,18 +8,18 @@ class Footer extends Component {
         return (
 
             <footer>
-                <ul class="nav justify-content-end">
-                    <li class="nav-item" class="nav-link">
+                <ul className="nav justify-content-end">
+                    <li className="nav-item" className="nav-link">
                         <Link to="/">
                             Home
                         </Link>
                     </li>
-                    <li class="nav-item" class="nav-link">
+                    <li className="nav-item" className="nav-link">
                         <Link to="/about">
                             About
                         </Link>
                     </li>
-                    <li class="nav-item" class="nav-link">
+                    <li className="nav-item" className="nav-link">
                         <Link to="/">
                             Privacy Policy
                         </Link>
