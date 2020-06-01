@@ -252,7 +252,7 @@ class ReviewForm extends Component {
 									<td> Workload:
 										{this.state.WorkloadError ? (
 											<td>
-												<small class="text-danger">{this.state.WorkloadError}</small>
+												<small className="text-danger">{this.state.WorkloadError}</small>
 											</td>
 										) : null}
 									</td>
