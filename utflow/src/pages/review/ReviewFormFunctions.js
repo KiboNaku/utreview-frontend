@@ -9,17 +9,23 @@ export const testProfData = [
 ]
 
 export function getCourseNum() {
-	// axios.get('api/get-course-num')
-	// .then((response) => {
-	//   // do something get those numbers 
-	// });
+	let deptList = null
+	axios.get('api/get-depts')
+	.then((response) => {
+		console.log(response)
+	})
+
+	axios.get('api/get-courses')
+	.then((response) => {
+		console.log(response) 
+	});
 
 	return testData
 }
 
 export function getProfessorNames() {
-	// axios.get('api/get-prof-name')
-	// 	.then((response) => {
-	// 		// do something get those numbers 
-	// 	});
+	axios.get('api/get-profs')
+		.then((response) => {
+			console.log(response)
+		});
 }
