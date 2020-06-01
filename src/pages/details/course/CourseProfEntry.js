@@ -1,8 +1,10 @@
 import React from 'react';
 
 function CourseProfEntry(props) {
+
+    
 	return (
-        <tr key={props.id}>
+        <tr>
             <td>
                 <a href = "https://www.google.com" > {props.firstName} {props.lastName} </a>
             </td>

@@ -18,6 +18,7 @@ class CourseResults extends Component {
 	}
 
 	componentDidMount(){
+		console.log("hello")
 		populateCourses().then(res => {
             if (res.error) {
                 alert(res.error)
@@ -29,6 +30,7 @@ class CourseResults extends Component {
 	}
 
 	setData() {
+		console.log("hello")
 		const { courses, currentSort, sortBy } = this.state
 
 		const sortTypes = {
