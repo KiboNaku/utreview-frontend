@@ -7,8 +7,10 @@ import Select from 'react-select'
 import Rating from '@material-ui/lab/Rating';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { getCourseNum, getProfessorNames } from './ReviewFormFunctions.js'
+import { getCourseNum, getProfessorNames, testData, testProfData } from './ReviewFormFunctions.js'
 import './ReviewForm.css'
+import { checkDuplicate, newReview, editReview } from './ReviewFunctions'
+import jwt_decode from 'jwt-decode'
 
 class ReviewForm extends Component {
 	constructor(props) {
@@ -39,7 +41,9 @@ class ReviewForm extends Component {
 			ClearError: "",
 			EngagingError: "",
 			HelpfulError: "",
-			GradingDifficultyError: ""
+			GradingDifficultyError: "",
+
+			Duplicate: false
 		}
 
 		this.validate = this.validate.bind(this);
@@ -115,7 +119,32 @@ class ReviewForm extends Component {
 		const isValid = this.validate();
 		console.log(this.state.CourseApprovalError)
 		if (isValid) {
-			this.props.history.push("/course-results")
+			const token = localStorage.usertoken
+			const decoded = jwt_decode(token)
+
+			const review = {
+				user_email: decoded.identity.email,
+				course_name: this.state.CourseNumber,
+				prof_name: this.state.ProfessorName,
+				course_review: this.state.CourseComment,
+				course_approval: this.state.CourseApproval,
+				course_usefulness: this.state.Usefulness,
+				course_difficulty: this.state.Difficulty,
+				course_workload: this.state.Workload,
+				prof_review: this.state.ProfessorComment,
+				prof_approval: this.state.ProfessorApproval,
+				prof_clear: this.state.Clear,
+				prof_engaging: this.state.Engaging,
+				prof_grading: this.state.GradingDifficulty
+			}
+
+			newReview(review).then(res => {
+				if (res.error) {
+					alert(res.error)
+				} else {
+					this.props.history.push("/course-results")
+				}
+			})
 		}
 	}
 
@@ -133,14 +162,48 @@ class ReviewForm extends Component {
 	}
 
 	handleCourseNumberChange = (inputValue, { action }) => {
-		if(inputValue !== null) {
-			this.setState({CourseNumber: inputValue.value})
+		if (inputValue !== null) {
+			this.setState({ CourseNumber: inputValue.value })
+			if (this.state.ProfessorName !== "") {
+				const token = localStorage.usertoken
+				const decoded = jwt_decode(token)
+
+				const review = {
+					user_email: decoded.identity.email,
+					course_name: this.state.CourseNumber,
+					prof_name: this.state.ProfessorName
+				}
+
+				checkDuplicate(review).then(res => {
+					if (res.error) {
+						alert(res.error)
+						this.setState({ duplicate: true })
+					}
+				})
+			}
 		}
 	}
 
 	handleProfessorNameChange = (inputValue, { action }) => {
-		if(inputValue !== null) {
-			this.setState({ProfessorName: inputValue.value})
+		if (inputValue !== null) {
+			this.setState({ ProfessorName: inputValue.value })
+			if (this.state.CourseNumber !== "") {
+				const token = localStorage.usertoken
+				const decoded = jwt_decode(token)
+
+				const review = {
+					user_email: decoded.identity.email,
+					course_name: this.state.CourseNumber,
+					prof_name: this.state.ProfessorName
+				}
+
+				checkDuplicate(review).then(res => {
+					if (res.error) {
+						alert(res.error)
+						this.setState({ duplicate: true })
+					}
+				})
+			}
 		}
 	}
 
@@ -158,7 +221,7 @@ class ReviewForm extends Component {
 			}
 		});
 
-		const professorList = getProfessorNames().map((profName) => {
+		const professorList = testProfData.map((profName) => {
 			return {
 				value: profName,
 				label: profName

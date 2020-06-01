@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom'
 import './CourseDetails.css'
 
 class CourseDetails extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         const courseInfo = {
             courseDep: "EE",
             courseNo: 302,
@@ -19,9 +19,9 @@ class CourseDetails extends React.Component {
         }
 
         const courseRatings = {
-            percentLiked: 22,
+            percentLiked: null,
             difficulty: 4.3,
-            usefulness: 2.2,
+            usefulness: null,
             workload: 4.9,
             eCIS: 4.3
         }
