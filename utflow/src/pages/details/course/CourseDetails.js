@@ -5,6 +5,7 @@ import CourseProfs from './CourseProfs';
 import CourseReviews from './CourseReviews';
 import CourseAddReview from './CourseAddReview';
 import CourseRequisites from './CourseRequisites'
+import {getCourseInfo} from './CourseFunctions'
 import { Link } from 'react-router-dom'
 import './CourseDetails.css'
 
@@ -13,7 +14,7 @@ class CourseDetails extends React.Component {
         super(props)
         const courseInfo = {
             courseDep: "EE",
-            courseNo: 302,
+            courseNo: "302",
             courseName: "Introduction to Electrical Engineering",
             courseDes: "The scope and nature of professional activities of electrical engineers, including problem-solving techniques; analysis and design methods; engineering professional ethics; analysis of analog resistive circuits, including Thevenin/Norton equivalents, mesh analysis, and nodal analysis; and operational amplifiers (DC response). Substantial teamwork is required for laboratory work in this course. Three lecture hours and two laboratory hours a week for one semester."
         }
@@ -55,6 +56,22 @@ class CourseDetails extends React.Component {
             courseRatings: courseRatings,
             courseRequisites: courseRequisites
         }
+    }
+
+    componentDidMount() {
+        const { courseNum } = this.props.location.state
+        const course = {
+            courseNum: courseNum
+        }
+
+        getCourseInfo(course).then(res => {
+            if (res.error) {
+                alert(res.error)
+            }else{
+				let courseData = res.courses
+                this.setState({courseInfo: courseData})
+            }
+        })
     }
 
     render() {
