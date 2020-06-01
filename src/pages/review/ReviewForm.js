@@ -7,7 +7,7 @@ import Select from 'react-select'
 import Rating from '@material-ui/lab/Rating';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { getCourseNum, getProfessorNames, testData, testProfData } from './ReviewFormFunctions.js'
+import { getCourseNum, getProfessorNames} from './ReviewFormFunctions.js'
 import './ReviewForm.css'
 import { checkDuplicate, newReview, editReview } from './ReviewFunctions'
 import jwt_decode from 'jwt-decode'
@@ -211,12 +211,36 @@ class ReviewForm extends Component {
 	}
 
 	componentDidMount() {
-		let courseList = getCourseNum
-		let profList = getProfessorNames
+		getCourseNum().then(res => {
+			if (res.error) {
+				alert(res.error)
+			} else {
+				let data = res.courses
+				let courseList = new Array()
+				for (const i in data) {
+					courseList.push({
+						value: data[i]['num'],
+						label: data[i]['num']
+					})
+				}
+				this.setState({courseNumList: courseList})
+			}
+		})
 
-		this.setState({
-			courseNumList: courseList,
-			professorNameList: profList
+		getProfessorNames().then(res => {
+			if (res.error){
+				alert(res.error)
+			} else {
+				let data = res.professors
+				let profList = new Array()
+				for (const i in data) {
+					profList.push({
+						value: data[i]['name'],
+						label: data[i]['name']
+					})
+				}
+				this.setState({professorNameList: profList})
+			}
 		})
 	}
 
@@ -226,20 +250,6 @@ class ReviewForm extends Component {
 				color: '#0080ff',
 			},
 		})(Rating);
-
-		const courseList = this.state.courseNumList.map((courseNum) => {
-			return {
-				value: courseNum,
-				label: courseNum
-			};
-		})
-
-		const professorList = testProfData.map((profName) => {
-			return {
-				value: profName,
-				label: profName
-			}
-		});
 
 		return (
 			<div>
@@ -265,7 +275,7 @@ class ReviewForm extends Component {
 											className="basic-single"
 											classNamePrefix="select"
 											name="courseNumber"
-											options={courseList}
+											options={this.state.courseNumList}
 											onChange={this.handleCourseNumberChange}
 											placeholder="Select course..."
 											isClearable={true}
@@ -373,7 +383,7 @@ class ReviewForm extends Component {
 											className="basic-single"
 											classNamePrefix="select"
 											name="ProfessorName"
-											options={professorList}
+											options={this.state.professorNameList}
 											onChange={this.handleProfessorNameChange}
 											placeholder="Select professor..."
 											isClearable={true}
