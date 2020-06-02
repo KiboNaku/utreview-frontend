@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {withRouter, Link} from 'react-router-dom'
 import {populateCourses} from './ResultsFunctions'
 import NavBar from './../_components/NavBar';
+import Loading from './../_components/Loading'
 // import { sortTypes } from './sortTypes';
 
 class CourseResults extends Component {
@@ -10,25 +11,30 @@ class CourseResults extends Component {
 		this.state = {
 			courses: [],
 			sortBy: '',
-			currentSort: 'default'
+			currentSort: 'default',
+			loaded: false
 		}
+
+		populateCourses().then(res => {
+            if (res.error) {
+                alert(res.error)
+            }else{
+				let courseData = res.courses
+                this.setState({courses: courseData, loaded: true})
+            }
+        })
 
 		this.setData = this.setData.bind(this);
 		this.onSortChange = this.onSortChange.bind(this);
 	}
 
 	componentDidMount(){
-		populateCourses().then(res => {
-            if (res.error) {
-                alert(res.error)
-            }else{
-				let courseData = res.courses
-                this.setState({courses: courseData})
-            }
-        })
+		console.log("hello")
+		
 	}
 
 	setData() {
+		console.log("hello")
 		const { courses, currentSort, sortBy } = this.state
 
 		const sortTypes = {
@@ -55,7 +61,15 @@ class CourseResults extends Component {
 				<tr key={courseNum}>
 					<td>{courseNum}</td>
 					<td>{
-						<Link to={`${this.props.match.url}/${courseNum}`}> {courseName} </Link>
+						<Link 
+							to={{
+								pathname: `${this.props.match.url}/${courseNum}`,
+								state: {
+									courseNum: courseNum
+								}
+							}}
+							> {courseName} 
+						</Link>
 					}</td>
 					<td>{
 						professors.map((lastName, i) => {
@@ -106,7 +120,11 @@ class CourseResults extends Component {
 			}
 		}
 
-		return (
+		let loading = (
+			<Loading />
+		)
+
+		let content = (
 			<div>
 				<table id='courseResults' className='table table-hover'>
 					<thead className='thead-dark'>
@@ -121,6 +139,13 @@ class CourseResults extends Component {
 					</tbody>
 				</table>
 			</div>
+		)
+
+		return (
+			<div>
+                {this.state.loaded ? content: loading}
+            </div>
+			
 		)
 	}
 }
