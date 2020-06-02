@@ -6,6 +6,7 @@ import CourseReviews from './CourseReviews';
 import CourseAddReview from './CourseAddReview';
 import CourseRequisites from './CourseRequisites'
 import {getCourseInfo, getCourseProfs} from './CourseFunctions'
+import Loading from './../../_components/Loading'
 import { Link } from 'react-router-dom'
 import './CourseDetails.css'
 
@@ -105,7 +106,7 @@ class CourseDetails extends React.Component {
     render() {
 
         let loading = (
-            <h1> Loading... </h1>
+            <Loading />
         )
 
         let content = (
