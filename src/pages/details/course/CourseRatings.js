@@ -54,11 +54,11 @@ function CourseRatings(props) {
                 </div>
             </div>
             <div className="d-flex">
-                <div className="rating">
-                    <p className="p-rating"> Difficulty: {difficulty} </p>
+            <div className="rating">
+                    <p className="p-rating"> eCIS: {eCIS} </p>
                     <StyledRating
                         style={{ verticalAlign: "middle" }}
-                        defaultValue={difficultyValue}
+                        defaultValue={eCISValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon fontSize="large" />}
                         emptyIcon={<RadioButtonUncheckedIcon fontSize="large" />}
@@ -91,10 +91,10 @@ function CourseRatings(props) {
                     />
                 </div>
                 <div className="rating">
-                    <p className="p-rating"> eCIS: {eCIS} </p>
+                    <p className="p-rating"> Difficulty: {difficulty} </p>
                     <StyledRating
                         style={{ verticalAlign: "middle" }}
-                        defaultValue={eCISValue}
+                        defaultValue={difficultyValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon fontSize="large" />}
                         emptyIcon={<RadioButtonUncheckedIcon fontSize="large" />}

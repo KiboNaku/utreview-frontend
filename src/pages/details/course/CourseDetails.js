@@ -5,6 +5,7 @@ import CourseProfs from './CourseProfs';
 import CourseReviews from './CourseReviews';
 import CourseAddReview from './CourseAddReview';
 import CourseRequisites from './CourseRequisites'
+import {getCourseInfo, getCourseProfs} from './CourseFunctions'
 import { Link } from 'react-router-dom'
 import './CourseDetails.css'
 
@@ -13,7 +14,7 @@ class CourseDetails extends React.Component {
         super(props)
         const courseInfo = {
             courseDep: "EE",
-            courseNo: 302,
+            courseNo: "302",
             courseName: "Introduction to Electrical Engineering",
             courseDes: "The scope and nature of professional activities of electrical engineers, including problem-solving techniques; analysis and design methods; engineering professional ethics; analysis of analog resistive circuits, including Thevenin/Norton equivalents, mesh analysis, and nodal analysis; and operational amplifiers (DC response). Substantial teamwork is required for laboratory work in this course. Three lecture hours and two laboratory hours a week for one semester."
         }
@@ -25,6 +26,24 @@ class CourseDetails extends React.Component {
             workload: 4.9,
             eCIS: 4.3
         }
+
+        const courseProfs = [
+            {
+                name: 'Emanuel Tutuc',
+                percentLiked: 70,
+                eCIS: 4.2
+            },
+            {   
+                name: 'Yale Patt',
+                percentLiked: 32,
+                eCIS: 3.6
+            },
+            {   
+                name: 'Seth Bank',
+                percentLiked: 85,
+                eCIS: 4.8
+            },
+        ]
 
         const courseRequisites = {
             preRequisites: [
@@ -53,13 +72,43 @@ class CourseDetails extends React.Component {
         this.state = {
             courseInfo: courseInfo,
             courseRatings: courseRatings,
-            courseRequisites: courseRequisites
+            courseRequisites: courseRequisites,
+            courseProfs: courseProfs,
+            loaded: false
         }
+
+        const { courseNum } = this.props.location.state
+        console.log(courseNum)
+        const course = {
+            courseNum: courseNum
+        }
+        console.log("hello")
+        getCourseInfo(course).then(res => {
+            if (res.error) {
+                alert(res.error)
+            }else{
+                let courseData = res.course_info
+                let courseRating = res.course_rating
+                let courseProfessors = res.course_profs
+                this.setState({courseInfo: courseData, 
+                    courseRatings: courseRating, 
+                    courseProfs: courseProfessors,
+                    loaded: true})
+            }
+        })
+    }
+
+    componentDidMount() {
+        
     }
 
     render() {
 
-        return (
+        let loading = (
+            <h1> Loading... </h1>
+        )
+
+        let content = (
             <div className="CourseDetails">
                 <div className="d-flex">
                     <CourseRatings
@@ -75,7 +124,7 @@ class CourseDetails extends React.Component {
                     <CourseRequisites
                         {...this.state.courseRequisites}
                     />
-                    <CourseProfs />
+                    <CourseProfs {...this.state}/>
                 </div>
 
                 <CourseAddReview
@@ -83,6 +132,12 @@ class CourseDetails extends React.Component {
                 />
                 <CourseReviews />
             </div>
+        )
+        return (
+            <div>
+                {this.state.loaded ? content: loading}
+            </div>
+            
         );
     }
 
