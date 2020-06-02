@@ -3,33 +3,11 @@ import CourseProfEntry from './CourseProfEntry'
 import './CourseDetails.css'
 
 class CourseProfs extends React.Component {
-    constructor(){
-        super()
-        const courseProfs = [
-            {
-                key: 1,
-                firstName: 'Emanuel',
-                lastName: 'Tutuc',
-                percentLiked: 70,
-                eCIS: 4.2
-            },
-            {   
-                key: 2,
-                firstName: 'Yale',
-                lastName: 'Patt',
-                percentLiked: 32,
-                eCIS: 3.6
-            },
-            {   
-                key: 3,
-                firstName: 'Seth',
-                lastName: 'Bank',
-                percentLiked: 85,
-                eCIS: 4.8
-            },
-        ]
+    constructor(props){
+        super(props)
+        
         this.state = {
-            courseProfs: courseProfs
+            courseProfs: props.courseProfs
         }
     }
     

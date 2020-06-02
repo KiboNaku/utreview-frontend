@@ -7,7 +7,8 @@ function CourseInfo(props) {
 			<div className="parentCircle">
 				<div className="circle"></div>
 				<div className="childCourseName">
-					<h1> {props.courseDep} {props.courseNo} </h1>
+					<h1> {props.courseDep} </h1>
+					<h1> {props.courseNo} </h1>
 				</div>
 			</div>			
 			<p> {props.courseName} </p>

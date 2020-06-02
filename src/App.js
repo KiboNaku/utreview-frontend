@@ -18,14 +18,12 @@ function App() {
 				<NavBar showSearch="true" />
 				<Switch>
 					<Route exact path="/" component={Home} />
-					<Route path="/login" component={Login} />
-					<Route path="/signup" component={Signup} /> */}
 					<Route path="/profile" component={Profile} />
 					<Route path="/about" component={About} />
 					<Route exact path="/course-results" component={CourseResults} />
-					<Route path={"/course-results/:courseId"}
-						render={(props) => <CourseDetails />} />
-					<Route path="/add-review" component={ReviewForm} />
+					<Route path={"/course-results/:courseNum"}
+						component={CourseDetails} />
+					<Route path="/add-review" component={ReviewForm} /> 
 				</Switch>
 				<Footer />
 			</div>
