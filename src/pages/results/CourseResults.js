@@ -10,7 +10,7 @@ class CourseResults extends Component {
 		this.state = {
 			courses: [],
 			sortBy: 'courseNum',
-			sortUp: false
+			currentSort: 'default'
 		}
 
 		this.setData = this.setData.bind(this);
@@ -18,6 +18,7 @@ class CourseResults extends Component {
 	}
 
 	componentDidMount(){
+		console.log("hello")
 		populateCourses().then(res => {
             if (res.error) {
                 alert(res.error)
@@ -29,6 +30,7 @@ class CourseResults extends Component {
 	}
 
 	setData() {
+		console.log("hello")
 		const { courses, currentSort, sortBy } = this.state
 
 		const sortTypes = {
@@ -53,7 +55,15 @@ class CourseResults extends Component {
 				<tr key={courseNum}>
 					<td>{courseNum}</td>
 					<td>{
-						<Link to={`${this.props.match.url}/${courseNum}`}> {courseName} </Link>
+						<Link 
+							to={{
+								pathname: `${this.props.match.url}/${courseNum}`,
+								state: {
+									courseNum: courseNum
+								}
+							}}
+							> {courseName} 
+						</Link>
 					}</td>
 					<td>{
 						professors.map((lastName, i) => {
