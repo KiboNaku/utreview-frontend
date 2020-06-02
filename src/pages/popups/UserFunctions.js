@@ -43,3 +43,11 @@ export const getProfile = user => {
       console.log(err)
     })
 }
+
+export const getMajor = () => {
+	return axios
+		.get('api/get_major')
+		.then(response => {
+			return response.data
+		})
+}
