@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ModalHeader from './ModalHeader'
 import UTEmail from './UTEmail'
 import { signup } from './UserFunctions'
+import {withRouter, Link} from 'react-router-dom'
 import GoogleButton from "./GoogleButton"
 
 class Signup extends Component {
@@ -48,7 +49,7 @@ class Signup extends Component {
             if (res.error) {
                 alert(res.error)
             } else {
-                this.props.history.push('/login')
+                this.props.history.push('/profile')
             }
         })
 
@@ -154,4 +155,4 @@ class Signup extends Component {
     }
 }
 
-export default Signup
+export default withRouter(Signup)
