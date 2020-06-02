@@ -11,6 +11,7 @@ export const signup = newUser => {
     })
     .then(response => {
       console.log(response)
+      localStorage.setItem('usertoken', response.data)
       return response.data
     })
 }
