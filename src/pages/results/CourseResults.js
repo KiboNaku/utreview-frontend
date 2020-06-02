@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {withRouter, Link} from 'react-router-dom'
 import {populateCourses} from './ResultsFunctions'
 import NavBar from './../_components/NavBar';
+import Loading from './../_components/Loading'
 // import { sortTypes } from './sortTypes';
 
 class CourseResults extends Component {
@@ -10,8 +11,18 @@ class CourseResults extends Component {
 		this.state = {
 			courses: [],
 			sortBy: 'courseNum',
-			currentSort: 'default'
+			currentSort: 'default',
+			loaded: false
 		}
+
+		populateCourses().then(res => {
+            if (res.error) {
+                alert(res.error)
+            }else{
+				let courseData = res.courses
+                this.setState({courses: courseData, loaded: true})
+            }
+        })
 
 		this.setData = this.setData.bind(this);
 		this.onSortChange = this.onSortChange.bind(this);
@@ -19,14 +30,7 @@ class CourseResults extends Component {
 
 	componentDidMount(){
 		console.log("hello")
-		populateCourses().then(res => {
-            if (res.error) {
-                alert(res.error)
-            }else{
-				let courseData = res.courses
-                this.setState({courses: courseData})
-            }
-        })
+		
 	}
 
 	setData() {
@@ -113,7 +117,11 @@ class CourseResults extends Component {
 			}
 		}
 
-		return (
+		let loading = (
+			<Loading />
+		)
+
+		let content = (
 			<div>
 				<table id='courseResults' className='table table-hover'>
 					<thead className='thead-dark'>
@@ -128,6 +136,13 @@ class CourseResults extends Component {
 					</tbody>
 				</table>
 			</div>
+		)
+
+		return (
+			<div>
+                {this.state.loaded ? content: loading}
+            </div>
+			
 		)
 	}
 }
