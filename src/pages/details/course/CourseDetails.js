@@ -5,7 +5,7 @@ import CourseProfs from './CourseProfs';
 import CourseReviews from './CourseReviews';
 import CourseAddReview from './CourseAddReview';
 import CourseRequisites from './CourseRequisites'
-import {getCourseInfo} from './CourseFunctions'
+import {getCourseInfo, getCourseProfs} from './CourseFunctions'
 import { Link } from 'react-router-dom'
 import './CourseDetails.css'
 
@@ -26,6 +26,24 @@ class CourseDetails extends React.Component {
             workload: 4.9,
             eCIS: 4.3
         }
+
+        const courseProfs = [
+            {
+                name: 'Emanuel Tutuc',
+                percentLiked: 70,
+                eCIS: 4.2
+            },
+            {   
+                name: 'Yale Patt',
+                percentLiked: 32,
+                eCIS: 3.6
+            },
+            {   
+                name: 'Seth Bank',
+                percentLiked: 85,
+                eCIS: 4.8
+            },
+        ]
 
         const courseRequisites = {
             preRequisites: [
@@ -55,6 +73,7 @@ class CourseDetails extends React.Component {
             courseInfo: courseInfo,
             courseRatings: courseRatings,
             courseRequisites: courseRequisites,
+            courseProfs: courseProfs,
             loaded: false
         }
 
@@ -70,7 +89,11 @@ class CourseDetails extends React.Component {
             }else{
                 let courseData = res.course_info
                 let courseRating = res.course_rating
-                this.setState({courseInfo: courseData, courseRatings: courseRating, loaded: true})
+                let courseProfessors = res.course_profs
+                this.setState({courseInfo: courseData, 
+                    courseRatings: courseRating, 
+                    courseProfs: courseProfessors,
+                    loaded: true})
             }
         })
     }
@@ -101,7 +124,7 @@ class CourseDetails extends React.Component {
                     <CourseRequisites
                         {...this.state.courseRequisites}
                     />
-                    <CourseProfs />
+                    <CourseProfs {...this.state}/>
                 </div>
 
                 <CourseAddReview
