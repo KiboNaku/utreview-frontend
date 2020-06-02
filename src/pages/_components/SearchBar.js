@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
-import './components.css'
+import './searchbar.css'
 
 class SearchBar extends React.Component {
 
@@ -18,25 +18,21 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <form className="form-inline">
-                <div className="input-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <Link to="/course-results">
-                        <div className="input-group-prepend">
-                            <span className="input-group-text">
+            <form className="form-inline form-search">
+                <div className="container">
+                    <div className="d-flex justify-content-center">
+                        <div className="searchbar">
+                            <input
+                                className="search-input"
+                                type="text"
+                                onKeyPress={this.handleKeyPress}
+                                placeholder="Search for courses or professors" />
 
-                                <button type="button" className="searchButton">
-                                    <i className="fas fa-search"></i>
-                                </button>
-
-                            </span>
+                            <Link to="/course-results" className="search-icon">
+                                <i className="fas fa-search"></i>
+                            </Link>
                         </div>
-                    </Link>
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Search for courses or professors"
-                        onKeyPress={this.handleKeyPress}
-                    />
+                    </div>
                 </div>
             </form>
         )

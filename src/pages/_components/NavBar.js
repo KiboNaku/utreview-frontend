@@ -5,6 +5,7 @@ import { Link, Route, Switch, withRouter } from 'react-router-dom';
 import SearchBar from './SearchBar'
 import Login from './../popups/Login'
 import Signup from './../popups/Signup'
+import "./../../css/utcolors.css"
 
 class NavBar extends Component {
 
@@ -36,10 +37,11 @@ class NavBar extends Component {
         /**
          * Properties:
          * 1. showSearch: show search bar on the navbar
-         *    values = "true", "false"
+         *    values = "true", "false" (all values other than "true" will default to "false")
          *    default value = "false"
          */
 
+        let showSearch = this.props.showSearch == "true"
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light py-4">
@@ -47,13 +49,13 @@ class NavBar extends Component {
                     <span className="nav-padding d-none d-md-inline col-lg-1"></span>
                     <div className="navbar-brand" className="d-none d-md-inline col-md-2 col-lg-1 font-weight-bold">
                         <Link to="/">
-                            UT Flow
+                            UT Review
                         </Link>
                     </div>
 
-                    <span className={(this.props.showSearch && "d-none ") + "col-9 col-md-8"}></span>
+                    <span className={(showSearch && "d-none ") + "col-9 col-md-8"}></span>
 
-                    <span className={(!this.props.showSearch && "d-none ") + "col-9 col-md-8"}>
+                    <span className={(!showSearch && "d-none ") + "col-9 col-md-8"}>
                         <SearchBar />
                     </span>
 
