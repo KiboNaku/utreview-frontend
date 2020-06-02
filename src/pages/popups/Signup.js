@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import ModalHeader from './ModalHeader'
+import UTEmail from './UTEmail'
 import { signup } from './UserFunctions'
+import GoogleButton from "./GoogleButton"
 
 class Signup extends Component {
 
@@ -55,23 +57,17 @@ class Signup extends Component {
     render() {
 
         return (
-
-
-            <div className="modal fade" id="signup-modal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="signup-modal" role="dialog">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
 
-                        <div className="modal-header">
-                            <h5 className="modal-title">Sign Up</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                        <ModalHeader text="Sign Up" />
 
                         <div className="modal-body">
 
-                            <form className="form-signin" onSubmit={this.onSubmit}>
-                                <div className="form-label-group">
+                            <form className="form-signin mt-3" onSubmit={this.onSubmit}>
+
+                                <div className="form-group my-3">
                                     <input
                                         type="text"
                                         name="first_name"
@@ -80,6 +76,7 @@ class Signup extends Component {
                                         value={this.state.first_name}
                                         onChange={this.onChange}
                                         required autoFocus />
+
                                     <input
                                         type="text"
                                         name="last_name"
@@ -88,30 +85,24 @@ class Signup extends Component {
                                         value={this.state.last_name}
                                         onChange={this.onChange}
                                         required autoFocus />
+                                </div>
+
+                                <div className="my-3">
+                                    <UTEmail email={this.state.email} onChange={this.onChange} />
+                                </div>
+
+                                <div className="form-group my-3">
                                     <input
                                         type="text"
                                         name="major"
-                                        className="form-control mt-3"
+                                        className="form-control"
                                         placeholder="major"
                                         value={this.state.major}
                                         onChange={this.onChange}
                                         required autoFocus />
                                 </div>
-                                <div className="form-label-group mt-3">
-                                    <span className="d-flex">
-                                        <input
-                                            type="text"
-                                            name="email"
-                                            className="form-control d-inline"
-                                            value={this.state.email}
-                                            onChange={this.onChange}
-                                            placeholder="email"
-                                            required autoFocus />
-                                        <label className="px-2 float-right" style={{ marginTop: 6 }}>@utexas.edu</label>
-                                    </span>
-                                </div>
 
-                                <div className="form-label-group mt-3">
+                                <div className="form-group my-3">
                                     <input
                                         type="password"
                                         name="password"
@@ -122,7 +113,7 @@ class Signup extends Component {
                                         required />
                                 </div>
 
-                                <div className={"form-label-group mt-3"}>
+                                <div className={"form-group my-3"}>
                                     <input
                                         type="password"
                                         name="confirm_password"
@@ -133,22 +124,17 @@ class Signup extends Component {
                                         required />
                                 </div>
 
-                                <button className="btn btn-lg btn-primary btn-block mt-3" type="submit"> Sign up </button>
+                                <button className="btn btn-lg btn-primary btn-block mt-2" type="submit"> Sign up </button>
 
                             </form>
 
-                            <div className="text-center mb-3">
+                            <div className="text-center my-3">
                                 <h5><strong>OR</strong></h5>
                             </div>
 
-                            <div>
-                                <form className="form-signup">
-                                    <button className="btn btn-lg btn-dark btn-block" type="submit">
-                                        <span className="fab fa-google px-3"></span>
-                                Sign up with Google
-                            </button>
-                                </form>
-                            </div>
+                            <form className="mb-3">
+                                <GoogleButton text="Sign Up with Google" />
+                            </form>
                         </div>
 
                         <div className="modal-footer d-block" align="center">
