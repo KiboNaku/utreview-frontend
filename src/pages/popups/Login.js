@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { login } from './UserFunctions'
 import './../../css/utcolors.css'
 import UTEmail from "./UTEmail"
@@ -109,4 +109,4 @@ class Login extends Component {
     }
 }
 
-export default Login
+export default withRouter(Login)
