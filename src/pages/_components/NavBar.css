@@ -11,3 +11,7 @@
 .nav-search {
     background-color: black;
 }
+
+.invisibile {
+    visibility: hidden;
+}
