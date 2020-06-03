@@ -18,21 +18,16 @@ class NavBar extends Component {
     render() {
 
         const login = (
-            <span className="col-3 col-md-2 float-right" >
-                <button type="button" className="btn" data-toggle="modal" data-target="#login-modal">Log In</button>
-            </span >
+            <button type="button" className="btn" data-toggle="modal" data-target="#login-modal">Log In</button>
         )
 
         const logout = (
+            <button type="button" className="btn" onClick={this.logOut.bind(this)}>Log out</button>
+        )
 
-            <span className="col-3 col-md-2 float-right" >
-                <button type="button" className="btn" onClick={this.logOut.bind(this)}>Log out</button>
-                {/* <Link to="/profile">
+        {/* <Link to="/profile">
                     <button type="button" className="btn">Profile</button>
                 </Link> */}
-            </span >
-
-        )
 
         /**
          * Properties:
@@ -45,25 +40,26 @@ class NavBar extends Component {
         return (
             <div>
 
-                <nav className="navbar navbar-expand-lg navbar-dark py-4 fixed-top scrolling-navbar" style={{ backgroundColor: "transparent" }}>
+                <nav className="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar transparent py-3 row d-flex">
 
-                    <span className="nav-padding d-none d-md-inline col-lg-1"></span>
-                    <div className="navbar-brand" className="d-none d-md-inline col-md-2 col-lg-1 font-weight-bold">
+                    <div className="navbar-brand" className="font-weight-bold align-self-center d-none d-md-block px-5">
                         <Link id="nav-brand" className="utdark" to="/">
                             UT Review
                         </Link>
                     </div>
 
-                    <span className={(showSearch && "d-none ") + "col-9 col-md-8"}></span>
-
-                    <span className={(!showSearch && "d-none ") + "col-9 col-md-8"}>
+                    <div className="search-wrapper">
+                        
+                        {/* // className={(!showSearch && "d-none ") */}
                         <SearchBar />
-                    </span>
+                    </div>
 
-                    {localStorage.usertoken ? logout : login}
+                    <div className="float-right">
+                        {localStorage.usertoken ? logout : login}
+                    </div>
 
                 </nav>
-                
+
                 <Login />
                 <Signup />
             </div>

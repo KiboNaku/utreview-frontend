@@ -1,4 +1,14 @@
+
 #nav-brand {
-    font-size: 140% !important;
-    color: black;
+    font-size: 140%;
+    color: white;
+}
+
+.nav-search {
+    background-color: black;
+}
+
+.search-wrapper {
+    flex-grow: 100;
+    width: auto;
 }

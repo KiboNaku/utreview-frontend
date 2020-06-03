@@ -17,3 +17,7 @@ main {
 
     color: white;
 }
+
+.search-wrapper {
+    width: calc(100vw * .20 + 300px);
+}
