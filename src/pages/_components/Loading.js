@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
-import { Link, Route, Switch } from 'react-router-dom';
+import HashLoader from "react-spinners/HashLoader";
 
 class Loading extends Component {
 
     render() {
 
         return (
-
-            <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
+            <HashLoader size={100} color="#bf5700"/>
         )
     }
 }

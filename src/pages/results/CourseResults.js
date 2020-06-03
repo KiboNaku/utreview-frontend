@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {withRouter, Link} from 'react-router-dom'
-import {populateCourses} from './ResultsFunctions'
-import NavBar from './../_components/NavBar';
+import { withRouter, Link } from 'react-router-dom'
+import { populateCourses } from './ResultsFunctions'
 import Loading from './../_components/Loading'
 // import { sortTypes } from './sortTypes';
 
@@ -16,21 +15,21 @@ class CourseResults extends Component {
 		}
 
 		populateCourses().then(res => {
-            if (res.error) {
-                alert(res.error)
-            }else{
+			if (res.error) {
+				alert(res.error)
+			} else {
 				let courseData = res.courses
-                this.setState({courses: courseData, loaded: true})
-            }
-        })
+				this.setState({ courses: courseData, loaded: true })
+			}
+		})
 
 		this.setData = this.setData.bind(this);
 		this.onSortChange = this.onSortChange.bind(this);
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		console.log("hello")
-		
+
 	}
 
 	setData() {
@@ -59,14 +58,14 @@ class CourseResults extends Component {
 				<tr key={courseNum}>
 					<td>{courseNum}</td>
 					<td>{
-						<Link 
+						<Link
 							to={{
 								pathname: `${this.props.match.url}/${courseNum}`,
 								state: {
 									courseNum: courseNum
 								}
 							}}
-							> {courseName} 
+						> {courseName}
 						</Link>
 					}</td>
 					<td>{
@@ -100,8 +99,8 @@ class CourseResults extends Component {
 	}
 
 	render() {
-		let NumberSortIcon = <i className="fas fa-sort"></i>		;
-		let NameSortIcon = <i className="fas fa-sort"></i>		;
+		let NumberSortIcon = <i className="fas fa-sort"></i>;
+		let NameSortIcon = <i className="fas fa-sort"></i>;
 
 		if (this.state.sortBy === 'courseNum') {
 			if (this.state.currentSort === 'up') {
@@ -118,7 +117,9 @@ class CourseResults extends Component {
 		}
 
 		let loading = (
-			<Loading />
+			<div className="d-flex justify-content-center">
+				<Loading/>
+			</div>
 		)
 
 		let content = (
@@ -140,9 +141,9 @@ class CourseResults extends Component {
 
 		return (
 			<div>
-                {this.state.loaded ? content: loading}
-            </div>
-			
+				{this.state.loaded ? content : loading}
+			</div>
+
 		)
 	}
 }
