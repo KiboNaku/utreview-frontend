@@ -18,12 +18,21 @@ class NavBar extends Component {
     render() {
 
         const login = (
-            <button type="button" className="btn" data-toggle="modal" data-target="#login-modal">Log In</button>
+            <button type="button" className="btn btn-dark font-weight-bold" data-toggle="modal" data-target="#login-modal">Log in</button>
         )
 
         const logout = (
-            <button type="button" className="btn" onClick={this.logOut.bind(this)}>Log out</button>
+            <button type="button" className="btn btn-dark font-weight-bold" onClick={this.logOut.bind(this)}>Log out</button>
         )
+
+        const signup = (
+            <button type="button" className="btn btn-dark font-weight-bold" data-toggle="modal" data-target="#signup-modal">Sign up</button>
+        )
+
+        const profile = (
+            <button type="button" className="btn btn-dark font-weight-bold">Profile</button>
+        )
+
 
         {/* <Link to="/profile">
                     <button type="button" className="btn">Profile</button>
@@ -40,31 +49,37 @@ class NavBar extends Component {
         return (
             <div>
 
-                <nav className="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar transparent py-3 row d-flex">
+                <nav className="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar transparent py-3 justify-content-between">
 
-                    <div className="navbar-brand" className="font-weight-bold align-self-center d-none d-md-block px-5">
-                        <Link id="nav-brand" className="utdark" to="/">
+                    <div className="navbar-brand" className={"font-weight-bold float-left align-self-center" + (showSearch && " d-none d-md-block")}>
+                        <Link id="nav-brand" className="utdark px-2" to="/">
                             UT Review
                         </Link>
                     </div>
 
-                    <div className="search-wrapper">
-                        
-                        {/* // className={(!showSearch && "d-none ") */}
+                    <div className={showSearch ? "search-wrapper mr-auto" : "d-none"} >
                         <SearchBar />
                     </div>
 
-                    <div className="float-right">
-                        {localStorage.usertoken ? logout : login}
+                    <div classname="ml-auto">
+                        <span className="align-self-center mr-2 d-none d-md-inline">
+                            {localStorage.usertoken ? profile : signup}
+                        </span>
+
+                        <span className="align-self-center mr-2">
+                            {localStorage.usertoken ? logout : login}
+                        </span>
                     </div>
 
                 </nav>
-
+                
                 <Login />
                 <Signup />
+
             </div>
         )
     }
 }
+
 
 export default withRouter(NavBar)

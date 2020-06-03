@@ -22,3 +22,7 @@ a.utcolor:hover, link.utcolor:hover {
 a.utcolor:active, link.utcolor:active {
     color: #333f48;
 }
+
+.white-text {
+    color: white;
+}

@@ -4,11 +4,10 @@
     color: white;
 }
 
-.nav-search {
-    background-color: black;
+#nav-brand:hover {
+    text-decoration: none;
 }
 
-.search-wrapper {
-    flex-grow: 100;
-    width: auto;
+.nav-search {
+    background-color: black;
 }
