@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link, Route, Switch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class Footer extends Component {
 
@@ -7,7 +7,7 @@ class Footer extends Component {
 
         return (
 
-            <footer>
+            <footer style={{backgroundColor:"rgba(51, 63, 72"}}>
                 <ul className="nav justify-content-end">
                     <li className="nav-item" className="nav-link">
                         <Link to="/">
