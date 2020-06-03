@@ -89,6 +89,9 @@ function CourseReviewEntry(props) {
                     <Avatar className={classes.large} src={props.review.profPic}>  </Avatar>
                     <span> {props.review.userMajor} student, taught by </span>
                     <a href="https://www.google.com" > {props.review.profName} </a>
+                    <div className="reviewDate">
+                        <span> {props.review.date} </span>
+                    </div>
                 </div>
                 <div className="userRev">
                     <span>{props.review.review}</span>
