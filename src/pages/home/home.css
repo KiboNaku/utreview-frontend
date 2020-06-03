@@ -4,6 +4,7 @@ main {
     height: 100vh;
     width: 100vw;
     max-width: 100%;
+    min-height: 500px;
     overflow: hidden;
 
     display: flex;
@@ -19,5 +20,5 @@ main {
 }
 
 .search-wrapper {
-    width: calc(100vw * .20 + 300px);
+    width: calc(100vw * .22 + 230px);
 }
