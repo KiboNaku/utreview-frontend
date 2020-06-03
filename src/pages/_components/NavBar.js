@@ -30,7 +30,10 @@ class NavBar extends Component {
         )
 
         const profile = (
-            <button type="button" className="btn btn-dark font-weight-bold">Profile</button>
+            <Link to="/profile">
+                <button type="button" className="btn btn-dark font-weight-bold">Profile</button>
+            </Link>
+            
         )
 
 
