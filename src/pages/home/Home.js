@@ -20,7 +20,13 @@ class Home extends Component {
                             <SearchBar />
                         </div>
                     </div>
+
+                    <div>
+
+                    </div>
                 </main>
+                
+                <figcaption class="figure-caption text-right clear-top px-3">Photo by Joel Filipe on Unsplash</figcaption>
             </div >
         )
     }

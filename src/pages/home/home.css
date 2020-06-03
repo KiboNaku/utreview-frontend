@@ -22,3 +22,8 @@ main {
 .search-wrapper {
     width: calc(100vw * .22 + 230px);
 }
+
+.figure-caption{
+    background-color: #333f48;
+    color: #f8971f;
+}

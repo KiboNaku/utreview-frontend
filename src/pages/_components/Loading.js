@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link, Route, Switch} from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 
 class Loading extends Component {
 
@@ -7,7 +7,9 @@ class Loading extends Component {
 
         return (
 
-            <h1> Loading... </h1>
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
         )
     }
 }
