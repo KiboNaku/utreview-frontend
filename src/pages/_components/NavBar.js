@@ -41,15 +41,45 @@ class NavBar extends Component {
         /**
          * Properties:
          * 1. showSearch: show search bar on the navbar
-         *    values = "true", "false" (all values other than "true" will default to "false")
+         *    values = "true", "false" (all other values default to "false")
          *    default value = "false"
+         * 2. transparent: show background of navbar
+         *    values = "true", "false" (all other values default to "false")
+         *    Note: if false, will take up space on page
          */
 
         let showSearch = this.props.showSearch == "true"
+        let transparent = this.props.transparent == "true"
+
         return (
             <div>
 
-                <nav className="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar transparent py-3 justify-content-between">
+                {!transparent &&
+                    <nav className="navbar navbar-expand-lg navbar-dark transparent py-3 justify-content-between invisible">
+
+                        <div className="navbar-brand" className={"font-weight-bold float-left align-self-center" + (showSearch && " d-none d-md-block")}>
+                            <Link id="nav-brand" className="utdark px-2" to="/">UT Review</Link>
+                        </div>
+
+                        <div className={showSearch ? "search-wrapper mr-auto" : "d-none"} >
+                            <SearchBar />
+                        </div>
+
+                        <div classname="ml-auto">
+                            <span className="align-self-center mr-2 d-none d-md-inline">
+                                {localStorage.usertoken ? profile : signup}
+                            </span>
+
+                            <span className="align-self-center mr-2">
+                                {localStorage.usertoken ? logout : login}
+                            </span>
+                        </div>
+
+                    </nav>
+                }
+
+                <nav className={"navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar py-3 justify-content-between " 
+                                + (transparent? "transparent": "bg-dark")}>
 
                     <div className="navbar-brand" className={"font-weight-bold float-left align-self-center" + (showSearch && " d-none d-md-block")}>
                         <Link id="nav-brand" className="utdark px-2" to="/">
@@ -72,7 +102,7 @@ class NavBar extends Component {
                     </div>
 
                 </nav>
-                
+
                 <Login />
                 <Signup />
 
