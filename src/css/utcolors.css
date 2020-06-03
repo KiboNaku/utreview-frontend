@@ -22,3 +22,15 @@ a.utcolor:hover {
 a.utcolor:active {
     color: #333f48;
 }
+
+link.utcolor {
+    color: #bf5700;
+}
+
+link.utcolor:hover {
+    color:#f8971f;
+}
+
+link.utcolor:active {
+    color: #333f48;
+}

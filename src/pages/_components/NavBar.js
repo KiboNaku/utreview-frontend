@@ -5,7 +5,7 @@ import { Link, Route, Switch, withRouter } from 'react-router-dom';
 import SearchBar from './SearchBar'
 import Login from './../popups/Login'
 import Signup from './../popups/Signup'
-import "./../../css/utcolors.css"
+import "./NavBar.css"
 
 class NavBar extends Component {
 
@@ -44,11 +44,12 @@ class NavBar extends Component {
         let showSearch = this.props.showSearch == "true"
         return (
             <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light py-4">
+
+                <nav className="navbar navbar-expand-lg navbar-dark py-4 fixed-top scrolling-navbar" style={{ backgroundColor: "transparent" }}>
 
                     <span className="nav-padding d-none d-md-inline col-lg-1"></span>
                     <div className="navbar-brand" className="d-none d-md-inline col-md-2 col-lg-1 font-weight-bold">
-                        <Link to="/">
+                        <Link id="nav-brand" className="utdark" to="/">
                             UT Review
                         </Link>
                     </div>
@@ -61,11 +62,11 @@ class NavBar extends Component {
 
                     {localStorage.usertoken ? logout : login}
 
-                    <Login/>
-                    <Signup/>
                 </nav>
-            </div >
-
+                
+                <Login />
+                <Signup />
+            </div>
         )
     }
 }
