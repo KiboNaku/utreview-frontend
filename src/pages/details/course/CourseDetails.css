@@ -96,6 +96,12 @@ p{
     bottom: 0;
 }
 
+.reviewDate{
+    margin-bottom: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
 .courseAddReview{
     display: flex;
     margin-left: 250px;
