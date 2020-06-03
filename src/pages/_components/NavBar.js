@@ -27,9 +27,9 @@ class NavBar extends Component {
 
             <span className="col-3 col-md-2 float-right" >
                 <button type="button" className="btn" onClick={this.logOut.bind(this)}>Log out</button>
-                {/* <Link to="/profile">
+                <Link to="/profile">
                     <button type="button" className="btn">Profile</button>
-                </Link> */}
+                </Link> 
             </span >
 
         )
