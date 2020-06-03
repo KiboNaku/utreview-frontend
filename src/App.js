@@ -16,8 +16,8 @@ function App() {
 			<div className="App">
 
 				<Switch>
-					<Route exact path="/" component={() => <NavBar showSearch="false" />} />
-					<Route path="/" component={() => <NavBar showSearch="true" />} />
+					<Route exact path="/" component={() => <NavBar showSearch="false" transparent="true"/>} />
+					<Route path="/" component={() => <NavBar showSearch="true" transparent="false" />} />
 				</Switch>
 
 				<Switch>

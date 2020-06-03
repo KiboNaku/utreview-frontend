@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
-import './searchbar.css'
+import './SearchBar.css'
 
 class SearchBar extends React.Component {
 
@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
         return (
             <form className="form-inline form-search">
                 <div className="container">
-                    <div className="d-flex justify-content-center">
+                    <div className="d-flex justify-content-center searchbar-wrapper">
                         <div className="searchbar">
                             <input
                                 className="search-input"
