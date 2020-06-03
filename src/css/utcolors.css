@@ -11,26 +11,14 @@
 	color: #333f48;
 }
 
-a.utcolor {
+a.utcolor, link.utcolor {
     color: #bf5700;
 }
 
-a.utcolor:hover {
+a.utcolor:hover, link.utcolor:hover {
     color:#f8971f;
 }
 
-a.utcolor:active {
-    color: #333f48;
-}
-
-link.utcolor {
-    color: #bf5700;
-}
-
-link.utcolor:hover {
-    color:#f8971f;
-}
-
-link.utcolor:active {
+a.utcolor:active, link.utcolor:active {
     color: #333f48;
 }
