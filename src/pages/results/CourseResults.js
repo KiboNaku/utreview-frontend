@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter, Link} from 'react-router-dom'
 import {populateCourses} from './ResultsFunctions'
-import NavBar from './../_components/NavBar';
 import Loading from './../_components/Loading'
-// import { sortTypes } from './sortTypes';
 
 class CourseResults extends Component {
 	constructor(props) {
@@ -103,8 +101,8 @@ class CourseResults extends Component {
 	}
 
 	render() {
-		let NumberSortIcon = <i className="fas fa-sort"></i>		;
-		let NameSortIcon = <i className="fas fa-sort"></i>		;
+		let NumberSortIcon = <i className="fas fa-sort"></i>
+		let NameSortIcon = <i className="fas fa-sort"></i>
 
 		if (this.state.sortBy === 'courseNum') {
 			if (this.state.currentSort === 'up') {
@@ -151,3 +149,4 @@ class CourseResults extends Component {
 }
 
 export default withRouter(CourseResults);
+
