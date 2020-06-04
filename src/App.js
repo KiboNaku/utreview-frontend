@@ -9,6 +9,7 @@ import ReviewForm from './pages/review/ReviewForm'
 import Login from './pages/popups/Login'
 import Signup from './pages/popups/Signup'
 import Profile from './pages/profile/Profile'
+import Results from './pages/results/Results'
 import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 					<Route path="/profile" component={Profile} />
 					<Route path="/about" component={About} />
 					<Route exact path="/course-results" component={CourseResults} />
+					<Route exact path="/results" component={Results} />
 					<Route path={"/course-results/:courseNum"}
 						component={CourseDetails} />
 					<Route path="/add-review" component={ReviewForm} /> 

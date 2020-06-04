@@ -7,7 +7,7 @@ import Select from 'react-select'
 import Rating from '@material-ui/lab/Rating';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { getCourseNum, getProfessorNames} from './ReviewFormFunctions.js'
+import { getCourseNum, getProfessorNames} from './ReviewFormFunctions'
 import './ReviewForm.css'
 import { checkDuplicate, newReview, editReview } from './ReviewFunctions'
 import jwt_decode from 'jwt-decode'
