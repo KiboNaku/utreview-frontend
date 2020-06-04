@@ -7,6 +7,8 @@ import CourseResults from './pages/results/CourseResults'
 import CourseDetails from './pages/details/course/CourseDetails'
 import ReviewForm from './pages/review/ReviewForm'
 import Profile from './pages/profile/Profile'
+import Results from './pages/results/Results'
+import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
@@ -25,8 +27,9 @@ function App() {
 					<Route path="/profile" component={Profile} />
 					<Route path="/about" component={About} />
 					<Route exact path="/course-results" component={CourseResults} />
+					<Route exact path="/results" component={Results} />
+					<Route path="/add-review" component={ReviewForm} /> 
 					<Route path={"/course-results/:courseId"} render={(props) => <CourseDetails />} />
-					<Route path="/add-review" component={ReviewForm} />
 				</Switch>
 				<Footer />
 			</div>

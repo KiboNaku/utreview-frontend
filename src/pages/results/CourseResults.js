@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import {withRouter, Link} from 'react-router-dom'
 import {populateCourses} from './ResultsFunctions'
-import NavBar from './../_components/NavBar';
 import Loading from './../_components/Loading'
-// import { sortTypes } from './sortTypes';
 
 class CourseResults extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			courses: [],
-			sortBy: 'courseNum',
+			sortBy: '',
 			currentSort: 'default',
 			loaded: false
 		}
@@ -59,11 +57,11 @@ class CourseResults extends Component {
 		const sortTypes = {
 			up: {
 				class: 'sortUp',
-				fn: (a, b) => sortBy === 'courseNum' ? a.courseNum - b.courseNum : a.courseName - b.courseNum
+				fn: (a, b) => sortBy === 'courseNum' ? b.courseNum.localeCompare(a.courseNum) : b.courseName.localeCompare(a.courseName)
 			},
 			down: {
 				class: 'sortDown',
-				fn: (a, b) => sortBy === 'courseNum' ? b.courseNum - a.courseNum : b.courseName - a.courseNum
+				fn: (a, b) => sortBy === 'courseNum' ? a.courseNum.localeCompare(b.courseNum) : a.courseName.localeCompare(b.courseName)
 			},
 			default: {
 				class: 'sort',
@@ -71,7 +69,9 @@ class CourseResults extends Component {
 			}
 		}
 
-		return courses.sort(sortTypes[currentSort].fn).map(course => {
+		let sortedCourses = courses.sort(sortTypes[currentSort].fn)
+
+		return sortedCourses.map(course => {
 			const { courseNum, courseName, professors } = course
 
 			return (
@@ -108,8 +108,9 @@ class CourseResults extends Component {
 		const { currentSort, sortBy } = this.state;
 		let nextSort;
 
-		if (currentSort === 'down') nextSort = 'up';
-		else if (currentSort === 'up') nextSort = 'default';
+		if (sortBy !== sortByName ) nextSort = 'down';
+		else if (currentSort === 'down') nextSort = 'up';
+		else if (currentSort === 'up') nextSort = 'down';
 		else if (currentSort === 'default') nextSort = 'down';
 
 		this.setState({
@@ -119,8 +120,8 @@ class CourseResults extends Component {
 	}
 
 	render() {
-		let NumberSortIcon = <i className="fas fa-sort"></i>		;
-		let NameSortIcon = <i className="fas fa-sort"></i>		;
+		let NumberSortIcon = <i className="fas fa-sort"></i>
+		let NameSortIcon = <i className="fas fa-sort"></i>
 
 		if (this.state.sortBy === 'courseNum') {
 			if (this.state.currentSort === 'up') {
@@ -167,3 +168,4 @@ class CourseResults extends Component {
 }
 
 export default withRouter(CourseResults);
+
