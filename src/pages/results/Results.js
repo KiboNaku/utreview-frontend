@@ -70,17 +70,17 @@ class Results extends Component {
 	sortUp(a, b) {
 		const { sortBy, courses, professors } = this.state
 
-		if (sortBy === 'courseNum' && courses.length !== 0) { return b.courseNum.localeCompare(a.courseNum) }
-		else if (sortBy === 'courseName' && courses.length !== 0) { return b.courseName.localeCompare(a.courseName) }
-		else if (sortBy === 'profName' && professors.length !== 0) { return b.profName.localeCompare(a.profName) }
+		if (sortBy === 'courseNum' && courses.length !== 0 && 'courseNum' in a) { return b.courseNum.localeCompare(a.courseNum) }
+		else if (sortBy === 'courseName' && courses.length !== 0 && 'courseName' in a) { return b.courseName.localeCompare(a.courseName) }
+		else if (sortBy === 'profName' && professors.length !== 0 && 'profName' in a) { return b.profName.localeCompare(a.profName) }
 	}
 
 	sortDown(a, b) {
-		const { sortBy, courses, professors } = this.state
+		const { sortBy, courses, professors, currentTab } = this.state
 
-		if (sortBy === 'courseNum' && courses.length !== 0) { return a.courseNum.localeCompare(b.courseNum) }
-		else if (sortBy === 'courseName' && courses.length !== 0) { return a.courseName.localeCompare(b.courseName) }
-		else if (sortBy === 'profName' && professors.length !== 0) { return a.profName.localeCompare(b.profName) }
+		if (sortBy === 'courseNum' && courses.length !== 0 && 'courseNum' in a) { return a.courseNum.localeCompare(b.courseNum) }
+		else if (sortBy === 'courseName' && courses.length !== 0 && 'courseName' in a) { return a.courseName.localeCompare(b.courseName) }
+		else if (sortBy === 'profName' && professors.length !== 0 && 'profName' in a) { return a.profName.localeCompare(b.profName) }
 	}
 
 	setData(index) {
@@ -103,6 +103,7 @@ class Results extends Component {
 
 		switch (index) {
 			case 0:
+				console.log("sort course")
 				let sortedCourses = courses.sort(sortTypes[currentSort].fn)
 				return sortedCourses.map(course => {
 					const { courseNum, courseName, professors } = course
@@ -136,6 +137,7 @@ class Results extends Component {
 				})
 
 			case 1:
+				console.log("sort prof")
 				let sortedProfs = professors.sort(sortTypes[currentSort].fn)
 				return sortedProfs.map(professor => {
 					const { id, profName, taughtCourses } = professor
