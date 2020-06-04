@@ -1,10 +1,12 @@
 import React from 'react';
 import CourseReviewEntry from './CourseReviewEntry';
+import { reviewFeedback } from './CourseFunctions'
+import jwt_decode from 'jwt-decode'
 import './CourseDetails.css'
 
 class CourseReviews extends React.Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		const courseReviews = [
 			{
 				key: 1,
@@ -54,7 +56,7 @@ class CourseReviews extends React.Component {
 		]
 
 		this.state = {
-			courseReviews: courseReviews
+			courseReviews: props.courseReviews
 		}
 
 		this.handleLike = this.handleLike.bind(this)
@@ -62,6 +64,15 @@ class CourseReviews extends React.Component {
 	}
 
 	handleLike(key) {
+		const token = localStorage.usertoken
+		const decoded = jwt_decode(token)
+
+		let feedback = {
+			like: true,
+			userEmail: decoded.identity.email,
+			reviewId: key
+		}
+
 		this.setState(prevState => {
 			const updatedReviews = prevState.courseReviews.map(courseReview => {
 				let dislike = courseReview.dislikePressed
@@ -71,7 +82,7 @@ class CourseReviews extends React.Component {
 				if (key === courseReview.key) {
 					if (dislike) {
 						dislike = false
-						dislikeNum = dislikeNum - 1
+						dislikeNum = dislikeNum - 1						
 						like = true
 						likeNum = likeNum + 1
 					} else {
@@ -106,9 +117,25 @@ class CourseReviews extends React.Component {
 			}
 		}
 		)
+
+		reviewFeedback(feedback).then(res => {
+			if (res.error) {
+				alert(res.error)
+			}
+		})
+		
 	}
 
 	handleDislike(key) {
+
+		const token = localStorage.usertoken
+		const decoded = jwt_decode(token)
+
+		let feedback = {
+			like: false,
+			userEmail: decoded.identity.email,
+			reviewId: key
+		}
 		this.setState(prevState => {
 			const updatedReviews = prevState.courseReviews.map(courseReview => {
 				let dislike = courseReview.dislikePressed
@@ -153,6 +180,11 @@ class CourseReviews extends React.Component {
 			}
 		}
 		)
+		reviewFeedback(feedback).then(res => {
+			if (res.error) {
+				alert(res.error)
+			}
+		})
 	}
 
 	render() {

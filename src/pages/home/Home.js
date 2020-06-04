@@ -1,19 +1,27 @@
-import React, {Component} from 'react'
-import NavBar from './../_components/NavBar'
+import React, { Component } from 'react'
 import SearchBar from './../_components/SearchBar'
-import Footer from './../_components/Footer'
-import './home.css'
+import './Home.css'
 
 class Home extends Component {
-    render(){
+    render() {
         return (
             <div>
                 <main>
-                    <div className="col-sm-12 col-md-8 col-lg-6 col-xl-6">
-                        <SearchBar/>
+                    <div className="container text-center">
+
+                        <div>
+                            <h1>What starts here</h1>
+                            <h1>changes your course schedule</h1>
+                        </div>
+
+                        <br />
+
+                        <div className="search-wrapper container">
+                            <SearchBar />
+                        </div>
                     </div>
                 </main>
-            </div>
+            </div >
         )
     }
 }

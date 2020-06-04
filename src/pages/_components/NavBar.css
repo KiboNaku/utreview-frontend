@@ -1,0 +1,17 @@
+
+#nav-brand {
+    font-size: 140%;
+    color: white;
+}
+
+#nav-brand:hover {
+    text-decoration: none;
+}
+
+.nav-search {
+    background-color: black;
+}
+
+.invisibile {
+    visibility: hidden;
+}
