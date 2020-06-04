@@ -82,7 +82,7 @@ class CourseReviews extends React.Component {
 				if (key === courseReview.key) {
 					if (dislike) {
 						dislike = false
-						dislikeNum = dislikeNum - 1						
+						dislikeNum = dislikeNum - 1
 						like = true
 						likeNum = likeNum + 1
 					} else {
@@ -123,7 +123,7 @@ class CourseReviews extends React.Component {
 				alert(res.error)
 			}
 		})
-		
+
 	}
 
 	handleDislike(key) {
@@ -198,12 +198,20 @@ class CourseReviews extends React.Component {
 			)
 		})
 
+		let noReviews = (
+			<h3> No reviews yet for this course </h3>
+		)
+
+		let reviews = (
+			<div className="list-group">
+				{courseReviewList}
+			</div>
+		)
+
 		return (
 			<div className="courseReviews">
 				<h1> Course Reviews </h1>
-				<div className="list-group">
-					{courseReviewList}
-				</div>
+				{this.state.courseReviews.length > 0 ? reviews: noReviews}
 			</div>
 
 		)

@@ -1,8 +1,10 @@
 import axios from 'axios'
 
-export const populateCourses = () => {
+export const populateCourses = (search) => {
   return axios
-    .get('api/populate_courses')
+    .post('/api/populate_courses', {
+      searchValue: search.searchValue
+    })
     .then(response => {
       console.log(response)
       return response.data
