@@ -7,7 +7,8 @@ import CourseAddReview from './CourseAddReview';
 import CourseRequisites from './CourseRequisites'
 import {getCourseInfo, getCourseProfs} from './CourseFunctions'
 import Loading from './../../_components/Loading'
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
 import './CourseDetails.css'
 
 class CourseDetails extends React.Component {
@@ -70,18 +71,78 @@ class CourseDetails extends React.Component {
             ]
         }
 
+        const courseReviews = [
+			{
+				key: 1,
+				review: "I fucking hated this class",
+				liked: false,
+				usefulness: 1,
+				difficulty: 5,
+				workload: 5,
+				userMajor: 'Electrical and Computer Engineering',
+				profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
+				profName: 'Yale Patt',
+				numLiked: 2,
+				numDisliked: 0,
+				likePressed: false,
+				dislikePressed: false
+			},
+			{
+				key: 2,
+				review: "This was the most inspiring class of my life",
+				liked: true,
+				usefulness: 5,
+				difficulty: 2,
+				workload: 3,
+				userMajor: 'Electrical and Computer Engineering',
+				profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
+				profName: 'Seth Bank',
+				numLiked: 1,
+				numDisliked: 2,
+				likePressed: true,
+				dislikePressed: false
+			},
+			{
+				key: 3,
+				review: "Why did I even take this class",
+				liked: false,
+				usefulness: 1,
+				difficulty: 2,
+				workload: 3,
+				userMajor: 'Business Honors',
+				profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
+				profName: 'Emanuel Tutuc',
+				numLiked: 5,
+				numDisliked: 2,
+				likePressed: false,
+				dislikePressed: true
+			},
+		]
+
         this.state = {
             courseInfo: courseInfo,
             courseRatings: courseRatings,
             courseRequisites: courseRequisites,
             courseProfs: courseProfs,
+            courseReviews: courseReviews,
             loaded: false
         }
 
         const { courseNum } = this.props.location.state
         console.log(courseNum)
+        let loggedIn = false
+        let email = ''
+        const token = localStorage.usertoken
+        if(token){
+            const decoded = jwt_decode(token)
+            loggedIn = true
+            email = decoded.identity.email
+        }
+        
         const course = {
-            courseNum: courseNum
+            courseNum: courseNum,
+            loggedIn: loggedIn,
+            userEmail: email
         }
         console.log("hello")
         getCourseInfo(course).then(res => {
@@ -91,9 +152,11 @@ class CourseDetails extends React.Component {
                 let courseData = res.course_info
                 let courseRating = res.course_rating
                 let courseProfessors = res.course_profs
+                let courseRevs = res.course_reviews
                 this.setState({courseInfo: courseData, 
                     courseRatings: courseRating, 
                     courseProfs: courseProfessors,
+                    courseReviews: courseRevs,
                     loaded: true})
             }
         })
@@ -131,7 +194,7 @@ class CourseDetails extends React.Component {
                 <CourseAddReview
                     {...this.state.courseInfo}
                 />
-                <CourseReviews />
+                <CourseReviews {...this.state}/>
             </div>
         )
         return (
@@ -144,4 +207,4 @@ class CourseDetails extends React.Component {
 
 }
 
-export default CourseDetails;
+export default withRouter(CourseDetails);

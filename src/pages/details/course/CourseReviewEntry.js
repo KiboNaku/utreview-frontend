@@ -12,6 +12,8 @@ import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import Rating from '@material-ui/lab/Rating';
+import Login from './../../popups/Login'
+import Signup from './../../popups/Signup'
 import './CourseDetails.css'
 
 /* 
@@ -47,6 +49,39 @@ function CourseReviewEntry(props) {
             color: '#0080ff',
         },
     })(Rating);
+
+    const loginLink = (
+        <span>
+            <button
+                className="likeButton"
+                data-toggle="modal" data-target="#login-modal"
+                type="button"
+            >
+                {likeIcon}
+            </button>
+            <Login />
+            <Signup />
+        </span>
+
+    )
+
+    const likeButton = (
+        <button
+            className="likeButton"
+            onClick={() => props.handleLike(props.review.key)}
+        >
+            {likeIcon}
+        </button>
+    )
+
+    const dislikeButton = (
+        <button
+            className="dislikeButton"
+            onClick={() => props.handleDislike(props.review.key)}
+        >
+            {dislikeIcon}
+        </button>
+    )
     return (
         <div className="list-group-item">
             <div className="d-flex">
@@ -54,23 +89,16 @@ function CourseReviewEntry(props) {
                     <Avatar className={classes.large} src={props.review.profPic}>  </Avatar>
                     <span> {props.review.userMajor} student, taught by </span>
                     <a href="https://www.google.com" > {props.review.profName} </a>
+                    <div className="reviewDate">
+                        <span> {props.review.date} </span>
+                    </div>
                 </div>
                 <div className="userRev">
                     <span>{props.review.review}</span>
                     <div className="LikeDislike">
-                        <button 
-                            className="likeButton" 
-                            onClick={() => props.handleLike(props.review.key)}
-                            >
-                            {likeIcon}
-                        </button>
+                        {localStorage.usertoken ? likeButton: loginLink}
                         <span> {props.review.numLiked} </span>
-                        <button 
-                            className="dislikeButton" 
-                            onClick={() => props.handleDislike(props.review.key)}
-                            >
-                            {dislikeIcon}
-                        </button>
+                        {localStorage.usertoken ? dislikeButton: loginLink}
                         <span> {props.review.numDisliked} </span>
                     </div>
                 </div>
