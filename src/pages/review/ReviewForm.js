@@ -164,6 +164,7 @@ class ReviewForm extends Component {
 	}
 
 	handleCourseNumberChange = (inputValue, { action }) => {
+		console.log(action)
 		if (inputValue !== null) {
 			this.setState({ CourseNumber: inputValue.value })
 			if (this.state.ProfessorName !== "") {
@@ -172,7 +173,7 @@ class ReviewForm extends Component {
 
 				const review = {
 					user_email: decoded.identity.email,
-					course_name: this.state.CourseNumber,
+					course_name: inputValue.value,
 					prof_name: this.state.ProfessorName
 				}
 
@@ -187,6 +188,7 @@ class ReviewForm extends Component {
 	}
 
 	handleProfessorNameChange = (inputValue, { action }) => {
+		console.log(action)
 		if (inputValue !== null) {
 			this.setState({ ProfessorName: inputValue.value })
 			if (this.state.CourseNumber !== "") {
@@ -196,8 +198,10 @@ class ReviewForm extends Component {
 				const review = {
 					user_email: decoded.identity.email,
 					course_name: this.state.CourseNumber,
-					prof_name: this.state.ProfessorName
+					prof_name: inputValue.value
 				}
+				console.log(review.course_name)
+				console.log(review.prof_name)
 
 				checkDuplicate(review).then(res => {
 					if (res.error) {
