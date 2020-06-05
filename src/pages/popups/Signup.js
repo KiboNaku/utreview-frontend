@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import ModalHeader from './ModalHeader'
 import UTEmail from './UTEmail'
-import { signup } from './UserFunctions'
+import { signup, getMajor } from './UserFunctions'
 import {withRouter, Link} from 'react-router-dom'
 import GoogleButton from "./GoogleButton"
+import Select from 'react-select'
 
 class Signup extends Component {
 
@@ -15,11 +16,13 @@ class Signup extends Component {
             email: '',
             password: '',
             confirm_password: '',
-            major: ''
+            major: '', 
+            majorList: null
         }
 
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.handleMajorChange = this.handleMajorChange.bind(this)
     }
 
     onChange(e) {
@@ -53,6 +56,30 @@ class Signup extends Component {
             }
         })
 
+    }
+
+    handleMajorChange = (inputValue, { action }) => {
+		if (inputValue !== null) {
+            this.setState({ major: inputValue.value })
+        }
+    }
+
+    componentDidMount() {
+        getMajor().then(res => {
+            if (res.error) {
+                alert(res.error)
+            } else {
+                let data = res.majors
+                let list = new Array()
+                for (const i in data) {
+                    list.push({
+                        value: data[i]['name'],
+                        label: data[i]['name']
+                    })
+                }
+                this.setState({ majorList: list })
+            }
+        })
     }
 
     render() {
@@ -93,14 +120,25 @@ class Signup extends Component {
                                 </div>
 
                                 <div className="form-group my-3">
-                                    <input
+                                    {/* <input
                                         type="text"
                                         name="major"
                                         className="form-control"
                                         placeholder="major"
                                         value={this.state.major}
                                         onChange={this.onChange}
-                                        required autoFocus />
+                                        required autoFocus /> */}
+
+                                    <Select
+                                        className="basic-single"
+                                        classNamePrefix="select"
+                                        name="major"
+                                        options={this.state.majorList}
+                                        onChange={this.handleMajorChange}
+                                        placeholder="Select major..."
+                                        isClearable={true}
+                                        isSearchable={true}
+                                    />
                                 </div>
 
                                 <div className="form-group my-3">

@@ -171,6 +171,7 @@ class CourseDetails extends React.Component {
         let loading = (
             <Loading />
         )
+        
 
         let content = (
             <div className="CourseDetails">
