@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
-import './searchbar.css'
+import './SearchBar.css'
 
 class SearchBar extends React.Component {
 
