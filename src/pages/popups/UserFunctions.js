@@ -33,7 +33,7 @@ export const login = user => {
 
 export const getProfile = user => {
   return axios
-    .get('users/profile', {
+    .get('/users/profile', {
       //headers: { Authorization: ` ${this.getToken()}` }
     })
     .then(response => {
@@ -43,4 +43,12 @@ export const getProfile = user => {
     .catch(err => {
       console.log(err)
     })
+}
+
+export const getMajor = () => {
+	return axios
+		.get('/api/get_major')
+		.then(response => {
+			return response.data
+		})
 }
