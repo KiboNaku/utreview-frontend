@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import SearchBar from './../_components/SearchBar'
-import './home.css'
+import SearchBar from './../_utils/SearchBar'
+import './Home.css'
 
 class Home extends Component {
     render() {
@@ -20,7 +20,13 @@ class Home extends Component {
                             <SearchBar />
                         </div>
                     </div>
+
+                    <div>
+
+                    </div>
                 </main>
+                
+                <figcaption className="figure-caption text-right clear-top px-3">Photo by Joel Filipe on Unsplash</figcaption>
             </div >
         )
     }
