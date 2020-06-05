@@ -57,7 +57,7 @@ function ResultsComponent() {
                     </th>
                     <th scope="col">
                         Professors
-								</th>
+						</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,9 +66,26 @@ function ResultsComponent() {
         </table>
     )
 
+    let profTable = (
+        <table id='professorResults' className='table table-hover'>
+            <thead className='thead-dark'>
+                <tr>
+                    <th scope="col" onClick={() => this.handleSortChange('profName')}>
+                        Professor Name {ProfNameSortIcon}
+                    </th>
+                    <th scope="col">
+                        Courses Taught
+								</th>
+                </tr>
+            </thead>
+            <tbody>
+                {this.setData(1)}
+            </tbody>
+        </table>
+    )
+
     let result = (
         <div className="col-lg-9">
-
             <AppBar position="static" color="default">
                 <Tabs
                     value={this.state.currentTab}
@@ -83,25 +100,11 @@ function ResultsComponent() {
             </AppBar>
 
             <TabPanel index={0} value={this.state.currentTab}>
-                {empty ? emptyTable : courseTable}
+                {this.state.noCourses ? emptyTable : courseTable}
             </TabPanel>
 
             <TabPanel index={1} value={this.state.currentTab}>
-                <table id='professorResults' className='table table-hover'>
-                    <thead className='thead-dark'>
-                        <tr>
-                            <th scope="col" onClick={() => this.handleSortChange('profName')}>
-                                Professor Name {ProfNameSortIcon}
-                            </th>
-                            <th scope="col">
-                                Courses Taught
-								</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.setData(1)}
-                    </tbody>
-                </table>
+                {this.state.noProfs ? emptyTable : profTable}
             </TabPanel>
         </div>
     )
@@ -141,14 +144,18 @@ function ResultsComponent() {
                     <label> Min Rating: </label>
                     <StyledRating
                         type="rating"
-                        value={this.state.Usefulness}
+                        value={this.state.minRating}
                         icon={<RadioButtonCheckedIcon />}
                         emptyIcon={<RadioButtonUncheckedIcon />}
                         name="Usefulness"
                         onChange={this.handleChange}
                     />
                     <label>Min Number of Ratings: </label>
-                    <input type="range" className="custom-range" min="0" max="500" id="customRange3"></input>
+                    <input type="range" class="custom-range" min="0" max="500" id="customRange3"></input>
+
+                    {hours}
+                    {divisions}
+
                 </div>
             </div>
         </div>
