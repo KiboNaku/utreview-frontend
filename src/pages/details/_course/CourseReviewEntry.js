@@ -14,7 +14,7 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import Rating from '@material-ui/lab/Rating';
 import Login from './../../popups/Login'
 import Signup from './../../popups/Signup'
-import './CourseDetails.css'
+import './../CourseDetails.css'
 
 /* 
     Properties:

@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import { Link, Route, Switch, withRouter } from 'react-router-dom';
 
 import SearchBar from './SearchBar'
-import Login from './../popups/Login'
-import Signup from './../popups/Signup'
+import Login from '../popups/Login'
+import Signup from '../popups/Signup'
 import "./NavBar.css"
 
 class NavBar extends Component {
@@ -68,7 +68,7 @@ class NavBar extends Component {
                             <SearchBar />
                         </div>
 
-                        <div classname="ml-auto">
+                        <div className="ml-auto">
                             <span className="align-self-center mr-2 d-none d-md-inline">
                                 {localStorage.usertoken ? profile : signup}
                             </span>
@@ -94,7 +94,7 @@ class NavBar extends Component {
                         <SearchBar />
                     </div>
 
-                    <div classname="ml-auto">
+                    <div className="ml-auto">
                         <span className="align-self-center mr-2 d-none d-md-inline">
                             {localStorage.usertoken ? profile : signup}
                         </span>

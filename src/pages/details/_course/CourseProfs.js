@@ -1,6 +1,6 @@
 import React from 'react';
 import CourseProfEntry from './CourseProfEntry'
-import './CourseDetails.css'
+import './../CourseDetails.css'
 
 class CourseProfs extends React.Component {
     constructor(props){

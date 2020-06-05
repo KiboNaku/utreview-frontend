@@ -1,14 +1,13 @@
 import React from 'react';
-import NavBar from './pages/_components/NavBar'
-import Footer from './pages/_components/Footer'
+import NavBar from './pages/_utils/NavBar'
+import Footer from './pages/_utils/Footer'
 import Home from './pages/home/Home'
 import About from './pages/about/About'
-import CourseResults from './pages/results/CourseResults'
-import CourseDetails from './pages/details/course/CourseDetails'
+import CourseDetails from './pages/details/CourseDetails'
 import ReviewForm from './pages/review/ReviewForm'
 import Profile from './pages/profile/Profile'
 import Results from './pages/results/Results'
-import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
 
