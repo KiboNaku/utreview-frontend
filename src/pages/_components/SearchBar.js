@@ -18,7 +18,7 @@ class SearchBar extends React.Component {
         this.searchValue = e.target.value
         if (e.key === 'Enter') {        
             this.props.history.push({
-                pathname: "/course-results",
+                pathname: "/results",
                 search: `?search=${e.target.value}`,
                 state: {searchValue: e.target.value}
             })
@@ -30,7 +30,7 @@ class SearchBar extends React.Component {
     handleSubmit (e)  {
         
         this.props.history.push({
-            pathname: "/course-results",
+            pathname: "/results",
             search: `?search=${this.state.searchValue}`,
             state: {searchValue: this.state.searchValue}
         })
