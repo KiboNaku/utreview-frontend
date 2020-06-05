@@ -6,6 +6,10 @@ import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import TabPanel from './TabPanel'
+import Select from 'react-select'
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
+import { StyledRating } from './../review/Rating'
 
 class Results extends Component {
 	constructor(props) {
@@ -219,7 +223,6 @@ class Results extends Component {
 			}
 		}
 
-
 		let loading = (
 			<Loading />
 		)
@@ -252,7 +255,8 @@ class Results extends Component {
 		)
 
 		let content = (
-			<div>
+			<div className="col-lg-9">
+
 				<AppBar position="static" color="default">
 					<Tabs
 						value={this.state.currentTab}
@@ -290,7 +294,83 @@ class Results extends Component {
 			</div>
 		)
 
-		let loaded = this.state.courseLoaded && this.state.profLoaded		
+		let courseFilter = (
+			// for courses:
+			// current semester (checkbox)
+			// department (dropdown select)
+			// min rating (rating)
+			// min num of ratings (slider)
+			// hours (checkbox group)
+			// upper/lower div (checkbox group)
+
+			<div className="col-lg-3">
+				<div className='card'>
+					<div className='card-header'>
+						Courses:
+					</div>
+					<div className='card-body'>
+						<div className='form-check'>
+							{/* change to checkbox on right, add handleChange */}
+							<input type='checkbox' className='pull-right form-check-input' onChange={this.handleChange} />
+							<label className='form-check-label'>Current Semester</label>
+						</div>
+						<Select
+							// add deptList, handleDeptChange
+							className="basic-multi-select"
+							classNamePrefix="select"
+							name="dept"
+							options={this.state.deptList}
+							onChange={this.handleDeptChange}
+							placeholder="Select Department..."
+							isClearable={true}
+							isSearchable={true}
+							isMulti
+						/>
+						<label> Min Rating: </label>
+						<StyledRating
+							type="rating"
+							value={this.state.Usefulness}
+							icon={<RadioButtonCheckedIcon />}
+							emptyIcon={<RadioButtonUncheckedIcon />}
+							name="Usefulness"
+							onChange={this.handleChange}
+						/>
+						<label>Min Number of Ratings: </label>
+						<input type="range" class="custom-range" min="0" max="500" id="customRange3"></input>
+					</div>
+				</div>
+			</div>
+		)
+
+		let profFilter = (
+
+			// for profs:
+			// current semester (checkbox)
+			// min rating (rating)
+			// min num of ratings (slider)
+			<div className="col-lg-3">
+				<div className='card'>
+					<div className='card-header'>
+						Professor:
+					</div>
+				</div>
+			</div>
+		)
+
+		let filter = (
+			this.state.currentTab === 0 ? courseFilter : profFilter
+		)
+
+		let content = (
+			<div className='container-fluid'>
+				<div className='row'>
+					{filter}
+					{result}
+				</div>
+			</div>
+		)
+
+		let loaded = this.state.courseLoaded && this.state.profLoaded
 
 		return (
 			<div>
