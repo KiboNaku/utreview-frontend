@@ -10,6 +10,7 @@ import Select from 'react-select'
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import { StyledRating } from './../review/Rating'
+import { hours, divisions } from './FilterComponents'
 
 class Results extends Component {
 	constructor(props) {
@@ -255,7 +256,7 @@ class Results extends Component {
 						</th>
 						<th scope="col">
 							Professors
-								</th>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -284,7 +285,6 @@ class Results extends Component {
 
 		let result = (
 			<div className="col-lg-9">
-
 				<AppBar position="static" color="default">
 					<Tabs
 						value={this.state.currentTab}
@@ -343,7 +343,7 @@ class Results extends Component {
 						<label> Min Rating: </label>
 						<StyledRating
 							type="rating"
-							value={this.state.Usefulness}
+							value={this.state.minRating}
 							icon={<RadioButtonCheckedIcon />}
 							emptyIcon={<RadioButtonUncheckedIcon />}
 							name="Usefulness"
@@ -351,6 +351,10 @@ class Results extends Component {
 						/>
 						<label>Min Number of Ratings: </label>
 						<input type="range" class="custom-range" min="0" max="500" id="customRange3"></input>
+
+						{hours}
+						{divisions}
+
 					</div>
 				</div>
 			</div>
