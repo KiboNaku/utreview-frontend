@@ -10,6 +10,7 @@ import Select from 'react-select'
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import { StyledRating } from './../review/Rating'
+import { hours, divisions } from './FilterComponents'
 
 class Results extends Component {
 	constructor(props) {
@@ -34,7 +35,7 @@ class Results extends Component {
 				this.setState({ noCourses: true, courseLoaded: true })
 			} else {
 				let courseData = res.courses
-				this.setState({ courses: courseData, courseLoaded: true , noCourses: false})
+				this.setState({ courses: courseData, courseLoaded: true, noCourses: false })
 			}
 		})
 
@@ -70,7 +71,7 @@ class Results extends Component {
 			this.setState({ courseLoaded: false })
 			populateCourses(search).then(res => {
 				if (res.empty) {
-					this.setState({ noCourses: true, courseLoaded: true})
+					this.setState({ noCourses: true, courseLoaded: true })
 				} else {
 					let courseData = res.courses
 					this.setState({ courses: courseData, courseLoaded: true, noCourses: false })
@@ -254,7 +255,7 @@ class Results extends Component {
 			</table>
 		)
 
-		let content = (
+		let result = (
 			<div className="col-lg-9">
 				<AppBar position="static" color="default">
 					<Tabs
@@ -270,7 +271,7 @@ class Results extends Component {
 				</AppBar>
 
 				<TabPanel index={0} value={this.state.currentTab}>
-					{empty ? emptyTable: courseTable}
+					{empty ? emptyTable : courseTable}
 				</TabPanel>
 
 				<TabPanel index={1} value={this.state.currentTab}>
@@ -328,7 +329,7 @@ class Results extends Component {
 						<label> Min Rating: </label>
 						<StyledRating
 							type="rating"
-							value={this.state.Usefulness}
+							value={this.state.minRating}
 							icon={<RadioButtonCheckedIcon />}
 							emptyIcon={<RadioButtonUncheckedIcon />}
 							name="Usefulness"
@@ -336,6 +337,11 @@ class Results extends Component {
 						/>
 						<label>Min Number of Ratings: </label>
 						<input type="range" class="custom-range" min="0" max="500" id="customRange3"></input>
+						
+						{hours}
+						{divisions}
+
+						
 					</div>
 				</div>
 			</div>
