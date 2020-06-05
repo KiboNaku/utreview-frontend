@@ -246,7 +246,7 @@ class Results extends Component {
 						</th>
 						<th scope="col">
 							Professors
-								</th>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -337,11 +337,10 @@ class Results extends Component {
 						/>
 						<label>Min Number of Ratings: </label>
 						<input type="range" class="custom-range" min="0" max="500" id="customRange3"></input>
-						
+
 						{hours}
 						{divisions}
 
-						
 					</div>
 				</div>
 			</div>
