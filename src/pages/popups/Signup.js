@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import ModalHeader from './ModalHeader'
-import UTEmail from './UTEmail'
-import { signup, getMajor } from './UserFunctions'
-import {withRouter, Link} from 'react-router-dom'
-import GoogleButton from "./GoogleButton"
-import Select from 'react-select'
+import SignupComponent from './_components/SignupComponent'
+import { signup, getMajor } from './_utils/UserFunctions'
+import { withRouter } from 'react-router-dom'
 
 class Signup extends Component {
 
@@ -85,110 +82,8 @@ class Signup extends Component {
     render() {
 
         return (
-            <div className="modal fade" id="signup-modal" role="dialog">
-                <div className="modal-dialog modal-dialog-centered" role="document">
-                    <div className="modal-content">
-
-                        <ModalHeader text="Sign Up" />
-
-                        <div className="modal-body">
-
-                            <form className="form-signin mt-3" onSubmit={this.onSubmit}>
-
-                                <div className="form-group my-3">
-                                    <input
-                                        type="text"
-                                        name="first_name"
-                                        className="form-control d-inline col-6"
-                                        placeholder="first name"
-                                        value={this.state.first_name}
-                                        onChange={this.onChange}
-                                        required autoFocus />
-
-                                    <input
-                                        type="text"
-                                        name="last_name"
-                                        className="form-control d-inline col-6"
-                                        placeholder="last name"
-                                        value={this.state.last_name}
-                                        onChange={this.onChange}
-                                        required autoFocus />
-                                </div>
-
-                                <div className="my-3">
-                                    <UTEmail email={this.state.email} onChange={this.onChange} />
-                                </div>
-
-                                <div className="form-group my-3">
-                                    {/* <input
-                                        type="text"
-                                        name="major"
-                                        className="form-control"
-                                        placeholder="major"
-                                        value={this.state.major}
-                                        onChange={this.onChange}
-                                        required autoFocus /> */}
-
-                                    <Select
-                                        className="basic-single"
-                                        classNamePrefix="select"
-                                        name="major"
-                                        options={this.state.majorList}
-                                        onChange={this.handleMajorChange}
-                                        placeholder="Select major..."
-                                        isClearable={true}
-                                        isSearchable={true}
-                                    />
-                                </div>
-
-                                <div className="form-group my-3">
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        className="form-control"
-                                        value={this.state.password}
-                                        onChange={this.onChange}
-                                        placeholder="password"
-                                        required />
-                                </div>
-
-                                <div className={"form-group my-3"}>
-                                    <input
-                                        type="password"
-                                        name="confirm_password"
-                                        className="form-control"
-                                        value={this.state.confirm_password}
-                                        onChange={this.onChange}
-                                        placeholder="confirm password"
-                                        required />
-                                </div>
-
-                                <button className="btn btn-lg btn-primary btn-block mt-2" type="submit"> Sign up </button>
-
-                            </form>
-
-                            <div className="text-center my-3">
-                                <h5><strong>OR</strong></h5>
-                            </div>
-
-                            <form className="mb-3">
-                                <GoogleButton text="Sign Up with Google" />
-                            </form>
-                        </div>
-
-                        <div className="modal-footer d-block" align="center">
-                            <label className="center-text pt-3 d-inline-block">
-                                <h6>
-                                    Already have an account?&nbsp;
-                                    <span type="button" data-toggle="modal" data-target="#signup-modal">
-                                        <a data-dismiss="modal" data-toggle="modal" data-target="#login-modal" className="utcolor">Log In</a>
-                                    </span>
-                                </h6>
-                            </label>
-                        </div>
-                    </div>
-                </div >
-            </div >
+            <SignupComponent onSubmit={this.onSubmit} onChange={this.onChange}
+                handleMajorChange={this.handleMajorChange} data={this.state}/>
         )
     }
 }

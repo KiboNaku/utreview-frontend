@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SearchBar from './../_components/SearchBar'
+import SearchBar from './../_utils/SearchBar'
 import './Home.css'
 
 class Home extends Component {
@@ -26,7 +26,7 @@ class Home extends Component {
                     </div>
                 </main>
                 
-                <figcaption class="figure-caption text-right clear-top px-3">Photo by Joel Filipe on Unsplash</figcaption>
+                <figcaption className="figure-caption text-right clear-top px-3">Photo by Joel Filipe on Unsplash</figcaption>
             </div >
         )
     }
