@@ -1,5 +1,5 @@
 import React from 'react';
-import './CourseDetails.css'
+import './../CourseDetails.css'
 
 function CourseRequisites(props) {
     const prerequisites = props.preRequisites.map( prereq =>{

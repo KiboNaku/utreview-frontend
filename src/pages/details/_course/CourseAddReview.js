@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom'
 import Login from './../../popups/Login'
 import Signup from './../../popups/Signup'
-import './CourseDetails.css'
+import './../CourseDetails.css'
 
 function CourseAddReview(props) {
     const addReviewLink = (
