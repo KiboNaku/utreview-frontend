@@ -22,7 +22,8 @@ class Results extends Component {
 			currentTab: 0,
 			courseLoaded: false,
 			profLoaded: false,
-			noCourses: false
+			noCourses: false,
+			noProfs: false
 		}
 
 		const search = {
@@ -34,16 +35,16 @@ class Results extends Component {
 				this.setState({ noCourses: true, courseLoaded: true })
 			} else {
 				let courseData = res.courses
-				this.setState({ courses: courseData, courseLoaded: true , noCourses: false})
+				this.setState({ courses: courseData, courseLoaded: true, noCourses: false })
 			}
 		})
 
-		populateProfs().then(res => {
-			if (res.error) {
-				alert(res.error)
+		populateProfs(search).then(res => {
+			if (res.empty) {
+				this.setState({ noProfs: true, profLoaded: true })
 			} else {
 				let profData = res.professors
-				this.setState({ professors: profData, profLoaded: true })
+				this.setState({ professors: profData, profLoaded: true, noProfs: false })
 			}
 		})
 
@@ -70,10 +71,19 @@ class Results extends Component {
 			this.setState({ courseLoaded: false })
 			populateCourses(search).then(res => {
 				if (res.empty) {
-					this.setState({ noCourses: true, courseLoaded: true})
+					this.setState({ noCourses: true, courseLoaded: true })
 				} else {
 					let courseData = res.courses
 					this.setState({ courses: courseData, courseLoaded: true, noCourses: false })
+				}
+			})
+			this.setState({ profLoaded: false })
+			populateProfs(search).then(res => {
+				if (res.empty) {
+					this.setState({ noProfs: true, profLoaded: true })
+				} else {
+					let profData = res.professors
+					this.setState({ professors: profData, profLoaded: true, noProfs: false })
 				}
 			})
 
@@ -254,7 +264,25 @@ class Results extends Component {
 			</table>
 		)
 
-		let content = (
+		let profTable = (
+			<table id='professorResults' className='table table-hover'>
+				<thead className='thead-dark'>
+					<tr>
+						<th scope="col" onClick={() => this.handleSortChange('profName')}>
+							Professor Name {ProfNameSortIcon}
+						</th>
+						<th scope="col">
+							Courses Taught
+								</th>
+					</tr>
+				</thead>
+				<tbody>
+					{this.setData(1)}
+				</tbody>
+			</table>
+		)
+
+		let result = (
 			<div className="col-lg-9">
 
 				<AppBar position="static" color="default">
@@ -271,25 +299,11 @@ class Results extends Component {
 				</AppBar>
 
 				<TabPanel index={0} value={this.state.currentTab}>
-					{empty ? emptyTable: courseTable}
+					{this.state.noCourses ? emptyTable : courseTable}
 				</TabPanel>
 
 				<TabPanel index={1} value={this.state.currentTab}>
-					<table id='professorResults' className='table table-hover'>
-						<thead className='thead-dark'>
-							<tr>
-								<th scope="col" onClick={() => this.handleSortChange('profName')}>
-									Professor Name {ProfNameSortIcon}
-								</th>
-								<th scope="col">
-									Courses Taught
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							{this.setData(1)}
-						</tbody>
-					</table>
+					{this.state.noProfs ? emptyTable : profTable}
 				</TabPanel>
 			</div>
 		)

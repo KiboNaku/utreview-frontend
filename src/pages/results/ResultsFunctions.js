@@ -11,9 +11,11 @@ export const populateCourses = (search) => {
     })
 }
 
-export const populateProfs = () => {
+export const populateProfs = (search) => {
   return axios
-    .get('api/populate_profs')
+    .post('api/populate_profs',{
+      searchValue: search.searchValue
+    })
     .then(response => {
       console.log(response)
       return response.data
