@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import NavBar from './../_components/NavBar';
-import { BinaryFeedback } from 'react-simple-user-feedback';
-import { withStyles } from '@material-ui/core/styles';
+import React, { Component } from 'react'
+import NavBar from './../_components/NavBar'
+import { BinaryFeedback } from 'react-simple-user-feedback'
 import { withRouter, Link } from 'react-router-dom'
 import Select from 'react-select'
-import Rating from '@material-ui/lab/Rating';
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { getCourseNum, getProfessorNames} from './ReviewFormFunctions'
+import { StyledRating } from './Rating'
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
+import { getCourseNum, getProfessorNames } from './ReviewFormFunctions'
 import './ReviewForm.css'
 import { checkDuplicate, newReview, editReview } from './ReviewFunctions'
 import jwt_decode from 'jwt-decode'
@@ -223,12 +222,12 @@ class ReviewForm extends Component {
 						label: data[i]['num']
 					})
 				}
-				this.setState({courseNumList: courseList})
+				this.setState({ courseNumList: courseList })
 			}
 		})
 
 		getProfessorNames().then(res => {
-			if (res.error){
+			if (res.error) {
 				alert(res.error)
 			} else {
 				let data = res.professors
@@ -239,18 +238,12 @@ class ReviewForm extends Component {
 						label: data[i]['name']
 					})
 				}
-				this.setState({professorNameList: profList})
+				this.setState({ professorNameList: profList })
 			}
 		})
 	}
 
 	render() {
-		const StyledRating = withStyles({
-			iconFilled: {
-				color: '#0080ff',
-			},
-		})(Rating);
-
 		return (
 			<div>
 				<div className="container-fluid">
@@ -314,7 +307,6 @@ class ReviewForm extends Component {
 										emptyIcon={<RadioButtonUncheckedIcon />}
 										name="Usefulness"
 										onChange={this.handleChange}
-										required
 									/></td>
 								</tr>
 								<tr>
