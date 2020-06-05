@@ -153,8 +153,8 @@ function ResultsComponent() {
                     <label>Min Number of Ratings: </label>
                     <input type="range" class="custom-range" min="0" max="500" id="customRange3"></input>
 
-                    {hours}
-                    {divisions}
+                    {/* {hours} */}
+                    {/* {divisions} */}
 
                 </div>
             </div>
