@@ -9,7 +9,6 @@ import ReviewForm from './pages/review/ReviewForm'
 import Profile from './pages/profile/Profile'
 import Results from './pages/results/Results'
 import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
 
@@ -26,10 +25,9 @@ function App() {
 					<Route exact path="/" component={Home} />
 					<Route path="/profile" component={Profile} />
 					<Route path="/about" component={About} />
-					<Route exact path="/course-results" component={CourseResults} />
 					<Route exact path="/results" component={Results} />
 					<Route path="/add-review" component={ReviewForm} /> 
-					<Route path={"/course-results/:courseId"} render={(props) => <CourseDetails />} />
+					<Route path={"/results/:courseId"} render={(props) => <CourseDetails />} />
 				</Switch>
 				<Footer />
 			</div>
