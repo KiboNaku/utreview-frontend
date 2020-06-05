@@ -1,12 +1,12 @@
 import React from 'react';
-import CourseInfo from './CourseInfo';
-import CourseRatings from './CourseRatings';
-import CourseProfs from './CourseProfs';
-import CourseReviews from './CourseReviews';
-import CourseAddReview from './CourseAddReview';
-import CourseRequisites from './CourseRequisites'
-import {getCourseInfo, getCourseProfs} from './CourseFunctions'
-import Loading from './../../_components/Loading'
+import CourseInfo from './_course/CourseInfo';
+import CourseRatings from './_course/CourseRatings';
+import CourseProfs from './_course/CourseProfs';
+import CourseReviews from './_course/CourseReviews';
+import CourseAddReview from './_course/CourseAddReview';
+import CourseRequisites from './_course/CourseRequisites'
+import {getCourseInfo, getCourseProfs} from './_course/CourseFunctions'
+import Loading from './../_utils/Loading'
 import { withRouter, Link } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import './CourseDetails.css'

@@ -2,7 +2,7 @@ import React from 'react';
 import CourseReviewEntry from './CourseReviewEntry';
 import { reviewFeedback } from './CourseFunctions'
 import jwt_decode from 'jwt-decode'
-import './CourseDetails.css'
+import './../CourseDetails.css'
 
 class CourseReviews extends React.Component {
 	constructor(props) {

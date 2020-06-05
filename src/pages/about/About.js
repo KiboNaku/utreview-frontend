@@ -1,17 +1,12 @@
 import React, { Component } from 'react'
-import Contributor from './Contributor'
+import AboutComponent from './_components/AboutComponent'
 
 class Footer extends Component {
 
     render() {
 
         return (
-
-            <main>
-                <Contributor/>
-                <Contributor/>
-                <Contributor/>
-            </main>
+            <AboutComponent />
         )
     }
 }
