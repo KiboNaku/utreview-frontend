@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import './CourseDetails.css'
+import './../CourseDetails.css'
 
 function CourseRatings(props) {
 
