@@ -13,7 +13,11 @@ class CourseResults extends Component {
 			loaded: false
 		}
 
-		populateCourses().then(res => {
+		const search = {
+			searchValue: this.props.location.state.searchValue
+		}
+
+		populateCourses(search).then(res => {
             if (res.error) {
                 alert(res.error)
             }else{
@@ -29,6 +33,21 @@ class CourseResults extends Component {
 	componentDidMount(){
 		console.log("hello")
 		
+	}
+
+	componentDidUpdate(){
+		const search = {
+			searchValue: this.props.location.state.searchValue
+		}
+
+		populateCourses(search).then(res => {
+            if (res.error) {
+                alert(res.error)
+            }else{
+				let courseData = res.courses
+                this.setState({courses: courseData, loaded: true})
+            }
+        })
 	}
 
 	setData() {

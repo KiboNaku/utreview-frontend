@@ -20,25 +20,21 @@ class Results extends Component {
 			sortBy: '',
 			currentSort: 'default',
 			currentTab: 0,
-			courseLoaded: true,
-			profLoaded: true
+			courseLoaded: false,
+			profLoaded: false,
+			noCourses: false
 		}
 
-		this.setData = this.setData.bind(this)
-		this.handleSortChange = this.handleSortChange.bind(this)
-		this.handleTabChange = this.handleTabChange.bind(this)
-		this.sortUp = this.sortUp.bind(this)
-		this.sortDown = this.sortDown.bind(this)
-	}
+		const search = {
+			searchValue: this.props.location.state.searchValue
+		}
 
-	componentDidMount() {
-		console.log("hello")
-		populateCourses().then(res => {
-			if (res.error) {
-				alert(res.error)
+		populateCourses(search).then(res => {
+			if (res.empty) {
+				this.setState({ noCourses: true, courseLoaded: true })
 			} else {
 				let courseData = res.courses
-				this.setState({ courses: courseData, courseLoaded: true })
+				this.setState({ courses: courseData, courseLoaded: true , noCourses: false})
 			}
 		})
 
@@ -50,6 +46,39 @@ class Results extends Component {
 				this.setState({ professors: profData, profLoaded: true })
 			}
 		})
+
+		this.setData = this.setData.bind(this)
+		this.handleSortChange = this.handleSortChange.bind(this)
+		this.handleTabChange = this.handleTabChange.bind(this)
+		this.sortUp = this.sortUp.bind(this)
+		this.sortDown = this.sortDown.bind(this)
+	}
+
+	componentDidMount() {
+		console.log("hello")
+
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		// 
+
+		if (prevProps.location.search != this.props.location.search) {
+			const search = {
+				searchValue: this.props.location.state.searchValue
+			}
+			console.log("component did update")
+			this.setState({ courseLoaded: false })
+			populateCourses(search).then(res => {
+				if (res.empty) {
+					this.setState({ noCourses: true, courseLoaded: true})
+				} else {
+					let courseData = res.courses
+					this.setState({ courses: courseData, courseLoaded: true, noCourses: false })
+				}
+			})
+
+		}
+
 	}
 
 	handleTabChange(event, newValue) {
@@ -198,7 +227,34 @@ class Results extends Component {
 			<Loading />
 		)
 
-		let result = (
+		let emptyTable = (
+			<h1> No results for your search </h1>
+		)
+
+		let empty = this.state.noCourses
+
+		let courseTable = (
+			<table id='courseResults' className='table table-hover'>
+				<thead className='thead-dark'>
+					<tr>
+						<th scope="col" onClick={() => this.handleSortChange('courseNum')}>
+							Course Number {CourseNumberSortIcon}
+						</th>
+						<th scope="col" onClick={() => this.handleSortChange('courseName')}>
+							Course Name {CourseNameSortIcon}
+						</th>
+						<th scope="col">
+							Professors
+								</th>
+					</tr>
+				</thead>
+				<tbody>
+					{this.setData(0)}
+				</tbody>
+			</table>
+		)
+
+		let content = (
 			<div className="col-lg-9">
 				<AppBar position="static" color="default">
 					<Tabs
@@ -214,24 +270,7 @@ class Results extends Component {
 				</AppBar>
 
 				<TabPanel index={0} value={this.state.currentTab}>
-					<table id='courseResults' className='table table-hover'>
-						<thead className='thead-dark'>
-							<tr>
-								<th scope="col" onClick={() => this.handleSortChange('courseNum')}>
-									Course Number {CourseNumberSortIcon}
-								</th>
-								<th scope="col" onClick={() => this.handleSortChange('courseName')}>
-									Course Name {CourseNameSortIcon}
-								</th>
-								<th scope="col">
-									Professors
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							{this.setData(0)}
-						</tbody>
-					</table>
+					{empty ? emptyTable: courseTable}
 				</TabPanel>
 
 				<TabPanel index={1} value={this.state.currentTab}>
