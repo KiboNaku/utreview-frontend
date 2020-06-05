@@ -14,7 +14,8 @@ class Results extends Component {
 			currentTab: 0,
 			courseLoaded: false,
 			profLoaded: false,
-			noCourses: false
+			noCourses: false,
+			noProfs: false
 		}
 
 		const search = {
@@ -26,16 +27,16 @@ class Results extends Component {
 				this.setState({ noCourses: true, courseLoaded: true })
 			} else {
 				let courseData = res.courses
-				this.setState({ courses: courseData, courseLoaded: true , noCourses: false})
+				this.setState({ courses: courseData, courseLoaded: true, noCourses: false })
 			}
 		})
 
-		populateProfs().then(res => {
-			if (res.error) {
-				alert(res.error)
+		populateProfs(search).then(res => {
+			if (res.empty) {
+				this.setState({ noProfs: true, profLoaded: true })
 			} else {
 				let profData = res.professors
-				this.setState({ professors: profData, profLoaded: true })
+				this.setState({ professors: profData, profLoaded: true, noProfs: false })
 			}
 		})
 
@@ -62,10 +63,19 @@ class Results extends Component {
 			this.setState({ courseLoaded: false })
 			populateCourses(search).then(res => {
 				if (res.empty) {
-					this.setState({ noCourses: true, courseLoaded: true})
+					this.setState({ noCourses: true, courseLoaded: true })
 				} else {
 					let courseData = res.courses
 					this.setState({ courses: courseData, courseLoaded: true, noCourses: false })
+				}
+			})
+			this.setState({ profLoaded: false })
+			populateProfs(search).then(res => {
+				if (res.empty) {
+					this.setState({ noProfs: true, profLoaded: true })
+				} else {
+					let profData = res.professors
+					this.setState({ professors: profData, profLoaded: true, noProfs: false })
 				}
 			})
 
