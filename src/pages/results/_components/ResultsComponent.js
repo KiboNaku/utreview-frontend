@@ -1,4 +1,3 @@
-
 import React from 'react'
 import Loading from './../../_utils/Loading.js'
 import AppBar from '@material-ui/core/AppBar'
@@ -8,7 +7,8 @@ import TabPanel from './../TabPanel'
 import Select from 'react-select'
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
-import { StyledRating } from './../../review/_utils/Rating'
+import { StyledRating } from '../../review/_components/Rating'
+import { hours, divisions } from './FilterComponents'
 
 function ResultsComponent(props) {
     let CourseNumberSortIcon = <i className="fas fa-sort"></i>
