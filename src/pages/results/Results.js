@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
-import { populateCourses, populateProfs } from './ResultsFunctions'
+import { populateCourses, populateProfs, populateResults } from './ResultsFunctions'
 import ResultsComponent from './_components/ResultsComponent'
 
 class Results extends Component {
@@ -22,20 +22,17 @@ class Results extends Component {
 			searchValue: this.props.location.state.searchValue
 		}
 
-		populateCourses(search).then(res => {
-			if (res.empty) {
+		populateResults(search).then(res => {
+			if (res.courses === "empty") {
 				this.setState({ noCourses: true, courseLoaded: true })
 			} else {
 				let courseData = res.courses
 				this.setState({ courses: courseData, courseLoaded: true, noCourses: false })
 			}
-		})
-
-		populateProfs(search).then(res => {
-			if (res.empty) {
+			if (res.profs === "empty") {
 				this.setState({ noProfs: true, profLoaded: true })
 			} else {
-				let profData = res.professors
+				let profData = res.profs
 				this.setState({ professors: profData, profLoaded: true, noProfs: false })
 			}
 		})
@@ -60,21 +57,18 @@ class Results extends Component {
 				searchValue: this.props.location.state.searchValue
 			}
 			console.log("component did update")
-			this.setState({ courseLoaded: false })
-			populateCourses(search).then(res => {
-				if (res.empty) {
+			this.setState({ courseLoaded: false, profLoaded: false})
+			populateResults(search).then(res => {
+				if (res.courses === "empty") {
 					this.setState({ noCourses: true, courseLoaded: true })
 				} else {
 					let courseData = res.courses
 					this.setState({ courses: courseData, courseLoaded: true, noCourses: false })
 				}
-			})
-			this.setState({ profLoaded: false })
-			populateProfs(search).then(res => {
-				if (res.empty) {
+				if (res.profs === "empty") {
 					this.setState({ noProfs: true, profLoaded: true })
 				} else {
-					let profData = res.professors
+					let profData = res.profs
 					this.setState({ professors: profData, profLoaded: true, noProfs: false })
 				}
 			})
@@ -204,6 +198,7 @@ class Results extends Component {
 		return (<ResultsComponent 
 					data={this.state}
 					handleDeptChange={this.handleDeptChange} 
+					handleTabChange={this.handleTabChange}
 					handleChange={this.handleChange}
 					setData={this.setData}/>)
 	}
