@@ -4,6 +4,7 @@ import { getCourseNum, getProfessorNames } from './_utils/ReviewFormFunctions'
 import { checkDuplicate, newReview, editReview } from './_utils/ReviewFunctions'
 import jwt_decode from 'jwt-decode'
 import ReviewFormComponent from './_components/ReviewFormComponent'
+import Loading from './../_utils/Loading.js'
 
 class ReviewForm extends Component {
 	constructor(props) {
@@ -12,6 +13,8 @@ class ReviewForm extends Component {
 		this.state = {
 			courseNumList: null,
 			professorNameList: null,
+			courseLoaded: false,
+			profLoaded: false,
 
 			CourseNumber: "",
 			CourseApproval: null,
@@ -78,7 +81,7 @@ class ReviewForm extends Component {
 		if (this.state.Helpful === 0) { HelpfulError = emptyErrorMessage; }
 		if (this.state.GradingDifficulty === 0) { GradingDifficultyError = emptyErrorMessage; }
 
-		console.log(CourseApprovalError)
+		console.log(this.state.CourseNumberError)
 
 		if (CourseNumberError ||
 			CourseApprovalError ||
@@ -220,7 +223,7 @@ class ReviewForm extends Component {
 						label: data[i]['num']
 					})
 				}
-				this.setState({ courseNumList: courseList })
+				this.setState({ courseNumList: courseList, courseLoaded: true })
 			}
 		})
 
@@ -236,22 +239,29 @@ class ReviewForm extends Component {
 						label: data[i]['name']
 					})
 				}
-				this.setState({ professorNameList: profList })
+				this.setState({ professorNameList: profList, profLoaded: true })
 			}
 		})
 	}
 
 	render() {
+		let loaded = this.state.courseLoaded && this.state.profLoaded
+		let loading = <Loading />
+		let content = <ReviewFormComponent
+			validate={this.validate}
+			handleSubmit={this.handleSubmit}
+			handleChange={this.handleChange}
+			handlePositiveClick={this.handlePositiveClick}
+			handleNegativeClick={this.handleNegativeClick}
+			handleCourseNumberChange={this.handleCourseNumberChange}
+			handleProfessorNameChange={this.handleProfessorNameChange}
+			data={this.state} />
+
 		return (
-			<ReviewFormComponent 
-				validate={this.validate}
-				handleSubmit={this.handleSubmit} 
-				handleChange={this.handleChange}
-				handlePositiveClick={this.handlePositiveClick}
-				handleNegativeClick={this.handleNegativeClick}
-				handleCourseNumberChange={this.handleCourseNumberChange} 
-				handleProfessorNameChange={this.handleProfessorNameChange}
-				data={this.state}/>
+			<div>
+				{loaded ? content : loading}
+			</div>
+
 		)
 	}
 }
