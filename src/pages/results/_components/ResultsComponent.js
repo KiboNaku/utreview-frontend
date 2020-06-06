@@ -120,15 +120,13 @@ function ResultsComponent(props) {
 
         <div className="col-lg-3">
             <div className='card'>
-                <div className='card-header'>
-                    Courses:
-					</div>
+
+                <div className='card-header text-left'>
+                    Course Filters:
+				</div>
+
                 <div className='card-body'>
-                    <div className='form-check'>
-                        {/* change to checkbox on right, add handleChange */}
-                        <input type='checkbox' className='pull-right form-check-input' onChange={props.handleChange} />
-                        <label className='form-check-label'>Current Semester</label>
-                    </div>
+
                     <Select
                         // add deptList, handleDeptChange
                         className="basic-multi-select"
@@ -136,11 +134,17 @@ function ResultsComponent(props) {
                         name="dept"
                         options={props.data.deptList}
                         onChange={props.handleDeptChange}
-                        placeholder="Select Department..."
+                        placeholder="Select Department"
                         isClearable={true}
                         isSearchable={true}
                         isMulti
                     />
+
+                    <div className='form-check'>
+                        {/* change to checkbox on right, add handleChange */}
+                        <input type='checkbox' className='pull-right form-check-input' onChange={props.handleChange} />
+                        <label className='form-check-label'>Current Semester</label>
+                    </div>
                     <label> Min Rating: </label>
                     <StyledRating
                         type="rating"
@@ -192,10 +196,9 @@ function ResultsComponent(props) {
     let loaded = props.data.courseLoaded && props.data.profLoaded
 
     return (
-        <div>
+        <main className="results-main">
             {loaded ? content : loading}
-        </div>
-
+        </main>
     )
 }
 
