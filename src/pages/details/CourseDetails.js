@@ -77,7 +77,7 @@ class CourseDetails extends React.Component {
                 uniqueNo: 12345,
                 maxEnrollment: 60,
                 seatsTaken: 30,
-                timeFrom: 0900,
+                timeFrom: 900,
                 timeTo: 1030,
                 days: "M W",
                 location: "EER 5.820",
@@ -87,7 +87,7 @@ class CourseDetails extends React.Component {
                 uniqueNo: 12345,
                 maxEnrollment: 60,
                 seatsTaken: 30,
-                timeFrom: 0900,
+                timeFrom: 900,
                 timeTo: 1030,
                 days: "M W",
                 location: "EER 5.820",
@@ -97,7 +97,7 @@ class CourseDetails extends React.Component {
                 uniqueNo: 12345,
                 maxEnrollment: 60,
                 seatsTaken: 30,
-                timeFrom: 0900,
+                timeFrom: 900,
                 timeTo: 1030,
                 days: "M W",
                 location: "EER 5.820",
@@ -219,7 +219,7 @@ class CourseDetails extends React.Component {
                     />
 
                 </div>
-                <div className="d-flex">
+                <div>
                     
                     <CourseRequisites
                         {...this.state.courseRequisites}
