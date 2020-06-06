@@ -40,5 +40,9 @@
 main {
     width: 100vw;
     max-width: 100%;
-    min-height: 500px;
+	min-height: 500px;
+}
+
+.main-sub {
+    min-height: 100vh;
 }
