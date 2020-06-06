@@ -201,7 +201,11 @@ class Results extends Component {
 	}
 
 	render() {
-		return (<ResultsComponent />)
+		return (<ResultsComponent 
+					data={this.state}
+					handleDeptChange={this.handleDeptChange} 
+					handleChange={this.handleChange}
+					setData={this.setData}/>)
 	}
 }
 

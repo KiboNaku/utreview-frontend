@@ -10,25 +10,25 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import { StyledRating } from '../../review/_components/Rating'
 import { hours, divisions } from './FilterComponents'
 
-function ResultsComponent() {
+function ResultsComponent(props) {
     let CourseNumberSortIcon = <i className="fas fa-sort"></i>
     let CourseNameSortIcon = <i className="fas fa-sort"></i>
     let ProfNameSortIcon = <i className="fas fa-sort"></i>
 
-    if (this.state.sortBy === 'courseNum') {
-        if (this.state.currentSort === 'up') {
+    if (props.data.sortBy === 'courseNum') {
+        if (props.data.currentSort === 'up') {
             CourseNumberSortIcon = <i className="fas fa-sort-up"></i>
         } else {
             CourseNumberSortIcon = <i className="fas fa-sort-down"></i>
         }
-    } else if (this.state.sortBy === 'courseName') {
-        if (this.state.currentSort === 'up') {
+    } else if (props.data.sortBy === 'courseName') {
+        if (props.data.currentSort === 'up') {
             CourseNameSortIcon = <i className="fas fa-sort-up"></i>
         } else {
             CourseNameSortIcon = <i className="fas fa-sort-down"></i>
         }
-    } else if (this.state.sortBy === 'profName') {
-        if (this.state.currentSort === 'up') {
+    } else if (props.data.sortBy === 'profName') {
+        if (props.data.currentSort === 'up') {
             ProfNameSortIcon = <i className="fas fa-sort-up"></i>
         } else {
             ProfNameSortIcon = <i className="fas fa-sort-down"></i>
@@ -43,16 +43,16 @@ function ResultsComponent() {
         <h1> No results for your search </h1>
     )
 
-    let empty = this.state.noCourses
+    let empty = props.data.noCourses
 
     let courseTable = (
         <table id='courseResults' className='table table-hover'>
             <thead className='thead-dark'>
                 <tr>
-                    <th scope="col" onClick={() => this.handleSortChange('courseNum')}>
+                    <th scope="col" onClick={() => props.handleSortChange('courseNum')}>
                         Course Number {CourseNumberSortIcon}
                     </th>
-                    <th scope="col" onClick={() => this.handleSortChange('courseName')}>
+                    <th scope="col" onClick={() => props.handleSortChange('courseName')}>
                         Course Name {CourseNameSortIcon}
                     </th>
                     <th scope="col">
@@ -61,7 +61,7 @@ function ResultsComponent() {
                 </tr>
             </thead>
             <tbody>
-                {this.setData(0)}
+                {props.setData(0)}
             </tbody>
         </table>
     )
@@ -70,7 +70,7 @@ function ResultsComponent() {
         <table id='professorResults' className='table table-hover'>
             <thead className='thead-dark'>
                 <tr>
-                    <th scope="col" onClick={() => this.handleSortChange('profName')}>
+                    <th scope="col" onClick={() => props.handleSortChange('profName')}>
                         Professor Name {ProfNameSortIcon}
                     </th>
                     <th scope="col">
@@ -79,7 +79,7 @@ function ResultsComponent() {
                 </tr>
             </thead>
             <tbody>
-                {this.setData(1)}
+                {props.setData(1)}
             </tbody>
         </table>
     )
@@ -88,23 +88,23 @@ function ResultsComponent() {
         <div className="col-lg-9">
             <AppBar position="static" color="default">
                 <Tabs
-                    value={this.state.currentTab}
+                    value={props.data.currentTab}
                     variant="fullWidth"
                     centered
                     name="currentTab"
-                    onChange={this.handleTabChange}
+                    onChange={props.handleTabChange}
                 >
                     <Tab label="Courses" aria-controls='tabpanel-0' />
                     <Tab label="Professors" aria-controls='tabpanel-1' />
                 </Tabs>
             </AppBar>
 
-            <TabPanel index={0} value={this.state.currentTab}>
-                {this.state.noCourses ? emptyTable : courseTable}
+            <TabPanel index={0} value={props.data.currentTab}>
+                {props.data.noCourses ? emptyTable : courseTable}
             </TabPanel>
 
-            <TabPanel index={1} value={this.state.currentTab}>
-                {this.state.noProfs ? emptyTable : profTable}
+            <TabPanel index={1} value={props.data.currentTab}>
+                {props.data.noProfs ? emptyTable : profTable}
             </TabPanel>
         </div>
     )
@@ -126,7 +126,7 @@ function ResultsComponent() {
                 <div className='card-body'>
                     <div className='form-check'>
                         {/* change to checkbox on right, add handleChange */}
-                        <input type='checkbox' className='pull-right form-check-input' onChange={this.handleChange} />
+                        <input type='checkbox' className='pull-right form-check-input' onChange={props.handleChange} />
                         <label className='form-check-label'>Current Semester</label>
                     </div>
                     <Select
@@ -134,8 +134,8 @@ function ResultsComponent() {
                         className="basic-multi-select"
                         classNamePrefix="select"
                         name="dept"
-                        options={this.state.deptList}
-                        onChange={this.handleDeptChange}
+                        options={props.data.deptList}
+                        onChange={props.handleDeptChange}
                         placeholder="Select Department..."
                         isClearable={true}
                         isSearchable={true}
@@ -144,11 +144,11 @@ function ResultsComponent() {
                     <label> Min Rating: </label>
                     <StyledRating
                         type="rating"
-                        value={this.state.minRating}
+                        value={props.data.minRating}
                         icon={<RadioButtonCheckedIcon />}
                         emptyIcon={<RadioButtonUncheckedIcon />}
                         name="Usefulness"
-                        onChange={this.handleChange}
+                        onChange={props.handleChange}
                     />
                     <label>Min Number of Ratings: </label>
                     <input type="range" class="custom-range" min="0" max="500" id="customRange3"></input>
@@ -177,7 +177,7 @@ function ResultsComponent() {
     )
 
     let filter = (
-        this.state.currentTab === 0 ? courseFilter : profFilter
+        props.data.currentTab === 0 ? courseFilter : profFilter
     )
 
     let content = (
@@ -189,7 +189,7 @@ function ResultsComponent() {
         </div>
     )
 
-    let loaded = this.state.courseLoaded && this.state.profLoaded
+    let loaded = props.data.courseLoaded && props.data.profLoaded
 
     return (
         <div>
