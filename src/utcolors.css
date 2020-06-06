@@ -1,14 +1,13 @@
-
 .utmain {
-	color: #bf5700;
+    color: #bf5700;
 }
 
 .utlight {
-	color:#f8971f;
+    color: #f8971f;
 }
 
 .utdark {
-	color: #333f48;
+    color: #333f48;
 }
 
 a.utcolor, link.utcolor {
@@ -16,7 +15,7 @@ a.utcolor, link.utcolor {
 }
 
 a.utcolor:hover, link.utcolor:hover {
-    color:#f8971f;
+    color: #f8971f;
 }
 
 a.utcolor:active, link.utcolor:active {
@@ -26,3 +25,5 @@ a.utcolor:active, link.utcolor:active {
 .white-text {
     color: white;
 }
+
+
