@@ -5,6 +5,7 @@ import CourseProfs from './_course/CourseProfs';
 import CourseReviews from './_course/CourseReviews';
 import CourseAddReview from './_course/CourseAddReview';
 import CourseRequisites from './_course/CourseRequisites'
+import CourseSchedule from './_course/CourseSchedule'
 import {getCourseInfo, getCourseProfs} from './_course/CourseFunctions'
 import Loading from './../_utils/Loading'
 import { withRouter, Link } from 'react-router-dom'
@@ -71,6 +72,39 @@ class CourseDetails extends React.Component {
             ]
         }
 
+        const courseSchedule = [
+            {
+                uniqueNo: 12345,
+                maxEnrollment: 60,
+                seatsTaken: 30,
+                timeFrom: 900,
+                timeTo: 1030,
+                days: "M W",
+                location: "EER 5.820",
+                professor: "Yale Patt"
+            },
+            {
+                uniqueNo: 12345,
+                maxEnrollment: 60,
+                seatsTaken: 30,
+                timeFrom: 900,
+                timeTo: 1030,
+                days: "M W",
+                location: "EER 5.820",
+                professor: "Yale Patt"
+            },
+            {
+                uniqueNo: 12345,
+                maxEnrollment: 60,
+                seatsTaken: 30,
+                timeFrom: 900,
+                timeTo: 1030,
+                days: "M W",
+                location: "EER 5.820",
+                professor: "Yale Patt"
+            }
+        ]
+
         const courseReviews = [
 			{
 				key: 1,
@@ -125,6 +159,7 @@ class CourseDetails extends React.Component {
             courseRequisites: courseRequisites,
             courseProfs: courseProfs,
             courseReviews: courseReviews,
+            courseSchedule: courseSchedule,
             loaded: false
         }
 
@@ -184,7 +219,7 @@ class CourseDetails extends React.Component {
                     />
 
                 </div>
-                <div className="d-flex">
+                <div>
                     
                     <CourseRequisites
                         {...this.state.courseRequisites}
@@ -192,6 +227,7 @@ class CourseDetails extends React.Component {
                     <CourseProfs {...this.state}/>
                 </div>
 
+                <CourseSchedule {...this.state} />
                 <CourseAddReview
                     {...this.state.courseInfo}
                 />
