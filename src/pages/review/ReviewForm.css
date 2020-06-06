@@ -1,12 +1,15 @@
 
-.ReviewForm {
+li, li > span{
+    font-weight: bold
+}
+
+li * {
+    font-weight: normal
+}
+
+.review-form {
     border-radius: 5px;
-    width: 30%;
     margin: 0px auto;
 	float: none;
 	border-style: hidden;
-}
-
-.ReviewForm thead {
-	font-size: larger;
 }
