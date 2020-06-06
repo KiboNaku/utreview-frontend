@@ -7,7 +7,7 @@ import TabPanel from './../TabPanel'
 import Select from 'react-select'
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
-import { StyledRating } from '../../review/_components/Rating'
+import { StyledRating } from '../../review/_utils/Rating'
 import { hours, divisions } from './FilterComponents'
 
 function ResultsComponent(props) {

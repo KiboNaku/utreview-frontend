@@ -1,9 +1,5 @@
 import React from 'react'
 import Select from 'react-select'
-import { StyledRating } from './Rating'
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
-import { BinaryFeedback } from 'react-simple-user-feedback'
 import ReviewCourse from './ReviewCourse'
 import ReviewProfessor from './ReviewProfessor'
 import './../ReviewForm.css'
@@ -59,7 +55,7 @@ function ReviewFormComponent(props) {
                             <span>
                                 Give us your review for (insert course):
                             </span>
-                            <ReviewCourse {...props}/>
+                            <ReviewCourse {...props} />
                         </li>
 
                         <li className="py-3">
@@ -67,7 +63,7 @@ function ReviewFormComponent(props) {
                             <span>
                                 Give us your review for (insert professor):
                             </span>
-                            <ReviewProfessor {...props}/>
+                            <ReviewProfessor {...props} />
                         </li>
                     </ol>
 
