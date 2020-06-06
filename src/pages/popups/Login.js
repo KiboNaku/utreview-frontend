@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { login } from './_utils/UserFunctions'
 import LoginComponent from './_components/LoginComponent'
+import $ from './../../../node_modules/jquery'
 
 class Login extends Component {
 
@@ -35,6 +36,7 @@ class Login extends Component {
                 alert(res.error)
             } else {
                 this.props.history.push('/profile')
+                $("#login-modal").modal("hide")
             }
         })
     }
