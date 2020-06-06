@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SignupComponent from './_components/SignupComponent'
 import { signup, getMajor } from './_utils/UserFunctions'
 import { withRouter } from 'react-router-dom'
+import $ from './../../../node_modules/jquery'
 
 class Signup extends Component {
 
@@ -49,7 +50,8 @@ class Signup extends Component {
             if (res.error) {
                 alert(res.error)
             } else {
-                this.props.history.push('/profile')
+                this.props.history.push('/profile');
+                $("#signup-modal").modal("hide");
             }
         })
 

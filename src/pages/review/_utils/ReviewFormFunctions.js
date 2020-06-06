@@ -10,7 +10,7 @@ export const getCourseNum = () => {
 
 export const getProfessorNames = () => {
 	return axios
-		.get('api/get-profs')
+		.get('api/get_profs')
 		.then((response) => {
 			return response.data
 		});
