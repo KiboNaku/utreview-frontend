@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 import { Link, Route, Switch, withRouter } from 'react-router-dom';
 
 import SearchBar from './SearchBar'
-import Login from '../popups/Login'
-import Signup from '../popups/Signup'
 import "./NavBar.css"
 
 class NavBar extends Component {
@@ -105,10 +103,6 @@ class NavBar extends Component {
                     </div>
 
                 </nav>
-
-                <Login />
-                <Signup />
-
             </div>
         )
     }
