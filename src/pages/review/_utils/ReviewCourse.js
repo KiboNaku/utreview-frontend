@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledRating } from './../_utils/Rating'
+import { StyledRating } from './Rating'
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import { BinaryFeedback } from 'react-simple-user-feedback'
