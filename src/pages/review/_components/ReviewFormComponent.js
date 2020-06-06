@@ -5,6 +5,11 @@ import ReviewProfessor from './ReviewProfessor'
 import './../ReviewForm.css'
 
 function ReviewFormComponent(props) {
+    let disableStyle = (props.data.Disable? {
+        pointerEvents: "none", 
+        opacity: "0.4"
+    } : {})
+
     return (
         <div style={{ width: "100%", backgroundColor: "#9cadb7" }}>
             <div className="container-fluid col-12 col-sm-10 col-md-8 col-lg-6 border rounded" style={{ backgroundColor: "white" }}>
@@ -33,7 +38,7 @@ function ReviewFormComponent(props) {
                             />
                         </li>
 
-                        <li className="py-3">
+                        <li className="py-3" >
 
                             <span>
                                 Choose your professor:
@@ -51,15 +56,14 @@ function ReviewFormComponent(props) {
                             />
                         </li>
 
-                        <li className="py-3">
+                        <li className="py-3" style={disableStyle}>
                             <span>
                                 Give us your review for (insert course):
                             </span>
                             <ReviewCourse {...props} />
                         </li>
 
-                        <li className="py-3">
-
+                        <li className="py-3" style={disableStyle}>
                             <span>
                                 Give us your review for (insert professor):
                             </span>
@@ -67,7 +71,7 @@ function ReviewFormComponent(props) {
                         </li>
                     </ol>
 
-                    <div className="text-center pt-4">
+                    <div className="text-center pt-4" style={disableStyle}>
                         <input type="submit" className="btn btn-lg btn-outline-primary" value="Submit" onSubmit={props.handleSubmit} />
                     </div>
                 </form>

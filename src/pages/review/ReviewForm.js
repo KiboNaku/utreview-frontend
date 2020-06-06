@@ -42,7 +42,8 @@ class ReviewForm extends Component {
 			HelpfulError: "",
 			GradingDifficultyError: "",
 
-			Duplicate: false
+			Duplicate: false, 
+			Disable: true
 		}
 
 		this.validate = this.validate.bind(this);
@@ -165,6 +166,8 @@ class ReviewForm extends Component {
 		if (inputValue !== null) {
 			this.setState({ CourseNumber: inputValue.value })
 			if (this.state.ProfessorName !== "") {
+				this.state.Disable = false;
+
 				const token = localStorage.usertoken
 				const decoded = jwt_decode(token)
 
@@ -189,6 +192,8 @@ class ReviewForm extends Component {
 		if (inputValue !== null) {
 			this.setState({ ProfessorName: inputValue.value })
 			if (this.state.CourseNumber !== "") {
+				this.state.Disable = false;
+
 				const token = localStorage.usertoken
 				const decoded = jwt_decode(token)
 
