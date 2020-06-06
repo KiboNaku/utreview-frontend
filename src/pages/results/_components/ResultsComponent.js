@@ -9,8 +9,11 @@ import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import { StyledRating } from '../../review/_utils/Rating'
 import { hours, divisions } from './FilterComponents'
+import "./Results.css"
+import "./../../../utcolors.css"
 
 function ResultsComponent(props) {
+
     let CourseNumberSortIcon = <i className="fas fa-sort"></i>
     let CourseNameSortIcon = <i className="fas fa-sort"></i>
     let ProfNameSortIcon = <i className="fas fa-sort"></i>
@@ -40,12 +43,13 @@ function ResultsComponent(props) {
     )
 
     let emptyTable = (
-        <h1> No results for your search </h1>
+        <h6> No results for your search </h6>
     )
 
     let empty = props.data.noCourses
 
     let courseTable = (
+
         <table id='courseResults' className='table table-hover'>
             <thead className='thead-dark'>
                 <tr>
@@ -85,7 +89,7 @@ function ResultsComponent(props) {
     )
 
     let result = (
-        <div className="col-lg-9">
+        <div className="col-md-8" style={{ backgroundColor: "green" }}>
             <AppBar position="static" color="default">
                 <Tabs
                     value={props.data.currentTab}
@@ -118,45 +122,76 @@ function ResultsComponent(props) {
         // hours (checkbox group)
         // upper/lower div (checkbox group)
 
-        <div className="col-lg-3">
+        <div className="col-md-4">
             <div className='card'>
 
-                <div className='card-header text-left'>
+                <div className='card-header text-left font-weight-bold'>
                     Course Filters:
 				</div>
 
                 <div className='card-body'>
+                    <div>
 
-                    <Select
-                        // add deptList, handleDeptChange
-                        className="basic-multi-select"
-                        classNamePrefix="select"
-                        name="dept"
-                        options={props.data.deptList}
-                        onChange={props.handleDeptChange}
-                        placeholder="Select Department"
-                        isClearable={true}
-                        isSearchable={true}
-                        isMulti
-                    />
-
-                    <div className='form-check'>
-                        {/* change to checkbox on right, add handleChange */}
-                        <input type='checkbox' className='pull-right form-check-input' onChange={props.handleChange} />
-                        <label className='form-check-label'>Current Semester</label>
+                        <label className="float-left text-left font-weight-bold">Department: </label>
+                        <Select
+                            // add deptList, handleDeptChange
+                            className="basic-multi-select my-3 clear-both"
+                            classNamePrefix="select"
+                            name="dept"
+                            options={props.data.deptList}
+                            onChange={props.handleDeptChange}
+                            placeholder="Select"
+                            isClearable={true}
+                            isSearchable={true}
+                            isMulti
+                        />
                     </div>
-                    <label> Min Rating: </label>
-                    <StyledRating
-                        type="rating"
-                        value={props.data.minRating}
-                        icon={<RadioButtonCheckedIcon />}
-                        emptyIcon={<RadioButtonUncheckedIcon />}
-                        name="Usefulness"
-                        onChange={props.handleChange}
-                    />
-                    <label>Min Number of Ratings: </label>
-                    <input type="range" class="custom-range" min="0" max="500" id="customRange3"></input>
 
+                    <div className="form-group my-3">
+                        <label className="float-left text-left font-weight-bold">Min rating: </label>
+                        <StyledRating
+                            className="c-rating float-right"
+                            type="rating"
+                            value={props.data.minRating}
+                            icon={<RadioButtonCheckedIcon />}
+                            emptyIcon={<RadioButtonUncheckedIcon />}
+                            name="Usefulness"
+                            onChange={props.handleChange}
+                        />
+
+                    </div>
+
+                    <div class="form-group my-3 clear-both">
+                        <label className="float-left text-left font-weight-bold">Min num of ratings:</label>
+                        <label className="float-right">(num of ratings)</label>
+
+                        <input type="range" min="0" max="1000" className="c-range form-control-range" />
+                    </div>
+
+                    <div className='my-3' style={{ overflow: "auto" }}>
+                        {/* change to checkbox on right, add handleChange */}
+
+                        <div>
+
+                            <label className="font-weight-bold text-left float-left">Semester</label>
+                            <br />
+                            <div class="form-check sem-radio">
+                                <input class="form-check-input" type="radio" name="semester" value="" checked />
+                                <label class="form-check-labe text-left ">All</label>
+                            </div>
+                            <br />
+                            <div class="form-check sem-radio">
+                                <input class="form-check-input" type="radio" name="semester" value="" />
+                                <label class="form-check-label text-left ">Current (insert semester)</label>
+                            </div>
+                            <br />
+                            <div class="form-check sem-radio">
+                                <input class="form-check-input" type="radio" name="semester" value="" />
+                                <label class="form-check-label text-left ">Next (insert semester)</label>
+                            </div>
+
+                        </div>
+                    </div>
                     {/* {hours} */}
                     {/* {divisions} */}
 
@@ -197,7 +232,12 @@ function ResultsComponent(props) {
 
     return (
         <main className="results-main">
-            {loaded ? content : loading}
+            <div className="main-sub">
+
+                <div className="py-5 px-5">
+                    {loaded ? content : loading}
+                </div>
+            </div>
         </main>
     )
 }
