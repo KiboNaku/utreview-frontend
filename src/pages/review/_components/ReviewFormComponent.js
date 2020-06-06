@@ -58,14 +58,14 @@ function ReviewFormComponent(props) {
 
                         <li className="py-3" style={disableStyle}>
                             <span>
-                                Give us your review for (insert course):
+                                Give us your review for {props.data.CourseNumber !== '' ? props.data.CourseNumber+':' : '...'}
                             </span>
                             <ReviewCourse {...props} />
                         </li>
 
                         <li className="py-3" style={disableStyle}>
                             <span>
-                                Give us your review for (insert professor):
+                                Give us your review for {props.data.ProfessorName !== '' ? props.data.ProfessorName+':' : '...'}
                             </span>
                             <ReviewProfessor {...props} />
                         </li>

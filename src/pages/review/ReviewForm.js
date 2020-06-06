@@ -22,6 +22,7 @@ class ReviewForm extends Component {
 			Difficulty: 0,
 			Workload: 0,
 			CourseComment: "",
+
 			ProfessorName: "",
 			ProfessorApproval: null,
 			Clear: 0,
@@ -35,6 +36,7 @@ class ReviewForm extends Component {
 			UsefulnessError: "",
 			DifficultyError: "",
 			WorkloadError: "",
+			
 			ProfessorNameError: "",
 			ProfessorApprovalError: "",
 			ClearError: "",
