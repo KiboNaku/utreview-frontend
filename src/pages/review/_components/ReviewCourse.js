@@ -82,7 +82,7 @@ function ReviewCourse(props) {
                         <textarea
                             className="form-control" rows="5"
                             value={props.data.CourseComment}
-                            placeholder="Feel free to elaborate with additional comments (optional)."
+                            placeholder="Please elaborate (optional)."
                             name="CourseComment"
                             onChange={props.handleChange}></textarea>
                     </th>
