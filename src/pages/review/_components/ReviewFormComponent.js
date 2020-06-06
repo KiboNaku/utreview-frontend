@@ -20,6 +20,7 @@ function ReviewFormComponent(props) {
                         <tbody>
                             <tr>
                                 <td> Course Number:
+                                    {console.log(props.data.CourseNumberError)}
 										{props.data.CourseNumberError ? (
                                         <td>
                                             <small className="text-danger">{props.data.CourseNumberError}</small>
