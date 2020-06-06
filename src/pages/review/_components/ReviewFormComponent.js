@@ -5,8 +5,8 @@ import ReviewProfessor from './ReviewProfessor'
 import './../ReviewForm.css'
 
 function ReviewFormComponent(props) {
-    let disableStyle = (props.data.Disable? {
-        pointerEvents: "none", 
+    let disableStyle = (props.data.Disable ? {
+        pointerEvents: "none",
         opacity: "0.4"
     } : {})
 
@@ -58,14 +58,14 @@ function ReviewFormComponent(props) {
 
                         <li className="py-3" style={disableStyle}>
                             <span>
-                                Give us your review for {props.data.CourseNumber !== '' ? props.data.CourseNumber+':' : '...'}
+                                Give us your review for {props.data.CourseNumber !== '' ? props.data.CourseNumber + ':' : '...'}
                             </span>
                             <ReviewCourse {...props} />
                         </li>
 
                         <li className="py-3" style={disableStyle}>
                             <span>
-                                Give us your review for {props.data.ProfessorName !== '' ? props.data.ProfessorName+':' : '...'}
+                                Give us your review for {props.data.ProfessorName !== '' ? props.data.ProfessorName + ':' : '...'}
                             </span>
                             <ReviewProfessor {...props} />
                         </li>
