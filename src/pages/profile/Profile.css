@@ -1,0 +1,17 @@
+.profile {
+	color: black;
+	background-color: #d6d2c4;
+	height: 100vh;
+	text-align: center;
+}
+
+.profile-pic {
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+
+.review-list {
+	color: black;
+	background-color: #ffffff;
+	height: 100vh;
+}
