@@ -1,5 +1,4 @@
 
-
 .searchbar {
     min-width: 100%;
     border: 2px solid #333f48;
@@ -46,6 +45,7 @@
     text-decoration: none;
     background: #333f48;
     color: white;
+    border: none;
 }
 
 .search-icon:hover {

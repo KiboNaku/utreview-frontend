@@ -8,6 +8,9 @@ import ReviewForm from './pages/review/ReviewForm'
 import Profile from './pages/profile/Profile'
 import Results from './pages/results/Results'
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import Login from './pages/popups/Login'
+import Signup from './pages/popups/Signup'
+import "./App.css"
 
 function App() {
 
@@ -29,6 +32,9 @@ function App() {
 					<Route path={"/results/:courseId"} render={(props) => <CourseDetails />} />
 				</Switch>
 				<Footer />
+
+                <Login />
+                <Signup />
 			</div>
 		</Router>
 
