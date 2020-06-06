@@ -6,7 +6,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <main>
+                <main className="home-page">
                     <div className="container text-center">
 
                         <div>
