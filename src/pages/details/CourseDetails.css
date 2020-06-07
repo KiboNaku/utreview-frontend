@@ -65,19 +65,23 @@ p{
 }
 
 .courseReviews{
-    margin-right: 50px;
-    margin-left: 50px;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+.courseSchedule{
+    margin-right: 100px;
+    margin-left: 100px;
 }
 
 .courseProfs{
-    margin-right: 50px;
-    margin-left: 50px;
-    width: 80%;
+    margin-right: 100px;
+    margin-left: 100px;
 }
 
 .courseRequisites{
-    margin-right: 50px;
-    margin-left: 50px;
+    margin-right: 100px;
+    margin-left: 100px;
 }
 
 .likeButton{
@@ -109,12 +113,6 @@ p{
 
 .parentCircle {
     position: relative;
-}
-
-.childCourseName {
-    position: absolute;
-    top: 25px;
-    left: 35px;
 }
 
 div.circle {
