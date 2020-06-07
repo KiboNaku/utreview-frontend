@@ -1,16 +1,18 @@
 
 main.home-page {
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     background-image: linear-gradient(to bottom, rgba( 156, 173, 183, 0.52), rgba(191, 87, 0, 0.73)), url('./../../res/img/triangles.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 
     color: white;
+}
+
+.home-sub {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .search-wrapper {
