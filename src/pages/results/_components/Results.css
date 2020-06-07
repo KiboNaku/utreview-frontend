@@ -38,6 +38,7 @@
 
     background: #bf5700;
     border-radius: 50%;
+    border: 3px solid #333f48;
     cursor: pointer;
 }
 
@@ -56,4 +57,22 @@
 
 .over-auto {
     overflow: auto;
+}
+
+.sortable {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.result-table {
+    background-color: white;
+    min-width: 100%;
+}
+
+table {
+    table-layout: fixed;
+}
+
+td {
+    overflow-wrap: break-word;
 }

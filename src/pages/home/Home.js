@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SearchBar from './../_utils/SearchBar'
-import './home.css'
+import './Home.css'
 
 class Home extends Component {
     render() {
