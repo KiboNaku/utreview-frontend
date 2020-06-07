@@ -144,7 +144,7 @@ class ReviewForm extends Component {
 				if (res.error) {
 					alert(res.error)
 				} else {
-					this.props.history.push("/course-results")
+					this.props.history.push("/")
 				}
 			})
 		}

@@ -1,7 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
-import ReviewCourse from './ReviewCourse'
-import ReviewProfessor from './ReviewProfessor'
+import ReviewCourse from './../_utils/ReviewCourse'
+import ReviewProfessor from './../_utils/ReviewProfessor'
 import './../ReviewForm.css'
 
 function ReviewFormComponent(props) {
