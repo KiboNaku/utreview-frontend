@@ -33,24 +33,24 @@ function ResultsComponent(props) {
 
         <table id='courseResults' className='table table-hover result-table'>
             <thead className='thead-dark'>
-                <tr>
+                <tr rowSpan="2">
 
-                    <th scope="col" colSpan="2" className="sortable" onClick={() => props.handleSortChange('courseNum')}>
+                    <th scope="col" colSpan="1" className="sortable" onClick={() => props.handleSortChange('courseNum')}>
                         <span>Course #</span>
                         <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseNum' ? '' : ' invisible')}></i>
                     </th>
 
-                    <th scope="col" colSpan="3" className="sortable" onClick={() => props.handleSortChange('courseName')}>
+                    <th scope="col" colSpan="2" className="sortable" onClick={() => props.handleSortChange('courseName')}>
                         <span>Course Name</span>
                         <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseName' ? '' : ' invisible')}></i>
                     </th>
 
-                    <th scope="col" colSpan="2" className="sortable" onClick={() => console.log("No sort for approval")}>
+                    <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for approval")}>
                         <span>Approval</span>
                         <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'approval' ? '' : ' invisible')}></i>
                     </th>
 
-                    <th scope="col" colSpan="2" className="sortable" onClick={() => console.log("No sort for num ratings")}>
+                    <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for num ratings")}>
                         <span># Ratings</span>
                         <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'ratings' ? '' : ' invisible')}></i>
                     </th>
@@ -90,7 +90,7 @@ function ResultsComponent(props) {
         // hours (checkbox group)
         // upper/lower div (checkbox group)
 
-        <div className="col-md-5 col-lg-3">
+        <div className="col-md-3">
             <div className='card'>
 
                 <div className='card-header text-left font-weight-bold'>
@@ -186,14 +186,14 @@ function ResultsComponent(props) {
         <main className="results-main">
             <div className="main-sub">
 
-                <div className="py-5 px-5">
+                <div className="">
                     <div className='container-fluid'>
 
                         <div className='row'>
 
                             {props.data.currentTab === 0 ? courseFilter : profFilter}
 
-                            <div className="col-md-7 col-lg-9">
+                            <div className="col-md-9">
                                 <AppBar position="static" color="default">
                                     <Tabs
                                         value={props.data.currentTab}
