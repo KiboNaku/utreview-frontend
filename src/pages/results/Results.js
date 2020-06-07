@@ -2,20 +2,32 @@ import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { populateCourses, populateProfs, populateResults } from './ResultsFunctions'
 import ResultsComponent from './_components/ResultsComponent'
+import { getMajor } from './../popups/_utils/UserFunctions'
 
 class Results extends Component {
+
 	constructor(props) {
+
 		super(props);
 		this.state = {
+
+			depts: [],
 			courses: [],
 			professors: [],
-			sortBy: '',
-			currentSort: 'default',
+
+			sortBy: 'courseNum',
+			sortDir: 'down',
 			currentTab: 0,
+
 			courseLoaded: false,
 			profLoaded: false,
 			noCourses: false,
-			noProfs: false
+			noProfs: false,
+
+			f_depts: [],
+			f_mScore: 1,
+			f_mNum: 0, 
+			f_sem: 0
 		}
 
 		const search = {
@@ -40,18 +52,31 @@ class Results extends Component {
 		this.setData = this.setData.bind(this)
 		this.handleSortChange = this.handleSortChange.bind(this)
 		this.handleTabChange = this.handleTabChange.bind(this)
+		this.handleFilterChange = this.handleFilterChange.bind(this)
 		this.sortUp = this.sortUp.bind(this)
 		this.sortDown = this.sortDown.bind(this)
 	}
+	
+    componentDidMount() {
+        getMajor().then(res => {
+            if (res.error) {
+                alert(res.error)
+            } else {
+                let data = res.majors
+                let list = new Array()
+                for (const i in data) {
+                    list.push({
+                        value: data[i]['name'],
+                        label: data[i]['name']
+                    })
+                }
+                this.setState({ depts: list })
+            }
+        })
+    }
 
-	componentDidMount() {
-		console.log("hello")
-
-	}
-
-	componentDidUpdate(prevProps, prevState) {
-		// 
-
+	componentDidUpdate(prevProps) {
+		
 		if (prevProps.location.search != this.props.location.search) {
 			const search = {
 				searchValue: this.props.location.state.searchValue
@@ -82,18 +107,38 @@ class Results extends Component {
 	}
 
 	handleSortChange(sortByName) {
-		const { currentSort, sortBy } = this.state;
+		const { sortDir, sortBy } = this.state;
 		let nextSort;
 
 		if (sortBy !== sortByName) nextSort = 'down';
-		else if (currentSort === 'down') nextSort = 'up';
-		else if (currentSort === 'up') nextSort = 'down';
-		else if (currentSort === 'default') nextSort = 'down';
+		else if (sortDir === 'down') nextSort = 'up';
+		else if (sortDir === 'up') nextSort = 'down';
 
 		this.setState({
 			sortBy: sortByName,
-			currentSort: nextSort
+			sortDir: nextSort
 		})
+	}
+
+	handleFilterChange(depts=null, mScore=-1, mNum=-1, semester=-1){
+
+		if(depts != null){
+			this.setState({f_depts: depts})
+		}
+
+		if(mScore > 0){
+			this.setState({f_mScore: mScore})
+		}
+
+		if(mNum > 0){
+			this.setState({f_mNum: mNum})
+		}
+
+		if(semester > 0){
+			this.setState({f_sem: semester})
+		}
+
+		console.log("New filters: ", this.state.f_depts, this.state.f_mScore, this.state.f_mNum, this.state.f_sem)
 	}
 
 	sortUp(a, b) {
@@ -113,7 +158,7 @@ class Results extends Component {
 	}
 
 	setData(index) {
-		const { professors, courses, currentSort, sortBy } = this.state
+		const { professors, courses, sortDir, sortBy, f_depts, f_mScore, f_mNum, f_sem } = this.state
 
 		const sortTypes = {
 			up: {
@@ -132,14 +177,22 @@ class Results extends Component {
 
 		switch (index) {
 			case 0:
-				console.log("sort course")
-				let sortedCourses = courses.sort(sortTypes[currentSort].fn)
+
+				let sortedCourses = courses
+					.filter(course => f_depts.length <= 0 || f_depts.includes(course.deptName))
+					.sort(sortTypes[sortDir].fn)
+
 				return sortedCourses.map(course => {
 					const { courseNum, courseName, professors } = course
+
+					// TODO: temporary numbers to fill table: remove later
+					const rating = Math.floor(Math.random() * 70 + 30)
+					const numRating = Math.floor(Math.random() * 1500)
+				 
 					return (
 						<tr key={courseNum}>
-							<td>{courseNum}</td>
-							<td>{
+							<td colSpan="2">{courseNum}</td>
+							<td colSpan="3">{
 								<Link
 									to={{
 										pathname: `${this.props.match.url}/${courseNum}`,
@@ -150,24 +203,19 @@ class Results extends Component {
 								> {courseName}
 								</Link>
 							}</td>
-							<td>{
-								professors.map((lastName, i) => {
-									let link;
-									if (i === (professors.length - 1)) {
-										link = <a href='https://www.google.com'> {lastName} </a>
-									} else {
-										link = <span><a href='https://www.google.com'> {lastName}</a> | </span>
-									}
-									return link;
-								})
-							}</td>
+							<td colSpan="2">
+								{rating}%
+							</td>
+							<td colSpan="2">
+								{numRating}
+							</td>
 						</tr>
 					)
 				})
 
 			case 1:
 				console.log("sort prof")
-				let sortedProfs = professors.sort(sortTypes[currentSort].fn)
+				let sortedProfs = professors.sort(sortTypes[sortDir].fn)
 				return sortedProfs.map(professor => {
 					const { id, profName, taughtCourses } = professor
 					return (
@@ -197,9 +245,9 @@ class Results extends Component {
 	render() {
 		return (<ResultsComponent 
 					data={this.state}
-					handleDeptChange={this.handleDeptChange} 
+					handleFilterChange={this.handleFilterChange} 
 					handleTabChange={this.handleTabChange}
-					handleChange={this.handleChange}
+					handleSortChange={this.handleSortChange}
 					setData={this.setData}/>)
 	}
 }
