@@ -1,83 +1,93 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import Avatar from 'react-avatar'
+import ProfileComponent from './_components/ProfileComponent'
+import ReviewSummary from './_utils/ReviewSummary'
 import './Profile.css'
 
 
 class Profile extends Component {
     constructor() {
+        const reviewList = [
+            {
+                id: 1,
+                CourseNumber: "E E 302H",
+                CourseApproval: true,
+                Usefulness: 3,
+                Difficulty: 4,
+                Workload: 2,
+                CourseComment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus.",
+
+                ProfessorName: "Bank, Seth",
+                ProfessorApproval: false,
+                Clear: 3,
+                Engaging: 2,
+                GradingDifficulty: 4,
+                ProfessorComment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus."
+            },
+            {
+                id: 2,
+                CourseNumber: "E E 306",
+                CourseApproval: true,
+                Usefulness: 4,
+                Difficulty: 2,
+                Workload: 2,
+                CourseComment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus.",
+
+                ProfessorName: "Patt, Yale",
+                ProfessorApproval: true,
+                Clear: 1,
+                Engaging: 2,
+                GradingDifficulty: 4,
+                ProfessorComment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus."
+            },
+        ]
+
         super()
         this.state = {
-            first_name: '',
-            last_name: '',
+            first_name: 'Vina',
+            last_name: 'Xue',
             email: '',
             major: '',
             profilePic: '',
-            reviews: []
+            reviews: reviewList
         }
+
+        this.setReviewData = this.setReviewData.bind(this)
+        this.editReview = this.editReview.bind(this)
     }
 
     componentDidMount() {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
         this.setState({
-            first_name: decoded.identity.first_name,
-            last_name: decoded.identity.last_name,
+            // first_name: decoded.identity.first_name,
+            // last_name: decoded.identity.last_name,
             email: decoded.identity.email,
             major: decoded.identity.major
         })
     }
 
-    render() {
+    editReview() {
 
+    }
+
+    setReviewData() {
+        return this.state.reviews.map(review => {
+            return (<ReviewSummary
+                data={review}
+                editReview={this.editReview}
+            />)
+        })
+    }
+
+    render() {
         return (
             <main>
-                <div className='container-fluid'>
-                    <div className='row'>
-                        <div className='col-3 profile'>
-                            <Avatar
-                                className='profile-pic'
-                                name={this.state.first_name + ' ' + this.state.last_name}
-                                size="100"
-                                src={this.state.profilePic}
-                                round={true} />
-                            <h1 className='profile-name'>{this.state.first_name + ' ' + this.state.last_name}</h1>
-                            <p> Email: {this.state.email} </p>
-                            <p> Major: {this.state.major} </p>
-                        </div>
-                        <div className='col-9 review-list'>
-                            <h1>review list</h1>
-                        </div>
-                    </div>
-                </div>
+                <ProfileComponent
+                    data={this.state}
+                    setReviewData={this.setReviewData}
+                />
             </main>
-            // <div className="container">
-            //     <div className="jumbotron mt-5">
-            //         <div className="col-sm-8 mx-auto">
-            //             <h1 className="text-center">PROFILE</h1>
-            //         </div>
-            //         <table className="table col-md-6 mx-auto">
-            //             <tbody>
-            //                 <tr>
-            //                     <td>First Name</td>
-            //                     <td>{this.state.first_name}</td>
-            //                 </tr>
-            //                 <tr>
-            //                     <td>Last Name</td>
-            //                     <td>{this.state.last_name}</td>
-            //                 </tr>
-            //                 <tr>
-            //                     <td>Email</td>
-            //                     <td>{this.state.email}</td>
-            //                 </tr>
-            //                 <tr>
-            //                     <td>Major</td>
-            //                     <td>{this.state.major}</td>
-            //                 </tr>
-            //             </tbody>
-            //         </table>
-            //     </div>
-            // </div>
         )
     }
 }
