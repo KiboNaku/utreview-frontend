@@ -108,7 +108,8 @@ class CourseReviews extends React.Component {
 					numLiked: likeNum,
 					numDisliked: dislikeNum,
 					likePressed: like,
-					dislikePressed: dislike
+					dislikePressed: dislike,
+					date: courseReview.date
 				}
 			}
 			)
@@ -171,7 +172,8 @@ class CourseReviews extends React.Component {
 					numLiked: likeNum,
 					numDisliked: dislikeNum,
 					likePressed: like,
-					dislikePressed: dislike
+					dislikePressed: dislike,
+					date: courseReview.date
 				}
 			}
 			)
@@ -199,7 +201,7 @@ class CourseReviews extends React.Component {
 		})
 
 		let noReviews = (
-			<h3> No reviews yet for this course </h3>
+			<h5> No reviews yet for this course </h5>
 		)
 
 		let reviews = (
@@ -210,8 +212,14 @@ class CourseReviews extends React.Component {
 
 		return (
 			<div className="courseReviews">
-				<h1> Course Reviews </h1>
-				{this.state.courseReviews.length > 0 ? reviews: noReviews}
+				<div className="card">
+					<div className="card-header">
+						<h3> Reviews </h3>
+					</div>
+					<div className="card-body">
+						{this.state.courseReviews.length > 0 ? reviews: noReviews}
+					</div>
+				</div>
 			</div>
 
 		)

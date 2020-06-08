@@ -1,20 +1,42 @@
 table {
     border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th{
+    text-align: center;
+}
+
+tr{
+    border: 1px solid black;
+}
+
+.name-column{
+    text-align: left;
 }
 
 .list-group {
     border: 1px solid black;
 }
 
+.course-stats{
+    display: flex;
+    flex-direction: row;
+}
+
 .progress{
-    width: 300px;
-    height: 25px;
+    height: 30px;
 }
 
 .rating{
     line-height: 20px;
     margin-left: 10px;
     margin-right: 10px;
+    overflow-y: auto;
+}
+
+.rating-heading{
+    text-align: center;
 }
 
 p{
@@ -32,19 +54,34 @@ p{
 }
 
 .CourseInfo{
-    margin-right: 50px;
-    margin-left: 50px;
+    margin-right: 40px;
+    margin-left: 75px;
+    margin-top: 50px;
 }
 
 .CourseRatings{
-    margin-right: 50px;
-    margin-left: 50px;
-    width: 500px;
+    margin-right: 75px;
+    margin-left: 10px;
+    margin-top: 50px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.userRatings{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.course-review-entry{
+    display: flex;
+    flex-direction: row;
 }
 
 .userDes{
     word-wrap: break-word;
-    width: 200px;
+    width: 300px;
     font-size: small;
 }
 
@@ -55,9 +92,59 @@ p{
     margin-left: 20px;
 }
 
+@media screen and (max-width: 1000px){
+    .userRatings{
+        flex-direction: column;
+    }
+
+    .CourseRatings{
+        margin-right: 50px;
+        margin-left: 10px;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .CourseInfo{
+        margin-right: 10px;
+        margin-left: 50px;
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .userRatings{
+        flex-direction: row;
+    }
+    .course-stats{
+        flex-direction: column;
+    }
+
+    .CourseRatings{
+        margin-right: 50px;
+        margin-left: 50px;
+        margin-top: 30px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .CourseInfo{
+        margin-right: 10px;
+        margin-left: 50px;
+        margin-top: 50px;
+    }
+}
+
 .userRat{
     align-content: left;
-    width: 250px;
+    margin-right: 10px;
+    width: 425px;
+}
+
+.row{
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .d-flex{
@@ -67,21 +154,30 @@ p{
 .courseReviews{
     margin-right: 100px;
     margin-left: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .courseSchedule{
     margin-right: 100px;
     margin-left: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
+  
 
 .courseProfs{
     margin-right: 100px;
     margin-left: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .courseRequisites{
     margin-right: 100px;
     margin-left: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .likeButton{
@@ -102,6 +198,7 @@ p{
 
 .reviewDate{
     margin-bottom: 10px;
+    right: 275px;
     position: absolute;
     bottom: 0;
 }
@@ -109,6 +206,10 @@ p{
 .courseAddReview{
     display: flex;
     margin-left: 250px;
+}
+
+.add-review{
+    margin-left: 30px;
 }
 
 .parentCircle {
@@ -123,3 +224,4 @@ div.circle {
     width: 150px;
     height: 150px;
   }
+
