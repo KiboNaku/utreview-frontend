@@ -39,8 +39,8 @@ function CourseReviewEntry(props) {
         <ThumbDownRoundedIcon style={{ fill: 'red' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
     const useStyles = makeStyles((theme) => ({
         large: {
-            width: theme.spacing(7),
-            height: theme.spacing(7),
+            width: theme.spacing(8),
+            height: theme.spacing(8),
         },
     }));
     const classes = useStyles()
@@ -84,14 +84,11 @@ function CourseReviewEntry(props) {
     )
     return (
         <div className="list-group-item">
-            <div className="d-flex">
+            <div className="course-review-entry">
                 <div className="userDes">
                     <Avatar className={classes.large} src={props.review.profPic}>  </Avatar>
                     <span> {props.review.userMajor} student, taught by </span>
                     <a href="https://www.google.com" > {props.review.profName} </a>
-                    <div className="reviewDate">
-                        <span> {props.review.date} </span>
-                    </div>
                 </div>
                 <div className="userRev">
                     <span>{props.review.review}</span>
@@ -103,9 +100,12 @@ function CourseReviewEntry(props) {
                     </div>
                 </div>
                 <div className="userRat">
-                    {thumbsIcon}
-                    <div>
-                        <p className="p-review"> Difficulty: </p>
+                    <div className="row">
+                        <span className="p-review" className="col"> Approval: </span>
+                        {thumbsIcon}
+                    </div>
+                    <div className="row">
+                        <span className="p-review" className="col"> Difficulty: </span>
                         <StyledRating
                             defaultValue={props.review.difficulty}
                             icon={<RadioButtonCheckedIcon />}
@@ -113,8 +113,8 @@ function CourseReviewEntry(props) {
                             readOnly
                         />
                     </div>
-                    <div>
-                        <p className="p-review"> Workload: </p>
+                    <div className="row">
+                        <span className="p-review" className="col"> Workload: </span>
                         <StyledRating
                             defaultValue={props.review.workload}
                             icon={<RadioButtonCheckedIcon />}
@@ -122,8 +122,8 @@ function CourseReviewEntry(props) {
                             readOnly
                         />
                     </div>
-                    <div>
-                        <p className="p-review"> Usefulness: </p>
+                    <div className="row">
+                        <span className="p-review" className="col"> Usefulness: </span>
                         <StyledRating
                             defaultValue={props.review.usefulness}
                             icon={<RadioButtonCheckedIcon />}

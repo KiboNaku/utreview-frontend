@@ -13,28 +13,33 @@ function CourseRequisites(props) {
     })
     return (
         <div className="courseRequisites">
-            <h1> Requisites </h1>
-            <div className="d-flex">
-                <div>
-                    <h5> Prerequisites </h5>
-                    <ul>
-                        {prerequisites}
-                    </ul>
+            <div className="card">
+                <div className="card-header">
+                    <h3> Requisites </h3>
                 </div>
-                <div>
-                    <h5> Corequisites </h5>
-                    <ul>
-                        {corequisites}
-                    </ul>
-                </div>
-                <div>
-                    <h5> Antirequisites </h5>
-                    <ul>
-                        {antirequisites}
-                    </ul>
+                <div className="card-body">
+                    <div className="requisites">
+                        <div>
+                            <h5> Prerequisites </h5>
+                            <ul>
+                                {prerequisites}
+                            </ul>
+                        </div>
+                        <div>
+                            <h5> Corequisites </h5>
+                            <ul>
+                                {corequisites}
+                            </ul>
+                        </div>
+                        <div>
+                            <h5> Antirequisites </h5>
+                            <ul>
+                                {antirequisites}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
     );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import AppBar from '@material-ui/core/AppBar'
-import TabPanel from './../../results/TabPanel'
+import TabPanel from './TabPanel'
 import CourseScheduleEntry from './CourseScheduleEntry'
 import './../CourseDetails.css'
 
@@ -65,7 +65,7 @@ class CourseSchedule extends React.Component {
         )
 
         let result = (
-            <div className="col-lg-9">
+            <div className="semSchedule">
                 <AppBar position="static" color="default">
                     <Tabs
                         value={this.state.currentTab}
@@ -79,20 +79,33 @@ class CourseSchedule extends React.Component {
                     </Tabs>
                 </AppBar>
 
-                <TabPanel index={0} value={this.state.currentTab}>
-                    {summer2020}
-                </TabPanel>
+                <div className="semSchedule">
+                    <TabPanel index={0} value={this.state.currentTab}>
+                        {summer2020}
+                    </TabPanel>
+                </div>
 
-                <TabPanel index={1} value={this.state.currentTab}>
-                    {fall2020}
-                </TabPanel>
+                <div className="semSchedule">
+                    <TabPanel index={1} value={this.state.currentTab}>
+                        {fall2020}
+                    </TabPanel>
+                </div>
             </div>
+
         )
 
         return (
             <div className="courseSchedule">
-                <h1> Course Schedule </h1>
-                {result}
+                <div className="card">
+                    <div className="card-header">
+                        <h3> Course Schedule </h3>
+                    </div>
+                    <div className="card-body">
+                        {result}
+                    </div>
+                </div>
+
+
             </div>
         )
     }
