@@ -41,15 +41,6 @@ function SignupComponent(props) {
                             </div>
 
                             <div className="form-group my-3">
-                                {/* <input
-                                        type="text"
-                                        name="major"
-                                        className="form-control"
-                                        placeholder="major"
-                                        value={props.data.major}
-                                        onChange={props.onChange}
-                                        required autoFocus /> */}
-
                                 <Select
                                     className="basic-single"
                                     classNamePrefix="select"
