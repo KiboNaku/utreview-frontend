@@ -8,7 +8,6 @@ function ReviewProfessor(props) {
     return (
 
         <table className="table table-borderless review-form">
-
             <tbody>
                 <tr>
                     <td> Approval:

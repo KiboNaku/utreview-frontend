@@ -12,10 +12,10 @@ function ReviewDetails(props) {
 						<table className='table table-borderless review-content'>
 							<thead>
 								<tr>
-									<th style={{ width: '50%' }} className='review-cell' scope="col" colspan='2'>
+									<th style={{ width: '50%' }} className='review-cell' scope="col" colSpan='2'>
 										Course:
 									</th>
-									<th style={{ width: '50%' }} className='review-cell' scope="col" colspan='2'>
+									<th style={{ width: '50%' }} className='review-cell' scope="col" colSpan='2'>
 										Professor:
 									</th>
 								</tr>
@@ -40,8 +40,8 @@ function ReviewDetails(props) {
 									<td> {props.data.GradingDifficulty}</td>
 								</tr>
 								<tr>
-									<td style={{ borderRight: 'solid 1px' }} colspan='2'>{props.data.CourseComment}</td>
-									<td colspan='2'>{props.data.ProfessorComment}</td>
+									<td style={{ borderRight: 'solid 1px' }} colSpan='2'>{props.data.CourseComment}</td>
+									<td colSpan='2'>{props.data.ProfessorComment}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -50,7 +50,7 @@ function ReviewDetails(props) {
 						<button
 							type="button"
 							className="btn btn-outline-dark font-weight-bold"
-							onClick={props.editReview}
+							onClick={() => props.editReview(props.data.id)}
 						> Edit Review
                     </button>
 					</div>

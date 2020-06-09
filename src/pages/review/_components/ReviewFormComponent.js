@@ -35,6 +35,8 @@ function ReviewFormComponent(props) {
                                 placeholder="Course"
                                 isClearable={true}
                                 isSearchable={true}
+                                isDisabled={props.data.OldReview ? true : false}
+                                value={props.data.courseNumList.filter(courseNum => courseNum.label === props.data.CourseNumber)}
                             />
                         </li>
 
@@ -53,6 +55,8 @@ function ReviewFormComponent(props) {
                                 placeholder="Professor"
                                 isClearable={true}
                                 isSearchable={true}
+                                isDisabled={props.data.OldReview ? true : false}
+                                value={props.data.professorNameList.filter(profName => profName.label === props.data.ProfessorName)}
                             />
                         </li>
 

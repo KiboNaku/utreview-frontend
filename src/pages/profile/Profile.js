@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
+import { withRouter } from 'react-router-dom'
+import $ from './../../../node_modules/jquery'
 import ProfileComponent from './_components/ProfileComponent'
 import ReviewSummary from './_utils/ReviewSummary'
 import './Profile.css'
@@ -10,7 +12,7 @@ class Profile extends Component {
         const reviewList = [
             {
                 id: 1,
-                CourseNumber: "E E 302H",
+                CourseNumber: "E E 302",
                 CourseApproval: true,
                 Usefulness: 3,
                 Difficulty: 4,
@@ -67,8 +69,23 @@ class Profile extends Component {
         })
     }
 
-    editReview() {
+    editReview(id) {
+        let review
+        this.state.reviews.map(r => {
+            if (r.id == id) {
+                review = r
+            }
+        })
 
+        console.log(review)
+
+        this.props.history.push({
+            pathname: '/add-review',
+            state: {
+                review: review
+            }
+        })
+        $('#review-details-modal').modal('hide')
     }
 
     setReviewData() {
@@ -92,4 +109,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile
+export default withRouter(Profile)
