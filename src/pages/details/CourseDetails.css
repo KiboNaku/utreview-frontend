@@ -3,6 +3,10 @@ table {
     border-collapse: collapse;
 }
 
+thead{
+    border: 1px solid black;
+}
+
 th{
     text-align: center;
 }
@@ -11,12 +15,31 @@ tr{
     border: 1px solid black;
 }
 
+a{
+    color: #bf5700;
+}
+
+.course-details-main {
+    background-color: #9cadb7;
+    background-size: cover;
+    margin: 0;
+}
+
+.course-card{
+    border-color: #9cadb7;
+}
+
 .name-column{
     text-align: left;
 }
 
+.course-header{
+    background-color:#333f48;
+    color: white;
+}
+
 .list-group {
-    border: 1px solid black;
+    border: 0.5px solid black;
 }
 
 .course-stats{
@@ -51,6 +74,21 @@ p{
 .p-review {
     margin-bottom: 5px;
     margin-top: 1px;
+    overflow-wrap: normal;
+}
+
+.rowRating{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.rowApproval{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .CourseInfo{
@@ -92,7 +130,38 @@ p{
     margin-left: 20px;
 }
 
-@media screen and (max-width: 1000px){
+.courseAddReview{
+    display: flex;
+    margin-left: 250px;
+}
+
+.courseReviews{
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-top: 50px;
+    padding-bottom: 50px;
+}
+
+.courseSchedule{
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+  
+
+.courseProfs{
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.add-review{
+    margin-left: 30px;
+}
+
+@media screen and (max-width: 992px){
     .userRatings{
         flex-direction: column;
     }
@@ -110,9 +179,68 @@ p{
         margin-left: 50px;
         margin-top: 50px;
     }
+
+    .courseAddReview{
+        margin-left: 100px;
+    }
+
+    .rowRating{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 768px){
+    .userRatings{
+        flex-direction: row;
+    }
+    .course-stats{
+        flex-direction: column;
+    }
+
+    .CourseRatings{
+        margin-right: 50px;
+        margin-left: 100px;
+        margin-top: 30px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .CourseInfo{
+        margin-right: 10px;
+        margin-left: 50px;
+        margin-top: 50px;
+    }
+
+    .courseAddReview{
+        flex-direction: column;
+    }
+
+    .add-review{
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+
+    .courseReviews{
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .courseProfs{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .courseSchedule{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 576px){
     .userRatings{
         flex-direction: row;
     }
@@ -131,7 +259,7 @@ p{
 
     .CourseInfo{
         margin-right: 10px;
-        margin-left: 50px;
+        margin-left: 10px;
         margin-top: 50px;
     }
 }
@@ -149,28 +277,6 @@ p{
 
 .d-flex{
     align-items: start;
-}
-
-.courseReviews{
-    margin-right: 100px;
-    margin-left: 100px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
-.courseSchedule{
-    margin-right: 100px;
-    margin-left: 100px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-  
-
-.courseProfs{
-    margin-right: 100px;
-    margin-left: 100px;
-    margin-top: 50px;
-    margin-bottom: 50px;
 }
 
 .courseRequisites{
@@ -201,15 +307,6 @@ p{
     right: 275px;
     position: absolute;
     bottom: 0;
-}
-
-.courseAddReview{
-    display: flex;
-    margin-left: 250px;
-}
-
-.add-review{
-    margin-left: 30px;
 }
 
 .parentCircle {

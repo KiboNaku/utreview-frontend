@@ -17,7 +17,7 @@ function CourseRatings(props) {
 
     const StyledRating = withStyles({
         iconFilled: {
-            color: '#0080ff',
+            color: '#bf5700',
         },
     })(Rating);
 
@@ -44,7 +44,7 @@ function CourseRatings(props) {
                     <div
                         className="progress-bar"
                         role="progressbar"
-                        style={{ width: `${percentLikedValue}%` }}
+                        style={{ width: `${percentLikedValue}%`, backgroundColor: '#bf5700' }}
                         aria-valuenow={percentLikedValue}
                         aria-valuemin="0"
                         aria-valuemax="100"

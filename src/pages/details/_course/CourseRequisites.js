@@ -13,8 +13,8 @@ function CourseRequisites(props) {
     })
     return (
         <div className="courseRequisites">
-            <div className="card">
-                <div className="card-header">
+            <div className="card course-card">
+                <div className="card-header course-header" >
                     <h3> Requisites </h3>
                 </div>
                 <div className="card-body">

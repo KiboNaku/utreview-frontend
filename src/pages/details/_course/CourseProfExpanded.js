@@ -6,10 +6,15 @@ function CourseProfExpanded(props) {
     let eCIS = props.eCIS !== null ? `${props.eCIS}/5` : "N/A"
     let prof_id = "prof" + props.id.toString()
     return (
-        <tr>
-            <td colspan="6" id={prof_id} className="collapse">
+        <tr id={prof_id} className="collapse">
+            <td colspan="3" align="center">
                 <div >
-                    Hidden by default
+                    <a href="https://www.google.com" > Syllabi </a>
+                </div>
+            </td>
+            <td colspan="3" align="center">
+                <div >
+                    <a href="https://www.google.com" > UT Catalyst </a>
                 </div>
             </td>
         </tr>
