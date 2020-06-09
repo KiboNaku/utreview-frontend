@@ -183,38 +183,39 @@ function ResultsComponent(props) {
     let loaded = props.data.courseLoaded && props.data.profLoaded
 
     return (
-        <main className="results-main">
+        <main className="results-main py-3">
             <div className="main-sub">
+                <div className='container-fluid'>
 
-                <div className="">
-                    <div className='container-fluid'>
+                    <div className="py-3 px-3 mb-2 search-banner">
+                        <h3>Results for '{props.search}'</h3>
+                    </div>
 
-                        <div className='row'>
+                    <div className='row'>
 
-                            {props.data.currentTab === 0 ? courseFilter : profFilter}
+                        {props.data.currentTab === 0 ? courseFilter : profFilter}
 
-                            <div className="col-md-9">
-                                <AppBar position="static" color="default">
-                                    <Tabs
-                                        value={props.data.currentTab}
-                                        variant="fullWidth"
-                                        centered
-                                        name="currentTab"
-                                        onChange={props.handleTabChange}
-                                    >
-                                        <Tab label="Courses" aria-controls='tabpanel-0' className='font-weight-bold py-4'/>
-                                        <Tab label="Professors" aria-controls='tabpanel-1' className='font-weight-bold py-4'/>
-                                    </Tabs>
-                                </AppBar>
+                        <div className="col-md-9">
+                            <AppBar position="static" color="default">
+                                <Tabs
+                                    value={props.data.currentTab}
+                                    variant="fullWidth"
+                                    centered
+                                    name="currentTab"
+                                    onChange={props.handleTabChange}
+                                >
+                                    <Tab label="Courses" aria-controls='tabpanel-0' className='font-weight-bold py-4' />
+                                    <Tab label="Professors" aria-controls='tabpanel-1' className='font-weight-bold py-4' />
+                                </Tabs>
+                            </AppBar>
 
-                                <TabPanel index={0} value={props.data.currentTab} className="table-panel">
-                                    {loaded ? (props.data.noCourses ? emptyTable : courseTable) : loading}
-                                </TabPanel>
+                            <TabPanel index={0} value={props.data.currentTab} className="table-panel">
+                                {loaded ? (props.data.noCourses ? emptyTable : courseTable) : loading}
+                            </TabPanel>
 
-                                <TabPanel index={1} value={props.data.currentTab}>
-                                    {loaded ? (props.data.noProfs ? emptyTable : profTable) : loading}
-                                </TabPanel>
-                            </div>
+                            <TabPanel index={1} value={props.data.currentTab}>
+                                {loaded ? (props.data.noProfs ? emptyTable : profTable) : loading}
+                            </TabPanel>
                         </div>
                     </div>
                 </div>
