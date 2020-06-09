@@ -191,8 +191,8 @@ class Results extends Component {
 				 
 					return (
 						<tr key={courseNum}>
-							<td colSpan="2">{courseNum}</td>
-							<td colSpan="3">{
+							<td colSpan="1">{courseNum}</td>
+							<td colSpan="2" className="class-name">{
 								<Link
 									to={{
 										pathname: `${this.props.match.url}/${courseNum}`,
@@ -203,10 +203,10 @@ class Results extends Component {
 								> {courseName}
 								</Link>
 							}</td>
-							<td colSpan="2">
+							<td colSpan="1">
 								{rating}%
 							</td>
-							<td colSpan="2">
+							<td colSpan="1">
 								{numRating}
 							</td>
 						</tr>
@@ -248,7 +248,8 @@ class Results extends Component {
 					handleFilterChange={this.handleFilterChange} 
 					handleTabChange={this.handleTabChange}
 					handleSortChange={this.handleSortChange}
-					setData={this.setData}/>)
+					setData={this.setData}
+					search={this.props.location.state.searchValue}/>)
 	}
 }
 
