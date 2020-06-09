@@ -19,7 +19,7 @@ function ProfileComponent(props) {
 					</div>
 					<hr className='profile-divider' />
 					<div className='review-list'>
-						<div class="row">
+						<div className="row">
 							{props.setReviewData()}
 						</div>
 					</div>

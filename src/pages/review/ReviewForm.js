@@ -36,7 +36,7 @@ class ReviewForm extends Component {
 			UsefulnessError: "",
 			DifficultyError: "",
 			WorkloadError: "",
-			
+
 			ProfessorNameError: "",
 			ProfessorApprovalError: "",
 			ClearError: "",
@@ -44,8 +44,9 @@ class ReviewForm extends Component {
 			HelpfulError: "",
 			GradingDifficultyError: "",
 
-			Duplicate: false, 
-			Disable: true
+			Duplicate: false,
+			Disable: true,
+			OldReview: null
 		}
 
 		this.validate = this.validate.bind(this);
@@ -55,6 +56,7 @@ class ReviewForm extends Component {
 		this.handleNegativeClick = this.handleNegativeClick.bind(this);
 		this.handleCourseNumberChange = this.handleCourseNumberChange.bind(this);
 		this.handleProfessorNameChange = this.handleProfessorNameChange.bind(this);
+		this.setData = this.setData.bind(this);
 	}
 
 	validate() {
@@ -249,9 +251,39 @@ class ReviewForm extends Component {
 				this.setState({ professorNameList: profList, profLoaded: true })
 			}
 		})
+
+		let oldReview = this.props.location.state === undefined ? null : this.props.location.state.review
+		this.setState({ OldReview: oldReview })
+	}
+
+	setData() {
+		const { OldReview } = this.state
+
+		this.setState({
+			CourseNumber: OldReview.CourseNumber, 
+			CourseApproval: OldReview.CourseApproval,
+			Usefulness: OldReview.Usefulness,
+			Difficulty: OldReview.Difficulty,
+			Workload: OldReview.Workload,
+			CourseComment: OldReview.CourseComment,
+			ProfessorName: OldReview.ProfessorName,
+			ProfessorApproval: OldReview.ProfessorApproval,
+			Clear: OldReview.Clear,
+			Engaging: OldReview.Engaging,
+			GradingDifficulty: OldReview.GradingDifficulty, 
+			ProfessorComment: OldReview.ProfessorComment,
+			
+			Disable: false
+		})
+
+		console.log(this.state.CourseNumber)
 	}
 
 	render() {
+		if (this.state.OldReview !== null && this.state.CourseNumber === "") {
+			this.setData()
+		}
+
 		let loaded = this.state.courseLoaded && this.state.profLoaded
 		let loading = <Loading />
 		let content = <ReviewFormComponent
