@@ -11,7 +11,7 @@ function ReviewCourse(props) {
             <tbody>
                 <tr>
                     <td> Approval:
-                {props.data.CourseApprovalError ? (
+                        {props.data.CourseApprovalError ? (
                             <td>
                                 <small className="text-danger">{props.data.CourseApprovalError}</small>
                             </td>
@@ -27,7 +27,7 @@ function ReviewCourse(props) {
                 </tr>
                 <tr>
                     <td> Usefulness:
-                {props.data.UsefulnessError ? (
+                        {props.data.UsefulnessError ? (
                             <td>
                                 <small className="text-danger">{props.data.UsefulnessError}</small>
                             </td>
@@ -44,7 +44,7 @@ function ReviewCourse(props) {
                 </tr>
                 <tr>
                     <td> Difficulty:
-                {props.data.DifficultyError ? (
+                        {props.data.DifficultyError ? (
                             <td>
                                 <small className="text-danger">{props.data.DifficultyError}</small>
                             </td>
@@ -61,7 +61,7 @@ function ReviewCourse(props) {
                 </tr>
                 <tr>
                     <td> Workload:
-                {props.data.WorkloadError ? (
+                        {props.data.WorkloadError ? (
                             <td>
                                 <small className="text-danger">{props.data.WorkloadError}</small>
                             </td>
@@ -82,7 +82,7 @@ function ReviewCourse(props) {
                         <textarea
                             className="form-control" rows="5"
                             value={props.data.CourseComment}
-                            placeholder="Feel free to elaborate with additional comments (optional)."
+                            placeholder="Please elaborate (optional)."
                             name="CourseComment"
                             onChange={props.handleChange}></textarea>
                     </th>
