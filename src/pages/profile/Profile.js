@@ -85,7 +85,7 @@ class Profile extends Component {
                 review: review
             }
         })
-        $('#review-details-modal').modal('hide')
+        $('#review-details-modal' + id).modal('hide')
     }
 
     setReviewData() {
