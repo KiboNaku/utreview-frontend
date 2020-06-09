@@ -248,7 +248,8 @@ class Results extends Component {
 					handleFilterChange={this.handleFilterChange} 
 					handleTabChange={this.handleTabChange}
 					handleSortChange={this.handleSortChange}
-					setData={this.setData}/>)
+					setData={this.setData}
+					search={this.props.location.state.searchValue}/>)
 	}
 }
 
