@@ -31,12 +31,12 @@ import './../CourseDetails.css'
 
 function CourseReviewEntry(props) {
     let thumbsIcon = props.review.liked ?
-        <ThumbUpRoundedIcon style={{ fill: 'blue' }} /> : <ThumbDownRoundedIcon style={{ fill: 'red' }} />
+        <ThumbUpRoundedIcon style={{ fill: '#bf5700' }} /> : <ThumbDownRoundedIcon style={{ fill: '#bf5700' }} />
 
     let likeIcon = props.review.likePressed ?
-        <ThumbUpRoundedIcon style={{ fill: 'blue' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
+        <ThumbUpRoundedIcon style={{ fill: '#bf5700' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
     let dislikeIcon = props.review.dislikePressed ?
-        <ThumbDownRoundedIcon style={{ fill: 'red' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
+        <ThumbDownRoundedIcon style={{ fill: '#bf5700' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
     const useStyles = makeStyles((theme) => ({
         large: {
             width: theme.spacing(8),
@@ -46,11 +46,11 @@ function CourseReviewEntry(props) {
     const classes = useStyles()
     const StyledRating = withStyles({
         iconFilled: {
-            color: '#0080ff',
+            color: '#bf5700',
         },
     })(Rating);
 
-    const loginLink = (
+    const likeLoginLink = (
         <span>
             <button
                 className="likeButton"
@@ -63,6 +63,20 @@ function CourseReviewEntry(props) {
             <Signup />
         </span>
 
+    )
+
+    const dislikeLoginLink = (
+        <span>
+            <button
+                className="likeButton"
+                data-toggle="modal" data-target="#login-modal"
+                type="button"
+            >
+                {dislikeIcon}
+            </button>
+            <Login />
+            <Signup />
+        </span>
     )
 
     const likeButton = (
@@ -93,19 +107,23 @@ function CourseReviewEntry(props) {
                 <div className="userRev">
                     <span>{props.review.review}</span>
                     <div className="LikeDislike">
-                        {localStorage.usertoken ? likeButton: loginLink}
+                        {localStorage.usertoken ? likeButton : likeLoginLink}
                         <span> {props.review.numLiked} </span>
-                        {localStorage.usertoken ? dislikeButton: loginLink}
+                        {localStorage.usertoken ? dislikeButton : dislikeLoginLink}
                         <span> {props.review.numDisliked} </span>
                     </div>
                 </div>
                 <div className="userRat">
-                    <div className="row">
-                        <span className="p-review" className="col"> Approval: </span>
+                    <div className="rowApproval">
+                        <div className="col">
+                            <span className="p-review"> Approval: </span>
+                        </div>
                         {thumbsIcon}
                     </div>
-                    <div className="row">
-                        <span className="p-review" className="col"> Difficulty: </span>
+                    <div className="rowRating">
+                        <div className="col">
+                            <span className="p-review"> Difficulty: </span>
+                        </div>
                         <StyledRating
                             defaultValue={props.review.difficulty}
                             icon={<RadioButtonCheckedIcon />}
@@ -113,8 +131,11 @@ function CourseReviewEntry(props) {
                             readOnly
                         />
                     </div>
-                    <div className="row">
-                        <span className="p-review" className="col"> Workload: </span>
+                    <div className="rowRating">
+                        <div className="col">
+                            <span className="p-review"> Workload: </span>
+                        </div>
+
                         <StyledRating
                             defaultValue={props.review.workload}
                             icon={<RadioButtonCheckedIcon />}
@@ -122,8 +143,10 @@ function CourseReviewEntry(props) {
                             readOnly
                         />
                     </div>
-                    <div className="row">
-                        <span className="p-review" className="col"> Usefulness: </span>
+                    <div className="rowRating">
+                        <div className="col">
+                            <span className="p-review"> Usefulness: </span>
+                        </div>                        
                         <StyledRating
                             defaultValue={props.review.usefulness}
                             icon={<RadioButtonCheckedIcon />}

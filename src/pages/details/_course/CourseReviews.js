@@ -212,8 +212,8 @@ class CourseReviews extends React.Component {
 
 		return (
 			<div className="courseReviews">
-				<div className="card">
-					<div className="card-header">
+				<div className="card course-card">
+					<div className="card-header course-header" >
 						<h3> Reviews </h3>
 					</div>
 					<div className="card-body">

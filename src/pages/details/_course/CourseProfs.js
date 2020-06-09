@@ -22,12 +22,12 @@ class CourseProfs extends React.Component {
         })
         return (
             <div className="courseProfs">
-                <div className="card">
-                    <div className="card-header">
+                <div className="card course-card">
+                    <div className="card-header course-header" >
                         <h3> Professors </h3>
                     </div>
                     <div className="card-body">
-                        <table className='table table-hover'>
+                        <table className='table table-hover' >
                             <thead className="thead-dark">
                                 <tr>
                                     <th className="name-column" scope="col">Name</th>

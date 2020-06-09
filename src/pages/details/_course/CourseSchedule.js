@@ -96,8 +96,8 @@ class CourseSchedule extends React.Component {
 
         return (
             <div className="courseSchedule">
-                <div className="card">
-                    <div className="card-header">
+                <div className="card course-card">
+                    <div className="card-header course-header" >
                         <h3> Course Schedule </h3>
                     </div>
                     <div className="card-body">

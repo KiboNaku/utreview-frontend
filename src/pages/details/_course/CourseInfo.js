@@ -5,8 +5,8 @@ import './../CourseDetails.css'
 function CourseInfo(props) {
 	return (
 		<div className="CourseInfo">
-			<div className="card">
-				<div className="card-header">
+			<div className="card course-card">
+				<div className="card-header course-header">
 					<h2> {props.courseDep} {props.courseNo} </h2>
 				</div>
 				<div className="card-body">

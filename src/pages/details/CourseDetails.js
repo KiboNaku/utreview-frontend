@@ -204,7 +204,7 @@ class CourseDetails extends React.Component {
                 this.setState({
                     courseInfo: courseData,
                     courseRatings: courseRating,
-                   // courseProfs: courseProfessors,
+                    // courseProfs: courseProfessors,
                     courseReviews: courseRevs,
                     loaded: true
                 })
@@ -250,9 +250,12 @@ class CourseDetails extends React.Component {
             </div>
         )
         return (
-            <div>
-                {this.state.loaded ? content : loading}
-            </div>
+            <main className="course-details-main">
+                <div className="main-sub">
+                    {this.state.loaded ? content : loading}
+                </div>
+
+            </main>
 
         );
     }
