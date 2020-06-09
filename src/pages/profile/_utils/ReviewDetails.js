@@ -3,7 +3,7 @@ import ModalHeader from './../../popups/_utils/ModalHeader'
 
 function ReviewDetails(props) {
 	return (
-		<div className="modal fade" id="review-details-modal" role="dialog">
+		<div className="modal fade" id={'review-details-modal' + props.data.id} role="dialog">
 
 			<div className="modal-dialog modal-dialog-centered" role="document">
 				<div className="modal-content">

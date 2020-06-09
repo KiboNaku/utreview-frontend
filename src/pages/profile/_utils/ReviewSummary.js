@@ -34,7 +34,7 @@ function ReviewSummary(props) {
                             <ThumbUpRoundedIcon style={{ fill: 'green' }} /> :
                             <ThumbDownRoundedIcon style={{ fill: 'red' }} />}
                     </p>
-                    
+
                     <ReviewDetails
                         data={props.data}
                         editReview={props.editReview}
@@ -43,7 +43,7 @@ function ReviewSummary(props) {
                     <button type="button"
                         className="mr-1 ml-1 btn btn-outline-dark font-weight-bold"
                         data-toggle="modal"
-                        data-target="#review-details-modal"
+                        data-target={"#review-details-modal" + props.data.id}
                     > More Details
                     </button>
                     <button
