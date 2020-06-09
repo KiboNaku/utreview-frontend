@@ -33,24 +33,24 @@ function ResultsComponent(props) {
 
         <table id='courseResults' className='table table-hover result-table'>
             <thead className='thead-dark'>
-                <tr>
+                <tr rowSpan="2">
 
-                    <th scope="col" colSpan="2" className="sortable" onClick={() => props.handleSortChange('courseNum')}>
+                    <th scope="col" colSpan="1" className="sortable" onClick={() => props.handleSortChange('courseNum')}>
                         <span>Course #</span>
                         <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseNum' ? '' : ' invisible')}></i>
                     </th>
 
-                    <th scope="col" colSpan="3" className="sortable" onClick={() => props.handleSortChange('courseName')}>
+                    <th scope="col" colSpan="2" className="sortable" onClick={() => props.handleSortChange('courseName')}>
                         <span>Course Name</span>
                         <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseName' ? '' : ' invisible')}></i>
                     </th>
 
-                    <th scope="col" colSpan="2" className="sortable" onClick={() => console.log("No sort for approval")}>
+                    <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for approval")}>
                         <span>Approval</span>
                         <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'approval' ? '' : ' invisible')}></i>
                     </th>
 
-                    <th scope="col" colSpan="2" className="sortable" onClick={() => console.log("No sort for num ratings")}>
+                    <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for num ratings")}>
                         <span># Ratings</span>
                         <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'ratings' ? '' : ' invisible')}></i>
                     </th>
@@ -90,7 +90,7 @@ function ResultsComponent(props) {
         // hours (checkbox group)
         // upper/lower div (checkbox group)
 
-        <div className="col-md-5 col-lg-3">
+        <div className="col-md-3">
             <div className='card'>
 
                 <div className='card-header text-left font-weight-bold'>
@@ -183,38 +183,39 @@ function ResultsComponent(props) {
     let loaded = props.data.courseLoaded && props.data.profLoaded
 
     return (
-        <main className="results-main">
+        <main className="results-main py-3">
             <div className="main-sub">
+                <div className='container-fluid'>
 
-                <div className="py-5 px-5">
-                    <div className='container-fluid'>
+                    <div className="py-3 px-3 mb-2 search-banner">
+                        <h3>Results for '{props.search}'</h3>
+                    </div>
 
-                        <div className='row'>
+                    <div className='row'>
 
-                            {props.data.currentTab === 0 ? courseFilter : profFilter}
+                        {props.data.currentTab === 0 ? courseFilter : profFilter}
 
-                            <div className="col-md-7 col-lg-9">
-                                <AppBar position="static" color="default">
-                                    <Tabs
-                                        value={props.data.currentTab}
-                                        variant="fullWidth"
-                                        centered
-                                        name="currentTab"
-                                        onChange={props.handleTabChange}
-                                    >
-                                        <Tab label="Courses" aria-controls='tabpanel-0' className='font-weight-bold py-4'/>
-                                        <Tab label="Professors" aria-controls='tabpanel-1' className='font-weight-bold py-4'/>
-                                    </Tabs>
-                                </AppBar>
+                        <div className="col-md-9">
+                            <AppBar position="static" color="default">
+                                <Tabs
+                                    value={props.data.currentTab}
+                                    variant="fullWidth"
+                                    centered
+                                    name="currentTab"
+                                    onChange={props.handleTabChange}
+                                >
+                                    <Tab label="Courses" aria-controls='tabpanel-0' className='font-weight-bold py-4' />
+                                    <Tab label="Professors" aria-controls='tabpanel-1' className='font-weight-bold py-4' />
+                                </Tabs>
+                            </AppBar>
 
-                                <TabPanel index={0} value={props.data.currentTab} className="table-panel">
-                                    {loaded ? (props.data.noCourses ? emptyTable : courseTable) : loading}
-                                </TabPanel>
+                            <TabPanel index={0} value={props.data.currentTab} className="table-panel">
+                                {loaded ? (props.data.noCourses ? emptyTable : courseTable) : loading}
+                            </TabPanel>
 
-                                <TabPanel index={1} value={props.data.currentTab}>
-                                    {loaded ? (props.data.noProfs ? emptyTable : profTable) : loading}
-                                </TabPanel>
-                            </div>
+                            <TabPanel index={1} value={props.data.currentTab}>
+                                {loaded ? (props.data.noProfs ? emptyTable : profTable) : loading}
+                            </TabPanel>
                         </div>
                     </div>
                 </div>
