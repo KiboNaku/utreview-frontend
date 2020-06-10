@@ -6,7 +6,7 @@ import CourseReviews from './_course/CourseReviews';
 import CourseAddReview from './_course/CourseAddReview';
 import CourseRequisites from './_course/CourseRequisites'
 import CourseSchedule from './_course/CourseSchedule'
-import {getCourseInfo, getCourseProfs} from './_course/CourseFunctions'
+import { getCourseInfo, getCourseProfs } from './_course/CourseFunctions'
 import Loading from './../_utils/Loading'
 import { withRouter, Link } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
@@ -32,19 +32,32 @@ class CourseDetails extends React.Component {
 
         const courseProfs = [
             {
+                id: 1,
                 name: 'Emanuel Tutuc',
                 percentLiked: 70,
-                eCIS: 4.2
+                eCIS: 4.2,
+                clear: 3.4,
+                engaging: 4.9,
+                grading: 2.5
+
             },
-            {   
+            {
+                id: 2,
                 name: 'Yale Patt',
                 percentLiked: 32,
-                eCIS: 3.6
+                eCIS: 3.6,
+                clear: 3.4,
+                engaging: 4.9,
+                grading: 2.5
             },
-            {   
+            {
+                id: 3,
                 name: 'Seth Bank',
                 percentLiked: 85,
-                eCIS: 4.8
+                eCIS: 4.8,
+                clear: 3.4,
+                engaging: 4.9,
+                grading: 2.5
             },
         ]
 
@@ -106,52 +119,52 @@ class CourseDetails extends React.Component {
         ]
 
         const courseReviews = [
-			{
-				key: 1,
-				review: "I fucking hated this class",
-				liked: false,
-				usefulness: 1,
-				difficulty: 5,
-				workload: 5,
-				userMajor: 'Electrical and Computer Engineering',
-				profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
-				profName: 'Yale Patt',
-				numLiked: 2,
-				numDisliked: 0,
-				likePressed: false,
-				dislikePressed: false
-			},
-			{
-				key: 2,
-				review: "This was the most inspiring class of my life",
-				liked: true,
-				usefulness: 5,
-				difficulty: 2,
-				workload: 3,
-				userMajor: 'Electrical and Computer Engineering',
-				profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
-				profName: 'Seth Bank',
-				numLiked: 1,
-				numDisliked: 2,
-				likePressed: true,
-				dislikePressed: false
-			},
-			{
-				key: 3,
-				review: "Why did I even take this class",
-				liked: false,
-				usefulness: 1,
-				difficulty: 2,
-				workload: 3,
-				userMajor: 'Business Honors',
-				profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
-				profName: 'Emanuel Tutuc',
-				numLiked: 5,
-				numDisliked: 2,
-				likePressed: false,
-				dislikePressed: true
-			},
-		]
+            {
+                key: 1,
+                review: "I fucking hated this class",
+                liked: false,
+                usefulness: 1,
+                difficulty: 5,
+                workload: 5,
+                userMajor: 'Electrical and Computer Engineering',
+                profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
+                profName: 'Yale Patt',
+                numLiked: 2,
+                numDisliked: 0,
+                likePressed: false,
+                dislikePressed: false
+            },
+            {
+                key: 2,
+                review: "This was the most inspiring class of my life",
+                liked: true,
+                usefulness: 5,
+                difficulty: 2,
+                workload: 3,
+                userMajor: 'Electrical and Computer Engineering',
+                profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
+                profName: 'Seth Bank',
+                numLiked: 1,
+                numDisliked: 2,
+                likePressed: true,
+                dislikePressed: false
+            },
+            {
+                key: 3,
+                review: "Why did I even take this class",
+                liked: false,
+                usefulness: 1,
+                difficulty: 2,
+                workload: 3,
+                userMajor: 'Business Honors',
+                profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
+                profName: 'Emanuel Tutuc',
+                numLiked: 5,
+                numDisliked: 2,
+                likePressed: false,
+                dislikePressed: true
+            },
+        ]
 
         this.state = {
             courseInfo: courseInfo,
@@ -168,12 +181,12 @@ class CourseDetails extends React.Component {
         let loggedIn = false
         let email = ''
         const token = localStorage.usertoken
-        if(token){
+        if (token) {
             const decoded = jwt_decode(token)
             loggedIn = true
             email = decoded.identity.email
         }
-        
+
         const course = {
             courseNum: courseNum,
             loggedIn: loggedIn,
@@ -183,22 +196,24 @@ class CourseDetails extends React.Component {
         getCourseInfo(course).then(res => {
             if (res.error) {
                 alert(res.error)
-            }else{
+            } else {
                 let courseData = res.course_info
                 let courseRating = res.course_rating
                 let courseProfessors = res.course_profs
                 let courseRevs = res.course_reviews
-                this.setState({courseInfo: courseData, 
-                    courseRatings: courseRating, 
-                    courseProfs: courseProfessors,
+                this.setState({
+                    courseInfo: courseData,
+                    courseRatings: courseRating,
+                    // courseProfs: courseProfessors,
                     courseReviews: courseRevs,
-                    loaded: true})
+                    loaded: true
+                })
             }
         })
     }
 
     componentDidMount() {
-        
+
     }
 
     render() {
@@ -206,39 +221,42 @@ class CourseDetails extends React.Component {
         let loading = (
             <Loading />
         )
-        
+
 
         let content = (
             <div className="CourseDetails">
-                <div className="d-flex">
-                    <CourseRatings
-                        {...this.state.courseRatings}
-                    />
+                <div className="course-stats">
                     <CourseInfo
                         {...this.state.courseInfo}
                     />
+                    <CourseRatings
+                        {...this.state.courseRatings}
+                    />
 
                 </div>
-                <div>
-                    
+                <div className="course-tables">
+
                     <CourseRequisites
                         {...this.state.courseRequisites}
                     />
-                    <CourseProfs {...this.state}/>
+                    <CourseProfs {...this.state} />
                 </div>
 
                 <CourseSchedule {...this.state} />
                 <CourseAddReview
                     {...this.state.courseInfo}
                 />
-                <CourseReviews {...this.state}/>
+                <CourseReviews {...this.state} />
             </div>
         )
         return (
-            <div>
-                {this.state.loaded ? content: loading}
-            </div>
-            
+            <main className="course-details-main">
+                <div className="main-sub">
+                    {this.state.loaded ? content : loading}
+                </div>
+
+            </main>
+
         );
     }
 

@@ -17,44 +17,45 @@ function CourseRatings(props) {
 
     const StyledRating = withStyles({
         iconFilled: {
-            color: '#0080ff',
+            color: '#bf5700',
         },
     })(Rating);
 
-    const percentLikedValue = props.percentLiked===null ? 100: props.percentLiked
-    const percentLiked = props.percentLiked===null ? "N/A": props.percentLiked
+    const percentLikedValue = props.percentLiked === null ? 0 : props.percentLiked
+    const percentLiked = props.percentLiked === null ? "N/A" : props.percentLiked
 
-    const difficultyValue = props.difficulty===null ? 0: props.difficulty
-    const difficulty = props.difficulty===null ? "N/A": props.difficulty
+    const difficultyValue = props.difficulty === null ? 0 : props.difficulty
+    const difficulty = props.difficulty === null ? "N/A" : props.difficulty
 
-    const workloadValue = props.workload===null ? 0: props.workload
-    const workload = props.workload===null ? "N/A": props.workload
+    const workloadValue = props.workload === null ? 0 : props.workload
+    const workload = props.workload === null ? "N/A" : props.workload
 
-    const usefulnessValue = props.usefulness===null ? 0: props.usefulness
-    const usefulness = props.usefulness===null ? "N/A": props.usefulness
+    const usefulnessValue = props.usefulness === null ? 0 : props.usefulness
+    const usefulness = props.usefulness === null ? "N/A" : props.usefulness
 
-    const eCISValue = props.eCIS===null ? 0: props.eCIS
-    const eCIS = props.eCIS===null ? "N/A": props.eCIS
+    const eCISValue = props.eCIS === null ? 0 : props.eCIS
+    const eCIS = props.eCIS === null ? "N/A" : props.eCIS
     return (
         <div className="CourseRatings">
-            <h1> User Ratings </h1>
+            <div className="card card-body">
+            <h3 className="rating-heading"> User Ratings </h3>
             <div className="rating">
-                <p className="p-rating"> Liked </p>
+                <p className="p-rating"> Liked: {`${percentLiked}%`} </p>
                 <div className="progress">
                     <div
                         className="progress-bar"
                         role="progressbar"
-                        style={{ width: `${percentLikedValue}%` }}
+                        style={{ width: `${percentLikedValue}%`, backgroundColor: '#bf5700' }}
                         aria-valuenow={percentLikedValue}
                         aria-valuemin="0"
                         aria-valuemax="100"
                     >
-                        {`${percentLiked}%`}
+                        
                     </div>
                 </div>
             </div>
-            <div className="d-flex">
-            <div className="rating">
+            <div className="userRatings">
+                <div className="rating">
                     <p className="p-rating"> eCIS: {eCIS} </p>
                     <StyledRating
                         style={{ verticalAlign: "middle" }}
@@ -78,7 +79,7 @@ function CourseRatings(props) {
                 </div>
             </div>
 
-            <div className="d-flex">
+            <div className="userRatings">
                 <div className="rating">
                     <p className="p-rating"> Workload: {workload} </p>
                     <StyledRating
@@ -102,6 +103,9 @@ function CourseRatings(props) {
                     />
                 </div>
             </div>
+            </div>
+
+            
 
         </div>
     );
