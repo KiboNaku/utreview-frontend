@@ -37,6 +37,7 @@ function CourseRatings(props) {
     const eCIS = props.eCIS === null ? "N/A" : props.eCIS
     return (
         <div className="CourseRatings">
+            <div className="card card-body">
             <h3 className="rating-heading"> User Ratings </h3>
             <div className="rating">
                 <p className="p-rating"> Liked: {`${percentLiked}%`} </p>
@@ -102,6 +103,9 @@ function CourseRatings(props) {
                     />
                 </div>
             </div>
+            </div>
+
+            
 
         </div>
     );

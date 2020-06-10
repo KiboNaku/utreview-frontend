@@ -1,10 +1,13 @@
 table {
     border: 1px solid black;
     border-collapse: collapse;
+    background-color: white;
+    
 }
 
 thead{
     border: 1px solid black;
+    
 }
 
 th{
@@ -17,6 +20,11 @@ tr{
 
 a{
     color: #bf5700;
+
+}
+
+a:hover{
+    color:#bf5700;
 }
 
 .course-details-main {
@@ -38,6 +46,14 @@ a{
     color: white;
 }
 
+.details-header i{
+    float: right;
+}
+
+.card-table{
+    background-color: #9cadb7;
+}
+
 .list-group {
     border: 0.5px solid black;
 }
@@ -45,6 +61,14 @@ a{
 .course-stats{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    
+}
+
+.course-tables{
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
 }
 
 .progress{
@@ -101,9 +125,9 @@ p{
     margin-right: 75px;
     margin-left: 10px;
     margin-top: 50px;
-    width: 400px;
     display: flex;
     flex-direction: column;
+    color: black;
 }
 
 .userRatings{
@@ -128,11 +152,19 @@ p{
     width: 700px;
     margin-right: 20px;
     margin-left: 20px;
+    border-right: 1px solid black;
 }
 
 .courseAddReview{
-    display: flex;
-    margin-left: 250px;
+    display: flex;   
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.add-review-text{
+    display: inline-block;
 }
 
 .courseReviews{
@@ -145,16 +177,24 @@ p{
 .courseSchedule{
     margin-right: 100px;
     margin-left: 100px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
-  
+
+.courseRequisites{
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
 
 .courseProfs{
     margin-right: 100px;
     margin-left: 100px;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
+    flex-grow: 1;
 }
 
 .add-review{
@@ -166,27 +206,46 @@ p{
         flex-direction: column;
     }
 
+    .course-tables{
+        flex-direction: column;
+    }
+
     .CourseRatings{
         margin-right: 50px;
-        margin-left: 10px;
-        width: 200px;
+        margin-left: 20px;
         display: flex;
         flex-direction: column;
     }
 
     .CourseInfo{
-        margin-right: 10px;
+        margin-right: 20px;
         margin-left: 50px;
         margin-top: 50px;
     }
 
     .courseAddReview{
-        margin-left: 100px;
+        justify-content: center;
     }
 
     .rowRating{
         display: flex;
         flex-direction: column;
+    }
+
+    .courseRequisites{
+        margin-left: 100px;
+        margin-right: 100px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        width: auto;
+    }
+
+    .courseProfs{
+        margin-right: 100px;
+        margin-left: 100px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        width: auto;
     }
 }
 
@@ -199,22 +258,21 @@ p{
     }
 
     .CourseRatings{
-        margin-right: 50px;
-        margin-left: 100px;
-        margin-top: 30px;
-        width: 400px;
-        display: flex;
-        flex-direction: column;
+        margin: 0 auto;
+        margin-top: 50px;
+        justify-content: center;
+        display: inline-block;
     }
 
     .CourseInfo{
-        margin-right: 10px;
+        margin-right: 50px;
         margin-left: 50px;
         margin-top: 50px;
     }
 
     .courseAddReview{
         flex-direction: column;
+        justify-content: center;
     }
 
     .add-review{
@@ -246,15 +304,15 @@ p{
     }
     .course-stats{
         flex-direction: column;
+        justify-content: center;
+        justify-items: center;
     }
 
     .CourseRatings{
-        margin-right: 50px;
-        margin-left: 50px;
-        margin-top: 30px;
-        width: 400px;
-        display: flex;
-        flex-direction: column;
+        margin: 0 auto;
+        margin-top: 50px;
+        justify-content: center;
+        width: auto;
     }
 
     .CourseInfo{
@@ -268,6 +326,7 @@ p{
     align-content: left;
     margin-right: 10px;
     width: 425px;
+    
 }
 
 .row{
@@ -277,13 +336,6 @@ p{
 
 .d-flex{
     align-items: start;
-}
-
-.courseRequisites{
-    margin-right: 100px;
-    margin-left: 100px;
-    margin-top: 50px;
-    margin-bottom: 50px;
 }
 
 .likeButton{

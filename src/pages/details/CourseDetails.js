@@ -234,7 +234,7 @@ class CourseDetails extends React.Component {
                     />
 
                 </div>
-                <div>
+                <div className="course-tables">
 
                     <CourseRequisites
                         {...this.state.courseRequisites}

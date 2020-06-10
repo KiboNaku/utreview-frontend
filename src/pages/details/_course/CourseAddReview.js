@@ -24,7 +24,7 @@ function CourseAddReview(props) {
     )
     return (
         <div className="courseAddReview" >
-            <h3> Have you taken {props.courseDep} {props.courseNo}? </h3>
+            <h3 className="add-review-text"> Have you taken {props.courseDep} {props.courseNo}? </h3>
             <div className="add-review">
                 {localStorage.usertoken ? addReviewLink : loginLink}
             </div>    

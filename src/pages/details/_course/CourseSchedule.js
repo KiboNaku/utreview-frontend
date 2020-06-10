@@ -12,9 +12,11 @@ class CourseSchedule extends React.Component {
 
         this.state = {
             courseSchedule: props.courseSchedule,
-            currentTab: 0
+            currentTab: 0,
+            open: true
         }
 
+        this.handleCollapse = this.handleCollapse.bind(this)
         this.handleTabChange = this.handleTabChange.bind(this)
     }
 
@@ -22,7 +24,15 @@ class CourseSchedule extends React.Component {
         this.setState({ currentTab: newValue })
     }
 
+    handleCollapse() {
+        this.setState((prevState) => ({
+            open: !prevState.open
+        })
+        )
+    }
+
     render() {
+        let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         const courseScheduleList = this.state.courseSchedule.map(course => {
             return (
                 <CourseScheduleEntry {...course} />
@@ -32,7 +42,7 @@ class CourseSchedule extends React.Component {
             <table className='table table-hover'>
                 <thead className="thead-dark">
                     <tr>
-                        <th scope="col">Unique Number</th>
+                        <th scope="col">Unique #</th>
                         <th scope="col">Enrolled</th>
                         <th scope="col">Time</th>
                         <th scope="col">Days</th>
@@ -50,7 +60,7 @@ class CourseSchedule extends React.Component {
             <table className='table table-hover'>
                 <thead className="thead-dark">
                     <tr>
-                        <th scope="col">Unique Number</th>
+                        <th scope="col">Unique #</th>
                         <th scope="col">Enrolled</th>
                         <th scope="col">Time</th>
                         <th scope="col">Days</th>
@@ -97,12 +107,15 @@ class CourseSchedule extends React.Component {
         return (
             <div className="courseSchedule">
                 <div className="card course-card">
-                    <div className="card-header course-header" >
-                        <h3> Course Schedule </h3>
+                    <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#schedule-collapse">
+                        <h3 className="details-header"> Course Schedule {arrowIcon}</h3>
                     </div>
-                    <div className="card-body">
-                        {result}
+                    <div className="collapse show" id="schedule-collapse" role="tabpanel">
+                        <div className="card-body card-table">
+                            {result}
+                        </div>
                     </div>
+
                 </div>
 
 
