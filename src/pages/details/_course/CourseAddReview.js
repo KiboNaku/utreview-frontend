@@ -7,14 +7,14 @@ import './../CourseDetails.css'
 function CourseAddReview(props) {
     const addReviewLink = (
         <Link to="/add-review">
-            <button className="btn btn-primary" type="button">
+            <button style={{height:"50px", width:"175px", fontSize: "20px"}} className="btn btn-dark font-weight-bold" type="button">
                 Add a Review
                 </button>
         </Link>
     )
     const loginLink = (
         <div>
-            <button className="btn btn-primary" type="button" data-toggle="modal" data-target="#login-modal">
+            <button style={{height:"50px", width:"175px", fontSize: "20px"}} className="btn btn-dark font-weight-bold" type="button" data-toggle="modal" data-target="#login-modal">
                 Add a Review
             </button>
             <Login />
@@ -24,8 +24,10 @@ function CourseAddReview(props) {
     )
     return (
         <div className="courseAddReview" >
-            <p> Have you taken {props.courseDep} {props.courseNo}? </p>
-            {localStorage.usertoken ? addReviewLink : loginLink}
+            <h3 className="add-review-text"> Have you taken {props.courseDep} {props.courseNo}? </h3>
+            <div className="add-review">
+                {localStorage.usertoken ? addReviewLink : loginLink}
+            </div>    
         </div>
     );
 }
