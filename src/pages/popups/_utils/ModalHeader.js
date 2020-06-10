@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-function UTEmail(props) {
+function ModalHeader(props) {
     return (
     <div className="modal-header">
         <h5 className="modal-title">{props.text}</h5>
@@ -12,4 +12,4 @@ function UTEmail(props) {
     )
 }
 
-export default UTEmail
+export default ModalHeader

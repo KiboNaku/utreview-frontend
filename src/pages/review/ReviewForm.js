@@ -4,6 +4,7 @@ import { getCourseNum, getProfessorNames } from './_utils/ReviewFormFunctions'
 import { checkDuplicate, newReview, editReview } from './_utils/ReviewFunctions'
 import jwt_decode from 'jwt-decode'
 import ReviewFormComponent from './_components/ReviewFormComponent'
+import Loading from './../_utils/Loading.js'
 
 class ReviewForm extends Component {
 	constructor(props) {
@@ -12,6 +13,8 @@ class ReviewForm extends Component {
 		this.state = {
 			courseNumList: null,
 			professorNameList: null,
+			courseLoaded: false,
+			profLoaded: false,
 
 			CourseNumber: "",
 			CourseApproval: null,
@@ -19,6 +22,7 @@ class ReviewForm extends Component {
 			Difficulty: 0,
 			Workload: 0,
 			CourseComment: "",
+
 			ProfessorName: "",
 			ProfessorApproval: null,
 			Clear: 0,
@@ -32,6 +36,7 @@ class ReviewForm extends Component {
 			UsefulnessError: "",
 			DifficultyError: "",
 			WorkloadError: "",
+
 			ProfessorNameError: "",
 			ProfessorApprovalError: "",
 			ClearError: "",
@@ -39,7 +44,9 @@ class ReviewForm extends Component {
 			HelpfulError: "",
 			GradingDifficultyError: "",
 
-			Duplicate: false
+			Duplicate: false,
+			Disable: true,
+			OldReview: null
 		}
 
 		this.validate = this.validate.bind(this);
@@ -49,6 +56,7 @@ class ReviewForm extends Component {
 		this.handleNegativeClick = this.handleNegativeClick.bind(this);
 		this.handleCourseNumberChange = this.handleCourseNumberChange.bind(this);
 		this.handleProfessorNameChange = this.handleProfessorNameChange.bind(this);
+		this.setData = this.setData.bind(this);
 	}
 
 	validate() {
@@ -78,7 +86,7 @@ class ReviewForm extends Component {
 		if (this.state.Helpful === 0) { HelpfulError = emptyErrorMessage; }
 		if (this.state.GradingDifficulty === 0) { GradingDifficultyError = emptyErrorMessage; }
 
-		console.log(CourseApprovalError)
+		console.log(this.state.CourseNumberError)
 
 		if (CourseNumberError ||
 			CourseApprovalError ||
@@ -162,6 +170,8 @@ class ReviewForm extends Component {
 		if (inputValue !== null) {
 			this.setState({ CourseNumber: inputValue.value })
 			if (this.state.ProfessorName !== "") {
+				this.state.Disable = false;
+
 				const token = localStorage.usertoken
 				const decoded = jwt_decode(token)
 
@@ -186,6 +196,8 @@ class ReviewForm extends Component {
 		if (inputValue !== null) {
 			this.setState({ ProfessorName: inputValue.value })
 			if (this.state.CourseNumber !== "") {
+				this.state.Disable = false;
+
 				const token = localStorage.usertoken
 				const decoded = jwt_decode(token)
 
@@ -220,7 +232,7 @@ class ReviewForm extends Component {
 						label: data[i]['num']
 					})
 				}
-				this.setState({ courseNumList: courseList })
+				this.setState({ courseNumList: courseList, courseLoaded: true })
 			}
 		})
 
@@ -236,22 +248,59 @@ class ReviewForm extends Component {
 						label: data[i]['name']
 					})
 				}
-				this.setState({ professorNameList: profList })
+				this.setState({ professorNameList: profList, profLoaded: true })
 			}
 		})
+
+		let oldReview = this.props.location.state === undefined ? null : this.props.location.state.review
+		this.setState({ OldReview: oldReview })
+	}
+
+	setData() {
+		const { OldReview } = this.state
+
+		this.setState({
+			CourseNumber: OldReview.CourseNumber, 
+			CourseApproval: OldReview.CourseApproval,
+			Usefulness: OldReview.Usefulness,
+			Difficulty: OldReview.Difficulty,
+			Workload: OldReview.Workload,
+			CourseComment: OldReview.CourseComment,
+			ProfessorName: OldReview.ProfessorName,
+			ProfessorApproval: OldReview.ProfessorApproval,
+			Clear: OldReview.Clear,
+			Engaging: OldReview.Engaging,
+			GradingDifficulty: OldReview.GradingDifficulty, 
+			ProfessorComment: OldReview.ProfessorComment,
+			
+			Disable: false
+		})
+
+		console.log(this.state.CourseNumber)
 	}
 
 	render() {
+		if (this.state.OldReview !== null && this.state.CourseNumber === "") {
+			this.setData()
+		}
+
+		let loaded = this.state.courseLoaded && this.state.profLoaded
+		let loading = <Loading />
+		let content = <ReviewFormComponent
+			validate={this.validate}
+			handleSubmit={this.handleSubmit}
+			handleChange={this.handleChange}
+			handlePositiveClick={this.handlePositiveClick}
+			handleNegativeClick={this.handleNegativeClick}
+			handleCourseNumberChange={this.handleCourseNumberChange}
+			handleProfessorNameChange={this.handleProfessorNameChange}
+			data={this.state} />
+
 		return (
-			<ReviewFormComponent 
-				validate={this.validate}
-				handleSubmit={this.handleSubmit} 
-				handleChange={this.handleChange}
-				handlePositiveClick={this.handlePositiveClick}
-				handleNegativeClick={this.handleNegativeClick}
-				handleCourseNumberChange={this.handleCourseNumberChange} 
-				handleProfessorNameChange={this.handleProfessorNameChange}
-				data={this.state}/>
+			<div>
+				{loaded ? content : loading}
+			</div>
+
 		)
 	}
 }

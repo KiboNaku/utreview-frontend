@@ -8,11 +8,10 @@ function ReviewProfessor(props) {
     return (
 
         <table className="table table-borderless review-form">
-
             <tbody>
                 <tr>
                     <td> Approval:
-                {props.data.ProfessorApprovalError ? (
+                        {props.data.ProfessorApprovalError ? (
                             <td>
                                 <small className="text-danger">{props.data.ProfessorApprovalError}</small>
                             </td>
@@ -28,7 +27,7 @@ function ReviewProfessor(props) {
                 </tr>
                 <tr>
                     <td> Clear:
-                {props.data.ClearError ? (
+                        {props.data.ClearError ? (
                             <td>
                                 <small className="text-danger">{props.data.ClearError}</small>
                             </td>
@@ -45,7 +44,7 @@ function ReviewProfessor(props) {
                 </tr>
                 <tr>
                     <td> Engaging:
-                {props.data.EngagingError ? (
+                        {props.data.EngagingError ? (
                             <td>
                                 <small className="text-danger">{props.data.EngagingError}</small>
                             </td>
@@ -62,7 +61,7 @@ function ReviewProfessor(props) {
                 </tr>
                 <tr>
                     <td> Helpful:
-                {props.data.HelpfulError ? (
+                        {props.data.HelpfulError ? (
                             <td>
                                 <small className="text-danger">{props.data.HelpfulError}</small>
                             </td>
@@ -79,7 +78,7 @@ function ReviewProfessor(props) {
                 </tr>
                 <tr>
                     <td> Grading Difficulty:
-                {props.data.GradingDifficultyError ? (
+                        {props.data.GradingDifficultyError ? (
                             <td>
                                 <small className="text-danger">{props.data.GradingDifficultyError}</small>
                             </td>
@@ -103,7 +102,7 @@ function ReviewProfessor(props) {
                             className="form-control"
                             rows="5"
                             value={props.data.ProfessorComment}
-                            placeholder="Feel free to elaborate with additional comments (optional)."
+                            placeholder="Please elaborate (optional)."
                             name="ProfessorComment"
                             onChange={props.handleChange}></textarea>
                     </th>
