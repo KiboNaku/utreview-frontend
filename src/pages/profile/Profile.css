@@ -1,0 +1,50 @@
+.profile-container {
+	color: black;
+	background-color: #d6d2c4;
+	text-align: center;
+}
+
+.profile {
+	border-radius: 5px;
+	margin: 20px auto;
+	margin-top: 0px; 
+	float: none;
+	border-style: hidden;
+	background-color: #ffffff;
+	box-shadow: 0px 8px 10px gray, -10px 8px 15px gray, 10px 8px 15px gray;
+}
+
+.profile-divider {
+	border: 0;
+	height: 1px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.profile-pic {
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+
+.review-list {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.review-container {
+	display: inline-block;
+	text-align: center;
+	padding-bottom: 10px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+.review-content {
+	border-style: hidden;
+	text-align: left;
+}
+
+.review-content td:nth-child(2), th:nth-child(2) {
+	border-right: solid 1px;
+}

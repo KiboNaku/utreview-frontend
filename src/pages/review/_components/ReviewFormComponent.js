@@ -5,6 +5,11 @@ import ReviewProfessor from './../_utils/ReviewProfessor'
 import './../ReviewForm.css'
 
 function ReviewFormComponent(props) {
+    let disableStyle = (props.data.Disable ? {
+        pointerEvents: "none",
+        opacity: "0.4"
+    } : {})
+
     return (
         <div style={{ width: "100%", backgroundColor: "#9cadb7" }}>
             <div className="container-fluid col-12 col-sm-10 col-md-8 col-lg-6 border rounded" style={{ backgroundColor: "white" }}>
@@ -30,10 +35,12 @@ function ReviewFormComponent(props) {
                                 placeholder="Course"
                                 isClearable={true}
                                 isSearchable={true}
+                                isDisabled={props.data.OldReview ? true : false}
+                                value={props.data.courseNumList.filter(courseNum => courseNum.label === props.data.CourseNumber)}
                             />
                         </li>
 
-                        <li className="py-3">
+                        <li className="py-3" >
 
                             <span>
                                 Choose your professor:
@@ -48,26 +55,27 @@ function ReviewFormComponent(props) {
                                 placeholder="Professor"
                                 isClearable={true}
                                 isSearchable={true}
+                                isDisabled={props.data.OldReview ? true : false}
+                                value={props.data.professorNameList.filter(profName => profName.label === props.data.ProfessorName)}
                             />
                         </li>
 
-                        <li className="py-3">
+                        <li className="py-3" style={disableStyle}>
                             <span>
-                                Give us your review for (insert course):
+                                Give us your review for {props.data.CourseNumber !== '' ? props.data.CourseNumber + ':' : '...'}
                             </span>
-                            <ReviewCourse {...props}/>
+                            <ReviewCourse {...props} />
                         </li>
 
-                        <li className="py-3">
-
+                        <li className="py-3" style={disableStyle}>
                             <span>
-                                Give us your review for (insert professor):
+                                Give us your review for {props.data.ProfessorName !== '' ? props.data.ProfessorName + ':' : '...'}
                             </span>
-                            <ReviewProfessor {...props}/>
+                            <ReviewProfessor {...props} />
                         </li>
                     </ol>
 
-                    <div className="text-center pt-4">
+                    <div className="text-center pt-4" style={disableStyle}>
                         <input type="submit" className="btn btn-lg btn-outline-primary" value="Submit" onSubmit={props.handleSubmit} />
                     </div>
                 </form>

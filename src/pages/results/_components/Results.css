@@ -2,10 +2,6 @@
     background-color: #9cadb7;
 }
 
-.results-main * {
-    /* background-color: white; */
-}
-
 .c-rating label {
     margin: 0
 }
@@ -75,4 +71,9 @@ table {
 
 td {
     overflow-wrap: break-word;
+}
+
+.search-banner {
+    color: white;
+    background-color: #333f48;
 }
