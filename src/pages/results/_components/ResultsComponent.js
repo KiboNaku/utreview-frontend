@@ -5,12 +5,9 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import TabPanel from './../TabPanel'
 import Select from 'react-select'
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
-import { StyledRating } from '../../review/_utils/Rating'
-import { hours, divisions } from './FilterComponents'
 import "./Results.css"
 import "./../../../utcolors.css"
+import CoursePanel from './CoursePanel'
 
 function ResultsComponent(props) {
 
@@ -125,17 +122,17 @@ function ResultsComponent(props) {
                     </div>
 
                     <div className="form-group my-3">
-                        <label className="float-left text-left font-weight-bold">Min ratings:</label>
+                        <label className="float-left text-left font-weight-bold">Min approval:</label>
                         <label className="float-right">(rating)</label>
 
-                        <input type="range" min="0" max="1000" className="c-range form-control-range" />
+                        <input type="range" min="0" max="100" className="c-range form-control-range" step="10" />
                     </div>
 
                     <div class="form-group my-3 clear-both">
-                        <label className="float-left text-left font-weight-bold">Min num of ratings:</label>
+                        <label className="float-left text-left font-weight-bold">Min num of approvals:</label>
                         <label className="float-right">(num of ratings)</label>
 
-                        <input type="range" min="0" max="1000" className="c-range form-control-range" />
+                        <input type="range" min="0" max="1000" className="c-range form-control-range" step="100"/>
                     </div>
 
                     <div className='my-3' style={{ overflow: "auto" }}>
@@ -209,9 +206,7 @@ function ResultsComponent(props) {
                                 </Tabs>
                             </AppBar>
 
-                            <TabPanel index={0} value={props.data.currentTab} className="table-panel">
-                                {loaded ? (props.data.noCourses ? emptyTable : courseTable) : loading}
-                            </TabPanel>
+                            <CoursePanel {...props}/>
 
                             <TabPanel index={1} value={props.data.currentTab}>
                                 {loaded ? (props.data.noProfs ? emptyTable : profTable) : loading}
