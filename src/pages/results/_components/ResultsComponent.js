@@ -95,8 +95,10 @@ function ResultsComponent(props) {
 				</div>
 
                 <div className='card-body'>
-                    <div>
 
+                    {/* department filter */}
+                    <div>
+                        
                         <label className="float-left text-left font-weight-bold">Department: </label>
                         <Select
                             // add deptList, handleDeptChange
@@ -108,8 +110,10 @@ function ResultsComponent(props) {
 
                                 let values = [];
 
-                                for (let i = 0; i < objs.length; i++) {
-                                    values[i] = objs[i].value
+                                if (objs != null) {
+                                    for (let i = 0; i < objs.length; i++) {
+                                        values[i] = objs[i].value
+                                    }
                                 }
 
                                 props.handleFilterChange(values)
@@ -121,43 +125,46 @@ function ResultsComponent(props) {
                         />
                     </div>
 
+                    {/* min approval filter */}
                     <div className="form-group my-3">
                         <label className="float-left text-left font-weight-bold">Min approval:</label>
-                        <label className="float-right">{props.data.min_app_range}%</label>
+                        <label className="float-right">{props.data.courseFilter.f_mApp}%</label>
 
                         <input type="range" min="0" max="90" step="10" className="c-range form-control-range"
-                            value={props.data.min_app_range}
-                            onChange={props.handle_min_app} />
+                            value={props.data.courseFilter.f_mApp}
+                            onChange={(event)=>{props.handleFilterChange(null, event.target.value)}} />
                     </div>
 
+                    {/* min num of approvals filter */}
                     <div className="form-group my-3 clear-both">
-                        <label className="float-left text-left font-weight-bold">Min num of approvals:</label>
-                        <label className="float-right">{props.data.min_app_num}</label>
+                        <label className="float-left text-left font-weight-bold">Min # of approvals:</label>
+                        <label className="float-right">{props.data.courseFilter.f_mNum}</label>
 
                         <input type="range" min="0" max="1000" className="c-range form-control-range" step="100"
-                            value={props.data.min_app_num}
-                            onChange={props.handle_min_app_num} />
+                            value={props.data.courseFilter.f_mNum}
+                            onChange={(event)=>{props.handleFilterChange(null, -1, event.target.value)}}/>
                     </div>
 
-                    <div className='my-3' style={{ overflow: "auto" }}>
+                    {/* semester filter */}
+                    <div className='form-group my-3 clear-both' style={{ overflow: "auto" }}>
 
                         <label className="font-weight-bold text-left float-left">Semester</label>
                         <br />
                         <div className="form-check sem-radio">
-                            <input className="form-check-input" type="radio" name="semester" value="all" 
-                                checked={props.data.radio_sem == "all"} onClick={props.handleSemChange}/>
-                            <label className="form-check-labe text-left ">All</label>
+                            <input className="form-check-input mb-0" type="radio" name="semester" value="all"
+                                checked={props.data.courseFilter.f_sem == "all"} onClick={()=>{props.handleFilterChange(null, -1, -1, "all")}} />
+                            <label className="form-check-labe text-left mb-0 ">All</label>
                         </div>
                         <br />
                         <div className="form-check sem-radio">
-                            <input className="form-check-input" type="radio" name="semester" value="current" 
-                                checked={props.data.radio_sem == "current"} onClick={props.handleSemChange}/>
+                            <input className="form-check-input" type="radio" name="semester" value="current"
+                                checked={props.data.courseFilter.f_sem == "current"} onClick={()=>{props.handleFilterChange(null, -1, -1, "current")}} />
                             <label className="form-check-label text-left ">Current (insert semester)</label>
                         </div>
                         <br />
                         <div className="form-check sem-radio">
-                            <input className="form-check-input" type="radio" name="semester" value="next" 
-                                checked={props.data.radio_sem == "next"} onClick={props.handleSemChange}/>
+                            <input className="form-check-input" type="radio" name="semester" value="next"
+                                checked={props.data.courseFilter.f_sem == "next"} onClick={()=>{props.handleFilterChange(null, -1, -1, "next")}} />
                             <label className="form-check-label text-left ">Next (insert semester)</label>
                         </div>
                     </div>

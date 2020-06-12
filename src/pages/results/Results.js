@@ -24,14 +24,13 @@ class Results extends Component {
 			noCourses: false,
 			noProfs: false,
 
-			radio_sem: "all",
-			min_app_range: 0,
-			min_app_num: 0,
+			courseFilter: {
 
-			f_depts: [],
-			f_mScore: 1,
-			f_mNum: 0, 
-			f_sem: 0
+				f_depts: [],
+				f_mApp: 0,
+				f_mNum: 0, 
+				f_sem: "all"
+			}
 		}
 
 		const search = {
@@ -56,9 +55,6 @@ class Results extends Component {
 		this.setData = this.setData.bind(this)
 		this.handleSortChange = this.handleSortChange.bind(this)
 		this.handleTabChange = this.handleTabChange.bind(this)
-		this.handleMinApp = this.handleMinApp.bind(this)
-		this.handleMinAppNum = this.handleMinAppNum.bind(this)
-		this.handleSemChange = this.handleSemChange.bind(this)
 		this.handleFilterChange = this.handleFilterChange.bind(this)
 		this.sortUp = this.sortUp.bind(this)
 		this.sortDown = this.sortDown.bind(this)
@@ -127,37 +123,23 @@ class Results extends Component {
 		})
 	}
 
-	handleSemChange(event){
-		this.setState({radio_sem: event.target.value})
-	}
+	handleFilterChange(depts=null, mApp=-1, mNum=-1, sem=null){
 
-	handleMinApp(event){
-		this.setState({min_app_range: event.target.value})
-	}
+		this.setState((prevState)=>{
 
-	handleMinAppNum(event){
-		this.setState({min_app_num: event.target.value})
-	}
+			let pFilters = prevState.courseFilter
 
-	handleFilterChange(depts=null, mScore=-1, mNum=-1, semester=-1){
-
-		if(depts != null){
-			this.setState({f_depts: depts})
-		}
-
-		if(mScore > 0){
-			this.setState({f_mScore: mScore})
-		}
-
-		if(mNum > 0){
-			this.setState({f_mNum: mNum})
-		}
-
-		if(semester > 0){
-			this.setState({f_sem: semester})
-		}
-
-		console.log("New filters: ", this.state.f_depts, this.state.f_mScore, this.state.f_mNum, this.state.f_sem)
+			return(
+				{
+					courseFilter: {
+						f_depts: depts == null ? pFilters.f_depts: depts,
+						f_mApp: mApp < 0 ? pFilters.f_mApp: mApp,
+						f_mNum: mNum < 0 ? pFilters.f_mNum: mNum,
+						f_sem: sem == null ? pFilters.f_sem: sem
+					}
+				}
+			)
+		})
 	}
 
 	sortUp(a, b) {
@@ -177,7 +159,7 @@ class Results extends Component {
 	}
 
 	setData(index) {
-		const { professors, courses, sortDir, sortBy, f_depts, f_mScore, f_mNum, f_sem } = this.state
+		const { professors, courses, sortDir, sortBy, courseFilter } = this.state
 
 		const sortTypes = {
 			up: {
@@ -198,7 +180,7 @@ class Results extends Component {
 			case 0:
 
 				let sortedCourses = courses
-					.filter(course => f_depts.length <= 0 || f_depts.includes(course.deptName))
+					.filter(course => courseFilter.f_depts.length <= 0 || courseFilter.f_depts.includes(course.deptName))
 					.sort(sortTypes[sortDir].fn)
 
 				return sortedCourses.map(course => {
@@ -266,9 +248,6 @@ class Results extends Component {
 					data={this.state}
 					handleFilterChange={this.handleFilterChange} 
 					handleTabChange={this.handleTabChange}
-					handle_min_app={this.handleMinApp}
-					handle_min_app_num={this.handleMinAppNum}
-					handleSemChange={this.handleSemChange}
 					handleSortChange={this.handleSortChange}
 					setData={this.setData}
 					search={this.props.location.state.searchValue}/>)
