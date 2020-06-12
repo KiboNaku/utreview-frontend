@@ -142,13 +142,25 @@ class ReviewForm extends Component {
 				prof_grading: this.state.GradingDifficulty
 			}
 
-			newReview(review).then(res => {
-				if (res.error) {
-					alert(res.error)
-				} else {
-					this.props.history.push("/")
-				}
-			})
+			if (this.state.OldReview !== null) {
+				console.log("old review")
+				editReview(review).then(res => {
+					if (res.error) {
+						alert(res.error)
+					} else {
+						this.props.history.push("/")
+					}
+				})
+			} else {
+				console.log("new review")
+				newReview(review).then(res => {
+					if (res.error) {
+						alert(res.error)
+					} else {
+						this.props.history.push("/")
+					}
+				})
+			}
 		}
 	}
 
@@ -260,7 +272,7 @@ class ReviewForm extends Component {
 		const { OldReview } = this.state
 
 		this.setState({
-			CourseNumber: OldReview.CourseNumber, 
+			CourseNumber: OldReview.CourseNumber,
 			CourseApproval: OldReview.CourseApproval,
 			Usefulness: OldReview.Usefulness,
 			Difficulty: OldReview.Difficulty,
@@ -270,9 +282,9 @@ class ReviewForm extends Component {
 			ProfessorApproval: OldReview.ProfessorApproval,
 			Clear: OldReview.Clear,
 			Engaging: OldReview.Engaging,
-			GradingDifficulty: OldReview.GradingDifficulty, 
+			GradingDifficulty: OldReview.GradingDifficulty,
 			ProfessorComment: OldReview.ProfessorComment,
-			
+
 			Disable: false
 		})
 
