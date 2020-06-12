@@ -77,7 +77,7 @@ function ResultsComponent(props) {
         </table>
     )
 
-    let courseFilter = (
+    let filter = (
         // for courses:
         // current semester (checkbox)
         // department (dropdown select)
@@ -127,20 +127,20 @@ function ResultsComponent(props) {
                     {/* min approval filter */}
                     <div className="form-group my-3">
                         <label className="float-left text-left font-weight-bold">Min approval:</label>
-                        <label className="float-right">{props.data.courseFilter.f_mApp}%</label>
+                        <label className="float-right">{props.data.filter.f_mApp}%</label>
 
                         <input type="range" min="0" max="90" step="10" className="c-range form-control-range"
-                            value={props.data.courseFilter.f_mApp}
+                            value={props.data.filter.f_mApp}
                             onChange={(event)=>{props.handleFilterChange(null, event.target.value)}} />
                     </div>
 
                     {/* min num of approvals filter */}
                     <div className="form-group my-3 clear-both">
                         <label className="float-left text-left font-weight-bold">Min # of approvals:</label>
-                        <label className="float-right">{props.data.courseFilter.f_mNum}</label>
+                        <label className="float-right">{props.data.filter.f_mNum}</label>
 
                         <input type="range" min="0" max="1000" className="c-range form-control-range" step="100"
-                            value={props.data.courseFilter.f_mNum}
+                            value={props.data.filter.f_mNum}
                             onChange={(event)=>{props.handleFilterChange(null, -1, event.target.value)}}/>
                     </div>
 
@@ -151,19 +151,19 @@ function ResultsComponent(props) {
                         <br />
                         <div className="form-check sem-radio">
                             <input className="form-check-input mb-0" type="radio" name="semester" value="all"
-                                checked={props.data.courseFilter.f_sem == "all"} onClick={()=>{props.handleFilterChange(null, -1, -1, "all")}} />
+                                checked={props.data.filter.f_sem == "all"} onClick={()=>{props.handleFilterChange(null, -1, -1, "all")}} />
                             <label className="form-check-labe text-left mb-0 ">All</label>
                         </div>
                         <br />
                         <div className="form-check sem-radio">
                             <input className="form-check-input" type="radio" name="semester" value="current"
-                                checked={props.data.courseFilter.f_sem == "current"} onClick={()=>{props.handleFilterChange(null, -1, -1, "current")}} />
+                                checked={props.data.filter.f_sem == "current"} onClick={()=>{props.handleFilterChange(null, -1, -1, "current")}} />
                             <label className="form-check-label text-left ">Current (insert semester)</label>
                         </div>
                         <br />
                         <div className="form-check sem-radio">
                             <input className="form-check-input" type="radio" name="semester" value="next"
-                                checked={props.data.courseFilter.f_sem == "next"} onClick={()=>{props.handleFilterChange(null, -1, -1, "next")}} />
+                                checked={props.data.filter.f_sem == "next"} onClick={()=>{props.handleFilterChange(null, -1, -1, "next")}} />
                             <label className="form-check-label text-left ">Next (insert semester)</label>
                         </div>
                     </div>
@@ -203,7 +203,7 @@ function ResultsComponent(props) {
 
                     <div className='row'>
 
-                        {props.data.currentTab === 0 ? courseFilter : profFilter}
+                        {filter}
 
                         <div className="col-md-9">
                             <AppBar position="static" color="default">
