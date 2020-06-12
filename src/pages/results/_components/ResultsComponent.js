@@ -32,22 +32,22 @@ function ResultsComponent(props) {
             <thead className='thead-dark'>
                 <tr rowSpan="2">
 
-                    <th scope="col" colSpan="1" className="sortable" onClick={() => props.handleSortChange('courseNum')}>
+                    <th scope="col" colSpan="1" className="sortable float-left" onClick={() => props.handleSortChange('courseNum')}>
                         <span>Course #</span>
                         <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseNum' ? '' : ' invisible')}></i>
                     </th>
 
-                    <th scope="col" colSpan="2" className="sortable" onClick={() => props.handleSortChange('courseName')}>
+                    <th scope="col" colSpan="2" className="sortable float-left" onClick={() => props.handleSortChange('courseName')}>
                         <span>Course Name</span>
                         <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseName' ? '' : ' invisible')}></i>
                     </th>
 
-                    <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for approval")}>
+                    <th scope="col" colSpan="1" className="sortable float-left" onClick={() => console.log("No sort for approval")}>
                         <span>Approval</span>
                         <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'approval' ? '' : ' invisible')}></i>
                     </th>
 
-                    <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for num ratings")}>
+                    <th scope="col" colSpan="1" className="sortable float-left" onClick={() => console.log("No sort for num ratings")}>
                         <span># Ratings</span>
                         <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'ratings' ? '' : ' invisible')}></i>
                     </th>
@@ -123,35 +123,42 @@ function ResultsComponent(props) {
 
                     <div className="form-group my-3">
                         <label className="float-left text-left font-weight-bold">Min approval:</label>
-                        <label className="float-right">(rating)</label>
+                        <label className="float-right">{props.data.min_app_range}%</label>
 
-                        <input type="range" min="0" max="100" className="c-range form-control-range" step="10" />
+                        <input type="range" min="0" max="90" step="10" className="c-range form-control-range"
+                            value={props.data.min_app_range}
+                            onChange={props.handle_min_app} />
                     </div>
 
-                    <div class="form-group my-3 clear-both">
+                    <div className="form-group my-3 clear-both">
                         <label className="float-left text-left font-weight-bold">Min num of approvals:</label>
-                        <label className="float-right">(num of ratings)</label>
+                        <label className="float-right">{props.data.min_app_num}</label>
 
-                        <input type="range" min="0" max="1000" className="c-range form-control-range" step="100"/>
+                        <input type="range" min="0" max="1000" className="c-range form-control-range" step="100"
+                            value={props.data.min_app_num}
+                            onChange={props.handle_min_app_num} />
                     </div>
 
                     <div className='my-3' style={{ overflow: "auto" }}>
 
                         <label className="font-weight-bold text-left float-left">Semester</label>
                         <br />
-                        <div class="form-check sem-radio">
-                            <input class="form-check-input" type="radio" name="semester" value="" checked />
-                            <label class="form-check-labe text-left ">All</label>
+                        <div className="form-check sem-radio">
+                            <input className="form-check-input" type="radio" name="semester" value="all" 
+                                checked={props.data.radio_sem == "all"} onClick={props.handleSemChange}/>
+                            <label className="form-check-labe text-left ">All</label>
                         </div>
                         <br />
-                        <div class="form-check sem-radio">
-                            <input class="form-check-input" type="radio" name="semester" value="" />
-                            <label class="form-check-label text-left ">Current (insert semester)</label>
+                        <div className="form-check sem-radio">
+                            <input className="form-check-input" type="radio" name="semester" value="current" 
+                                checked={props.data.radio_sem == "current"} onClick={props.handleSemChange}/>
+                            <label className="form-check-label text-left ">Current (insert semester)</label>
                         </div>
                         <br />
-                        <div class="form-check sem-radio">
-                            <input class="form-check-input" type="radio" name="semester" value="" />
-                            <label class="form-check-label text-left ">Next (insert semester)</label>
+                        <div className="form-check sem-radio">
+                            <input className="form-check-input" type="radio" name="semester" value="next" 
+                                checked={props.data.radio_sem == "next"} onClick={props.handleSemChange}/>
+                            <label className="form-check-label text-left ">Next (insert semester)</label>
                         </div>
                     </div>
                     {/* {hours} */}
@@ -206,7 +213,7 @@ function ResultsComponent(props) {
                                 </Tabs>
                             </AppBar>
 
-                            <CoursePanel {...props}/>
+                            <CoursePanel {...props} />
 
                             <TabPanel index={1} value={props.data.currentTab}>
                                 {loaded ? (props.data.noProfs ? emptyTable : profTable) : loading}
