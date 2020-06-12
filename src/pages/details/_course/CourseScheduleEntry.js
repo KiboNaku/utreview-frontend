@@ -7,19 +7,19 @@ function CourseScheduleEntry(props) {
             <td>
                 {props.uniqueNo}
             </td>
-            <td>
+            <td align="center">
                 {props.seatsTaken}/{props.maxEnrollment}
             </td>
-            <td>
+            <td align="center">
                 {props.timeFrom} - {props.timeTo}
             </td>
-            <td>
+            <td align="center">
                 {props.days}
             </td>
-            <td>
+            <td align="center">
                 {props.location}
             </td>
-            <td>
+            <td align="center">
                 <a href = "https://www.google.com" > {props.professor} </a>
             </td>
         </tr>
