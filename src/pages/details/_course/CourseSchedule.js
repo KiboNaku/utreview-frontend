@@ -2,7 +2,7 @@ import React from 'react';
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import AppBar from '@material-ui/core/AppBar'
-import TabPanel from './../../results/TabPanel'
+import TabPanel from './TabPanel'
 import CourseScheduleEntry from './CourseScheduleEntry'
 import './../CourseDetails.css'
 
@@ -12,9 +12,11 @@ class CourseSchedule extends React.Component {
 
         this.state = {
             courseSchedule: props.courseSchedule,
-            currentTab: 0
+            currentTab: 0,
+            open: true
         }
 
+        this.handleCollapse = this.handleCollapse.bind(this)
         this.handleTabChange = this.handleTabChange.bind(this)
     }
 
@@ -22,7 +24,15 @@ class CourseSchedule extends React.Component {
         this.setState({ currentTab: newValue })
     }
 
+    handleCollapse() {
+        this.setState((prevState) => ({
+            open: !prevState.open
+        })
+        )
+    }
+
     render() {
+        let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         const courseScheduleList = this.state.courseSchedule.map(course => {
             return (
                 <CourseScheduleEntry {...course} />
@@ -32,7 +42,7 @@ class CourseSchedule extends React.Component {
             <table className='table table-hover'>
                 <thead className="thead-dark">
                     <tr>
-                        <th scope="col">Unique Number</th>
+                        <th scope="col">Unique #</th>
                         <th scope="col">Enrolled</th>
                         <th scope="col">Time</th>
                         <th scope="col">Days</th>
@@ -50,7 +60,7 @@ class CourseSchedule extends React.Component {
             <table className='table table-hover'>
                 <thead className="thead-dark">
                     <tr>
-                        <th scope="col">Unique Number</th>
+                        <th scope="col">Unique #</th>
                         <th scope="col">Enrolled</th>
                         <th scope="col">Time</th>
                         <th scope="col">Days</th>
@@ -65,7 +75,7 @@ class CourseSchedule extends React.Component {
         )
 
         let result = (
-            <div className="col-lg-9">
+            <div className="semSchedule">
                 <AppBar position="static" color="default">
                     <Tabs
                         value={this.state.currentTab}
@@ -79,20 +89,36 @@ class CourseSchedule extends React.Component {
                     </Tabs>
                 </AppBar>
 
-                <TabPanel index={0} value={this.state.currentTab}>
-                    {summer2020}
-                </TabPanel>
+                <div className="semSchedule">
+                    <TabPanel index={0} value={this.state.currentTab}>
+                        {summer2020}
+                    </TabPanel>
+                </div>
 
-                <TabPanel index={1} value={this.state.currentTab}>
-                    {fall2020}
-                </TabPanel>
+                <div className="semSchedule">
+                    <TabPanel index={1} value={this.state.currentTab}>
+                        {fall2020}
+                    </TabPanel>
+                </div>
             </div>
+
         )
 
         return (
             <div className="courseSchedule">
-                <h1> Course Schedule </h1>
-                {result}
+                <div className="card course-card">
+                    <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#schedule-collapse">
+                        <h3 className="details-header"> Course Schedule {arrowIcon}</h3>
+                    </div>
+                    <div className="collapse show" id="schedule-collapse" role="tabpanel">
+                        <div className="card-body card-table">
+                            {result}
+                        </div>
+                    </div>
+
+                </div>
+
+
             </div>
         )
     }
