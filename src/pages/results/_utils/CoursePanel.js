@@ -1,6 +1,6 @@
 import React from 'react'
-import Loading from './../../_utils/Loading.js'
-import TabPanel from './../TabPanel'
+import Loading from '../../_utils/Loading.js'
+import TabPanel from './TabPanel'
 
 function CoursePanel(props) {
     let sortBy = props.data.sortBy

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
-import { populateCourses, populateProfs, populateResults } from './ResultsFunctions'
+import { populateCourses, populateProfs, populateResults } from './_utils/ResultsFunctions'
 import ResultsComponent from './_components/ResultsComponent'
 import { getMajor } from './../popups/_utils/UserFunctions'
+import "./Results.css"
 
 class Results extends Component {
 
@@ -10,7 +11,7 @@ class Results extends Component {
 
 		super(props);
 		this.state = {
-
+			
 			depts: [],
 			courses: [],
 			professors: [],
