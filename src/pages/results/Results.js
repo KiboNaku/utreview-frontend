@@ -24,6 +24,10 @@ class Results extends Component {
 			noCourses: false,
 			noProfs: false,
 
+			radio_sem: "all",
+			min_app_range: 0,
+			min_app_num: 0,
+
 			f_depts: [],
 			f_mScore: 1,
 			f_mNum: 0, 
@@ -52,6 +56,9 @@ class Results extends Component {
 		this.setData = this.setData.bind(this)
 		this.handleSortChange = this.handleSortChange.bind(this)
 		this.handleTabChange = this.handleTabChange.bind(this)
+		this.handleMinApp = this.handleMinApp.bind(this)
+		this.handleMinAppNum = this.handleMinAppNum.bind(this)
+		this.handleSemChange = this.handleSemChange.bind(this)
 		this.handleFilterChange = this.handleFilterChange.bind(this)
 		this.sortUp = this.sortUp.bind(this)
 		this.sortDown = this.sortDown.bind(this)
@@ -118,6 +125,18 @@ class Results extends Component {
 			sortBy: sortByName,
 			sortDir: nextSort
 		})
+	}
+
+	handleSemChange(event){
+		this.setState({radio_sem: event.target.value})
+	}
+
+	handleMinApp(event){
+		this.setState({min_app_range: event.target.value})
+	}
+
+	handleMinAppNum(event){
+		this.setState({min_app_num: event.target.value})
 	}
 
 	handleFilterChange(depts=null, mScore=-1, mNum=-1, semester=-1){
@@ -247,6 +266,9 @@ class Results extends Component {
 					data={this.state}
 					handleFilterChange={this.handleFilterChange} 
 					handleTabChange={this.handleTabChange}
+					handle_min_app={this.handleMinApp}
+					handle_min_app_num={this.handleMinAppNum}
+					handleSemChange={this.handleSemChange}
 					handleSortChange={this.handleSortChange}
 					setData={this.setData}
 					search={this.props.location.state.searchValue}/>)
