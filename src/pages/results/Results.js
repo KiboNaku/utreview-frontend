@@ -14,42 +14,39 @@ class Results extends Component {
 
 		this.state = {
 
-			data: {
-				courseLoaded: false,
-				profLoaded: false,
-				noCourses: false,
-				noProfs: false,
-
-				depts: [],
-				courses: [],
-				professors: []
-			},
-
 			currentTab: 0,
 
-			cSort: {
-				sortBy: 'courseNum',
-				sortDir: 'down',
+			depts: [],
+
+			courses: {
+				loaded: false,
+				data: [],
+				sort: {
+					sortBy: 'courseNum',
+					sortDir: 'down',
+				},
+				filter: {
+					depts: [],
+					mApp: 0,
+					mNum: 0,
+					sem: "all"
+				}
 			},
 
-			pSort: {
-				sortBy: 'courseNum',
-				sortDir: 'down',
+			profs: {
+				loaded: false,
+				data: [],
+				sort: {
+					sortBy: 'courseNum',
+					sortDir: 'down',
+				},
+				filter: {
+					depts: [],
+					mApp: 0,
+					mNum: 0,
+					sem: "all"
+				}
 			},
-
-			cFilter: {
-				depts: [],
-				mApp: 0,
-				mNum: 0,
-				sem: "all"
-			},
-
-			pFilter: {
-				depts: [],
-				mApp: 0,
-				mNum: 0,
-				sem: "all"
-			}
 		}
 
 		const search = {
@@ -57,34 +54,7 @@ class Results extends Component {
 		}
 
 		populateResults(search).then(res => {
-			let data = JSON.parse(JSON.stringify(this.state.data))
-
-			console.log("before populate", this.state.data)
-
-			if (res.courses === "empty") {
-
-				data.noCourses = true
-				data.courseLoaded = true
-			} else {
-
-				data.courses = res.courses
-				data.courseLoaded = true
-				data.noCourses = false
-			}
-			if (res.profs === "empty") {
-
-				data.noProfs = true
-				data.profLoaded = true
-			} else {
-
-				data.professors = res.profs
-				data.profLoaded = true
-				data.noProfs = false
-			}
-
-			console.log("after:", data)
-
-			this.setState({ data: data })
+			this.parseResValues(res)
 		})
 
 		this.handleSortChange = this.handleSortChange.bind(this)
@@ -111,16 +81,7 @@ class Results extends Component {
 						label: data[i]['name']
 					})
 				}
-				this.setState((prevState) => {
-
-					let data = JSON.parse(JSON.stringify(prevState.data))
-					data.depts = list
-					return (
-						{
-							data: data
-						}
-					)
-				})
+				this.setState({ depts: list })
 			}
 		})
 	}
@@ -133,83 +94,137 @@ class Results extends Component {
 				searchValue: this.props.location.state.searchValue
 			}
 
-			this.setState({ data: { courseLoaded: false, profLoaded: false } })
+			this.setState(prevState => ({
+				courses: {
+					...prevState.courses,
+					loaded: false
+				},
+				profs: {
+					...prevState.profs,
+					loaded: false
+				}
+			}))
+
 			populateResults(search).then(res => {
-				let data = JSON.parse(JSON.stringify(this.state.data))
-	
-				console.log("before populate", this.state.data)
-	
-				if (res.courses === "empty") {
-	
-					data.noCourses = true
-					data.courseLoaded = true
-				} else {
-	
-					data.courses = res.courses
-					data.courseLoaded = true
-					data.noCourses = false
-				}
-				if (res.profs === "empty") {
-	
-					data.noProfs = true
-					data.profLoaded = true
-				} else {
-	
-					data.professors = res.profs
-					data.profLoaded = true
-					data.noProfs = false
-				}
-	
-				console.log("after:", data)
+				this.parseResValues(res)
 			})
 
 		}
 
 	}
 
+	parseResValues = (res) => {
+		this.setState(prevState => (
+			{
+				courses: {
+					...prevState.courses,
+					loaded: true,
+					data: res.courses === "empty" ? null : res.courses
+				},
+				profs: {
+					...prevState.profs,
+					loaded: true,
+					data: res.profs === "empty" ? null : res.profs
+				}
+			}))
+	}
+
 	handleTabChange(event, newValue) {
+		// TODO: update using event only?
 		this.setState({ currentTab: newValue })
 	}
 
 	handleSortChange(sortByName) {
 
-		const { sortDir, sortBy } = this.state.cSort;
-		let nextSort;
+		//TODO: update variable names
+		const { currentTab } = this.state
 
-		if (sortBy !== sortByName) nextSort = 'down';
-		else if (sortDir === 'down') nextSort = 'up';
-		else if (sortDir === 'up') nextSort = 'down';
+		if (currentTab == 0) {
+			const { sortDir, sortBy } = this.state.courses.sort;
+			let nextSort;
 
-		this.setState({
-			cSort: {
-				sortBy: sortByName,
-				sortDir: nextSort
-			}
-		})
+			if (sortBy !== sortByName) nextSort = 'down';
+			else if (sortDir === 'down') nextSort = 'up';
+			else if (sortDir === 'up') nextSort = 'down';
+
+			this.setState(prevState => ({
+				courses: {
+					...prevState.courses,
+					sort: {
+
+						sortBy: sortByName,
+						sortDir: nextSort
+					}
+				}
+			}))
+		} else if (currentTab == 1) {
+			const { sortDir, sortBy } = this.state.profs.sort;
+			let nextSort;
+
+			if (sortBy !== sortByName) nextSort = 'down';
+			else if (sortDir === 'down') nextSort = 'up';
+			else if (sortDir === 'up') nextSort = 'down';
+
+			this.setState(prevState => ({
+				profs: {
+					...prevState.profs,
+					sort: {
+
+						sortBy: sortByName,
+						sortDir: nextSort
+					}
+				}
+			}))
+		}
 	}
 
 	handleFilterChange(depts = null, mApp = -1, mNum = -1, sem = null) {
 
-		this.setState((prevState) => {
+		const { currentTab } = this.state
 
-			let pFilters = prevState.cFilter
+		if (currentTab == 0) {
+			this.setState((prevState) => {
 
-			return (
-				{
-					cFilter: {
-						depts: depts == null ? pFilters.depts : depts,
-						mApp: mApp < 0 ? pFilters.mApp : mApp,
-						mNum: mNum < 0 ? pFilters.mNum : mNum,
-						sem: sem == null ? pFilters.sem : sem
+				let filter = prevState.courses.filter
+				return {
+					courses: {
+						...prevState.courses,
+
+						filter: {
+							depts: depts == null ? filter.depts : depts,
+							mApp: mApp < 0 ? filter.mApp : mApp,
+							mNum: mNum < 0 ? filter.mNum : mNum,
+							sem: sem == null ? filter.sem : sem
+						}
 					}
 				}
-			)
-		})
+			})
+		} else if (currentTab == 1) {
+			this.setState((prevState) => {
+
+				let filter = prevState.profs.filter
+				return {
+					profs: {
+						...prevState.profs,
+
+						filter: {
+							depts: depts == null ? filter.depts : depts,
+							mApp: mApp < 0 ? filter.mApp : mApp,
+							mNum: mNum < 0 ? filter.mNum : mNum,
+							sem: sem == null ? filter.sem : sem
+						}
+					}
+				}
+			})
+		}
 	}
 
+
+	// TODO: update sort functions
 	sortUp(a, b) {
-		const { courses, professors } = this.state.data
-		const sortBy = this.state.cSort.sortBy
+		const courses = this.state.courses.data
+		const professors = this.state.profs.data
+		const sortBy = this.state.courses.sort.sortBy
 
 		if (sortBy === 'courseNum' && courses.length !== 0 && 'courseNum' in a) { return b.courseNum.localeCompare(a.courseNum) }
 		else if (sortBy === 'courseName' && courses.length !== 0 && 'courseName' in a) { return b.courseName.localeCompare(a.courseName) }
@@ -217,8 +232,9 @@ class Results extends Component {
 	}
 
 	sortDown(a, b) {
-		const { courses, professors } = this.state.data
-		const sortBy = this.state.cSort.sortBy
+		const courses = this.state.courses.data
+		const professors = this.state.profs.data
+		const sortBy = this.state.courses.sort.sortBy
 
 		if (sortBy === 'courseNum' && courses.length !== 0 && 'courseNum' in a) { return a.courseNum.localeCompare(b.courseNum) }
 		else if (sortBy === 'courseName' && courses.length !== 0 && 'courseName' in a) { return a.courseName.localeCompare(b.courseName) }
@@ -227,9 +243,13 @@ class Results extends Component {
 
 	setTableData(index) {
 
-		const { professors, courses } = this.state.data
-		const { sortDir, sortBy } = this.state.cSort
-		const filter = index == 0 ? this.state.cFilter : this.state.pFilter
+		console.log("settable", this.state)
+
+		const courses = this.state.courses.data
+		const professors = this.state.profs.data
+
+		const { sortDir, sortBy } = index == 0 ? this.state.courses.sort : this.state.profs.sort
+		const filter = index == 0 ? this.state.courses.filter : this.state.profs.filter
 
 		const sortTypes = {
 			up: {
@@ -246,73 +266,82 @@ class Results extends Component {
 			}
 		}
 
-		switch (index) {
-			case 0:
+		if (index == 0) {
 
-				let sortedCourses = courses
-					.filter(course => filter.depts.length <= 0 || filter.depts.includes(course.deptName))
-					.sort(sortTypes[sortDir].fn)
+			let sortedCourses = courses
+				.filter(course => filter.depts.length <= 0 || filter.depts.includes(course.deptName))
+				.sort(sortTypes[sortDir].fn)
 
-				console.log(this.state)
-				console.log(sortedCourses)
+			return sortedCourses.map(course => {
+				const { courseNum, courseName, professors } = course
 
-				return sortedCourses.map(course => {
-					const { courseNum, courseName, professors } = course
+				// TODO: temporary numbers to fill table: remove later
+				const rating = Math.floor(Math.random() * 70 + 30)
+				const numRating = Math.floor(Math.random() * 1500)
 
-					// TODO: temporary numbers to fill table: remove later
-					const rating = Math.floor(Math.random() * 70 + 30)
-					const numRating = Math.floor(Math.random() * 1500)
-
-					return (
-						<tr key={courseNum}>
-							<td colSpan="1">{courseNum}</td>
-							<td colSpan="2" className="class-name">{
-								<Link
-									to={{
-										pathname: `${this.props.match.url}/${courseNum}`,
-										state: {
-											courseNum: courseNum
-										}
-									}}
-								> {courseName}
-								</Link>
-							}</td>
-							<td colSpan="1">
-								{rating}%
-							</td>
-							<td colSpan="1">
-								{numRating}
-							</td>
-						</tr>
-					)
-				})
-
-			case 1:
-				let sortedProfs = professors.sort(sortTypes[sortDir].fn)
-				return sortedProfs.map(professor => {
-					const { id, profName, taughtCourses } = professor
-					return (
-						<tr key={id}>
-							<td>
-								{<a href='https://www.google.com'> {profName} </a>}
-							</td>
-							<td>
-								{taughtCourses.map((course, i) => {
-									let link;
-									if (i === (taughtCourses.length - 1)) {
-										link = <a href='https://www.google.com'> {course} </a>
-									} else {
-										link = <span><a href='https://www.google.com'> {course} </a> | </span>
+				return (
+					<tr key={courseNum}>
+						<td colSpan="1">{courseNum}</td>
+						<td colSpan="2" className="class-name">{
+							<Link
+								to={{
+									pathname: `${this.props.match.url}/${courseNum}`,
+									state: {
+										courseNum: courseNum
 									}
-									return link;
-								})}
+								}}
+							> {courseName}
+							</Link>
+						}</td>
+						<td colSpan="1">
+							{rating}%
 							</td>
-						</tr>
-					)
-				})
+						<td colSpan="1">
+							{numRating}
+						</td>
+					</tr>
+				)
+			})
 
+		} else if (index == 1) {
+
+			// TODO: update with prof info
+
+			let sortedCourses = courses
+				.filter(course => filter.depts.length <= 0 || filter.depts.includes(course.deptName))
+				.sort(sortTypes[sortDir].fn)
+
+			return sortedCourses.map(course => {
+				const { courseNum, courseName, professors } = course
+
+				// TODO: temporary numbers to fill table: remove later
+				const rating = Math.floor(Math.random() * 70 + 30)
+				const numRating = Math.floor(Math.random() * 1500)
+
+				return (
+					<tr key={courseNum}>
+						<td colSpan="1">{courseNum}</td>
+						<td colSpan="2" className="class-name">{
+							<Link
+								to={{
+									pathname: `${this.props.match.url}/${courseNum}`,
+									state: {
+										courseNum: courseNum
+									}
+								}}
+							> {courseName}
+							</Link>
+						}</td>
+						<td colSpan="1">
+							{rating}%
+							</td>
+						<td colSpan="1">
+							{numRating}
+						</td>
+					</tr>
+				)
+			})
 		}
-
 	}
 
 	render() {
