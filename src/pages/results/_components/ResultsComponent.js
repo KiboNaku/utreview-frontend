@@ -10,6 +10,8 @@ import CoursePanel from '../_utils/CoursePanel'
 
 function ResultsComponent(props) {
 
+    console.log("data", props.data)
+
     let sortBy = props.data.sortBy
     let sortDir = props.data.sortDir
 
@@ -53,7 +55,7 @@ function ResultsComponent(props) {
                 </tr>
             </thead>
             <tbody>
-                {props.setData(0)}
+                {props.setTableData(0)}
             </tbody>
         </table>
     )
@@ -72,10 +74,12 @@ function ResultsComponent(props) {
                 </tr>
             </thead>
             <tbody>
-                {props.setData(1)}
+                {props.setTableData(1)}
             </tbody>
         </table>
     )
+
+    console.log(props.data.depts)
 
     let filter = (
         // for courses:
@@ -97,7 +101,7 @@ function ResultsComponent(props) {
 
                     {/* department filter */}
                     <div>
-                        
+
                         <label className="float-left text-left font-weight-bold">Department: </label>
                         <Select
                             // add deptList, handleDeptChange
@@ -127,21 +131,21 @@ function ResultsComponent(props) {
                     {/* min approval filter */}
                     <div className="form-group my-3">
                         <label className="float-left text-left font-weight-bold">Min approval:</label>
-                        <label className="float-right">{props.data.filter.f_mApp}%</label>
+                        <label className="float-right">{props.cFilter.mApp}%</label>
 
                         <input type="range" min="0" max="90" step="10" className="c-range form-control-range"
-                            value={props.data.filter.f_mApp}
-                            onChange={(event)=>{props.handleFilterChange(null, event.target.value)}} />
+                            value={props.cFilter.mApp}
+                            onChange={(event) => { props.handleFilterChange(null, event.target.value) }} />
                     </div>
 
                     {/* min num of approvals filter */}
                     <div className="form-group my-3 clear-both">
                         <label className="float-left text-left font-weight-bold">Min # of approvals:</label>
-                        <label className="float-right">{props.data.filter.f_mNum}</label>
+                        <label className="float-right">{props.cFilter.mNum}</label>
 
                         <input type="range" min="0" max="1000" className="c-range form-control-range" step="100"
-                            value={props.data.filter.f_mNum}
-                            onChange={(event)=>{props.handleFilterChange(null, -1, event.target.value)}}/>
+                            value={props.cFilter.mNum}
+                            onChange={(event) => { props.handleFilterChange(null, -1, event.target.value) }} />
                     </div>
 
                     {/* semester filter */}
@@ -151,19 +155,19 @@ function ResultsComponent(props) {
                         <br />
                         <div className="form-check sem-radio">
                             <input className="form-check-input mb-0" type="radio" name="semester" value="all"
-                                checked={props.data.filter.f_sem == "all"} onClick={()=>{props.handleFilterChange(null, -1, -1, "all")}} />
+                                checked={props.cFilter.sem == "all"} onClick={() => { props.handleFilterChange(null, -1, -1, "all") }} />
                             <label className="form-check-labe text-left mb-0 ">All</label>
                         </div>
                         <br />
                         <div className="form-check sem-radio">
                             <input className="form-check-input" type="radio" name="semester" value="current"
-                                checked={props.data.filter.f_sem == "current"} onClick={()=>{props.handleFilterChange(null, -1, -1, "current")}} />
+                                checked={props.cFilter.sem == "current"} onClick={() => { props.handleFilterChange(null, -1, -1, "current") }} />
                             <label className="form-check-label text-left ">Current (insert semester)</label>
                         </div>
                         <br />
                         <div className="form-check sem-radio">
                             <input className="form-check-input" type="radio" name="semester" value="next"
-                                checked={props.data.filter.f_sem == "next"} onClick={()=>{props.handleFilterChange(null, -1, -1, "next")}} />
+                                checked={props.cFilter.sem == "next"} onClick={() => { props.handleFilterChange(null, -1, -1, "next") }} />
                             <label className="form-check-label text-left ">Next (insert semester)</label>
                         </div>
                     </div>
@@ -191,6 +195,7 @@ function ResultsComponent(props) {
     )
 
     let loaded = props.data.courseLoaded && props.data.profLoaded
+    console.log(loaded)
 
     return (
         <main className="results-main py-3">
@@ -208,7 +213,7 @@ function ResultsComponent(props) {
                         <div className="col-md-9">
                             <AppBar position="static" color="default">
                                 <Tabs
-                                    value={props.data.currentTab}
+                                    value={props.currentTab}
                                     variant="fullWidth"
                                     centered
                                     name="currentTab"
