@@ -11,6 +11,7 @@ function CoursePanel(props) {
         <h6> No results for your search </h6>
     )
 
+    console.log("courses", loaded)
 
     let loading = (
         <div className="row d-flex justify-content-center">
@@ -48,13 +49,13 @@ function CoursePanel(props) {
                 </tr>
             </thead>
             <tbody>
-                {props.setData(0)}
+                {props.setTableData(0)}
             </tbody>
         </table>
     )
 
     return (
-        <TabPanel index={0} value={props.data.currentTab} className="table-panel">
+        <TabPanel index={0} value={props.currentTab} className="table-panel">
             {loaded ? (props.data.noCourses ? emptyTable : courseTable) : loading}
         </TabPanel>
     )

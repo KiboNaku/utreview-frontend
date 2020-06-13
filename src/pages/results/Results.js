@@ -5,11 +5,13 @@ import ResultsComponent from './_components/ResultsComponent'
 import { getMajor } from './../popups/_utils/UserFunctions'
 import "./Results.css"
 
+
 class Results extends Component {
 
 	constructor(props) {
 
 		super(props);
+
 		this.state = {
 
 			data: {
@@ -25,16 +27,28 @@ class Results extends Component {
 
 			currentTab: 0,
 
-			courseSort: {
+			cSort: {
 				sortBy: 'courseNum',
 				sortDir: 'down',
 			},
 
-			filter: {
-				f_depts: [],
-				f_mApp: 0,
-				f_mNum: 0,
-				f_sem: "all"
+			pSort: {
+				sortBy: 'courseNum',
+				sortDir: 'down',
+			},
+
+			cFilter: {
+				depts: [],
+				mApp: 0,
+				mNum: 0,
+				sem: "all"
+			},
+
+			pFilter: {
+				depts: [],
+				mApp: 0,
+				mNum: 0,
+				sem: "all"
 			}
 		}
 
@@ -43,26 +57,44 @@ class Results extends Component {
 		}
 
 		populateResults(search).then(res => {
+			let data = JSON.parse(JSON.stringify(this.state.data))
+
+			console.log("before populate", this.state.data)
+
 			if (res.courses === "empty") {
-				this.setState({ noCourses: true, courseLoaded: true })
+
+				data.noCourses = true
+				data.courseLoaded = true
 			} else {
-				let courseData = res.courses
-				this.setState({ courses: courseData, courseLoaded: true, noCourses: false })
+
+				data.courses = res.courses
+				data.courseLoaded = true
+				data.noCourses = false
 			}
 			if (res.profs === "empty") {
-				this.setState({ noProfs: true, profLoaded: true })
+
+				data.noProfs = true
+				data.profLoaded = true
 			} else {
-				let profData = res.profs
-				this.setState({ professors: profData, profLoaded: true, noProfs: false })
+
+				data.professors = res.profs
+				data.profLoaded = true
+				data.noProfs = false
 			}
+
+			console.log("after:", data)
+
+			this.setState({ data: data })
 		})
 
 		this.handleSortChange = this.handleSortChange.bind(this)
 		this.handleTabChange = this.handleTabChange.bind(this)
 		this.handleFilterChange = this.handleFilterChange.bind(this)
-		this.setData = this.setData.bind(this)
+
+		this.setTableData = this.setTableData.bind(this)
 		this.sortUp = this.sortUp.bind(this)
 		this.sortDown = this.sortDown.bind(this)
+
 	}
 
 	componentDidMount() {
@@ -79,7 +111,16 @@ class Results extends Component {
 						label: data[i]['name']
 					})
 				}
-				this.setState({ data: { depts: list } })
+				this.setState((prevState) => {
+
+					let data = JSON.parse(JSON.stringify(prevState.data))
+					data.depts = list
+					return (
+						{
+							data: data
+						}
+					)
+				})
 			}
 		})
 	}
@@ -92,20 +133,34 @@ class Results extends Component {
 				searchValue: this.props.location.state.searchValue
 			}
 
-			this.setState({ courseLoaded: false, profLoaded: false })
+			this.setState({ data: { courseLoaded: false, profLoaded: false } })
 			populateResults(search).then(res => {
+				let data = JSON.parse(JSON.stringify(this.state.data))
+	
+				console.log("before populate", this.state.data)
+	
 				if (res.courses === "empty") {
-					this.setState({ data: { noCourses: true, courseLoaded: true } })
+	
+					data.noCourses = true
+					data.courseLoaded = true
 				} else {
-					let courseData = res.courses
-					this.setState({ data: { courses: courseData, courseLoaded: true, noCourses: false } })
+	
+					data.courses = res.courses
+					data.courseLoaded = true
+					data.noCourses = false
 				}
 				if (res.profs === "empty") {
-					this.setState({ data: { noProfs: true, profLoaded: true } })
+	
+					data.noProfs = true
+					data.profLoaded = true
 				} else {
-					let profData = res.profs
-					this.setState({ data: { professors: profData, profLoaded: true, noProfs: false } })
+	
+					data.professors = res.profs
+					data.profLoaded = true
+					data.noProfs = false
 				}
+	
+				console.log("after:", data)
 			})
 
 		}
@@ -118,7 +173,7 @@ class Results extends Component {
 
 	handleSortChange(sortByName) {
 
-		const { sortDir, sortBy } = this.state.courseSort;
+		const { sortDir, sortBy } = this.state.cSort;
 		let nextSort;
 
 		if (sortBy !== sortByName) nextSort = 'down';
@@ -126,7 +181,7 @@ class Results extends Component {
 		else if (sortDir === 'up') nextSort = 'down';
 
 		this.setState({
-			courseSort: {
+			cSort: {
 				sortBy: sortByName,
 				sortDir: nextSort
 			}
@@ -137,15 +192,15 @@ class Results extends Component {
 
 		this.setState((prevState) => {
 
-			let pFilters = prevState.filter
+			let pFilters = prevState.cFilter
 
 			return (
 				{
-					filter: {
-						f_depts: depts == null ? pFilters.f_depts : depts,
-						f_mApp: mApp < 0 ? pFilters.f_mApp : mApp,
-						f_mNum: mNum < 0 ? pFilters.f_mNum : mNum,
-						f_sem: sem == null ? pFilters.f_sem : sem
+					cFilter: {
+						depts: depts == null ? pFilters.depts : depts,
+						mApp: mApp < 0 ? pFilters.mApp : mApp,
+						mNum: mNum < 0 ? pFilters.mNum : mNum,
+						sem: sem == null ? pFilters.sem : sem
 					}
 				}
 			)
@@ -154,7 +209,7 @@ class Results extends Component {
 
 	sortUp(a, b) {
 		const { courses, professors } = this.state.data
-		const sortBy = this.state.courseSort.sortBy
+		const sortBy = this.state.cSort.sortBy
 
 		if (sortBy === 'courseNum' && courses.length !== 0 && 'courseNum' in a) { return b.courseNum.localeCompare(a.courseNum) }
 		else if (sortBy === 'courseName' && courses.length !== 0 && 'courseName' in a) { return b.courseName.localeCompare(a.courseName) }
@@ -163,18 +218,18 @@ class Results extends Component {
 
 	sortDown(a, b) {
 		const { courses, professors } = this.state.data
-		const sortBy = this.state.courseSort.sortBy
+		const sortBy = this.state.cSort.sortBy
 
 		if (sortBy === 'courseNum' && courses.length !== 0 && 'courseNum' in a) { return a.courseNum.localeCompare(b.courseNum) }
 		else if (sortBy === 'courseName' && courses.length !== 0 && 'courseName' in a) { return a.courseName.localeCompare(b.courseName) }
 		else if (sortBy === 'profName' && professors.length !== 0 && 'profName' in a) { return a.profName.localeCompare(b.profName) }
 	}
 
-	setData(index) {
+	setTableData(index) {
 
 		const { professors, courses } = this.state.data
-		const { sortDir, sortBy } = this.state.courseSort
-		const filter = this.state.filter
+		const { sortDir, sortBy } = this.state.cSort
+		const filter = index == 0 ? this.state.cFilter : this.state.pFilter
 
 		const sortTypes = {
 			up: {
@@ -195,8 +250,11 @@ class Results extends Component {
 			case 0:
 
 				let sortedCourses = courses
-					.filter(course => filter.f_depts.length <= 0 || filter.f_depts.includes(course.deptName))
+					.filter(course => filter.depts.length <= 0 || filter.depts.includes(course.deptName))
 					.sort(sortTypes[sortDir].fn)
+
+				console.log(this.state)
+				console.log(sortedCourses)
 
 				return sortedCourses.map(course => {
 					const { courseNum, courseName, professors } = course
@@ -230,7 +288,6 @@ class Results extends Component {
 				})
 
 			case 1:
-				console.log("sort prof")
 				let sortedProfs = professors.sort(sortTypes[sortDir].fn)
 				return sortedProfs.map(professor => {
 					const { id, profName, taughtCourses } = professor
@@ -267,7 +324,7 @@ class Results extends Component {
 			handleFilterChange={this.handleFilterChange}
 			handleSortChange={this.handleSortChange}
 
-			setData={this.setData}
+			setTableData={this.setTableData}
 			search={this.props.location.state.searchValue} />)
 	}
 }
