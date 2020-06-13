@@ -10,10 +10,8 @@ import CoursePanel from '../_utils/CoursePanel'
 
 function ResultsComponent(props) {
 
-    console.log("data", props.data)
-
-    let sortBy = props.data.sortBy
-    let sortDir = props.data.sortDir
+    // TODO: change depending on profs/courses
+    const {sortBy, sortDir} = props.courses.sort
 
     let loading = (
         <div className="row d-flex justify-content-center">
@@ -79,7 +77,8 @@ function ResultsComponent(props) {
         </table>
     )
 
-    console.log(props.data.depts)
+    // TODO: update
+    const {depts, mApp, mNum, sem} = props.courses.filter
 
     let filter = (
         // for courses:
@@ -108,7 +107,7 @@ function ResultsComponent(props) {
                             className="basic-multi-select my-3 clear-both"
                             classNamePrefix="select"
                             name="dept"
-                            options={props.data.depts}
+                            options={props.depts}
                             onChange={(objs, action) => {
 
                                 let values = [];
@@ -131,20 +130,20 @@ function ResultsComponent(props) {
                     {/* min approval filter */}
                     <div className="form-group my-3">
                         <label className="float-left text-left font-weight-bold">Min approval:</label>
-                        <label className="float-right">{props.cFilter.mApp}%</label>
+                        <label className="float-right">{mApp}%</label>
 
                         <input type="range" min="0" max="90" step="10" className="c-range form-control-range"
-                            value={props.cFilter.mApp}
+                            value={mApp}
                             onChange={(event) => { props.handleFilterChange(null, event.target.value) }} />
                     </div>
 
                     {/* min num of approvals filter */}
                     <div className="form-group my-3 clear-both">
                         <label className="float-left text-left font-weight-bold">Min # of approvals:</label>
-                        <label className="float-right">{props.cFilter.mNum}</label>
+                        <label className="float-right">{mNum}</label>
 
                         <input type="range" min="0" max="1000" className="c-range form-control-range" step="100"
-                            value={props.cFilter.mNum}
+                            value={mNum}
                             onChange={(event) => { props.handleFilterChange(null, -1, event.target.value) }} />
                     </div>
 
@@ -155,19 +154,19 @@ function ResultsComponent(props) {
                         <br />
                         <div className="form-check sem-radio">
                             <input className="form-check-input mb-0" type="radio" name="semester" value="all"
-                                checked={props.cFilter.sem == "all"} onClick={() => { props.handleFilterChange(null, -1, -1, "all") }} />
+                                checked={sem == "all"} onClick={() => { props.handleFilterChange(null, -1, -1, "all") }} />
                             <label className="form-check-labe text-left mb-0 ">All</label>
                         </div>
                         <br />
                         <div className="form-check sem-radio">
                             <input className="form-check-input" type="radio" name="semester" value="current"
-                                checked={props.cFilter.sem == "current"} onClick={() => { props.handleFilterChange(null, -1, -1, "current") }} />
+                                checked={sem == "current"} onClick={() => { props.handleFilterChange(null, -1, -1, "current") }} />
                             <label className="form-check-label text-left ">Current (insert semester)</label>
                         </div>
                         <br />
                         <div className="form-check sem-radio">
                             <input className="form-check-input" type="radio" name="semester" value="next"
-                                checked={props.cFilter.sem == "next"} onClick={() => { props.handleFilterChange(null, -1, -1, "next") }} />
+                                checked={sem == "next"} onClick={() => { props.handleFilterChange(null, -1, -1, "next") }} />
                             <label className="form-check-label text-left ">Next (insert semester)</label>
                         </div>
                     </div>
@@ -194,8 +193,7 @@ function ResultsComponent(props) {
         </div>
     )
 
-    let loaded = props.data.courseLoaded && props.data.profLoaded
-    console.log(loaded)
+    let loaded = props.courses.courseLoaded && props.courses.profLoaded
 
     return (
         <main className="results-main py-3">
@@ -226,8 +224,8 @@ function ResultsComponent(props) {
 
                             <CoursePanel {...props} />
 
-                            <TabPanel index={1} value={props.data.currentTab}>
-                                {loaded ? (props.data.noProfs ? emptyTable : profTable) : loading}
+                            <TabPanel index={1} value={props.currentTab}>
+                                {loaded ? (props.profs.data == null ? emptyTable : profTable) : loading}
                             </TabPanel>
                         </div>
                     </div>

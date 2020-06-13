@@ -3,9 +3,8 @@ import Loading from '../../_utils/Loading.js'
 import TabPanel from './TabPanel'
 
 function CoursePanel(props) {
-    let sortBy = props.data.sortBy
-    let sortDir = props.data.sortDir
-    let loaded = props.data.courseLoaded && props.data.profLoaded
+    const {sortBy, sortDir} = props.courses.sort
+    let loaded = props.courses.loaded && props.profs.loaded
 
     let emptyTable = (
         <h6> No results for your search </h6>
@@ -56,7 +55,7 @@ function CoursePanel(props) {
 
     return (
         <TabPanel index={0} value={props.currentTab} className="table-panel">
-            {loaded ? (props.data.noCourses ? emptyTable : courseTable) : loading}
+            {loaded ? (props.courses.data == null ? emptyTable : courseTable) : loading}
         </TabPanel>
     )
 }
