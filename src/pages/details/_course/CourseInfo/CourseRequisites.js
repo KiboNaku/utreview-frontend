@@ -1,5 +1,4 @@
 import React from 'react';
-import './../CourseDetails.css'
 import { render } from '@testing-library/react';
 
 class CourseRequisites extends React.Component{

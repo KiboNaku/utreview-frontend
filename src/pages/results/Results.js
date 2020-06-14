@@ -223,17 +223,6 @@ class Results extends Component {
 							<td>
 								{<a href='https://www.google.com'> {profName} </a>}
 							</td>
-							<td>
-								{taughtCourses.map((course, i) => {
-									let link;
-									if (i === (taughtCourses.length - 1)) {
-										link = <a href='https://www.google.com'> {course} </a>
-									} else {
-										link = <span><a href='https://www.google.com'> {course} </a> | </span>
-									}
-									return link;
-								})}
-							</td>
 						</tr>
 					)
 				})

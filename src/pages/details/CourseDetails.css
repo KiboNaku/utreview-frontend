@@ -1,44 +1,29 @@
-table {
-    border: 1px solid black;
-    border-collapse: collapse;
-    background-color: white;
-    
-}
-
-thead{
-    border: 1px solid black;
-    
-}
-
-th{
-    text-align: center;
-}
-
-tr{
-    border: 1px solid black;
-}
-
-a{
-    color: #bf5700;
-
-}
-
-a:hover{
-    color:#bf5700;
-}
-
 .course-details-main {
     background-color: #9cadb7;
     background-size: cover;
     margin: 0;
 }
 
+.course-details-main a{
+    color:#bf5700;
+}
+
+.course-details-main table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: white;    
+}
+
+.course-details-main th{
+    text-align: center;
+}
+
 .course-card{
     border-color: #9cadb7;
 }
 
-.name-column{
-    text-align: left;
+.card-table{
+    background-color: #9cadb7;
 }
 
 .course-header{
@@ -50,327 +35,9 @@ a:hover{
     float: right;
 }
 
-.card-table{
-    background-color: #9cadb7;
+.name-column{
+    text-align: left;
 }
 
-.list-group {
-    border: 0.5px solid black;
-}
 
-.course-stats{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    
-}
-
-.course-tables{
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-}
-
-.progress{
-    height: 30px;
-}
-
-.rating{
-    line-height: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-    overflow-y: auto;
-}
-
-.rating-heading{
-    text-align: center;
-}
-
-p{
-    margin-right: 10px;
-}
-
-.p-rating {
-    margin-bottom: 5px;
-    margin-top: 10px;
-}
-
-.p-review {
-    margin-bottom: 5px;
-    margin-top: 1px;
-    overflow-wrap: normal;
-}
-
-.rowRating{
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 5px;
-    margin-top: 5px;
-}
-
-.rowApproval{
-    display: flex;
-    flex-direction: row;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.CourseInfo{
-    margin-right: 40px;
-    margin-left: 75px;
-    margin-top: 50px;
-}
-
-.CourseRatings{
-    margin-right: 75px;
-    margin-left: 10px;
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    color: black;
-}
-
-.userRatings{
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
-}
-
-.course-review-entry{
-    display: flex;
-    flex-direction: row;
-}
-
-.userDes{
-    word-wrap: break-word;
-    width: 300px;
-    font-size: small;
-}
-
-.userRev{
-    align-content: left;
-    width: 700px;
-    margin-right: 20px;
-    margin-left: 20px;
-    border-right: 1px solid black;
-}
-
-.courseAddReview{
-    display: flex;   
-    text-align: center;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-}
-
-.add-review-text{
-    display: inline-block;
-}
-
-.courseReviews{
-    margin-right: 100px;
-    margin-left: 100px;
-    margin-top: 50px;
-    padding-bottom: 50px;
-}
-
-.courseSchedule{
-    margin-right: 100px;
-    margin-left: 100px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.courseRequisites{
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-top: 50px;
-    margin-bottom: 30px;
-    flex-grow: 1;
-}
-
-.courseProfs{
-    margin-right: 100px;
-    margin-left: 100px;
-    margin-top: 50px;
-    margin-bottom: 10px;
-    flex-grow: 1;
-}
-
-.add-review{
-    margin-left: 30px;
-}
-
-@media screen and (max-width: 992px){
-    .userRatings{
-        flex-direction: column;
-    }
-
-    .course-tables{
-        flex-direction: column;
-    }
-
-    .CourseRatings{
-        margin-right: 50px;
-        margin-left: 20px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .CourseInfo{
-        margin-right: 20px;
-        margin-left: 50px;
-        margin-top: 50px;
-    }
-
-    .courseAddReview{
-        justify-content: center;
-    }
-
-    .rowRating{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .courseRequisites{
-        margin-left: 100px;
-        margin-right: 100px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        width: auto;
-    }
-
-    .courseProfs{
-        margin-right: 100px;
-        margin-left: 100px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        width: auto;
-    }
-}
-
-@media screen and (max-width: 768px){
-    .userRatings{
-        flex-direction: row;
-    }
-    .course-stats{
-        flex-direction: column;
-    }
-
-    .CourseRatings{
-        margin: 0 auto;
-        margin-top: 50px;
-        justify-content: center;
-        display: inline-block;
-    }
-
-    .CourseInfo{
-        margin-right: 50px;
-        margin-left: 50px;
-        margin-top: 50px;
-    }
-
-    .courseAddReview{
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .add-review{
-        margin-left: 30px;
-        margin-top: 10px;
-    }
-
-    .courseReviews{
-        margin-right: 10px;
-        margin-left: 10px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-
-    .courseProfs{
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-
-    .courseSchedule{
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-}
-
-@media screen and (max-width: 576px){
-    .userRatings{
-        flex-direction: row;
-    }
-    .course-stats{
-        flex-direction: column;
-        justify-content: center;
-        justify-items: center;
-    }
-
-    .CourseRatings{
-        margin: 0 auto;
-        margin-top: 50px;
-        justify-content: center;
-        width: auto;
-    }
-
-    .CourseInfo{
-        margin-right: 10px;
-        margin-left: 10px;
-        margin-top: 50px;
-    }
-}
-
-.userRat{
-    align-content: left;
-    margin-right: 10px;
-    width: 425px;
-    
-}
-
-.row{
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.d-flex{
-    align-items: start;
-}
-
-.likeButton{
-    background-color: white;
-    border: none;
-}
-
-.dislikeButton{
-    background-color: white;
-    border: none;
-}
-
-.LikeDislike{
-    margin-bottom: 10px;
-    position: absolute;
-    bottom: 0;
-}
-
-.reviewDate{
-    margin-bottom: 10px;
-    right: 275px;
-    position: absolute;
-    bottom: 0;
-}
-
-.parentCircle {
-    position: relative;
-}
-
-div.circle {
-    -moz-border-radius: 50px/50px;
-    -webkit-border-radius: 50px 50px;
-    border-radius: 100px/100px;
-    border: solid 5px #0080ff;
-    width: 150px;
-    height: 150px;
-  }
 
