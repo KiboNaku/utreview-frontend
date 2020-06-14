@@ -1,0 +1,25 @@
+.courseProfs{
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+@media screen and (max-width: 992px){
+    .courseProfs{
+        margin-right: 100px;
+        margin-left: 100px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .courseProfs{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+

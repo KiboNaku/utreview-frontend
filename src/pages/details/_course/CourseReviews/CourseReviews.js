@@ -1,8 +1,8 @@
 import React from 'react';
 import CourseReviewEntry from './CourseReviewEntry';
-import { reviewFeedback } from './CourseFunctions'
+import { reviewFeedback } from '../CourseFunctions'
 import jwt_decode from 'jwt-decode'
-import './../CourseDetails.css'
+import './CourseReviews.css'
 
 class CourseReviews extends React.Component {
 	constructor(props) {
@@ -205,7 +205,7 @@ class CourseReviews extends React.Component {
 		)
 
 		let reviews = (
-			<div className="list-group">
+			<div className="list-group review-list">
 				{courseReviewList}
 			</div>
 		)

@@ -1,11 +1,11 @@
 import React from 'react';
-import CourseInfo from './_course/CourseInfo';
-import CourseRatings from './_course/CourseRatings';
-import CourseProfs from './_course/CourseProfs';
-import CourseReviews from './_course/CourseReviews';
-import CourseAddReview from './_course/CourseAddReview';
-import CourseRequisites from './_course/CourseRequisites'
-import CourseSchedule from './_course/CourseSchedule'
+import CourseInfo from './_course/CourseInfo/CourseInfo';
+import CourseRatings from './_course/CourseInfo/CourseRatings';
+import CourseProfs from './_course/CourseProfs/CourseProfs';
+import CourseReviews from './_course/CourseReviews/CourseReviews';
+import CourseAddReview from './_course/CourseReviews/CourseAddReview';
+import CourseRequisites from './_course/CourseInfo/CourseRequisites'
+import CourseSchedule from './_course/CourseSchedule/CourseSchedule'
 import { getCourseInfo, getCourseProfs } from './_course/CourseFunctions'
 import Loading from './../_utils/Loading'
 import { withRouter, Link } from 'react-router-dom'

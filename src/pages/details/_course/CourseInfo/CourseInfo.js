@@ -1,6 +1,6 @@
 import React from 'react';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import './../CourseDetails.css'
+import './CourseInfo.css'
 
 function CourseInfo(props) {
 	return (
