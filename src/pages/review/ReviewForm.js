@@ -18,17 +18,17 @@ class ReviewForm extends Component {
 
 			CourseNumber: "",
 			CourseApproval: null,
-			Usefulness: 0,
-			Difficulty: 0,
-			Workload: 0,
+			Usefulness: "",
+			Difficulty: "",
+			Workload: "",
 			CourseComment: "",
 
 			ProfessorName: "",
 			ProfessorApproval: null,
-			Clear: 0,
-			Engaging: 0,
-			Helpful: 0,
-			GradingDifficulty: 0,
+			Clear: "",
+			Engaging: "",
+			Helpful: "",
+			GradingDifficulty: "",
 			ProfessorComment: "",
 
 			CourseNumberError: "",
@@ -76,15 +76,15 @@ class ReviewForm extends Component {
 
 		if (this.state.CourseNumberError === "") { CourseNumberError = emptyErrorMessage; }
 		if (this.state.CourseApproval === null) { CourseApprovalError = emptyErrorMessage; }
-		if (this.state.Usefulness === 0) { UsefulnessError = emptyErrorMessage; }
-		if (this.state.Difficulty === 0) { DifficultyError = emptyErrorMessage; }
-		if (this.state.Workload === 0) { WorkloadError = emptyErrorMessage; }
+		if (this.state.Usefulness === "") { UsefulnessError = emptyErrorMessage; }
+		if (this.state.Difficulty === "") { DifficultyError = emptyErrorMessage; }
+		if (this.state.Workload === "") { WorkloadError = emptyErrorMessage; }
 		if (this.state.ProfessorNameError === "") { ProfessorNameError = emptyErrorMessage; }
 		if (this.state.ProfessorApproval === null) { ProfessorApprovalError = emptyErrorMessage; }
-		if (this.state.Clear === 0) { ClearError = emptyErrorMessage; }
-		if (this.state.Engaging === 0) { EngagingError = emptyErrorMessage; }
-		if (this.state.Helpful === 0) { HelpfulError = emptyErrorMessage; }
-		if (this.state.GradingDifficulty === 0) { GradingDifficultyError = emptyErrorMessage; }
+		if (this.state.Clear === "") { ClearError = emptyErrorMessage; }
+		if (this.state.Engaging === "") { EngagingError = emptyErrorMessage; }
+		if (this.state.Helpful === "") { HelpfulError = emptyErrorMessage; }
+		if (this.state.GradingDifficulty === "") { GradingDifficultyError = emptyErrorMessage; }
 
 		console.log(this.state.CourseNumberError)
 
@@ -121,7 +121,6 @@ class ReviewForm extends Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		const isValid = this.validate();
-		console.log(this.state.CourseApprovalError)
 		if (isValid) {
 			const token = localStorage.usertoken
 			const decoded = jwt_decode(token)
@@ -197,6 +196,8 @@ class ReviewForm extends Component {
 					if (res.error) {
 						alert(res.error)
 						this.setState({ duplicate: true })
+					} else {
+						console.log(res)
 					}
 				})
 			}
@@ -225,6 +226,8 @@ class ReviewForm extends Component {
 					if (res.error) {
 						alert(res.error)
 						this.setState({ duplicate: true })
+					}else {
+						console.log(res)
 					}
 				})
 			}
