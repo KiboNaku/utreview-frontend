@@ -60,11 +60,6 @@ class Results extends Component {
 		this.handleSortChange = this.handleSortChange.bind(this)
 		this.handleTabChange = this.handleTabChange.bind(this)
 		this.handleFilterChange = this.handleFilterChange.bind(this)
-
-		this.setTableData = this.setTableData.bind(this)
-		this.sortUp = this.sortUp.bind(this)
-		this.sortDown = this.sortDown.bind(this)
-
 	}
 
 	componentDidMount() {
@@ -219,141 +214,16 @@ class Results extends Component {
 		}
 	}
 
-
-	// TODO: update sort functions
-	sortUp(a, b) {
-		const courses = this.state.courses.data
-		const professors = this.state.profs.data
-		const sortBy = this.state.courses.sort.sortBy
-
-		if (sortBy === 'courseNum' && courses.length !== 0 && 'courseNum' in a) { return b.courseNum.localeCompare(a.courseNum) }
-		else if (sortBy === 'courseName' && courses.length !== 0 && 'courseName' in a) { return b.courseName.localeCompare(a.courseName) }
-		else if (sortBy === 'profName' && professors.length !== 0 && 'profName' in a) { return b.profName.localeCompare(a.profName) }
-	}
-
-	sortDown(a, b) {
-		const courses = this.state.courses.data
-		const professors = this.state.profs.data
-		const sortBy = this.state.courses.sort.sortBy
-
-		if (sortBy === 'courseNum' && courses.length !== 0 && 'courseNum' in a) { return a.courseNum.localeCompare(b.courseNum) }
-		else if (sortBy === 'courseName' && courses.length !== 0 && 'courseName' in a) { return a.courseName.localeCompare(b.courseName) }
-		else if (sortBy === 'profName' && professors.length !== 0 && 'profName' in a) { return a.profName.localeCompare(b.profName) }
-	}
-
-	setTableData(index) {
-
-		console.log("settable", this.state)
-
-		const courses = this.state.courses.data
-		const professors = this.state.profs.data
-
-		const { sortDir, sortBy } = index == 0 ? this.state.courses.sort : this.state.profs.sort
-		const filter = index == 0 ? this.state.courses.filter : this.state.profs.filter
-
-		const sortTypes = {
-			up: {
-				class: 'sortUp',
-				fn: (a, b) => this.sortUp(a, b)
-			},
-			down: {
-				class: 'sortDown',
-				fn: (a, b) => this.sortDown(a, b)
-			},
-			default: {
-				class: 'sort',
-				fn: (a, b) => a
-			}
-		}
-
-		if (index == 0) {
-
-			let sortedCourses = courses
-				.filter(course => filter.depts.length <= 0 || filter.depts.includes(course.deptName))
-				.sort(sortTypes[sortDir].fn)
-
-			return sortedCourses.map(course => {
-				const { courseNum, courseName, professors } = course
-
-				// TODO: temporary numbers to fill table: remove later
-				const rating = Math.floor(Math.random() * 70 + 30)
-				const numRating = Math.floor(Math.random() * 1500)
-
-				return (
-					<tr key={courseNum}>
-						<td colSpan="1">{courseNum}</td>
-						<td colSpan="2" className="class-name">{
-							<Link
-								to={{
-									pathname: `${this.props.match.url}/${courseNum}`,
-									state: {
-										courseNum: courseNum
-									}
-								}}
-							> {courseName}
-							</Link>
-						}</td>
-						<td colSpan="1">
-							{rating}%
-							</td>
-						<td colSpan="1">
-							{numRating}
-						</td>
-					</tr>
-				)
-			})
-
-		} else if (index == 1) {
-
-			// TODO: update with prof info
-
-			let sortedCourses = courses
-				.filter(course => filter.depts.length <= 0 || filter.depts.includes(course.deptName))
-				.sort(sortTypes[sortDir].fn)
-
-			return sortedCourses.map(course => {
-				const { courseNum, courseName, professors } = course
-
-				// TODO: temporary numbers to fill table: remove later
-				const rating = Math.floor(Math.random() * 70 + 30)
-				const numRating = Math.floor(Math.random() * 1500)
-
-				return (
-					<tr key={courseNum}>
-						<td colSpan="1">{courseNum}</td>
-						<td colSpan="2" className="class-name">{
-							<Link
-								to={{
-									pathname: `${this.props.match.url}/${courseNum}`,
-									state: {
-										courseNum: courseNum
-									}
-								}}
-							> {courseName}
-							</Link>
-						}</td>
-						<td colSpan="1">
-							{rating}%
-							</td>
-						<td colSpan="1">
-							{numRating}
-						</td>
-					</tr>
-				)
-			})
-		}
-	}
-
 	render() {
 		return (<ResultsComponent
 
 			{...this.state}
-
+			
+			match = {this.props.match}
 			handleTabChange={this.handleTabChange}
 			handleFilterChange={this.handleFilterChange}
 			handleSortChange={this.handleSortChange}
 
-			setTableData={this.setTableData}
 			search={this.props.location.state.searchValue} />)
 	}
 }
