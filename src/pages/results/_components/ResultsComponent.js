@@ -1,16 +1,15 @@
 import React from 'react'
-import Loading from './../../_utils/Loading.js'
+
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
+
 import CoursePanel from '../_utils/CoursePanel'
-import ProfPanel from '../_utils/ProfPanel'
 import Filter from "./../_utils/Filter"
+import Loading from './../../_utils/Loading.js'
+import ProfPanel from '../_utils/ProfPanel'
 
 function ResultsComponent(props) {
-
-    // TODO: change depending on profs/courses
-    const { sortBy, sortDir } = props.courses.sort
 
     let loading = (
         <div className="row d-flex justify-content-center">
@@ -21,7 +20,7 @@ function ResultsComponent(props) {
     )
 
     let emptyTable = (
-        <h6> No results for your search </h6>
+        <h6> No results for your search. Please check your spelling and try again.</h6>
     )
     
     return (
@@ -36,27 +35,31 @@ function ResultsComponent(props) {
                     <div className='row'>
 
                         <Filter 
-                            header={props.currentTab == 0 ? "Course Filters:" : "Professor Filters"} 
+                            header={props.tabIndex == 0 ? "Course Filters:" : "Professor Filters"} 
+                            filter={props.tabIndex == 0 ? props.courses.filter : props.profs.filter}
                             handleFilterChange={props.handleFilterChange} 
-                            depts={props.depts} 
-                            filter={props.currentTab == 0 ? props.courses.filter : props.profs.filter}/>
+                            depts={props.depts} />
 
                         <div className="col-md-9">
                             <AppBar position="static" color="default">
                                 <Tabs
-                                    value={props.currentTab}
+                                    name="tabIndex"
+                                    value={props.tabIndex}
                                     variant="fullWidth"
-                                    centered
-                                    name="currentTab"
                                     onChange={props.handleTabChange}
+                                    centered
+
+                                    classes={{
+                                        indicator: 'custom-indicator',
+                                    }}
                                 >
                                     <Tab label="Courses" aria-controls='tabpanel-0' className='font-weight-bold py-4' />
                                     <Tab label="Professors" aria-controls='tabpanel-1' className='font-weight-bold py-4' />
                                 </Tabs>
                             </AppBar>
 
-                            <CoursePanel match = {props.match} handleSortChange={props.handleSortChange} loading={loading} emptyTable={emptyTable} currentTab={props.currentTab} {...props.courses} />
-                            <ProfPanel match = {props.match} handleSortChange={props.handleSortChange} loading={loading} emptyTable={emptyTable} currentTab={props.currentTab} {...props.profs} />
+                            <CoursePanel match = {props.match} handleSortChange={props.handleSortChange} loading={loading} emptyTable={emptyTable} tabIndex={props.tabIndex} {...props.courses} />
+                            <ProfPanel match = {props.match} handleSortChange={props.handleSortChange} loading={loading} emptyTable={emptyTable} tabIndex={props.tabIndex} {...props.profs} />
                         </div>
                     </div>
                 </div>
