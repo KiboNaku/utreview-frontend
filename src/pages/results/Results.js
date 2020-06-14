@@ -212,6 +212,9 @@ class Results extends Component {
 				}
 			})
 		}
+
+		
+		console.log("results", this.state)
 	}
 
 	render() {

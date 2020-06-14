@@ -35,7 +35,11 @@ function ResultsComponent(props) {
 
                     <div className='row'>
 
-                        <Filter header="Course Filters:" handleFilterChange={props.handleFilterChange} depts={props.depts} filter={props.courses.filter}/>
+                        <Filter 
+                            header={props.currentTab == 0 ? "Course Filters:" : "Professor Filters"} 
+                            handleFilterChange={props.handleFilterChange} 
+                            depts={props.depts} 
+                            filter={props.currentTab == 0 ? props.courses.filter : props.profs.filter}/>
 
                         <div className="col-md-9">
                             <AppBar position="static" color="default">
