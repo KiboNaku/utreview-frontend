@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
-import { withRouter, Link } from 'react-router-dom'
-import { populateCourses, populateProfs, populateResults } from './_utils/ResultsFunctions'
+import { withRouter } from 'react-router-dom'
+
 import ResultsComponent from './_components/ResultsComponent'
+import { populateResults } from './_utils/ResultsFunctions'
 import { getMajor } from './../popups/_utils/UserFunctions'
+
 import "./Results.css"
 
 
 class Results extends Component {
 
-	constructor(props) {
+	constructor() {
 
-		super(props);
+		super();
 
 		this.state = {
 
-			currentTab: 0,
+			tabIndex: 0,
 
 			depts: [],
 
@@ -49,20 +51,14 @@ class Results extends Component {
 			},
 		}
 
-		const search = {
-			searchValue: this.props.location.state.searchValue
-		}
-
-		populateResults(search).then(res => {
-			this.parseResValues(res)
-		})
-
 		this.handleSortChange = this.handleSortChange.bind(this)
 		this.handleTabChange = this.handleTabChange.bind(this)
 		this.handleFilterChange = this.handleFilterChange.bind(this)
 	}
 
 	componentDidMount() {
+
+		// fetch departments
 
 		getMajor().then(res => {
 			if (res.error) {
@@ -78,6 +74,16 @@ class Results extends Component {
 				}
 				this.setState({ depts: list })
 			}
+		})
+
+		// fetch search results
+
+		const search = {
+			searchValue: this.props.location.state.searchValue
+		}
+
+		populateResults(search).then(res => {
+			this.parseResValues(res)
 		})
 	}
 
@@ -109,7 +115,9 @@ class Results extends Component {
 	}
 
 	parseResValues = (res) => {
+
 		this.setState(prevState => (
+
 			{
 				courses: {
 					...prevState.courses,
@@ -121,20 +129,20 @@ class Results extends Component {
 					loaded: true,
 					data: res.profs === "empty" ? null : res.profs
 				}
-			}))
+			}
+		))
 	}
 
 	handleTabChange(event, newValue) {
-		// TODO: update using event only?
-		this.setState({ currentTab: newValue })
+		this.setState({ tabIndex: newValue })
 	}
 
 	handleSortChange(sortByName) {
 
 		//TODO: update variable names
-		const { currentTab } = this.state
+		const { tabIndex } = this.state
 
-		if (currentTab == 0) {
+		if (tabIndex == 0) {
 			const { sortDir, sortBy } = this.state.courses.sort;
 			let nextSort;
 
@@ -152,7 +160,7 @@ class Results extends Component {
 					}
 				}
 			}))
-		} else if (currentTab == 1) {
+		} else if (tabIndex == 1) {
 			const { sortDir, sortBy } = this.state.profs.sort;
 			let nextSort;
 
@@ -175,9 +183,7 @@ class Results extends Component {
 
 	handleFilterChange(depts = null, mApp = -1, mNum = -1, sem = null) {
 
-		const { currentTab } = this.state
-
-		if (currentTab == 0) {
+		if (this.state.tabIndex == 0) {
 			this.setState((prevState) => {
 
 				let filter = prevState.courses.filter
@@ -194,7 +200,7 @@ class Results extends Component {
 					}
 				}
 			})
-		} else if (currentTab == 1) {
+		} else if (this.state.tabIndex == 1) {
 			this.setState((prevState) => {
 
 				let filter = prevState.profs.filter
@@ -212,21 +218,18 @@ class Results extends Component {
 				}
 			})
 		}
-
-		
-		console.log("results", this.state)
 	}
 
 	render() {
 		return (<ResultsComponent
 
 			{...this.state}
-			
-			match = {this.props.match}
+
 			handleTabChange={this.handleTabChange}
 			handleFilterChange={this.handleFilterChange}
 			handleSortChange={this.handleSortChange}
 
+			match={this.props.match}
 			search={this.props.location.state.searchValue} />)
 	}
 }

@@ -30,7 +30,6 @@ class CoursePanel extends Component {
 
         const { sortDir, sortBy } = this.props.sort
 
-        console.log("courprops: ", this.props)
         const sortTypes = {
             up: {
                 class: 'sortUp',
@@ -120,10 +119,9 @@ class CoursePanel extends Component {
                     </tbody>
                 </table>
             )
-            console.log("course", this.props.data == null)
 
             return (
-                <TabPanel index={0} value={this.props.currentTab} className="table-panel">
+                <TabPanel index={0} value={this.props.tabIndex} className="table-panel">
                     {this.props.loaded ? (this.props.data == null ? this.props.emptyTable : courseTable) : this.props.loading}
                 </TabPanel>
             )

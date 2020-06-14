@@ -54,7 +54,6 @@ class ProfPanel extends Component {
                 }
             }
             // TODO: update with prof info
-            console.log("profprops: ", this.props)
 
             let sortedCourses = this.props.data
                 .filter(course => filter.depts.length <= 0 || filter.depts.includes(course.deptName))
@@ -124,11 +123,9 @@ class ProfPanel extends Component {
                 </tbody>
             </table>
         )
-
-        console.log("prof", this.props.data == null)
-
+        
         return (
-            <TabPanel index={1} value={this.props.currentTab}>
+            <TabPanel index={1} value={this.props.tabIndex}>
                 {this.props.loaded ? (this.props.data == null ? this.props.emptyTable : profTable) : this.props.loading}
             </TabPanel>
         )

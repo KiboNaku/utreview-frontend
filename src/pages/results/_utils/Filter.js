@@ -22,8 +22,7 @@ function Filter(props) {
                             classNamePrefix="select"
                             name="dept"
                             options={props.depts}
-                            onChange={(objs, action) => {
-
+                            onChange={(objs) => {
                                 let values = [];
 
                                 if (objs != null) {
