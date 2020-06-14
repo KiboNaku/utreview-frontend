@@ -34,6 +34,13 @@ function Filter(props) {
 
                                 props.handleFilterChange(values)
                             }}
+                            value={props.depts.filter(val => {
+                                for(let i=0; i<props.filter.depts.length; i++){
+                                    if(val.value === props.filter.depts[i]) return true;
+                                }
+
+                                return false;
+                            })}
                             placeholder="Select"
                             isClearable={true}
                             isSearchable={true}
