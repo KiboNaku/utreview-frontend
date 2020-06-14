@@ -1,0 +1,13 @@
+.courseSchedule{
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 768px){
+    .courseSchedule{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
