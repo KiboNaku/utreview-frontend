@@ -20,10 +20,17 @@
 
 .course-card{
     border-color: #9cadb7;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 .card-table{
     background-color: #9cadb7;
+    white-space: nowrap;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .course-header{
