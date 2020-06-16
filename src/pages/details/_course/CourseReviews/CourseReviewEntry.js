@@ -33,9 +33,9 @@ function CourseReviewEntry(props) {
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} />
 
     let likeIcon = props.review.likePressed ?
-        <ThumbUpRoundedIcon style={{ fill: '#bf5700' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
+        <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
     let dislikeIcon = props.review.dislikePressed ?
-        <ThumbDownRoundedIcon style={{ fill: '#bf5700' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
+        <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
     const useStyles = makeStyles((theme) => ({
         large: {
             width: theme.spacing(8),
