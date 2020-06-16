@@ -72,6 +72,7 @@ class CoursePanel extends Component {
                         <td colSpan="1">{courseNum}</td>
                         <td colSpan="2" className="class-name">{
                             <Link
+                                className="utcolor"
                                 to={{
                                     pathname: `${this.props.match.url}/${courseNum}`,
                                     state: {
