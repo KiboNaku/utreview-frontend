@@ -68,6 +68,7 @@ class ProfPanel extends Component {
                     <tr key={profName}>
                         <td colSpan="3" className="class-name">{
                             <Link
+                                className="utcolor"
                                 to={{
                                     pathname: `${this.props.match.url}/${profName}`,
                                     state: {

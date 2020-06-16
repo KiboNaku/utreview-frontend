@@ -30,3 +30,27 @@ a.utcolor:active, link.utcolor:active {
     background-color: #bf5700;
     color: white;
 }
+
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]+label:before {
+    content: "";
+
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    padding: 3px;
+    margin-right: 5px;
+
+    background-clip: content-box;
+    border: 1px solid #9cadb7;
+    background-color: #e7e6e7;
+    border-radius: 50%;
+}
+
+input[type="radio"]:checked+label:before {
+    background-color: #bf5700;
+}
