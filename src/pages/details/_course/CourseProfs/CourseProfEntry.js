@@ -9,7 +9,7 @@ function CourseProfEntry(props) {
     let grading = props.grading !== null ? `${props.grading}` : "N/A"
     let prof_id = "prof" + props.id.toString()
     return ( 
-        <tr role="button" data-toggle="collapse" data-target={`#${[prof_id]}`}>
+        <tr>
             <td>
                 <a href="https://www.google.com" > {props.name} </a>
             </td>
@@ -18,6 +18,12 @@ function CourseProfEntry(props) {
             <td align="center">{clear}</td>
             <td align="center">{engaging}</td>
             <td align="center">{grading}</td>
+            <td align="center">
+                <a href="https://www.google.com" > Syllabi </a>
+            </td>
+            <td align="center">
+                <a href="https://www.google.com" > UT Catalyst </a>
+            </td>
         </tr> 
     );
 }

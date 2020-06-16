@@ -2,9 +2,9 @@ import React from 'react';
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import AppBar from '@material-ui/core/AppBar'
-import TabPanel from './TabPanel'
+import TabPanel from '../TabPanel'
 import CourseScheduleEntry from './CourseScheduleEntry'
-import './../CourseDetails.css'
+import './CourseSchedule.css'
 
 class CourseSchedule extends React.Component {
     constructor(props) {
@@ -32,6 +32,13 @@ class CourseSchedule extends React.Component {
     }
 
     render() {
+
+        const styles = theme => ({
+            indicator: {
+              backgroundColor: '#bf5700',
+            },
+          })
+
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         const courseScheduleList = this.state.courseSchedule.map(course => {
             return (
@@ -39,8 +46,8 @@ class CourseSchedule extends React.Component {
             )
         })
         let summer2020 = (
-            <table className='table table-hover'>
-                <thead className="thead-dark">
+            <table className='table table-hover table-responsive schedule-table'>
+                <thead>
                     <tr>
                         <th scope="col">Unique #</th>
                         <th scope="col">Enrolled</th>
@@ -57,8 +64,8 @@ class CourseSchedule extends React.Component {
         )
 
         let fall2020 = (
-            <table className='table table-hover'>
-                <thead className="thead-dark">
+            <table className='table table-hover table-responsive schedule-table'>
+                <thead>
                     <tr>
                         <th scope="col">Unique #</th>
                         <th scope="col">Enrolled</th>
@@ -78,6 +85,7 @@ class CourseSchedule extends React.Component {
             <div className="semSchedule">
                 <AppBar position="static" color="default">
                     <Tabs
+                        inkBarStyle={{backgroundColor: '#68C222', width: '33.3%'}}
                         value={this.state.currentTab}
                         variant="fullWidth"
                         centered
