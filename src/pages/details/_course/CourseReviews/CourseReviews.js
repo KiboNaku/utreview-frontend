@@ -214,7 +214,7 @@ class CourseReviews extends React.Component {
 			<div className="courseReviews">
 				<div className="card course-card">
 					<div className="card-header course-header" >
-						<h3> Reviews </h3>
+						<h4> Reviews </h4>
 					</div>
 					<div className="card-body">
 						{this.state.courseReviews.length > 0 ? reviews: noReviews}
