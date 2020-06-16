@@ -77,3 +77,8 @@ td {
     color: white;
     background-color: #333f48;
 }
+
+.custom-indicator {
+    color: purple;
+    background-color: green;
+}
