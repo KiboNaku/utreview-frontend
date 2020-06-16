@@ -7,12 +7,12 @@ function CourseProfExpanded(props) {
     let prof_id = "prof" + props.id.toString()
     return (
         <tr id={prof_id} className="collapse">
-            <td colspan="3" align="center">
+            <td colSpan="3" align="center">
                 <div >
                     <a href="https://www.google.com" > Syllabi </a>
                 </div>
             </td>
-            <td colspan="3" align="center">
+            <td colSpan="3" align="center">
                 <div >
                     <a href="https://www.google.com" > UT Catalyst </a>
                 </div>
