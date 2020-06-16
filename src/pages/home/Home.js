@@ -24,7 +24,7 @@ class Home extends Component {
                     </div>
                 </main>
 
-                <figcaption className="figure-caption text-right clear-top px-3">Photo by Joel Filipe on Unsplash</figcaption>
+                <figcaption className="figure-caption text-right clear-top px-3 py-3">Photo by Joel Filipe on Unsplash</figcaption>
             </div >
         )
     }
