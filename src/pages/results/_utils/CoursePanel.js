@@ -9,123 +9,134 @@ class CoursePanel extends Component {
 
         super();
         this.setTableData = this.setTableData.bind(this)
-        this.sortUp = this.sortUp.bind(this)
-        this.sortDown = this.sortDown.bind(this)
+        this.sort = this.sort.bind(this)
     }
 
-    sortUp(a, b) {
+    sort(a, b) {
 
-        // if (sortBy === 'courseNum' && courses.length !== 0 && 'courseNum' in a) { return b.courseNum.localeCompare(a.courseNum) }
-        // else if (sortBy === 'courseName' && courses.length !== 0 && 'courseName' in a) { return b.courseName.localeCompare(a.courseName) }
-    }
+        const sortBy = this.props.sort.sortBy
+        const courses = this.props.data
 
-    sortDown(a, b) {
+        if (courses.length >= 0 && sortBy in a) {
 
-        // if (sortBy === 'courseNum' && courses.length !== 0 && 'courseNum' in a) { return a.courseNum.localeCompare(b.courseNum) }
-        // else if (sortBy === 'courseName' && courses.length !== 0 && 'courseName' in a) { return a.courseName.localeCompare(b.courseName) }
-        // else if (sortBy === 'profName' && professors.length !== 0 && 'profName' in a) { return a.profName.localeCompare(b.profName) }
+            // TODO: update with approval & # ratings
+
+            switch (sortBy) {
+                case 'courseNum':
+                    return b.courseNum.localeCompare(a.courseNum)
+                case 'courseName':
+                    return b.courseName.localeCompare(a.courseName)
+            }
+        }
+
+        return null;
     }
 
     setTableData() {
 
-        const { sortDir, sortBy } = this.props.sort
+        if (this.props.data != null) {
 
-        const sortTypes = {
-            up: {
-                class: 'sortUp',
-                fn: (a, b) => this.sortUp(a, b)
-            },
-            down: {
-                class: 'sortDown',
-                fn: (a, b) => this.sortDown(a, b)
-            },
-            default: {
-                class: 'sort',
-                fn: (a, b) => a
+            const { sortDir } = this.props.sort
+            const filter = this.props.filter
+
+            const sortTypes = {
+                up: {
+                    class: 'sortUp',
+                    fn: (a, b) => this.sort(a, b)
+                },
+                down: {
+                    class: 'sortDown',
+                    fn: (a, b) => this.sort(b, a)
+                },
+                default: {
+                    class: 'sort',
+                    fn: (a, b) => a
+                }
             }
-        }
 
-        let sortedCourses = this.props.data
-            .filter(course => this.props.filter.depts.length <= 0 || this.props.filter.depts.includes(course.deptName))
-            .sort(sortTypes[sortDir].fn)
+            // TODO: update filter with other filters
 
-        return sortedCourses.map(course => {
-            const { courseNum, courseName } = course
+            let sortedCourses = this.props.data
+                .filter(course => filter.depts.length <= 0 || filter.depts.includes(course.deptName))
+                .sort(sortTypes[sortDir].fn)
 
-            // TODO: temporary numbers to fill table: remove later
-            const rating = Math.floor(Math.random() * 70 + 30)
-            const numRating = Math.floor(Math.random() * 1500)
+            return sortedCourses.map(course => {
+                const { courseNum, courseName } = course
 
-            return (
-                <tr key={courseNum}>
-                    <td colSpan="1">{courseNum}</td>
-                    <td colSpan="2" className="class-name">{
-                        <Link
-                            to={{
-                                pathname: `${this.props.match.url}/${courseNum}`,
-                                state: {
-                                    courseNum: courseNum
-                                }
-                            }}
-                        > {courseName}
-                        </Link>
-                    }</td>
-                    <td colSpan="1">
-                        {rating}%
+                // TODO: temporary numbers to fill table: remove later
+                const rating = Math.floor(Math.random() * 70 + 30)
+                const numRating = Math.floor(Math.random() * 1500)
+
+                return (
+                    <tr key={courseNum}>
+                        <td colSpan="1">{courseNum}</td>
+                        <td colSpan="2" className="class-name">{
+                            <Link
+                                to={{
+                                    pathname: `${this.props.match.url}/${courseNum}`,
+                                    state: {
+                                        courseNum: courseNum
+                                    }
+                                }}
+                            > {courseName}
+                            </Link>
+                        }</td>
+                        <td colSpan="1">
+                            {rating}%
 							</td>
-                    <td colSpan="1">
-                        {numRating}
-                    </td>
-                </tr>
-            )
-        })
+                        <td colSpan="1">
+                            {numRating}
+                        </td>
+                    </tr>
+                )
+            })
+        }
     }
 
     render() {
 
-        if (this.props.data != null) {
+        const { sortDir, sortBy } = this.props.sort
 
-            const { sortDir, sortBy } = this.props.sort
+        let courseTable = (
 
-            let courseTable = (
+            <table id='courseResults' className='table table-hover result-table'>
+                <thead className='thead-dark'>
+                    <tr rowSpan="2">
 
-                <table id='courseResults' className='table table-hover result-table'>
-                    <thead className='thead-dark'>
-                        <tr rowSpan="2">
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => this.props.handleSortChange('courseNum')}>
+                            <span>Course #</span>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseNum' ? '' : ' invisible')}></i>
+                        </th>
 
-                            <th scope="col" colSpan="1" className="sortable" onClick={() => this.props.handleSortChange('courseNum')}>
-                                <span>Course #</span>
-                                <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseNum' ? '' : ' invisible')}></i>
-                            </th>
+                        <th scope="col" colSpan="2" className="sortable" onClick={() => this.props.handleSortChange('courseName')}>
+                            <span>Course Name</span>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseName' ? '' : ' invisible')}></i>
+                        </th>
 
-                            <th scope="col" colSpan="2" className="sortable" onClick={() => this.props.handleSortChange('courseName')}>
-                                <span>Course Name</span>
-                                <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseName' ? '' : ' invisible')}></i>
-                            </th>
+                        {/* TODO: update with onclick functions */}
 
-                            <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for approval")}>
-                                <span>Approval</span>
-                                <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'approval' ? '' : ' invisible')}></i>
-                            </th>
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for approval")}>
+                            <span>Approval</span>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'approval' ? '' : ' invisible')}></i>
+                        </th>
 
-                            <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for num ratings")}>
-                                <span># Ratings</span>
-                                <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'ratings' ? '' : ' invisible')}></i>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.setTableData()}
-                    </tbody>
-                </table>
-            )
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for num ratings")}>
+                            <span># Ratings</span>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'ratings' ? '' : ' invisible')}></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.setTableData()}
+                </tbody>
+            </table>
+        )
 
-            return (
-                <TabPanel index={0} value={this.props.tabIndex} className="table-panel">
-                    {this.props.loaded ? (this.props.data == null ? this.props.emptyTable : courseTable) : this.props.loading}
-                </TabPanel>
-            )
-        }
+        return (
+            <TabPanel index={0} value={this.props.tabIndex} className="table-panel">
+                {this.props.loaded ? (this.props.data == null ? this.props.emptyTable : courseTable) : this.props.loading}
+            </TabPanel>
+        )
     }
 }
 

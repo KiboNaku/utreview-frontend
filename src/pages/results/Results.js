@@ -39,7 +39,7 @@ class Results extends Component {
 				loaded: false,
 				data: [],
 				sort: {
-					sortBy: 'courseNum',
+					sortBy: 'profName',
 					sortDir: 'down',
 				},
 				filter: {
