@@ -1,0 +1,143 @@
+.course-stats{
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+}
+
+.CourseInfo{
+    margin-right: 40px;
+    margin-left: 75px;
+    margin-top: 50px;
+}
+
+.CourseRatings{
+    margin-right: 75px;
+    margin-left: 10px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.courseRequisites{
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.userRatings{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.rating{
+    line-height: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow-y: auto;
+}
+
+.rating-heading{
+    text-align: center;
+}
+
+.progress{
+    height: 30px;
+}
+
+.p-rating {
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 992px){
+    .CourseInfo{
+        margin-right: 20px;
+        margin-left: 50px;
+        margin-top: 50px;
+    }
+
+    .CourseRatings{
+        margin-right: 50px;
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .userRatings{
+        flex-direction: column;
+    }
+
+    .courseRequisites{
+        margin-left: 100px;
+        margin-right: 100px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .course-stats{
+        flex-direction: column;
+    }
+
+    .CourseInfo{
+        margin-right: 50px;
+        margin-left: 50px;
+        margin-top: 50px;
+    }
+    
+    .userRatings{
+        flex-direction: row;
+    }
+
+    .CourseRatings{
+        margin: 0 auto;
+        margin-top: 50px;
+        justify-content: center;
+        display: inline-block;
+    }
+
+    .courseRequisites{
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 576px){   
+    .course-stats{
+        flex-direction: column;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .userRatings{
+        flex-direction: row;
+    }
+
+    .CourseInfo{
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-top: 50px;
+    }
+
+    .CourseRatings{
+        margin: 0 auto;
+        margin-top: 50px;
+        justify-content: center;
+        width: auto;
+    }
+    
+    .courseRequisites{
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+}

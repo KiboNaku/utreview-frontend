@@ -45,6 +45,6 @@
 	text-align: left;
 }
 
-.review-content td:nth-child(2), th:nth-child(2) {
+.review-content td:nth-child(2), .review-content th:nth-child(2) {
 	border-right: solid 1px;
 }

@@ -12,9 +12,8 @@ import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import Rating from '@material-ui/lab/Rating';
-import Login from './../../popups/Login'
-import Signup from './../../popups/Signup'
-import './../CourseDetails.css'
+import Login from '../../../popups/Login'
+import Signup from '../../../popups/Signup'
 
 /* 
     Properties:
@@ -96,22 +95,26 @@ function CourseReviewEntry(props) {
             {dislikeIcon}
         </button>
     )
+
+    const semester = "Fall 2020"
     return (
-        <div className="list-group-item">
+        <div className="list-group-item review-list-item">
             <div className="course-review-entry">
                 <div className="userDes">
                     <Avatar className={classes.large} src={props.review.profPic}>  </Avatar>
                     <span> {props.review.userMajor} student, taught by </span>
                     <a href="https://www.google.com" > {props.review.profName} </a>
+                    <span>, {semester}</span>
                 </div>
                 <div className="userRev">
-                    <span>{props.review.review}</span>
+                    <p className="review-text">{props.review.review}</p>
+                    <small className="review-date"> - {props.review.date}</small>
                     <div className="LikeDislike">
                         {localStorage.usertoken ? likeButton : likeLoginLink}
                         <span> {props.review.numLiked} </span>
                         {localStorage.usertoken ? dislikeButton : dislikeLoginLink}
                         <span> {props.review.numDisliked} </span>
-                    </div>
+                    </div>    
                 </div>
                 <div className="userRat">
                     <div className="rowApproval">
