@@ -22,7 +22,7 @@ function ResultsComponent(props) {
     let emptyTable = (
         <h6> No results for your search. Please check your spelling and try again.</h6>
     )
-    
+
     return (
         <main className="results-main py-3">
             <div className="main-sub">
@@ -34,11 +34,15 @@ function ResultsComponent(props) {
 
                     <div className='row'>
 
-                        <Filter 
-                            header={props.tabIndex == 0 ? "Course Filters:" : "Professor Filters"} 
-                            filter={props.tabIndex == 0 ? props.courses.filter : props.profs.filter}
-                            handleFilterChange={props.handleFilterChange} 
-                            depts={props.depts} />
+                        <div className="col-md-3">
+                            <Filter
+                                header={props.tabIndex == 0 ? "Course Filters:" : "Professor Filters"}
+                                filter={props.tabIndex == 0 ? props.courses.filter : props.profs.filter}
+                                depts={props.depts}
+                                handleFilterChange={props.handleFilterChange} />
+                        </div>
+
+
 
                         <div className="col-md-9">
                             <AppBar position="static" color="default">
@@ -58,8 +62,8 @@ function ResultsComponent(props) {
                                 </Tabs>
                             </AppBar>
 
-                            <CoursePanel match = {props.match} handleSortChange={props.handleSortChange} loading={loading} emptyTable={emptyTable} tabIndex={props.tabIndex} {...props.courses} />
-                            <ProfPanel match = {props.match} handleSortChange={props.handleSortChange} loading={loading} emptyTable={emptyTable} tabIndex={props.tabIndex} {...props.profs} />
+                            <CoursePanel match={props.match} handleSortChange={props.handleSortChange} loading={loading} emptyTable={emptyTable} tabIndex={props.tabIndex} {...props.courses} />
+                            <ProfPanel match={props.match} handleSortChange={props.handleSortChange} loading={loading} emptyTable={emptyTable} tabIndex={props.tabIndex} {...props.profs} />
                         </div>
                     </div>
                 </div>
