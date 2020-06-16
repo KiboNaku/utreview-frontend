@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 import { withRouter } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 import $ from './../../../node_modules/jquery'
 import ProfileComponent from './_components/ProfileComponent'
 import ReviewSummary from './_utils/ReviewSummary'
+import { SelectionPicture } from './_utils/ProfilePicture'
 import './Profile.css'
 
 
@@ -46,26 +50,30 @@ class Profile extends Component {
 
         super()
         this.state = {
-            first_name: 'Vina',
-            last_name: 'Xue',
+            first_name: '',
+            last_name: '',
             email: '',
             major: '',
             profilePic: '',
+            pictures: ['corgi1.jpg', 'corgi2.jpg', 'corgi3.jpg'],
             reviews: reviewList
         }
 
         this.setReviewData = this.setReviewData.bind(this)
         this.editReview = this.editReview.bind(this)
+        this.setImageData = this.setImageData.bind(this)
+        this.onProfilePicChange = this.onProfilePicChange.bind(this)
     }
 
     componentDidMount() {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
         this.setState({
-            // first_name: decoded.identity.first_name,
-            // last_name: decoded.identity.last_name,
+            first_name: decoded.identity.first_name,
+            last_name: decoded.identity.last_name,
             email: decoded.identity.email,
-            major: decoded.identity.major
+            major: decoded.identity.major,
+            profilePic: decoded.identity.profile_pic
         })
     }
 
@@ -93,8 +101,30 @@ class Profile extends Component {
             return (<ReviewSummary
                 data={review}
                 editReview={this.editReview}
-            />)
+            />
+            )
         })
+    }
+
+    setImageData() {
+        return (
+            <GridList cellHeight={100} cols={4}>
+                {this.state.pictures.map(picture => (
+                    <GridListTile key={picture}>
+                        <SelectionPicture
+                            name={this.state.first_name + ' ' + this.state.last_name}
+                            profilePic={picture}
+                            onProfilePicChange={this.onProfilePicChange}
+                        />
+                    </GridListTile>
+                ))}
+            </GridList>
+        )
+    }
+
+    onProfilePicChange(image) {
+        this.setState({profilePic: image})
+        $('#change-profile-pic').modal('hide')
     }
 
     render() {
@@ -103,6 +133,7 @@ class Profile extends Component {
                 <ProfileComponent
                     data={this.state}
                     setReviewData={this.setReviewData}
+                    setImageData={this.setImageData}
                 />
             </main>
         )

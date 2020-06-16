@@ -4,22 +4,6 @@ import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded'
 import ReviewDetails from './ReviewDetails'
 
 function ReviewSummary(props) {
-
-    // id: 2,
-    // CourseNumber: "E E 306",
-    // CourseApproval: true,
-    // Usefulness: 4,
-    // Difficulty: 2,
-    // Workload: 2,
-    // CourseComment: "course2 comment",
-
-    // ProfessorName: "Patt, Yale",
-    // ProfessorApproval: true,
-    // Clear: 1,
-    // Engaging: 2,
-    // GradingDifficulty: 4,
-    // ProfessorComment: "prof2 comment"
-
     return (
         <div className="col-4 review-container">
             <div className="card">
@@ -55,7 +39,7 @@ function ReviewSummary(props) {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
 export default ReviewSummary;
