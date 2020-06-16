@@ -6,12 +6,30 @@
 
 .CourseInfo{
     margin-right: 40px;
-    margin-left: 75px;
+    margin-left: 100px;
     margin-top: 50px;
 }
 
+.info-header{
+    background-color: white;
+}
+
+.info-body{
+    color: white;
+    background-color: #333f48;
+    font-size: 15px;
+}
+
+.card-title{
+    padding-bottom: 10px;
+}
+
+.course-title{
+    color: white;
+}
+
 .CourseRatings{
-    margin-right: 75px;
+    margin-right: 100px;
     margin-left: 10px;
     margin-top: 50px;
     display: flex;

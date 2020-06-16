@@ -116,7 +116,7 @@ class CourseSchedule extends React.Component {
             <div className="courseSchedule">
                 <div className="card course-card">
                     <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#schedule-collapse">
-                        <h3 className="details-header"> Course Schedule {arrowIcon}</h3>
+                        <h4 className="details-header"> Course Schedule {arrowIcon}</h4>
                     </div>
                     <div className="collapse show" id="schedule-collapse" role="tabpanel">
                         <div className="card-body card-table">
