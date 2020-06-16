@@ -2,9 +2,9 @@ import React from 'react';
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import AppBar from '@material-ui/core/AppBar'
-import TabPanel from './TabPanel'
+import TabPanel from '../TabPanel'
 import CourseScheduleEntry from './CourseScheduleEntry'
-import './../CourseDetails.css'
+import './CourseSchedule.css'
 
 class CourseSchedule extends React.Component {
     constructor(props) {
