@@ -12,31 +12,33 @@ class SearchBar extends React.Component {
         this.handleKeyPress = this.handleKeyPress.bind(this)
     }
 
-    handleKeyPress (e) {
-        
+    handleKeyPress(e) {
+
         this.searchValue = e.target.value
-        if (e.key === 'Enter') {        
+        if (e.key === 'Enter') {
             this.props.history.push({
                 pathname: "/results",
                 search: `?search=${e.target.value}`,
-                state: {searchValue: e.target.value}
+                state: { searchValue: e.target.value, page: 0 }
             })
-        }else{
-            this.setState({ searchValue: e.target.value + e.key})
+        } else {
+            this.setState({ searchValue: e.target.value + e.key })
         }
     }
 
-    handleSubmit (e)  {
-        
+    handleSubmit(e) {
+
         this.props.history.push({
             pathname: "/results",
             search: `?search=${this.state.searchValue}`,
-            state: {searchValue: this.state.searchValue}
+            state: { searchValue: this.state.searchValue, page: 0 }
         })
-        e.preventDefault()    
+
+        e.preventDefault()
     }
 
     render() {
+
         return (
             <form className="form-inline form-search" onSubmit={this.handleSubmit}>
                 <div className="container">
@@ -49,7 +51,7 @@ class SearchBar extends React.Component {
                                 onKeyPress={this.handleKeyPress}
                                 placeholder="Search for courses or professors" />
 
-                            <button type ="submit" className="search-icon">
+                            <button type="submit" className="search-icon">
                                 <i className="fas fa-search"></i>
                             </button>
                         </div>

@@ -10,11 +10,15 @@ import "./Results.css"
 
 class Results extends Component {
 
-	constructor() {
+	constructor(props) {
 
-		super();
+		super(props);
+
+		console.log(props)
 
 		this.state = {
+
+			page: props.location.state.page,
 
 			tabIndex: 0,
 
@@ -54,6 +58,7 @@ class Results extends Component {
 		this.handleSortChange = this.handleSortChange.bind(this)
 		this.handleTabChange = this.handleTabChange.bind(this)
 		this.handleFilterChange = this.handleFilterChange.bind(this)
+		this.handlePageInc = this.handlePageInc.bind(this)
 	}
 
 	componentDidMount() {
@@ -131,6 +136,10 @@ class Results extends Component {
 				}
 			}
 		))
+	}
+
+	handlePageInc() {
+		this.setState(prevState => ({ page: prevState.page + 1 }))
 	}
 
 	handleTabChange(event, newValue) {
@@ -221,10 +230,12 @@ class Results extends Component {
 	}
 
 	render() {
+
 		return (<ResultsComponent
 
 			{...this.state}
 
+			handlePageInc={this.handlePageInc}
 			handleTabChange={this.handleTabChange}
 			handleFilterChange={this.handleFilterChange}
 			handleSortChange={this.handleSortChange}
