@@ -1,21 +1,33 @@
-import React, { Component } from 'react'
-import Loading from '../../_utils/Loading.js'
+import React, { Component, useCallback, useRef, useState } from 'react'
 import TabPanel from './TabPanel'
 import { Link } from 'react-router-dom'
 
-class CoursePanel extends Component {
+function CoursePanel(props) {
 
-    constructor() {
+    const [hasMore, setHasMore] = useState(true)
+    const observer = useRef()
+    const loadRef = useCallback(node => {
+        if (observer.current) observer.current.disconnect()
+        observer.current = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && hasMore) {
+                props.handlePageInc()
+                if (calcTableEdge() >= props.data.length) setHasMore(false)
+            }
+        })
+        if (node) observer.current.observe(node)
+    }, [props.loading, props.hasMore])
 
-        super();
-        this.setTableData = this.setTableData.bind(this)
-        this.sort = this.sort.bind(this)
+
+    const { sortDir, sortBy } = props.sort
+
+    function calcTableEdge() {
+        return Math.min(25 * (props.page + 1), props.data.length)
     }
 
-    sort(a, b) {
+    function sort(a, b) {
 
-        const sortBy = this.props.sort.sortBy
-        const courses = this.props.data
+        const sortBy = props.sort.sortBy
+        const courses = props.data
 
         if (courses.length >= 0 && sortBy in a) {
 
@@ -32,21 +44,21 @@ class CoursePanel extends Component {
         return null;
     }
 
-    setTableData() {
+    function setTableData() {
 
-        if (this.props.data != null) {
+        if (props.data != null) {
 
-            const { sortDir } = this.props.sort
-            const filter = this.props.filter
+            const { sortDir } = props.sort
+            const filter = props.filter
 
             const sortTypes = {
                 up: {
                     class: 'sortUp',
-                    fn: (a, b) => this.sort(a, b)
+                    fn: (a, b) => sort(a, b)
                 },
                 down: {
                     class: 'sortDown',
-                    fn: (a, b) => this.sort(b, a)
+                    fn: (a, b) => sort(b, a)
                 },
                 default: {
                     class: 'sort',
@@ -56,25 +68,29 @@ class CoursePanel extends Component {
 
             // TODO: update filter with other filters
 
-            let sortedCourses = this.props.data
+            let sortedCourses = props.data
                 .filter(course => filter.depts.length <= 0 || filter.depts.includes(course.deptName))
                 .sort(sortTypes[sortDir].fn)
+                .slice(0, calcTableEdge())
 
-            return sortedCourses.map(course => {
+            return sortedCourses.map((course, index) => {
                 const { courseNum, courseName } = course
 
                 // TODO: temporary numbers to fill table: remove later
-                const rating = Math.floor(Math.random() * 70 + 30)
-                const numRating = Math.floor(Math.random() * 1500)
+                // const rating = Math.floor(Math.random() * 70 + 30)
+                // const numRating = Math.floor(Math.random() * 1500)
 
+                let rating = 1
+                let numRating = 1
                 return (
-                    <tr key={courseNum}>
+
+                    <tr key={courseNum} ref={loadRef}>
                         <td colSpan="1">{courseNum}</td>
                         <td colSpan="2" className="class-name">{
                             <Link
                                 className="utcolor"
                                 to={{
-                                    pathname: `${this.props.match.url}/${courseNum}`,
+                                    pathname: `${props.match.url}/${courseNum}`,
                                     state: {
                                         courseNum: courseNum
                                     }
@@ -94,29 +110,26 @@ class CoursePanel extends Component {
         }
     }
 
-    render() {
-
-        const { sortDir, sortBy } = this.props.sort
-
-        let courseTable = (
+    let courseTable = (
+        <div>
 
             <table id='courseResults' className='table table-hover result-table'>
                 <thead className='thead-dark'>
                     <tr rowSpan="2">
 
-                        <th scope="col" colSpan="1" className="sortable" onClick={() => this.props.handleSortChange('courseNum')}>
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => props.handleSortChange('courseNum')}>
                             <span>Course #</span>
                             <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseNum' ? '' : ' invisible')}></i>
                         </th>
 
-                        <th scope="col" colSpan="2" className="sortable" onClick={() => this.props.handleSortChange('courseName')}>
+                        <th scope="col" colSpan="2" className="sortable" onClick={() => props.handleSortChange('courseName')}>
                             <span>Course Name</span>
                             <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseName' ? '' : ' invisible')}></i>
                         </th>
 
                         {/* TODO: update with onclick functions */}
 
-                        <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for approval")}>
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => props.handlePageInc()}>
                             <span>Approval</span>
                             <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'approval' ? '' : ' invisible')}></i>
                         </th>
@@ -128,17 +141,18 @@ class CoursePanel extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.setTableData()}
+                    {setTableData()}
                 </tbody>
             </table>
-        )
+            <div>{hasMore && props.loading}</div>
+        </div>
+    )
 
-        return (
-            <TabPanel index={0} value={this.props.tabIndex} className="table-panel">
-                {this.props.loaded ? (this.props.data == null ? this.props.emptyTable : courseTable) : this.props.loading}
-            </TabPanel>
-        )
-    }
+    return (
+        <TabPanel index={0} value={props.tabIndex} className="table-panel">
+            {props.loaded ? (props.data == null ? props.emptyTable : courseTable) : props.loading}
+        </TabPanel>
+    )
 }
 
 export default CoursePanel
