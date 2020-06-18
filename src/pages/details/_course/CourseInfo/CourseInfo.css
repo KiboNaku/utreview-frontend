@@ -72,29 +72,32 @@
 }
 
 @media screen and (max-width: 992px){
+    .course-stats{
+        flex-direction: column;
+    }
+
     .CourseInfo{
-        margin-right: 20px;
+        margin-right: 50px;
         margin-left: 50px;
         margin-top: 50px;
     }
-
-    .CourseRatings{
-        margin-right: 50px;
-        margin-left: 20px;
-        display: flex;
-        flex-direction: column;
+    
+    .userRatings{
+        flex-direction: row;
     }
 
-    .userRatings{
-        flex-direction: column;
+    .CourseRatings{
+        margin: 0 auto;
+        margin-top: 50px;
+        justify-content: center;
+        display: inline-block;
     }
 
     .courseRequisites{
-        margin-left: 100px;
-        margin-right: 100px;
+        margin-left: 50px;
+        margin-right: 50px;
         margin-top: 50px;
         margin-bottom: 50px;
-        width: auto;
     }
 }
 

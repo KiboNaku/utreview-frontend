@@ -108,7 +108,7 @@ function CourseReviewEntry(props) {
                 </div>
                 <div className="userRev">
                     <p className="review-text">{props.review.review}</p>
-                    <small className="review-date"> - {props.review.date}</small>
+                    <small className="review-date"> - {props.review.date.toString()}</small>
                     <div className="LikeDislike">
                         {localStorage.usertoken ? likeButton : likeLoginLink}
                         <span> {props.review.numLiked} </span>
