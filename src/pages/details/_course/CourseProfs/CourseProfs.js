@@ -34,7 +34,7 @@ class CourseProfs extends React.Component {
             <div className="courseProfs">
                 <div className="card course-card">
                     <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#profs-collapse">
-                        <h3 className="details-header"> Professors {arrowIcon}</h3>
+                        <h4 className="details-header"> Professors {arrowIcon}</h4>
                     </div>
                     <div className="collapse show" id="profs-collapse" role="tabpanel">
                         <div className="card-body card-table">

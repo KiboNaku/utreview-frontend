@@ -34,7 +34,7 @@ class CourseRequisites extends React.Component{
             <div className="courseRequisites">
                 <div className="card course-card">
                     <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#requisites-collapse">
-                        <h3 className="details-header"> Requisites {arrowIcon} </h3>    
+                        <h4 className="details-header"> Requisites {arrowIcon} </h4>    
                     </div>
                     <div className="collapse show" id="requisites-collapse" role="tabpanel">
                         <div className="card-body">
