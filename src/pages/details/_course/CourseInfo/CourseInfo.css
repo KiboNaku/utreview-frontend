@@ -6,12 +6,30 @@
 
 .CourseInfo{
     margin-right: 40px;
-    margin-left: 75px;
+    margin-left: 100px;
     margin-top: 50px;
 }
 
+.info-header{
+    background-color: white;
+}
+
+.info-body{
+    color: white;
+    background-color: #333f48;
+    font-size: 15px;
+}
+
+.card-title{
+    padding-bottom: 10px;
+}
+
+.course-title{
+    color: white;
+}
+
 .CourseRatings{
-    margin-right: 75px;
+    margin-right: 100px;
     margin-left: 10px;
     margin-top: 50px;
     display: flex;
@@ -54,29 +72,32 @@
 }
 
 @media screen and (max-width: 992px){
+    .course-stats{
+        flex-direction: column;
+    }
+
     .CourseInfo{
-        margin-right: 20px;
+        margin-right: 50px;
         margin-left: 50px;
         margin-top: 50px;
     }
-
-    .CourseRatings{
-        margin-right: 50px;
-        margin-left: 20px;
-        display: flex;
-        flex-direction: column;
+    
+    .userRatings{
+        flex-direction: row;
     }
 
-    .userRatings{
-        flex-direction: column;
+    .CourseRatings{
+        margin: 0 auto;
+        margin-top: 50px;
+        justify-content: center;
+        display: inline-block;
     }
 
     .courseRequisites{
-        margin-left: 100px;
-        margin-right: 100px;
+        margin-left: 50px;
+        margin-right: 50px;
         margin-top: 50px;
         margin-bottom: 50px;
-        width: auto;
     }
 }
 
@@ -100,6 +121,13 @@
         margin-top: 50px;
         justify-content: center;
         display: inline-block;
+    }
+
+    .courseRequisites{
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
 }
 
@@ -125,5 +153,12 @@
         margin-top: 50px;
         justify-content: center;
         width: auto;
-    }    
+    }
+    
+    .courseRequisites{
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
 }

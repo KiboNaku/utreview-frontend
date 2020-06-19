@@ -75,7 +75,7 @@ function SignupComponent(props) {
                                     required />
                             </div>
 
-                            <button className="btn btn-lg btn-primary btn-block mt-2" type="submit"> Sign up </button>
+                            <button className="btn btn-lg btn-utcolor btn-block mt-2 font-weight-bold" type="submit"> Sign up </button>
 
                         </form>
 
