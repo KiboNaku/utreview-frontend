@@ -26,7 +26,6 @@ class CourseProfs extends React.Component {
         const courseProfList = this.state.courseProfs.map(prof => {
             return [
                 <CourseProfEntry {...prof} />,
-                <CourseProfExpanded {...prof} />
             ]
 
         })
@@ -35,25 +34,28 @@ class CourseProfs extends React.Component {
             <div className="courseProfs">
                 <div className="card course-card">
                     <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#profs-collapse">
-                        <h3 className="details-header"> Professors {arrowIcon}</h3>
+                        <h4 className="details-header"> Professors {arrowIcon}</h4>
                     </div>
                     <div className="collapse show" id="profs-collapse" role="tabpanel">
                         <div className="card-body card-table">
-                            <table className='table table-hover' >
-                                <thead className="thead-dark">
-                                    <tr>
-                                        <th className="name-column" scope="col">Name</th>
-                                        <th scope="col">Liked</th>
-                                        <th scope="col">eCIS</th>
-                                        <th scope="col">Clear</th>
-                                        <th scope="col">Engaging</th>
-                                        <th scope="col">Grading</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {courseProfList}
-                                </tbody>
-                            </table>
+                                <table className='table table-hover table-responsive prof-table' >
+                                    <thead>
+                                        <tr>
+                                            <th className="name-column" scope="col">Name</th>
+                                            <th scope="col">Liked</th>
+                                            <th scope="col">eCIS</th>
+                                            <th scope="col">Clear</th>
+                                            <th scope="col">Engaging</th>
+                                            <th scope="col">Grading</th>
+                                            <th scope="col">Syllabi</th>
+                                            <th scope="col">Catalyst</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {courseProfList}
+                                    </tbody>
+                                </table>
+
                         </div>
                     </div>
 

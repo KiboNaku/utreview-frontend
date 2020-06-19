@@ -32,6 +32,13 @@ class CourseSchedule extends React.Component {
     }
 
     render() {
+
+        const styles = theme => ({
+            indicator: {
+              backgroundColor: '#bf5700',
+            },
+          })
+
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         const courseScheduleList = this.state.courseSchedule.map(course => {
             return (
@@ -39,8 +46,8 @@ class CourseSchedule extends React.Component {
             )
         })
         let summer2020 = (
-            <table className='table table-hover'>
-                <thead className="thead-dark">
+            <table className='table table-hover table-responsive schedule-table'>
+                <thead>
                     <tr>
                         <th scope="col">Unique #</th>
                         <th scope="col">Enrolled</th>
@@ -57,8 +64,8 @@ class CourseSchedule extends React.Component {
         )
 
         let fall2020 = (
-            <table className='table table-hover'>
-                <thead className="thead-dark">
+            <table className='table table-hover table-responsive schedule-table'>
+                <thead>
                     <tr>
                         <th scope="col">Unique #</th>
                         <th scope="col">Enrolled</th>
@@ -78,6 +85,7 @@ class CourseSchedule extends React.Component {
             <div className="semSchedule">
                 <AppBar position="static" color="default">
                     <Tabs
+                        inkBarStyle={{backgroundColor: '#68C222', width: '33.3%'}}
                         value={this.state.currentTab}
                         variant="fullWidth"
                         centered
@@ -108,7 +116,7 @@ class CourseSchedule extends React.Component {
             <div className="courseSchedule">
                 <div className="card course-card">
                     <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#schedule-collapse">
-                        <h3 className="details-header"> Course Schedule {arrowIcon}</h3>
+                        <h4 className="details-header"> Course Schedule {arrowIcon}</h4>
                     </div>
                     <div className="collapse show" id="schedule-collapse" role="tabpanel">
                         <div className="card-body card-table">

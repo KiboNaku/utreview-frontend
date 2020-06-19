@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
+import "./Footer.css"
 
 class Footer extends Component {
 
@@ -7,20 +8,20 @@ class Footer extends Component {
 
         return (
 
-            <footer style={{backgroundColor:"rgba(51, 63, 72"}}>
+            <footer className="footer-main py-2">
                 <ul className="nav justify-content-end">
                     <li className="nav-item" className="nav-link">
-                        <Link to="/">
+                        <Link className="footer-link" to="/">
                             Home
                         </Link>
                     </li>
                     <li className="nav-item" className="nav-link">
-                        <Link to="/about">
+                        <Link className="footer-link" to="/about">
                             About
                         </Link>
                     </li>
                     <li className="nav-item" className="nav-link">
-                        <Link to="/">
+                        <Link className="footer-link" to="/">
                             Privacy Policy
                         </Link>
                     </li>
