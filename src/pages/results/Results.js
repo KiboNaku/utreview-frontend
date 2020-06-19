@@ -10,9 +10,11 @@ import "./Results.css"
 
 class Results extends Component {
 
-	constructor() {
+	constructor(props) {
 
-		super();
+		super(props);
+
+		console.log(props)
 
 		this.state = {
 
@@ -22,6 +24,7 @@ class Results extends Component {
 
 			courses: {
 				loaded: false,
+				page: props.location.state.page,
 				data: [],
 				sort: {
 					sortBy: 'courseNum',
@@ -37,9 +40,10 @@ class Results extends Component {
 
 			profs: {
 				loaded: false,
+				page: props.location.state.page,
 				data: [],
 				sort: {
-					sortBy: 'courseNum',
+					sortBy: 'profName',
 					sortDir: 'down',
 				},
 				filter: {
@@ -51,9 +55,11 @@ class Results extends Component {
 			},
 		}
 
+		this.calcTableEdge = this.calcTableEdge.bind(this)
 		this.handleSortChange = this.handleSortChange.bind(this)
 		this.handleTabChange = this.handleTabChange.bind(this)
 		this.handleFilterChange = this.handleFilterChange.bind(this)
+		this.handlePageInc = this.handlePageInc.bind(this)
 	}
 
 	componentDidMount() {
@@ -133,8 +139,55 @@ class Results extends Component {
 		))
 	}
 
+    calcTableEdge(page, length) {
+        return Math.min(25 * (page + 1), length)
+    }
+
+	handlePageInc() {
+
+		switch (this.state.tabIndex) {
+
+			case 0:
+				this.setState(
+					prevState => ({ 
+						courses: {
+							...prevState.courses,
+							page: prevState.courses.page + 1 
+						}
+					})
+				)
+				break
+			case 1:
+				this.setState(
+					prevState => ({ 
+						profs: {
+							...prevState.profs,
+							page: prevState.profs.page + 1 
+						}
+					})
+				)
+				break
+		}
+
+
+	}
+
 	handleTabChange(event, newValue) {
-		this.setState({ tabIndex: newValue })
+
+
+		this.setState(prevState =>(
+			{ 
+				tabIndex: newValue,  
+				courses: {
+					...prevState.courses,
+					page: 0
+				},
+				profs: {
+					...prevState.profs,
+					page: 0
+				}
+			}
+		))
 	}
 
 	handleSortChange(sortByName) {
@@ -153,6 +206,7 @@ class Results extends Component {
 			this.setState(prevState => ({
 				courses: {
 					...prevState.courses,
+					page: 0,
 					sort: {
 
 						sortBy: sortByName,
@@ -171,6 +225,7 @@ class Results extends Component {
 			this.setState(prevState => ({
 				profs: {
 					...prevState.profs,
+					page: 0,
 					sort: {
 
 						sortBy: sortByName,
@@ -190,7 +245,7 @@ class Results extends Component {
 				return {
 					courses: {
 						...prevState.courses,
-
+						page: 0,
 						filter: {
 							depts: depts == null ? filter.depts : depts,
 							mApp: mApp < 0 ? filter.mApp : mApp,
@@ -207,7 +262,7 @@ class Results extends Component {
 				return {
 					profs: {
 						...prevState.profs,
-
+						page: 0,
 						filter: {
 							depts: depts == null ? filter.depts : depts,
 							mApp: mApp < 0 ? filter.mApp : mApp,
@@ -221,10 +276,13 @@ class Results extends Component {
 	}
 
 	render() {
+
 		return (<ResultsComponent
 
 			{...this.state}
 
+			calcTableEdge={this.calcTableEdge}
+			handlePageInc={this.handlePageInc}
 			handleTabChange={this.handleTabChange}
 			handleFilterChange={this.handleFilterChange}
 			handleSortChange={this.handleSortChange}
