@@ -1,4 +1,5 @@
 import React from 'react';
+import Select from 'react-select'
 import CourseReviewEntry from './CourseReviewEntry';
 import { reviewFeedback } from '../CourseFunctions'
 import jwt_decode from 'jwt-decode'
@@ -21,7 +22,8 @@ class CourseReviews extends React.Component {
 				numLiked: 2,
 				numDisliked: 0,
 				likePressed: false,
-				dislikePressed: false
+				dislikePressed: false,
+				date: new Date("2020-06-12")
 			},
 			{
 				key: 2,
@@ -36,7 +38,8 @@ class CourseReviews extends React.Component {
 				numLiked: 1,
 				numDisliked: 2,
 				likePressed: true,
-				dislikePressed: false
+				dislikePressed: false,
+				date: new Date("2019-06-10")
 			},
 			{
 				key: 3,
@@ -51,16 +54,29 @@ class CourseReviews extends React.Component {
 				numLiked: 5,
 				numDisliked: 2,
 				likePressed: false,
-				dislikePressed: true
+				dislikePressed: true,
+				date: new Date("2019-07-12")
 			},
 		]
 
+		let profsFiltered = [
+			"Yale Patt",
+			"Emanuel Tutuc",
+			"Seth Bank"
+		]
+
+		const updatedReviews = courseReviews.slice().sort((a, b) => b.date - a.date)
+
 		this.state = {
-			courseReviews: props.courseReviews
+			courseReviews: courseReviews,
+			reviewsFiltered: updatedReviews,
+			profs: profsFiltered,
+			sortBy: "most-recent"
 		}
 
 		this.handleLike = this.handleLike.bind(this)
 		this.handleDislike = this.handleDislike.bind(this)
+		this.handleSortChange = this.handleSortChange.bind(this)
 	}
 
 	handleLike(key) {
@@ -96,15 +112,7 @@ class CourseReviews extends React.Component {
 					}
 				}
 				return {
-					key: courseReview.key,
-					review: courseReview.review,
-					liked: courseReview.liked,
-					usefulness: courseReview.usefulness,
-					difficulty: courseReview.difficulty,
-					workload: courseReview.workload,
-					userMajor: courseReview.userMajor,
-					profPic: courseReview.profPic,
-					profName: courseReview.profName,
+					...courseReview,
 					numLiked: likeNum,
 					numDisliked: dislikeNum,
 					likePressed: like,
@@ -160,15 +168,7 @@ class CourseReviews extends React.Component {
 					}
 				}
 				return {
-					key: courseReview.key,
-					review: courseReview.review,
-					liked: courseReview.liked,
-					usefulness: courseReview.usefulness,
-					difficulty: courseReview.difficulty,
-					workload: courseReview.workload,
-					userMajor: courseReview.userMajor,
-					profPic: courseReview.profPic,
-					profName: courseReview.profName,
+					...courseReview,
 					numLiked: likeNum,
 					numDisliked: dislikeNum,
 					likePressed: like,
@@ -189,8 +189,45 @@ class CourseReviews extends React.Component {
 		})
 	}
 
+	handleSortChange(value){
+		if(value.value === "most-recent"){
+			console.log("most-recent")
+			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.date - a.date)
+			this.setState({reviewsFiltered: updatedReviews, sortBy: value.value})
+		}else if(value.value === "most-helpful"){
+			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.numLiked - a.numLiked)
+			this.setState({reviewsFiltered: updatedReviews, sortBy: value.value})
+		}
+	}
+
+	handleProfChange(values){
+		
+		let updatedReviews = []
+		if(values.length == 0){
+			updatedReviews = this.state.courseReviews
+		}else{
+			let profs = []
+			for(let i = 0; i < values.length; i++){
+				profs.push(values[i])
+			}
+			this.state.courseReviews.map(review => {
+				if(profs.includes(review.profName)){
+					updatedReviews.push(review)
+				}
+			})
+		}
+
+		if(this.state.sortBy === "most-recent"){
+			updatedReviews = updatedReviews.slice().sort((a, b) => b.date - a.date)
+			this.setState({reviewsFiltered: updatedReviews, sortBy: "most-recent"})
+		}else if(this.state.sortBy === "most-helpful"){
+			updatedReviews = updatedReviews.slice().sort((a, b) => b.numLiked - a.numLiked)
+			this.setState({reviewsFiltered: updatedReviews, sortBy: "most-helpful"})
+		}
+	}
+
 	render() {
-		const courseReviewList = this.state.courseReviews.map(review => {
+		const courseReviewList = this.state.reviewsFiltered.map(review => {
 			return (
 				<CourseReviewEntry
 					review={review}
@@ -210,6 +247,83 @@ class CourseReviews extends React.Component {
 			</div>
 		)
 
+		let sortOptions = [
+			{
+				value: "most-recent",
+				label: "Most Recent"
+			},
+			{
+				value: "most-helpful",
+				label: "Most Helpful"
+			}
+		]
+
+		let sort = (
+			<div className="review-sort">
+				<label className="float-left font-weight-bold">Sort by: </label>
+				<Select
+					// add deptList, handleDeptChange
+					className="basic-multi-select my-3 clear-both"
+					classNamePrefix="select"
+					name="review-sort"
+					options={sortOptions}
+					onChange={this.handleSortChange}
+					value={sortOptions.filter(val => {
+						for(let i=0; i<sortOptions.length; i++){
+							if(val.value === this.state.sortBy) return true;
+						}
+						return false
+					})}
+					autosize={true}
+				/>
+			</div>
+
+		)
+
+		let profOptions = [
+			{
+				value: "Yale Patt",
+				label: "Yale Patt"
+			},
+			{
+				value: "Emanuel Tutuc",
+				label: "Emanuel Tutuc"
+			},
+			{
+				value: "Seth Bank",
+				label: "Seth Bank"
+			}
+		]
+
+		let profFilter = (
+			<div className="review-sort">
+				<label className="float-left font-weight-bold">Filter by professor: </label>
+				<Select
+					// add deptList, handleDeptChange
+					className="basic-multi-select my-3 clear-both"
+					classNamePrefix="select"
+					name="review-sort"
+					options={profOptions}
+					onChange={(objs) => {
+						let values = [];
+
+						if (objs != null) {
+							for (let i = 0; i < objs.length; i++) {
+								values[i] = objs[i].value
+							}
+						}
+
+						this.handleProfChange(values)
+					}}
+					placeholder="Select"
+					isClearable={true}
+					isSearchable={true}
+					isMulti
+				/>
+			</div>
+
+		)
+
 		return (
 			<div className="courseReviews">
 				<div className="card course-card">
@@ -217,7 +331,11 @@ class CourseReviews extends React.Component {
 						<h4> Reviews </h4>
 					</div>
 					<div className="card-body">
-						{this.state.courseReviews.length > 0 ? reviews: noReviews}
+						<div className="review-filters">
+							{sort}
+							{profFilter}
+						</div>
+						{this.state.courseReviews.length > 0 ? reviews : noReviews}
 					</div>
 				</div>
 			</div>
