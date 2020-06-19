@@ -200,7 +200,12 @@ class CourseDetails extends React.Component {
                 let courseData = res.course_info
                 let courseRating = res.course_rating
                 let courseProfessors = res.course_profs
-                let courseRevs = res.course_reviews
+                let courseRevs = res.course_reviews.map(review => {
+                    return {
+                        ...review,
+                        date: new Date(review.date)
+                    }
+                })
                 this.setState({
                     courseInfo: courseData,
                     courseRatings: courseRating,
