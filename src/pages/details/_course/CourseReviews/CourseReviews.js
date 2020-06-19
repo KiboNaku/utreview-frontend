@@ -65,9 +65,11 @@ class CourseReviews extends React.Component {
 			"Seth Bank"
 		]
 
+		const updatedReviews = courseReviews.slice().sort((a, b) => b.date - a.date)
+
 		this.state = {
 			courseReviews: courseReviews,
-			reviewsFiltered: courseReviews,
+			reviewsFiltered: updatedReviews,
 			profs: profsFiltered,
 			sortBy: "most-recent"
 		}
@@ -190,16 +192,38 @@ class CourseReviews extends React.Component {
 	handleSortChange(value){
 		if(value.value === "most-recent"){
 			console.log("most-recent")
-			const updatedReviews = this.state.courseReviews.slice().sort((a, b) => b.date - a.date)
+			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.date - a.date)
 			this.setState({reviewsFiltered: updatedReviews, sortBy: value.value})
 		}else if(value.value === "most-helpful"){
-			const updatedReviews = this.state.courseReviews.slice().sort((a, b) => b.numLiked - a.numLiked)
+			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.numLiked - a.numLiked)
 			this.setState({reviewsFiltered: updatedReviews, sortBy: value.value})
 		}
 	}
 
 	handleProfChange(values){
+		
+		let updatedReviews = []
+		if(values.length == 0){
+			updatedReviews = this.state.courseReviews
+		}else{
+			let profs = []
+			for(let i = 0; i < values.length; i++){
+				profs.push(values[i])
+			}
+			this.state.courseReviews.map(review => {
+				if(profs.includes(review.profName)){
+					updatedReviews.push(review)
+				}
+			})
+		}
 
+		if(this.state.sortBy === "most-recent"){
+			updatedReviews = updatedReviews.slice().sort((a, b) => b.date - a.date)
+			this.setState({reviewsFiltered: updatedReviews, sortBy: "most-recent"})
+		}else if(this.state.sortBy === "most-helpful"){
+			updatedReviews = updatedReviews.slice().sort((a, b) => b.numLiked - a.numLiked)
+			this.setState({reviewsFiltered: updatedReviews, sortBy: "most-helpful"})
+		}
 	}
 
 	render() {
@@ -258,10 +282,6 @@ class CourseReviews extends React.Component {
 
 		let profOptions = [
 			{
-				value: "All Professors",
-				label: "All Professors"
-			},
-			{
 				value: "Yale Patt",
 				label: "Yale Patt"
 			},
@@ -295,7 +315,6 @@ class CourseReviews extends React.Component {
 
 						this.handleProfChange(values)
 					}}
-					defaultValue={profOptions[0]}
 					placeholder="Select"
 					isClearable={true}
 					isSearchable={true}

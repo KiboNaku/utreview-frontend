@@ -103,12 +103,12 @@ function CourseReviewEntry(props) {
                 <div className="userDes">
                     <Avatar className={classes.large} src={props.review.profPic}>  </Avatar>
                     <span> {props.review.userMajor} student, taught by </span>
-                    <a href="https://www.google.com" > {props.review.profName} </a>
+                    <a href="https://www.google.com">{props.review.profName}</a>
                     <span>, {semester}</span>
                 </div>
                 <div className="userRev">
                     <p className="review-text">{props.review.review}</p>
-                    <small className="review-date"> - {props.review.date.toString()}</small>
+                    <small className="review-date"> - {props.review.date.toLocaleDateString()}</small>
                     <div className="LikeDislike">
                         {localStorage.usertoken ? likeButton : likeLoginLink}
                         <span> {props.review.numLiked} </span>
