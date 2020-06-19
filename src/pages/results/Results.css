@@ -2,51 +2,6 @@
     background-color: #9cadb7;
 }
 
-.c-rating label {
-    margin: 0
-}
-
-.c-range {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    
-    background-color: #333f48;
-    border-radius: 10px;
-    height: 10px;
-    
-    
-    outline: none;
-    opacity: 0.9; 
-    color: #bf5700;
-}
-
-.c-range:hover {
-    opacity: 1;
-}
-
-.c-range::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-
-    width: 20px;
-    height: 20px;
-
-    background: #bf5700;
-    border-radius: 50%;
-    border: 3px solid #333f48;
-    cursor: pointer;
-}
-
-.check-sem {
-    max-width: 33%;
-}
-
-.sem-radio {
-    clear: both;
-    float: left
-}
-
 .clear-both {
     clear: both;
 }
@@ -76,9 +31,4 @@ td {
 .search-banner {
     color: white;
     background-color: #333f48;
-}
-
-.custom-indicator {
-    color: purple;
-    background-color: green;
 }
