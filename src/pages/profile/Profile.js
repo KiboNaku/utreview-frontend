@@ -8,6 +8,9 @@ import $ from './../../../node_modules/jquery'
 import ProfileComponent from './_components/ProfileComponent'
 import ReviewSummary from './_utils/ReviewSummary'
 import { SelectionPicture } from './_utils/ProfilePicture'
+import { ProfilePicModal } from './_utils/ProfilePicPopup'
+import Settings from './_utils/Settings'
+import { getMajor } from './../popups/_utils/UserFunctions'
 import './Profile.css'
 
 
@@ -56,13 +59,17 @@ class Profile extends Component {
             major: '',
             profilePic: '',
             pictures: ['corgi1.jpg', 'corgi2.jpg', 'corgi3.jpg'],
-            reviews: reviewList
+            reviews: reviewList,
+            majorList: null
         }
 
         this.setReviewData = this.setReviewData.bind(this)
         this.editReview = this.editReview.bind(this)
         this.setImageData = this.setImageData.bind(this)
         this.onProfilePicChange = this.onProfilePicChange.bind(this)
+        this.onChange = this.onChange.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
+        this.handleMajorChange = this.handleMajorChange.bind(this)
     }
 
     componentDidMount() {
@@ -73,7 +80,7 @@ class Profile extends Component {
             last_name: decoded.identity.last_name,
             email: decoded.identity.email,
             major: decoded.identity.major,
-            profilePic: decoded.identity.profile_pic
+            // profilePic: decoded.identity.profile_pic
         })
     }
 
@@ -123,8 +130,48 @@ class Profile extends Component {
     }
 
     onProfilePicChange(image) {
-        this.setState({profilePic: image})
+        this.setState({ profilePic: image })
         $('#change-profile-pic').modal('hide')
+    }
+
+    //all need to add backend stuff
+    onChange(event) {
+
+    }
+
+    onSubmit(firstName, lastName, password, email, major) {
+        this.setState({
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            major: major
+        })
+        //do something with password
+        $('#settings').modal('hide')
+    }
+
+    handleMajorChange = (inputValue, { action }) => {
+        if (inputValue !== null) {
+            this.setState({ major: inputValue.value })
+        }
+    }
+
+    componentDidMount() {
+        getMajor().then(res => {
+            if (res.error) {
+                alert(res.error)
+            } else {
+                let data = res.majors
+                let list = new Array()
+                for (const i in data) {
+                    list.push({
+                        value: data[i]['name'],
+                        label: data[i]['name']
+                    })
+                }
+                this.setState({ majorList: list })
+            }
+        })
     }
 
     render() {
@@ -133,7 +180,15 @@ class Profile extends Component {
                 <ProfileComponent
                     data={this.state}
                     setReviewData={this.setReviewData}
+                />
+                <ProfilePicModal
                     setImageData={this.setImageData}
+                />
+                <Settings
+                    data={this.state}
+                    onChange={this.onChange}
+                    onSubmit={this.onSubmit}
+                    handleMajorChange={this.handleMajorChange}
                 />
             </main>
         )
