@@ -33,9 +33,9 @@ function CourseReviewEntry(props) {
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} />
 
     let likeIcon = props.review.likePressed ?
-        <ThumbUpRoundedIcon style={{ fill: '#bf5700' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
+        <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
     let dislikeIcon = props.review.dislikePressed ?
-        <ThumbDownRoundedIcon style={{ fill: '#bf5700' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
+        <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
     const useStyles = makeStyles((theme) => ({
         large: {
             width: theme.spacing(8),
@@ -103,12 +103,12 @@ function CourseReviewEntry(props) {
                 <div className="userDes">
                     <Avatar className={classes.large} src={props.review.profPic}>  </Avatar>
                     <span> {props.review.userMajor} student, taught by </span>
-                    <a href="https://www.google.com" > {props.review.profName} </a>
+                    <a href="https://www.google.com">{props.review.profName}</a>
                     <span>, {semester}</span>
                 </div>
                 <div className="userRev">
                     <p className="review-text">{props.review.review}</p>
-                    <small className="review-date"> - {props.review.date}</small>
+                    <small className="review-date"> - {props.review.date.toLocaleDateString()}</small>
                     <div className="LikeDislike">
                         {localStorage.usertoken ? likeButton : likeLoginLink}
                         <span> {props.review.numLiked} </span>
