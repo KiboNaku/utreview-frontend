@@ -62,8 +62,28 @@ function ResultsComponent(props) {
                                 </Tabs>
                             </AppBar>
 
-                            <CoursePanel page={props.page} handlePageInc={props.handlePageInc} match={props.match} handleSortChange={props.handleSortChange} loading={loading} emptyTable={emptyTable} tabIndex={props.tabIndex} {...props.courses} />
-                            <ProfPanel match={props.match} handleSortChange={props.handleSortChange} loading={loading} emptyTable={emptyTable} tabIndex={props.tabIndex} {...props.profs} />
+                            <CoursePanel  
+                                {...props.courses}
+                                loading={loading} 
+                                emptyTable={emptyTable} 
+
+                                match={props.match} 
+                                tabIndex={props.tabIndex} 
+                                
+                                calcTableEdge={props.calcTableEdge}
+                                handlePageInc={props.handlePageInc}
+                                handleSortChange={props.handleSortChange} />
+                            <ProfPanel 
+                                {...props.profs}
+                                loading={loading} 
+                                emptyTable={emptyTable} 
+                                
+                                match={props.match} 
+                                tabIndex={props.tabIndex} 
+
+                                calcTableEdge={props.calcTableEdge}
+                                handlePageInc={props.handlePageInc}
+                                handleSortChange={props.handleSortChange}  />
                         </div>
                     </div>
                 </div>

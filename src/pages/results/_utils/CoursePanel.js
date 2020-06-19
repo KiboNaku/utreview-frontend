@@ -1,9 +1,10 @@
-import React, { Component, useCallback, useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import TabPanel from './TabPanel'
 import { Link } from 'react-router-dom'
 
 function CoursePanel(props) {
-
+    
+    const { sortDir, sortBy } = props.sort
     const [hasMore, setHasMore] = useState(true)
     const observer = useRef()
     const loadRef = useCallback(node => {
@@ -11,18 +12,11 @@ function CoursePanel(props) {
         observer.current = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting && hasMore) {
                 props.handlePageInc()
-                if (calcTableEdge() >= props.data.length) setHasMore(false)
+                if (props.calcTableEdge(props.page, props.data.length) >= props.data.length) setHasMore(false)
             }
         })
         if (node) observer.current.observe(node)
     }, [props.loading, props.hasMore])
-
-
-    const { sortDir, sortBy } = props.sort
-
-    function calcTableEdge() {
-        return Math.min(25 * (props.page + 1), props.data.length)
-    }
 
     function sort(a, b) {
 
@@ -71,7 +65,7 @@ function CoursePanel(props) {
             let sortedCourses = props.data
                 .filter(course => filter.depts.length <= 0 || filter.depts.includes(course.deptName))
                 .sort(sortTypes[sortDir].fn)
-                .slice(0, calcTableEdge())
+                .slice(0, props.calcTableEdge(props.page, props.data.length))
 
             return sortedCourses.map((course, index) => {
                 const { courseNum, courseName } = course

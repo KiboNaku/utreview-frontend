@@ -1,21 +1,27 @@
-import React, { Component } from 'react'
-import Loading from '../../_utils/Loading.js'
-import { Link } from 'react-router-dom'
+import React, { Component, useCallback, useRef, useState } from 'react'
 import TabPanel from './TabPanel'
+import { Link } from 'react-router-dom'
 
-class ProfPanel extends Component {
+function ProfPanel(props) {
 
-    constructor() {
+    const { sortDir, sortBy } = props.sort
+    const [hasMore, setHasMore] = useState(true)
+    const observer = useRef()
+    const loadRef = useCallback(node => {
+        if (observer.current) observer.current.disconnect()
+        observer.current = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && hasMore) {
+                props.handlePageInc()
+                if (props.calcTableEdge(props.page, props.data.length) >= props.data.length) setHasMore(false)
+            }
+        })
+        if (node) observer.current.observe(node)
+    }, [props.loading, props.hasMore])
 
-        super();
-        this.setTableData = this.setTableData.bind(this)
-        this.sort = this.sort.bind(this)
-    }
+    function sort(a, b) {
 
-    sort(a, b) {
-        
-        const sortBy = this.props.sort.sortBy
-        const profs = this.props.data
+        const sortBy = props.sort.sortBy
+        const profs = props.data
 
         if (profs.length >= 0 && sortBy in a) {
 
@@ -30,21 +36,21 @@ class ProfPanel extends Component {
         return null;
     }
 
-    setTableData() {
+    function setTableData() {
 
-        if (this.props.data != null) {
+        if (props.data != null) {
 
-            const { sortDir } = this.props.sort
-            const filter = this.props.filter
+            const { sortDir } = props.sort
+            const filter = props.filter
 
             const sortTypes = {
                 up: {
                     class: 'sortUp',
-                    fn: (a, b) => this.sort(a, b)
+                    fn: (a, b) => sort(a, b)
                 },
                 down: {
                     class: 'sortDown',
-                    fn: (a, b) => this.sort(b, a)
+                    fn: (a, b) => sort(b, a)
                 },
                 default: {
                     class: 'sort',
@@ -54,8 +60,9 @@ class ProfPanel extends Component {
             // TODO: update with prof info
             // TODO: update with filter
 
-            let sortedProfs = this.props.data
+            let sortedProfs = props.data
                 .sort(sortTypes[sortDir].fn)
+                .slice(0, props.calcTableEdge(props.page, props.data.length))
 
             return sortedProfs.map(prof => {
                 const { profName } = prof
@@ -65,12 +72,12 @@ class ProfPanel extends Component {
                 const numRating = Math.floor(Math.random() * 1500)
 
                 return (
-                    <tr key={profName}>
+                    <tr key={profName} ref={loadRef}>
                         <td colSpan="3" className="class-name">{
                             <Link
                                 className="utcolor"
                                 to={{
-                                    pathname: `${this.props.match.url}/${profName}`,
+                                    pathname: `${props.match.url}/${profName}`,
                                     state: {
                                         profName: profName
                                     }
@@ -90,17 +97,14 @@ class ProfPanel extends Component {
         }
     }
 
-    render() {
+    let profTable = (
 
-        const { sortDir, sortBy } = this.props.sort
-
-        let profTable = (
-
+        <div>
             <table id='profResults' className='table table-hover result-table'>
                 <thead className='thead-dark'>
                     <tr rowSpan="2">
 
-                        <th scope="col" colSpan="3" className="sortable" onClick={() => this.props.handleSortChange('profName')}>
+                        <th scope="col" colSpan="3" className="sortable" onClick={() => props.handleSortChange('profName')}>
                             <span>Name</span>
                             <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'profName' ? '' : ' invisible')}></i>
                         </th>
@@ -119,17 +123,18 @@ class ProfPanel extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.setTableData()}
+                    {setTableData()}
                 </tbody>
             </table>
-        )
-        
-        return (
-            <TabPanel index={1} value={this.props.tabIndex}>
-                {this.props.loaded ? (this.props.data == null ? this.props.emptyTable : profTable) : this.props.loading}
-            </TabPanel>
-        )
-    }
+            <div>{hasMore && props.loading}</div>
+        </div>
+    )
+
+    return (
+        <TabPanel index={1} value={props.tabIndex}>
+            {props.loaded ? (props.data == null ? props.emptyTable : profTable) : props.loading}
+        </TabPanel>
+    )
 }
 
 export default ProfPanel
