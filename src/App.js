@@ -33,11 +33,10 @@ function App() {
 				</Switch>
 				<Footer />
 
-                <Login />
-                <Signup />
+		        <Login />
+		        <Signup />
 			</div>
 		</Router>
-
 	);
 }
 

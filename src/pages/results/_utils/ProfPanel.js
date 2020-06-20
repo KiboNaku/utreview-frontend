@@ -1,78 +1,83 @@
-import React, { Component } from 'react'
-import Loading from '../../_utils/Loading.js'
-import { Link } from 'react-router-dom'
+import React, { Component, useCallback, useRef, useState } from 'react'
 import TabPanel from './TabPanel'
+import { Link } from 'react-router-dom'
 
-class ProfPanel extends Component {
+function ProfPanel(props) {
 
-    constructor() {
+    const { sortDir, sortBy } = props.sort
+    const [hasMore, setHasMore] = useState(true)
+    const observer = useRef()
+    const loadRef = useCallback(node => {
+        if (observer.current) observer.current.disconnect()
+        observer.current = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && hasMore) {
+                props.handlePageInc()
+                if (props.calcTableEdge(props.page, props.data.length) >= props.data.length) setHasMore(false)
+            }
+        })
+        if (node) observer.current.observe(node)
+    }, [props.loading, props.hasMore])
 
-        super();
-        this.setTableData = this.setTableData.bind(this)
-        this.sortUp = this.sortUp.bind(this)
-        this.sortDown = this.sortDown.bind(this)
+    function sort(a, b) {
+
+        const sortBy = props.sort.sortBy
+        const profs = props.data
+
+        if (profs.length >= 0 && sortBy in a) {
+
+            // TODO: update with approval & # ratings
+
+            switch (sortBy) {
+                case 'profName':
+                    return b.profName.localeCompare(a.profName)
+            }
+        }
+
+        return null;
     }
 
-    sortUp(a, b) {
-        // const courses = this.state.courses.data
-        // const professors = this.state.profs.data
-        // const sortBy = this.state.courses.sort.sortBy
+    function setTableData() {
 
-        // if (sortBy === 'courseNum' && courses.length !== 0 && 'courseNum' in a) { return b.courseNum.localeCompare(a.courseNum) }
-        // else if (sortBy === 'courseName' && courses.length !== 0 && 'courseName' in a) { return b.courseName.localeCompare(a.courseName) }
-        // else if (sortBy === 'profName' && professors.length !== 0 && 'profName' in a) { return b.profName.localeCompare(a.profName) }
-    }
+        if (props.data != null) {
 
-    sortDown(a, b) {
-        // const courses = this.state.courses.data
-        // const professors = this.state.profs.data
-        // const sortBy = this.state.courses.sort.sortBy
-
-        // if (sortBy === 'courseNum' && courses.length !== 0 && 'courseNum' in a) { return a.courseNum.localeCompare(b.courseNum) }
-        // else if (sortBy === 'courseName' && courses.length !== 0 && 'courseName' in a) { return a.courseName.localeCompare(b.courseName) }
-        // else if (sortBy === 'profName' && professors.length !== 0 && 'profName' in a) { return a.profName.localeCompare(b.profName) }
-    }
-
-    setTableData() {
-
-        if (this.props.data != null) {
-            const { sortDir, sortBy } = this.props.sort
-            const filter = this.props.filter
+            const { sortDir } = props.sort
+            const filter = props.filter
 
             const sortTypes = {
                 up: {
                     class: 'sortUp',
-                    fn: (a, b) => this.sortUp(a, b)
+                    fn: (a, b) => sort(a, b)
                 },
                 down: {
                     class: 'sortDown',
-                    fn: (a, b) => this.sortDown(a, b)
+                    fn: (a, b) => sort(b, a)
                 },
                 default: {
                     class: 'sort',
-                    fn: (a, b) => a
+                    fn: (a) => a
                 }
             }
             // TODO: update with prof info
+            // TODO: update with filter
 
-            let sortedCourses = this.props.data
-                .filter(course => filter.depts.length <= 0 || filter.depts.includes(course.deptName))
+            let sortedProfs = props.data
                 .sort(sortTypes[sortDir].fn)
+                .slice(0, props.calcTableEdge(props.page, props.data.length))
 
-            return sortedCourses.map(course => {
-                const { profName } = course
+            return sortedProfs.map(prof => {
+                const { profName } = prof
 
                 // TODO: temporary numbers to fill table: remove later
                 const rating = Math.floor(Math.random() * 70 + 30)
                 const numRating = Math.floor(Math.random() * 1500)
 
                 return (
-                    <tr key={profName}>
-                        <td colSpan="1">{profName}</td>
-                        <td colSpan="2" className="class-name">{
+                    <tr key={profName} ref={loadRef}>
+                        <td colSpan="3" className="class-name">{
                             <Link
+                                className="utcolor"
                                 to={{
-                                    pathname: `${this.props.match.url}/${profName}`,
+                                    pathname: `${props.match.url}/${profName}`,
                                     state: {
                                         profName: profName
                                     }
@@ -92,20 +97,19 @@ class ProfPanel extends Component {
         }
     }
 
-    render() {
+    let profTable = (
 
-        const { sortDir, sortBy } = this.props.sort
-
-        let profTable = (
-
+        <div>
             <table id='profResults' className='table table-hover result-table'>
                 <thead className='thead-dark'>
                     <tr rowSpan="2">
 
-                        <th scope="col" colSpan="3" className="sortable" onClick={() => this.props.handleSortChange('courseNum')}>
+                        <th scope="col" colSpan="3" className="sortable" onClick={() => props.handleSortChange('profName')}>
                             <span>Name</span>
-                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseNum' ? '' : ' invisible')}></i>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'profName' ? '' : ' invisible')}></i>
                         </th>
+
+                        {/* TODO: update with onclick functions */}
 
                         <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for approval")}>
                             <span>Approval</span>
@@ -119,17 +123,18 @@ class ProfPanel extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.setTableData()}
+                    {setTableData()}
                 </tbody>
             </table>
-        )
-        
-        return (
-            <TabPanel index={1} value={this.props.tabIndex}>
-                {this.props.loaded ? (this.props.data == null ? this.props.emptyTable : profTable) : this.props.loading}
-            </TabPanel>
-        )
-    }
+            <div>{hasMore && props.loading}</div>
+        </div>
+    )
+
+    return (
+        <TabPanel index={1} value={props.tabIndex}>
+            {props.loaded ? (props.data == null ? props.emptyTable : profTable) : props.loading}
+        </TabPanel>
+    )
 }
 
 export default ProfPanel
