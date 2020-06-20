@@ -5,3 +5,11 @@
 .footer-link {
     color: white;
 }
+
+.footer-link:hover {
+    color: #f8971f;
+}
+
+.footer-link:active {
+    color: #f8971f;
+}

@@ -139,7 +139,7 @@
     }
 
     .userRatings{
-        flex-direction: row;
+        flex-direction: column;
     }
 
     .CourseInfo{
