@@ -65,10 +65,10 @@ class CourseReviews extends React.Component {
 			"Seth Bank"
 		]
 
-		const updatedReviews = courseReviews.slice().sort((a, b) => b.date - a.date)
+		const updatedReviews = props.courseReviews.slice().sort((a, b) => b.date - a.date)
 
 		this.state = {
-			courseReviews: courseReviews,
+			courseReviews: props.courseReviews,
 			reviewsFiltered: updatedReviews,
 			profs: profsFiltered,
 			sortBy: "most-recent"
