@@ -100,7 +100,7 @@ function ProfPanel(props) {
     let profTable = (
 
         <div>
-            <table id='profResults' className='table table-hover result-table'>
+            <table id='profResults' className='table table-hover table-responsive result-table'>
                 <thead className='thead-dark'>
                     <tr rowSpan="2">
 

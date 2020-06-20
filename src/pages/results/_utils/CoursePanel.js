@@ -107,7 +107,7 @@ function CoursePanel(props) {
     let courseTable = (
         <div>
 
-            <table id='courseResults' className='table table-hover result-table'>
+            <table id='courseResults' className='table table-hover table-responsive result-table'>
                 <thead className='thead-dark'>
                     <tr rowSpan="2">
 

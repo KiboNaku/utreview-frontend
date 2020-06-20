@@ -184,6 +184,7 @@
 @media screen and (max-width: 360px){
     .userRat{
         justify-items: center;
+        margin: 0 auto;
         width: auto;    
     }
 

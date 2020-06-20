@@ -20,6 +20,10 @@
     min-width: 100%;
 }
 
+.result-table th{
+    white-space: nowrap;
+}
+
 table {
     table-layout: fixed;
 }
