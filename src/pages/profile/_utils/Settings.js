@@ -10,20 +10,27 @@ class Settings extends Component {
 		this.state = {
 			firstName: props.data.first_name,
 			lastName: props.data.last_name,
-			password: '',
-			confirmPassord: '',
-			email: props.data.email
+			password: '12345',
+			confirmPassord: '12345',
+			major: props.data.major
 		}
 
-		console.log(props.data)
+		console.log('constructor', props.data)
 		console.log('constructor', this.state)
 		this.onChange = this.onChange.bind(this)
+		this.handleMajorChange = this.handleMajorChange.bind(this)
 	}
 
 	onChange(event) {
 		this.setState({ [event.target.name]: [event.target.value] })
 		console.log(this.state.firstName)
 	}
+
+	handleMajorChange = (inputValue, { action }) => {
+        if (inputValue !== null) {
+            this.setState({ major: inputValue.value })
+        }
+    }
 
 	render() {
 
@@ -77,17 +84,17 @@ class Settings extends Component {
 												classNamePrefix="select"
 												name="major"
 												options={this.props.data.majorList}
-												onChange={this.props.handleMajorChange}
+												onChange={this.handleMajorChange}
 												placeholder="Select major..."
 												isClearable={true}
 												isSearchable={true}
+												defaultValue={{label: this.state.major, value: this.state.major}}
 											/>
 										</div>
 									</div>
 								</div>
 								<div>
 									<h4>Password: </h4>
-
 									<div className="form-group row">
 										<label for='password' className='col-sm-4 col-form-label'>New Password: </label>
 										<div className='col-sm-8'>
@@ -117,33 +124,17 @@ class Settings extends Component {
 										</div>
 									</div>
 								</div>
-								<div className="form-group row">
-									{/* <label for='major' className='col-sm-4 col-form-label'>Major: </label>
-									<div className='col-sm-8'>
-										<Select
-											id='major'
-											className="basic-single"
-											classNamePrefix="select"
-											name="major"
-											options={this.props.data.majorList}
-											onChange={this.props.handleMajorChange}
-											placeholder="Select major..."
-											isClearable={true}
-											isSearchable={true}
-										/>
-									</div> */}
-								</div>
 							</form>
 							<div className='modal-footer d-block' align='center'>
 								<button
 									type='button'
 									className='btn btn-outline-dark font-weight-bold'
-									onClick={() => this.props.onSubmit(this.state.firstName, this.state.lastName, this.state.password, this.state.major)}>
+									onClick={() => this.props.onSubmit('apply', this.state.firstName, this.state.lastName, this.state.password, this.state.major)}>
 									Apply </button>
 								<button
 									type='button'
 									className='btn btn-outline-dark font-weight-bold'
-									onClick={() => this.props.onSubmit(prevFirstName, prevLastName)}>
+									onClick={() => this.props.onSubmit('cancel')}>
 									Cancel </button>
 							</div>
 						</div>

@@ -53,11 +53,11 @@ class Profile extends Component {
 
         super()
         this.state = {
-            first_name: '',
-            last_name: '',
-            email: '',
-            major: '',
-            profilePic: '',
+            first_name: 'Vina',
+            last_name: 'Xue',
+            email: 'yxue22@utexas.edu',
+            major: 'Accounting',
+            profilePic: 'corgi2.jpg',
             pictures: ['corgi1.jpg', 'corgi2.jpg', 'corgi3.jpg'],
             reviews: reviewList,
             majorList: null
@@ -67,20 +67,34 @@ class Profile extends Component {
         this.editReview = this.editReview.bind(this)
         this.setImageData = this.setImageData.bind(this)
         this.onProfilePicChange = this.onProfilePicChange.bind(this)
-        this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
-        this.handleMajorChange = this.handleMajorChange.bind(this)
     }
 
     componentDidMount() {
-        const token = localStorage.usertoken
-        const decoded = jwt_decode(token)
-        this.setState({
-            first_name: decoded.identity.first_name,
-            last_name: decoded.identity.last_name,
-            email: decoded.identity.email,
-            major: decoded.identity.major,
-            // profilePic: decoded.identity.profile_pic
+        // const token = localStorage.usertoken
+        // const decoded = jwt_decode(token)
+        // this.setState({
+        //     first_name: decoded.identity.first_name,
+        //     last_name: decoded.identity.last_name,
+        //     email: decoded.identity.email,
+        //     major: decoded.identity.major,
+        // profilePic: decoded.identity.profile_pic
+        // })
+
+        getMajor().then(res => {
+            if (res.error) {
+                alert(res.error)
+            } else {
+                let data = res.majors
+                let list = new Array()
+                for (const i in data) {
+                    list.push({
+                        value: data[i]['name'],
+                        label: data[i]['name']
+                    })
+                }
+                this.setState({ majorList: list })
+            }
         })
     }
 
@@ -135,43 +149,18 @@ class Profile extends Component {
     }
 
     //all need to add backend stuff
-    onChange(event) {
 
-    }
-
-    onSubmit(firstName, lastName, password, email, major) {
-        this.setState({
-            first_name: firstName,
-            last_name: lastName,
-            email: email,
-            major: major
-        })
-        //do something with password
-        $('#settings').modal('hide')
-    }
-
-    handleMajorChange = (inputValue, { action }) => {
-        if (inputValue !== null) {
-            this.setState({ major: inputValue.value })
+    onSubmit(mode, firstName, lastName, password, major) {
+        switch (mode) {
+            case 'apply':
+                this.setState({
+                    first_name: firstName,
+                    last_name: lastName,
+                    major: major
+                })
+            //do something with password
         }
-    }
-
-    componentDidMount() {
-        getMajor().then(res => {
-            if (res.error) {
-                alert(res.error)
-            } else {
-                let data = res.majors
-                let list = new Array()
-                for (const i in data) {
-                    list.push({
-                        value: data[i]['name'],
-                        label: data[i]['name']
-                    })
-                }
-                this.setState({ majorList: list })
-            }
-        })
+        $('#settings').modal('hide')
     }
 
     render() {
@@ -188,7 +177,6 @@ class Profile extends Component {
                     data={this.state}
                     onChange={this.onChange}
                     onSubmit={this.onSubmit}
-                    handleMajorChange={this.handleMajorChange}
                 />
             </main>
         )
