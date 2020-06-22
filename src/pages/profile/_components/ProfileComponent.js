@@ -13,7 +13,7 @@ function ProfileComponent(props) {
 					<div className='user-information'>
 						<ProfilePicture
 							name={props.data.first_name + ' ' + props.data.last_name}
-							profilePic={props.data.profilePic}
+							image={props.data.image}
 						/>
 						<h1 className='profile-name'>{props.data.first_name + ' ' + props.data.last_name}</h1>
 						<p> <b>Email:</b> {props.data.email} </p>
