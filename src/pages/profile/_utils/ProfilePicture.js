@@ -19,12 +19,18 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfilePicture(props) {
 	const classes = useStyles();
+
 	return (
 		<div>
 			<span className='d-flex justify-content-center'>
 				<Avatar
 					alt={props.name}
-					src={props.profilePic === '' ? null : require('./../../../res/img/' + props.profilePic)}
+					src={props.image === ''
+						? require('./../../../res/img/default.jpg')
+						: (props.image === undefined
+							? require('./../../../res/img/default.jpg')
+							: require('./../../../res/img/' + props.image))
+					}
 					type='button'
 					data-toggle="modal"
 					data-target={'#change-profile-pic'}
@@ -36,14 +42,20 @@ function ProfilePicture(props) {
 
 export function SelectionPicture(props) {
 	const classes = useStyles();
+
 	return (
 		<Avatar
 			alt={props.name}
-			src={props.profilePic === '' ? null : require('./../../../res/img/' + props.profilePic)}
+			src={props.image === ''
+				? require('./../../../res/img/default.jpg')
+				: (props.image === undefined
+					? require('./../../../res/img/default.jpg')
+					: require('./../../../res/img/' + props.image))
+			}
 			type='button'
-			className={classes.selection} 
-			onClick={() => props.onProfilePicChange(props.profilePic)}
-			/>
+			className={classes.selection}
+			onClick={() => props.onImageChange(props.image)}
+		/>
 	)
 }
 

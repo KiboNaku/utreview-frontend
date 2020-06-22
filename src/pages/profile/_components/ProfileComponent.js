@@ -7,13 +7,13 @@ function ProfileComponent(props) {
 			<div className='d-flex justify-content-center'>
 				<div className='col-lg-8 profile'>
 					<div className='settings-button'>
-						<button type="button" className="btn btn-dark font-weight-bold" data-toggle="modal"data-target={'#settings'} >
+						<button type="button" className="btn btn-outline-dark font-weight-bold" data-toggle="modal"data-target={'#settings'} >
 							Settings </button>
 					</div>
 					<div className='user-information'>
 						<ProfilePicture
 							name={props.data.first_name + ' ' + props.data.last_name}
-							profilePic={props.data.profilePic}
+							image={props.data.image}
 						/>
 						<h1 className='profile-name'>{props.data.first_name + ' ' + props.data.last_name}</h1>
 						<p> <b>Email:</b> {props.data.email} </p>
