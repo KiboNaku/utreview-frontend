@@ -192,7 +192,7 @@ class CourseDetails extends React.Component {
             loggedIn: loggedIn,
             userEmail: email
         }
-        console.log("hello")
+
         getCourseInfo(course).then(res => {
             if (res.error) {
                 alert(res.error)

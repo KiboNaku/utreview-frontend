@@ -1,0 +1,200 @@
+.profAddReview{
+    display: flex;   
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.add-review{
+    margin-left: 30px;
+}
+
+.add-review-text{
+    display: inline-block;
+}
+
+.profReviews{
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-top: 50px;
+    padding-bottom: 50px;
+}
+
+.review-filters{
+    display: flex;
+    flex-direction: row;
+}
+
+.review-sort{
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 50%;
+}
+
+.review-list-item{
+    border: 0.5px solid black;
+}
+
+.prof-review-entry{
+    display: flex;
+    flex-direction: row;
+}
+
+.userDes{
+    word-wrap: break-word;
+    width: 300px;
+    font-size: small;
+}
+
+.userRev{
+    align-content: left;
+    width: 700px;
+    margin-right: 20px;
+    margin-left: 20px;
+    border-right: 1px solid black;
+}
+
+.review-text{
+    margin-bottom: 0px;
+}
+
+.LikeDislike{
+    margin-bottom: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
+.likeButton{
+    background-color: white;
+    border: none;
+}
+
+.dislikeButton{
+    background-color: white;
+    border: none;
+}
+
+.userRat{
+    align-content: left;
+    margin-right: 10px;
+    width: 425px;    
+}
+
+.rowRating{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.rowApproval{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width: 992px){
+    .profAddReview{
+        justify-content: center;
+    }
+
+    .rowRating{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .profAddReview{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .add-review{
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+
+    .profReviews{
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .review-filters{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .review-sort{
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 100%;
+    }
+
+    .prof-review-entry{
+        flex-direction: column;
+    }
+
+    .userDes{
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        margin-bottom: 20px;
+    }
+
+    .userText{
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+
+    .userRev{
+        align-items: center;
+        width: auto;
+        margin-bottom: 20px;
+        border-right: none;
+        margin-right: 5px;
+        margin-left: 5px;
+        border-bottom: 1px solid black;
+    }
+
+    .LikeDislike{
+        margin-bottom: 10px;
+        position: relative;
+        margin-top: 10px;
+    }
+
+    .userRat{
+        align-content: left;
+        margin-right: 10px;
+        width: auto;    
+    }
+
+    .rowRating{
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+@media screen and (max-width: 360px){
+    .userRat{
+        justify-items: center;
+        margin: 0 auto;
+        width: auto;    
+    }
+
+    .review-list-item{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .rowRating{
+        display: flex;
+        flex-direction: column;
+    }
+}

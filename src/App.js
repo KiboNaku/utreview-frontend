@@ -4,6 +4,7 @@ import Footer from './pages/_utils/Footer'
 import Home from './pages/home/Home'
 import About from './pages/about/About'
 import CourseDetails from './pages/details/CourseDetails'
+import ProfDetails from './pages/details/ProfDetails'
 import ReviewForm from './pages/review/ReviewForm'
 import Profile from './pages/profile/Profile'
 import Results from './pages/results/Results'
@@ -30,6 +31,7 @@ function App() {
 					<Route exact path="/results" component={Results} />
 					<Route path="/add-review" component={ReviewForm} /> 
 					<Route path={"/results/:courseId"} render={(props) => <CourseDetails />} />
+					<Route path={"/prof-results/:profId"} render={(props) => <ProfDetails />} />
 				</Switch>
 				<Footer />
 
