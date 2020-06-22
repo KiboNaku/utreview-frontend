@@ -8,36 +8,40 @@ class Settings extends Component {
 		super(props)
 
 		this.state = {
-			firstName: props.data.first_name,
-			lastName: props.data.last_name,
-			password: '12345',
-			confirmPassord: '12345',
-			major: props.data.major
+			firstName: '',
+			lastName: '',
+			password: '',
+			confirmPassord: '',
+			major: '',
+			email: ''
 		}
 
-		console.log('constructor', props.data)
 		console.log('constructor', this.state)
+
 		this.onChange = this.onChange.bind(this)
 		this.handleMajorChange = this.handleMajorChange.bind(this)
 	}
 
 	onChange(event) {
 		this.setState({ [event.target.name]: [event.target.value] })
-		console.log(this.state.firstName)
 	}
 
 	handleMajorChange = (inputValue, { action }) => {
         if (inputValue !== null) {
             this.setState({ major: inputValue.value })
         }
-    }
+	}
+	
+	componentDidMount() {
+		this.setState({
+			firstName: this.props.data.first_name,
+			lastName: this.props.data.last_name,
+			major: this.props.data.major,
+			email: this.props.data.email
+		})
+	}
 
 	render() {
-
-		let prevFirstName = this.props.data.first_name
-		let prevLastName = this.props.data.last_name
-		console.log(this.state)
-
 		return (
 			<div className="modal fade" id={'settings'} role="dialog">
 				<div className="modal-dialog modal-dialog-centered" role="document">
