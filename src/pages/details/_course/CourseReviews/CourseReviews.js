@@ -328,7 +328,7 @@ class CourseReviews extends React.Component {
 			<div className="courseReviews">
 				<div className="card course-card">
 					<div className="card-header course-header" >
-						<h4> Reviews </h4>
+						<h4> Reviews ({this.state.reviewsFiltered.length}) </h4>
 					</div>
 					<div className="card-body">
 						<div className="review-filters">

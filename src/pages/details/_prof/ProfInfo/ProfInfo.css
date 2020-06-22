@@ -1,0 +1,140 @@
+.prof-stats{
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+}
+
+.profInfo{
+    margin-right: 40px;
+    margin-left: 100px;
+    margin-top: 50px;
+
+}
+
+.info-header{
+    background-color: white;
+}
+
+.info-body{
+    color: white;
+    background-color: #333f48;
+    font-size: 15px;
+}
+
+.card-title{
+    padding-bottom: 10px;
+}
+
+.prof-title{
+    color: white;
+}
+
+.profRatings{
+    margin-right: 100px;
+    margin-left: 10px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    color: black;
+
+}
+
+.userRatings{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.rating{
+    line-height: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow-y: auto;
+}
+
+.rating-heading{
+    text-align: center;
+}
+
+.progress{
+    height: 30px;
+}
+
+.p-rating {
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 992px){
+    .prof-stats{
+        flex-direction: column;
+    }
+
+    .profInfo{
+        margin-right: 50px;
+        margin-left: 50px;
+        margin-top: 50px;
+    }
+    
+    .userRatings{
+        flex-direction: row;
+    }
+
+    .profRatings{
+        margin: 0 auto;
+        margin-top: 50px;
+        justify-content: center;
+        display: inline-block;
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .prof-stats{
+        flex-direction: column;
+    }
+
+    .profInfo{
+        margin-right: 50px;
+        margin-left: 50px;
+        margin-top: 50px;
+        width: auto;
+    }
+    
+    .userRatings{
+        flex-direction: row;
+    }
+
+    .profRatings{
+        margin: 0 auto;
+        margin-top: 50px;
+        justify-content: center;
+        display: inline-block;
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 576px){   
+    .prof-stats{
+        flex-direction: column;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .userRatings{
+        flex-direction: column;
+    }
+
+    .profInfo{
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-top: 50px;
+    }
+
+    .profRatings{
+        margin: 0 auto;
+        margin-top: 50px;
+        justify-content: center;
+        width: auto;
+    }
+}

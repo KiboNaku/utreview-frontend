@@ -77,7 +77,7 @@ function ProfPanel(props) {
                             <Link
                                 className="utcolor"
                                 to={{
-                                    pathname: `${props.match.url}/${profName}`,
+                                    pathname: `prof-results/${profName}`,
                                     state: {
                                         profName: profName
                                     }
