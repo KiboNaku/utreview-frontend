@@ -86,8 +86,6 @@ class ReviewForm extends Component {
 		if (this.state.Helpful === "") { HelpfulError = emptyErrorMessage; }
 		if (this.state.GradingDifficulty === "") { GradingDifficultyError = emptyErrorMessage; }
 
-		console.log(this.state.CourseNumberError)
-
 		if (CourseNumberError ||
 			CourseApprovalError ||
 			UsefulnessError ||
@@ -142,7 +140,6 @@ class ReviewForm extends Component {
 			}
 
 			if (this.state.OldReview !== null) {
-				console.log("old review")
 				editReview(review).then(res => {
 					if (res.error) {
 						alert(res.error)
@@ -151,7 +148,6 @@ class ReviewForm extends Component {
 					}
 				})
 			} else {
-				console.log("new review")
 				newReview(review).then(res => {
 					if (res.error) {
 						alert(res.error)
@@ -177,7 +173,6 @@ class ReviewForm extends Component {
 	}
 
 	handleCourseNumberChange = (inputValue, { action }) => {
-		console.log(action)
 		if (inputValue !== null) {
 			this.setState({ CourseNumber: inputValue.value })
 			if (this.state.ProfessorName !== "") {
@@ -205,7 +200,7 @@ class ReviewForm extends Component {
 	}
 
 	handleProfessorNameChange = (inputValue, { action }) => {
-		console.log(action)
+
 		if (inputValue !== null) {
 			this.setState({ ProfessorName: inputValue.value })
 			if (this.state.CourseNumber !== "") {
@@ -219,8 +214,6 @@ class ReviewForm extends Component {
 					course_name: this.state.CourseNumber,
 					prof_name: inputValue.value
 				}
-				console.log(review.course_name)
-				console.log(review.prof_name)
 
 				checkDuplicate(review).then(res => {
 					if (res.error) {
@@ -290,8 +283,6 @@ class ReviewForm extends Component {
 
 			Disable: false
 		})
-
-		console.log(this.state.CourseNumber)
 	}
 
 	render() {
