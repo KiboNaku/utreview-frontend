@@ -10,7 +10,6 @@ export const signup = newUser => {
 			major: newUser.major
 		})
 		.then(response => {
-			console.log(response)
 			localStorage.setItem('usertoken', response.data)
 			return response.data
 		})

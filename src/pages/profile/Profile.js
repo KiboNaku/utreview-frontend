@@ -12,10 +12,12 @@ import { ProfilePicModal } from './_utils/ProfilePicPopup'
 import Settings from './_utils/Settings'
 import { getMajor } from './../popups/_utils/UserFunctions'
 import './Profile.css'
+import axios from 'axios'
 
 
 class Profile extends Component {
     constructor() {
+
         const reviewList = [
             {
                 id: 1,
@@ -60,7 +62,8 @@ class Profile extends Component {
             profilePic: '',
             pictures: ['corgi1.jpg', 'corgi2.jpg', 'corgi3.jpg'],
             reviews: reviewList,
-            majorList: null
+            majorList: null,
+            success: "Not yet"
         }
 
         this.setReviewData = this.setReviewData.bind(this)
@@ -73,13 +76,30 @@ class Profile extends Component {
     }
 
     componentDidMount() {
+
+        getMajor().then(res => {
+            if (res.error) {
+                alert(res.error)
+            } else {
+                let data = res.majors
+                let list = new Array()
+                for (const i in data) {
+                    list.push({
+                        value: data[i]['name'],
+                        label: data[i]['name']
+                    })
+                }
+                this.setState({ majorList: list })
+            }
+        })
+
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
         this.setState({
             first_name: decoded.identity.first_name,
             last_name: decoded.identity.last_name,
             email: decoded.identity.email,
-            major: decoded.identity.major,
+            major: decoded.identity.major
             // profilePic: decoded.identity.profile_pic
         })
     }
@@ -91,8 +111,6 @@ class Profile extends Component {
                 review = r
             }
         })
-
-        console.log(review)
 
         this.props.history.push({
             pathname: '/add-review',
@@ -156,27 +174,11 @@ class Profile extends Component {
         }
     }
 
-    componentDidMount() {
-        getMajor().then(res => {
-            if (res.error) {
-                alert(res.error)
-            } else {
-                let data = res.majors
-                let list = new Array()
-                for (const i in data) {
-                    list.push({
-                        value: data[i]['name'],
-                        label: data[i]['name']
-                    })
-                }
-                this.setState({ majorList: list })
-            }
-        })
-    }
-
     render() {
+        
         return (
             <main>
+                <h1>{this.state.success}</h1>
                 <ProfileComponent
                     data={this.state}
                     setReviewData={this.setReviewData}
