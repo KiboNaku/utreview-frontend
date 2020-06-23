@@ -40,7 +40,8 @@ class Signup extends Component {
             last_name: this.state.last_name,
             email: this.state.email,
             password: this.state.password,
-            major: this.state.major
+            major: this.state.major,
+            image: 'default.jpg'
         }
 
         signup(newUser).then(res => {

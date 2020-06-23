@@ -7,7 +7,8 @@ export const signup = newUser => {
 			last_name: newUser.last_name,
 			email: newUser.email + '@utexas.edu',
 			password: newUser.password,
-			major: newUser.major
+			major: newUser.major,
+			image: newUser.image
 		})
 		.then(response => {
 			localStorage.setItem('usertoken', response.data)
@@ -19,7 +20,7 @@ export const login = user => {
 	return axios
 		.post('/api/login', {
 			email: user.email + '@utexas.edu',
-			password: user.password
+			password: user.password,
 		})
 		.then(response => {
 			localStorage.setItem('usertoken', response.data)
