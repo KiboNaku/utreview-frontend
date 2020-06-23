@@ -6,7 +6,6 @@ export const populateResults = (search) => {
       searchValue: search.searchValue
     })
     .then(response => {
-      console.log(response)
       return response.data
     })
 }
@@ -17,7 +16,6 @@ export const populateCourses = (search) => {
       searchValue: search.searchValue
     })
     .then(response => {
-      console.log(response)
       return response.data
     })
 }
@@ -28,7 +26,6 @@ export const populateProfs = (search) => {
       searchValue: search.searchValue
     })
     .then(response => {
-      console.log(response)
       return response.data
     })
 }
