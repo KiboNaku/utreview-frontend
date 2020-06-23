@@ -11,6 +11,7 @@ import { SelectionPicture } from './_utils/ProfilePicture'
 import { ProfilePicModal } from './_utils/ProfilePicPopup'
 import Settings from './_utils/Settings'
 import { getMajor } from './../popups/_utils/UserFunctions'
+import { getProfilePictures } from './_utils/ProfileFunctions'
 import './Profile.css'
 import axios from 'axios'
 
@@ -59,23 +60,30 @@ class Profile extends Component {
             last_name: '',
             email: '',
             major: '',
-            profilePic: '',
-            pictures: ['corgi1.jpg', 'corgi2.jpg', 'corgi3.jpg'],
+            image: '',
+            images: [],
             reviews: reviewList,
-            majorList: null,
-            success: "Not yet"
+            majorList: []
         }
 
         this.setReviewData = this.setReviewData.bind(this)
         this.editReview = this.editReview.bind(this)
         this.setImageData = this.setImageData.bind(this)
-        this.onProfilePicChange = this.onProfilePicChange.bind(this)
-        this.onChange = this.onChange.bind(this)
+        this.onImageChange = this.onImageChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
-        this.handleMajorChange = this.handleMajorChange.bind(this)
     }
 
     componentDidMount() {
+
+        const token = localStorage.usertoken
+        const decoded = jwt_decode(token)
+        this.setState({
+            first_name: decoded.identity.first_name,
+            last_name: decoded.identity.last_name,
+            email: decoded.identity.email,
+            major: decoded.identity.major,
+            image: decoded.identity.image
+        })
 
         getMajor().then(res => {
             if (res.error) {
@@ -93,14 +101,17 @@ class Profile extends Component {
             }
         })
 
-        const token = localStorage.usertoken
-        const decoded = jwt_decode(token)
-        this.setState({
-            first_name: decoded.identity.first_name,
-            last_name: decoded.identity.last_name,
-            email: decoded.identity.email,
-            major: decoded.identity.major
-            // profilePic: decoded.identity.profile_pic
+        getProfilePictures().then(res => {
+            if (res.error) {
+                alert(res.error)
+            } else {
+                let data = res.images
+                let list = new Array()
+                for (const i in data){
+                    list.push(data[i]['image'])
+                }
+                this.setState({ images: list })
+            }
         })
     }
 
@@ -134,12 +145,12 @@ class Profile extends Component {
     setImageData() {
         return (
             <GridList cellHeight={100} cols={4}>
-                {this.state.pictures.map(picture => (
-                    <GridListTile key={picture}>
+                {this.state.images.map(image => (
+                    <GridListTile key={image}>
                         <SelectionPicture
                             name={this.state.first_name + ' ' + this.state.last_name}
-                            profilePic={picture}
-                            onProfilePicChange={this.onProfilePicChange}
+                            image={image}
+                            onImageChange={this.onImageChange}
                         />
                     </GridListTile>
                 ))}
@@ -147,31 +158,24 @@ class Profile extends Component {
         )
     }
 
-    onProfilePicChange(image) {
-        this.setState({ profilePic: image })
+    onImageChange(image) {
+        this.setState({ image: image })
         $('#change-profile-pic').modal('hide')
     }
 
     //all need to add backend stuff
-    onChange(event) {
 
-    }
-
-    onSubmit(firstName, lastName, password, email, major) {
-        this.setState({
-            first_name: firstName,
-            last_name: lastName,
-            email: email,
-            major: major
-        })
-        //do something with password
-        $('#settings').modal('hide')
-    }
-
-    handleMajorChange = (inputValue, { action }) => {
-        if (inputValue !== null) {
-            this.setState({ major: inputValue.value })
+    onSubmit(mode, firstName, lastName, password, major) {
+        switch (mode) {
+            case 'apply':
+                this.setState({
+                    first_name: firstName,
+                    last_name: lastName,
+                    major: major
+                })
+            //do something with password
         }
+        $('#settings').modal('hide')
     }
 
     render() {
@@ -188,9 +192,7 @@ class Profile extends Component {
                 />
                 <Settings
                     data={this.state}
-                    onChange={this.onChange}
                     onSubmit={this.onSubmit}
-                    handleMajorChange={this.handleMajorChange}
                 />
             </main>
         )

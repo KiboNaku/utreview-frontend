@@ -12,10 +12,10 @@ function ReviewDetails(props) {
 						<table className='table table-borderless review-content'>
 							<thead>
 								<tr>
-									<th style={{ width: '50%' }} className='review-cell' scope="col" colSpan='2'>
+									<th className='review-cell' scope="col" colSpan='2'>
 										Course:
 									</th>
-									<th style={{ width: '50%' }} className='review-cell' scope="col" colSpan='2'>
+									<th className='review-cell' scope="col" colSpan='2'>
 										Professor:
 									</th>
 								</tr>

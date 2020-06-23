@@ -5,7 +5,7 @@ import ReviewDetails from './ReviewDetails'
 
 function ReviewSummary(props) {
     return (
-        <div className="col-4 review-container">
+        <div className="col-sm-4 review-container">
             <div className="card">
                 <div className="card-body">
                     <p>

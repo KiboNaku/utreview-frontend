@@ -102,9 +102,11 @@ function CourseReviewEntry(props) {
             <div className="course-review-entry">
                 <div className="userDes">
                     <Avatar className={classes.large} src={props.review.profPic}>  </Avatar>
-                    <span> {props.review.userMajor} student, taught by </span>
-                    <a href="https://www.google.com">{props.review.profName}</a>
-                    <span>, {semester}</span>
+                    <div className="userText">
+                        <span> {props.review.userMajor} student, taught by </span>
+                        <a href="https://www.google.com">{props.review.profName}</a>
+                        <span>, {semester}</span>
+                    </div>
                 </div>
                 <div className="userRev">
                     <p className="review-text">{props.review.review}</p>
@@ -114,14 +116,17 @@ function CourseReviewEntry(props) {
                         <span> {props.review.numLiked} </span>
                         {localStorage.usertoken ? dislikeButton : dislikeLoginLink}
                         <span> {props.review.numDisliked} </span>
-                    </div>    
+                    </div>
                 </div>
                 <div className="userRat">
                     <div className="rowApproval">
                         <div className="col">
                             <span className="p-review"> Approval: </span>
                         </div>
-                        {thumbsIcon}
+                        <div>
+                            {thumbsIcon}
+                        </div>
+                        
                     </div>
                     <div className="rowRating">
                         <div className="col">
@@ -149,7 +154,7 @@ function CourseReviewEntry(props) {
                     <div className="rowRating">
                         <div className="col">
                             <span className="p-review"> Usefulness: </span>
-                        </div>                        
+                        </div>
                         <StyledRating
                             defaultValue={props.review.usefulness}
                             icon={<RadioButtonCheckedIcon />}

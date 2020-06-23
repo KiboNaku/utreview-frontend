@@ -124,3 +124,76 @@
         margin-bottom: 50px;
     }
 }
+
+@media screen and (max-width: 576px){
+    .review-filters{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .review-sort{
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 100%;
+    }
+
+    .course-review-entry{
+        flex-direction: column;
+    }
+
+    .userDes{
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        margin-bottom: 20px;
+    }
+
+    .userText{
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+
+    .userRev{
+        align-items: center;
+        width: auto;
+        margin-bottom: 20px;
+        border-right: none;
+        margin-right: 5px;
+        margin-left: 5px;
+        border-bottom: 1px solid black;
+    }
+
+    .LikeDislike{
+        margin-bottom: 10px;
+        position: relative;
+        margin-top: 10px;
+    }
+
+    .userRat{
+        align-content: left;
+        margin-right: 10px;
+        width: auto;    
+    }
+
+    .rowRating{
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+@media screen and (max-width: 360px){
+    .userRat{
+        justify-items: center;
+        width: auto;    
+    }
+
+    .review-list-item{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .rowRating{
+        display: flex;
+        flex-direction: column;
+    }
+}
