@@ -12,6 +12,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Login from './pages/popups/Login'
 import Signup from './pages/popups/Signup'
 import "./App.css"
+import ConfirmEmail from './pages/confirm-email/ConfirmEmail';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
 					<Route path="/about" component={About} />
 					<Route exact path="/results" component={Results} />
 					<Route path="/add-review" component={ReviewForm} /> 
+					<Route path="/confirm_email" component={ConfirmEmail}/>
 					<Route path={"/results/:courseId"} render={(props) => <CourseDetails />} />
 					<Route path={"/prof-results/:profId"} render={(props) => <ProfDetails />} />
 				</Switch>

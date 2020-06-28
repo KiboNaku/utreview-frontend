@@ -8,7 +8,6 @@ export const getCourseInfo = (course) => {
         loggedIn: course.loggedIn
       })
       .then(response => {
-        console.log(response)
         return response.data
       })
   }
@@ -21,7 +20,6 @@ export const getCourseInfo = (course) => {
         reviewId: feedback.reviewId
       })
       .then(response => {
-        console.log(response)
         return response.data
       })
   }
