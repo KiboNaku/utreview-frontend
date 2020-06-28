@@ -177,7 +177,6 @@ class CourseDetails extends React.Component {
         }
 
         const { courseNum } = this.props.location.state
-        console.log(courseNum)
         let loggedIn = false
         let email = ''
         const token = localStorage.usertoken
@@ -192,7 +191,7 @@ class CourseDetails extends React.Component {
             loggedIn: loggedIn,
             userEmail: email
         }
-
+        
         getCourseInfo(course).then(res => {
             if (res.error) {
                 alert(res.error)

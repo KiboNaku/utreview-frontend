@@ -24,16 +24,13 @@ class Signup extends Component {
     }
 
     onChange(e) {
-        console.log("changed state")
         this.setState({ [e.target.name]: e.target.value })
     }
 
     onSubmit(e) {
         e.preventDefault()
-        console.log("submit pressed")
 
         if (this.state.password != this.state.confirm_password) {
-            console.log("password fields dont match")
             alert("Password fields don't match")
             return
         }
@@ -66,6 +63,7 @@ class Signup extends Component {
 
     componentDidMount() {
         getMajor().then(res => {
+
             if (res.error) {
                 alert(res.error)
             } else {
