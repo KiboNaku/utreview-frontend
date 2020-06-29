@@ -40,12 +40,22 @@ class CourseSchedule extends React.Component {
           })
 
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
-        const courseScheduleList = this.state.courseSchedule.map(course => {
+        const currentSemList = this.state.courseSchedule.currentSem.map(course => {
             return (
                 <CourseScheduleEntry {...course} />
             )
         })
-        let summer2020 = (
+        const futureSemList = this.state.courseSchedule.futureSem.map(course => {
+            return (
+                <CourseScheduleEntry {...course} />
+            )
+        })
+        let noCourses = (
+            <h2>
+                There are no scheduled courses for this semester
+            </h2>
+        )
+        let currentSem = (
             <table className='table table-hover table-responsive schedule-table'>
                 <thead>
                     <tr>
@@ -55,15 +65,16 @@ class CourseSchedule extends React.Component {
                         <th scope="col">Days</th>
                         <th scope="col">Location</th>
                         <th scope="col">Professor</th>
+                        <th scope="col">Cross Listed</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {courseScheduleList}
+                    {currentSemList}
                 </tbody>
             </table>
         )
 
-        let fall2020 = (
+        let futureSem = (
             <table className='table table-hover table-responsive schedule-table'>
                 <thead>
                     <tr>
@@ -73,10 +84,11 @@ class CourseSchedule extends React.Component {
                         <th scope="col">Days</th>
                         <th scope="col">Location</th>
                         <th scope="col">Professor</th>
+                        <th scope="col">Cross Listed</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {courseScheduleList}
+                    {futureSemList}
                 </tbody>
             </table>
         )
@@ -99,13 +111,13 @@ class CourseSchedule extends React.Component {
 
                 <div className="semSchedule">
                     <TabPanel index={0} value={this.state.currentTab}>
-                        {summer2020}
+                        {currentSemList.length > 0 ? currentSem: noCourses}
                     </TabPanel>
                 </div>
 
                 <div className="semSchedule">
                     <TabPanel index={1} value={this.state.currentTab}>
-                        {fall2020}
+                        {futureSemList.length > 0 ? futureSem: noCourses}
                     </TabPanel>
                 </div>
             </div>

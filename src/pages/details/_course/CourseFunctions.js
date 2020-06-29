@@ -3,9 +3,19 @@ import axios from 'axios'
 export const getCourseInfo = (course) => {
     return axios
       .post('/api/course_info', {
-        courseNum: course.courseNum,
+        courseId: course.courseId,
         userEmail: course.userEmail,
         loggedIn: course.loggedIn
+      })
+      .then(response => {
+        return response.data
+      })
+  }
+
+  export const getCourseId = (course) => {
+    return axios
+      .post('/api/course_id', {
+        courseString: course.courseString
       })
       .then(response => {
         return response.data
