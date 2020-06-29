@@ -32,7 +32,7 @@ function App() {
 					<Route exact path="/results" component={Results} />
 					<Route path="/add-review" component={ReviewForm} /> 
 					<Route path="/confirm_email" component={ConfirmEmail}/>
-					<Route path={"/results/:courseId"} render={(props) => <CourseDetails />} />
+					<Route path={"/course-results/:courseId"} render={(props) => <CourseDetails />} />
 					<Route path={"/prof-results/:profId"} render={(props) => <ProfDetails />} />
 				</Switch>
 				<Footer />
