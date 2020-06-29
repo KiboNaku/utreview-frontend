@@ -11,7 +11,7 @@ import { SelectionPicture } from './_utils/ProfilePicture'
 import { ProfilePicModal } from './_utils/ProfilePicPopup'
 import Settings from './_utils/Settings'
 import { getMajor } from './../popups/_utils/UserFunctions'
-import { getProfilePictures } from './_utils/ProfileFunctions'
+import { getProfilePictures, updateInfo } from './_utils/ProfileFunctions'
 import './Profile.css'
 
 
@@ -104,7 +104,7 @@ class Profile extends Component {
             } else {
                 let data = res.images
                 let list = new Array()
-                for (const i in data){
+                for (const i in data) {
                     list.push(data[i]['image'])
                 }
                 this.setState({ images: list })
@@ -170,12 +170,30 @@ class Profile extends Component {
                     last_name: lastName,
                     major: major
                 })
-            //do something with password
+
+                const user = {
+                    first_name: this.state.first_name,
+                    last_name: this.state.last_name,
+                    email: this.state.email,
+                    password: password,
+                    major: this.state.major,
+                    image: this.state.image
+                }
+
+                updateInfo(user).then(res => {
+                    if (res.error) {
+                        alert(res.error)
+                    } else {
+                        $('#settings').modal('hide')
+                    }
+                })
+            default:
+                $('#settings').modal('hide')
         }
-        $('#settings').modal('hide')
     }
 
     render() {
+        console.log(this.state)
         return (
             <main>
                 <ProfileComponent
