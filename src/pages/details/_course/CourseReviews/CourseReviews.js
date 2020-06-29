@@ -191,7 +191,6 @@ class CourseReviews extends React.Component {
 
 	handleSortChange(value){
 		if(value.value === "most-recent"){
-			console.log("most-recent")
 			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.date - a.date)
 			this.setState({reviewsFiltered: updatedReviews, sortBy: value.value})
 		}else if(value.value === "most-helpful"){

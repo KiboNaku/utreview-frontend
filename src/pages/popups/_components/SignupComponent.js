@@ -5,6 +5,7 @@ import ModalHeader from './../_utils/ModalHeader'
 import UTEmail from './../_utils/UTEmail'
 
 function SignupComponent(props) {
+    
     return (
         <div className="modal fade" id="signup-modal" role="dialog">
             <div className="modal-dialog modal-dialog-centered" role="document">

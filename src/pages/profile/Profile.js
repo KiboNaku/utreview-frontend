@@ -13,10 +13,12 @@ import Settings from './_utils/Settings'
 import { getMajor } from './../popups/_utils/UserFunctions'
 import { getProfilePictures, updateInfo } from './_utils/ProfileFunctions'
 import './Profile.css'
+import axios from 'axios'
 
 
 class Profile extends Component {
     constructor() {
+
         const reviewList = [
             {
                 id: 1,
@@ -72,6 +74,7 @@ class Profile extends Component {
     }
 
     componentDidMount() {
+
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
         this.setState({
@@ -193,9 +196,9 @@ class Profile extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <main>
+                <h1>{this.state.success}</h1>
                 <ProfileComponent
                     data={this.state}
                     setReviewData={this.setReviewData}
