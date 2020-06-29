@@ -41,6 +41,7 @@ main {
     width: 100vw;
     max-width: 100%;
 	min-height: 500px;
+	background: #d6d2c4;
 }
 
 .main-sub {

@@ -14,8 +14,6 @@ class Results extends Component {
 
 		super(props);
 
-		console.log(props)
-
 		this.state = {
 
 			tabIndex: 0,
