@@ -28,10 +28,12 @@ function CoursePanel(props) {
             // TODO: update with approval & # ratings
 
             switch (sortBy) {
-                case 'courseNum':
-                    return b.courseNum.localeCompare(a.courseNum)
                 case 'courseName':
-                    return b.courseName.localeCompare(a.courseName)
+                    let courseNameA = a.courseDept + " " + a.courseNum
+                    let courseNameB = b.courseDept + " " + b.courseNum
+                    return courseNameB.localeCompare(courseNameA)
+                case 'courseTitle':
+                    return b.courseTitle.localeCompare(a.courseTitle)
             }
         }
 
@@ -63,13 +65,18 @@ function CoursePanel(props) {
             // TODO: update filter with other filters
 
             let sortedCourses = props.data
-                .filter(course => filter.depts.length <= 0 || filter.depts.includes(course.deptName))
+                .filter(course => filter.depts.length <= 0 || filter.depts.includes(course.courseDept))
                 .sort(sortTypes[sortDir].fn)
                 .slice(0, props.calcTableEdge(props.page, props.data.length))
 
             return sortedCourses.map((course, index) => {
-                const { courseNum, courseName } = course
-
+                const { courseTitle } = course
+                
+                let courseName = course.courseDept + " " + course.courseNum
+                let coursePath = course.courseDept.toLowerCase().replace(' ', '') + "_" + course.courseNum.toLowerCase()
+                if(course.courseTopic >= 0){
+                    coursePath += "_" + course.courseTopic.toString()
+                } 
                 // TODO: temporary numbers to fill table: remove later
                 // const rating = Math.floor(Math.random() * 70 + 30)
                 // const numRating = Math.floor(Math.random() * 1500)
@@ -78,25 +85,28 @@ function CoursePanel(props) {
                 let numRating = 1
                 return (
 
-                    <tr key={courseNum} ref={loadRef}>
-                        <td colSpan="1">{courseNum}</td>
+                    <tr key={course.id} ref={loadRef}>
+                        <td colSpan="1">{courseName}</td>
                         <td colSpan="2" className="class-name">{
                             <Link
                                 className="utcolor"
                                 to={{
-                                    pathname: `${props.match.url}/${courseNum}`,
+                                    pathname: `course-results/${coursePath}`,
                                     state: {
-                                        courseNum: courseNum
+                                        courseId: course.id
                                     }
                                 }}
-                            > {courseName}
+                            > {courseTitle}
                             </Link>
                         }</td>
                         <td colSpan="1">
-                            {rating}%
+                            {course.eCIS}
 							</td>
                         <td colSpan="1">
-                            {numRating}
+                            {course.approval}%
+							</td>
+                        <td colSpan="1">
+                            {course.numRatings}
                         </td>
                     </tr>
                 )
@@ -107,23 +117,27 @@ function CoursePanel(props) {
     let courseTable = (
         <div>
 
-            <table id='courseResults' className='table table-hover result-table'>
+            <table id='courseResults' className='table table-hover table-responsive result-table'>
                 <thead className='thead-dark'>
                     <tr rowSpan="2">
 
-                        <th scope="col" colSpan="1" className="sortable" onClick={() => props.handleSortChange('courseNum')}>
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => props.handleSortChange('courseName')}>
                             <span>Course #</span>
-                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseNum' ? '' : ' invisible')}></i>
-                        </th>
-
-                        <th scope="col" colSpan="2" className="sortable" onClick={() => props.handleSortChange('courseName')}>
-                            <span>Course Name</span>
                             <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseName' ? '' : ' invisible')}></i>
                         </th>
 
-                        {/* TODO: update with onclick functions */}
+                        <th scope="col" colSpan="2" className="sortable" onClick={() => props.handleSortChange('courseTitle')}>
+                            <span>Course Name</span>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseTitle' ? '' : ' invisible')}></i>
+                        </th>
 
-                        <th scope="col" colSpan="1" className="sortable" onClick={() => props.handlePageInc()}>
+                        {/* TODO: update with onclick functions */}
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for eCIS")}>
+                            <span>eCIS</span>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'eCIS' ? '' : ' invisible')}></i>
+                        </th>
+
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for approval")}>
                             <span>Approval</span>
                             <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'approval' ? '' : ' invisible')}></i>
                         </th>

@@ -8,13 +8,23 @@ function CourseProfEntry(props) {
     let engaging = props.engaging !== null ? `${props.engaging}` : "N/A"
     let grading = props.grading !== null ? `${props.grading}` : "N/A"
     let prof_id = "prof" + props.id.toString()
-    return ( 
-        <tr>
+    const profPath = props.firstName.toLowerCase().replace(" ", "") + "_" + props.lastName.toLowerCase().replace(" ", "")
+    return (
+        <tr key={props.id}>
             <td>
-                <a href="https://www.google.com" > {props.name} </a>
+                <Link
+                    className="utcolor"
+                    to={{
+                        pathname: `prof-results/${profPath}`,
+                        state: {
+                            profId: props.id
+                        }
+                    }}
+                > {props.firstName} {props.lastName}
+                </Link>
             </td>
             <td align="center">{percentLiked}</td>
-            <td align="center">{eCIS}</td>  
+            <td align="center">{eCIS}</td>
             <td align="center">{clear}</td>
             <td align="center">{engaging}</td>
             <td align="center">{grading}</td>
@@ -24,7 +34,7 @@ function CourseProfEntry(props) {
             <td align="center">
                 <a href="https://www.google.com" > UT Catalyst </a>
             </td>
-        </tr> 
+        </tr>
     );
 }
 
