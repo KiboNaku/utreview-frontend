@@ -1,4 +1,4 @@
-.courseAddReview{
+.profAddReview{
     display: flex;   
     text-align: center;
     align-items: center;
@@ -14,7 +14,7 @@
     display: inline-block;
 }
 
-.courseReviews{
+.profReviews{
     margin-right: 100px;
     margin-left: 100px;
     margin-top: 50px;
@@ -36,7 +36,7 @@
     border: 0.5px solid black;
 }
 
-.course-review-entry{
+.prof-review-entry{
     display: flex;
     flex-direction: row;
 }
@@ -96,7 +96,7 @@
 }
 
 @media screen and (max-width: 992px){
-    .courseAddReview{
+    .profAddReview{
         justify-content: center;
     }
 
@@ -107,7 +107,7 @@
 }
 
 @media screen and (max-width: 768px){
-    .courseAddReview{
+    .profAddReview{
         flex-direction: column;
         justify-content: center;
     }
@@ -117,7 +117,7 @@
         margin-top: 10px;
     }
 
-    .courseReviews{
+    .profReviews{
         margin-right: 10px;
         margin-left: 10px;
         margin-top: 50px;
@@ -137,7 +137,7 @@
         width: 100%;
     }
 
-    .course-review-entry{
+    .prof-review-entry{
         flex-direction: column;
     }
 

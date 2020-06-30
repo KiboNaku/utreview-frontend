@@ -5,7 +5,7 @@ import Rating from '@material-ui/lab/Rating';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 
-function CourseRatings(props) {
+function ProfRatings(props) {
 
     const useStyles = makeStyles((theme) => ({
         aligned: {
@@ -23,21 +23,21 @@ function CourseRatings(props) {
     const percentLikedValue = props.percentLiked === null ? 0 : props.percentLiked
     const percentLiked = props.percentLiked === null ? "N/A" : props.percentLiked
 
-    const difficultyValue = props.difficulty === null ? 0 : props.difficulty
-    const difficulty = props.difficulty === null ? "N/A" : props.difficulty
+    const clearValue = props.clear === null ? 0 : props.clear
+    const clear = props.clear === null ? "N/A" : props.clear
 
-    const workloadValue = props.workload === null ? 0 : props.workload
-    const workload = props.workload === null ? "N/A" : props.workload
+    const engagingValue = props.engaging === null ? 0 : props.engaging
+    const engaging = props.engaging === null ? "N/A" : props.engaging
 
-    const usefulnessValue = props.usefulness === null ? 0 : props.usefulness
-    const usefulness = props.usefulness === null ? "N/A" : props.usefulness
+    const gradingValue = props.grading === null ? 0 : props.grading
+    const grading = props.grading === null ? "N/A" : props.grading
 
     const eCISValue = props.eCIS === null ? 0 : props.eCIS
     const eCIS = props.eCIS === null ? "N/A" : props.eCIS
 
     const numRatings = props.numRatings
     return (
-        <div className="CourseRatings">
+        <div className="profRatings">
             <div className="card card-body">
             <h3 className="rating-heading"> User Ratings ({numRatings})</h3>
             <div className="rating">
@@ -68,10 +68,10 @@ function CourseRatings(props) {
                     />
                 </div>
                 <div className="rating">
-                    <p className="p-rating"> Usefulness: {usefulness} </p>
+                    <p className="p-rating"> Clear: {clear} </p>
                     <StyledRating
                         style={{ verticalAlign: "middle" }}
-                        defaultValue={usefulnessValue}
+                        defaultValue={clearValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon fontSize="large" />}
                         emptyIcon={<RadioButtonUncheckedIcon fontSize="large" />}
@@ -82,10 +82,10 @@ function CourseRatings(props) {
 
             <div className="userRatings">
                 <div className="rating">
-                    <p className="p-rating"> Workload: {workload} </p>
+                    <p className="p-rating"> Engaging: {engaging} </p>
                     <StyledRating
                         style={{ verticalAlign: "middle" }}
-                        defaultValue={workloadValue}
+                        defaultValue={engagingValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon fontSize="large" />}
                         emptyIcon={<RadioButtonUncheckedIcon fontSize="large" />}
@@ -93,10 +93,10 @@ function CourseRatings(props) {
                     />
                 </div>
                 <div className="rating">
-                    <p className="p-rating"> Difficulty: {difficulty} </p>
+                    <p className="p-rating"> Grading: {grading} </p>
                     <StyledRating
                         style={{ verticalAlign: "middle" }}
-                        defaultValue={difficultyValue}
+                        defaultValue={gradingValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon fontSize="large" />}
                         emptyIcon={<RadioButtonUncheckedIcon fontSize="large" />}
@@ -112,4 +112,4 @@ function CourseRatings(props) {
     );
 }
 
-export default CourseRatings;
+export default ProfRatings;
