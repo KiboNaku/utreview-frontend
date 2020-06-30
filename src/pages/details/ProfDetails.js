@@ -146,48 +146,68 @@ class ProfDetails extends React.Component {
             profCourses: profCourses,
             profReviews: profReviews,
             profSchedule: profSchedule,
+            validProf: true,
             loaded: true
         }
 
-        const { profName } = this.props.location.state
-        console.log(profName)
-        let loggedIn = false
-        let email = ''
-        const token = localStorage.usertoken
-        if (token) {
-            const decoded = jwt_decode(token)
-            loggedIn = true
-            email = decoded.identity.email
+        const profId = null
+        if(this.props.location.state === null){
+            let profPath = window.location.pathname.split("/").pop()
+            let profString = {
+                profString: profPath
+            }
+            getProfId(profString).then(res => {
+                if (res.error) {
+                    alert(res.error)
+                    this.setState({
+                        validProf: false
+                    })
+                } else {
+                    profId = res.profId
+                }
+            })
+        }else{
+            profId = this.props.location.state
         }
 
-        const prof = {
-            profName: profName,
-            loggedIn: loggedIn,
-            userEmail: email
+        if(this.state.validProf){
+            let loggedIn = false
+            let email = ''
+            const token = localStorage.usertoken
+            if (token) {
+                const decoded = jwt_decode(token)
+                loggedIn = true
+                email = decoded.identity.email
+            }
+
+            const prof = {
+                profId: profId,
+                loggedIn: loggedIn,
+                userEmail: email
+            }
+            
+            getProfInfo(prof).then(res => {
+                if (res.error) {
+                    alert(res.error)
+                } else {
+                    let profRevs = res.prof_reviews.map(review => {
+                        return {
+                            ...review,
+                            date: new Date(review.date)
+                        }
+                    })
+                    this.setState({
+                        profInfo: res.prof_info,
+                        profRatings: res.prof_rating,
+                        profSchedule: res.prof_schedule,
+                        profCourses: res.prof_courses,
+                        profReviews: profRevs,
+                        loaded: true
+                    })
+                }
+            })
         }
 
-        // getProfInfo(prof).then(res => {
-        //     if (res.error) {
-        //         alert(res.error)
-        //     } else {
-        //         let courseData = res.course_info
-        //         let courseRating = res.course_rating
-        //         let courseProfessors = res.course_profs
-        //         let courseRevs = res.course_reviews.map(review => {
-        //             return {
-        //                 ...review,
-        //                 date: new Date(review.date)
-        //             }
-        //         })
-        //         this.setState({
-        //             courseInfo: courseData,
-        //             courseRatings: courseRating,
-        //             // courseProfs: courseProfessors,
-        //             courseReviews: courseRevs,
-        //             loaded: true
-        //         })
-        //     }
-        // })
     }
 
     componentDidMount() {
@@ -199,7 +219,10 @@ class ProfDetails extends React.Component {
         let loading = (
             <Loading />
         )
-
+        
+        let invalidProf = (
+            <h1> This course doesn't exist </h1>
+        )
 
         let content = (
             <div className="profDetails">
@@ -226,7 +249,7 @@ class ProfDetails extends React.Component {
         return (
             <main className="prof-details-main">
                 <div className="main-sub">
-                    {this.state.loaded ? content : loading}
+                {this.state.validProf ? (this.state.loaded ? content : loading): invalidProf}
                 </div>
 
             </main>

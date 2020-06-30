@@ -81,7 +81,7 @@ function ProfReviewEntry(props) {
     const likeButton = (
         <button
             className="likeButton"
-            onClick={() => props.handleLike(props.review.key)}
+            onClick={() => props.handleLike(props.review.id)}
         >
             {likeIcon}
         </button>
@@ -90,26 +90,39 @@ function ProfReviewEntry(props) {
     const dislikeButton = (
         <button
             className="dislikeButton"
-            onClick={() => props.handleDislike(props.review.key)}
+            onClick={() => props.handleDislike(props.review.id)}
         >
             {dislikeIcon}
         </button>
     )
 
     const semester = "Fall 2020"
+    let coursePath = props.review.courseDept.toLowerCase().replace(' ', '') + "_" + props.review.courseNum.toLowerCase()
+    if (props.review.courseTopic >= 0) {
+        coursePath += "_" + props.review.courseTopic.toString()
+    }
     return (
         <div className="list-group-item review-list-item">
             <div className="prof-review-entry">
                 <div className="userDes">
-                    <Avatar className={classes.large} src={props.review.profPic}>  </Avatar>
+                    <Avatar className={classes.large} src={props.review.profilePic}>  </Avatar>
                     <div className="userText">
                         <span> {props.review.userMajor} student, enrolled in </span>
-                        <a href="https://www.google.com">{props.review.courseName}</a>
-                        <span>, {semester}</span>
+                        <Link
+                            className="utcolor"
+                            to={{
+                                pathname: `course-results/${coursePath}`,
+                                state: {
+                                    courseId: props.review.courseId
+                                }
+                            }}
+                        > {props.review.courseDept} {props.review.courseNum}
+                        </Link>
+                        <span>, {props.review.semester} {props.review.year}</span>
                     </div>
                 </div>
                 <div className="userRev">
-                    <p className="review-text">{props.review.review}</p>
+                    <p className="review-text">{props.review.comments}</p>
                     <small className="review-date"> - {props.review.date.toLocaleDateString()}</small>
                     <div className="LikeDislike">
                         {localStorage.usertoken ? likeButton : likeLoginLink}
@@ -126,7 +139,7 @@ function ProfReviewEntry(props) {
                         <div>
                             {thumbsIcon}
                         </div>
-                        
+
                     </div>
                     <div className="rowRating">
                         <div className="col">

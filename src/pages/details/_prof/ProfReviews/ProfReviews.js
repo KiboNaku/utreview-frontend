@@ -9,18 +9,11 @@ class ProfReviews extends React.Component {
 	constructor(props) {
 		super(props)
 
-		let coursesFiltered = [
-			"EE 302",
-			"EE 306",
-			"EE 460N"
-		]
-
 		const updatedReviews = props.profReviews.slice().sort((a, b) => b.date - a.date)
 
 		this.state = {
 			profReviews: props.profReviews,
 			reviewsFiltered: updatedReviews,
-			courses: coursesFiltered,
 			sortBy: "most-recent"
 		}
 
@@ -30,14 +23,15 @@ class ProfReviews extends React.Component {
 		this.handleCourseChange = this.handleCourseChange.bind(this)
 	}
 
-	handleLike(key) {
+	handleLike(id) {
 		const token = localStorage.usertoken
 		const decoded = jwt_decode(token)
 
 		let feedback = {
 			like: true,
+			isCourse: false,
 			userEmail: decoded.identity.email,
-			reviewId: key
+			reviewId: id
 		}
 
 		this.setState(prevState => {
@@ -46,7 +40,7 @@ class ProfReviews extends React.Component {
 				let dislikeNum = profReview.numDisliked
 				let likeNum = profReview.numLiked
 				let like = profReview.likePressed
-				if (key === profReview.key) {
+				if (id === profReview.id) {
 					if (dislike) {
 						dislike = false
 						dislikeNum = dislikeNum - 1
@@ -86,15 +80,16 @@ class ProfReviews extends React.Component {
 
 	}
 
-	handleDislike(key) {
+	handleDislike(id) {
 
 		const token = localStorage.usertoken
 		const decoded = jwt_decode(token)
 
 		let feedback = {
 			like: false,
+			isCourse: false,
 			userEmail: decoded.identity.email,
-			reviewId: key
+			reviewId: id
 		}
 		this.setState(prevState => {
 			const updatedReviews = prevState.profReviews.map(profReview => {
@@ -102,7 +97,7 @@ class ProfReviews extends React.Component {
 				let dislikeNum = profReview.numDisliked
 				let likeNum = profReview.numLiked
 				let like = profReview.likePressed
-				if (key === profReview.key) {
+				if (id === profReview.id) {
 					if (like) {
 						like = false
 						likeNum = likeNum - 1
@@ -162,7 +157,8 @@ class ProfReviews extends React.Component {
 				courses.push(values[i])
 			}
 			this.state.profReviews.map(review => {
-				if(courses.includes(review.courseName)){
+				let courseName = review.courseDept + " " + review.courseNum
+				if(courses.includes(courseName)){
 					updatedReviews.push(review)
 				}
 			})
@@ -186,6 +182,13 @@ class ProfReviews extends React.Component {
 					handleDislike={this.handleDislike}
 				/>
 			)
+		})
+
+		const courseOptions = this.state.reviewsFiltered.map(review => {
+			return {
+				value: review.courseDept + " " + review.courseNum,
+				label: review.courseDept + " " + review.courseNum
+			}
 		})
 
 		let noReviews = (
@@ -230,21 +233,6 @@ class ProfReviews extends React.Component {
 			</div>
 
 		)
-
-		let courseOptions = [
-			{
-				value: "EE 302",
-				label: "EE 302"
-			},
-			{
-				value: "EE 460N",
-				label: "EE 460N"
-			},
-			{
-				value: "EE 306",
-				label: "EE 306"
-			}
-		]
 
 		let courseFilter = (
 			<div className="review-sort">

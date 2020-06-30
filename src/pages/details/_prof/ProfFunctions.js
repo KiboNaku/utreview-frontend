@@ -13,10 +13,21 @@ export const getProfInfo = (prof) => {
       })
   }
 
+  export const getProfId = (prof) => {
+    return axios
+      .post('/api/prof_id', {
+        profString: prof.profString
+      })
+      .then(response => {
+        return response.data
+      })
+  }
+
   export const reviewFeedback = (feedback) => {
     return axios
       .post('/api/review_feedback', {
         like: feedback.like,
+        isCourse: feedback.isCourse,
         userEmail: feedback.userEmail,
         reviewId: feedback.reviewId
       })

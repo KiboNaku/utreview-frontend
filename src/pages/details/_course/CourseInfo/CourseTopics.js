@@ -23,7 +23,7 @@ class CourseTopics extends React.Component {
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         let topicsList = this.props.topicsList.map(topic => {
             let topicPath = this.props.courseDept.toLowerCase().replace(' ', '') + "_" + this.props.courseNum.toLowerCase()
-	        topicPath += "_" + topic.id.toString()
+	        topicPath += "_" + topic.topicNum.toString()
             return (
                 <li>
                     <Link

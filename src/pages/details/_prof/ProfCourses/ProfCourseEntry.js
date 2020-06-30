@@ -8,13 +8,27 @@ function ProfCourseEntry(props) {
     let usefulness = props.usefulness !== null ? `${props.usefulness}` : "N/A"
     let workload = props.workload !== null ? `${props.workload}` : "N/A"
     let prof_id = "prof" + props.id.toString()
-    return ( 
+    let courseName = props.courseDept + " " + props.courseNum
+    let coursePath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
+    if(props.topicNum >= 0){
+        coursePath += "_" + props.topicNum.toString()
+    } 
+    return (
         <tr>
             <td>
-                <a href="https://www.google.com" > {props.name} </a>
+                <Link
+                    className="utcolor"
+                    to={{
+                        pathname: `course-results/${coursePath}`,
+                        state: {
+                            courseId: course.id
+                        }
+                    }}
+                > {courseName}
+                </Link>
             </td>
             <td align="center">{percentLiked}</td>
-            <td align="center">{eCIS}</td>  
+            <td align="center">{eCIS}</td>
             <td align="center">{difficulty}</td>
             <td align="center">{usefulness}</td>
             <td align="center">{workload}</td>
@@ -24,7 +38,7 @@ function ProfCourseEntry(props) {
             <td align="center">
                 <a href="https://www.google.com" > UT Catalyst </a>
             </td>
-        </tr> 
+        </tr>
     );
 }
 

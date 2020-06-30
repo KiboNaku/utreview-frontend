@@ -9,7 +9,7 @@ function ProfInfo(props) {
 					<h2> {props.courseDep} {props.courseNo} </h2>
 				</div> */}
 				<div className="card-body info-body">
-					<h2 className="prof-title"> {props.profName} </h2>
+					<h2 className="prof-title"> {props.firstName} {props.lastName} </h2>
 				</div>
 			</div>
 		</div>
