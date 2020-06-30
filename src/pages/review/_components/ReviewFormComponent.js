@@ -19,7 +19,6 @@ function ReviewFormComponent(props) {
                     <h4 className="pb-4">Let us know about your experience.</h4>
 
                     <ol className="px-5">
-
                         <li className="py-2">
 
                             <span >
@@ -30,13 +29,13 @@ function ReviewFormComponent(props) {
                                 className="basic-single col-12 col-sm-10 col-md-8 mt-2"
                                 classNamePrefix="select"
                                 name="courseNumber"
-                                options={props.data.courseNumList}
+                                options={props.data.CourseNumList}
                                 onChange={props.handleCourseNumberChange}
                                 placeholder="Course"
                                 isClearable={true}
                                 isSearchable={true}
                                 isDisabled={props.data.OldReview ? true : false}
-                                value={props.data.courseNumList.filter(courseNum => courseNum.label === props.data.CourseNumber)}
+                                value={props.data.CourseNumList.filter(courseNum => courseNum.label === props.data.CourseNumber)}
                             />
                         </li>
 
@@ -50,13 +49,33 @@ function ReviewFormComponent(props) {
                                 className="basic-single col-12 col-sm-10 col-md-8 mt-2"
                                 classNamePrefix="select"
                                 name="ProfessorName"
-                                options={props.data.professorNameList}
+                                options={props.data.ProfessorNameList}
                                 onChange={props.handleProfessorNameChange}
                                 placeholder="Professor"
                                 isClearable={true}
                                 isSearchable={true}
                                 isDisabled={props.data.OldReview ? true : false}
-                                value={props.data.professorNameList.filter(profName => profName.label === props.data.ProfessorName)}
+                                value={props.data.ProfessorNameList.filter(profName => profName.label === props.data.ProfessorName)}
+                            />
+                        </li>
+
+                        <li className="py-3">
+
+                            <span >
+                                Choose the semester:
+                            </span>
+
+                            <Select
+                                className="basic-single col-12 col-sm-10 col-md-8 mt-2"
+                                classNamePrefix="select"
+                                name="semester"
+                                options={props.data.SemesterList}
+                                onChange={props.handleSemesterChange}
+                                placeholder="Semester"
+                                isClearable={true}
+                                isSearchable={true}
+                                isDisabled={props.data.OldReview ? true : false}
+                                value={props.data.SemesterList.filter(Semester => Semester.label === props.data.Semester)}
                             />
                         </li>
 
