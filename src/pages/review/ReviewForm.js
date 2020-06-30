@@ -11,12 +11,32 @@ class ReviewForm extends Component {
 		super(props);
 
 		this.state = {
-			courseNumList: null,
-			professorNameList: null,
-			courseLoaded: false,
-			profLoaded: false,
+			CourseNumList: [{
+				value: 'EE 302',
+				label: 'EE 302'
+			}, {
+				value: 'EE 306',
+				label: 'EE 306'
+			}],
+			ProfessorNameList: [{
+				value: 'Yu',
+				label: 'Yu'
+			}, {
+				value: 'Bank',
+				label: 'Bank'
+			}],
+			SemesterList: [{
+				value: 'Spring 2020',
+				label: 'Spring 2020'
+			}],
+			CourseLoaded: true,
+			ProfLoaded: true,
+
+			Semester: "",
 
 			CourseNumber: "",
+			CourseLikePressed: false,
+			CourseDislikePressed: false,
 			CourseApproval: null,
 			Usefulness: "",
 			Difficulty: "",
@@ -24,6 +44,8 @@ class ReviewForm extends Component {
 			CourseComment: "",
 
 			ProfessorName: "",
+			ProfessorLikePressed: false,
+			ProfessorDislikePressed: false,
 			ProfessorApproval: null,
 			Clear: "",
 			Engaging: "",
@@ -31,13 +53,11 @@ class ReviewForm extends Component {
 			GradingDifficulty: "",
 			ProfessorComment: "",
 
-			CourseNumberError: "",
 			CourseApprovalError: "",
 			UsefulnessError: "",
 			DifficultyError: "",
 			WorkloadError: "",
 
-			ProfessorNameError: "",
 			ProfessorApprovalError: "",
 			ClearError: "",
 			EngagingError: "",
@@ -52,20 +72,19 @@ class ReviewForm extends Component {
 		this.validate = this.validate.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-		this.handlePositiveClick = this.handlePositiveClick.bind(this);
-		this.handleNegativeClick = this.handleNegativeClick.bind(this);
 		this.handleCourseNumberChange = this.handleCourseNumberChange.bind(this);
 		this.handleProfessorNameChange = this.handleProfessorNameChange.bind(this);
+		this.handleSemesterChange = this.handleSemesterChange.bind(this);
+		this.handleLike = this.handleLike.bind(this);
+		this.handleDislike = this.handleDislike.bind(this);
 		this.setData = this.setData.bind(this);
 	}
 
 	validate() {
-		let CourseNumberError = "";
 		let CourseApprovalError = "";
 		let UsefulnessError = "";
 		let DifficultyError = "";
 		let WorkloadError = "";
-		let ProfessorNameError = "";
 		let ProfessorApprovalError = "";
 		let ClearError = "";
 		let EngagingError = "";
@@ -74,36 +93,30 @@ class ReviewForm extends Component {
 
 		let emptyErrorMessage = 'This field cannot be empty.';
 
-		if (this.state.CourseNumberError === "") { CourseNumberError = emptyErrorMessage; }
 		if (this.state.CourseApproval === null) { CourseApprovalError = emptyErrorMessage; }
 		if (this.state.Usefulness === "") { UsefulnessError = emptyErrorMessage; }
 		if (this.state.Difficulty === "") { DifficultyError = emptyErrorMessage; }
 		if (this.state.Workload === "") { WorkloadError = emptyErrorMessage; }
-		if (this.state.ProfessorNameError === "") { ProfessorNameError = emptyErrorMessage; }
 		if (this.state.ProfessorApproval === null) { ProfessorApprovalError = emptyErrorMessage; }
 		if (this.state.Clear === "") { ClearError = emptyErrorMessage; }
 		if (this.state.Engaging === "") { EngagingError = emptyErrorMessage; }
 		if (this.state.Helpful === "") { HelpfulError = emptyErrorMessage; }
 		if (this.state.GradingDifficulty === "") { GradingDifficultyError = emptyErrorMessage; }
 
-		if (CourseNumberError ||
-			CourseApprovalError ||
+		if (CourseApprovalError ||
 			UsefulnessError ||
 			DifficultyError ||
 			WorkloadError ||
-			ProfessorNameError ||
 			ProfessorApprovalError ||
 			ClearError ||
 			EngagingError ||
 			HelpfulError ||
 			GradingDifficultyError) {
 			this.setState({
-				CourseNumberError: CourseNumberError,
 				CourseApprovalError: CourseApprovalError,
 				UsefulnessError: UsefulnessError,
 				DifficultyError: DifficultyError,
 				WorkloadError: WorkloadError,
-				ProfessorNameError: ProfessorNameError,
 				ProfessorApprovalError: ProfessorApprovalError,
 				ClearError: ClearError,
 				EngagingError: EngagingError,
@@ -127,6 +140,7 @@ class ReviewForm extends Component {
 				user_email: decoded.identity.email,
 				course_name: this.state.CourseNumber,
 				prof_name: this.state.ProfessorName,
+				Semester: this.state.Semester,
 				course_review: this.state.CourseComment,
 				course_approval: this.state.CourseApproval,
 				course_usefulness: this.state.Usefulness,
@@ -164,18 +178,10 @@ class ReviewForm extends Component {
 		this.setState({ [name]: value })
 	}
 
-	handlePositiveClick(name) {
-		this.setState({ [name]: true })
-	}
-
-	handleNegativeClick(name) {
-		this.setState({ [name]: false })
-	}
-
 	handleCourseNumberChange = (inputValue, { action }) => {
 		if (inputValue !== null) {
 			this.setState({ CourseNumber: inputValue.value })
-			if (this.state.ProfessorName !== "") {
+			if (this.state.ProfessorName !== "" && this.state.Semester !== "") {
 				this.state.Disable = false;
 
 				const token = localStorage.usertoken
@@ -184,7 +190,8 @@ class ReviewForm extends Component {
 				const review = {
 					user_email: decoded.identity.email,
 					course_name: inputValue.value,
-					prof_name: this.state.ProfessorName
+					prof_name: this.state.ProfessorName,
+					semester: this.state.Semester
 				}
 
 				checkDuplicate(review).then(res => {
@@ -203,7 +210,7 @@ class ReviewForm extends Component {
 
 		if (inputValue !== null) {
 			this.setState({ ProfessorName: inputValue.value })
-			if (this.state.CourseNumber !== "") {
+			if (this.state.CourseNumber !== "" && this.state.Semester !== "") {
 				this.state.Disable = false;
 
 				const token = localStorage.usertoken
@@ -212,18 +219,83 @@ class ReviewForm extends Component {
 				const review = {
 					user_email: decoded.identity.email,
 					course_name: this.state.CourseNumber,
-					prof_name: inputValue.value
+					prof_name: inputValue.value,
+					semester: this.state.Semester
 				}
 
 				checkDuplicate(review).then(res => {
 					if (res.error) {
 						alert(res.error)
 						this.setState({ duplicate: true })
-					}else {
+					} else {
 						console.log(res)
 					}
 				})
 			}
+		}
+	}
+
+	handleSemesterChange = (inputValue, { action }) => {
+		if (inputValue !== null) {
+			this.setState({ Semester: inputValue.value })
+			if (this.state.CourseNumber !== "" && this.state.ProfessorName !== "") {
+				this.state.Disable = false;
+
+				const token = localStorage.usertoken
+				const decoded = jwt_decode(token)
+
+				const review = {
+					user_email: decoded.identity.email,
+					course_name: this.state.CourseNumber,
+					prof_name: this.state.ProfessorName,
+					semester: inputValue.value
+				}
+
+				checkDuplicate(review).then(res => {
+					if (res.error) {
+						alert(res.error)
+						this.setState({ duplicate: true })
+					} else {
+						console.log(res)
+					}
+				})
+			}
+		}
+	}
+
+	handleLike(type) {
+		switch (type) {
+			case 'course':
+				this.setState({
+					CourseLikePressed: true,
+					CourseDislikePressed: false,
+					CourseApproval: true
+				})
+				break
+			case 'prof':
+				this.setState({
+					ProfessorLikePressed: true,
+					ProfessorDislikePressed: false,
+					ProfessorApproval: true
+				})
+		}
+	}
+
+	handleDislike(type) {
+		switch (type) {
+			case 'course':
+				this.setState({
+					CourseLikePressed: false,
+					CourseDislikePressed: true,
+					CourseApproval: false
+				})
+				break
+			case 'prof':
+				this.setState({
+					ProfessorLikePressed: false,
+					ProfessorDislikePressed: true,
+					ProfessorApproval: false
+				})
 		}
 	}
 
@@ -240,7 +312,7 @@ class ReviewForm extends Component {
 						label: data[i]['num']
 					})
 				}
-				this.setState({ courseNumList: courseList, courseLoaded: true })
+				this.setState({ CourseNumList: courseList, CourseLoaded: true })
 			}
 		})
 
@@ -256,7 +328,7 @@ class ReviewForm extends Component {
 						label: data[i]['name']
 					})
 				}
-				this.setState({ professorNameList: profList, profLoaded: true })
+				this.setState({ ProfessorNameList: profList, ProfLoaded: true })
 			}
 		})
 
@@ -268,13 +340,18 @@ class ReviewForm extends Component {
 		const { OldReview } = this.state
 
 		this.setState({
+			Semester: OldReview.Semester,
 			CourseNumber: OldReview.CourseNumber,
+			CourseLikePressed: OldReview.CourseApproval,
+			CourseDislikePressed: !OldReview.CourseApproval,
 			CourseApproval: OldReview.CourseApproval,
 			Usefulness: OldReview.Usefulness,
 			Difficulty: OldReview.Difficulty,
 			Workload: OldReview.Workload,
 			CourseComment: OldReview.CourseComment,
 			ProfessorName: OldReview.ProfessorName,
+			ProfessorLikePressed: OldReview.ProfessorApproval,
+			ProfessorDislikePressed: !OldReview.ProfessorApproval,
 			ProfessorApproval: OldReview.ProfessorApproval,
 			Clear: OldReview.Clear,
 			Engaging: OldReview.Engaging,
@@ -283,6 +360,7 @@ class ReviewForm extends Component {
 
 			Disable: false
 		})
+
 	}
 
 	render() {
@@ -290,16 +368,16 @@ class ReviewForm extends Component {
 			this.setData()
 		}
 
-		let loaded = this.state.courseLoaded && this.state.profLoaded
+		let loaded = this.state.CourseLoaded && this.state.ProfLoaded
 		let loading = <Loading />
 		let content = <ReviewFormComponent
-			validate={this.validate}
 			handleSubmit={this.handleSubmit}
 			handleChange={this.handleChange}
-			handlePositiveClick={this.handlePositiveClick}
-			handleNegativeClick={this.handleNegativeClick}
 			handleCourseNumberChange={this.handleCourseNumberChange}
 			handleProfessorNameChange={this.handleProfessorNameChange}
+			handleSemesterChange={this.handleSemesterChange}
+			handleLike={this.handleLike}
+			handleDislike={this.handleDislike}
 			data={this.state} />
 
 		return (

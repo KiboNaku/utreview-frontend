@@ -17,9 +17,11 @@ class Settings extends Component {
 		}
 
 		console.log('constructor', this.state)
+		console.log(props)
 
 		this.onChange = this.onChange.bind(this)
 		this.handleMajorChange = this.handleMajorChange.bind(this)
+		this.setValues = this.setValues.bind(this)
 	}
 
 	onChange(event) {
@@ -27,21 +29,32 @@ class Settings extends Component {
 	}
 
 	handleMajorChange = (inputValue, { action }) => {
-        if (inputValue !== null) {
-            this.setState({ major: inputValue.value })
-        }
-	}
-	
-	componentDidMount() {
-		this.setState({
-			firstName: this.props.data.first_name,
-			lastName: this.props.data.last_name,
-			major: this.props.data.major,
-			email: this.props.data.email
-		})
+		if (inputValue !== null) {
+			this.setState({ major: inputValue.value })
+		}
 	}
 
+	setValues() {
+		if (this.props.first_name !== this.state.firstName) {
+			this.setState({
+				firstName: this.props.data.first_name,
+				lastName: this.props.data.last_name,
+				major: this.props.data.major,
+				email: this.props.data.email
+			})
+		}
+	}
+
+	componentDidUpdate(prevProps) {
+		// Typical usage (don't forget to compare props):
+		if (this.props.first_name !== prevProps.first_name) {
+		  this.fetchData(this.props.userID);
+		}
+	  }
+
 	render() {
+		// this.setValues()
+		console.log('render', this.props)
 		return (
 			<div className="modal fade" id={'settings'} role="dialog">
 				<div className="modal-dialog modal-dialog-centered" role="document">
@@ -92,7 +105,7 @@ class Settings extends Component {
 												placeholder="Select major..."
 												isClearable={true}
 												isSearchable={true}
-												defaultValue={{label: this.state.major, value: this.state.major}}
+												defaultValue={{ label: this.state.major, value: this.state.major }}
 											/>
 										</div>
 									</div>
