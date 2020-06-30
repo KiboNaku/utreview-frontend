@@ -23,25 +23,25 @@ function ReviewDetails(props) {
 							<tbody>
 								<tr>
 									<td> Usefulness: </td>
-									<td> {props.data.Usefulness}</td>
+									<td> {props.data.course_rating.usefulness}</td>
 									<td> Clear: </td>
-									<td> {props.data.Clear}</td>
+									<td> {props.data.professor_rating.clear}</td>
 								</tr>
 								<tr>
 									<td> Difficulty: </td>
-									<td> {props.data.Difficulty}</td>
+									<td> {props.data.course_rating.difficulty}</td>
 									<td> Engaging: </td>
-									<td> {props.data.Engaging}</td>
+									<td> {props.data.professor_rating.engaging}</td>
 								</tr>
 								<tr>
 									<td> Workload: </td>
-									<td> {props.data.Workload}</td>
-									<td> Grading Difficulty: </td>
-									<td> {props.data.GradingDifficulty}</td>
+									<td> {props.data.course_rating.workload}</td>
+									<td> Grading: </td>
+									<td> {props.data.professor_rating.grading}</td>
 								</tr>
 								<tr>
-									<td style={{ borderRight: 'solid 1px' }} colSpan='2'>{props.data.CourseComment}</td>
-									<td colSpan='2'>{props.data.ProfessorComment}</td>
+									<td style={{ borderRight: 'solid 1px' }} colSpan='2'>{props.data.course_comments}</td>
+									<td colSpan='2'>{props.data.professor_comments}</td>
 								</tr>
 							</tbody>
 						</table>
