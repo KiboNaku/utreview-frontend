@@ -26,6 +26,7 @@ export const getCourseInfo = (course) => {
     return axios
       .post('/api/review_feedback', {
         like: feedback.like,
+        isCourse: feedback.isCourse,
         userEmail: feedback.userEmail,
         reviewId: feedback.reviewId
       })

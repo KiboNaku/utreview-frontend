@@ -73,7 +73,7 @@ function CoursePanel(props) {
                 const { courseTitle } = course
                 
                 let courseName = course.courseDept + " " + course.courseNum
-                let coursePath = course.coursedept.toLowerCase().replace(' ', '') + "_" + course.courseNum.toLowerCase()
+                let coursePath = course.courseDept.toLowerCase().replace(' ', '') + "_" + course.courseNum.toLowerCase()
                 if(course.courseTopic >= 0){
                     coursePath += "_" + course.courseTopic.toString()
                 } 

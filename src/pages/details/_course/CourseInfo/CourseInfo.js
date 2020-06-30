@@ -4,7 +4,7 @@ import './CourseInfo.css'
 
 function CourseInfo(props) {
 	let parentPath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
-	parentPath += "_0"
+	parentPath += "_" + props.topicNum.toString()
 	let parentTopic = (
 		<div>
 			<span>Parent Topic: </span>
@@ -27,7 +27,7 @@ function CourseInfo(props) {
 					<h2 className="course-title"> {props.courseDept} {props.courseNum} </h2>
 					<h5 className="card-title course-title"> {props.courseTitle} </h5>
 					<p> {props.courseDes} </p>
-					{props.parentTitle != null ? parentTopic: <br/>}
+					{props.topicNum >= 0 ? parentTopic: <br/>}
 				</div>
 			</div>
 		</div>

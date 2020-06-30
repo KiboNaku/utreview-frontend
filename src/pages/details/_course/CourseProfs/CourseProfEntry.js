@@ -8,13 +8,14 @@ function CourseProfEntry(props) {
     let engaging = props.engaging !== null ? `${props.engaging}` : "N/A"
     let grading = props.grading !== null ? `${props.grading}` : "N/A"
     let prof_id = "prof" + props.id.toString()
+    const profPath = props.firstName.toLowerCase().replace(" ", "") + "_" + props.lastName.toLowerCase().replace(" ", "")
     return (
         <tr key={props.id}>
             <td>
                 <Link
                     className="utcolor"
                     to={{
-                        pathname: `prof-results/${props.firstName}_${props.lastName}`,
+                        pathname: `prof-results/${profPath}`,
                         state: {
                             profId: props.id
                         }

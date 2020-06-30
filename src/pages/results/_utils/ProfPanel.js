@@ -72,14 +72,14 @@ function ProfPanel(props) {
                 // TODO: temporary numbers to fill table: remove later
                 const rating = Math.floor(Math.random() * 70 + 30)
                 const numRating = Math.floor(Math.random() * 1500)
-
+                const profPath = firstName.toLowerCase().replace(" ", "") + "_" + lastName.toLowerCase().replace(" ", "")
                 return (
                     <tr key={prof.id} ref={loadRef}>
                         <td colSpan="3" className="class-name">{
                             <Link
                                 className="utcolor"
                                 to={{
-                                    pathname: `prof-results/${firstName}_${lastName}`,
+                                    pathname: `prof-results/${profPath}`,
                                     state: {
                                         profId: prof.id
                                     }

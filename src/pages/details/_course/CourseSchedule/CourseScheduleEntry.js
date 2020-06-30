@@ -3,7 +3,9 @@ import React from 'react';
 function CourseScheduleEntry(props) {
     let crossListed = props.crossListed.map(course =>{
         let coursePath = course.dept.toLowerCase().replace(' ', '') + "_" + course.num.toLowerCase()
-        coursePath += "_" + course.id.toString()
+        if(course.topicNum >= -1){
+            coursePath += "_" + course.topicNum.toString()
+        } 
         return (
             <li>
                 <Link
