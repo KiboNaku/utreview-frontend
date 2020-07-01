@@ -64,8 +64,9 @@ class ReviewForm extends Component {
 			HelpfulError: "",
 			GradingDifficultyError: "",
 
+			FormDisabled: true,
+
 			Duplicate: false,
-			Disable: true,
 			OldReview: null
 		}
 
@@ -182,7 +183,7 @@ class ReviewForm extends Component {
 		if (inputValue !== null) {
 			this.setState({ CourseNumber: inputValue.value })
 			if (this.state.ProfessorName !== "" && this.state.Semester !== "") {
-				this.state.Disable = false;
+				this.state.FormDisabled = false;
 
 				const token = localStorage.usertoken
 				const decoded = jwt_decode(token)
@@ -211,7 +212,7 @@ class ReviewForm extends Component {
 		if (inputValue !== null) {
 			this.setState({ ProfessorName: inputValue.value })
 			if (this.state.CourseNumber !== "" && this.state.Semester !== "") {
-				this.state.Disable = false;
+				this.state.FormDisabled = false;
 
 				const token = localStorage.usertoken
 				const decoded = jwt_decode(token)
@@ -239,7 +240,7 @@ class ReviewForm extends Component {
 		if (inputValue !== null) {
 			this.setState({ Semester: inputValue.value })
 			if (this.state.CourseNumber !== "" && this.state.ProfessorName !== "") {
-				this.state.Disable = false;
+				this.state.FormDisabled = false;
 
 				const token = localStorage.usertoken
 				const decoded = jwt_decode(token)
@@ -338,27 +339,29 @@ class ReviewForm extends Component {
 
 	setData() {
 		const { OldReview } = this.state
+		
+		console.log(OldReview)
 
 		this.setState({
-			Semester: OldReview.Semester,
-			CourseNumber: OldReview.CourseNumber,
-			CourseLikePressed: OldReview.CourseApproval,
-			CourseDislikePressed: !OldReview.CourseApproval,
-			CourseApproval: OldReview.CourseApproval,
-			Usefulness: OldReview.Usefulness,
-			Difficulty: OldReview.Difficulty,
-			Workload: OldReview.Workload,
-			CourseComment: OldReview.CourseComment,
-			ProfessorName: OldReview.ProfessorName,
-			ProfessorLikePressed: OldReview.ProfessorApproval,
-			ProfessorDislikePressed: !OldReview.ProfessorApproval,
-			ProfessorApproval: OldReview.ProfessorApproval,
-			Clear: OldReview.Clear,
-			Engaging: OldReview.Engaging,
-			GradingDifficulty: OldReview.GradingDifficulty,
-			ProfessorComment: OldReview.ProfessorComment,
+			Semester: OldReview.semester,
+			CourseNumber: OldReview.course.dept.abr + OldReview.course.num,
+			CourseLikePressed: OldReview.course_rating.approval,
+			CourseDislikePressed: !OldReview.course_rating.approval,
+			CourseApproval: OldReview.course_rating.approval,
+			Usefulness: OldReview.course_rating.usefulness,
+			Difficulty: OldReview.course_rating.difficulty,
+			Workload: OldReview.course_rating.workload,
+			CourseComment: OldReview.course_comments,
+			ProfessorName: OldReview.professor.lastName + ', ' + OldReview.professor.firstName,
+			ProfessorLikePressed: OldReview.professor_rating.approval,
+			ProfessorDislikePressed: !OldReview.professor_rating.approval,
+			ProfessorApproval: OldReview.professor_rating.approval,
+			Clear: OldReview.professor_rating.clear,
+			Engaging: OldReview.professor_rating.engagin,
+			GradingDifficulty: OldReview.professor_rating.grading,
+			ProfessorComment: OldReview.professor_comments,
 
-			Disable: false
+			FormDisabled: false
 		})
 
 	}
