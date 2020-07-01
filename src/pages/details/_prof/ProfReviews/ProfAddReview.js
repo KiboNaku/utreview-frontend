@@ -3,23 +3,20 @@ import { withRouter, Link } from 'react-router-dom'
 import Login from '../../../popups/Login'
 import Signup from '../../../popups/Signup'
 
-function CourseAddReview(props) {
-    let coursePath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
-    if(props.topicNum != -1){
-        coursePath += "_" + props.topicNum.toString()
-    }    
+function ProfAddReview(props) {
+    const profPath = props.firstName.toLowerCase().replace(" ", "") + "_" + props.lastName.toLowerCase().replace(" ", "")
     const addReviewLink = (
-        <Link
+        <Link className="utcolor"
             to={{
-                pathname: `/add-review/${coursePath}`,
+                pathname: `prof-results/${profPath}`,
                 state: {
-                    courseId: course.id
+                    profId: props.id
                 }
-            }}
-        >
+            }}>
             <button style={{ height: "50px", width: "175px", fontSize: "20px" }} className="btn btn-dark font-weight-bold" type="button">
                 Add a Review
-            </button>
+                </button>
+                {props.firstName} {props.lastName}
         </Link>
     )
     const loginLink = (
@@ -33,8 +30,8 @@ function CourseAddReview(props) {
 
     )
     return (
-        <div className="courseAddReview" >
-            <h3 className="add-review-text"> Have you taken {props.courseDep} {props.courseNo}? </h3>
+        <div className="profAddReview" >
+            <h3 className="add-review-text"> Have you taken {props.firstName} {props.lastName}? </h3>
             <div className="add-review">
                 {localStorage.usertoken ? addReviewLink : loginLink}
             </div>
@@ -42,4 +39,4 @@ function CourseAddReview(props) {
     );
 }
 
-export default withRouter(CourseAddReview);
+export default withRouter(ProfAddReview);

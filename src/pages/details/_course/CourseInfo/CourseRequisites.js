@@ -21,15 +21,6 @@ class CourseRequisites extends React.Component{
 
     render(){
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
-        const prerequisites = this.props.preRequisites.map(prereq => {
-            return <li> {prereq} </li>
-        })
-        const corequisites = this.props.coRequisites.map(coreq => {
-            return <li> {coreq} </li>
-        })
-        const antirequisites = this.props.antiRequisites.map(antireq => {
-            return <li> {antireq} </li>
-        })
         return (
             <div className="courseRequisites">
                 <div className="card course-card">
@@ -41,21 +32,15 @@ class CourseRequisites extends React.Component{
                             <div className="requisites">
                                 <div>
                                     <h5> Prerequisites </h5>
-                                    <ul>
-                                        {prerequisites}
-                                    </ul>
+                                    <p>
+                                        {this.props.preReqs}
+                                    </p>
                                 </div>
                                 <div>
-                                    <h5> Corequisites </h5>
-                                    <ul>
-                                        {corequisites}
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h5> Antirequisites </h5>
-                                    <ul>
-                                        {antirequisites}
-                                    </ul>
+                                    <h5> Restrictions </h5>
+                                    <p>
+                                        {this.props.restrictions}
+                                    </p>
                                 </div>
                             </div>
                         </div>
