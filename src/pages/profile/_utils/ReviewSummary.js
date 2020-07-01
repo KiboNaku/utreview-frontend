@@ -19,8 +19,9 @@ function ReviewSummary(props) {
         <div className="col-sm-4 review-container">
             <div className="card">
                 <div className="card-body">
+                    <i className="fas fa-trash trash-icon" onClick={() => props.deleteReview(props.data.id)}></i>
                     <p>
-                        <b>{props.data.semester}</b>
+                        <span><b>{props.data.semester}</b></span>
                     </p>
                     <p>
                         <span style={{ marginRight: '20px' }}><b>{props.data.course.dept.abr} {props.data.course.num}</b></span>

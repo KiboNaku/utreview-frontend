@@ -54,3 +54,13 @@
 	margin-top: -50px;
 	display: inline-block;
 }
+
+.trash-icon {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: -20px;
+}
+
+.trash-icon:hover {
+    cursor: pointer;
+}
