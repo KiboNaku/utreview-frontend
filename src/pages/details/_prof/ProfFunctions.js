@@ -1,21 +1,22 @@
 import axios from 'axios'
 
-export const getCourseInfo = (course) => {
+export const getProfInfo = (prof) => {
     return axios
-      .post('/api/course_info', {
-        courseId: course.courseId,
-        userEmail: course.userEmail,
-        loggedIn: course.loggedIn
+      .post('/api/prof_info', {
+        profName: prof.profName,
+        userEmail: prof.userEmail,
+        loggedIn: prof.loggedIn
       })
       .then(response => {
+        console.log(response)
         return response.data
       })
   }
 
-  export const getCourseId = (course) => {
+  export const getProfId = (prof) => {
     return axios
-      .post('/api/course_id', {
-        courseString: course.courseString
+      .post('/api/prof_id', {
+        profString: prof.profString
       })
       .then(response => {
         return response.data
@@ -31,6 +32,7 @@ export const getCourseInfo = (course) => {
         reviewId: feedback.reviewId
       })
       .then(response => {
+        console.log(response)
         return response.data
       })
   }

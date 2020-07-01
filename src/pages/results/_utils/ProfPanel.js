@@ -29,7 +29,9 @@ function ProfPanel(props) {
 
             switch (sortBy) {
                 case 'profName':
-                    return b.profName.localeCompare(a.profName)
+                    let profNameA = a.firstName + " " + a.lastName
+                    let profNameB = b.firstName + " " + b.lastName
+                    return profNameB.localeCompare(profNameA)
             }
         }
 
@@ -65,31 +67,34 @@ function ProfPanel(props) {
                 .slice(0, props.calcTableEdge(props.page, props.data.length))
 
             return sortedProfs.map(prof => {
-                const { profName } = prof
+                const { firstName, lastName } = prof
 
                 // TODO: temporary numbers to fill table: remove later
                 const rating = Math.floor(Math.random() * 70 + 30)
                 const numRating = Math.floor(Math.random() * 1500)
-
+                const profPath = firstName.toLowerCase().replace(" ", "") + "_" + lastName.toLowerCase().replace(" ", "")
                 return (
-                    <tr key={profName} ref={loadRef}>
+                    <tr key={prof.id} ref={loadRef}>
                         <td colSpan="3" className="class-name">{
                             <Link
                                 className="utcolor"
                                 to={{
-                                    pathname: `${props.match.url}/${profName}`,
+                                    pathname: `prof-results/${profPath}`,
                                     state: {
-                                        profName: profName
+                                        profId: prof.id
                                     }
                                 }}
-                            > {profName}
+                            > {firstName} {lastName}
                             </Link>
                         }</td>
                         <td colSpan="1">
-                            {rating}%
+                            {prof.eCIS}
 							</td>
                         <td colSpan="1">
-                            {numRating}
+                            {prof.approval}%
+							</td>
+                        <td colSpan="1">
+                            {prof.numRatings}
                         </td>
                     </tr>
                 )
@@ -100,7 +105,7 @@ function ProfPanel(props) {
     let profTable = (
 
         <div>
-            <table id='profResults' className='table table-hover result-table'>
+            <table id='profResults' className='table table-hover table-responsive result-table'>
                 <thead className='thead-dark'>
                     <tr rowSpan="2">
 
@@ -110,6 +115,10 @@ function ProfPanel(props) {
                         </th>
 
                         {/* TODO: update with onclick functions */}
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for eCIS")}>
+                            <span>eCIS</span>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'eCIS' ? '' : ' invisible')}></i>
+                        </th>
 
                         <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for approval")}>
                             <span>Approval</span>
