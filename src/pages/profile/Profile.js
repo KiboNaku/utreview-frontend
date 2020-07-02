@@ -11,7 +11,7 @@ import { SelectionPicture } from './_utils/ProfilePicture'
 import { ProfilePicModal } from './_utils/ProfilePicPopup'
 import Settings from './_utils/Settings'
 import { getMajor } from './../popups/_utils/UserFunctions'
-import { getProfilePictures } from './_utils/ProfileFunctions'
+import { getProfilePictures, updateInfo, getReviews } from './_utils/ProfileFunctions'
 import './Profile.css'
 import axios from 'axios'
 
@@ -21,45 +21,55 @@ class Profile extends Component {
 
         const reviewList = [
             {
-                id: 1,
-                CourseNumber: "E E 302",
-                CourseApproval: true,
-                Usefulness: 3,
-                Difficulty: 4,
-                Workload: 2,
-                CourseComment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus.",
+                'id': 1,
+                'date_posted': '1/1/2020',
+                'semester': 'Spring 2020',
+                'course_comments': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus.",
+                'professor_comments': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus.",
 
-                ProfessorName: "Bank, Seth",
-                ProfessorApproval: false,
-                Clear: 3,
-                Engaging: 2,
-                GradingDifficulty: 4,
-                ProfessorComment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus."
-            },
-            {
-                id: 2,
-                CourseNumber: "E E 306",
-                CourseApproval: true,
-                Usefulness: 4,
-                Difficulty: 2,
-                Workload: 2,
-                CourseComment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus.",
+                'user_posted': {
+                    'major': {
+                        'abr': 'EE',
+                        'name': 'Electrical Engineering '
+                    }
+                },
 
-                ProfessorName: "Patt, Yale",
-                ProfessorApproval: true,
-                Clear: 1,
-                Engaging: 2,
-                GradingDifficulty: 4,
-                ProfessorComment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus."
-            },
+                'professor': {
+                    'firstName': 'Seth',
+                    'lastName': 'Bank'
+                },
+
+                'course': {
+                    'dept': {
+                        'abr': 'EE',
+                        'name': 'Electrical Engineering'
+                    },
+                    'num': 302,
+                    'title': 'intro to ee',
+                },
+
+                'course_rating': {
+                    'approval': false,
+                    'usefulness': 3,
+                    'difficulty': 2,
+                    'workload': 4,
+                },
+
+                'professor_rating': {
+                    'approval': true,
+                    'clear': 4,
+                    'engaging': 3,
+                    'grading': 5,
+                },
+            }
         ]
 
         super()
         this.state = {
-            first_name: '',
-            last_name: '',
-            email: '',
-            major: '',
+            first_name: 'Vina',
+            last_name: 'Xue',
+            email: 'yxue22@utexas.edu',
+            major: 'ee',
             image: '',
             images: [],
             reviews: reviewList,
@@ -71,19 +81,20 @@ class Profile extends Component {
         this.setImageData = this.setImageData.bind(this)
         this.onImageChange = this.onImageChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.deleteReview = this.deleteReview.bind(this)
     }
 
     componentDidMount() {
 
-        const token = localStorage.usertoken
-        const decoded = jwt_decode(token)
-        this.setState({
-            first_name: decoded.identity.first_name,
-            last_name: decoded.identity.last_name,
-            email: decoded.identity.email,
-            major: decoded.identity.major,
-            image: decoded.identity.image
-        })
+        // const token = localStorage.usertoken
+        // const decoded = jwt_decode(token)
+        // this.setState({
+        //     first_name: decoded.identity.first_name,
+        //     last_name: decoded.identity.last_name,
+        //     email: decoded.identity.email,
+        //     major: decoded.identity.major,
+        //     image: decoded.identity.image
+        // })
 
         getMajor().then(res => {
             if (res.error) {
@@ -107,10 +118,18 @@ class Profile extends Component {
             } else {
                 let data = res.images
                 let list = new Array()
-                for (const i in data){
+                for (const i in data) {
                     list.push(data[i]['image'])
                 }
                 this.setState({ images: list })
+            }
+        })
+
+        getReviews().then(res => {
+            if (res.error) {
+                alert(res.error)
+            } else {
+                this.setState({ reviewList: res.reviews })
             }
         })
     }
@@ -137,6 +156,7 @@ class Profile extends Component {
             return (<ReviewSummary
                 data={review}
                 editReview={this.editReview}
+                deleteReview={this.deleteReview}
             />
             )
         })
@@ -173,13 +193,34 @@ class Profile extends Component {
                     last_name: lastName,
                     major: major
                 })
-            //do something with password
+
+                const user = {
+                    first_name: this.state.first_name,
+                    last_name: this.state.last_name,
+                    email: this.state.email,
+                    password: password,
+                    major: this.state.major,
+                    image: this.state.image
+                }
+
+                updateInfo(user).then(res => {
+                    if (res.error) {
+                        alert(res.error)
+                    } else {
+                        $('#settings').modal('hide')
+                    }
+                })
+            default:
+                $('#settings').modal('hide')
         }
-        $('#settings').modal('hide')
+    }
+
+    //TODO: write this function and implement backend 
+    deleteReview(id){
+
     }
 
     render() {
-        
         return (
             <main>
                 <ProfileComponent

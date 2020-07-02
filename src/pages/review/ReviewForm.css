@@ -13,3 +13,11 @@ li * {
 	float: none;
 	border-style: hidden;
 }
+
+.btn-approval:hover {
+    cursor: pointer;
+}
+
+.btn-approval {
+    padding-right: 15px;
+}

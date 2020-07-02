@@ -2,9 +2,35 @@ import React from 'react'
 import { StyledRating } from './Rating'
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
+import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded';
+import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded';
 import { BinaryFeedback } from 'react-simple-user-feedback'
 
 function ReviewCourse(props) {
+    let likeIcon = props.data.CourseLikePressed ?
+        <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
+    let dislikeIcon = props.data.CourseDislikePressed ?
+        <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
+
+    const likeButton = (
+        <span
+            className="btn-like btn-approval"
+            onClick={() => props.handleLike('course')}
+        >
+            {likeIcon}
+        </span>
+    )
+
+    const dislikeButton = (
+        <span
+            className="btn-dislike btn-approval"
+            onClick={() => props.handleDislike('course')}
+        >
+            {dislikeIcon}
+        </span>
+    )
+
+
     return (
 
         <table className="table table-borderless review-form">
@@ -17,13 +43,10 @@ function ReviewCourse(props) {
                             </td>
                         ) : null}
                     </td>
-                    <td><BinaryFeedback
-                        type="binaryFeedback"
-                        value={props.data.CourseApproval}
-                        name="CourseApproval"
-                        onPositiveClick={() => props.handlePositiveClick('CourseApproval')}
-                        onNegativeClick={() => props.handleNegativeClick('CourseApproval')}
-                    /></td>
+                    <td>
+                        {likeButton}
+                        {dislikeButton}
+                    </td>
                 </tr>
                 <tr>
                     <td> Usefulness:

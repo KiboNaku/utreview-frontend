@@ -55,6 +55,12 @@
 	display: inline-block;
 }
 
-.review-cell {
-	
+.trash-icon {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: -20px;
+}
+
+.trash-icon:hover {
+    cursor: pointer;
 }

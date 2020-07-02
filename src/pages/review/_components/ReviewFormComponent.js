@@ -5,10 +5,33 @@ import ReviewProfessor from './../_utils/ReviewProfessor'
 import './../ReviewForm.css'
 
 function ReviewFormComponent(props) {
-    let disableStyle = (props.data.Disable ? {
+    let disableStyle = (props.data.FormDisabled ? {
         pointerEvents: "none",
         opacity: "0.4"
     } : {})
+
+    let topicSelect = (
+        <li className="py-2">
+
+            <span >
+                Select a topic:
+                            </span>
+
+            <Select
+                className="basic-single col-12 col-sm-10 col-md-8 mt-2"
+                classNamePrefix="select"
+                name="topicName"
+                options={props.data.TopicList}
+                onChange={props.handleTopicChange}
+                placeholder="Topic"
+                isClearable={true}
+                isSearchable={true}
+                isDisabled={props.data.OldReview || props.data.CourseDisabled ? true : false}
+                value={props.data.TopicId !== null ?
+                    props.data.TopicList.filter(topic => topic.id === props.data.TopicId) : null}
+            />
+        </li>
+    )
 
     return (
         <div style={{ width: "100%", backgroundColor: "#9cadb7" }}>
@@ -19,57 +42,78 @@ function ReviewFormComponent(props) {
                     <h4 className="pb-4">Let us know about your experience.</h4>
 
                     <ol className="px-5">
-
-                        <li className="py-2">
+                        <li className="py-3">
 
                             <span >
-                                Choose your course:
+                                Select a semester:
                             </span>
 
                             <Select
                                 className="basic-single col-12 col-sm-10 col-md-8 mt-2"
                                 classNamePrefix="select"
-                                name="courseNumber"
-                                options={props.data.courseNumList}
-                                onChange={props.handleCourseNumberChange}
-                                placeholder="Course"
+                                name="semester"
+                                options={props.data.SemesterList}
+                                onChange={props.handleSemesterChange}
+                                placeholder="Semester"
                                 isClearable={true}
                                 isSearchable={true}
                                 isDisabled={props.data.OldReview ? true : false}
-                                value={props.data.courseNumList.filter(courseNum => courseNum.label === props.data.CourseNumber)}
                             />
                         </li>
+                        <li className="py-2">
+
+                            <span >
+                                Select a course:
+                            </span>
+
+                            <Select
+                                className="basic-single col-12 col-sm-10 col-md-8 mt-2"
+                                classNamePrefix="select"
+                                name="courseName"
+                                options={props.data.CourseList}
+                                onChange={props.handleCourseChange}
+                                placeholder="Course"
+                                isClearable={true}
+                                isSearchable={true}
+                                isDisabled={props.data.OldReview || props.data.CourseDisabled ? true : false}
+                                value={props.data.CourseId !== null ?
+                                    props.data.CourseList.filter(course => course.id === props.data.CourseId) : null}
+                            />
+                        </li>
+
+                        {props.data.topicSelected ? topicSelect : null}
 
                         <li className="py-3" >
 
                             <span>
-                                Choose your professor:
+                                Select a professor:
                             </span>
 
                             <Select
                                 className="basic-single col-12 col-sm-10 col-md-8 mt-2"
                                 classNamePrefix="select"
                                 name="ProfessorName"
-                                options={props.data.professorNameList}
-                                onChange={props.handleProfessorNameChange}
+                                options={props.data.ProfessorList}
+                                onChange={props.handleProfessorChange}
                                 placeholder="Professor"
                                 isClearable={true}
                                 isSearchable={true}
-                                isDisabled={props.data.OldReview ? true : false}
-                                value={props.data.professorNameList.filter(profName => profName.label === props.data.ProfessorName)}
+                                isDisabled={props.data.OldReview || props.data.ProfessorDisabled ? true : false}
+                                value={props.data.ProfessorId !== null ?
+                                    props.data.ProfessorList.filter(prof => prof.id === props.data.ProfessorId) : null}
                             />
                         </li>
 
                         <li className="py-3" style={disableStyle}>
                             <span>
-                                Give us your review for {props.data.CourseNumber !== '' ? props.data.CourseNumber + ':' : '...'}
+                                Give us your review for {props.data.CourseId !== null ? props.data.CourseDept + " " + props.data.CourseNum + ':' : '...'}
                             </span>
                             <ReviewCourse {...props} />
                         </li>
 
                         <li className="py-3" style={disableStyle}>
                             <span>
-                                Give us your review for {props.data.ProfessorName !== '' ? props.data.ProfessorName + ':' : '...'}
+                                Give us your review for {props.data.ProfessorId !== null ? props.data.ProfessorFirst + " " + props.data.ProfessorLast + ':' : '...'}
                             </span>
                             <ReviewProfessor {...props} />
                         </li>

@@ -24,3 +24,11 @@ export const updateInfo = user => {
 			return response.data
 		})
 }
+
+export const getReviews = () => {
+	return axios
+		.get('/api/review_list')
+		.then(response => {
+			return response.data
+		})
+}

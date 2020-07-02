@@ -1,12 +1,13 @@
 import React from 'react';
 import CourseInfo from './_course/CourseInfo/CourseInfo';
+import CourseTopics from './_course/CourseInfo/CourseTopics';
 import CourseRatings from './_course/CourseInfo/CourseRatings';
 import CourseProfs from './_course/CourseProfs/CourseProfs';
 import CourseReviews from './_course/CourseReviews/CourseReviews';
 import CourseAddReview from './_course/CourseReviews/CourseAddReview';
 import CourseRequisites from './_course/CourseInfo/CourseRequisites'
 import CourseSchedule from './_course/CourseSchedule/CourseSchedule'
-import { getCourseInfo, getCourseProfs } from './_course/CourseFunctions'
+import { getCourseInfo, getCourseId } from './_course/CourseFunctions'
 import Loading from './../_utils/Loading'
 import { withRouter, Link } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
@@ -173,47 +174,71 @@ class CourseDetails extends React.Component {
             courseProfs: courseProfs,
             courseReviews: courseReviews,
             courseSchedule: courseSchedule,
-            loaded: false
+            loaded: false,
+            validCourse: true,
+            isParent: false
         }
 
-        const { courseNum } = this.props.location.state
-        let loggedIn = false
-        let email = ''
-        const token = localStorage.usertoken
-        if (token) {
-            const decoded = jwt_decode(token)
-            loggedIn = true
-            email = decoded.identity.email
-        }
-
-        const course = {
-            courseNum: courseNum,
-            loggedIn: loggedIn,
-            userEmail: email
-        }
-        
-        getCourseInfo(course).then(res => {
-            if (res.error) {
-                alert(res.error)
-            } else {
-                let courseData = res.course_info
-                let courseRating = res.course_rating
-                let courseProfessors = res.course_profs
-                let courseRevs = res.course_reviews.map(review => {
-                    return {
-                        ...review,
-                        date: new Date(review.date)
-                    }
-                })
-                this.setState({
-                    courseInfo: courseData,
-                    courseRatings: courseRating,
-                    // courseProfs: courseProfessors,
-                    courseReviews: courseRevs,
-                    loaded: true
-                })
+        const courseId = null
+        if(this.props.location.state === null){
+            let coursePath = window.location.pathname.split("/").pop()
+            let courseString = {
+                courseString: coursePath
             }
-        })
+            getCourseId(courseString).then(res => {
+                if (res.error) {
+                    alert(res.error)
+                    this.setState({
+                        validCourse: false
+                    })
+                } else {
+                    courseId = res.courseId
+                }
+            })
+        }else{
+            courseId = this.props.location.state
+        }
+
+        if(this.state.validCourse){
+            let loggedIn = false
+            let email = ''
+            const token = localStorage.usertoken
+            if (token) {
+                const decoded = jwt_decode(token)
+                loggedIn = true
+                email = decoded.identity.email
+            }
+
+            const course = {
+                courseId: courseId,
+                loggedIn: loggedIn,
+                userEmail: email
+            }
+            
+            getCourseInfo(course).then(res => {
+                if (res.error) {
+                    alert(res.error)
+                } else {
+                    let courseRevs = res.course_reviews.map(review => {
+                        return {
+                            ...review,
+                            date: new Date(review.date)
+                        }
+                    })
+                    this.setState({
+                        courseInfo: res.course_info,
+                        courseRatings: res.course_rating,
+                        courseRequisites: res.course_requisites,
+                        courseSchedule: res.course_schedule,
+                        courseProfs: res.course_profs,
+                        courseReviews: courseRevs,
+                        isParent: res.is_parent,
+                        loaded: true
+                    })
+                }
+            })
+        }
+
     }
 
     componentDidMount() {
@@ -225,7 +250,24 @@ class CourseDetails extends React.Component {
         let loading = (
             <Loading />
         )
+        
+        let invalidCourse = (
+            <h1> This course doesn't exist </h1>
+        )
 
+        let childTopics = (
+            <div className="course-topics">
+                <CourseTopics 
+                    {...this.state.courseInfo}
+                />
+            </div>
+        )
+
+        let addReview = (
+            <CourseAddReview
+                {...this.state.courseInfo}
+            />
+        )
 
         let content = (
             <div className="CourseDetails">
@@ -238,6 +280,7 @@ class CourseDetails extends React.Component {
                     />
 
                 </div>
+                {this.state.isParent ? childTopics : <br/>}
                 <div className="course-tables">
 
                     <CourseRequisites
@@ -247,16 +290,14 @@ class CourseDetails extends React.Component {
                 </div>
 
                 <CourseSchedule {...this.state} />
-                <CourseAddReview
-                    {...this.state.courseInfo}
-                />
+                {this.state.isParent ? addReview : <br/>}
                 <CourseReviews {...this.state} />
             </div>
         )
         return (
             <main className="course-details-main">
                 <div className="main-sub">
-                    {this.state.loaded ? content : loading}
+                    {this.state.validCourse ? (this.state.loaded ? content : loading): invalidCourse}
                 </div>
 
             </main>

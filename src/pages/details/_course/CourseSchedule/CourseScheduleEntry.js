@@ -1,11 +1,28 @@
 import React from 'react';
+import { withRouter, Link } from 'react-router-dom'
 
 function CourseScheduleEntry(props) {
-
-	return (
-        <tr>
+    let crossListed = props.crossListed.map(course =>{
+        let coursePath = course.dept.toLowerCase().replace(' ', '') + "_" + course.num.toLowerCase()
+        if(course.topicNum >= -1){
+            coursePath += "_" + course.topicNum.toString()
+        } 
+        return (
+            <li>
+                <Link
+                    className="utcolor"
+                    to={{
+                        pathname: `course-results/${coursePath}`,
+                    }}
+                > {course.dept} {course.num}
+                </Link>
+            </li>
+        )
+    })
+    return (
+        <tr key={props.id}>
             <td>
-                {props.uniqueNo}
+                {props.uniqueNum}
             </td>
             <td align="center">
                 {props.seatsTaken}/{props.maxEnrollment}
@@ -20,7 +37,19 @@ function CourseScheduleEntry(props) {
                 {props.location}
             </td>
             <td align="center">
-                <a href = "https://www.google.com" > {props.professor} </a>
+                <Link
+                    className="utcolor"
+                    to={{
+                        pathname: `prof-results/${props.profFirst}_${props.profLast}`,
+                        state: {
+                            profId: props.profId
+                        }
+                    }}
+                > {props.profFirst} {props.profLast}
+                </Link>
+            </td>
+            <td align="center">
+                {props.crossListed.length > 0 ? <ul>{crossListed}</ul> : "N/A"}
             </td>
         </tr>
     );

@@ -29,7 +29,7 @@ import Signup from '../../../popups/Signup'
     numDisliked
 */
 
-function CourseReviewEntry(props) {
+function ProfReviewEntry(props) {
     let thumbsIcon = props.review.liked ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} />
 
@@ -98,23 +98,26 @@ function CourseReviewEntry(props) {
     )
 
     const semester = "Fall 2020"
-    const profPath = props.review.profFirst.toLowerCase().replace(" ", "") + "_" + props.review.profLast.toLowerCase().replace(" ", "")
+    let coursePath = props.review.courseDept.toLowerCase().replace(' ', '') + "_" + props.review.courseNum.toLowerCase()
+    if (props.review.courseTopic >= 0) {
+        coursePath += "_" + props.review.courseTopic.toString()
+    }
     return (
         <div className="list-group-item review-list-item">
-            <div className="course-review-entry">
+            <div className="prof-review-entry">
                 <div className="userDes">
                     <Avatar className={classes.large} src={props.review.profilePic}>  </Avatar>
                     <div className="userText">
-                        <span> {props.review.userMajor} student, taught by </span>
+                        <span> {props.review.userMajor} student, enrolled in </span>
                         <Link
                             className="utcolor"
                             to={{
-                                pathname: `prof-results/${profPath}`,
+                                pathname: `course-results/${coursePath}`,
                                 state: {
-                                    profId: props.review.profId
+                                    courseId: props.review.courseId
                                 }
                             }}
-                        > {props.review.profFirst} {props.review.profLast}
+                        > {props.review.courseDept} {props.review.courseNum}
                         </Link>
                         <span>, {props.review.semester} {props.review.year}</span>
                     </div>
@@ -141,10 +144,10 @@ function CourseReviewEntry(props) {
                     </div>
                     <div className="rowRating">
                         <div className="col">
-                            <span className="p-review"> Difficulty: </span>
+                            <span className="p-review"> Clear: </span>
                         </div>
                         <StyledRating
-                            defaultValue={props.review.difficulty}
+                            defaultValue={props.review.clear}
                             icon={<RadioButtonCheckedIcon />}
                             emptyIcon={<RadioButtonUncheckedIcon />}
                             readOnly
@@ -152,11 +155,11 @@ function CourseReviewEntry(props) {
                     </div>
                     <div className="rowRating">
                         <div className="col">
-                            <span className="p-review"> Workload: </span>
+                            <span className="p-review"> Engaging: </span>
                         </div>
 
                         <StyledRating
-                            defaultValue={props.review.workload}
+                            defaultValue={props.review.engaging}
                             icon={<RadioButtonCheckedIcon />}
                             emptyIcon={<RadioButtonUncheckedIcon />}
                             readOnly
@@ -164,10 +167,10 @@ function CourseReviewEntry(props) {
                     </div>
                     <div className="rowRating">
                         <div className="col">
-                            <span className="p-review"> Usefulness: </span>
+                            <span className="p-review"> Grading: </span>
                         </div>
                         <StyledRating
-                            defaultValue={props.review.usefulness}
+                            defaultValue={props.review.grading}
                             icon={<RadioButtonCheckedIcon />}
                             emptyIcon={<RadioButtonUncheckedIcon />}
                             readOnly
@@ -179,4 +182,4 @@ function CourseReviewEntry(props) {
     );
 }
 
-export default CourseReviewEntry;
+export default ProfReviewEntry;

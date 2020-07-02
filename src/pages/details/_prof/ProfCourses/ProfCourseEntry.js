@@ -1,34 +1,38 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom'
 
-function CourseProfEntry(props) {
+function ProfCourseEntry(props) {
 
     let percentLiked = props.percentLiked !== null ? `${props.percentLiked}%` : "N/A%"
     let eCIS = props.eCIS !== null ? `${props.eCIS}` : "N/A"
-    let clear = props.clear !== null ? `${props.clear}` : "N/A"
-    let engaging = props.engaging !== null ? `${props.engaging}` : "N/A"
-    let grading = props.grading !== null ? `${props.grading}` : "N/A"
+    let difficulty = props.difficulty !== null ? `${props.difficulty}` : "N/A"
+    let usefulness = props.usefulness !== null ? `${props.usefulness}` : "N/A"
+    let workload = props.workload !== null ? `${props.workload}` : "N/A"
     let prof_id = "prof" + props.id.toString()
-    const profPath = props.firstName.toLowerCase().replace(" ", "") + "_" + props.lastName.toLowerCase().replace(" ", "")
+    let courseName = props.courseDept + " " + props.courseNum
+    let coursePath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
+    if(props.topicNum >= 0){
+        coursePath += "_" + props.topicNum.toString()
+    } 
     return (
-        <tr key={props.id}>
+        <tr>
             <td>
                 <Link
                     className="utcolor"
                     to={{
-                        pathname: `prof-results/${profPath}`,
+                        pathname: `course-results/${coursePath}`,
                         state: {
-                            profId: props.id
+                            courseId: props.courseId
                         }
                     }}
-                > {props.firstName} {props.lastName}
+                > {courseName}
                 </Link>
             </td>
             <td align="center">{percentLiked}</td>
             <td align="center">{eCIS}</td>
-            <td align="center">{clear}</td>
-            <td align="center">{engaging}</td>
-            <td align="center">{grading}</td>
+            <td align="center">{difficulty}</td>
+            <td align="center">{usefulness}</td>
+            <td align="center">{workload}</td>
             <td align="center">
                 <a href="https://www.google.com" > Syllabi </a>
             </td>
@@ -39,4 +43,4 @@ function CourseProfEntry(props) {
     );
 }
 
-export default CourseProfEntry;
+export default ProfCourseEntry;

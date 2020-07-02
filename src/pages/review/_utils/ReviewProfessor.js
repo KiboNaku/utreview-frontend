@@ -2,9 +2,35 @@ import React from 'react'
 import { StyledRating } from './Rating'
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
+import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded';
+import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded';
 import { BinaryFeedback } from 'react-simple-user-feedback'
 
 function ReviewProfessor(props) {
+    let likeIcon = props.data.ProfessorLikePressed ?
+        <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
+    let dislikeIcon = props.data.ProfessorDislikePressed ?
+        <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
+
+    const likeButton = (
+        <span
+            className="btn-like btn-approval"
+            onClick={() => props.handleLike('prof')}
+        >
+            {likeIcon}
+        </span>
+    )
+
+    const dislikeButton = (
+        <span
+            className="btn-dislike btn-approval"
+            onClick={() => props.handleDislike('prof')}
+        >
+            {dislikeIcon}
+        </span>
+    )
+
+
     return (
 
         <table className="table table-borderless review-form">
@@ -17,13 +43,10 @@ function ReviewProfessor(props) {
                             </td>
                         ) : null}
                     </td>
-                    <td> <BinaryFeedback
-                        type="binaryFeedback"
-                        value={props.data.ProfessorApproval}
-                        name="ProfessorApproval"
-                        onPositiveClick={() => props.handlePositiveClick('ProfessorApproval')}
-                        onNegativeClick={() => props.handleNegativeClick('ProfessorApproval')}
-                    /></td>
+                    <td>
+                        {likeButton}
+                        {dislikeButton}
+                    </td>
                 </tr>
                 <tr>
                     <td> Clear:
@@ -56,23 +79,6 @@ function ReviewProfessor(props) {
                         icon={<RadioButtonCheckedIcon />}
                         emptyIcon={<RadioButtonUncheckedIcon />}
                         name="Engaging"
-                        onChange={props.handleChange}
-                    /></td>
-                </tr>
-                <tr>
-                    <td> Helpful:
-                        {props.data.HelpfulError ? (
-                            <td>
-                                <small className="text-danger">{props.data.HelpfulError}</small>
-                            </td>
-                        ) : null}
-                    </td>
-                    <td> <StyledRating
-                        type="rating"
-                        value={props.data.Helpful}
-                        icon={<RadioButtonCheckedIcon />}
-                        emptyIcon={<RadioButtonUncheckedIcon />}
-                        name="Helpful"
                         onChange={props.handleChange}
                     /></td>
                 </tr>
