@@ -36,8 +36,6 @@ input[type="radio"] {
 }
 
 input[type="radio"]+label:before {
-    content: "";
-
     display: inline-block;
     width: 15px;
     height: 15px;
