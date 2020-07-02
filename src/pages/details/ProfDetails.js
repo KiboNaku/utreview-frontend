@@ -5,7 +5,7 @@ import ProfCourses from './_prof/ProfCourses/ProfCourses';
 import ProfReviews from './_prof/ProfReviews/ProfReviews';
 import ProfAddReview from './_prof/ProfReviews/ProfAddReview';
 import ProfSchedule from './_prof/ProfSchedule/ProfSchedule'
-import { getProfInfo } from './_prof/ProfFunctions'
+import { getProfInfo, getProfId } from './_prof/ProfFunctions'
 import Loading from './../_utils/Loading'
 import { withRouter, Link } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'

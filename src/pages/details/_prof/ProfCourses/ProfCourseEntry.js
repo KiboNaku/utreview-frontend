@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter, Link } from 'react-router-dom'
 
 function ProfCourseEntry(props) {
 
@@ -21,7 +22,7 @@ function ProfCourseEntry(props) {
                     to={{
                         pathname: `course-results/${coursePath}`,
                         state: {
-                            courseId: course.id
+                            courseId: props.courseId
                         }
                     }}
                 > {courseName}
