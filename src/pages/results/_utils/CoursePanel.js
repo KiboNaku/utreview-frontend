@@ -123,7 +123,7 @@ function CoursePanel(props) {
 
                         {/* TODO: update with onclick functions */}
 
-                        <th scope="col" colSpan="1" className="sortable" onClick={() => props.handlePageInc()}>
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for num ratings")}>
                             <span>Approval</span>
                             <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'approval' ? '' : ' invisible')}></i>
                         </th>
