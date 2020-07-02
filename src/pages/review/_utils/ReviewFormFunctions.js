@@ -1,12 +1,24 @@
 import axios from 'axios'
 
-export const getCourses = () => {
+export const getCourses = (info) => {
 	return axios
-		.get('api/get_courses')
+		.post('api/get_courses', {
+			semesterId: info.semesterId
+		})
 		.then(response => {
 			return response.data
 		})
 }
+
+export const getProfId = (prof) => {
+    return axios
+      .post('/api/prof_id', {
+        profString: prof.profString
+      })
+      .then(response => {
+        return response.data
+      })
+  }
 
 export const getProfs = () => {
 	return axios

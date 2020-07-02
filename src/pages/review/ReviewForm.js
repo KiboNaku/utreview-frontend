@@ -20,7 +20,7 @@ class ReviewForm extends Component {
 				courseNum: "302"
 			}, {
 				value: 'EE 306',
-				label: 'EE 306', 
+				label: 'EE 306',
 				id: 2,
 				topicNum: -1,
 				courseDept: "EE",
@@ -33,7 +33,7 @@ class ReviewForm extends Component {
 				topicNum: 1,
 			}, {
 				value: 'Electricity',
-				label: 'Electricity', 
+				label: 'Electricity',
 				id: 4,
 				topicNum: 2,
 			}],
@@ -67,11 +67,12 @@ class ReviewForm extends Component {
 			CourseLoaded: true,
 			ProfLoaded: true,
 			SemesterLoaded: true,
+			TopicLoaded: true,
 
 			SemesterId: null,
 			SemesterSeason: "",
 			SemesterYear: null,
-			
+
 			TopicId: null,
 
 			CourseId: null,
@@ -113,7 +114,6 @@ class ReviewForm extends Component {
 			FormDisabled: true,
 
 			Duplicate: false,
-			Disable: true,
 			OldReview: null,
 			topicSelected: false
 		}
@@ -230,31 +230,31 @@ class ReviewForm extends Component {
 	handleCourseChange = (inputValue, { action }) => {
 		if (inputValue !== null) {
 			let topicSelected = inputValue.topicNum >= 0
-			this.setState({ 
+			this.setState({
 				CourseDept: inputValue.courseDept, CourseNum: inputValue.courseNum, CourseId: inputValue.id,
 				ProfessorDisabled: topicSelected, topicSelected: topicSelected
 			})
-			
-		}else{
-			this.setState({ 
+
+		} else {
+			this.setState({
 				CourseDept: "", CourseNum: "", CourseId: null, TopicId: null,
 				ProfessorFirst: "", ProfessorLast: "", ProfessorId: null,
-				ProfessorDisabled: true, Disable: true, topicSelected: false
+				ProfessorDisabled: true, FormDisabled: true, topicSelected: false
 			})
 		}
 	}
 
 	handleTopicChange = (inputValue, { action }) => {
 		if (inputValue !== null) {
-			this.setState({ 
+			this.setState({
 				TopicId: inputValue.id,
 				ProfessorDisabled: false
 			})
-			
-		}else{
-			this.setState({ 
+
+		} else {
+			this.setState({
 				ProfessorFirst: "", ProfessorLast: "", ProfessorId: null,
-				ProfessorDisabled: true, Disable: true, TopicId: null
+				ProfessorDisabled: true, FormDisabled: true, TopicId: null
 			})
 		}
 	}
@@ -262,7 +262,7 @@ class ReviewForm extends Component {
 	handleProfessorChange = (inputValue, { action }) => {
 
 		if (inputValue !== null) {
-			this.setState({ ProfessorFirst: inputValue.firstName, ProfessorLast: inputValue.lastName, ProfessorId: inputValue.id, Disable: false})			
+			this.setState({ ProfessorFirst: inputValue.firstName, ProfessorLast: inputValue.lastName, ProfessorId: inputValue.id, FormDisabled: false })
 
 			const token = localStorage.usertoken
 			const decoded = jwt_decode(token)
@@ -282,26 +282,53 @@ class ReviewForm extends Component {
 					console.log(res)
 				}
 			})
-			
-		}else{
-			this.setState({ ProfessorFirst: "", ProfessorLast: "", ProfessorId: null, Disable: true })
+
+		} else {
+			this.setState({ ProfessorFirst: "", ProfessorLast: "", ProfessorId: null, FormDisabled: true })
 		}
 	}
 
 	handleSemesterChange = (inputValue, { action }) => {
 		if (inputValue !== null) {
-			this.setState({ 
+			let info = {
+				semesterId: inputValue.id
+			}
+			// getCourses(info).then(res => {
+			// 	if (res.error) {
+			// 		alert(res.error)
+			// 	} else {
+			// 		let data = res.courses
+			// 		let courseList = new Array()
+			// 		for (const i in data) {
+			// 			courseList.push({
+			// 				value: data[i]['dept'] + " " + data[i]['num'],
+			// 				label: data[i]['dept'] + " " + data[i]['num'],
+			// 				id: data[i]['id'],
+			// 				topicId: data[i]['topicId'],
+			// 				courseDept: data[i]['dept'],
+			// 				courseNum: data[i]['num']
+			// 			})
+			// 		}
+			// 		let courseId
+			// 		if(!courseList.map(course => course.id).includes(this.state.CourseId)){
+			// 			courseId = null
+			// 		}
+			
+			// 		this.setState({ CourseList: courseList, CourseLoaded: true, CourseId: courseId })
+			// 	}
+			// })
+			this.setState({
 				SemesterSeason: inputValue.semester, SemesterYear: inputValue.year, SemesterId: inputValue.id,
 				CourseDisabled: false
 			})
-			
-		}else{
-			this.setState({ 
+
+		} else {
+			this.setState({
 				SemesterSeason: "", SemesterYear: "", SemesterId: null,
 				CourseDept: "", CourseNum: "", CourseId: null, topicSelected: false,
 				ProfessorFirst: "", ProfessorLast: "", ProfessorId: null,
-				CourseDisabled: true, ProfessorDisabled: true, Disable: true
-			 })
+				CourseDisabled: true, ProfessorDisabled: true, FormDisabled: true
+			})
 		}
 	}
 
@@ -342,25 +369,7 @@ class ReviewForm extends Component {
 	}
 
 	componentDidMount() {
-		// getCourses().then(res => {
-		// 	if (res.error) {
-		// 		alert(res.error)
-		// 	} else {
-		// 		let data = res.courses
-		// 		let courseList = new Array()
-		// 		for (const i in data) {
-		// 			courseList.push({
-		// 				value: data[i]['dept'] + " " + data[i]['num'],
-		// 				label: data[i]['dept'] + " " + data[i]['num'],
-		// 				id: data[i]['id'],
-		// 				topicId: data[i]['topicId'],
-		//				courseDept: data[i]['dept'],
-		//				courseNum: data[i]['num']
-		// 			})
-		// 		}
-		// 		this.setState({ CourseList: courseList, CourseLoaded: true })
-		// 	}
-		// })
+
 
 		// getProfs().then(res => {
 		// 	if (res.error) {
@@ -400,13 +409,30 @@ class ReviewForm extends Component {
 		// 	}
 		// })
 
+		// getTopics().then(res => {
+		// 	if (res.error) {
+		// 		alert(res.error)
+		// 	} else {
+		// 		let data = res.topics
+		// 		let topicList = new Array()
+		// 		for (const i in data) {
+		// 			topicList.push({
+		// 				value: data[i]['title'],
+		// 				label: data[i]['title'],
+		// 				id: data[i]['id'],
+		// 			})
+		// 		}
+		// 		this.setState({ TopicsList: topicList, TopicLoaded: true })
+		// 	}
+		// })
+
 		let oldReview = this.props.location.state === undefined ? null : this.props.location.state.review
 		this.setState({ OldReview: oldReview })
 	}
 
 	setData() {
 		const { OldReview } = this.state
-		
+
 		console.log(OldReview)
 
 		this.setState({
@@ -434,7 +460,7 @@ class ReviewForm extends Component {
 			GradingDifficulty: OldReview.GradingDifficulty,
 			ProfessorComment: OldReview.ProfessorComment,
 
-			Disable: false
+			FormDisabled: false
 		})
 
 	}
@@ -452,7 +478,7 @@ class ReviewForm extends Component {
 			handleCourseChange={this.handleCourseChange}
 			handleProfessorChange={this.handleProfessorChange}
 			handleSemesterChange={this.handleSemesterChange}
-			handleTopicChange = {this.handleTopicChange}
+			handleTopicChange={this.handleTopicChange}
 			handleLike={this.handleLike}
 			handleDislike={this.handleDislike}
 			data={this.state} />
