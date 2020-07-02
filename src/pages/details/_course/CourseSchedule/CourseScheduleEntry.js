@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter, Link } from 'react-router-dom'
 
 function CourseScheduleEntry(props) {
     let crossListed = props.crossListed.map(course =>{
