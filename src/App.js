@@ -17,30 +17,33 @@ import ConfirmEmail from './pages/confirm-email/ConfirmEmail';
 function App() {
 
 	return (
-		<Router>
-			<div className="App">
+		<ReviewForm>
+			
+		</ReviewForm>
+		// <Router>
+		// 	<div className="App">
 
-				<Switch>
-					<Route exact path="/" component={() => <NavBar showSearch="false" transparent="true"/>} />
-					<Route path="/" component={() => <NavBar showSearch="true" transparent="false" />} />
-				</Switch>
+		// 		<Switch>
+		// 			<Route exact path="/" component={() => <NavBar showSearch="false" transparent="true"/>} />
+		// 			<Route path="/" component={() => <NavBar showSearch="true" transparent="false" />} />
+		// 		</Switch>
 
-				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route path="/profile" component={Profile} />
-					<Route path="/about" component={About} />
-					<Route exact path="/results" component={Results} />
-					<Route path="/add-review/:objId" component={ReviewForm} /> 
-					<Route path="/confirm_email" component={ConfirmEmail}/>
-					<Route path={"/course-results/:courseId"} render={(props) => <CourseDetails />} />
-					<Route path={"/prof-results/:profId"} render={(props) => <ProfDetails />} />
-				</Switch>
-				<Footer />
+		// 		<Switch>
+		// 			<Route exact path="/" component={Home} />
+		// 			<Route path="/profile" component={Profile} />
+		// 			<Route path="/about" component={About} />
+		// 			<Route exact path="/results" component={Results} />
+		// 			<Route path="/add-review/:objId" component={ReviewForm} /> 
+		// 			<Route path="/confirm_email" component={ConfirmEmail}/>
+		// 			<Route path={"/course-results/:courseId"} render={(props) => <CourseDetails />} />
+		// 			<Route path={"/prof-results/:profId"} render={(props) => <ProfDetails />} />
+		// 		</Switch>
+		// 		<Footer />
 
-		        <Login />
-		        <Signup />
-			</div>
-		</Router>
+		//         <Login />
+		//         <Signup />
+		// 	</div>
+		// </Router>
 	);
 }
 

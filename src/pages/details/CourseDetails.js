@@ -7,7 +7,7 @@ import CourseReviews from './_course/CourseReviews/CourseReviews';
 import CourseAddReview from './_course/CourseReviews/CourseAddReview';
 import CourseRequisites from './_course/CourseInfo/CourseRequisites'
 import CourseSchedule from './_course/CourseSchedule/CourseSchedule'
-import { getCourseInfo, getCourseProfs } from './_course/CourseFunctions'
+import { getCourseInfo, getCourseId } from './_course/CourseFunctions'
 import Loading from './../_utils/Loading'
 import { withRouter, Link } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'

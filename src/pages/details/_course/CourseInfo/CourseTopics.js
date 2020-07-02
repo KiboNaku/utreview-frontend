@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter, Link } from 'react-router-dom'
 import { render } from '@testing-library/react';
 
 class CourseTopics extends React.Component {
