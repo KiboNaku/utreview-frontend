@@ -182,7 +182,6 @@ class Profile extends Component {
         
         return (
             <main>
-                <h1>{this.state.success}</h1>
                 <ProfileComponent
                     data={this.state}
                     setReviewData={this.setReviewData}
