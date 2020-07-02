@@ -81,6 +81,7 @@ class Profile extends Component {
         this.setImageData = this.setImageData.bind(this)
         this.onImageChange = this.onImageChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.deleteReview = this.deleteReview.bind(this)
     }
 
     componentDidMount() {
@@ -155,6 +156,7 @@ class Profile extends Component {
             return (<ReviewSummary
                 data={review}
                 editReview={this.editReview}
+                deleteReview={this.deleteReview}
             />
             )
         })
@@ -213,10 +215,14 @@ class Profile extends Component {
         }
     }
 
+    //TODO: write this function and implement backend 
+    deleteReview(id){
+
+    }
+
     render() {
         return (
             <main>
-                <h1>{this.state.success}</h1>
                 <ProfileComponent
                     data={this.state}
                     setReviewData={this.setReviewData}

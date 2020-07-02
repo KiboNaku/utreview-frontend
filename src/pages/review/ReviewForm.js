@@ -110,6 +110,8 @@ class ReviewForm extends Component {
 			HelpfulError: "",
 			GradingDifficultyError: "",
 
+			FormDisabled: true,
+
 			Duplicate: false,
 			Disable: true,
 			OldReview: null,
@@ -404,6 +406,8 @@ class ReviewForm extends Component {
 
 	setData() {
 		const { OldReview } = this.state
+		
+		console.log(OldReview)
 
 		this.setState({
 			SemesterId: OldReview.SemesterId,
