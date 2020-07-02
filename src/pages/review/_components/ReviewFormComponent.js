@@ -5,7 +5,7 @@ import ReviewProfessor from './../_utils/ReviewProfessor'
 import './../ReviewForm.css'
 
 function ReviewFormComponent(props) {
-    let disableStyle = (props.data.Disable ? {
+    let disableStyle = (props.data.FormDisabled ? {
         pointerEvents: "none",
         opacity: "0.4"
     } : {})
