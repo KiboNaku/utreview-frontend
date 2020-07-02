@@ -13,7 +13,7 @@ function CourseAddReview(props) {
             to={{
                 pathname: `/add-review/${coursePath}`,
                 state: {
-                    courseId: course.id
+                    courseId: props.id
                 }
             }}
         >
