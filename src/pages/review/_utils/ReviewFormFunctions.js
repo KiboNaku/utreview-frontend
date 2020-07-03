@@ -10,19 +10,22 @@ export const getCourses = (info) => {
 		})
 }
 
-export const getProfId = (prof) => {
-    return axios
-      .post('/api/prof_id', {
-        profString: prof.profString
-      })
-      .then(response => {
-        return response.data
-      })
-  }
-
-export const getProfs = () => {
+export const getTopics = (info) => {
 	return axios
-		.get('api/get_profs')
+		.post('api/get_topics', {
+			topicId: info.topicId
+		})
+		.then(response => {
+			return response.data
+		})
+}
+
+export const getProfs = (info) => {
+	return axios
+		.post('api/get_profs', {
+			semesterId: info.semesterId,
+			profId: info.profId
+		})
 		.then((response) => {
 			return response.data
 		});
