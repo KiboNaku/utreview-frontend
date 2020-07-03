@@ -11,8 +11,8 @@ class Home extends Component {
                         <div className="container text-center">
 
                             <div>
-                                <h1>What starts here</h1>
-                                <h1>changes your course schedule</h1>
+                                <h1 className="home-main-txt">What starts here</h1>
+                                <h1 className="home-main-txt">changes your course schedule</h1>
                             </div>
 
                             <br />

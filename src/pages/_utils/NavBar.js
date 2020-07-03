@@ -16,20 +16,20 @@ class NavBar extends Component {
     render() {
 
         const login = (
-            <button type="button" className="btn btn-dark font-weight-bold" data-toggle="modal" data-target="#login-modal">Log in</button>
+            <button type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#login-modal">Log in</button>
         )
 
         const logout = (
-            <button type="button" className="btn btn-dark font-weight-bold" onClick={this.logOut.bind(this)}>Log out</button>
+            <button type="button" className="btn font-weight-bold btn-nav" onClick={this.logOut.bind(this)}>Log out</button>
         )
 
         const signup = (
-            <button type="button" className="btn btn-dark font-weight-bold" data-toggle="modal" data-target="#signup-modal">Sign up</button>
+            <button type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#signup-modal">Sign up</button>
         )
 
         const profile = (
             <Link to="/profile">
-                <button type="button" className="btn btn-dark font-weight-bold">Profile</button>
+                <button type="button" className="btn font-weight-bold btn-nav">Profile</button>
             </Link>
             
         )
@@ -83,7 +83,7 @@ class NavBar extends Component {
                                 + (transparent? "transparent": "bg-dark")}>
 
                     <div className="navbar-brand" className={"font-weight-bold float-left align-self-center" + (showSearch && " d-none d-md-block")}>
-                        <Link id="nav-brand" className="utdark px-2" to="/">
+                        <Link className={(!showSearch && "big-brand-txt ") + "px-2"} to="/">
                             UT Review
                         </Link>
                     </div>
