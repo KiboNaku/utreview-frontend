@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { getCourses, getProfs, getSemesters } from './_utils/ReviewFormFunctions'
+import { getCourses, getProfs, getSemesters, getTopics } from './_utils/ReviewFormFunctions'
 import { checkDuplicate, newReview, editReview } from './_utils/ReviewFunctions'
 import jwt_decode from 'jwt-decode'
 import ReviewFormComponent from './_components/ReviewFormComponent'
@@ -207,7 +207,7 @@ class ReviewForm extends Component {
 					if (res.error) {
 						alert(res.error)
 					} else {
-						this.props.history.push("/")
+						this.props.history.push("/profile")
 					}
 				})
 			} else {
@@ -215,7 +215,7 @@ class ReviewForm extends Component {
 					if (res.error) {
 						alert(res.error)
 					} else {
-						this.props.history.push("/")
+						this.props.history.push("/profile")
 					}
 				})
 			}
@@ -229,7 +229,64 @@ class ReviewForm extends Component {
 
 	handleCourseChange = (inputValue, { action }) => {
 		if (inputValue !== null) {
-			let topicSelected = inputValue.topicNum >= 0
+			let topicSelected = inputValue.topicNum >= 0		
+
+			if(!topicSelected){
+				this.setState({TopicId: null, topicSelected: false})
+				// let profInfo = {
+				// 	semesterId: this.state.SemesterId,
+				// 	courseId: inputValue.id
+				// }
+				// getProfs(profInfo).then(res => {
+				// 	if (res.error) {
+				// 		alert(res.error)
+				// 	} else {
+				// 		let data = res.professors
+				// 		let profList = new Array()
+				// 		for (const i in data) {
+				// 			profList.push({
+				// 				value: data[i]['firstName'] + " " + data[i]['lastName'],
+				// 				label: data[i]['firstName'] + " " + data[i]['lastName'],
+				// 				id: data[i]['id'],
+				// 				firstName: data[i]['firstName'],
+				// 				lastName: data[i]['lastName']
+				// 			})
+				// 		}
+				// 		let profId = this.state.ProfessorId
+				// 		if (!profList.map(prof => prof.id).includes(profId)) {
+				// 			this.setState({ProfessorId: null, ProfessorFirst: "", ProfessorLast: "", FormDisabled: true})
+				// 		} 
+	
+				// 		this.setState({ ProfessorList: profList, ProfLoaded: true })
+				// 	}
+				// })
+			}else{
+				// let topicInfo = {
+				// 	topicId: inputValue.topicId
+				// }
+				// getTopics(topicInfo).then(res => {
+				// 	if (res.error) {
+				// 		alert(res.error)
+				// 	} else {
+				// 		let data = res.topics
+				// 		let topicList = new Array()
+				// 		for (const i in data) {
+				// 			topicList.push({
+				// 				value: data[i]['topicTitle'],
+				// 				label: data[i]['topicTitle'],
+				// 				id: data[i]['id'],
+				// 				topicTitle: data[i]['topicTitle'],
+				// 				topicNum: data[i]['topicNum']
+				// 			})
+				// 		}
+					
+				// 		this.setState({ TopicList: topicList, TopicLoaded: true,
+				// 		ProfessorId: null, ProfessorFirst: "", ProfessorLast: "", FormDisabled: true,
+				// 		})
+				// 	}
+				// })
+			}
+			
 			this.setState({
 				CourseDept: inputValue.courseDept, CourseNum: inputValue.courseNum, CourseId: inputValue.id,
 				ProfessorDisabled: topicSelected, topicSelected: topicSelected
@@ -246,6 +303,33 @@ class ReviewForm extends Component {
 
 	handleTopicChange = (inputValue, { action }) => {
 		if (inputValue !== null) {
+			// let profInfo = {
+			// 	semesterId: this.state.SemesterId,
+			// 	courseId: inputValue.id
+			// }
+			// getProfs(profInfo).then(res => {
+			// 	if (res.error) {
+			// 		alert(res.error)
+			// 	} else {
+			// 		let data = res.professors
+			// 		let profList = new Array()
+			// 		for (const i in data) {
+			// 			profList.push({
+			// 				value: data[i]['firstName'] + " " + data[i]['lastName'],
+			// 				label: data[i]['firstName'] + " " + data[i]['lastName'],
+			// 				id: data[i]['id'],
+			// 				firstName: data[i]['firstName'],
+			// 				lastName: data[i]['lastName']
+			// 			})
+			// 		}
+			// 		let profId = this.state.ProfessorId
+			// 		if (!profList.map(prof => prof.id).includes(profId)) {
+			// 			this.setState({ProfessorId: null, ProfessorFirst: "", ProfessorLast: "", FormDisabled: true})
+			// 		} 
+
+			// 		this.setState({ ProfessorList: profList, ProfLoaded: true })
+			// 	}
+			// })
 			this.setState({
 				TopicId: inputValue.id,
 				ProfessorDisabled: false
@@ -290,10 +374,10 @@ class ReviewForm extends Component {
 
 	handleSemesterChange = (inputValue, { action }) => {
 		if (inputValue !== null) {
-			let info = {
-				semesterId: inputValue.id
-			}
-			// getCourses(info).then(res => {
+			// let courseInfo = {
+			// 	semesterId: inputValue.id
+			// }
+			// getCourses(courseInfo).then(res => {
 			// 	if (res.error) {
 			// 		alert(res.error)
 			// 	} else {
@@ -306,15 +390,47 @@ class ReviewForm extends Component {
 			// 				id: data[i]['id'],
 			// 				topicId: data[i]['topicId'],
 			// 				courseDept: data[i]['dept'],
-			// 				courseNum: data[i]['num']
+			// 				courseNum: data[i]['num'],
+			// 				topicNum: data[i]['topicNum']
 			// 			})
 			// 		}
-			// 		let courseId
-			// 		if(!courseList.map(course => course.id).includes(this.state.CourseId)){
-			// 			courseId = null
+			// 		let courseId = this.state.CourseId
+			// 		if (!courseList.map(course => course.id).includes(courseId) || this.state.topicSelected) {
+			// 			if (this.state.topicSelected) {
+			// 				this.setState({ topicSelected: false })
+			// 			}
+			// 			this.setState({CourseId: null, ProfessorId: null, ProfessorFirst: "", ProfessorLast: "", ProfessorDisable: true, FormDisabled: true})
+			// 		} else {
+			// 			let profInfo = {
+			// 				semesterId: inputValue.id,
+			// 				courseId: courseId
+			// 			}
+			// 			getProfs(profInfo).then(res => {
+			// 				if (res.error) {
+			// 					alert(res.error)
+			// 				} else {
+			// 					let data = res.professors
+			// 					let profList = new Array()
+			// 					for (const i in data) {
+			// 						profList.push({
+			// 							value: data[i]['firstName'] + " " + data[i]['lastName'],
+			// 							label: data[i]['firstName'] + " " + data[i]['lastName'],
+			// 							id: data[i]['id'],
+			// 							firstName: data[i]['firstName'],
+			// 							lastName: data[i]['lastName']
+			// 						})
+			// 					}
+			// 					let profId = this.state.ProfessorId
+			// 					if (!profList.map(prof => prof.id).includes(profId)) {
+			// 						this.setState({ProfessorId: null, ProfessorFirst: "", ProfessorLast: "", FormDisabled: true})
+			// 					} 
+
+			// 					this.setState({ ProfessorList: profList, ProfLoaded: true })
+			// 				}
+			// 			})
 			// 		}
-			
-			// 		this.setState({ CourseList: courseList, CourseLoaded: true, CourseId: courseId })
+
+			// 		this.setState({ CourseList: courseList, CourseLoaded: true})
 			// 	}
 			// })
 			this.setState({
@@ -369,26 +485,6 @@ class ReviewForm extends Component {
 	}
 
 	componentDidMount() {
-
-
-		// getProfs().then(res => {
-		// 	if (res.error) {
-		// 		alert(res.error)
-		// 	} else {
-		// 		let data = res.professors
-		// 		let profList = new Array()
-		// 		for (const i in data) {
-		// 			profList.push({
-		// 				value: data[i]['firstName'] + " " + data[i]['lastName'],
-		// 				label: data[i]['firstName'] + " " + data[i]['lastName'],
-		// 				id: data[i]['id'],
-		//				firstName: data[i]['firstName'],
-		// 				lastName: data[i]['lastName']
-		// 			})
-		// 		}
-		// 		this.setState({ ProfessorList: profList, ProfLoaded: true })
-		// 	}
-		// })
 
 		// getSemesters().then(res => {
 		// 	if (res.error) {
