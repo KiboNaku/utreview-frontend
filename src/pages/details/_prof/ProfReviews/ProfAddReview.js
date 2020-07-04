@@ -8,9 +8,12 @@ function ProfAddReview(props) {
     const addReviewLink = (
         <Link className="utcolor"
             to={{
-                pathname: `prof-results/${profPath}`,
+                pathname: `/add-review`,
+                search: `?prof=${profPath}`,
                 state: {
-                    profId: props.id
+                    profId: props.id,
+                    profFirst: props.firstName,
+                    profLast: props.lastName
                 }
             }}>
             <button style={{ height: "50px", width: "175px", fontSize: "20px" }} className="btn btn-dark font-weight-bold" type="button">

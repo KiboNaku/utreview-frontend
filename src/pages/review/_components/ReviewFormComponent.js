@@ -117,10 +117,26 @@ function ReviewFormComponent(props) {
                             </span>
                             <ReviewProfessor {...props} />
                         </li>
+                        <li className="py-3" style={disableStyle}>
+                            <span>
+                                (Optional) Give us the grade you obtained in {props.data.CourseId !== null ? props.data.CourseDept + " " + props.data.CourseNum + ':' : '...'}
+                            </span>
+                            <div className="review-grade">
+                                <span> Letter Grade: </span>
+                                <input
+                                    type="text"
+                                    name="first_name"
+                                    className="grade-input form-control"
+                                    placeholder="A"
+                                    value={props.data.grade}
+                                    onChange={props.handleChange} />
+                            </div>
+
+                        </li>
                     </ol>
 
                     <div className="text-center pt-4" style={disableStyle}>
-                        <input type="submit" className="btn btn-lg btn-outline-primary" value="Submit" onSubmit={props.handleSubmit} />
+                        <input type="submit" className="btn btn-lg btn-outline-primary" value={props.data.OldReview ? "Update" : "Submit"} onSubmit={props.handleSubmit} />
                     </div>
                 </form>
             </div>

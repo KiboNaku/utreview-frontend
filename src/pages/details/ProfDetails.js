@@ -167,7 +167,7 @@ class ProfDetails extends React.Component {
                 }
             })
         }else{
-            profId = this.props.location.state
+            profId = this.props.location.state.profId
         }
 
         if(this.state.validProf){

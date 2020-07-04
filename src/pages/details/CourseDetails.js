@@ -196,7 +196,7 @@ class CourseDetails extends React.Component {
                 }
             })
         }else{
-            courseId = this.props.location.state
+            courseId = this.props.location.state.courseId
         }
 
         if(this.state.validCourse){
