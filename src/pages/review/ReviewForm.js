@@ -19,16 +19,11 @@ class ReviewForm extends Component {
 		let profLast = ""
 		let topicId = null
 		let topicsList = [{
-			value: 'Circuits',
-			label: 'Circuits',
-			id: 3,
-			topicNum: 1,
+			value: 'Circuits', label: 'Circuits', id: 3, topicNum: 1,
 		}, {
-			value: 'Electricity',
-			label: 'Electricity',
-			id: 4,
-			topicNum: 2,
+			value: 'Electricity', label: 'Electricity', id: 4, topicNum: 2,
 		}]
+
 		if (props.location.state === undefined) {
 			let urlObject = qs.parse(props.location.search, { ignoreQueryPrefix: true })
 			if (urlObject.course) {
@@ -123,117 +118,45 @@ class ReviewForm extends Component {
 
 		this.state = {
 			CourseList: [{
-				value: 'EE 302',
-				label: 'EE 302',
-				id: 1,
-				topicNum: 0,
-				courseDept: "EE",
-				courseNum: "302"
+				value: 'EE 302', label: 'EE 302', id: 1, topicNum: 0, courseDept: "EE", courseNum: "302"
 			}, {
-				value: 'EE 306',
-				label: 'EE 306',
-				id: 2,
-				topicNum: -1,
-				courseDept: "EE",
-				courseNum: "306"
+				value: 'EE 306', label: 'EE 306', id: 2, topicNum: -1, courseDept: "EE", courseNum: "306"
 			}],
 			TopicList: topicsList,
 			ProfessorList: [{
-				value: 'Yu',
-				label: 'Yu',
-				id: 1,
-				firstName: "Edward",
-				lastName: "Yu"
+				value: 'Yu', label: 'Yu', id: 1, firstName: "Edward", lastName: "Yu"
 			}, {
-				value: 'Bank',
-				label: 'Bank',
-				id: 2,
-				firstName: "Seth",
-				lastName: "Bank"
+				value: 'Bank', label: 'Bank', id: 2, firstName: "Seth", lastName: "Bank"
 			}],
 			SemesterList: [{
-				value: 'Spring 2020',
-				label: 'Spring 2020',
-				id: 1,
-				semester: "Spring",
-				year: 2020
+				value: 'Spring 2020', label: 'Spring 2020', id: 1, semester: "Spring", year: 2020
 			},
 			{
-				value: 'Fall 2020',
-				label: 'Fall 2020',
-				id: 2,
-				semester: "Fall",
-				year: 2020
+				value: 'Fall 2020', label: 'Fall 2020', id: 2, semester: "Fall", year: 2020
 			}],
-			CourseLoaded: true,
-			ProfLoaded: true,
-			SemesterLoaded: true,
-			TopicLoaded: true,
+			CourseLoaded: true, ProfLoaded: true, SemesterLoaded: true, TopicLoaded: true,
 
-			SemesterId: null,
-			SemesterSeason: "",
-			SemesterYear: null,
+			SemesterId: null, SemesterSeason: "", SemesterYear: null,
 
 			TopicId: topicId,
+			CourseId: courseId, CourseDept: courseDept, CourseNum: courseNum, 
+			CourseLikePressed: false, CourseDislikePressed: false, CourseApproval: null,
+			Usefulness: "", Difficulty: "", Workload: "", CourseComment: "", CourseDisabled: true,
 
-			CourseId: courseId,
-			CourseDept: courseDept,
-			CourseNum: courseNum,
-			CourseLikePressed: false,
-			CourseDislikePressed: false,
-			CourseApproval: null,
-			Usefulness: "",
-			Difficulty: "",
-			Workload: "",
-			CourseComment: "",
-			CourseDisabled: true,
-
-			ProfessorId: null,
-			ProfessorFirst: "",
-			ProfessorLast: "",
-			ProfessorLikePressed: false,
-			ProfessorDislikePressed: false,
-			ProfessorApproval: null,
-			Clear: "",
-			Engaging: "",
-			Helpful: "",
-			GradingDifficulty: "",
-			ProfessorComment: "",
-			ProfessorDisabled: true,
+			ProfessorId: null, ProfessorFirst: profFirst, ProfessorLast: profLast,
+			ProfessorLikePressed: false, ProfessorDislikePressed: false, ProfessorApproval: null,
+			Clear: "", Engaging: "", GradingDifficulty: "", ProfessorComment: "", ProfessorDisabled: true,
 
 			Grade: null,
 
-			CourseApprovalError: "",
-			UsefulnessError: "",
-			DifficultyError: "",
-			WorkloadError: "",
+			CourseApprovalError: "", UsefulnessError: "", DifficultyError: "", WorkloadError: "",
+			ProfessorApprovalError: "", ClearError: "", EngagingError: "", GradingDifficultyError: "",
 
-			ProfessorApprovalError: "",
-			ClearError: "",
-			EngagingError: "",
-			HelpfulError: "",
-			GradingDifficultyError: "",
-
-			FormDisabled: true,
-
-			Duplicate: false,
-			OldReview: null,
-			topicSelected: false,
-			invalidReview: invalidReview
+			FormDisabled: true, Duplicate: false, OldReview: null, topicSelected: false, invalidReview: invalidReview
 		}
-
-		this.validate = this.validate.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleChange = this.handleChange.bind(this);
-		this.handleCourseChange = this.handleCourseChange.bind(this);
-		this.handleProfessorChange = this.handleProfessorChange.bind(this);
-		this.handleSemesterChange = this.handleSemesterChange.bind(this);
-		this.handleLike = this.handleLike.bind(this);
-		this.handleDislike = this.handleDislike.bind(this);
-		this.setData = this.setData.bind(this);
 	}
 
-	validate() {
+	validate = () => {
 		let CourseApprovalError = "";
 		let UsefulnessError = "";
 		let DifficultyError = "";
@@ -241,7 +164,6 @@ class ReviewForm extends Component {
 		let ProfessorApprovalError = "";
 		let ClearError = "";
 		let EngagingError = "";
-		let HelpfulError = "";
 		let GradingDifficultyError = "";
 
 		let emptyErrorMessage = 'This field cannot be empty.';
@@ -253,28 +175,14 @@ class ReviewForm extends Component {
 		if (this.state.ProfessorApproval === null) { ProfessorApprovalError = emptyErrorMessage; }
 		if (this.state.Clear === "") { ClearError = emptyErrorMessage; }
 		if (this.state.Engaging === "") { EngagingError = emptyErrorMessage; }
-		if (this.state.Helpful === "") { HelpfulError = emptyErrorMessage; }
 		if (this.state.GradingDifficulty === "") { GradingDifficultyError = emptyErrorMessage; }
 
-		if (CourseApprovalError ||
-			UsefulnessError ||
-			DifficultyError ||
-			WorkloadError ||
-			ProfessorApprovalError ||
-			ClearError ||
-			EngagingError ||
-			HelpfulError ||
-			GradingDifficultyError) {
+		if (CourseApprovalError || UsefulnessError || DifficultyError || WorkloadError ||
+			ProfessorApprovalError || ClearError || EngagingError || GradingDifficultyError) {
 			this.setState({
-				CourseApprovalError: CourseApprovalError,
-				UsefulnessError: UsefulnessError,
-				DifficultyError: DifficultyError,
-				WorkloadError: WorkloadError,
-				ProfessorApprovalError: ProfessorApprovalError,
-				ClearError: ClearError,
-				EngagingError: EngagingError,
-				HelpfulError: HelpfulError,
-				GradingDifficultyError: GradingDifficultyError
+				CourseApprovalError: CourseApprovalError, UsefulnessError: UsefulnessError, DifficultyError: DifficultyError,
+				WorkloadError: WorkloadError, ProfessorApprovalError: ProfessorApprovalError, ClearError: ClearError,
+				EngagingError: EngagingError, GradingDifficultyError: GradingDifficultyError
 			})
 			return false;
 		} else {
@@ -282,7 +190,7 @@ class ReviewForm extends Component {
 		}
 	}
 
-	handleSubmit(event) {
+	handleSubmit = (event) => {
 		event.preventDefault();
 		const isValid = this.validate();
 		if (isValid) {
@@ -303,7 +211,8 @@ class ReviewForm extends Component {
 				prof_approval: this.state.ProfessorApproval,
 				prof_clear: this.state.Clear,
 				prof_engaging: this.state.Engaging,
-				prof_grading: this.state.GradingDifficulty
+				prof_grading: this.state.GradingDifficulty,
+				grade: this.state.Grade
 			}
 
 			if (this.state.OldReview !== null) {
@@ -326,7 +235,7 @@ class ReviewForm extends Component {
 		}
 	}
 
-	handleChange(event) {
+	handleChange = (event) => {
 		const { name, value } = event.target
 		this.setState({ [name]: value })
 	}
@@ -337,34 +246,12 @@ class ReviewForm extends Component {
 
 			if (!topicSelected) {
 				this.setState({ TopicId: null, topicSelected: false })
-				// let profInfo = {
-				// 	semesterId: this.state.SemesterId,
-				// 	courseId: inputValue.id,
-				//	all: false
-				// }
-				// getProfs(profInfo).then(res => {
-				// 	if (res.error) {
-				// 		alert(res.error)
-				// 	} else {
-				// 		let data = res.professors
-				// 		let profList = new Array()
-				// 		for (const i in data) {
-				// 			profList.push({
-				// 				value: data[i]['firstName'] + " " + data[i]['lastName'],
-				// 				label: data[i]['firstName'] + " " + data[i]['lastName'],
-				// 				id: data[i]['id'],
-				// 				firstName: data[i]['firstName'],
-				// 				lastName: data[i]['lastName']
-				// 			})
-				// 		}
-				// 		let profId = this.state.ProfessorId
-				// 		if (!profList.map(prof => prof.id).includes(profId)) {
-				// 			this.setState({ProfessorId: null, ProfessorFirst: "", ProfessorLast: "", FormDisabled: true})
-				// 		} 
-
-				// 		this.setState({ ProfessorList: profList, ProfLoaded: true })
-				// 	}
-				// })
+				let profInfo = {
+					semesterId: this.state.SemesterId,
+					courseId: inputValue.id,
+					all: false
+				}
+				this.setProfInfo(profInfo)
 			} else {
 				// let topicInfo = {
 				// 	topicId: inputValue.topicId
@@ -406,36 +293,40 @@ class ReviewForm extends Component {
 		}
 	}
 
+	setProfInfo = (profInfo) => {
+		getProfs(profInfo).then(res => {
+			if (res.error) {
+				alert(res.error)
+			} else {
+				let data = res.professors
+				let profList = new Array()
+				for (const i in data) {
+					profList.push({
+						value: data[i]['firstName'] + " " + data[i]['lastName'],
+						label: data[i]['firstName'] + " " + data[i]['lastName'],
+						id: data[i]['id'],
+						firstName: data[i]['firstName'],
+						lastName: data[i]['lastName']
+					})
+				}
+				let profId = this.state.ProfessorId
+				if (!profList.map(prof => prof.id).includes(profId)) {
+					this.setState({ProfessorId: null, ProfessorFirst: "", ProfessorLast: "", FormDisabled: true})
+				} 
+
+				this.setState({ ProfessorList: profList, ProfLoaded: true })
+			}
+		})
+	}
+
 	handleTopicChange = (inputValue, { action }) => {
 		if (inputValue !== null) {
-			// let profInfo = {
-			// 	semesterId: this.state.SemesterId,
-			// 	courseId: inputValue.id,
-			//	all: false
-			// }
-			// getProfs(profInfo).then(res => {
-			// 	if (res.error) {
-			// 		alert(res.error)
-			// 	} else {
-			// 		let data = res.professors
-			// 		let profList = new Array()
-			// 		for (const i in data) {
-			// 			profList.push({
-			// 				value: data[i]['firstName'] + " " + data[i]['lastName'],
-			// 				label: data[i]['firstName'] + " " + data[i]['lastName'],
-			// 				id: data[i]['id'],
-			// 				firstName: data[i]['firstName'],
-			// 				lastName: data[i]['lastName']
-			// 			})
-			// 		}
-			// 		let profId = this.state.ProfessorId
-			// 		if (!profList.map(prof => prof.id).includes(profId)) {
-			// 			this.setState({ProfessorId: null, ProfessorFirst: "", ProfessorLast: "", FormDisabled: true})
-			// 		} 
-
-			// 		this.setState({ ProfessorList: profList, ProfLoaded: true })
-			// 	}
-			// })
+			let profInfo = {
+				semesterId: this.state.SemesterId,
+				courseId: inputValue.id,
+				all: false
+			}
+			this.setProfInfo(profInfo)
 			this.setState({
 				TopicId: inputValue.id,
 				ProfessorDisabled: false
@@ -480,67 +371,45 @@ class ReviewForm extends Component {
 
 	handleSemesterChange = (inputValue, { action }) => {
 		if (inputValue !== null) {
-			// let courseInfo = {
-			// 	semesterId: inputValue.id,
-			//	all: false
-			// }
-			// getCourses(courseInfo).then(res => {
-			// 	if (res.error) {
-			// 		alert(res.error)
-			// 	} else {
-			// 		let data = res.courses
-			// 		let courseList = new Array()
-			// 		for (const i in data) {
-			// 			courseList.push({
-			// 				value: data[i]['dept'] + " " + data[i]['num'],
-			// 				label: data[i]['dept'] + " " + data[i]['num'],
-			// 				id: data[i]['id'],
-			// 				topicId: data[i]['topicId'],
-			// 				courseDept: data[i]['dept'],
-			// 				courseNum: data[i]['num'],
-			// 				topicNum: data[i]['topicNum']
-			// 			})
-			// 		}
-			// 		let courseId = this.state.CourseId
-			// 		if (!courseList.map(course => course.id).includes(courseId) || this.state.topicSelected) {
-			// 			if (this.state.topicSelected) {
-			// 				this.setState({ topicSelected: false })
-			// 			}
-			// 			this.setState({CourseId: null, ProfessorId: null, ProfessorFirst: "", ProfessorLast: "", ProfessorDisable: true, FormDisabled: true})
-			// 		} else {
-			// 			let profInfo = {
-			// 				semesterId: inputValue.id,
-			// 				courseId: courseId,
-			//				all: false
-			// 			}
-			// 			getProfs(profInfo).then(res => {
-			// 				if (res.error) {
-			// 					alert(res.error)
-			// 				} else {
-			// 					let data = res.professors
-			// 					let profList = new Array()
-			// 					for (const i in data) {
-			// 						profList.push({
-			// 							value: data[i]['firstName'] + " " + data[i]['lastName'],
-			// 							label: data[i]['firstName'] + " " + data[i]['lastName'],
-			// 							id: data[i]['id'],
-			// 							firstName: data[i]['firstName'],
-			// 							lastName: data[i]['lastName']
-			// 						})
-			// 					}
-			// 					let profId = this.state.ProfessorId
-			// 					if (!profList.map(prof => prof.id).includes(profId)) {
-			// 						this.setState({ProfessorId: null, ProfessorFirst: "", ProfessorLast: "", FormDisabled: true})
-			// 					} 
+			let courseInfo = {
+				semesterId: inputValue.id,
+				all: false
+			}
+			getCourses(courseInfo).then(res => {
+				if (res.error) {
+					alert(res.error)
+				} else {
+					let data = res.courses
+					let courseList = new Array()
+					for (const i in data) {
+						courseList.push({
+							value: data[i]['dept'] + " " + data[i]['num'],
+							label: data[i]['dept'] + " " + data[i]['num'],
+							id: data[i]['id'],
+							topicId: data[i]['topicId'],
+							courseDept: data[i]['dept'],
+							courseNum: data[i]['num'],
+							topicNum: data[i]['topicNum']
+						})
+					}
+					let courseId = this.state.CourseId
+					if (!courseList.map(course => course.id).includes(courseId) || this.state.topicSelected) {
+						if (this.state.topicSelected) {
+							this.setState({ topicSelected: false })
+						}
+						this.setState({CourseId: null, ProfessorId: null, ProfessorFirst: "", ProfessorLast: "", ProfessorDisable: true, FormDisabled: true})
+					} else {
+						let profInfo = {
+							semesterId: inputValue.id,
+							courseId: courseId,
+							all: false
+						}
+						this.setProfInfo(profInfo)
+					}
 
-			// 					this.setState({ ProfessorList: profList, ProfLoaded: true })
-			// 				}
-			// 			})
-			// 		}
-
-			// 		this.setState({ CourseList: courseList, CourseLoaded: true})
-			// 	}
-			// })
+					this.setState({ CourseList: courseList, CourseLoaded: true})
+				}
+			})
 			this.setState({
 				SemesterSeason: inputValue.semester, SemesterYear: inputValue.year, SemesterId: inputValue.id,
 				CourseDisabled: false
@@ -556,7 +425,7 @@ class ReviewForm extends Component {
 		}
 	}
 
-	handleLike(type) {
+	handleLike = (type) => {
 		switch (type) {
 			case 'course':
 				this.setState({
@@ -574,7 +443,7 @@ class ReviewForm extends Component {
 		}
 	}
 
-	handleDislike(type) {
+	handleDislike = (type) => {
 		switch (type) {
 			case 'course':
 				this.setState({
@@ -617,7 +486,7 @@ class ReviewForm extends Component {
 		this.setState({ OldReview: oldReview })
 	}
 
-setData() {
+setData = () => {
 	const { OldReview } = this.state
 
 	console.log(OldReview)
@@ -646,6 +515,7 @@ setData() {
 		Engaging: OldReview.Engaging,
 		GradingDifficulty: OldReview.GradingDifficulty,
 		ProfessorComment: OldReview.ProfessorComment,
+		Grade: OldReview.Grade,
 
 		FormDisabled: false
 	})

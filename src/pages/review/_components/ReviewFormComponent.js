@@ -125,10 +125,9 @@ function ReviewFormComponent(props) {
                                 <span> Letter Grade: </span>
                                 <input
                                     type="text"
-                                    name="first_name"
+                                    name="Grade"
                                     className="grade-input form-control"
-                                    placeholder="A"
-                                    value={props.data.grade}
+                                    value={props.data.Grade}
                                     onChange={props.handleChange} />
                             </div>
 
