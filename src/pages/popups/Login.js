@@ -10,7 +10,9 @@ class Login extends Component {
         super()
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            
+            firstSubmit: true
         }
 
         this.onChange = this.onChange.bind(this)
@@ -24,25 +26,28 @@ class Login extends Component {
     onSubmit(e) {
         e.preventDefault()
 
-        const user = {
-            email: this.state.email,
-            password: this.state.password
-        }
-
-        login(user).then(res => {
-            if (res.error) {
-                alert(res.error)
-            } else {
-                this.props.history.push('/profile')
-                $("#login-modal").modal("hide")
+        if (this.state.firstSubmit) {
+            this.setState({ firstSubmit: false })
+            const user = {
+                email: this.state.email,
+                password: this.state.password
             }
-        })
+
+            login(user).then(res => {
+                if (res.error) {
+                    alert(res.error)
+                } else {
+                    this.props.history.push('/profile')
+                    $("#login-modal").modal("hide")
+                }
+            })
+        }
     }
 
     render() {
 
         return (
-            <LoginComponent onSubmit={this.onSubmit} onChange={this.onChange} data={this.state}/>
+            <LoginComponent onSubmit={this.onSubmit} onChange={this.onChange} data={this.state} />
         )
     }
 }
