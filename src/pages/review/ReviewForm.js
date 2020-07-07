@@ -81,9 +81,9 @@ class ReviewForm extends Component {
 			CourseLikePressed: false,
 			CourseDislikePressed: false,
 			CourseApproval: null,
-			Usefulness: "",
-			Difficulty: "",
-			Workload: "",
+			Usefulness: 0,
+			Difficulty: 0,
+			Workload: 0,
 			CourseComment: "",
 			CourseDisabled: true,
 
@@ -93,10 +93,9 @@ class ReviewForm extends Component {
 			ProfessorLikePressed: false,
 			ProfessorDislikePressed: false,
 			ProfessorApproval: null,
-			Clear: "",
-			Engaging: "",
-			Helpful: "",
-			GradingDifficulty: "",
+			Clear: 0,
+			Engaging: 0,
+			GradingDifficulty: 0,
 			ProfessorComment: "",
 			ProfessorDisabled: true,
 
@@ -115,7 +114,9 @@ class ReviewForm extends Component {
 
 			Duplicate: false,
 			OldReview: null,
-			topicSelected: false
+			topicSelected: false,
+
+			firstSubmit: true
 		}
 
 		this.validate = this.validate.bind(this);
@@ -137,20 +138,18 @@ class ReviewForm extends Component {
 		let ProfessorApprovalError = "";
 		let ClearError = "";
 		let EngagingError = "";
-		let HelpfulError = "";
 		let GradingDifficultyError = "";
 
 		let emptyErrorMessage = 'This field cannot be empty.';
 
 		if (this.state.CourseApproval === null) { CourseApprovalError = emptyErrorMessage; }
-		if (this.state.Usefulness === "") { UsefulnessError = emptyErrorMessage; }
-		if (this.state.Difficulty === "") { DifficultyError = emptyErrorMessage; }
-		if (this.state.Workload === "") { WorkloadError = emptyErrorMessage; }
+		if (this.state.Usefulness === 0) { UsefulnessError = emptyErrorMessage; }
+		if (this.state.Difficulty === 0) { DifficultyError = emptyErrorMessage; }
+		if (this.state.Workload === 0) { WorkloadError = emptyErrorMessage; }
 		if (this.state.ProfessorApproval === null) { ProfessorApprovalError = emptyErrorMessage; }
-		if (this.state.Clear === "") { ClearError = emptyErrorMessage; }
-		if (this.state.Engaging === "") { EngagingError = emptyErrorMessage; }
-		if (this.state.Helpful === "") { HelpfulError = emptyErrorMessage; }
-		if (this.state.GradingDifficulty === "") { GradingDifficultyError = emptyErrorMessage; }
+		if (this.state.Clear === 0) { ClearError = emptyErrorMessage; }
+		if (this.state.Engaging === 0) { EngagingError = emptyErrorMessage; }
+		if (this.state.GradingDifficulty === 0) { GradingDifficultyError = emptyErrorMessage; }
 
 		if (CourseApprovalError ||
 			UsefulnessError ||
@@ -159,7 +158,6 @@ class ReviewForm extends Component {
 			ProfessorApprovalError ||
 			ClearError ||
 			EngagingError ||
-			HelpfulError ||
 			GradingDifficultyError) {
 			this.setState({
 				CourseApprovalError: CourseApprovalError,
@@ -169,7 +167,6 @@ class ReviewForm extends Component {
 				ProfessorApprovalError: ProfessorApprovalError,
 				ClearError: ClearError,
 				EngagingError: EngagingError,
-				HelpfulError: HelpfulError,
 				GradingDifficultyError: GradingDifficultyError
 			})
 			return false;
@@ -182,42 +179,47 @@ class ReviewForm extends Component {
 		event.preventDefault();
 		const isValid = this.validate();
 		if (isValid) {
-			const token = localStorage.usertoken
-			const decoded = jwt_decode(token)
 
-			const review = {
-				user_email: decoded.identity.email,
-				course_id: this.state.CourseId,
-				prof_id: this.state.ProfessorId,
-				sem_id: this.state.SemesterId,
-				course_review: this.state.CourseComment,
-				course_approval: this.state.CourseApproval,
-				course_usefulness: this.state.Usefulness,
-				course_difficulty: this.state.Difficulty,
-				course_workload: this.state.Workload,
-				prof_review: this.state.ProfessorComment,
-				prof_approval: this.state.ProfessorApproval,
-				prof_clear: this.state.Clear,
-				prof_engaging: this.state.Engaging,
-				prof_grading: this.state.GradingDifficulty
-			}
+			if (this.state.firstSubmit) {
 
-			if (this.state.OldReview !== null) {
-				editReview(review).then(res => {
-					if (res.error) {
-						alert(res.error)
-					} else {
-						this.props.history.push("/")
-					}
-				})
-			} else {
-				newReview(review).then(res => {
-					if (res.error) {
-						alert(res.error)
-					} else {
-						this.props.history.push("/")
-					}
-				})
+				this.setState({ firstSubmit: false })
+				const token = localStorage.usertoken
+				const decoded = jwt_decode(token)
+
+				const review = {
+					user_email: decoded.identity.email,
+					course_id: this.state.CourseId,
+					prof_id: this.state.ProfessorId,
+					sem_id: this.state.SemesterId,
+					course_review: this.state.CourseComment,
+					course_approval: this.state.CourseApproval,
+					course_usefulness: this.state.Usefulness,
+					course_difficulty: this.state.Difficulty,
+					course_workload: this.state.Workload,
+					prof_review: this.state.ProfessorComment,
+					prof_approval: this.state.ProfessorApproval,
+					prof_clear: this.state.Clear,
+					prof_engaging: this.state.Engaging,
+					prof_grading: this.state.GradingDifficulty
+				}
+
+				if (this.state.OldReview !== null) {
+					editReview(review).then(res => {
+						if (res.error) {
+							alert(res.error)
+						} else {
+							this.props.history.push("/")
+						}
+					})
+				} else {
+					newReview(review).then(res => {
+						if (res.error) {
+							alert(res.error)
+						} else {
+							this.props.history.push("/")
+						}
+					})
+				}
 			}
 		}
 	}

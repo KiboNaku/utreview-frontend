@@ -14,8 +14,10 @@ class Signup extends Component {
             email: '',
             password: '',
             confirm_password: '',
-            major: '', 
-            majorList: null
+            major: '',
+            majorList: null,
+
+            firstSubmit: true
         }
 
         this.onChange = this.onChange.bind(this)
@@ -29,34 +31,36 @@ class Signup extends Component {
 
     onSubmit(e) {
         e.preventDefault()
-
-        if (this.state.password != this.state.confirm_password) {
-            alert("Password fields don't match")
-            return
-        }
-
-        const newUser = {
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            email: this.state.email,
-            password: this.state.password,
-            major: this.state.major,
-            image: 'default.jpg'
-        }
-
-        signup(newUser).then(res => {
-            if (res.error) {
-                alert(res.error)
-            } else {
-                this.props.history.push('/profile');
-                $("#signup-modal").modal("hide");
+        if (this.state.firstSubmit) {
+            this.setState({ firstSubmit: false })
+            if (this.state.password != this.state.confirm_password) {
+                alert("Password fields don't match")
+                return
             }
-        })
+
+            const newUser = {
+                first_name: this.state.first_name,
+                last_name: this.state.last_name,
+                email: this.state.email,
+                password: this.state.password,
+                major: this.state.major,
+                image: 'default.jpg'
+            }
+
+            signup(newUser).then(res => {
+                if (res.error) {
+                    alert(res.error)
+                } else {
+                    this.props.history.push('/profile');
+                    $("#signup-modal").modal("hide");
+                }
+            })
+        }
 
     }
 
     handleMajorChange = (inputValue, { action }) => {
-		if (inputValue !== null) {
+        if (inputValue !== null) {
             this.setState({ major: inputValue.value })
         }
     }
@@ -84,7 +88,7 @@ class Signup extends Component {
 
         return (
             <SignupComponent onSubmit={this.onSubmit} onChange={this.onChange}
-                handleMajorChange={this.handleMajorChange} data={this.state}/>
+                handleMajorChange={this.handleMajorChange} data={this.state} />
         )
     }
 }
