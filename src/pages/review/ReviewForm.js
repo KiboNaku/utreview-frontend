@@ -313,7 +313,7 @@ class ReviewForm extends Component {
 			// 		if(!courseList.map(course => course.id).includes(this.state.CourseId)){
 			// 			courseId = null
 			// 		}
-			
+
 			// 		this.setState({ CourseList: courseList, CourseLoaded: true, CourseId: courseId })
 			// 	}
 			// })
@@ -471,7 +471,15 @@ class ReviewForm extends Component {
 		}
 
 		let loaded = this.state.CourseLoaded && this.state.ProfLoaded && this.state.SemesterLoaded
-		let loading = <Loading />
+
+		let loading = (
+			<div className="row d-flex justify-content-center">
+				<div className="d-inline-block mx-5 my-5 px-5 py-5">
+					<Loading />
+				</div>
+			</div>
+		)
+
 		let content = <ReviewFormComponent
 			handleSubmit={this.handleSubmit}
 			handleChange={this.handleChange}
