@@ -40,10 +40,10 @@ class CourseTopics extends React.Component {
         return (
             <div className="courseTopics">
                 <div className="card course-card">
-                    <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#requisites-collapse">
+                    <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#topics-collapse">
                         <h4 className="details-header"> Topics {arrowIcon} </h4>
                     </div>
-                    <div className="collapse show" id="requisites-collapse" role="tabpanel">
+                    <div className="collapse show" id="topics-collapse" role="tabpanel">
                         <div className="card-body">
                             <div className="topics">
                                 <ul>

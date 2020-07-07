@@ -60,9 +60,22 @@
 }
 
 .LikeDislike{
-    margin-bottom: 10px;
+    width: 50%;
+    white-space: nowrap;
+}
+
+.review-like-grade{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
     position: absolute;
     bottom: 0;
+    align-items: center;
+}
+
+.review-grade{
+    width: 50%;
+    margin-bottom: 10px;
 }
 
 .likeButton{
@@ -163,10 +176,11 @@
         border-bottom: 1px solid black;
     }
 
-    .LikeDislike{
+    .review-like-grade{
         margin-bottom: 10px;
         position: relative;
         margin-top: 10px;
+        width: 100%
     }
 
     .userRat{

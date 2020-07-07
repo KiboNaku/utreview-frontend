@@ -25,18 +25,6 @@ function CourseScheduleEntry(props) {
                 {props.uniqueNum}
             </td>
             <td align="center">
-                {props.seatsTaken}/{props.maxEnrollment}
-            </td>
-            <td align="center">
-                {props.timeFrom} - {props.timeTo}
-            </td>
-            <td align="center">
-                {props.days}
-            </td>
-            <td align="center">
-                {props.location}
-            </td>
-            <td align="center">
                 <Link
                     className="utcolor"
                     to={{
@@ -47,6 +35,18 @@ function CourseScheduleEntry(props) {
                     }}
                 > {props.profFirst} {props.profLast}
                 </Link>
+            </td>
+            <td align="center">
+                {props.seatsTaken}/{props.maxEnrollment}
+            </td>
+            <td align="center">
+                {props.timeFrom} - {props.timeTo}
+            </td>
+            <td align="center">
+                {props.days}
+            </td>
+            <td align="center">
+                {props.location}
             </td>
             <td align="center">
                 {props.crossListed.length > 0 ? <ul>{crossListed}</ul> : "N/A"}
