@@ -10,6 +10,13 @@
     margin-top: 50px;
 }
 
+.courseTopics{
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
 .info-header{
     background-color: white;
 }
@@ -17,6 +24,11 @@
 .info-body{
     color: white;
     background-color: #333f48;
+    font-size: 15px;
+}
+
+.parent-topic{
+    margin-left: 5px;
     font-size: 15px;
 }
 
@@ -71,6 +83,11 @@
     margin-top: 10px;
 }
 
+.requisites{
+    display: flex;
+    flex-direction: row;
+}
+
 @media screen and (max-width: 992px){
     .course-stats{
         flex-direction: column;
@@ -94,6 +111,13 @@
     }
 
     .courseRequisites{
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .courseTopics{
         margin-left: 50px;
         margin-right: 50px;
         margin-top: 50px;
@@ -129,6 +153,17 @@
         margin-top: 50px;
         margin-bottom: 50px;
     }
+
+    .requisites{
+        flex-direction: column;
+    }
+
+    .courseTopics{
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
 }
 
 @media screen and (max-width: 576px){   
@@ -156,6 +191,13 @@
     }
     
     .courseRequisites{
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .courseTopics{
         margin-left: 10px;
         margin-right: 10px;
         margin-top: 50px;

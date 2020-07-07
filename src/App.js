@@ -17,9 +17,9 @@ import ConfirmEmail from './pages/confirm-email/ConfirmEmail';
 function App() {
 
 	return (
-		<ReviewForm>
+		<ProfDetails>
 			
-		</ReviewForm>
+		</ProfDetails>
 		// <Router>
 		// 	<div className="App">
 

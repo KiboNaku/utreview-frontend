@@ -60,11 +60,11 @@ class CourseSchedule extends React.Component {
                 <thead>
                     <tr>
                         <th scope="col">Unique #</th>
+                        <th scope="col">Professor</th>
                         <th scope="col">Enrolled</th>
                         <th scope="col">Time</th>
                         <th scope="col">Days</th>
                         <th scope="col">Location</th>
-                        <th scope="col">Professor</th>
                         <th scope="col">Cross Listed</th>
                     </tr>
                 </thead>
@@ -79,11 +79,11 @@ class CourseSchedule extends React.Component {
                 <thead>
                     <tr>
                         <th scope="col">Unique #</th>
+                        <th scope="col">Professor</th>
                         <th scope="col">Enrolled</th>
                         <th scope="col">Time</th>
                         <th scope="col">Days</th>
                         <th scope="col">Location</th>
-                        <th scope="col">Professor</th>
                         <th scope="col">Cross Listed</th>
                     </tr>
                 </thead>

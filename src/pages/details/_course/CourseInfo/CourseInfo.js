@@ -10,7 +10,7 @@ function CourseInfo(props) {
 		<div>
 			<span>Parent Topic: </span>
 			<Link
-				className="utcolor"
+				className="utcolor parent-topic"
 				to={{
 					pathname: `course-results/${parentPath}`,
 				}}
@@ -28,7 +28,7 @@ function CourseInfo(props) {
 					<h2 className="course-title"> {props.courseDept} {props.courseNum} </h2>
 					<h5 className="card-title course-title"> {props.courseTitle} </h5>
 					<p> {props.courseDes} </p>
-					{props.topicNum >= 0 ? parentTopic: <br/>}
+					{props.topicNum > 0 ? parentTopic: null}
 				</div>
 			</div>
 		</div>
