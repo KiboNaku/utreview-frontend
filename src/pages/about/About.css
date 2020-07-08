@@ -1,0 +1,85 @@
+.about {
+	text-align: center;
+}
+
+.contributor {
+	border: none;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.about-header {
+	padding: 20px;
+	margin-bottom: 0px;
+}
+
+.about-header-2 {
+	padding: 20px;
+	margin-bottom: 0px;
+	overflow: hidden;
+}
+
+.about-header-2::after {
+	content: "";
+	display: inline-block;
+	height: 0.5em;
+	vertical-align: bottom;
+	width: 20%;
+	margin-left: 20px;
+	border-top: 2px solid #005f86;
+}
+
+.about-header-2::before {
+	content: "";
+	display: inline-block;
+	height: 0.5em;
+	vertical-align: bottom;
+	width: 20%;
+	margin-right: 20px;
+	border-top: 2px solid #005f86;
+}
+
+.contributor-info {
+	margin: 15px;
+	height: 250px;
+}
+
+.contributor-description {
+	height: 199px;
+	margin: 10px;
+	overflow-y: scroll;
+	-ms-overflow-style: none;
+	/* Internet Explorer 10+ */
+	scrollbar-width: none;
+	/* Firefox */
+}
+
+.contributor-description::-webkit-scrollbar {
+	display: none;
+	/* Safari and Chrome */
+}
+
+.contributors {
+	margin-bottom: 20px;
+}
+
+.credit {
+	background-color: transparent;
+	border: none;
+}
+
+.credits {
+	padding-bottom: 20px;
+}
+
+.contributor-image {
+	width: 100%;
+	height: 20rem;
+	object-fit: cover;
+}
+
+@media (max-width: 576px) {
+	.about-header-2 {
+		font-size: 130%;
+	}
+}
