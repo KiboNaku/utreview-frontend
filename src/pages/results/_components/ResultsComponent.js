@@ -36,7 +36,7 @@ function ResultsComponent(props) {
 
                         <div className="col-md-3">
                             <Filter
-                                header={props.tabIndex == 0 ? "Course Filters:" : "Professor Filters"}
+                                header={props.tabIndex == 0 ? "Course Filters:" : "Professor Filters:"}
                                 filter={props.tabIndex == 0 ? props.courses.filter : props.profs.filter}
                                 depts={props.depts}
                                 handleFilterChange={props.handleFilterChange} />
