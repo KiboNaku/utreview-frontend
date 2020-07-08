@@ -30,13 +30,13 @@ class CourseDetails extends React.Component {
                 {
                     'id': 2,
                     'topicNum': 1,
-                    'title': "Circuits"
+                    'title': "Introduction to Electrical Engineering (Circuits)"
                 },
                 {
                     'id': 3,
                     'topicNum': 2,
-                    'title': "Electricity"
-                }
+                    'title': "Introduction to Electrical Engineering (Electricity)"
+                },
             ]
         }
 
@@ -317,7 +317,7 @@ class CourseDetails extends React.Component {
         let loading = (
             <Loading />
         )
-        
+       
         let invalidCourse = (
             <h1> This course doesn't exist </h1>
         )
@@ -347,12 +347,14 @@ class CourseDetails extends React.Component {
                     />
 
                 </div>
-                {this.state.isParent ? childTopics : null}
-                <div className="course-tables">
-
+                <div className="topics-requisites">
+                    {this.state.isParent ? childTopics : null}
                     <CourseRequisites
                         {...this.state.courseRequisites}
                     />
+                </div>
+                
+                <div className="course-tables">
                     <CourseProfs {...this.state} />
                 </div>
 

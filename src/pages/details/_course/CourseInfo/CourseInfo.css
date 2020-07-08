@@ -85,7 +85,17 @@
 
 .requisites{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+}
+
+.topics-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.topic-item{
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 @media screen and (max-width: 992px){
