@@ -182,7 +182,7 @@ class CourseReviews extends React.Component {
 			)
 		})
 
-		const profOptions = this.state.reviewsFiltered.map(review => {
+		const profOptions = this.state.courseReviews.map(review => {
 			return {
 				value: review.profFirst + " " + review.profLast,
 				label: review.profFirst + " " + review.profLast

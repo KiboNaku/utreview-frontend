@@ -26,7 +26,7 @@ class CourseTopics extends React.Component {
             let topicPath = this.props.courseDept.toLowerCase().replace(' ', '') + "_" + this.props.courseNum.toLowerCase()
 	        topicPath += "_" + topic.topicNum.toString()
             return (
-                <li>
+                <li className="topic-item">
                     <Link
                         className="utcolor"
                         to={{
@@ -46,7 +46,7 @@ class CourseTopics extends React.Component {
                     <div className="collapse show" id="topics-collapse" role="tabpanel">
                         <div className="card-body">
                             <div className="topics">
-                                <ul>
+                                <ul className="topics-list d-flex flex-wrap">
                                     {topicsList}
                                 </ul>
                             </div>
