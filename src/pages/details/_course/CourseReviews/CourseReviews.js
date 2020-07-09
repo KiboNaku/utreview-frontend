@@ -10,7 +10,7 @@ class CourseReviews extends React.Component {
 		super(props)
 
 		const updatedReviews = props.courseReviews.slice().sort((a, b) => b.date - a.date)
-
+		console.log(props.courseReviews)
 		this.state = {
 			courseReviews: props.courseReviews,
 			reviewsFiltered: updatedReviews,

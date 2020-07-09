@@ -34,7 +34,7 @@ class CourseRequisites extends React.Component {
                                     <h5> Prerequisites </h5>
                                     <ul>
                                         <li>
-                                            {this.props.preReqs}
+                                            {this.props.preReqs !== "" ? this.props.preReqs: "No prerequisites"}
                                         </li>
                                     </ul>
                                 </div>
@@ -42,7 +42,7 @@ class CourseRequisites extends React.Component {
                                     <h5> Restrictions </h5>
                                     <ul>
                                         <li>
-                                            {this.props.restrictions}
+                                            {this.props.restrictions !== "" ? this.props.restrictions: "No restrictions"}
                                         </li>
                                     </ul>
                                 </div>

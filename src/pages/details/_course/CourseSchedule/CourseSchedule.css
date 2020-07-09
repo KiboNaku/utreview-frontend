@@ -5,6 +5,11 @@
     margin-bottom: 50px;
 }
 
+.semSchedule{
+    background-color: white;
+    word-wrap: break-word;
+}
+
 .schedule-table{
     margin-bottom: 0px;
     max-height: 300px;
@@ -23,6 +28,16 @@
     background-color: #333f48;
     border-top-width: 0;
     color: white;
+}
+
+.none-scheduled{
+    background-color: white;
+    white-space: normal;
+    text-align: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 @media screen and (max-width: 992px){
