@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const getCourseInfo = (course) => {
 	return axios
-		.post('/api/course_info', {
+		.post('/api/course_details', {
 			courseId: course.courseId,
 			userEmail: course.userEmail,
 			loggedIn: course.loggedIn

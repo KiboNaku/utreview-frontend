@@ -234,85 +234,86 @@ class CourseDetails extends React.Component {
             },
         ]
 
+        let courseId = null
+        let validCourse = true
+        if(this.props.location.state === undefined){
+            let coursePath = window.location.pathname.split("/").pop()
+            let courseString = {
+                courseString: coursePath
+            }
+            getCourseId(courseString).then(res => {
+                if (res.error) {
+                    alert(res.error)
+                    validCourse = false
+                } else {
+                    courseId = res.courseId
+                }
+            })
+        }else{
+            courseId = this.props.location.state.courseId
+            console.log(" Course id " + courseId)
+        }
+
         this.state = {
+            courseId: courseId,
             courseInfo: courseInfo,
             courseRatings: courseRatings,
             courseRequisites: courseRequisites,
             courseProfs: courseProfs,
             courseReviews: courseReviews,
             courseSchedule: courseSchedule,
-            loaded: true,
-            validCourse: true,
+            loaded: false,
+            validCourse: validCourse,
             isParent: courseInfo.topicNum == 0
         }
-
-        // const courseId = null
-        // if(this.props.location.state === undefined){
-        //     let coursePath = window.location.pathname.split("/").pop()
-        //     let courseString = {
-        //         courseString: coursePath
-        //     }
-        //     getCourseId(courseString).then(res => {
-        //         if (res.error) {
-        //             alert(res.error)
-        //             this.setState({
-        //                 validCourse: false
-        //             })
-        //         } else {
-        //             courseId = res.courseId
-        //         }
-        //     })
-        // }else{
-        //     courseId = this.props.location.state.courseId
-        // }
-
-        // if(this.state.validCourse){
-        //     let loggedIn = false
-        //     let email = ''
-        //     const token = localStorage.usertoken
-        //     if (token) {
-        //         const decoded = jwt_decode(token)
-        //         loggedIn = true
-        //         email = decoded.identity.email
-        //     }
-
-        //     const course = {
-        //         courseId: courseId,
-        //         loggedIn: loggedIn,
-        //         userEmail: email
-        //     }
-            
-        //     getCourseInfo(course).then(res => {
-        //         if (res.error) {
-        //             alert(res.error)
-        //         } else {
-        //             let courseRevs = res.course_reviews.map(review => {
-        //                 return {
-        //                     ...review,
-        //                     date: new Date(review.date)
-        //                 }
-        //             })
-        //             this.setState({
-        //                 courseInfo: res.course_info,
-        //                 courseRatings: res.course_rating,
-        //                 courseRequisites: res.course_requisites,
-        //                 courseSchedule: res.course_schedule,
-        //                 courseProfs: res.course_profs,
-        //                 courseReviews: courseRevs,
-        //                 isParent: res.is_parent,
-        //                 loaded: true
-        //             })
-        //         }
-        //     })
-        // }
 
     }
 
     componentDidMount() {
+        if(this.state.validCourse){
+            let loggedIn = false
+            let email = ''
+            const token = localStorage.usertoken
+            if (token) {
+                const decoded = jwt_decode(token)
+                loggedIn = true
+                email = decoded.identity.email
+            }
 
+            const course = {
+                courseId: this.state.courseId,
+                loggedIn: loggedIn,
+                userEmail: email
+            }
+            
+            getCourseInfo(course).then(res => {
+                if (res.error) {
+                    alert(res.error)
+                } else {
+                    let courseRevs = res.course_reviews.map(review => {
+                        return {
+                            ...review,
+                            date: new Date(review.date)
+                        }
+                    })
+                    this.setState({
+                        courseInfo: res.course_info,
+                        courseRatings: res.course_rating,
+                        courseRequisites: res.course_requisites,
+                        courseSchedule: res.course_schedule,
+                        courseProfs: res.course_profs,
+                        courseReviews: courseRevs,
+                        isParent: res.is_parent,
+                        loaded: true
+                    })
+                }
+            })
+        }
     }
 
     render() {
+
+        console.log(this.state)
 
         let loading = (
             <Loading />
@@ -355,14 +356,14 @@ class CourseDetails extends React.Component {
                 </div>
                 
                 <div className="course-tables">
-                    <CourseProfs {...this.state} />
+                    <CourseProfs courseProfs = {this.state.courseProfs} key={this.state.courseProfs} />
                 </div>
 
-                <CourseSchedule {...this.state} />
+                <CourseSchedule courseSchedule = {this.state.courseSchedule} key={this.state.courseSchedule.currentSem}/>
                 <CourseAddReview
                     {...this.state.courseInfo}
                 />
-                <CourseReviews {...this.state} />
+                <CourseReviews courseReviews = {this.state.courseReviews} key={this.state.courseReviews}/>
             </div>
         )
         return (
