@@ -3,17 +3,25 @@ import Select from 'react-select'
 import GoogleButton from "./../_utils/GoogleButton"
 import ModalHeader from './../_utils/ModalHeader'
 import UTEmail from './../_utils/UTEmail'
+import Loading from './../../_utils/Loading'
 
 function SignupComponent(props) {
-    
+
+    let loading =
+        <div className="on-top">
+            <Loading />
+        </div>
+
     return (
-        <div className="modal fade" id="signup-modal" role="dialog">
+        <div className="modal fade absolute" id="signup-modal" role="dialog">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
 
                     <ModalHeader text="Sign Up" />
 
                     <div className="modal-body">
+                        
+                    { props.data.loading && loading }
 
                         <form className="form-signin mt-3" onSubmit={props.onSubmit}>
 
@@ -48,7 +56,7 @@ function SignupComponent(props) {
                                     name="major"
                                     options={props.data.majorList}
                                     onChange={props.handleMajorChange}
-                                    placeholder="Select major..."
+                                    placeholder="select field of study"
                                     isClearable={true}
                                     isSearchable={true}
                                 />

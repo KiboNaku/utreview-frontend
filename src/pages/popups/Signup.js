@@ -3,18 +3,22 @@ import SignupComponent from './_components/SignupComponent'
 import { signup, getMajor } from './_utils/UserFunctions'
 import { withRouter } from 'react-router-dom'
 import $ from './../../../node_modules/jquery'
+import './popups.css'
 
 class Signup extends Component {
 
     constructor() {
         super()
         this.state = {
+
+            loading: false,
+            verifyEmail: false,
             first_name: '',
             last_name: '',
             email: '',
             password: '',
             confirm_password: '',
-            major: '', 
+            major: '',
             majorList: null
         }
 
@@ -40,23 +44,27 @@ class Signup extends Component {
             last_name: this.state.last_name,
             email: this.state.email,
             password: this.state.password,
-            major: this.state.major,
-            image: 'default.jpg'
+            major: this.state.major
         }
 
+        this.setState({ loading: true })
+
         signup(newUser).then(res => {
+
+            this.setState({ loading: false })
+
             if (res.error) {
                 alert(res.error)
             } else {
-                this.props.history.push('/profile');
                 $("#signup-modal").modal("hide");
+                $("#verifyemail-modal").modal("show");
             }
         })
 
     }
 
     handleMajorChange = (inputValue, { action }) => {
-		if (inputValue !== null) {
+        if (inputValue !== null) {
             this.setState({ major: inputValue.value })
         }
     }
@@ -83,8 +91,10 @@ class Signup extends Component {
     render() {
 
         return (
-            <SignupComponent onSubmit={this.onSubmit} onChange={this.onChange}
-                handleMajorChange={this.handleMajorChange} data={this.state}/>
+            <div>
+                <SignupComponent onSubmit={this.onSubmit} onChange={this.onChange}
+                    handleMajorChange={this.handleMajorChange} data={this.state} />
+            </div>
         )
     }
 }
