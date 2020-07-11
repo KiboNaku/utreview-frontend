@@ -34,11 +34,6 @@ class NavBar extends Component {
             
         )
 
-
-        {/* <Link to="/profile">
-                    <button type="button" className="btn">Profile</button>
-                </Link> */}
-
         /**
          * Properties:
          * 1. showSearch: show search bar on the navbar

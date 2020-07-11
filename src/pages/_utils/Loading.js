@@ -6,7 +6,11 @@ class Loading extends Component {
     render() {
 
         return (
-            <HashLoader size={100} color="#bf5700"/>
+            <div className="row d-flex justify-content-center">
+                <div className="d-inline-block mx-5 my-5 px-5 py-5">
+                    <HashLoader size={100} color="#bf5700" />
+                </div>
+            </div>
         )
     }
 }
