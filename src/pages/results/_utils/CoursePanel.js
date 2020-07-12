@@ -91,7 +91,7 @@ function CoursePanel(props) {
                             <Link
                                 className="utcolor"
                                 to={{
-                                    pathname: `course-results/${coursePath}`,
+                                    pathname: `/course-results/${coursePath}`,
                                     state: {
                                         courseId: course.id
                                     }

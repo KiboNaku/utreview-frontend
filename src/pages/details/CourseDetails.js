@@ -234,28 +234,7 @@ class CourseDetails extends React.Component {
             },
         ]
 
-        let courseId = null
-        let validCourse = true
-        if(this.props.location.state === undefined){
-            let coursePath = window.location.pathname.split("/").pop()
-            let courseString = {
-                courseString: coursePath
-            }
-            getCourseId(courseString).then(res => {
-                if (res.error) {
-                    alert(res.error)
-                    validCourse = false
-                } else {
-                    courseId = res.courseId
-                }
-            })
-        }else{
-            courseId = this.props.location.state.courseId
-            console.log(" Course id " + courseId)
-        }
-
         this.state = {
-            courseId: courseId,
             courseInfo: courseInfo,
             courseRatings: courseRatings,
             courseRequisites: courseRequisites,
@@ -263,52 +242,106 @@ class CourseDetails extends React.Component {
             courseReviews: courseReviews,
             courseSchedule: courseSchedule,
             loaded: false,
-            validCourse: validCourse,
+            validCourse: true,
             isParent: courseInfo.topicNum == 0
         }
 
     }
 
-    componentDidMount() {
-        if(this.state.validCourse){
-            let loggedIn = false
-            let email = ''
-            const token = localStorage.usertoken
-            if (token) {
-                const decoded = jwt_decode(token)
-                loggedIn = true
-                email = decoded.identity.email
-            }
+    componentDidUpdate (){
+        this.componentDidMount()
+    }
 
-            const course = {
-                courseId: this.state.courseId,
-                loggedIn: loggedIn,
-                userEmail: email
+    componentDidMount() {
+        let loggedIn = false
+        let email = ''
+        const token = localStorage.usertoken
+        if (token) {
+            const decoded = jwt_decode(token)
+            loggedIn = true
+            email = decoded.identity.email
+        }
+        let courseId = null
+        console.log(this.props.location)
+        if(this.props.location.state === undefined){
+            console.log("State undefined")
+            let coursePath = window.location.pathname.split("/").pop()
+            let courseString = {
+                courseString: coursePath
             }
-            
-            getCourseInfo(course).then(res => {
+            getCourseId(courseString).then(res => {
                 if (res.error) {
                     alert(res.error)
+                    this.setState({validProf: false})
                 } else {
-                    let courseRevs = res.course_reviews.map(review => {
-                        return {
-                            ...review,
-                            date: new Date(review.date)
-                        }
-                    })
-                    this.setState({
-                        courseInfo: res.course_info,
-                        courseRatings: res.course_rating,
-                        courseRequisites: res.course_requisites,
-                        courseSchedule: res.course_schedule,
-                        courseProfs: res.course_profs,
-                        courseReviews: courseRevs,
-                        isParent: res.is_parent,
-                        loaded: true
-                    })
+                    courseId = res.courseId
+                    console.log(courseId)
+                    const course = {
+                        courseId: courseId,
+                        loggedIn: loggedIn,
+                        userEmail: email
+                    }
+                    this.courseDetailsRequest(course)
                 }
             })
+        }else{
+            if(this.props.location.state.courseId === undefined){
+                let coursePath = window.location.pathname.split("/").pop()
+                let courseString = {
+                    courseString: coursePath
+                }
+                getCourseId(courseString).then(res => {
+                    if (res.error) {
+                        alert(res.error)
+                        this.setState({validProf: false})
+                    } else {
+                        courseId = res.courseId
+                        const course = {
+                            courseId: courseId,
+                            loggedIn: loggedIn,
+                            userEmail: email
+                        }
+                        this.courseDetailsRequest(course)
+                    }
+                })
+            }else{
+                courseId = this.props.location.state.courseId
+                console.log(" Course id " + courseId)
+                const course = {
+                    courseId: courseId,
+                    loggedIn: loggedIn,
+                    userEmail: email
+                }
+                this.courseDetailsRequest(course)
+            }  
         }
+    }
+
+    courseDetailsRequest = (course) => {
+        console.log("course details request")
+        getCourseInfo(course).then(res => {
+            if (res.error) {
+                alert(res.error)
+            } else {
+                console.log("Got course info")
+                let courseRevs = res.course_reviews.map(review => {
+                    return {
+                        ...review,
+                        date: new Date(review.date)
+                    }
+                })
+                this.setState({
+                    courseInfo: res.course_info,
+                    courseRatings: res.course_rating,
+                    courseRequisites: res.course_requisites,
+                    courseSchedule: res.course_schedule,
+                    courseProfs: res.course_profs,
+                    courseReviews: courseRevs,
+                    isParent: res.is_parent,
+                    loaded: true
+                })
+            }
+        })
     }
 
     render() {

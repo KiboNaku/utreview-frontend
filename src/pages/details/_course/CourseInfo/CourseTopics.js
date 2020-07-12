@@ -30,7 +30,10 @@ class CourseTopics extends React.Component {
                     <Link
                         className="utcolor"
                         to={{
-                            pathname: `course-results/${topicPath}`,
+                            pathname: `/course-results/${topicPath}`,
+                            state: {
+                                courseId: topic.id
+                            }
                         }}
                     > {topic.title}
                     </Link>
@@ -60,4 +63,4 @@ class CourseTopics extends React.Component {
 
 }
 
-export default CourseTopics;
+export default withRouter(CourseTopics);

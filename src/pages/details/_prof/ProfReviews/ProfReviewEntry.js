@@ -112,7 +112,7 @@ function ProfReviewEntry(props) {
                         <Link
                             className="utcolor"
                             to={{
-                                pathname: `course-results/${coursePath}`,
+                                pathname: `/course-results/${coursePath}`,
                                 state: {
                                     courseId: props.review.courseId
                                 }
