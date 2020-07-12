@@ -25,7 +25,7 @@ class Results extends Component {
 				page: props.location.state.page,
 				data: [],
 				sort: {
-					sortBy: 'courseNum',
+					sortBy: 'courseName',
 					sortDir: 'down',
 				},
 				filter: {
@@ -212,6 +212,8 @@ class Results extends Component {
 					}
 				}
 			}))
+
+			console.log(sortByName, nextSort)
 		} else if (tabIndex == 1) {
 			const { sortDir, sortBy } = this.state.profs.sort;
 			let nextSort;
