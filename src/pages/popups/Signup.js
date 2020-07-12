@@ -45,15 +45,6 @@ class Signup extends Component {
                 last_name: this.state.last_name,
                 email: this.state.email,
                 password: this.state.password,
-                major: this.state.major,
-                image: 'default.jpg'
-            }
-
-            const newUser = {
-                first_name: this.state.first_name,
-                last_name: this.state.last_name,
-                email: this.state.email,
-                password: this.state.password,
                 major: this.state.major
             }
 

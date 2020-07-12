@@ -216,11 +216,16 @@ class Profile extends Component {
     }
 
     //TODO: write this function and implement backend 
-    deleteReview(id){
+    deleteReview(id) {
 
     }
 
     render() {
+        const token = localStorage.usertoken
+        if (token == null) {
+            this.props.history.push('/')
+        }
+
         return (
             <main>
                 <ProfileComponent
