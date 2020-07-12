@@ -28,6 +28,31 @@ class ProfCourses extends React.Component {
             ]
 
         })
+        let noCourses = (
+            <h5 className="none-scheduled">
+                No courses available
+            </h5>
+        )
+
+        let courseTable = (
+            <table className='table table-hover table-responsive course-table' >
+                <thead>
+                    <tr>
+                        <th className="name-column" scope="col">Course</th>
+                        <th scope="col">Liked</th>
+                        <th scope="col">eCIS</th>
+                        <th scope="col">Difficulty</th>
+                        <th scope="col">Usefulness</th>
+                        <th scope="col">Workload</th>
+                        <th scope="col">Syllabi</th>
+                        <th scope="col">Catalyst</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {profCourseList}
+                </tbody>
+            </table>
+        )
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         return (
             <div className="profCourses">
@@ -37,24 +62,7 @@ class ProfCourses extends React.Component {
                     </div>
                     <div className="collapse show" id="courses-collapse" role="tabpanel">
                         <div className="card-body card-table">
-                                <table className='table table-hover table-responsive course-table' >
-                                    <thead>
-                                        <tr>
-                                            <th className="name-column" scope="col">Course</th>
-                                            <th scope="col">Liked</th>
-                                            <th scope="col">eCIS</th>
-                                            <th scope="col">Difficulty</th>
-                                            <th scope="col">Usefulness</th>
-                                            <th scope="col">Workload</th>
-                                            <th scope="col">Syllabi</th>
-                                            <th scope="col">Catalyst</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {profCourseList}
-                                    </tbody>
-                                </table>
-
+                            {profCourseList.length > 0 ? courseTable: noCourses}
                         </div>
                     </div>
 

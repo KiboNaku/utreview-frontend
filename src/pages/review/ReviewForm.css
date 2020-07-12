@@ -1,5 +1,9 @@
 
-li, li > span{
+li > span{
+    font-weight: bold
+}
+
+.review-form li {
     font-weight: bold
 }
 
@@ -20,4 +24,16 @@ li * {
 
 .btn-approval {
     padding-right: 15px;
+}
+
+.review-grade{
+    padding-top: 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.grade-input{
+    margin-left: 20px;
+    width: 50px;
+    height: 30px;
 }
