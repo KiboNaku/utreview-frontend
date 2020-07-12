@@ -243,13 +243,20 @@ class CourseDetails extends React.Component {
             courseSchedule: courseSchedule,
             loaded: false,
             validCourse: true,
-            isParent: courseInfo.topicNum == 0
+            isParent: courseInfo.topicNum == 0,
+            courseURL: props.location.pathname
         }
 
     }
 
     componentDidUpdate (){
-        this.componentDidMount()
+        const courseURL = this.props.location.pathname
+        console.log(this.state.courseURL)
+        console.log(courseURL)
+        if(courseURL !== this.state.courseURL){
+            this.setState({loaded: false, courseURL: courseURL})
+            this.componentDidMount()
+        }
     }
 
     componentDidMount() {

@@ -9,7 +9,6 @@ class Home extends Component {
                 <main className="home-page">
                     <div className="main-sub home-sub">
                         <div className="container text-center">
-
                             <div>
                                 <h1 className="home-main-txt">What starts here</h1>
                                 <h1 className="home-main-txt">changes your course schedule</h1>
