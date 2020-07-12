@@ -123,7 +123,7 @@ function CoursePanel(props) {
 
                         <th scope="col" colSpan="1" className="sortable" onClick={() => props.handleSortChange('courseName')}>
                             <span>Course #</span>
-                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseName' ? '' : ' invisible')}></i>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseName' ? '' : ' invisible')}></i>nom
                         </th>
 
                         <th scope="col" colSpan="2" className="sortable" onClick={() => props.handleSortChange('courseTitle')}>

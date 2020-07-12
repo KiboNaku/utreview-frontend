@@ -11,13 +11,7 @@ import ProfPanel from '../_utils/ProfPanel'
 
 function ResultsComponent(props) {
 
-    let loading = (
-        <div className="row d-flex justify-content-center">
-            <div className="d-inline-block mx-5 my-5 px-5 py-5">
-                <Loading />
-            </div>
-        </div>
-    )
+    let loading = <Loading />
 
     let emptyTable = (
         <h6> No results for your search. Please check your spelling and try again.</h6>

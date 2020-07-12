@@ -346,12 +346,9 @@ class CourseDetails extends React.Component {
 
     render() {
 
-        console.log(this.state)
-
-        let loading = (
-            <Loading />
-        )
-       
+        let loading = <Loading />
+    
+        
         let invalidCourse = (
             <h1> This course doesn't exist </h1>
         )

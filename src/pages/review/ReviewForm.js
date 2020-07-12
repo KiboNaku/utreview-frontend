@@ -113,9 +113,9 @@ class ReviewForm extends Component {
 				profFirst = props.location.state.profFirst
 				profLast = props.location.state.profLast
 			} else {
-				if(props.location.state.review === undefined){
+				if (props.location.state.review === undefined) {
 					invalidReview = true
-				}	
+				}
 			}
 		}
 
@@ -139,7 +139,7 @@ class ReviewForm extends Component {
 				value: 'Fall 2020', label: 'Fall 2020', id: 2, semester: "Fall", year: 2020
 			}],
 			topicLoaded: true,
-			
+
 			semester: {
 				id: null,
 				semester: "",
@@ -161,9 +161,9 @@ class ReviewForm extends Component {
 				loaded: true
 			},
 
-			courseRating : {
+			courseRating: {
 				likePressed: false,
-				dislikePressed: false, 
+				dislikePressed: false,
 				approval: null,
 				usefulness: "",
 				difficulty: "",
@@ -181,7 +181,7 @@ class ReviewForm extends Component {
 
 			profRating: {
 				likePressed: false,
-				dislikePressed: false, 
+				dislikePressed: false,
 				approval: null,
 				clear: "",
 				engaging: "",
@@ -206,9 +206,9 @@ class ReviewForm extends Component {
 				}
 			},
 
-			formDisabled: true, 
-			duplicateReview: false, 
-			oldReview: props.location.state === undefined || props.location.state.review === undefined ? null : props.location.state.review, 
+			formDisabled: true,
+			duplicateReview: false,
+			oldReview: props.location.state === undefined || props.location.state.review === undefined ? null : props.location.state.review,
 			invalidReview: invalidReview
 		}
 
@@ -268,7 +268,7 @@ class ReviewForm extends Component {
 			const decoded = jwt_decode(token)
 
 			let courseId = this.state.course.id
-			if(this.state.topic.selected){
+			if (this.state.topic.selected) {
 				courseId = this.state.topic.id
 			}
 
@@ -373,13 +373,13 @@ class ReviewForm extends Component {
 							})
 						}
 
-						this.setState(prevState => ({ 
-							topicList: topicList, 
+						this.setState(prevState => ({
+							topicList: topicList,
 							topic: {
 								...prevState.topic,
 								loaded: true,
 							},
-							prof:{
+							prof: {
 								...prevState.prof,
 								id: null,
 								firstName: "",
@@ -414,7 +414,7 @@ class ReviewForm extends Component {
 					...prevState.course,
 					id: null,
 					dept: "",
-					num: "",	
+					num: "",
 				},
 				prof: {
 					...prevState.prof,
@@ -454,13 +454,13 @@ class ReviewForm extends Component {
 							...prevState.prof,
 							id: null,
 							firstName: "",
-							lastName: "",	
+							lastName: "",
 						},
 						formDisabled: true
 					}))
-				} 
+				}
 
-				this.setState(prevState => ({ 
+				this.setState(prevState => ({
 					profList: profList,
 					prof: {
 						...prevState.prof,
@@ -491,7 +491,7 @@ class ReviewForm extends Component {
 			}))
 
 		} else {
-			this.setState(prevState =>({
+			this.setState(prevState => ({
 				prof: {
 					...prevState.prof,
 					firstName: "",
@@ -510,7 +510,7 @@ class ReviewForm extends Component {
 	handleProfessorChange = (inputValue, { action }) => {
 
 		if (inputValue !== null) {
-			this.setState(prevState => ({ 
+			this.setState(prevState => ({
 				prof: {
 					...prevState.prof,
 					id: inputValue.id,
@@ -540,7 +540,7 @@ class ReviewForm extends Component {
 			})
 
 		} else {
-			this.setState(prevState => ({ 
+			this.setState(prevState => ({
 				prof: {
 					...prevState.prof,
 					id: null,
@@ -604,8 +604,8 @@ class ReviewForm extends Component {
 						this.setProfInfo(profInfo)
 					}
 
-					this.setState(prevState => ({ 
-						courseList: courseList, 
+					this.setState(prevState => ({
+						courseList: courseList,
 						course: {
 							...prevState.course,
 							loaded: true
@@ -661,7 +661,7 @@ class ReviewForm extends Component {
 		switch (type) {
 			case 'course':
 				this.setState(prevState => ({
-					courseRating:{
+					courseRating: {
 						...prevState.courseRating,
 						likePressed: true,
 						dislikePressed: false,
@@ -671,7 +671,7 @@ class ReviewForm extends Component {
 				break
 			case 'prof':
 				this.setState(prevState => ({
-					profRating:{
+					profRating: {
 						...prevState.profRating,
 						likePressed: true,
 						dislikePressed: false,
@@ -685,7 +685,7 @@ class ReviewForm extends Component {
 		switch (type) {
 			case 'course':
 				this.setState(prevState => ({
-					courseRating:{
+					courseRating: {
 						...prevState.courseRating,
 						likePressed: false,
 						dislikePressed: true,
@@ -695,7 +695,7 @@ class ReviewForm extends Component {
 				break
 			case 'prof':
 				this.setState(prevState => ({
-					profRating:{
+					profRating: {
 						...prevState.profRating,
 						likePressed: false,
 						dislikePressed: true,
@@ -770,125 +770,117 @@ class ReviewForm extends Component {
 		// this.setProfInfo(profInfo)
 	}
 
-setOldReviewData = () => {
-	const { oldReview } = this.state
+	setOldReviewData = () => {
+		const { oldReview } = this.state
 
-	console.log(oldReview)
-	let topicId = null
-	let courseId = oldReview.course.id
-	let topicSelected = oldReview.course.topicNum > 0
-	if(topicSelected){
-		courseId = oldReview.course.parentId
-		topicId = oldReview.course.id
-		let topicInfo = {
-			topicId: oldReview.course.topicId
+		console.log(oldReview)
+		let topicId = null
+		let courseId = oldReview.course.id
+		let topicSelected = oldReview.course.topicNum > 0
+		if (topicSelected) {
+			courseId = oldReview.course.parentId
+			topicId = oldReview.course.id
+			let topicInfo = {
+				topicId: oldReview.course.topicId
+			}
+			// getTopics(topicInfo).then(res => {
+			// 	if (res.error) {
+			// 		alert(res.error)
+			// 	} else {
+			// 		let data = res.topics
+			// 		let topicList = new Array()
+			// 		for (const i in data) {
+			// 			topicList.push({
+			// 				value: data[i]['topicTitle'],
+			// 				label: data[i]['topicTitle'],
+			// 				id: data[i]['id'],
+			// 				topicTitle: data[i]['topicTitle'],
+			// 				topicNum: data[i]['topicNum']
+			// 			})
+			// 		}
+			// 		this.setState({topicsList: topicList})
+			// 	}
+			// })
 		}
-		// getTopics(topicInfo).then(res => {
-		// 	if (res.error) {
-		// 		alert(res.error)
-		// 	} else {
-		// 		let data = res.topics
-		// 		let topicList = new Array()
-		// 		for (const i in data) {
-		// 			topicList.push({
-		// 				value: data[i]['topicTitle'],
-		// 				label: data[i]['topicTitle'],
-		// 				id: data[i]['id'],
-		// 				topicTitle: data[i]['topicTitle'],
-		// 				topicNum: data[i]['topicNum']
-		// 			})
-		// 		}
-		// 		this.setState({topicsList: topicList})
-		// 	}
-		// })
+		console.log("Course id" + courseId)
+		console.log("Topic id" + topicId)
+
+		this.setState(prevState => ({
+			semester: {
+				...prevState.semester,
+				id: oldReview.semester.id,
+				semester: oldReview.semester.semester,
+				year: oldReview.semester.year
+			},
+			course: {
+				...prevState.course,
+				id: courseId,
+				dept: oldReview.course.dept.abr,
+				num: oldReview.course.num,
+			},
+			topic: {
+				...prevState.topic,
+				id: topicId,
+				selected: topicSelected
+			},
+			courseRating: {
+				...prevState.courseRating,
+				likePressed: oldReview.courseRating.approval,
+				dislikePressed: !oldReview.courseRating.approval,
+				approval: oldReview.courseRating.approval,
+				usefulness: oldReview.courseRating.usefulness,
+				difficulty: oldReview.courseRating.difficulty,
+				workload: oldReview.courseRating.workload,
+				comments: oldReview.courseRating.comments
+			},
+			prof: {
+				...prevState.prof,
+				id: oldReview.prof.id,
+				firstName: oldReview.prof.firstName,
+				lastName: oldReview.prof.lastName,
+			},
+			profRating: {
+				...prevState.profRating,
+				likePressed: oldReview.profRating.approval,
+				dislikePressed: !oldReview.profRating.approval,
+				approval: oldReview.profRating.approval,
+				clear: oldReview.profRating.clear,
+				engaging: oldReview.profRating.engaging,
+				grading: oldReview.profRating.grading,
+				comments: oldReview.profRating.comments
+			},
+			grade: oldReview.grade,
+			formDisabled: false
+		}))
+
 	}
-	console.log("Course id" + courseId)
-	console.log("Topic id" + topicId)
 
-	this.setState(prevState => ({
-		semester: {
-			...prevState.semester,
-			id: oldReview.semester.id,
-			semester: oldReview.semester.semester,
-			year: oldReview.semester.year
-		},
-		course: {
-			...prevState.course,
-			id: courseId,
-			dept: oldReview.course.dept.abr,
-			num: oldReview.course.num,	
-		},
-		topic: {
-			...prevState.topic,
-			id: topicId,
-			selected: topicSelected
-		},
-		courseRating: {
-			...prevState.courseRating,
-			likePressed: oldReview.courseRating.approval,
-			dislikePressed: !oldReview.courseRating.approval,
-			approval: oldReview.courseRating.approval,
-			usefulness: oldReview.courseRating.usefulness,
-			difficulty: oldReview.courseRating.difficulty,
-			workload: oldReview.courseRating.workload,
-			comments: oldReview.courseRating.comments
-		},
-		prof: {
-			...prevState.prof,
-			id: oldReview.prof.id,
-			firstName: oldReview.prof.firstName,
-			lastName: oldReview.prof.lastName,
-		},
-		profRating: {
-			...prevState.profRating,
-			likePressed: oldReview.profRating.approval,
-			dislikePressed: !oldReview.profRating.approval,
-			approval: oldReview.profRating.approval,
-			clear: oldReview.profRating.clear,
-			engaging: oldReview.profRating.engaging,
-			grading: oldReview.profRating.grading,
-			comments: oldReview.profRating.comments
-		},
-		grade: oldReview.grade,
-		formDisabled: false
-	}))
+	render() {
+		if (this.state.OldReview !== null && this.state.CourseDept === "") {
+			this.setData()
+		}
 
-}
+		let loaded = this.state.CourseLoaded && this.state.ProfLoaded && this.state.SemesterLoaded
 
-render() {
-	if (this.state.oldReview !== null && this.state.course.id === null) {
-		this.setOldReviewData()
-	}
-	console.log(this.state)
-	let loaded = this.state.course.loaded && this.state.prof.loaded && this.state.semester.loaded
-	let loading = (
-		<div className="row d-flex justify-content-center">
-			<div className="d-inline-block mx-5 my-5 px-5 py-5">
-				<Loading />
+		let loading = <Loading />
+
+		let content = <ReviewFormComponent
+			handleSubmit={this.handleSubmit}
+			handleChange={this.handleChange}
+			handleCourseChange={this.handleCourseChange}
+			handleProfessorChange={this.handleProfessorChange}
+			handleSemesterChange={this.handleSemesterChange}
+			handleTopicChange={this.handleTopicChange}
+			handleLike={this.handleLike}
+			handleDislike={this.handleDislike}
+			data={this.state} />
+
+		return(
+			<div>
+				{loaded ? content : loading}
 			</div>
-		</div>
-	)
-	let invalidReview = <h1>Invalid review</h1>
-	let content = <ReviewFormComponent
-		handleSubmit={this.handleSubmit}
-		handleChange={this.handleChange}
-		handleCourseRatingChange = {this.handleCourseRatingChange}
-		handleProfRatingChange = {this.handleProfRatingChange}
-		handleCourseChange={this.handleCourseChange}
-		handleProfessorChange={this.handleProfessorChange}
-		handleSemesterChange={this.handleSemesterChange}
-		handleTopicChange={this.handleTopicChange}
-		handleLike={this.handleLike}
-		handleDislike={this.handleDislike}
-		data={this.state} />
-
-	return (
-		<div>
-			{this.state.invalidReview ? invalidReview : (loaded ? content : loading)}
-		</div>
-
-	)
-}
+		);
+	}
 }
 
 export default withRouter(ReviewForm);
