@@ -13,12 +13,11 @@ import Login from './pages/popups/Login'
 import Signup from './pages/popups/Signup'
 import "./App.css"
 import ConfirmEmail from './pages/confirm-email/ConfirmEmail';
+import VerifyEmail from './pages/popups/VerifyEmail';
 
 function App() {
 
 	return (
-		// <ReviewForm />
-		
 		<Router>
 			<div className="App">
 
@@ -41,6 +40,7 @@ function App() {
 
 		        <Login />
 		        <Signup />
+				<VerifyEmail />
 			</div>
 		</Router>
 	);

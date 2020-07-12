@@ -42,12 +42,7 @@ class ConfirmEmail extends Component {
             message = "The email has been confirmed."
         }
 
-        let loading =
-            <div className="row d-flex justify-content-center">
-                <div className="d-inline-block mx-5 my-5 px-5 py-5">
-                    <Loading />
-                </div>
-            </div>
+        let loading = <Loading/>
 
         let redirect =
             <div>
