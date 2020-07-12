@@ -22,55 +22,44 @@ class Profile extends Component {
         const reviewList = [
             {
                 'id': 1,
-                'date': '2020-01-01',
-                'grade': "A",
+                'date_posted': '1/1/2020',
+                'semester': 'Spring 2020',
+                'course_comments': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus.",
+                'professor_comments': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus.",
 
-                'semester': {
-                    'id': 1,
-                    'semester': 'Spring',
-                    'year': 2020
-                },
-
-                'user': {
+                'user_posted': {
                     'major': {
                         'abr': 'EE',
                         'name': 'Electrical Engineering '
                     }
                 },
 
-                'prof': {
-                    'id': 3,
+                'professor': {
                     'firstName': 'Seth',
                     'lastName': 'Bank'
                 },
 
                 'course': {
-                    'id': 3,
                     'dept': {
                         'abr': 'EE',
                         'name': 'Electrical Engineering'
                     },
                     'num': 302,
                     'title': 'intro to ee',
-                    'topicNum': 1,
-                    'topicId': 4,
-                    'parentId': 1
                 },
 
-                'courseRating': {
+                'course_rating': {
                     'approval': false,
                     'usefulness': 3,
                     'difficulty': 2,
                     'workload': 4,
-                    'comments': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus.",
                 },
 
-                'profRating': {
+                'professor_rating': {
                     'approval': true,
                     'clear': 4,
                     'engaging': 3,
                     'grading': 5,
-                    'comments': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus.",
                 },
             }
         ]
@@ -154,7 +143,7 @@ class Profile extends Component {
         })
 
         this.props.history.push({
-            pathname: '/edit-review',
+            pathname: '/add-review',
             state: {
                 review: review
             }

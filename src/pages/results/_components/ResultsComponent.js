@@ -29,7 +29,7 @@ function ResultsComponent(props) {
                 <div className='container-fluid'>
 
                     <div className="py-3 px-3 mb-2 search-banner">
-                        <h3>{props.courses.data.length + props.profs.data.length} Results for '{props.search}'</h3>
+                        <h3>Results for '{props.search}'</h3>
                     </div>
 
                     <div className='row'>

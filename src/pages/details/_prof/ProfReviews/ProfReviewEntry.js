@@ -106,13 +106,13 @@ function ProfReviewEntry(props) {
         <div className="list-group-item review-list-item">
             <div className="prof-review-entry">
                 <div className="userDes">
-                    <Avatar className={classes.large} src={require('./../../../../res/img/' + props.review.profilePic)}>  </Avatar>
+                    <Avatar className={classes.large} src={props.review.profilePic}>  </Avatar>
                     <div className="userText">
                         <span> {props.review.userMajor} student, enrolled in </span>
                         <Link
                             className="utcolor"
                             to={{
-                                pathname: `/course-results/${coursePath}`,
+                                pathname: `course-results/${coursePath}`,
                                 state: {
                                     courseId: props.review.courseId
                                 }
@@ -125,16 +125,11 @@ function ProfReviewEntry(props) {
                 <div className="userRev">
                     <p className="review-text">{props.review.comments}</p>
                     <small className="review-date"> - {props.review.date.toLocaleDateString()}</small>
-                    <div className="review-like-grade">
-                        <div className="LikeDislike">
-                            {localStorage.usertoken ? likeButton : likeLoginLink}
-                            <span> {props.review.numLiked} </span>
-                            {localStorage.usertoken ? dislikeButton : dislikeLoginLink}
-                            <span> {props.review.numDisliked} </span>
-                        </div>
-                        <div className="review-grade">
-                            <span> Grade: {props.review.grade}</span>
-                        </div>
+                    <div className="LikeDislike">
+                        {localStorage.usertoken ? likeButton : likeLoginLink}
+                        <span> {props.review.numLiked} </span>
+                        {localStorage.usertoken ? dislikeButton : dislikeLoginLink}
+                        <span> {props.review.numDisliked} </span>
                     </div>
                 </div>
                 <div className="userRat">
