@@ -79,7 +79,7 @@ function ProfPanel(props) {
                             <Link
                                 className="utcolor"
                                 to={{
-                                    pathname: `prof-results/${profPath}`,
+                                    pathname: `/prof-results/${profPath}`,
                                     state: {
                                         profId: prof.id
                                     }
@@ -88,10 +88,10 @@ function ProfPanel(props) {
                             </Link>
                         }</td>
                         <td colSpan="1">
-                            {prof.eCIS}
+                            {prof.eCIS !== null ? prof.eCIS : "N/A"}
 							</td>
                         <td colSpan="1">
-                            {prof.approval}%
+                            {prof.approval !== null ? prof.approval: "N/A"}%
 							</td>
                         <td colSpan="1">
                             {prof.numRatings}

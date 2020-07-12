@@ -2,8 +2,8 @@ import axios from 'axios'
 
 export const getProfInfo = (prof) => {
 	return axios
-		.post('/api/prof_info', {
-			profName: prof.profName,
+		.post('/api/prof_details', {
+			profId: prof.profId,
 			userEmail: prof.userEmail,
 			loggedIn: prof.loggedIn
 		})

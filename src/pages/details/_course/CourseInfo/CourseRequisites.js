@@ -24,10 +24,10 @@ class CourseRequisites extends React.Component {
         return (
             <div className="courseRequisites">
                 <div className="card course-card">
-                    <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#requisites-collapse">
-                        <h4 className="details-header"> Requisites {arrowIcon} </h4>
+                    <div className="card-header course-header" onClick={this.handleCollapse} data-toggle="collapse" data-target="#requisites-collapse">
+                        <h4 className="details-header"> Requisites </h4>
                     </div>
-                    <div className="collapse show" id="requisites-collapse" role="tabpanel">
+                    <div>
                         <div className="card-body">
                             <div className="requisites">
                                 <div>

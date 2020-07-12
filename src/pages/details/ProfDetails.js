@@ -217,71 +217,100 @@ class ProfDetails extends React.Component {
             profReviews: profReviews,
             profSchedule: profSchedule,
             validProf: true,
-            loaded: true
-        }
-
-        // const profId = null
-        // if(this.props.location.state === undefined){
-        //     let profPath = window.location.pathname.split("/").pop()
-        //     let profString = {
-        //         profString: profPath
-        //     }
-        //     getProfId(profString).then(res => {
-        //         if (res.error) {
-        //             alert(res.error)
-        //             this.setState({
-        //                 validProf: false
-        //             })
-        //         } else {
-        //             profId = res.profId
-        //         }
-        //     })
-        // }else{
-        //     profId = this.props.location.state.profId
-        // }
-
-        // if(this.state.validProf){
-        //     let loggedIn = false
-        //     let email = ''
-        //     const token = localStorage.usertoken
-        //     if (token) {
-        //         const decoded = jwt_decode(token)
-        //         loggedIn = true
-        //         email = decoded.identity.email
-        //     }
-
-        //     const prof = {
-        //         profId: profId,
-        //         loggedIn: loggedIn,
-        //         userEmail: email
-        //     }
-            
-        //     getProfInfo(prof).then(res => {
-        //         if (res.error) {
-        //             alert(res.error)
-        //         } else {
-        //             let profRevs = res.prof_reviews.map(review => {
-        //                 return {
-        //                     ...review,
-        //                     date: new Date(review.date)
-        //                 }
-        //             })
-        //             this.setState({
-        //                 profInfo: res.prof_info,
-        //                 profRatings: res.prof_rating,
-        //                 profSchedule: res.prof_schedule,
-        //                 profCourses: res.prof_courses,
-        //                 profReviews: profRevs,
-        //                 loaded: true
-        //             })
-        //         }
-        //     })
-        // }
+            loaded: false
+        }    
 
     }
 
     componentDidMount() {
+        let loggedIn = false
+        let email = ''
+        const token = localStorage.usertoken
+        if (token) {
+            const decoded = jwt_decode(token)
+            loggedIn = true
+            email = decoded.identity.email
+        }
 
+        let profId = null
+        if(this.props.location.state === undefined){
+            console.log("helloooo")
+            let profPath = window.location.pathname.split("/").pop()
+            let profString = {
+                profString: profPath
+            }
+            console.log(profString)
+            getProfId(profString).then(res => {
+                if (res.error) {
+                    alert(res.error)
+                    this.setState({validProf: false})
+                } else {
+                    console.log(res)
+                    profId = res.profId
+                    const prof = {
+                        profId: profId,
+                        loggedIn: loggedIn,
+                        userEmail: email
+                    }
+                    this.profDetailsRequest(prof)
+                }
+            })        
+        }else{
+            if(this.props.location.state.profId === undefined){
+                let profPath = window.location.pathname.split("/").pop()
+                let profString = {
+                    profString: profPath
+                }
+                console.log(profString)
+                getProfId(profString).then(res => {
+                    if (res.error) {
+                        alert(res.error)
+                        this.setState({validProf: false})
+                    } else {
+                        profId = res.profId
+                        const prof = {
+                            profId: profId,
+                            loggedIn: loggedIn,
+                            userEmail: email
+                        }
+                        this.profDetailsRequest(prof)
+                    }
+                })
+            }else{
+                profId = this.props.location.state.profId
+                const prof = {
+                    profId: profId,
+                    loggedIn: loggedIn,
+                    userEmail: email
+                }
+                this.profDetailsRequest(prof)
+            }
+        }
+
+    }
+
+    profDetailsRequest = (prof) => {
+        getProfInfo(prof).then(res => {
+            if (res.error) {
+                alert(res.error)
+            } else {
+                console.log("here")
+                let profRevs = res.prof_reviews.map(review => {
+                    return {
+                        ...review,
+                        date: new Date(review.date)
+                    }
+                })
+                this.setState({
+                    profInfo: res.prof_info,
+                    profRatings: res.prof_rating,
+                    profSchedule: res.prof_schedule,
+                    profCourses: res.prof_courses,
+                    profReviews: profRevs,
+                    loaded: true
+                })
+            }
+        })
     }
 
     render() {
@@ -291,7 +320,7 @@ class ProfDetails extends React.Component {
         )
         
         let invalidProf = (
-            <h1> This course doesn't exist </h1>
+            <h1> This professor doesn't exist </h1>
         )
 
         let content = (
@@ -306,14 +335,14 @@ class ProfDetails extends React.Component {
 
                 </div>
                 <div className="prof-tables">
-                    <ProfCourses {...this.state} />
+                    <ProfCourses profCourses={this.state.profCourses} key={this.state.profCourses}/>
                 </div>
 
-                <ProfSchedule {...this.state} />
+                <ProfSchedule profSchedule={this.state.profSchedule} key={this.state.profSchedule.currentSem}/>
                 <ProfAddReview
                     {...this.state.profInfo}
                 />
-                <ProfReviews {...this.state} />
+                <ProfReviews profReviews={this.state.profReviews} key={this.state.profReviews} />
             </div>
         )
         return (

@@ -63,7 +63,6 @@ class CourseProfs extends React.Component {
                     <div className="collapse show" id="profs-collapse" role="tabpanel">
                         <div className="card-body card-table">
                             {courseProfList.length > 0 ? profTable: noProfs}
-
                         </div>
                     </div>
 

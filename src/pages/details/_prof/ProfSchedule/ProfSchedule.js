@@ -51,9 +51,9 @@ class ProfSchedule extends React.Component {
             )
         })
         let noCourses = (
-            <h2>
-                There are no scheduled courses for this semester
-            </h2>
+            <h5 className="none-scheduled">
+                This professor is not scheduled for this semester
+            </h5>
         )
         let currentSem = (
             <table className='table table-hover table-responsive schedule-table'>
