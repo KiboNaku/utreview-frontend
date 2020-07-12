@@ -315,10 +315,8 @@ class ProfDetails extends React.Component {
 
     render() {
 
-        let loading = (
-            <Loading />
-        )
-        
+        let loading = <Loading />
+    
         let invalidProf = (
             <h1> This professor doesn't exist </h1>
         )
