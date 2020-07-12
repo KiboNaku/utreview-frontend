@@ -37,10 +37,12 @@
 	}
 }
 
-main {
-	width: 100vw;
-	max-width: 100%;
+body {
 	min-height: 500px;
+	min-width: 350px;
+}
+
+main {
 	background: #d6d2c4;
 }
 
