@@ -29,6 +29,30 @@ class CourseProfs extends React.Component {
             ]
 
         })
+        let noProfs = (
+            <h5 className="none-scheduled">
+                No Professors available
+            </h5>
+        )
+        let profTable = (
+            <table className='table table-hover table-responsive prof-table' >
+                <thead>
+                    <tr>
+                        <th className="name-column" scope="col">Name</th>
+                        <th scope="col">Liked</th>
+                        <th scope="col">eCIS</th>
+                        <th scope="col">Clear</th>
+                        <th scope="col">Engaging</th>
+                        <th scope="col">Grading</th>
+                        <th scope="col">Syllabi</th>
+                        <th scope="col">Catalyst</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {courseProfList}
+                </tbody>
+            </table>
+        )
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         return (
             <div className="courseProfs">
@@ -38,24 +62,7 @@ class CourseProfs extends React.Component {
                     </div>
                     <div className="collapse show" id="profs-collapse" role="tabpanel">
                         <div className="card-body card-table">
-                                <table className='table table-hover table-responsive prof-table' >
-                                    <thead>
-                                        <tr>
-                                            <th className="name-column" scope="col">Name</th>
-                                            <th scope="col">Liked</th>
-                                            <th scope="col">eCIS</th>
-                                            <th scope="col">Clear</th>
-                                            <th scope="col">Engaging</th>
-                                            <th scope="col">Grading</th>
-                                            <th scope="col">Syllabi</th>
-                                            <th scope="col">Catalyst</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {courseProfList}
-                                    </tbody>
-                                </table>
-
+                            {courseProfList.length > 0 ? profTable: noProfs}
                         </div>
                     </div>
 

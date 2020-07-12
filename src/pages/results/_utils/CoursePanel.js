@@ -91,7 +91,7 @@ function CoursePanel(props) {
                             <Link
                                 className="utcolor"
                                 to={{
-                                    pathname: `course-results/${coursePath}`,
+                                    pathname: `/course-results/${coursePath}`,
                                     state: {
                                         courseId: course.id
                                     }
@@ -100,10 +100,10 @@ function CoursePanel(props) {
                             </Link>
                         }</td>
                         <td colSpan="1">
-                            {course.eCIS}
+                            {course.eCIS !== null ? course.eCIS: "N/A"}
 							</td>
                         <td colSpan="1">
-                            {course.approval}%
+                            {course.approval !== null ? course.approval: "N/A"}%
 							</td>
                         <td colSpan="1">
                             {course.numRatings}
