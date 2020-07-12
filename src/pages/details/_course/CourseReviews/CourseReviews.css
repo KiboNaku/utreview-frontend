@@ -57,27 +57,12 @@
 
 .review-text{
     margin-bottom: 0px;
-    margin-right: 10px;
 }
 
 .LikeDislike{
-    width: 50%;
-    white-space: nowrap;
-}
-
-.review-like-grade{
-    width: 50%;
-    display: flex;
-    flex-direction: row;
+    margin-bottom: 10px;
     position: absolute;
     bottom: 0;
-    align-items: center;
-}
-
-.review-grade{
-    width: 50%;
-    margin-bottom: 10px;
-    margin-right: 10px;
 }
 
 .likeButton{
@@ -178,11 +163,10 @@
         border-bottom: 1px solid black;
     }
 
-    .review-like-grade{
+    .LikeDislike{
         margin-bottom: 10px;
         position: relative;
         margin-top: 10px;
-        width: 100%
     }
 
     .userRat{
@@ -197,7 +181,7 @@
     }
 }
 
-@media screen and (max-width: 380px){
+@media screen and (max-width: 360px){
     .userRat{
         justify-items: center;
         margin: 0 auto;
@@ -212,17 +196,5 @@
     .rowRating{
         display: flex;
         flex-direction: column;
-    }
-
-    .review-like-grade{
-        flex-direction: column;
-    }
-
-    .review-grade{
-        width: auto;
-    }
-
-    .LikeDislike{
-        width: auto;
     }
 }

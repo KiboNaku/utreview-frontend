@@ -35,27 +35,17 @@ class ProfSchedule extends React.Component {
 
         const styles = theme => ({
             indicator: {
-                backgroundColor: '#bf5700',
+              backgroundColor: '#bf5700',
             },
-        })
+          })
 
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
-        const currentSemList = this.state.profSchedule.currentSem.map(prof => {
+        const profScheduleList = this.state.profSchedule.map(course => {
             return (
-                <ProfScheduleEntry {...prof} />
+                <ProfScheduleEntry {...course} />
             )
         })
-        const futureSemList = this.state.profSchedule.futureSem.map(prof => {
-            return (
-                <ProfScheduleEntry {...prof} />
-            )
-        })
-        let noCourses = (
-            <h5 className="none-scheduled">
-                This professor is not scheduled for this semester
-            </h5>
-        )
-        let currentSem = (
+        let summer2020 = (
             <table className='table table-hover table-responsive schedule-table'>
                 <thead>
                     <tr>
@@ -65,16 +55,15 @@ class ProfSchedule extends React.Component {
                         <th scope="col">Time</th>
                         <th scope="col">Days</th>
                         <th scope="col">Location</th>
-                        <th scope="col">Cross Listed</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {currentSemList}
+                    {profScheduleList}
                 </tbody>
             </table>
         )
 
-        let futureSem = (
+        let fall2020 = (
             <table className='table table-hover table-responsive schedule-table'>
                 <thead>
                     <tr>
@@ -84,19 +73,19 @@ class ProfSchedule extends React.Component {
                         <th scope="col">Time</th>
                         <th scope="col">Days</th>
                         <th scope="col">Location</th>
-                        <th scope="col">Cross Listed</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {futureSemList}
+                    {profScheduleList}
                 </tbody>
             </table>
         )
+
         let result = (
             <div className="semSchedule">
                 <AppBar position="static" color="default">
                     <Tabs
-                        inkBarStyle={{ backgroundColor: '#68C222', width: '33.3%' }}
+                        inkBarStyle={{backgroundColor: '#68C222', width: '33.3%'}}
                         value={this.state.currentTab}
                         variant="fullWidth"
                         centered
@@ -110,13 +99,13 @@ class ProfSchedule extends React.Component {
 
                 <div className="semSchedule">
                     <TabPanel index={0} value={this.state.currentTab}>
-                        {currentSemList.length > 0 ? currentSem : noCourses}
+                        {summer2020}
                     </TabPanel>
                 </div>
 
                 <div className="semSchedule">
                     <TabPanel index={1} value={this.state.currentTab}>
-                        {futureSemList.length > 0 ? futureSem : noCourses}
+                        {fall2020}
                     </TabPanel>
                 </div>
             </div>
@@ -127,7 +116,7 @@ class ProfSchedule extends React.Component {
             <div className="profSchedule">
                 <div className="card prof-card">
                     <div className="card-header prof-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#profschedule-collapse">
-                        <h4 className="details-header"> Professor Schedule {arrowIcon}</h4>
+                        <h4 className="details-header"> Course Schedule {arrowIcon}</h4>
                     </div>
                     <div className="collapse show" id="profschedule-collapse" role="tabpanel">
                         <div className="card-body card-table">

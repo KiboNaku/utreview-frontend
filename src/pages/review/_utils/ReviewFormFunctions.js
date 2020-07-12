@@ -3,31 +3,26 @@ import axios from 'axios'
 export const getCourses = (info) => {
 	return axios
 		.post('api/get_courses', {
-			semesterId: info.semesterId,
-			all: info.all
+			semesterId: info.semesterId
 		})
 		.then(response => {
 			return response.data
 		})
 }
 
-export const getTopics = (info) => {
-	return axios
-		.post('api/get_topics', {
-			topicId: info.topicId
-		})
-		.then(response => {
-			return response.data
-		})
-}
+export const getProfId = (prof) => {
+    return axios
+      .post('/api/prof_id', {
+        profString: prof.profString
+      })
+      .then(response => {
+        return response.data
+      })
+  }
 
-export const getProfs = (info) => {
+export const getProfs = () => {
 	return axios
-		.post('api/get_profs', {
-			semesterId: info.semesterId,
-			profId: info.profId,
-			all: info.all
-		})
+		.get('api/get_profs')
 		.then((response) => {
 			return response.data
 		});
@@ -39,24 +34,4 @@ export const getSemesters = () => {
 		.then((response) => {
 			return response.data
 		});
-}
-
-export const getCourseId = (course) => {
-	return axios
-		.post('/api/course_id', {
-			courseString: course.courseString
-		})
-		.then(response => {
-			return response.data
-		})
-}
-
-export const getProfId = (prof) => {
-	return axios
-		.post('/api/prof_id', {
-			profString: prof.profString
-		})
-		.then(response => {
-			return response.data
-		})
 }

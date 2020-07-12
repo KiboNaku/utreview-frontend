@@ -8,17 +8,15 @@ function ProfAddReview(props) {
     const addReviewLink = (
         <Link className="utcolor"
             to={{
-                pathname: `/add-review`,
-                search: `?prof=${profPath}`,
+                pathname: `prof-results/${profPath}`,
                 state: {
-                    profId: props.id,
-                    profFirst: props.firstName,
-                    profLast: props.lastName
+                    profId: props.id
                 }
             }}>
             <button style={{ height: "50px", width: "175px", fontSize: "20px" }} className="btn btn-dark font-weight-bold" type="button">
                 Add a Review
                 </button>
+                {props.firstName} {props.lastName}
         </Link>
     )
     const loginLink = (

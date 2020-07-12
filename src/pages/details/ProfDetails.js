@@ -14,9 +14,7 @@ class ProfDetails extends React.Component {
     constructor(props) {
         super(props)
         const profInfo = {
-            id: 1,
-            firstName: "Yale",
-            lastName: "Patt"
+            profName: "Yale Patt"
         }
 
         const profRatings = {
@@ -24,27 +22,23 @@ class ProfDetails extends React.Component {
             clear: 4.3,
             engaging: 2.3,
             grading: 4.9,
-            eCIS: 4.3,
-            numRatings: 10
+            eCIS: 4.3
         }
 
         const profCourses = [
             {
                 id: 1,
-                courseDept: "EE",
-                courseNum: "302",
-                topicNum: 0,
+                name: 'EE 302',
                 percentLiked: 70,
                 eCIS: 4.2,
                 difficulty: 3.4,
                 usefulness: 4.9,
                 workload: 2.5
+
             },
             {
                 id: 2,
-                courseDept: "EE",
-                courseNum: "460N",
-                topicNum: -1,
+                name: 'EE 460N',
                 percentLiked: 32,
                 eCIS: 3.6,
                 difficulty: 3.4,
@@ -53,9 +47,7 @@ class ProfDetails extends React.Component {
             },
             {
                 id: 3,
-                courseDept: "EE",
-                courseNum: "306",
-                topicNum: 1,
+                name: 'EE 306',
                 percentLiked: 85,
                 eCIS: 4.8,
                 difficulty: 3.4,
@@ -64,149 +56,87 @@ class ProfDetails extends React.Component {
             },
         ]
 
-        const currentSem = [
+        const profSchedule = [
             {
-                id: 1,
-                uniqueNum: 12345,
+                uniqueNo: 12345,
                 maxEnrollment: 60,
                 seatsTaken: 30,
-                timeFrom: "9:00 AM",
-                timeTo: "10:30 AM",
+                timeFrom: 900,
+                timeTo: 1030,
                 days: "M W",
                 location: "EER 5.820",
-                courseId: 1,
-                courseDept: 'EE',
-                courseNum: '302',
-                semester: "Fall",
-                year: 2020,
-                crossListed: [
-                    {
-                        'id': 5,
-                        'dept': "ECE",
-                        'num': "319",
-                        'title': "Introduction to Electrical Engineering",
-                        'topicNum': 0
-                    }
-                ]
+                course: "EE 302"
             },
             {
-                id: 2,
-                uniqueNum: 12345,
+                uniqueNo: 12345,
                 maxEnrollment: 60,
                 seatsTaken: 30,
-                timeFrom: "9:00 AM",
-                timeTo: "10:30 AM",
+                timeFrom: 900,
+                timeTo: 1030,
                 days: "M W",
                 location: "EER 5.820",
-                courseId: 1,
-                courseDept: 'EE',
-                courseNum: '302',
-                semester: "Fall",
-                year: 2020,
-                crossListed: [
-                    {
-                        'id': 5,
-                        'dept': "ECE",
-                        'num': "319",
-                        'title': "Introduction to Electrical Engineering",
-                        'topicNum': 0
-                    }
-                ]
+                course: "EE 460N"
             },
             {
-                id: 3,
-                uniqueNum: 12345,
+                uniqueNo: 12345,
                 maxEnrollment: 60,
                 seatsTaken: 30,
-                timeFrom: "9:00 AM",
-                timeTo: "10:30 AM",
+                timeFrom: 900,
+                timeTo: 1030,
                 days: "M W",
                 location: "EER 5.820",
-                courseId: 1,
-                courseDept: 'EE',
-                courseNum: '302',
-                semester: "Fall",
-                year: 2020,
-                crossListed: [
-                    {
-                        'id': 5,
-                        'dept': "ECE",
-                        'num': "319",
-                        'title': "Introduction to Electrical Engineering",
-                        'topicNum': 0
-                    }
-                ]
+                course: "EE 306"
             }
         ]
 
-        const profSchedule = {
-            currentSem: currentSem,
-            futureSem: currentSem
-        }
-
         const profReviews = [
             {
-                id: 1,
-                comments: "I fucking hated this class",
-                approval: false,
+                key: 1,
+                review: "I fucking hated this class",
+                liked: false,
                 clear: 1,
                 engaging: 5,
                 grading: 5,
                 userMajor: 'Electrical and Computer Engineering',
-                profilePic: "default.jpg",
-                courseId: 1,
-                courseDept: 'EE',
-                courseNum: '302',
-                grade: "A",
+                profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
+                courseName: 'EE 302',
                 numLiked: 2,
                 numDisliked: 0,
                 likePressed: false,
                 dislikePressed: false,
-                date: new Date("2019-12-23"),
-                semester: "Fall",
-                year: 2019,
+                date: new Date("2018-04-09")
             },
             {
-                id: 2,
-                comments: "This was the most inspiring class of my life",
-                approval: true,
+                key: 2,
+                review: "This was the most inspiring class of my life",
+                liked: true,
                 clear: 5,
                 engaging: 2,
                 grading: 3,
                 userMajor: 'Electrical and Computer Engineering',
-                profilePic: "default.jpg",
-                courseId: 2,
-                courseDept: 'EE',
-                courseNum: '306',
-                grade: "B-",
+                profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
+                courseName: 'EE 306',
                 numLiked: 1,
                 numDisliked: 2,
                 likePressed: true,
                 dislikePressed: false,
-                date: new Date("2018-06-23"),
-                semester: "Spring",
-                year: 2019,
+                date: new Date("2019-06-09")
             },
             {
-                id: 3,
-                comments: "Why did I even take this class",
-                approval: false,
+                key: 3,
+                review: "Why did I even take this class",
+                liked: false,
                 clear: 1,
                 engaging: 2,
                 grading: 3,
                 userMajor: 'Business Honors',
-                profilePic: "default.jpg",
-                courseId: 3,
-                courseDept: 'EE',
-                courseNum: '460N',
+                profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
+                courseName: 'EE 460N',
                 numLiked: 5,
                 numDisliked: 2,
-                grade: "B",
                 likePressed: false,
                 dislikePressed: true,
-                date: new Date("2020-07-23"),
-                semester: "Spring",
-                year: 2020,
+                date: new Date("2018-04-10")
             },
         ]
 
@@ -217,100 +147,71 @@ class ProfDetails extends React.Component {
             profReviews: profReviews,
             profSchedule: profSchedule,
             validProf: true,
-            loaded: false
-        }    
-
-    }
-
-    componentDidMount() {
-        let loggedIn = false
-        let email = ''
-        const token = localStorage.usertoken
-        if (token) {
-            const decoded = jwt_decode(token)
-            loggedIn = true
-            email = decoded.identity.email
+            loaded: true
         }
 
-        let profId = null
-        if(this.props.location.state === undefined){
-            console.log("helloooo")
+        const profId = null
+        if(this.props.location.state === null){
             let profPath = window.location.pathname.split("/").pop()
             let profString = {
                 profString: profPath
             }
-            console.log(profString)
             getProfId(profString).then(res => {
                 if (res.error) {
                     alert(res.error)
-                    this.setState({validProf: false})
+                    this.setState({
+                        validProf: false
+                    })
                 } else {
-                    console.log(res)
                     profId = res.profId
-                    const prof = {
-                        profId: profId,
-                        loggedIn: loggedIn,
-                        userEmail: email
-                    }
-                    this.profDetailsRequest(prof)
                 }
-            })        
+            })
         }else{
-            if(this.props.location.state.profId === undefined){
-                let profPath = window.location.pathname.split("/").pop()
-                let profString = {
-                    profString: profPath
-                }
-                console.log(profString)
-                getProfId(profString).then(res => {
-                    if (res.error) {
-                        alert(res.error)
-                        this.setState({validProf: false})
-                    } else {
-                        profId = res.profId
-                        const prof = {
-                            profId: profId,
-                            loggedIn: loggedIn,
-                            userEmail: email
-                        }
-                        this.profDetailsRequest(prof)
-                    }
-                })
-            }else{
-                profId = this.props.location.state.profId
-                const prof = {
-                    profId: profId,
-                    loggedIn: loggedIn,
-                    userEmail: email
-                }
-                this.profDetailsRequest(prof)
+            profId = this.props.location.state
+        }
+
+        if(this.state.validProf){
+            let loggedIn = false
+            let email = ''
+            const token = localStorage.usertoken
+            if (token) {
+                const decoded = jwt_decode(token)
+                loggedIn = true
+                email = decoded.identity.email
             }
+
+            const prof = {
+                profId: profId,
+                loggedIn: loggedIn,
+                userEmail: email
+            }
+            
+            getProfInfo(prof).then(res => {
+                if (res.error) {
+                    alert(res.error)
+                } else {
+                    let profRevs = res.prof_reviews.map(review => {
+                        return {
+                            ...review,
+                            date: new Date(review.date)
+                        }
+                    })
+                    this.setState({
+                        profInfo: res.prof_info,
+                        profRatings: res.prof_rating,
+                        profSchedule: res.prof_schedule,
+                        profCourses: res.prof_courses,
+                        profReviews: profRevs,
+                        loaded: true
+                    })
+                }
+            })
         }
 
     }
 
-    profDetailsRequest = (prof) => {
-        getProfInfo(prof).then(res => {
-            if (res.error) {
-                alert(res.error)
-            } else {
-                console.log("here")
-                let profRevs = res.prof_reviews.map(review => {
-                    return {
-                        ...review,
-                        date: new Date(review.date)
-                    }
-                })
-                this.setState({
-                    profInfo: res.prof_info,
-                    profRatings: res.prof_rating,
-                    profSchedule: res.prof_schedule,
-                    profCourses: res.prof_courses,
-                    profReviews: profRevs,
-                    loaded: true
-                })
-            }
-        })
+    componentDidMount() {
+
     }
 
     render() {
@@ -320,7 +221,7 @@ class ProfDetails extends React.Component {
         )
         
         let invalidProf = (
-            <h1> This professor doesn't exist </h1>
+            <h1> This course doesn't exist </h1>
         )
 
         let content = (
@@ -335,14 +236,14 @@ class ProfDetails extends React.Component {
 
                 </div>
                 <div className="prof-tables">
-                    <ProfCourses profCourses={this.state.profCourses} key={this.state.profCourses}/>
+                    <ProfCourses {...this.state} />
                 </div>
 
-                <ProfSchedule profSchedule={this.state.profSchedule} key={this.state.profSchedule.currentSem}/>
+                <ProfSchedule {...this.state} />
                 <ProfAddReview
                     {...this.state.profInfo}
                 />
-                <ProfReviews profReviews={this.state.profReviews} key={this.state.profReviews} />
+                <ProfReviews {...this.state} />
             </div>
         )
         return (
