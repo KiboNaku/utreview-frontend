@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import qs from 'qs'
 import { withRouter } from 'react-router-dom'
-import { getCourses, getProfs, getSemesters } from './_utils/ReviewFormFunctions'
+import { getCourses, getProfs, getSemesters, getTopics, getCourseId, getProfId } from './_utils/ReviewFormFunctions'
 import { checkDuplicate, newReview, editReview } from './_utils/ReviewFunctions'
 import jwt_decode from 'jwt-decode'
 import ReviewFormComponent from './_components/ReviewFormComponent'
@@ -571,9 +572,10 @@ class ReviewForm extends Component {
 
 	handleSemesterChange = (inputValue, { action }) => {
 		if (inputValue !== null) {
-			let info = {
-				semesterId: inputValue.id
-			}
+			let courseInfo = {
+                semesterId: inputValue.id,
+                all: false
+            }
 			getCourses(courseInfo).then(res => {
 				if (res.error) {
 					alert(res.error)
@@ -826,6 +828,11 @@ class ReviewForm extends Component {
 		if (this.state.OldReview !== null && this.state.CourseDept === "") {
 			this.setData()
 		}
+
+		const token = localStorage.usertoken
+        if (token == null) {
+            this.props.history.push('/')
+        }
 
 		let loaded = this.state.CourseLoaded && this.state.ProfLoaded && this.state.SemesterLoaded
 
