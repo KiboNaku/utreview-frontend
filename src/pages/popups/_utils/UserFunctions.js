@@ -52,3 +52,16 @@ export const getMajor = () => {
 			return response.data
 		})
 }
+
+export const sendConfirmEmail = () => {
+
+	if(localStorage.email !== 'undefined'){
+
+		return axios
+			.post('/api/send_confirm_email', {
+				email: localStorage.email
+			})
+	}
+
+	return null
+}
