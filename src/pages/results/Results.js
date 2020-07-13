@@ -126,12 +126,12 @@ class Results extends Component {
 				courses: {
 					...prevState.courses,
 					loaded: true,
-					data: res.courses === "empty" ? null : res.courses
+					data: res.courses === "empty" ? [] : res.courses
 				},
 				profs: {
 					...prevState.profs,
 					loaded: true,
-					data: res.profs === "empty" ? null : res.profs
+					data: res.profs === "empty" ? [] : res.profs
 				}
 			}
 		))
