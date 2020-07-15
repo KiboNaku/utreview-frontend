@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const getProfilePictures = () => {
 	return axios
-		.get('/api/get_image')
+		.get('/api/get_profile_pic')
 		.then(response => {
 			return response.data
 		})
@@ -25,9 +25,12 @@ export const updateInfo = user => {
 		})
 }
 
-export const getReviews = () => {
+export const getReviews = user => {
 	return axios
-		.get('/api/review_list')
+		.post('/api/review_list', {
+			name: user.email, 
+			type: 'user'
+		})
 		.then(response => {
 			return response.data
 		})
