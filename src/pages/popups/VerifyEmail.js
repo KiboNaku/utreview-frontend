@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import VerifyEmailComponent from './_components/VerifyEmailComponent'
-import { signup, getMajor } from './_utils/UserFunctions'
+import { signup, getMajor, sendConfirmEmail } from './_utils/UserFunctions'
 import { withRouter } from 'react-router-dom'
 import $ from './../../../node_modules/jquery'
 import './popups.css'
@@ -10,48 +10,41 @@ class VerifyEmail extends Component {
     constructor() {
         super()
         this.state = {
-            email: '',
-            loading: false,
+            loading: 0,
         }
-
-        this.localStorageUpdated = this.localStorageUpdated.bind(this)
+        this.timeout = this.timeout.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
 
-    componentDidMount() {
-
-        console.log("verify email component mounted")
-        if (typeof window !== 'undefined') {
-            if(typeof localStorage.email !== 'undefined') this.setState({email: localStorage.email})
-            window.addEventListener('storage', this.localStorageUpdated)
-        }
-    }
-    componentWillUnmount(){
-        if (typeof window !== 'undefined') {
-            window.removeEventListener('storage', this.localStorageUpdated)
-        }
+    componentWillUnmount() {
+        if (this.state.loading > 0) clearTimeout(this.id)
     }
 
-    localStorageUpdated(){
-        console.log("local storage updated")
-        this.setState({email: localStorage.email})
+    timeout(){
+        this.id = setTimeout(() => {
+
+            if(this.state.loading > 0){
+                console.log("loading:", this.state.loading)
+                this.setState(prevState => ({ loading: prevState.loading-1 }))
+                this.timeout()
+            }
+        }, 1000)
     }
 
     onSubmit(e) {
 
         e.preventDefault()
-        this.setState({loading: true})
+        this.setState({ loading: 5 })
 
-        // signup(newUser).then(res => {
-        //     this.setState({ loading: false })
-        // })
+        this.timeout()
 
+        sendConfirmEmail()
     }
 
     render() {
 
         return (
-            <VerifyEmailComponent onSubmit={this.onSubmit} data={this.state}/>
+            <VerifyEmailComponent onSubmit={this.onSubmit} data={this.state} />
         )
     }
 }
