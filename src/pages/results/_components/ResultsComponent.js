@@ -59,28 +59,28 @@ function ResultsComponent(props) {
                                 </Tabs>
                             </AppBar>
 
-                            <CoursePanel  
+                            <CoursePanel
                                 {...props.courses}
-                                loading={loading} 
-                                emptyTable={emptyTable} 
+                                loading={loading}
+                                emptyTable={emptyTable}
 
-                                match={props.match} 
-                                tabIndex={props.tabIndex} 
-                                
+                                match={props.match}
+                                tabIndex={props.tabIndex}
+
                                 calcTableEdge={props.calcTableEdge}
                                 handlePageInc={props.handlePageInc}
                                 handleSortChange={props.handleSortChange} />
-                            <ProfPanel 
+                            <ProfPanel
                                 {...props.profs}
-                                loading={loading} 
-                                emptyTable={emptyTable} 
-                                
-                                match={props.match} 
-                                tabIndex={props.tabIndex} 
+                                loading={loading}
+                                emptyTable={emptyTable}
+
+                                match={props.match}
+                                tabIndex={props.tabIndex}
 
                                 calcTableEdge={props.calcTableEdge}
                                 handlePageInc={props.handlePageInc}
-                                handleSortChange={props.handleSortChange}  />
+                                handleSortChange={props.handleSortChange} />
                         </div>
                     </div>
                 </div>
