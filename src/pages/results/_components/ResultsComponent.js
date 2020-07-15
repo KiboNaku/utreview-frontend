@@ -17,13 +17,16 @@ function ResultsComponent(props) {
         <h6> No results for your search. Please check your spelling and try again.</h6>
     )
 
+    let numCourseResults = props.courses.loaded ? props.courses.data.length : "..."
+    let numProfResults = props.profs.loaded ? props.profs.data.length : "..."
+
     return (
         <main className="results-main py-3">
             <div className="main-sub">
                 <div className='container-fluid'>
 
                     <div className="py-3 px-3 mb-2 search-banner">
-                        <h3>{props.courses.data.length + props.profs.data.length} Results for '{props.search}'</h3>
+                        <h3>{numCourseResults} Course Results and {numProfResults} Professor Results for '{props.search}'</h3>
                     </div>
 
                     <div className='row'>
@@ -56,28 +59,28 @@ function ResultsComponent(props) {
                                 </Tabs>
                             </AppBar>
 
-                            <CoursePanel  
+                            <CoursePanel
                                 {...props.courses}
-                                loading={loading} 
-                                emptyTable={emptyTable} 
+                                loading={loading}
+                                emptyTable={emptyTable}
 
-                                match={props.match} 
-                                tabIndex={props.tabIndex} 
-                                
+                                match={props.match}
+                                tabIndex={props.tabIndex}
+
                                 calcTableEdge={props.calcTableEdge}
                                 handlePageInc={props.handlePageInc}
                                 handleSortChange={props.handleSortChange} />
-                            <ProfPanel 
+                            <ProfPanel
                                 {...props.profs}
-                                loading={loading} 
-                                emptyTable={emptyTable} 
-                                
-                                match={props.match} 
-                                tabIndex={props.tabIndex} 
+                                loading={loading}
+                                emptyTable={emptyTable}
+
+                                match={props.match}
+                                tabIndex={props.tabIndex}
 
                                 calcTableEdge={props.calcTableEdge}
                                 handlePageInc={props.handlePageInc}
-                                handleSortChange={props.handleSortChange}  />
+                                handleSortChange={props.handleSortChange} />
                         </div>
                     </div>
                 </div>

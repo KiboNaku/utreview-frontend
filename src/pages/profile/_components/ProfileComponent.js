@@ -12,10 +12,10 @@ function ProfileComponent(props) {
 					</div>
 					<div className='user-information'>
 						<ProfilePicture
-							name={props.data.first_name + ' ' + props.data.last_name}
-							image={props.data.image}
+							name={props.data.firstName + ' ' + props.data.lastName}
+							image={props.data.profilePic}
 						/>
-						<h1 className='profile-name'>{props.data.first_name + ' ' + props.data.last_name}</h1>
+						<h1 className='profile-name'>{props.data.firstName + ' ' + props.data.lastName}</h1>
 						<p> <b>Email:</b> {props.data.email} </p>
 						<p> <b>Major:</b> {props.data.major} </p>
 					</div>
