@@ -17,13 +17,15 @@ export const signup = newUser => {
 }
 
 export const login = user => {
+	
 	return axios
 		.post('/api/login', {
 			email: user.email + '@utexas.edu',
 			password: user.password,
 		})
 		.then(response => {
-			localStorage.setItem('usertoken', response.data)
+			if(response.data.success >= 0) 
+				localStorage.setItem('usertoken', response.data.token)
 			return response.data
 		})
 		.catch(err => {
@@ -51,4 +53,17 @@ export const getMajor = () => {
 		.then(response => {
 			return response.data
 		})
+}
+
+export const sendConfirmEmail = () => {
+
+	if(localStorage.email !== 'undefined'){
+
+		return axios
+			.post('/api/send_confirm_email', {
+				email: localStorage.email
+			})
+	}
+
+	return null
 }

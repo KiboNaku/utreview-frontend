@@ -6,8 +6,13 @@ function VerifyEmailComponent(props) {
 
 	let loading =
 		<div className="on-top">
-			<Loading />
+			<Loading size='30px' bare="True" />
 		</div>
+
+	let loadingText = 
+		<p className="text-center loading-text">
+			Please wait {props.data.loading} seconds before requesting another resend.
+		</p>
 
 	return (
 		<div className="modal fade absolute" id="verifyemail-modal" role="dialog">
@@ -18,15 +23,19 @@ function VerifyEmailComponent(props) {
 
 					<div className="modal-body">
 
-						{props.data.loading && loading}
-						
 						<p className="text-center">
-							For your protection, a verification email has been sent to { props.data.email }. Please click the link provided to verify this email.
+							For your protection, a verification email has been sent to the address provided. Please click the link provided to verify this email.
 						</p>
 
-						<form className="form-signin mt-3" onSubmit={props.onSubmit}>
-							<button className="btn btn-sm btn-utcolor btn-block mt-1 font-weight-bold" type="submit">Resend Email</button>
-						</form>
+						<div className="form-wrapper">
+							{props.data.loading > 0 && loading}
+							<form className="form-signin mt-3" onSubmit={props.onSubmit}>
+								<button className="btn btn-sm btn-utcolor btn-block mt-1 font-weight-bold" type="submit">Resend Email</button>
+							</form>
+
+						</div>
+
+						{props.data.loading > 0 && loadingText}
 					</div>
 				</div>
 			</div >

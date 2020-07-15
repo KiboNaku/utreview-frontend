@@ -22,6 +22,10 @@ class Login extends Component {
     }
 
     onSubmit(e) {
+
+        const NOT_VERIFIED = -101
+        localStorage.setItem('email', this.state.email + "@utexas.edu")
+
         e.preventDefault()
 
         const user = {
@@ -31,7 +35,12 @@ class Login extends Component {
 
         login(user).then(res => {
             if (res.error) {
-                alert(res.error)
+                if(res.success == NOT_VERIFIED){
+                    $("#login-modal").modal("hide");
+                    $("#verifyemail-modal").modal("show");
+                } else {
+                    alert(res.error)
+                }
             } else {
                 this.props.history.push('/profile')
                 $("#login-modal").modal("hide")

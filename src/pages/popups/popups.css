@@ -14,3 +14,13 @@
 .absolute {
 	position: absolute;
 }
+
+.form-wrapper {
+	position: relative;
+    flex: 1 1 auto;
+    margin: 0;
+}
+
+.loading-text {
+	padding-top: 1em;
+}
