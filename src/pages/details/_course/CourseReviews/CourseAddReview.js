@@ -11,8 +11,7 @@ function CourseAddReview(props) {
     const addReviewLink = (
         <Link
             to={{
-                pathname: `/add-review`,
-                search: `?course=${coursePath}`,
+                pathname: `/add-review/${coursePath}`,
                 state: {
                     courseId: props.id,
                     courseDept: props.courseDept,
