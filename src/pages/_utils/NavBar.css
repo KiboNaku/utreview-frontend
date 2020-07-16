@@ -45,20 +45,19 @@
 }
 
 .nav-bar-profile {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     object-fit: cover;
     object-position: center;
 }
 
 .dropdown-toggle::after {
     color: #bf5700;
-    margin-left: .3em;
-    vertical-align: -.255em;
-    border-top: .5em solid;
-    border-right: .5em solid transparent;
+    vertical-align: -.120em;
+    border-top: .4em solid;
+    border-right: .4em solid transparent;
     border-bottom: 0;
-    border-left: .5em solid transparent;
+    border-left: .4em solid transparent;
 }
 
 .dropdown-toggle:hover {
