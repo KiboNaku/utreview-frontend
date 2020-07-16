@@ -21,9 +21,16 @@ class NavBar extends Component {
 
         // make photo dynamic
         const logout = (
-            <div className="d-inline-block">
+            <div className="d-inline-block menu-dropdown d-flex align-items-center">
 
-                <li className="nav-item dropdown d-inline-block float-right">
+                <div className="float-right ">
+                    <Link to="/profile">
+                        <img className="rounded-circle nav-bar-profile" src={require("./../../res/img/default.jpg")}
+                            data-holder-rendered="true" />
+                    </Link>
+                </div>
+
+                <li className="nav-item dropdown float-right d-flex align-items-center">
 
                     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle"></a>
 
@@ -35,13 +42,6 @@ class NavBar extends Component {
                         <span className="dropdown-item clickable" onClick={this.logOut.bind(this)}>Log out</span>
                     </div>
                 </li>
-
-                <div className="float-right">
-                    <Link to="/profile">
-                        <img className="rounded-circle nav-bar-profile" src={require("./../../res/img/default.jpg")}
-                            data-holder-rendered="true" />
-                    </Link>
-                </div>
             </div>
 
         )
@@ -86,9 +86,9 @@ class NavBar extends Component {
                                 </span>
                             }
 
-                            <span className="align-self-center mr-2">
+                            <div className="align-self-center mr-2">
                                 {localStorage.usertoken ? logout : login}
-                            </span>
+                            </div>
                         </div>
 
                     </nav>
@@ -106,8 +106,8 @@ class NavBar extends Component {
                     <div className={showSearch ? "search-wrapper mr-auto" : "d-none"} >
                         <SearchBar />
                     </div>
-                    <div className="ml-auto">
 
+                    <div className="ml-auto">
 
                         {!localStorage.usertoken &&
                             <span className="align-self-center mr-2 d-none d-md-inline">
@@ -115,9 +115,9 @@ class NavBar extends Component {
                             </span>
                         }
 
-                        <span className="align-self-center mr-2">
+                        <div className="align-self-center mr-2">
                             {localStorage.usertoken ? logout : login}
-                        </span>
+                        </div>
                     </div>
 
                 </nav>
