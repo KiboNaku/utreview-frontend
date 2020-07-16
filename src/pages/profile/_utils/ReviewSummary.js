@@ -33,7 +33,7 @@ function ReviewSummary(props) {
                         <span className='btn-approval'>{profLikeIcon}</span>
                         {profDislikeIcon}
                     </p>
-                    <p><small>Posted on: {props.data.date}</small></p>
+                    <p><small>Last updated: {props.data.date}</small></p>
 
                     <ReviewDetails
                         data={props.data}

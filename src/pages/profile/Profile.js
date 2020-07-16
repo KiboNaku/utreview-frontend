@@ -12,6 +12,7 @@ import { ProfilePicModal } from './_utils/ProfilePicPopup'
 import Settings from './_utils/Settings'
 import { getMajor } from './../popups/_utils/UserFunctions'
 import { getProfilePictures, updateInfo, getReviews } from './_utils/ProfileFunctions'
+import Loading from './../_utils/Loading.js'
 import './Profile.css'
 import axios from 'axios'
 
@@ -84,7 +85,8 @@ class Profile extends Component {
             profilePic: '',
             profilePicList: [],
             reviews: reviewList,
-            majorList: []
+            majorList: [],
+            loaded: false
         }
 
         this.setReviewData = this.setReviewData.bind(this)
@@ -147,7 +149,7 @@ class Profile extends Component {
             if (res.error) {
                 alert(res.error)
             } else {
-                this.setState({ reviews: res.reviews })
+                this.setState({ reviews: res.reviews, loaded: true })
             }
         })
     }
@@ -239,6 +241,7 @@ class Profile extends Component {
     }
 
     render() {
+        let loading = <Loading />
         return (
             <main>
                 <ProfileComponent

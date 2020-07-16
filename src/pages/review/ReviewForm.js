@@ -24,7 +24,7 @@ class ReviewForm extends Component {
 			value: 'Electricity', label: 'Electricity', id: 4, topicNum: 2,
 		}]
 
-		console.log(props.location.state.review)
+		console.log(props.location.state)
 
 		if (props.location.state === undefined) {
 			let urlObject = qs.parse(props.location.search, { ignoreQueryPrefix: true })
@@ -121,6 +121,7 @@ class ReviewForm extends Component {
 
 
 		this.state = {
+			reviewId:  null,
 			courseList: [{
 				value: 'EE 302', label: 'EE 302', id: 1, topicNum: 0, courseDept: "EE", courseNum: "302"
 			}, {
@@ -138,18 +139,17 @@ class ReviewForm extends Component {
 			{
 				value: 'Fall 2020', label: 'Fall 2020', id: 2, semester: "Fall", year: 2020
 			}],
-			topicLoaded: true,
 
 			semester: {
 				id: null,
 				semester: "",
 				year: null,
-				loaded: true
+				loaded: false
 			},
 
 			topic: {
 				id: topicId,
-				loaded: true,
+				loaded: false,
 				selected: false
 			},
 
@@ -158,7 +158,7 @@ class ReviewForm extends Component {
 				dept: courseDept,
 				num: courseNum,
 				disabled: true,
-				loaded: true
+				loaded: false
 			},
 
 			courseRating: {
@@ -176,7 +176,7 @@ class ReviewForm extends Component {
 				firstName: profFirst,
 				lastName: profLast,
 				disabled: true,
-				loaded: true
+				loaded: false,
 			},
 
 			profRating: {
@@ -273,16 +273,17 @@ class ReviewForm extends Component {
 			}
 
 			const review = {
+				review_id: this.state.reviewId,
 				user_email: decoded.identity.email,
 				course_id: courseId,
 				prof_id: this.state.prof.id,
 				sem_id: this.state.semester.id,
-				course_review: this.state.courseRating.comments,
+				course_comments: this.state.courseRating.comments,
 				course_approval: this.state.courseRating.approval,
 				course_usefulness: this.state.courseRating.usefulness,
 				course_difficulty: this.state.courseRating.difficulty,
 				course_workload: this.state.courseRating.workload,
-				prof_review: this.state.profRating.comments,
+				prof_comments: this.state.profRating.comments,
 				prof_approval: this.state.profRating.approval,
 				prof_clear: this.state.profRating.clear,
 				prof_engaging: this.state.profRating.engaging,
@@ -327,6 +328,8 @@ class ReviewForm extends Component {
 
 	handleCourseRatingChange = (event) => {
 		const { name, value } = event.target
+		console.log(name)
+		console.log(value)
 		this.setState(prevState => ({
 			courseRating: {
 				...prevState.courseRating,
@@ -436,7 +439,7 @@ class ReviewForm extends Component {
 			if (res.error) {
 				alert(res.error)
 			} else {
-				let data = res.professors
+				let data = res.profs
 				let profList = new Array()
 				for (const i in data) {
 					profList.push({
@@ -459,7 +462,7 @@ class ReviewForm extends Component {
 						formDisabled: true
 					}))
 				}
-
+				console.log(profList)
 				this.setState(prevState => ({
 					profList: profList,
 					prof: {
@@ -707,67 +710,67 @@ class ReviewForm extends Component {
 
 	componentDidMount() {
 
-		// getSemesters().then(res => {
-		// 	if (res.error) {
-		// 		alert(res.error)
-		// 	} else {
-		// 		let data = res.semesters
-		// 		let semList = new Array()
-		// 		for (const i in data) {
-		// 			semList.push({
-		// 				value: data[i]['semester'] + " " + data[i]['year'].toString(),
-		// 				label: data[i]['semester'] + " " + data[i]['year'].toString(),
-		// 				id: data[i]['id'],
-		// 				semester: data[i]['semester'],
-		// 				year: data[i]['year']
-		// 			})
-		// 		}
-		// 		this.setState(prevState => ({ 
-		// 			semesterList: semList, 
-		// 			semester: {
-		// 				...prevState.semester,
-		// 				loaded: true
-		// 			}
-		// 		}))
-		// 	}
-		// })
-		// let courseInfo = {
-		// 	semesterId: null,
-		// 	all: true
-		// }
-		// getCourses(courseInfo).then(res => {
-		// 	if (res.error) {
-		// 		alert(res.error)
-		// 	} else {
-		// 		let data = res.courses
-		// 		let courseList = new Array()
-		// 		for (const i in data) {
-		// 			courseList.push({
-		// 				value: data[i]['dept'] + " " + data[i]['num'],
-		// 				label: data[i]['dept'] + " " + data[i]['num'],
-		// 				id: data[i]['id'],
-		// 				topicId: data[i]['topicId'],
-		// 				courseDept: data[i]['dept'],
-		// 				courseNum: data[i]['num'],
-		// 				topicNum: data[i]['topicNum']
-		// 			})
-		// 		}
-		// 		this.setState(prevState => ({ 
-		// 			courseList: courseList, 
-		// 			course: {
-		// 				...prevState.course,
-		// 				loaded: true
-		// 			}
-		// 		}))
-		// 	}
-		// })
+		getSemesters().then(res => {
+			if (res.error) {
+				alert(res.error)
+			} else {
+				let data = res.semesters
+				let semList = new Array()
+				for (const i in data) {
+					semList.push({
+						value: data[i]['semester'] + " " + data[i]['year'].toString(),
+						label: data[i]['semester'] + " " + data[i]['year'].toString(),
+						id: data[i]['id'],
+						semester: data[i]['semester'],
+						year: data[i]['year']
+					})
+				}
+				this.setState(prevState => ({ 
+					semesterList: semList, 
+					semester: {
+						...prevState.semester,
+						loaded: true
+					}
+				}))
+			}
+		})
+		let courseInfo = {
+			semesterId: null,
+			all: true
+		}
+		getCourses(courseInfo).then(res => {
+			if (res.error) {
+				alert(res.error)
+			} else {
+				let data = res.courses
+				let courseList = new Array()
+				for (const i in data) {
+					courseList.push({
+						value: data[i]['dept'] + " " + data[i]['num'],
+						label: data[i]['dept'] + " " + data[i]['num'],
+						id: data[i]['id'],
+						topicId: data[i]['topicId'],
+						courseDept: data[i]['dept'],
+						courseNum: data[i]['num'],
+						topicNum: data[i]['topicNum']
+					})
+				}
+				this.setState(prevState => ({ 
+					courseList: courseList, 
+					course: {
+						...prevState.course,
+						loaded: true
+					}
+				}))
+			}
+		})
 
-		// let profInfo = {
-		// 	semesterId: null,
-		// 	courseId: null,
-		// 	all: true
-		// }
-		// this.setProfInfo(profInfo)
+		let profInfo = {
+			semesterId: null,
+			courseId: null,
+			all: true
+		}
+		this.setProfInfo(profInfo)
 	}
 
 	setOldReviewData = () => {
@@ -783,29 +786,30 @@ class ReviewForm extends Component {
 			let topicInfo = {
 				topicId: oldReview.course.topicId
 			}
-			// getTopics(topicInfo).then(res => {
-			// 	if (res.error) {
-			// 		alert(res.error)
-			// 	} else {
-			// 		let data = res.topics
-			// 		let topicList = new Array()
-			// 		for (const i in data) {
-			// 			topicList.push({
-			// 				value: data[i]['topicTitle'],
-			// 				label: data[i]['topicTitle'],
-			// 				id: data[i]['id'],
-			// 				topicTitle: data[i]['topicTitle'],
-			// 				topicNum: data[i]['topicNum']
-			// 			})
-			// 		}
-			// 		this.setState({topicsList: topicList})
-			// 	}
-			// })
+			getTopics(topicInfo).then(res => {
+				if (res.error) {
+					alert(res.error)
+				} else {
+					let data = res.topics
+					let topicList = new Array()
+					for (const i in data) {
+						topicList.push({
+							value: data[i]['topicTitle'],
+							label: data[i]['topicTitle'],
+							id: data[i]['id'],
+							topicTitle: data[i]['topicTitle'],
+							topicNum: data[i]['topicNum']
+						})
+					}
+					this.setState({topicsList: topicList})
+				}
+			})
 		}
 		console.log("Course id" + courseId)
 		console.log("Topic id" + topicId)
 
 		this.setState(prevState => ({
+			reviewId: oldReview.id,
 			semester: {
 				...prevState.semester,
 				id: oldReview.semester.id,
@@ -856,11 +860,14 @@ class ReviewForm extends Component {
 	}
 
 	render() {
-		if (this.state.OldReview !== null && this.state.CourseDept === "") {
-			this.setData()
+		if (this.state.oldReview !== null && this.state.course.dept === "") {
+			this.setOldReviewData()
 		}
+		let invalidReview = <h1>
+			This review link is invalid
+		</h1>
 
-		let loaded = this.state.CourseLoaded && this.state.ProfLoaded && this.state.SemesterLoaded
+		let loaded = this.state.course.loaded && this.state.prof.loaded && this.state.semester.loaded
 
 		let loading = <Loading />
 
@@ -871,13 +878,15 @@ class ReviewForm extends Component {
 			handleProfessorChange={this.handleProfessorChange}
 			handleSemesterChange={this.handleSemesterChange}
 			handleTopicChange={this.handleTopicChange}
+			handleCourseRatingChange={this.handleCourseRatingChange}
+			handleProfRatingChange={this.handleProfRatingChange}
 			handleLike={this.handleLike}
 			handleDislike={this.handleDislike}
 			data={this.state} />
 
 		return(
 			<div>
-				{loaded ? content : loading}
+				{this.state.invalidReview ? invalidReview: (loaded ? content : loading)}
 			</div>
 		);
 	}

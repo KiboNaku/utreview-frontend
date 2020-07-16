@@ -123,6 +123,7 @@ function CourseReviewEntry(props) {
                 <div className="userRev">
                     <p className="review-text">{props.review.comments}</p>
                     <small className="review-date"> - {props.review.date.toLocaleDateString()}</small>
+                    <br/>
                     <div className="review-like-grade">
                         <div className="LikeDislike">
                             {localStorage.usertoken ? likeButton : likeLoginLink}

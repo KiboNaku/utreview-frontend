@@ -2,9 +2,10 @@ import axios from 'axios'
 
 export const checkDuplicate = review => {
   return axios
-    .post('api/duplicate_review', {
-      course_name: review.course_name,
-      prof_name: review.prof_name,
+    .post('/api/review_error', {
+      course_id: review.course_id,
+      prof_id: review.prof_id,
+      sem_id: review.sem_id,
       user_email: review.user_email
     })
     .then(response => {
@@ -14,20 +15,22 @@ export const checkDuplicate = review => {
 
 export const newReview = review => {
   return axios
-    .post('api/new_review', {
-      course_name: review.course_name,
-      prof_name: review.prof_name,
+    .post('/api/new_review', {
+      course_id: review.course_id,
+      prof_id: review.prof_id,
+      sem_id: review.sem_id,
       user_email: review.user_email,
-      course_review: review.course_review,
+      course_comments: review.course_comments,
       course_approval: review.course_approval,
       course_usefulness: review.course_usefulness,
       course_difficulty: review.course_difficulty,
       course_workload: review.course_workload,
-      prof_review: review.prof_review,
+      prof_comments: review.prof_comments,
       prof_approval: review.prof_approval,
       prof_clear: review.prof_clear,
       prof_engaging: review.prof_engaging,
-      prof_grading: review.prof_grading
+      prof_grading: review.prof_grading,
+      grade: review.grade
     })
     .then(response => {
       return response.data
@@ -36,20 +39,23 @@ export const newReview = review => {
 
 export const editReview = review => {
   return axios
-    .post('api/edit_review', {
-      course_name: review.course_name,
-      prof_name: review.prof_name,
+    .post('/api/edit_review', {
+      review_id: review.review_id,
+      course_id: review.course_id,
+      prof_id: review.prof_id,
+      sem_id: review.sem_id,
       user_email: review.user_email,
-      course_review: review.course_review,
+      course_comments: review.course_comments,
       course_approval: review.course_approval,
       course_usefulness: review.course_usefulness,
       course_difficulty: review.course_difficulty,
       course_workload: review.course_workload,
-      prof_review: review.prof_review,
+      prof_comments: review.prof_comments,
       prof_approval: review.prof_approval,
       prof_clear: review.prof_clear,
       prof_engaging: review.prof_engaging,
-      prof_grading: review.prof_grading
+      prof_grading: review.prof_grading,
+      grade: review.grade
     })
     .then(response => {
       return response.data
