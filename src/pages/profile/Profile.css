@@ -64,3 +64,7 @@
 .trash-icon:hover {
     cursor: pointer;
 }
+
+.like-icon{
+	margin-right: 10px;
+}

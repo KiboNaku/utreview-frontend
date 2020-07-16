@@ -8,7 +8,7 @@ function ProfAddReview(props) {
     const addReviewLink = (
         <Link className="utcolor"
             to={{
-                pathname: `/add-review`,
+                pathname: `/add-review/`,
                 search: `?prof=${profPath}`,
                 state: {
                     profId: props.id,

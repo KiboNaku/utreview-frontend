@@ -25,12 +25,12 @@ function ReviewSummary(props) {
                     </p>
                     <p>
                         <span style={{ marginRight: '20px' }}><b>{props.data.course.dept.abr} {props.data.course.num}</b></span>
-                        <span className='btn-approval'>{courseLikeIcon}</span>
+                        <span className='like-icon'>{courseLikeIcon}</span>
                         {courseDislikeIcon}
                     </p>
                     <p>
                         <span style={{ marginRight: '20px' }}><b>{props.data.prof.firstName} {props.data.prof.lastName}</b></span>
-                        <span className='btn-approval'>{profLikeIcon}</span>
+                        <span className='like-icon'>{profLikeIcon}</span>
                         {profDislikeIcon}
                     </p>
                     <p><small>Last updated: {props.data.date}</small></p>
