@@ -57,3 +57,7 @@
 form {
     min-width: 100%;
 }
+
+.search-wrapper {
+    width: calc(100vw * .35 + 90px);
+}
