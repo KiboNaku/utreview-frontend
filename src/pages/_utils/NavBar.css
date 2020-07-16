@@ -36,7 +36,7 @@
 
 .big-brand-txt {
     color: white;
-    font-size: 175%;
+    font-size: 155%;
 }
 
 .big-brand-txt:hover {
@@ -81,11 +81,5 @@
 @media screen and (max-width: 768px) {
     .big-brand-txt {
         font-size: 125%;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .big-brand-txt {
-        display: none;
     }
 }
