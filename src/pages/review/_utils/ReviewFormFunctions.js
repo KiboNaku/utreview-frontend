@@ -14,7 +14,8 @@ export const getCourses = (info) => {
 export const getTopics = (info) => {
     return axios
         .post('/api/get_topics', {
-            topicId: info.topicId
+            topicId: info.topicId,
+            semesterId: info.semesterId
         })
         .then(response => {
             return response.data
