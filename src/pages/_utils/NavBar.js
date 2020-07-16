@@ -19,20 +19,31 @@ class NavBar extends Component {
             <button type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#login-modal">Log in</button>
         )
 
+        // make photo dynamic
         const logout = (
-            <li class="nav-item dropdown d-inline-block">
-                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
-                    <img class="rounded-circle nav-bar-profile" src={require("./../../res/img/default.jpg")}
-                        data-holder-rendered="true" />
-                </a>
-                <div aria-labelledby="navbarDropdownMenuLink" className="dropdown-menu dropdown-menu-right">
-                    <Link className="dropdown-item" to="/profile">
-                        Profile
+            <div className="d-inline-block">
+
+                <li className="nav-item dropdown d-inline-block float-right">
+
+                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle"></a>
+
+                    <div aria-labelledby="navbarDropdownMenuLink" className="dropdown-menu dropdown-menu-right">
+                        <Link className="dropdown-item" to="/profile">
+                            Profile
+                        </Link>
+                        <div class="dropdown-divider"></div>
+                        <span className="dropdown-item clickable" onClick={this.logOut.bind(this)}>Log out</span>
+                    </div>
+                </li>
+
+                <div className="float-right">
+                    <Link to="/profile">
+                        <img className="rounded-circle nav-bar-profile" src={require("./../../res/img/default.jpg")}
+                            data-holder-rendered="true" />
                     </Link>
-                    <div class="dropdown-divider"></div>
-                    <span className="dropdown-item clickable" onClick={this.logOut.bind(this)}>Log out</span>
                 </div>
-            </li>
+            </div>
+
         )
 
         const signup = (
@@ -69,7 +80,6 @@ class NavBar extends Component {
                         </div>
                         <div className="ml-auto">
 
-
                             {!localStorage.usertoken &&
                                 <span className="align-self-center mr-2 d-none d-md-inline">
                                     {signup}
@@ -88,7 +98,7 @@ class NavBar extends Component {
                     + (transparent ? "transparent" : "bg-dark")}>
 
                     <div className="navbar-brand" className={"font-weight-bold float-left align-self-center" + (showSearch && " d-none d-md-block")}>
-                        <Link className={(showSearch? "brand-txt" : "big-brand-txt") + " px-2"} to="/">
+                        <Link className={(showSearch ? "brand-txt" : "big-brand-txt") + " px-2"} to="/">
                             UT Review
                         </Link>
                     </div>

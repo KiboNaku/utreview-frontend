@@ -53,10 +53,24 @@
 
 .dropdown-toggle::after {
     color: #bf5700;
+    margin-left: .6em;
+    vertical-align: -.255em;
+    border-top: .5em solid;
+    border-right: .5em solid transparent;
+    border-bottom: 0;
+    border-left: .5em solid transparent;
+}
+
+.dropdown-toggle:hover {
+    cursor: pointer;
 }
 
 .dropdown-item:hover {
     cursor: pointer;
+}
+
+.dropdown-item:active {
+    background-color: #bf5700;
 }
 
 @media screen and (max-width: 768px) {
