@@ -33,17 +33,22 @@ class Login extends Component {
             password: this.state.password
         }
 
+        this.setState({ loading: true })
+
         login(user).then(res => {
+
+            this.setState({ loading: false })
+
             if (res.error) {
-                if(res.success == NOT_VERIFIED){
+                if (res.success == NOT_VERIFIED) {
                     $("#login-modal").modal("hide");
                     $("#verifyemail-modal").modal("show");
                 } else {
                     alert(res.error)
                 }
             } else {
-                this.props.history.push('/profile')
                 $("#login-modal").modal("hide")
+                this.props.history.push('/profile')
             }
         })
     }
@@ -51,7 +56,7 @@ class Login extends Component {
     render() {
 
         return (
-            <LoginComponent onSubmit={this.onSubmit} onChange={this.onChange} data={this.state}/>
+            <LoginComponent onSubmit={this.onSubmit} onChange={this.onChange} data={this.state} />
         )
     }
 }
