@@ -20,21 +20,9 @@ class NavBar extends Component {
         )
 
         const logout = (
-            // <div class="dropdown-menu-left">
-            //     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            //         <img class="rounded-circle nav-bar-profile" alt="100x100" src={require("./../../res/img/default.jpg")}
-            //             data-holder-rendered="true" />
-            //     </a>
-            //     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            //         <a class="dropdown-item" href="#">Action</a>
-            //         <a class="dropdown-item" href="#">Another action</a>
-            //         <div class="dropdown-divider"></div>
-            //         <a class="dropdown-item" href="#">Something else here</a>
-            //     </div>
-            // </div>
             <li class="nav-item dropdown d-inline-block">
                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
-                    <img class="rounded-circle nav-bar-profile" alt="100x100" src={require("./../../res/img/default.jpg")}
+                    <img class="rounded-circle nav-bar-profile" src={require("./../../res/img/default.jpg")}
                         data-holder-rendered="true" />
                 </a>
                 <div aria-labelledby="navbarDropdownMenuLink" className="dropdown-menu dropdown-menu-right">
@@ -42,20 +30,13 @@ class NavBar extends Component {
                         Profile
                     </Link>
                     <div class="dropdown-divider"></div>
-                    <span className="dropdown-item clickable" onClick={this.logOut.bind(this)}>Log Out</span>
+                    <span className="dropdown-item clickable" onClick={this.logOut.bind(this)}>Log out</span>
                 </div>
             </li>
         )
 
         const signup = (
             <button type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#signup-modal">Sign up</button>
-        )
-
-        const profile = (
-            <Link to="/profile">
-                <button type="button" className="btn font-weight-bold btn-nav">Profile</button>
-            </Link>
-
         )
 
         /**
@@ -107,7 +88,7 @@ class NavBar extends Component {
                     + (transparent ? "transparent" : "bg-dark")}>
 
                     <div className="navbar-brand" className={"font-weight-bold float-left align-self-center" + (showSearch && " d-none d-md-block")}>
-                        <Link className={(!showSearch && "big-brand-txt ") + "px-2"} to="/">
+                        <Link className={(showSearch? "brand-txt" : "big-brand-txt") + " px-2"} to="/">
                             UT Review
                         </Link>
                     </div>

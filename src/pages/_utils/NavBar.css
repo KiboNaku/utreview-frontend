@@ -24,6 +24,16 @@
     border: 1px solid white
 }
 
+.brand-txt {
+    color: white;
+    font-size: 125%;
+}
+
+.brand-txt:hover {
+    color: #bf5700;
+    text-decoration: none;
+}
+
 .big-brand-txt {
     color: white;
     font-size: 175%;
