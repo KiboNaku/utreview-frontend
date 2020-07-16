@@ -19,19 +19,35 @@ class NavBar extends Component {
             <button type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#login-modal">Log in</button>
         )
 
+        // make photo dynamic
         const logout = (
-            <button type="button" className="btn font-weight-bold btn-nav" onClick={this.logOut.bind(this)}>Log out</button>
+            <div className="d-inline-block menu-dropdown d-flex align-items-center">
+
+                <div className="float-right ">
+                    <Link to="/profile">
+                        <img className="rounded-circle nav-bar-profile" src={require("./../../res/img/default.jpg")}
+                            data-holder-rendered="true" />
+                    </Link>
+                </div>
+
+                <li className="nav-item dropdown float-right d-flex align-items-center">
+
+                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle"></a>
+
+                    <div aria-labelledby="navbarDropdownMenuLink" className="dropdown-menu dropdown-menu-right">
+                        <Link className="dropdown-item" to="/profile">
+                            Profile
+                        </Link>
+                        <div class="dropdown-divider"></div>
+                        <span className="dropdown-item clickable" onClick={this.logOut.bind(this)}>Log out</span>
+                    </div>
+                </li>
+            </div>
+
         )
 
         const signup = (
             <button type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#signup-modal">Sign up</button>
-        )
-
-        const profile = (
-            <Link to="/profile">
-                <button type="button" className="btn font-weight-bold btn-nav">Profile</button>
-            </Link>
-            
         )
 
         /**
@@ -54,31 +70,35 @@ class NavBar extends Component {
                     <nav className="navbar navbar-expand-lg navbar-dark transparent py-3 justify-content-between invisible">
 
                         <div className="navbar-brand" className={"font-weight-bold float-left align-self-center" + (showSearch && " d-none d-md-block")}>
-                            <Link id="nav-brand" className="utdark px-2" to="/">UT Review</Link>
+                            <Link className={(!showSearch && "big-brand-txt ") + "px-2"} to="/">
+                                UT Review
+                            </Link>
                         </div>
 
                         <div className={showSearch ? "search-wrapper mr-auto" : "d-none"} >
                             <SearchBar />
                         </div>
-
                         <div className="ml-auto">
-                            <span className="align-self-center mr-2 d-none d-md-inline">
-                                {localStorage.usertoken ? profile : signup}
-                            </span>
 
-                            <span className="align-self-center mr-2">
+                            {!localStorage.usertoken &&
+                                <span className="align-self-center mr-2 d-none d-md-inline">
+                                    {signup}
+                                </span>
+                            }
+
+                            <div className="align-self-center mr-2">
                                 {localStorage.usertoken ? logout : login}
-                            </span>
+                            </div>
                         </div>
 
                     </nav>
                 }
 
-                <nav className={"navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar py-3 justify-content-between " 
-                                + (transparent? "transparent": "bg-dark")}>
+                <nav className={"navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar py-3 justify-content-between "
+                    + (transparent ? "transparent" : "bg-dark")}>
 
                     <div className="navbar-brand" className={"font-weight-bold float-left align-self-center" + (showSearch && " d-none d-md-block")}>
-                        <Link className={(!showSearch && "big-brand-txt ") + "px-2"} to="/">
+                        <Link className={(showSearch ? "brand-txt" : "big-brand-txt") + " px-2"} to="/">
                             UT Review
                         </Link>
                     </div>
@@ -88,13 +108,16 @@ class NavBar extends Component {
                     </div>
 
                     <div className="ml-auto">
-                        <span className="align-self-center mr-2 d-none d-md-inline">
-                            {localStorage.usertoken ? profile : signup}
-                        </span>
 
-                        <span className="align-self-center mr-2">
+                        {!localStorage.usertoken &&
+                            <span className="align-self-center mr-2 d-none d-md-inline">
+                                {signup}
+                            </span>
+                        }
+
+                        <div className="align-self-center mr-2">
                             {localStorage.usertoken ? logout : login}
-                        </span>
+                        </div>
                     </div>
 
                 </nav>

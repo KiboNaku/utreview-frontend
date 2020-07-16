@@ -3,8 +3,15 @@ import GoogleButton from "./../_utils/GoogleButton"
 import ModalHeader from "./../_utils/ModalHeader"
 import UTEmail from "./../_utils/UTEmail"
 import './../../../utcolors.css'
+import Loading from './../../_utils/Loading'
 
 function LoginComponent(props) {
+
+    let loading =
+        <div className="on-top">
+            <Loading />
+        </div>
+
     return (
         <div className="modal fade" id="login-modal" role="dialog">
 
@@ -15,6 +22,7 @@ function LoginComponent(props) {
 
                     <div className="modal-body">
 
+                        {props.data.loading && loading}
                         <form className="form-signin mt-3" onSubmit={props.onSubmit}>
 
                             <div className="my-3">
