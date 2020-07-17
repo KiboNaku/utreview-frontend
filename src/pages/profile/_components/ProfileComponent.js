@@ -1,13 +1,22 @@
 import React from 'react'
 import ProfilePicture from './../_utils/ProfilePicture'
+import Loading from './../../_utils/Loading.js'
 
 function ProfileComponent(props) {
+	let loading = <Loading />
+	let reviewList = (
+	<div className='review-list'>
+		<div className="row">
+			{props.setReviewData()}
+		</div>
+	</div>
+	)
 	return (
 		<div className='main-sub container-fluid profile-container'>
 			<div className='d-flex justify-content-center'>
 				<div className='col-lg-8 profile'>
 					<div className='settings-button'>
-						<button type="button" className="btn btn-outline-dark font-weight-bold" data-toggle="modal"data-target={'#settings'} >
+						<button type="button" className="btn btn-outline-dark font-weight-bold" data-toggle="modal" data-target={'#settings'} >
 							Settings </button>
 					</div>
 					<div className='user-information'>
@@ -20,11 +29,7 @@ function ProfileComponent(props) {
 						<p> <b>Major:</b> {props.data.major} </p>
 					</div>
 					<hr className='profile-divider' />
-					<div className='review-list'>
-						<div className="row">
-							{props.setReviewData()}
-						</div>
-					</div>
+						{props.data.loaded ? reviewList: loading}
 				</div>
 			</div>
 		</div>
