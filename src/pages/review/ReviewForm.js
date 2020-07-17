@@ -512,7 +512,7 @@ class ReviewForm extends Component {
 				}))
 				const token = localStorage.usertoken
 				const decoded = jwt_decode(token)
-				if(profInfo.semesterId !== null && profInfo.courseId !== null){
+				if(profInfo.semesterId !== null && profInfo.courseId !== null && profId !== null){
 					const review = {
 						user_email: decoded.identity.email,
 						course_id: profInfo.courseId,
@@ -876,6 +876,15 @@ class ReviewForm extends Component {
 		}
 	}
 
+	handleGradeChange = (inputValue, { action }) => {
+		if(inputValue == null){
+			this.setState({grade: null})
+		}else{
+			this.setState({grade: inputValue.value})
+		}
+		
+	}
+
 	componentDidMount() {
 
 		getSemesters().then(res => {
@@ -1052,6 +1061,7 @@ class ReviewForm extends Component {
 			handleTopicChange={this.handleTopicChange}
 			handleCourseRatingChange={this.handleCourseRatingChange}
 			handleProfRatingChange={this.handleProfRatingChange}
+			handleGradeChange={this.handleGradeChange}
 			handleLike={this.handleLike}
 			handleDislike={this.handleDislike}
 			data={this.state} />
