@@ -61,7 +61,7 @@ function ReviewCourse(props) {
                         value={props.data.courseRating.usefulness}
                         icon={<RadioButtonCheckedIcon />}
                         emptyIcon={<RadioButtonUncheckedIcon />}
-                        name="usefuleness"
+                        name="usefulness"
                         onChange={props.handleCourseRatingChange}
                     /></td>
                 </tr>
