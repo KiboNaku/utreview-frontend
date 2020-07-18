@@ -1,6 +1,7 @@
 import React from 'react'
 import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded'
 import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded'
+import Confirm from './../../_utils/Confirm'
 import ReviewDetails from './ReviewDetails'
 
 function ReviewSummary(props) {
@@ -19,7 +20,12 @@ function ReviewSummary(props) {
         <div className="col-sm-4 review-container">
             <div className="card">
                 <div className="card-body">
-                    <i className="fas fa-trash trash-icon" onClick={() => props.deleteReview(props.data.id)}></i>
+                        <i className="fas fa-trash trash-icon" data-toggle="modal" data-target="#confirmModal"></i>   
+                    <Confirm
+                        title="Delete Review"
+                        message="Are you sure you want to delete this review?"
+                        handleOk={() => props.deleteReview(props.data.id)}
+                    />
                     <p>
                         <span><b>{props.data.semester.semester} {props.data.semester.year}</b></span>
                     </p>
