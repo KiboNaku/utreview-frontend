@@ -19,7 +19,6 @@ import axios from 'axios'
 
 class Profile extends Component {
     constructor() {
-        console.log("colin");
 
         const reviewList = [
             {
