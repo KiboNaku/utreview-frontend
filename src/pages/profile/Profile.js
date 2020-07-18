@@ -238,9 +238,8 @@ class Profile extends Component {
     //TODO: write this function and implement backend 
     deleteReview(id){
         const review = {
-            review: id
+            id: id
         }
-
         deleteReview(review).then(res => {
             if (res.error) {
                 alert(res.error)
