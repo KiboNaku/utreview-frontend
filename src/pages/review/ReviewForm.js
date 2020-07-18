@@ -350,6 +350,10 @@ class ReviewForm extends Component {
 						...prevState.topic,
 						id: null,
 						selected: false
+					},
+					prof: {
+						...prevState.prof,
+						disabled: false
 					}
 				}))
 				let profInfo = {
@@ -409,7 +413,7 @@ class ReviewForm extends Component {
 			}
 
 			let profDisabled = false
-			if(this.state.topic.selected && this.state.topic.id === null){
+			if(topicSelected && this.state.topic.id === null){
 				profDisabled = true
 			}
 
@@ -664,6 +668,7 @@ class ReviewForm extends Component {
 							id: res.profs[i]['id']
 						})
 					}
+					console.log(profList)
 					courseId = this.state.course.id
 					profId = this.state.prof.id
 					if(courseId === null){
