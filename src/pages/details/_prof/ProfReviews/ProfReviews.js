@@ -19,8 +19,72 @@ class ProfReviews extends React.Component {
 
 		this.handleLike = this.handleLike.bind(this)
 		this.handleDislike = this.handleDislike.bind(this)
+		this.likeReview = this.likeReview.bind(this)
+		this.dislikeReview = this.dislikeReview.bind(this)
 		this.handleSortChange = this.handleSortChange.bind(this)
 		this.handleCourseChange = this.handleCourseChange.bind(this)
+	}
+
+	likeReview(profReview, id){
+		let dislike = profReview.dislikePressed
+		let dislikeNum = profReview.numDisliked
+		let likeNum = profReview.numLiked
+		let like = profReview.likePressed
+		if (id === profReview.id) {
+			if (dislike) {
+				dislike = false
+				dislikeNum = dislikeNum - 1
+				like = true
+				likeNum = likeNum + 1
+			} else {
+				if (like) {
+					like = false
+					likeNum = likeNum - 1
+				} else {
+					like = true
+					likeNum = likeNum + 1
+				}
+			}
+		}
+		return {
+			...profReview,
+			numLiked: likeNum,
+			numDisliked: dislikeNum,
+			likePressed: like,
+			dislikePressed: dislike,
+			date: profReview.date
+		}
+	}
+
+	dislikeReview(profReview, id){
+		let dislike = profReview.dislikePressed
+		let dislikeNum = profReview.numDisliked
+		let likeNum = profReview.numLiked
+		let like = profReview.likePressed
+		if (id === profReview.id) {
+			if (like) {
+				like = false
+				likeNum = likeNum - 1
+				dislike = true
+				dislikeNum = dislikeNum + 1
+			} else {
+				if (dislike) {
+					dislike = false
+					dislikeNum = dislikeNum - 1
+				} else {
+					dislike = true
+					dislikeNum = dislikeNum + 1
+				}
+			}
+		}
+		return {
+			...profReview,
+			numLiked: likeNum,
+			numDisliked: dislikeNum,
+			likePressed: like,
+			dislikePressed: dislike,
+			date: profReview.date
+		}
 	}
 
 	handleLike(id) {
@@ -36,38 +100,15 @@ class ProfReviews extends React.Component {
 
 		this.setState(prevState => {
 			const updatedReviews = prevState.profReviews.map(profReview => {
-				let dislike = profReview.dislikePressed
-				let dislikeNum = profReview.numDisliked
-				let likeNum = profReview.numLiked
-				let like = profReview.likePressed
-				if (id === profReview.id) {
-					if (dislike) {
-						dislike = false
-						dislikeNum = dislikeNum - 1
-						like = true
-						likeNum = likeNum + 1
-					} else {
-						if (like) {
-							like = false
-							likeNum = likeNum - 1
-						} else {
-							like = true
-							likeNum = likeNum + 1
-						}
-					}
-				}
-				return {
-					...profReview,
-					numLiked: likeNum,
-					numDisliked: dislikeNum,
-					likePressed: like,
-					dislikePressed: dislike,
-					date: profReview.date
-				}
-			}
-			)
+				return this.likeReview(profReview, id)
+			})
+			const reviewsFiltered = prevState.reviewsFiltered.map(profReview => {
+				return this.likeReview(profReview, id)
+			})
 			return {
-				profReviews: updatedReviews
+				...prevState,
+				profReviews: updatedReviews,
+				reviewsFiltered: reviewsFiltered
 			}
 		}
 		)
@@ -93,38 +134,15 @@ class ProfReviews extends React.Component {
 		}
 		this.setState(prevState => {
 			const updatedReviews = prevState.profReviews.map(profReview => {
-				let dislike = profReview.dislikePressed
-				let dislikeNum = profReview.numDisliked
-				let likeNum = profReview.numLiked
-				let like = profReview.likePressed
-				if (id === profReview.id) {
-					if (like) {
-						like = false
-						likeNum = likeNum - 1
-						dislike = true
-						dislikeNum = dislikeNum + 1
-					} else {
-						if (dislike) {
-							dislike = false
-							dislikeNum = dislikeNum - 1
-						} else {
-							dislike = true
-							dislikeNum = dislikeNum + 1
-						}
-					}
-				}
-				return {
-					...profReview,
-					numLiked: likeNum,
-					numDisliked: dislikeNum,
-					likePressed: like,
-					dislikePressed: dislike,
-					date: profReview.date
-				}
-			}
-			)
+				return this.dislikeReview(profReview, id)
+			})
+			const reviewsFiltered = prevState.reviewsFiltered.map(profReview => {
+				return this.dislikeReview(profReview, id)
+			})
 			return {
-				profReviews: updatedReviews
+				...prevState,
+				profReviews: updatedReviews,
+				reviewsFiltered: reviewsFiltered
 			}
 		}
 		)

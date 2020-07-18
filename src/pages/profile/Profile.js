@@ -11,7 +11,7 @@ import { SelectionPicture } from './_utils/ProfilePicture'
 import { ProfilePicModal } from './_utils/ProfilePicPopup'
 import Settings from './_utils/Settings'
 import { getMajor } from './../popups/_utils/UserFunctions'
-import { getProfilePictures, updateInfo, getReviews } from './_utils/ProfileFunctions'
+import { getProfilePictures, updateInfo, getReviews, deleteReview } from './_utils/ProfileFunctions'
 import Loading from './../_utils/Loading.js'
 import './Profile.css'
 import axios from 'axios'
@@ -238,7 +238,17 @@ class Profile extends Component {
 
     //TODO: write this function and implement backend 
     deleteReview(id){
+        const review = {
+            review: id
+        }
 
+        deleteReview(review).then(res => {
+            if (res.error) {
+                alert(res.error)
+            } else {
+                this.componentDidMount()
+            }
+        })
     }
 
     render() {
