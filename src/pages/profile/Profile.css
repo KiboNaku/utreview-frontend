@@ -23,25 +23,76 @@
 .review-list {
 	margin-left: 10px;
 	margin-right: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 30px;
+	overflow: auto;
 }
 
 .review-container {
 	display: inline-block;
 	text-align: center;
-	padding-bottom: 10px;
+	padding-bottom: 20px;
 	padding-right: 10px;
 	padding-left: 10px;
 	padding-top: 10px;
 }
 
-.review-content {
-	border-style: hidden;
-	text-align: left;
+.card-body {
+	border: 2px solid rgb(143, 143, 143);
+	height: 250px;
 }
 
-.review-content td:nth-child(2), .review-content th:nth-child(2) {
-	border-right: solid 1px;
+.card-body:hover {
+	border: 2px solid rgb(190, 190, 190);
+	transition: 0.3s all ease;
+	background-color: rgb(202, 202, 202);
+}
+
+.card-body:hover .review-buttons {
+	opacity: 1;
+	transition: 0.4s;
+}
+
+.course-name-wrapper {
+	font-size: 28px;
+	font-weight: bold;
+	margin-top: 15px;
+}
+
+.course-name {
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.semester-date {
+	user-select: none;
+}
+
+.prof-name {
+	margin-bottom: 50px;
+	font-weight: bold;
+}
+
+.update-date {
+	user-select: none;
+}
+
+.card-body:hover .delete-review {
+	transition: 0.4s;
+	opacity: 1;
+}
+
+.card-body:hover .course-name-wrapper {
+	color: white !important;
+}
+
+.card-body:hover .update-date, 
+.card-body:hover .prof-name, 
+.card-body:hover .semester-date {
+	visibility: hidden;
+}
+
+.review-content {
+	text-align: left;
 }
 
 .settings-button {
@@ -57,8 +108,7 @@
 
 .trash-icon {
 	display: flex;
-	justify-content: flex-end;
-	margin-bottom: -20px;
+	justify-content: center;
 }
 
 .trash-icon:hover {
@@ -67,4 +117,44 @@
 
 .like-icon{
 	margin-right: 10px;
+}
+
+.button-wrapper1 {
+	margin-top: -140px;
+	outline: none;
+}
+
+.button-wrapper2 {
+	margin-top: -20px;
+}
+
+.delete-review {
+	font-size: 12px;
+	margin-top: -40px;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.review-buttons {
+	background-color: Transparent;
+	border: none;
+	color: white;
+	font-weight: bold;
+	margin-top: 10px;
+	opacity: 0;
+	user-select: none;
+	font-size: 18px;
+	border: 1px solid white;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.review-buttons:hover {
+	color: white;
+	transition: 0.2s all ease;
+	transform: scale(1.15);
+}
+
+.review-buttons:focus {
+	outline: none;
 }

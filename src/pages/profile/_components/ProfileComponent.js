@@ -6,9 +6,7 @@ function ProfileComponent(props) {
 	let loading = <Loading />
 	let reviewList = (
 	<div className='review-list'>
-		<div className="row">
-			{props.setReviewData()}
-		</div>
+		{props.setReviewData()}
 	</div>
 	)
 	return (
