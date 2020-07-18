@@ -35,3 +35,13 @@ export const getReviews = user => {
 			return response.data
 		})
 }
+
+export const deleteReview = review => {
+	return axios
+		.post('/api/delete_review', {
+			reviewId: review.id
+		})
+		.then(response => {
+			return response.data
+		})
+}
