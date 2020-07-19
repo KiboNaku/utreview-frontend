@@ -61,7 +61,7 @@ class Login extends Component {
                     $("#login-modal").modal("hide")
                 }
             })
-        }
+        })
     }
 
     render() {
