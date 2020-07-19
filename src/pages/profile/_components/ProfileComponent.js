@@ -5,7 +5,7 @@ import Loading from './../../_utils/Loading.js'
 function ProfileComponent(props) {
 	let loading = <Loading />
 	let reviewList = (
-	<div className='review-list'>
+	<div className='profile-review-list'>
 		{props.setReviewData()}
 	</div>
 	)
