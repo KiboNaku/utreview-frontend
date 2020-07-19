@@ -9,14 +9,16 @@ function ReviewDetails(props) {
 				<div className="modal-content">
 					<ModalHeader text="Details" />
 					<div className="modal-body">
+						<h5>Last updated: {props.data.date} </h5>
+						<h5> Grade: {props.data.grade !== null ? props.data.grade : "N/A"}</h5>
 						<table className='table table-borderless review-content'>
 							<thead>
 								<tr>
 									<th className='review-cell' scope="col" colSpan='2'>
-										Course:
+										Course: {props.data.course.dept.abr + " " + props.data.course.num}
 									</th>
 									<th className='review-cell' scope="col" colSpan='2'>
-										Professor:
+										Professor: {props.data.prof.firstName + " " + props.data.prof.lastName}
 									</th>
 								</tr>
 							</thead>

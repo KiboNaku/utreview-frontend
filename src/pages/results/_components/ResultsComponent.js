@@ -17,13 +17,18 @@ function ResultsComponent(props) {
         <h6> No results for your search. Please check your spelling and try again.</h6>
     )
 
+    let numCourseResults = props.courses.loaded ? "(" + props.courses.data.length.toString() + ")" : ""
+    let numProfResults = props.profs.loaded ? "(" + props.profs.data.length.toString() + ")" : ""
+    let courseLabel = "Courses " + numCourseResults
+    let profLabel = "Professors " + numProfResults
+
     return (
         <main className="results-main py-3">
             <div className="main-sub">
                 <div className='container-fluid'>
 
                     <div className="py-3 px-3 mb-2 search-banner">
-                        <h3>Results for '{props.search}'</h3>
+                        <h3>Showing results for '{props.search}'</h3>
                     </div>
 
                     <div className='row'>
@@ -51,33 +56,33 @@ function ResultsComponent(props) {
                                         indicator: 'custom-indicator',
                                     }}
                                 >
-                                    <Tab label="Courses" aria-controls='tabpanel-0' className='font-weight-bold py-4' />
-                                    <Tab label="Professors" aria-controls='tabpanel-1' className='font-weight-bold py-4' />
+                                    <Tab label={courseLabel} aria-controls='tabpanel-0' className='font-weight-bold py-4' />
+                                    <Tab label={profLabel} aria-controls='tabpanel-1' className='font-weight-bold py-4' />
                                 </Tabs>
                             </AppBar>
 
-                            <CoursePanel  
+                            <CoursePanel
                                 {...props.courses}
-                                loading={loading} 
-                                emptyTable={emptyTable} 
+                                loading={loading}
+                                emptyTable={emptyTable}
 
-                                match={props.match} 
-                                tabIndex={props.tabIndex} 
-                                
+                                match={props.match}
+                                tabIndex={props.tabIndex}
+
                                 calcTableEdge={props.calcTableEdge}
                                 handlePageInc={props.handlePageInc}
                                 handleSortChange={props.handleSortChange} />
-                            <ProfPanel 
+                            <ProfPanel
                                 {...props.profs}
-                                loading={loading} 
-                                emptyTable={emptyTable} 
-                                
-                                match={props.match} 
-                                tabIndex={props.tabIndex} 
+                                loading={loading}
+                                emptyTable={emptyTable}
+
+                                match={props.match}
+                                tabIndex={props.tabIndex}
 
                                 calcTableEdge={props.calcTableEdge}
                                 handlePageInc={props.handlePageInc}
-                                handleSortChange={props.handleSortChange}  />
+                                handleSortChange={props.handleSortChange} />
                         </div>
                     </div>
                 </div>

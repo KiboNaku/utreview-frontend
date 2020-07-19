@@ -4,28 +4,34 @@
     align-items: center;    
 }
 
-.CourseInfo{
-    margin-right: 40px;
+.course-info{
+    margin-right: 50px;
+    margin-left: 110px;
+    margin-top: -40px;
+}
+
+.courseTopics{
     margin-left: 100px;
+    margin-right: 100px;
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-.info-header{
-    background-color: white;
-}
-
-.info-body{
-    color: white;
-    background-color: #333f48;
+.parent-topic{
+    margin-left: 5px;
     font-size: 15px;
 }
 
-.card-title{
-    padding-bottom: 10px;
+.course-code{
+    color: black;
+    font-size: 80px;
 }
 
-.course-title{
-    color: white;
+.course-name {
+    font-size: 50px;
+    font-style: italic;
+    font-weight: 400 !important;
+    margin-top: -15px;
 }
 
 .CourseRatings{

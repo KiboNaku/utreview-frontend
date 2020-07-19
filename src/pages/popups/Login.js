@@ -24,13 +24,33 @@ class Login extends Component {
     }
 
     onSubmit(e) {
+
+        const NOT_VERIFIED = -101
+        localStorage.setItem('email', this.state.email + "@utexas.edu")
+
         e.preventDefault()
 
-        if (this.state.firstSubmit) {
-            this.setState({ firstSubmit: false })
-            const user = {
-                email: this.state.email,
-                password: this.state.password
+        const user = {
+            email: this.state.email,
+            password: this.state.password
+        }
+
+        this.setState({ loading: true })
+
+        login(user).then(res => {
+
+            this.setState({ loading: false })
+
+            if (res.error) {
+                if (res.success == NOT_VERIFIED) {
+                    $("#login-modal").modal("hide");
+                    $("#verifyemail-modal").modal("show");
+                } else {
+                    alert(res.error)
+                }
+            } else {
+                $("#login-modal").modal("hide")
+                this.props.history.push('/profile')
             }
 
             login(user).then(res => {
