@@ -123,7 +123,7 @@ function CourseReviewEntry(props) {
                 </div>
                 <div className="userRev">
                     <p className="review-text">{props.review.comments}</p>
-                    <small className="review-date"> - {props.review.date.toLocaleDateString()}</small>
+                    <small className="review-date"> - {props.review.dateString}</small>
                     <br/>
                     <div className="review-like-grade">
                         <div className="LikeDislike">
