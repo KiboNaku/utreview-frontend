@@ -176,11 +176,35 @@ class CourseDetails extends React.Component {
             courseSchedule: courseSchedule,
             loaded: false,
             validCourse: true,
-            isParent: false
+            isParent: courseInfo.topicNum == 0,
+            courseURL: props.location.pathname
         }
 
-        const courseId = null
-        if(this.props.location.state === null){
+    }
+
+    componentDidUpdate (){
+        const courseURL = this.props.location.pathname
+        console.log(this.state.courseURL)
+        console.log(courseURL)
+        if(courseURL !== this.state.courseURL){
+            this.setState({loaded: false, courseURL: courseURL})
+            this.componentDidMount()
+        }
+    }
+
+    componentDidMount() {
+        let loggedIn = false
+        let email = ''
+        const token = localStorage.usertoken
+        if (token) {
+            const decoded = jwt_decode(token)
+            loggedIn = true
+            email = decoded.identity.email
+        }
+        let courseId = null
+        console.log(this.props.location)
+        if(this.props.location.state === undefined){
+            console.log("State undefined")
             let coursePath = window.location.pathname.split("/").pop()
             let courseString = {
                 courseString: coursePath

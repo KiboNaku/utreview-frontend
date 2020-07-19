@@ -60,14 +60,41 @@
 }
 
 .LikeDislike{
+    width: 50%;
+    white-space: nowrap;
+}
+
+.review-like-grade{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.review-grade{
     margin-bottom: 10px;
-    position: absolute;
-    bottom: 0;
+    margin-right: 10px;
 }
 
 .likeButton{
     background-color: white;
     border: none;
+    
+}
+
+.likeButton:focus,
+.likeButton:active,
+.dislikeButton:focus,
+.dislikeButton:active {
+  outline: none;
+}
+
+.likeButton:hover{
+    transform: scale(1.15);
+}
+
+.dislikeButton:hover{
+    transform: scale(1.15);
 }
 
 .dislikeButton{

@@ -20,8 +20,8 @@ function SignupComponent(props) {
                     <ModalHeader text="Sign Up" />
 
                     <div className="modal-body">
-                        
-                    { props.data.loading && loading }
+
+                        {props.data.loading && loading}
 
                         <form className="form-signin mt-3" onSubmit={props.onSubmit}>
 

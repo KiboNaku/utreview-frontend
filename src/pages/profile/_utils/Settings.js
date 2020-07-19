@@ -35,10 +35,10 @@ class Settings extends Component {
 	}
 
 	setValues() {
-		if (this.props.first_name !== this.state.firstName) {
+		if (this.props.firstName !== this.state.firstName) {
 			this.setState({
-				firstName: this.props.data.first_name,
-				lastName: this.props.data.last_name,
+				firstName: this.props.data.firstName,
+				lastName: this.props.data.lastName,
 				major: this.props.data.major,
 				email: this.props.data.email
 			})
@@ -47,7 +47,7 @@ class Settings extends Component {
 
 	componentDidUpdate(prevProps) {
 		// Typical usage (don't forget to compare props):
-		if (this.props.first_name !== prevProps.first_name) {
+		if (this.props.firstName !== prevProps.firstName) {
 		  this.fetchData(this.props.userID);
 		}
 	  }
@@ -134,7 +134,7 @@ class Settings extends Component {
 												type="password"
 												name="confirm_password"
 												className="form-control"
-												value={this.state.confirm_password}
+												value={this.state.confirmPassword}
 												onChange={this.onChange}
 												placeholder="confirm password"
 											/>

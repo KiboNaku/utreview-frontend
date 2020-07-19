@@ -15,10 +15,6 @@ main.home-page {
     align-items: center;
 }
 
-.search-wrapper {
-    width: calc(100vw * .22 + 230px);
-}
-
 .figure-caption{
     background-color: #333f48;
     color: #9cadb7;

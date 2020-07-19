@@ -30,6 +30,7 @@ import Signup from '../../../popups/Signup'
 */
 
 function CourseReviewEntry(props) {
+    console.log(props)
     let thumbsIcon = props.review.liked ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} />
 
@@ -121,12 +122,18 @@ function CourseReviewEntry(props) {
                 </div>
                 <div className="userRev">
                     <p className="review-text">{props.review.comments}</p>
-                    <small className="review-date"> - {props.review.date.toLocaleDateString()}</small>
-                    <div className="LikeDislike">
-                        {localStorage.usertoken ? likeButton : likeLoginLink}
-                        <span> {props.review.numLiked} </span>
-                        {localStorage.usertoken ? dislikeButton : dislikeLoginLink}
-                        <span> {props.review.numDisliked} </span>
+                    <small className="review-date"> - {props.review.dateString}</small>
+                    <br/>
+                    <div className="review-like-grade">
+                        <div className="LikeDislike">
+                            {localStorage.usertoken ? likeButton : likeLoginLink}
+                            <span> {props.review.numLiked} </span>
+                            {localStorage.usertoken ? dislikeButton : dislikeLoginLink}
+                            <span> {props.review.numDisliked} </span>
+                        </div>
+                        <div className="review-grade">
+                            <span> Grade: {props.review.grade}</span>
+                        </div>
                     </div>
                 </div>
                 <div className="userRat">
