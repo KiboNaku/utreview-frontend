@@ -141,7 +141,7 @@ function ProfPanel(props) {
 
     return (
         <TabPanel index={1} value={props.tabIndex}>
-            {props.loaded ? (props.data == null ? props.emptyTable : profTable) : props.loading}
+            {props.loaded ? (props.data.length == 0 ? props.emptyTable : profTable) : props.loading}
         </TabPanel>
     )
 }

@@ -31,7 +31,7 @@ function App() {
 					<Route path="/profile" component={Profile} />
 					<Route path="/about" component={About} />
 					<Route exact path="/results" component={Results} />
-					<Route path="/add-review/:objId" component={ReviewForm} /> 
+					<Route path="/add-review" render={(props) => <ReviewForm /> } />
 					<Route path="/edit-review" component={ReviewForm} />
 					<Route path="/confirm_email" component={ConfirmEmail}/>
 					<Route path={"/course-results/:courseId"} render={(props) => <CourseDetails />} />
