@@ -11,7 +11,8 @@ import { SelectionPicture } from './_utils/ProfilePicture'
 import { ProfilePicModal } from './_utils/ProfilePicPopup'
 import Settings from './_utils/Settings'
 import { getMajor } from './../popups/_utils/UserFunctions'
-import { getProfilePictures, updateInfo, getReviews } from './_utils/ProfileFunctions'
+import { getProfilePictures, updateInfo, getReviews, deleteReview } from './_utils/ProfileFunctions'
+import Loading from './../_utils/Loading.js'
 import './Profile.css'
 import axios from 'axios'
 
@@ -77,14 +78,15 @@ class Profile extends Component {
 
         super()
         this.state = {
-            first_name: 'Vina',
-            last_name: 'Xue',
+            firstName: 'Vina',
+            lastName: 'Xue',
             email: 'yxue22@utexas.edu',
             major: 'ee',
-            image: '',
-            images: [],
+            profilePic: '',
+            profilePicList: [],
             reviews: reviewList,
-            majorList: []
+            majorList: [],
+            loaded: false
         }
 
         this.setReviewData = this.setReviewData.bind(this)
@@ -97,15 +99,16 @@ class Profile extends Component {
 
     componentDidMount() {
 
-        // const token = localStorage.usertoken
-        // const decoded = jwt_decode(token)
-        // this.setState({
-        //     first_name: decoded.identity.first_name,
-        //     last_name: decoded.identity.last_name,
-        //     email: decoded.identity.email,
-        //     major: decoded.identity.major,
-        //     image: decoded.identity.image
-        // })
+        const token = localStorage.usertoken
+        const decoded = jwt_decode(token)
+        console.log(decoded)
+        this.setState({
+            firstName: decoded.identity.first_name,
+            lastName: decoded.identity.last_name,
+            email: decoded.identity.email,
+            major: decoded.identity.major,
+            profilePic: decoded.identity.profile_pic
+        })
 
         getMajor().then(res => {
             if (res.error) {
@@ -127,20 +130,26 @@ class Profile extends Component {
             if (res.error) {
                 alert(res.error)
             } else {
-                let data = res.images
+                let data = res.profile_pics
                 let list = new Array()
                 for (const i in data) {
-                    list.push(data[i]['image'])
+                    list.push(data[i]['profile_pic'])
                 }
-                this.setState({ images: list })
+                this.setState({ profilePicList: list })
             }
         })
 
-        getReviews().then(res => {
+        const user = {
+            email: decoded.identity.email
+        }
+
+        console.log(user)
+
+        getReviews(user).then(res => {
             if (res.error) {
                 alert(res.error)
             } else {
-                this.setState({ reviewList: res.reviews })
+                this.setState({ reviews: res.reviews, loaded: true })
             }
         })
     }
@@ -176,10 +185,10 @@ class Profile extends Component {
     setImageData() {
         return (
             <GridList cellHeight={100} cols={4}>
-                {this.state.images.map(image => (
+                {this.state.profilePicList.map(image => (
                     <GridListTile key={image}>
                         <SelectionPicture
-                            name={this.state.first_name + ' ' + this.state.last_name}
+                            name={this.state.firstName + ' ' + this.state.lastName}
                             image={image}
                             onImageChange={this.onImageChange}
                         />
@@ -190,7 +199,7 @@ class Profile extends Component {
     }
 
     onImageChange(image) {
-        this.setState({ image: image })
+        this.setState({ profilePic: image })
         $('#change-profile-pic').modal('hide')
     }
 
@@ -200,18 +209,18 @@ class Profile extends Component {
         switch (mode) {
             case 'apply':
                 this.setState({
-                    first_name: firstName,
-                    last_name: lastName,
+                    firstName: firstName,
+                    lastName: lastName,
                     major: major
                 })
 
                 const user = {
-                    first_name: this.state.first_name,
-                    last_name: this.state.last_name,
+                    first_name: this.state.firstName,
+                    last_name: this.state.lastName,
                     email: this.state.email,
                     password: password,
                     major: this.state.major,
-                    image: this.state.image
+                    profile_pic: this.state.profilePic
                 }
 
                 updateInfo(user).then(res => {
@@ -228,10 +237,20 @@ class Profile extends Component {
 
     //TODO: write this function and implement backend 
     deleteReview(id){
-
+        const review = {
+            id: id
+        }
+        deleteReview(review).then(res => {
+            if (res.error) {
+                alert(res.error)
+            } else {
+                this.componentDidMount()
+            }
+        })
     }
 
     render() {
+        let loading = <Loading />
         return (
             <main>
                 <ProfileComponent

@@ -19,7 +19,71 @@ class CourseReviews extends React.Component {
 
 		this.handleLike = this.handleLike.bind(this)
 		this.handleDislike = this.handleDislike.bind(this)
+		this.likeReview = this.likeReview.bind(this)
+		this.dislikeReview = this.dislikeReview.bind(this)
 		this.handleSortChange = this.handleSortChange.bind(this)
+	}
+
+	likeReview(courseReview, id){
+		let dislike = courseReview.dislikePressed
+		let dislikeNum = courseReview.numDisliked
+		let likeNum = courseReview.numLiked
+		let like = courseReview.likePressed
+		if (id === courseReview.id) {
+			if (dislike) {
+				dislike = false
+				dislikeNum = dislikeNum - 1
+				like = true
+				likeNum = likeNum + 1
+			} else {
+				if (like) {
+					like = false
+					likeNum = likeNum - 1
+				} else {
+					like = true
+					likeNum = likeNum + 1
+				}
+			}
+		}
+		return {
+			...courseReview,
+			numLiked: likeNum,
+			numDisliked: dislikeNum,
+			likePressed: like,
+			dislikePressed: dislike,
+			date: courseReview.date
+		}
+	}
+
+	dislikeReview(courseReview, id){
+		let dislike = courseReview.dislikePressed
+		let dislikeNum = courseReview.numDisliked
+		let likeNum = courseReview.numLiked
+		let like = courseReview.likePressed
+		if (id === courseReview.id) {
+			if (like) {
+				like = false
+				likeNum = likeNum - 1
+				dislike = true
+				dislikeNum = dislikeNum + 1
+			} else {
+				if (dislike) {
+					dislike = false
+					dislikeNum = dislikeNum - 1
+				} else {
+					dislike = true
+					dislikeNum = dislikeNum + 1
+				}
+			}
+		}
+		return {
+			...courseReview,
+			numLiked: likeNum,
+			numDisliked: dislikeNum,
+			likePressed: like,
+			dislikePressed: dislike,
+			date: courseReview.date
+		}
 	}
 
 	handleLike(id) {
@@ -35,38 +99,15 @@ class CourseReviews extends React.Component {
 
 		this.setState(prevState => {
 			const updatedReviews = prevState.courseReviews.map(courseReview => {
-				let dislike = courseReview.dislikePressed
-				let dislikeNum = courseReview.numDisliked
-				let likeNum = courseReview.numLiked
-				let like = courseReview.likePressed
-				if (id === courseReview.id) {
-					if (dislike) {
-						dislike = false
-						dislikeNum = dislikeNum - 1
-						like = true
-						likeNum = likeNum + 1
-					} else {
-						if (like) {
-							like = false
-							likeNum = likeNum - 1
-						} else {
-							like = true
-							likeNum = likeNum + 1
-						}
-					}
-				}
-				return {
-					...courseReview,
-					numLiked: likeNum,
-					numDisliked: dislikeNum,
-					likePressed: like,
-					dislikePressed: dislike,
-					date: courseReview.date
-				}
-			}
-			)
+				return this.likeReview(courseReview, id)
+			})
+			const reviewsFiltered = prevState.reviewsFiltered.map(courseReview => {
+				return this.likeReview(courseReview, id)
+			})
 			return {
-				courseReviews: updatedReviews
+				...prevState,
+				courseReviews: updatedReviews,
+				reviewsFiltered: reviewsFiltered
 			}
 		}
 		)
@@ -92,38 +133,15 @@ class CourseReviews extends React.Component {
 		}
 		this.setState(prevState => {
 			const updatedReviews = prevState.courseReviews.map(courseReview => {
-				let dislike = courseReview.dislikePressed
-				let dislikeNum = courseReview.numDisliked
-				let likeNum = courseReview.numLiked
-				let like = courseReview.likePressed
-				if (id === courseReview.id) {
-					if (like) {
-						like = false
-						likeNum = likeNum - 1
-						dislike = true
-						dislikeNum = dislikeNum + 1
-					} else {
-						if (dislike) {
-							dislike = false
-							dislikeNum = dislikeNum - 1
-						} else {
-							dislike = true
-							dislikeNum = dislikeNum + 1
-						}
-					}
-				}
-				return {
-					...courseReview,
-					numLiked: likeNum,
-					numDisliked: dislikeNum,
-					likePressed: like,
-					dislikePressed: dislike,
-					date: courseReview.date
-				}
-			}
-			)
+				return this.dislikeReview(courseReview, id)
+			})
+			const reviewsFiltered = prevState.courseReviews.map(courseReview => {
+				return this.dislikeReview(courseReview, id)
+			})
 			return {
-				courseReviews: updatedReviews
+				...prevState,
+				courseReviews: updatedReviews,
+				reviewsFiltered: reviewsFiltered
 			}
 		}
 		)
@@ -172,6 +190,7 @@ class CourseReviews extends React.Component {
 	}
 
 	render() {
+		console.log(this.state)
 		const courseReviewList = this.state.reviewsFiltered.map(review => {
 			return (
 				<CourseReviewEntry

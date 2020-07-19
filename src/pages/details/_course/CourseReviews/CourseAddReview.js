@@ -5,13 +5,13 @@ import Signup from '../../../popups/Signup'
 
 function CourseAddReview(props) {
     let coursePath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
-    if(props.topicNum != -1){
+    if(props.topicNum !== -1){
         coursePath += "_" + props.topicNum.toString()
     }    
     const addReviewLink = (
         <Link
             to={{
-                pathname: `/add-review`,
+                pathname: `/add-review/`,
                 search: `?course=${coursePath}`,
                 state: {
                     courseId: props.id,
