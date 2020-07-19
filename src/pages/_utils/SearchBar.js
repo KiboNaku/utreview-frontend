@@ -10,6 +10,7 @@ class SearchBar extends React.Component {
         this.state = { searchValue: " " }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleKeyPress = this.handleKeyPress.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     handleKeyPress(e) {
@@ -24,6 +25,10 @@ class SearchBar extends React.Component {
         } else {
             this.setState({ searchValue: e.target.value + e.key })
         }
+    }
+
+    handleChange(e) {
+        this.setState({ searchValue: e.target.value })
     }
 
     handleSubmit(e) {
@@ -48,6 +53,8 @@ class SearchBar extends React.Component {
                                 className="search-input"
                                 type="text"
                                 id="search-input1234"
+                                onChange={this.handleChange}
+                                name="searchValue"
                                 onKeyPress={this.handleKeyPress}
                                 placeholder="Search for courses or professors" />
 

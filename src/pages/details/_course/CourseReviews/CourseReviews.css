@@ -80,6 +80,22 @@
 .likeButton{
     background-color: white;
     border: none;
+    
+}
+
+.likeButton:focus,
+.likeButton:active,
+.dislikeButton:focus,
+.dislikeButton:active {
+  outline: none;
+}
+
+.likeButton:hover{
+    transform: scale(1.15);
+}
+
+.dislikeButton:hover{
+    transform: scale(1.15);
 }
 
 .dislikeButton{

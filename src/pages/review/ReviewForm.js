@@ -10,126 +10,20 @@ import Loading from './../_utils/Loading.js'
 class ReviewForm extends Component {
 	constructor(props) {
 		super(props);
-		let invalidReview = false
-		let courseId = null
-		let courseDept = ""
-		let courseNum = ""
-		let profId = null
-		let profFirst = ""
-		let profLast = ""
-		let topicId = null
-		let topicsList = [{
-			value: 'Circuits', label: 'Circuits', id: 3, topicNum: 1,
-		}, {
-			value: 'Electricity', label: 'Electricity', id: 4, topicNum: 2,
-		}]
-
 		console.log(props.location.state)
 
-		if (props.location.state === undefined) {
-			let urlObject = qs.parse(props.location.search, { ignoreQueryPrefix: true })
-			if (urlObject.course) {
-				getCourseId(urlObject.course).then(res => {
-					if (res.error) {
-						alert(res.error)
-						invalidReview = true
-					} else {
-						courseId = res.courseId
-						courseDept = res.courseDept
-						courseNum = res.courseNum
-						if (res.topicId !== -1) {
-							courseId = res.parentId
-							topicId = res.courseId
-							let topicInfo = {
-								topicId: res.topicId,
-								semesterId: null
-							}
-							getTopics(topicInfo).then(res => {
-								if (res.error) {
-									alert(res.error)
-								} else {
-									let data = res.topics
-									let topicList = new Array()
-									for (const i in data) {
-										topicList.push({
-											value: data[i]['topicTitle'],
-											label: data[i]['topicTitle'],
-											id: data[i]['id'],
-											topicTitle: data[i]['topicTitle'],
-											topicNum: data[i]['topicNum']
-										})
-									}
-									topicsList = topicList
-								}
-							})
-						}
-					}
-				})
-			} else if (urlObject.prof) {
-				getProfId(urlObject.prof).then(res => {
-					if (res.error) {
-						alert(res.error)
-						invalidReview = true
-					} else {
-						profId = res.profId
-						profFirst = res.firstName
-						profLast = res.lastName
-					}
-				})
-			} else {
-				invalidReview = false
-			}
-		} else {
-			if (props.location.state.courseId !== undefined) {
-				courseId = props.location.state.courseId
-				courseDept = props.location.state.courseDept
-				courseNum = props.location.state.courseNum
-				if (props.location.state.topicId !== null) {
-					courseId = props.location.state.parentId
-					topicId = props.location.state.courseId
-					let topicInfo = {
-						topicId: props.location.state.topicId,
-						semesterId: null
-					}
-					getTopics(topicInfo).then(res => {
-						if (res.error) {
-							alert(res.error)
-						} else {
-							let data = res.topics
-							let topicList = new Array()
-							for (const i in data) {
-								topicList.push({
-									value: data[i]['topicTitle'],
-									label: data[i]['topicTitle'],
-									id: data[i]['id'],
-									topicTitle: data[i]['topicTitle'],
-									topicNum: data[i]['topicNum']
-								})
-							}
-							topicsList = topicList
-						}
-					})
-				}
-			} else if (props.location.state.profId !== undefined) {
-				profId = props.location.state.profId
-				profFirst = props.location.state.profFirst
-				profLast = props.location.state.profLast
-			} else {
-				if (props.location.state.review === undefined) {
-					invalidReview = true
-				}
-			}
-		}
-
-
 		this.state = {
-			reviewId:  null,
+			reviewId: null,
 			courseList: [{
 				value: 'EE 302', label: 'EE 302', id: 1, topicNum: 0, courseDept: "EE", courseNum: "302"
 			}, {
 				value: 'EE 306', label: 'EE 306', id: 2, topicNum: -1, courseDept: "EE", courseNum: "306"
 			}],
-			topicList: topicsList,
+			topicList: [{
+				value: 'Circuits', label: 'Circuits', id: 3, topicNum: 1,
+			}, {
+				value: 'Electricity', label: 'Electricity', id: 4, topicNum: 2,
+			}],
 			profList: [{
 				value: 'Yu', label: 'Edward Yu', id: 1, firstName: "Edward", lastName: "Yu"
 			}, {
@@ -150,15 +44,16 @@ class ReviewForm extends Component {
 			},
 
 			topic: {
-				id: topicId,
+				id: null,
 				loaded: false,
 				selected: false
 			},
 
 			course: {
-				id: courseId,
-				dept: courseDept,
-				num: courseNum,
+				id: null,
+				dept: "",
+				num: "",
+				topicId: null,
 				disabled: true,
 				loaded: false
 			},
@@ -174,9 +69,9 @@ class ReviewForm extends Component {
 			},
 
 			prof: {
-				id: profId,
-				firstName: profFirst,
-				lastName: profLast,
+				id: null,
+				firstName: "",
+				lastName: "",
 				disabled: true,
 				loaded: false,
 			},
@@ -211,7 +106,7 @@ class ReviewForm extends Component {
 			formDisabled: true,
 			duplicateReview: false,
 			oldReview: props.location.state === undefined || props.location.state.review === undefined ? null : props.location.state.review,
-			invalidReview: invalidReview
+			invalidReview: false
 		}
 
 		console.log(this.state.oldReview)
@@ -343,7 +238,7 @@ class ReviewForm extends Component {
 	handleCourseChange = (inputValue, { action }) => {
 		if (inputValue !== null) {
 			let topicSelected = inputValue.topicNum >= 0
-			let profId = null
+			let profId = this.state.prof.id
 			if (!topicSelected) {
 				this.setState(prevState => ({
 					topic: {
@@ -383,7 +278,7 @@ class ReviewForm extends Component {
 							})
 						}
 						let profList = new Array()
-						for(const i in res.profs){
+						for (const i in res.profs) {
 							profList.push({
 								id: res.profs[i]['id']
 							})
@@ -413,7 +308,7 @@ class ReviewForm extends Component {
 			}
 
 			let profDisabled = false
-			if(topicSelected && this.state.topic.id === null){
+			if (topicSelected && this.state.topic.id === null) {
 				profDisabled = true
 			}
 
@@ -423,6 +318,7 @@ class ReviewForm extends Component {
 					id: inputValue.id,
 					dept: inputValue.courseDept,
 					num: inputValue.courseNum,
+					topicId: inputValue.topicId
 				},
 				prof: {
 					...prevState.prof,
@@ -435,7 +331,7 @@ class ReviewForm extends Component {
 			}))
 			const token = localStorage.usertoken
 			const decoded = jwt_decode(token)
-			if(this.state.semester.id !== null && profId !== null){
+			if (this.state.semester.id !== null && profId !== null) {
 				const review = {
 					user_email: decoded.identity.email,
 					course_id: inputValue.id,
@@ -452,6 +348,7 @@ class ReviewForm extends Component {
 					id: null,
 					dept: "",
 					num: "",
+					topicId: null
 				},
 				prof: {
 					...prevState.prof,
@@ -497,14 +394,14 @@ class ReviewForm extends Component {
 						formDisabled: true
 					}))
 					profId = null
-				}else{
+				} else {
 					let courseId = this.state.topic.selected ? this.state.topic.id : this.state.course.id
-					if(courseId !== null && this.state.semester.id !== null){
+					if (courseId !== null && this.state.semester.id !== null) {
 						this.setState({
 							formDisabled: false
 						})
 					}
-					
+
 				}
 				console.log(profList)
 				this.setState(prevState => ({
@@ -516,7 +413,7 @@ class ReviewForm extends Component {
 				}))
 				const token = localStorage.usertoken
 				const decoded = jwt_decode(token)
-				if(profInfo.semesterId !== null && profInfo.courseId !== null && profId !== null){
+				if (profInfo.semesterId !== null && profInfo.courseId !== null && profId !== null) {
 					const review = {
 						user_email: decoded.identity.email,
 						course_id: profInfo.courseId,
@@ -551,7 +448,7 @@ class ReviewForm extends Component {
 
 			const token = localStorage.usertoken
 			const decoded = jwt_decode(token)
-			if(this.state.semester.id !== null && profId !== null){
+			if (this.state.semester.id !== null && profId !== null) {
 				const review = {
 					user_email: decoded.identity.email,
 					course_id: inputValue.id,
@@ -596,7 +493,7 @@ class ReviewForm extends Component {
 			if (this.state.topic.selected) {
 				courseId = this.state.topic.id
 			}
-			if(courseId !== null && this.state.semester.id !== null){
+			if (courseId !== null && this.state.semester.id !== null) {
 				const review = {
 					user_email: decoded.identity.email,
 					course_id: courseId,
@@ -627,8 +524,8 @@ class ReviewForm extends Component {
 			} else {
 				console.log(res)
 			}
-		})	
-		
+		})
+
 	}
 
 	handleSemesterChange = (inputValue, { action }) => {
@@ -657,13 +554,13 @@ class ReviewForm extends Component {
 						})
 					}
 					let topicList = new Array()
-					for (const i in res.topics){
+					for (const i in res.topics) {
 						topicList.push({
 							id: res.topics[i]['id']
 						})
 					}
 					let profList = new Array()
-					for (const i in res.profs){
+					for (const i in res.profs) {
 						profList.push({
 							id: res.profs[i]['id']
 						})
@@ -671,9 +568,9 @@ class ReviewForm extends Component {
 					console.log(profList)
 					courseId = this.state.course.id
 					profId = this.state.prof.id
-					if(courseId === null){
-						if(profId !== null){
-							if(!profList.map(prof => prof.id).includes(profId)){
+					if (courseId === null) {
+						if (profId !== null) {
+							if (!profList.map(prof => prof.id).includes(profId)) {
 								this.setState(prevState => ({
 									prof: {
 										...prevState.prof,
@@ -687,54 +584,15 @@ class ReviewForm extends Component {
 								profId = null
 							}
 						}
-					} else if(this.state.topic.selected && !topicList.map(topic => topic.id).includes(this.state.topic.id)){
-						console.log("No topic, has course")
-						console.log(this.state.topic.id)
-						console.log(topicList)
-						if(courseList.map(course => course.id).includes(courseId)){
-							this.setState(prevState => ({
-								topic: {
-									...prevState.topic,
-									id: null,
-								},
-								prof: {
-									...prevState.prof,
-									id: null,
-									firstName: "",
-									lastName: "",
-									disabled: true
-								},
-								formDisabled: true
-							}))
-						}else{
-							this.setState(prevState => ({
-								course: {
-									...prevState.course,
-									id: null
-								},
-								prof: {
-									...prevState.prof,
-									id: null,
-									firstName: "",
-									lastName: "",
-									disabled: true
-								},
-								topic: {
-									...prevState.topic,
-									id: null,
-									selected: false
-								},
-								formDisabled: true
-							}))
-						}
-						courseId = null
-						
 					} else if (!courseList.map(course => course.id).includes(courseId)) {
-						
+
 						this.setState(prevState => ({
 							course: {
 								...prevState.course,
-								id: null
+								id: null,
+								dept: "",
+								num: "",
+								topicId: null
 							},
 							prof: {
 								...prevState.prof,
@@ -751,7 +609,90 @@ class ReviewForm extends Component {
 							formDisabled: true
 						}))
 						courseId = null
-					} else {
+						profId = null
+					}  else if (this.state.topic.selected) {
+						let topicInfo = {
+							topicId: this.state.course.topicId,
+							semesterId: inputValue.id
+						}
+						getTopics(topicInfo).then(res => {
+							if (res.error) {
+								alert(res.error)
+							} else {
+								let data = res.topics
+								let topicList = new Array()
+								for (const i in data) {
+									topicList.push({
+										value: data[i]['topicTitle'],
+										label: data[i]['topicTitle'],
+										id: data[i]['id'],
+										topicTitle: data[i]['topicTitle'],
+										topicNum: data[i]['topicNum']
+									})
+								}
+								this.setState({ topicList: topicList })
+							}
+						})
+						if (!topicList.map(topic => topic.id).includes(this.state.topic.id)) {
+							console.log("No topic, has course")
+							console.log(this.state.topic.id)
+							console.log(topicList)
+							if (courseList.map(course => course.id).includes(courseId)) {
+								this.setState(prevState => ({
+									topic: {
+										...prevState.topic,
+										id: null,
+									},
+									prof: {
+										...prevState.prof,
+										id: null,
+										firstName: "",
+										lastName: "",
+										disabled: true
+									},
+									formDisabled: true
+								}))
+							} else {
+								this.setState(prevState => ({
+									course: {
+										...prevState.course,
+										id: null, 
+										dept: "",
+										num: "",
+										topicId: null
+									},
+									prof: {
+										...prevState.prof,
+										id: null,
+										firstName: "",
+										lastName: "",
+										disabled: true
+									},
+									topic: {
+										...prevState.topic,
+										id: null,
+										selected: false
+									},
+									formDisabled: true
+								}))
+							}
+							courseId = null
+							profId = null
+						}else{
+							let profInfo = {
+								semesterId: inputValue.id,
+								courseId: this.state.topic.id,
+								all: false
+							}
+							this.setProfInfo(profInfo)
+							this.setState(prevState => ({
+								prof: {
+									...prevState.prof,
+									disabled: false
+								}
+							}))
+						}
+					}else {
 						courseId = this.state.topic.selected ? this.state.topic.id : courseId
 						let profInfo = {
 							semesterId: inputValue.id,
@@ -760,13 +701,12 @@ class ReviewForm extends Component {
 						}
 						this.setProfInfo(profInfo)
 						this.setState(prevState => ({
-							prof:{
+							prof: {
 								...prevState.prof,
 								disabled: false
 							}
 						}))
 					}
-
 					this.setState(prevState => ({
 						courseList: courseList,
 						course: {
@@ -791,7 +731,7 @@ class ReviewForm extends Component {
 
 			const token = localStorage.usertoken
 			const decoded = jwt_decode(token)
-			if(courseId !== null && profId !== null){
+			if (courseId !== null && profId !== null) {
 				const review = {
 					user_email: decoded.identity.email,
 					course_id: courseId,
@@ -814,6 +754,7 @@ class ReviewForm extends Component {
 					id: null,
 					dept: "",
 					num: "",
+					topicId: null,
 					disabled: true
 				},
 				prof: {
@@ -882,15 +823,149 @@ class ReviewForm extends Component {
 	}
 
 	handleGradeChange = (inputValue, { action }) => {
-		if(inputValue == null){
-			this.setState({grade: null})
-		}else{
-			this.setState({grade: inputValue.value})
+		if (inputValue == null) {
+			this.setState({ grade: null })
+		} else {
+			this.setState({ grade: inputValue.value })
 		}
-		
+
 	}
 
 	componentDidMount() {
+		if (this.props.location.state === undefined) {
+			let urlObject = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
+			if (urlObject.course) {
+				getCourseId(urlObject.course).then(res => {
+					if (res.error) {
+						alert(res.error)
+						this.setState({ invalidReview: true })
+					} else {
+						this.setState(prevState => ({
+							course: {
+								...prevState.course,
+								id: res.courseId,
+								dept: res.courseDept,
+								num: res.courseNum,
+								topicId: res.topicId
+							}
+						}))
+						if (res.topicId !== -1) {
+							this.setState(prevState => ({
+								topic: {
+									...prevState.topic,
+									selected: true,
+									id: res.courseId
+								},
+								course: {
+									...prevState.course,
+									id: res.parentId
+								}
+							}))
+							let topicInfo = {
+								topicId: res.topicId,
+								semesterId: null
+							}
+							getTopics(topicInfo).then(res => {
+								if (res.error) {
+									alert(res.error)
+								} else {
+									let data = res.topics
+									let topicList = new Array()
+									for (const i in data) {
+										topicList.push({
+											value: data[i]['topicTitle'],
+											label: data[i]['topicTitle'],
+											id: data[i]['id'],
+											topicTitle: data[i]['topicTitle'],
+											topicNum: data[i]['topicNum']
+										})
+									}
+									this.setState({ topicList: topicList })
+								}
+							})
+						}
+					}
+				})
+			} else if (urlObject.prof) {
+				getProfId(urlObject.prof).then(res => {
+					if (res.error) {
+						alert(res.error)
+						this.setState({ invalidReview: true })
+					} else {
+						this.setState(prevState => ({
+							prof: {
+								...prevState.prof,
+								id: res.profId,
+								firstName: res.firstName,
+								lastName: res.lastName
+							}
+						}))
+					}
+				})
+			} else {
+				this.setState({ invalidReview: false })
+			}
+		} else {
+			if (this.props.location.state.courseId !== undefined) {
+				this.setState(prevState => ({
+					course: {
+						...prevState.course,
+						id: this.props.location.state.courseId,
+						dept: this.props.location.state.courseDept,
+						num: this.props.location.state.courseNum,
+						topicId: this.props.location.state.topicId
+					}
+				}))
+				if (this.props.location.state.topicId !== null) {
+					this.setState(prevState => ({
+						topic: {
+							...prevState.topic,
+							id: this.props.location.state.courseId,
+							selected: true
+						},
+						course: {
+							...prevState.course,
+							id: this.props.location.state.parentId
+						}
+					}))
+					let topicInfo = {
+						topicId: this.props.location.state.topicId,
+						semesterId: null
+					}
+					getTopics(topicInfo).then(res => {
+						if (res.error) {
+							alert(res.error)
+						} else {
+							let data = res.topics
+							let topicList = new Array()
+							for (const i in data) {
+								topicList.push({
+									value: data[i]['topicTitle'],
+									label: data[i]['topicTitle'],
+									id: data[i]['id'],
+									topicTitle: data[i]['topicTitle'],
+									topicNum: data[i]['topicNum']
+								})
+							}
+							this.setState({ topicList: topicList })
+						}
+					})
+				}
+			} else if (this.props.location.state.profId !== undefined) {
+				this.setState(prevState => ({
+					prof: {
+						...prevState.prof,
+						id: this.props.location.state.profId,
+						firstName: this.props.location.state.profFirst,
+						lastName: this.props.location.state.profLast
+					}
+				}))
+			} else {
+				if (this.props.location.state.review === undefined) {
+					this.setState({ invalidReview: true })
+				}
+			}
+		}
 
 		getSemesters().then(res => {
 			if (res.error) {
@@ -907,8 +982,8 @@ class ReviewForm extends Component {
 						year: data[i]['year']
 					})
 				}
-				this.setState(prevState => ({ 
-					semesterList: semList, 
+				this.setState(prevState => ({
+					semesterList: semList,
 					semester: {
 						...prevState.semester,
 						loaded: true
@@ -937,8 +1012,8 @@ class ReviewForm extends Component {
 						topicNum: data[i]['topicNum']
 					})
 				}
-				this.setState(prevState => ({ 
-					courseList: courseList, 
+				this.setState(prevState => ({
+					courseList: courseList,
 					course: {
 						...prevState.course,
 						loaded: true
@@ -961,7 +1036,7 @@ class ReviewForm extends Component {
 		console.log(oldReview)
 		let topicId = null
 		let courseId = oldReview.course.id
-		let topicSelected = oldReview.course.topicNum > 0
+		let topicSelected = oldReview.course.topicNum >= 0
 		if (topicSelected) {
 			courseId = oldReview.course.parentId
 			topicId = oldReview.course.id
@@ -984,7 +1059,7 @@ class ReviewForm extends Component {
 							topicNum: data[i]['topicNum']
 						})
 					}
-					this.setState({topicsList: topicList})
+					this.setState({ topicsList: topicList })
 				}
 			})
 		}
@@ -1004,6 +1079,7 @@ class ReviewForm extends Component {
 				id: courseId,
 				dept: oldReview.course.dept.abr,
 				num: oldReview.course.num,
+				topicId: oldReview.course.topicId
 			},
 			topic: {
 				...prevState.topic,
@@ -1071,9 +1147,9 @@ class ReviewForm extends Component {
 			handleDislike={this.handleDislike}
 			data={this.state} />
 
-		return(
+		return (
 			<div>
-				{this.state.invalidReview ? invalidReview: (loaded ? content : loading)}
+				{this.state.invalidReview ? invalidReview : (loaded ? content : loading)}
 			</div>
 		);
 	}
