@@ -19,7 +19,8 @@ class Signup extends Component {
             password: '',
             confirm_password: '',
             major: '',
-            majorList: null
+            majorList: null,
+            firstSubmit: true
         }
 
         this.onChange = this.onChange.bind(this)
