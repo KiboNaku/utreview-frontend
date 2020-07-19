@@ -18,7 +18,7 @@ function ReviewSummary(props) {
 
     return (
         <div className="review-container">
-            <div className="review-wrapper"> 
+            <div className="profile-review-wrapper"> 
                 <Confirm
                     title="Delete Review"
                     message="Are you sure you want to delete this review?"
