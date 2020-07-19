@@ -20,7 +20,7 @@
 	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
-.review-list {
+.profile-review-list {
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 30px;
@@ -37,20 +37,20 @@
 	padding-top: 10px;
 }
 
-.review-wrapper {
+.profile-review-wrapper {
 	border: 2px solid rgb(143, 143, 143);
 	border-radius: 10px;
 	height: 235px;
 	width: 200px;
 }
 
-.review-wrapper:hover {
+.profile-review-wrapper:hover {
 	border: 2px solid rgb(190, 190, 190);
 	transition: 0.3s all ease;
 	background-color: #bf5600ab;
 }
 
-.review-wrapper:hover .review-buttons {
+.profile-review-wrapper:hover .review-buttons {
 	opacity: 1;
 	transition: 0.4s;
 }
@@ -81,13 +81,13 @@
 	color: rgb(54, 54, 54);
 }
 
-.review-wrapper:hover .course-name-wrapper {
+.profile-review-wrapper:hover .course-name-wrapper {
 	color: white !important;
 }
 
-.review-wrapper:hover .update-date, 
-.review-wrapper:hover .prof-name, 
-.review-wrapper:hover .semester-date {
+.profile-review-wrapper:hover .update-date, 
+.profile-review-wrapper:hover .prof-name, 
+.profile-review-wrapper:hover .semester-date {
 	visibility: hidden;
 }
 
@@ -141,7 +141,7 @@
 	text-decoration: underline;
 }
 
-.review-wrapper:hover .delete-review {
+.profile-review-wrapper:hover .delete-review {
 	transition: 0.5s;
 	opacity: 1;
 }
