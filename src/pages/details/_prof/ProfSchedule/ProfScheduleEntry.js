@@ -1,68 +1,28 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom'
 
 function ProfScheduleEntry(props) {
-    let crossListed = props.crossListed.map(course => {
-        let coursePath = course.dept.toLowerCase().replace(' ', '') + "_" + course.num.toLowerCase()
-        if (course.topicNum >= -1) {
-            coursePath += "_" + course.topicNum.toString()
-        }
-        return (
-            <li>
-                <Link
-                    className="utcolor"
-                    to={{
-                        pathname: `/course-results/${coursePath}`,
-                        state: {
-                            courseId: course.id
-                        }
-                    }}
-                > {course.dept} {course.num}
-                </Link>
-            </li>
-        )
-    })
-    let courseName = props.courseDept + " " + props.courseNum
-    let coursePath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
-    if (props.topicNum >= 0) {
-        coursePath += "_" + props.topicNum.toString()
-    }
-    let enrollment = props.seatsTaken === null || props.maxEnrollment === null ? "N/A" : props.seatsTaken + "/" + props.maxEnrollment
-    let course = (
-        <Link
-            className="utcolor"
-            to={{
-                pathname: `/course-results/${coursePath}`,
-                state: {
-                    courseId: props.courseId
-                }
-            }}
-        > {courseName}
-        </Link>
-    )
-    return (
+
+	return (
         <tr>
-            <td align="center">
-                {props.uniqueNum !== null ? props.uniqueNum: "N/A"}
+            <td>
+                {props.uniqueNo}
             </td>
             <td align="center">
-                {props.courseId !== null ? course : "N/A"}
+                <a href = "https://www.google.com" > {props.course} </a>
             </td>
             <td align="center">
-                {enrollment}
+                {props.seatsTaken}/{props.maxEnrollment}
             </td>
             <td align="center">
-                {props.timeFrom !== null ? (props.timeFrom + " - " + props.timeTo) : "N/A"}
+                {props.timeFrom} - {props.timeTo}
             </td>
             <td align="center">
-                {props.days !== "" ? props.days : "N/A"}
+                {props.days}
             </td>
             <td align="center">
-                {props.location !== null ? props.location : "N/A"}
+                {props.location}
             </td>
-            <td align="center">
-                {props.crossListed.length > 0 ? <ul>{crossListed}</ul> : "N/A"}
-            </td>
+            
         </tr>
     );
 }
