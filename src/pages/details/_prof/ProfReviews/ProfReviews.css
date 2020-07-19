@@ -59,6 +59,12 @@
     margin-bottom: 0px;
 }
 
+.LikeDislike{
+    margin-bottom: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
 .likeButton{
     background-color: white;
     border: none;
@@ -157,6 +163,12 @@
         border-bottom: 1px solid black;
     }
 
+    .LikeDislike{
+        margin-bottom: 10px;
+        position: relative;
+        margin-top: 10px;
+    }
+
     .userRat{
         align-content: left;
         margin-right: 10px;
@@ -169,7 +181,7 @@
     }
 }
 
-@media screen and (max-width: 380px){
+@media screen and (max-width: 360px){
     .userRat{
         justify-items: center;
         margin: 0 auto;

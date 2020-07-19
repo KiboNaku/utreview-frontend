@@ -7,12 +7,6 @@
 
 .course-table{
     margin-bottom: 0px;
-    max-height: 300px;
-}
-
-.course-table thead th {
-    position: sticky; 
-    top: 0;
 }
 
 .course-table th, tr, td{
@@ -21,7 +15,7 @@
 
 .course-table thead th{
     background-color: #333f48;
-    border-top-width: 0;
+    border-color: #333f48;
     color: white;
 }
 
