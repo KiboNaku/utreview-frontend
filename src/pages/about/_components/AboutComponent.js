@@ -24,6 +24,13 @@ function AboutComponent(props) {
                                     </div>
                                     <div className='col'>
                                         <Contributor
+                                            name={props.data.contributors[3].name}
+                                            description={props.data.contributors[3].description}
+                                            image={props.data.contributors[3].image}
+                                        />
+                                    </div>
+                                    <div className='col'>
+                                        <Contributor
                                             name={props.data.contributors[1].name}
                                             description={props.data.contributors[1].description}
                                             image={props.data.contributors[1].image}
