@@ -26,14 +26,11 @@ class CourseTopics extends React.Component {
             let topicPath = this.props.courseDept.toLowerCase().replace(' ', '') + "_" + this.props.courseNum.toLowerCase()
 	        topicPath += "_" + topic.topicNum.toString()
             return (
-                <li className="topic-item">
+                <li>
                     <Link
                         className="utcolor"
                         to={{
-                            pathname: `/course-results/${topicPath}`,
-                            state: {
-                                courseId: topic.id
-                            }
+                            pathname: `course-results/${topicPath}`,
                         }}
                     > {topic.title}
                     </Link>
@@ -43,13 +40,13 @@ class CourseTopics extends React.Component {
         return (
             <div className="courseTopics">
                 <div className="card course-card">
-                    <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#topics-collapse">
+                    <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#requisites-collapse">
                         <h4 className="details-header"> Topics {arrowIcon} </h4>
                     </div>
-                    <div className="collapse show" id="topics-collapse" role="tabpanel">
+                    <div className="collapse show" id="requisites-collapse" role="tabpanel">
                         <div className="card-body">
                             <div className="topics">
-                                <ul className="topics-list d-flex flex-wrap">
+                                <ul>
                                     {topicsList}
                                 </ul>
                             </div>
@@ -63,4 +60,4 @@ class CourseTopics extends React.Component {
 
 }
 
-export default withRouter(CourseTopics);
+export default CourseTopics;

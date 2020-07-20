@@ -1,9 +1,5 @@
 
-li > span{
-    font-weight: bold
-}
-
-.review-form li {
+li, li > span{
     font-weight: bold
 }
 

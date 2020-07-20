@@ -2,6 +2,7 @@ import React from 'react';
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import AppBar from '@material-ui/core/AppBar'
+import { makeStyles } from '@material-ui/core/styles';
 import TabPanel from '../TabPanel'
 import CourseScheduleEntry from './CourseScheduleEntry'
 import './CourseSchedule.css'
@@ -32,13 +33,14 @@ class CourseSchedule extends React.Component {
     }
 
     render() {
-        console.log(this.state.courseSchedule)
 
-        const styles = theme => ({
+        const useStyles = makeStyles((theme) => ({
             indicator: {
-              backgroundColor: '#bf5700',
-            },
-          })
+                backgroundColor: '#bf5700',
+            }
+        }));
+    
+        const classes = useStyles()
 
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         const currentSemList = this.state.courseSchedule.currentSem.map(course => {
@@ -52,20 +54,20 @@ class CourseSchedule extends React.Component {
             )
         })
         let noCourses = (
-            <h5 className="none-scheduled">
-                This course is not scheduled for this semester
-            </h5>
+            <h2>
+                There are no scheduled courses for this semester
+            </h2>
         )
         let currentSem = (
             <table className='table table-hover table-responsive schedule-table'>
                 <thead>
                     <tr>
                         <th scope="col">Unique #</th>
-                        <th scope="col">Professor</th>
                         <th scope="col">Enrolled</th>
                         <th scope="col">Time</th>
                         <th scope="col">Days</th>
                         <th scope="col">Location</th>
+                        <th scope="col">Professor</th>
                         <th scope="col">Cross Listed</th>
                     </tr>
                 </thead>
@@ -80,11 +82,11 @@ class CourseSchedule extends React.Component {
                 <thead>
                     <tr>
                         <th scope="col">Unique #</th>
-                        <th scope="col">Professor</th>
                         <th scope="col">Enrolled</th>
                         <th scope="col">Time</th>
                         <th scope="col">Days</th>
                         <th scope="col">Location</th>
+                        <th scope="col">Professor</th>
                         <th scope="col">Cross Listed</th>
                     </tr>
                 </thead>
@@ -98,11 +100,15 @@ class CourseSchedule extends React.Component {
             <div className="semSchedule">
                 <AppBar position="static" color="default">
                     <Tabs
+                        inkBarStyle={{backgroundColor: '#68C222', width: '33.3%'}}
                         value={this.state.currentTab}
                         variant="fullWidth"
                         centered
                         name="currentTab"
                         onChange={this.handleTabChange}
+                        classes={{
+                            indicator:classes.indicator
+                        }}
                     >
                         <Tab label="Summer 2020" aria-controls='tabpanel-0' />
                         <Tab label="Fall 2020" aria-controls='tabpanel-1' />
@@ -135,7 +141,10 @@ class CourseSchedule extends React.Component {
                             {result}
                         </div>
                     </div>
+
                 </div>
+
+
             </div>
         )
     }
