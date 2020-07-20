@@ -45,7 +45,9 @@ function LoginComponent(props) {
                                 <label className="pl-2">Remember me</label>
                             </div>
 
-                            <button className="btn btn-lg btn-utcolor btn-block mt-2 font-weight-bold" type="submit">Log In</button>
+                            <button className="btn btn-lg btn-utcolor btn-block mt-2 font-weight-bold"
+                                type="submit"
+                                disabled={props.firstSubmit}>Log In</button>
 
                             <a href="#"><p className="text-center">Forgot password?</p></a>
 
