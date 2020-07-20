@@ -14,7 +14,11 @@ function CourseAddReview(props) {
                 pathname: `/add-review/`,
                 search: `?course=${coursePath}`,
                 state: {
-                    courseId: props.id
+                    courseId: props.id,
+                    courseDept: props.courseDept,
+                    courseNum: props.courseNum,
+                    topicId: props.topicId,
+                    parentId: props.parentId
                 }
             }}
         >
@@ -35,7 +39,7 @@ function CourseAddReview(props) {
     )
     return (
         <div className="courseAddReview" >
-            <h3 className="add-review-text"> Have you taken {props.courseDep} {props.courseNo}? </h3>
+            <h3 className="add-review-text"> Have you taken {props.courseDept} {props.courseNum}? </h3>
             <div className="add-review">
                 {localStorage.usertoken ? addReviewLink : loginLink}
             </div>

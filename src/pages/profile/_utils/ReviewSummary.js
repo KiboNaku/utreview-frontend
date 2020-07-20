@@ -6,14 +6,14 @@ import ReviewDetails from './ReviewDetails'
 
 function ReviewSummary(props) {
 
-    let courseLikeIcon = props.data.course_rating.approval ?
+    let courseLikeIcon = props.data.courseRating.approval ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
-    let courseDislikeIcon = !props.data.course_rating.approval ?
+    let courseDislikeIcon = !props.data.courseRating.approval ?
         <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
 
-    let profLikeIcon = props.data.professor_rating.approval ?
+    let profLikeIcon = props.data.profRating.approval ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
-    let profDislikeIcon = !props.data.professor_rating.approval ?
+    let profDislikeIcon = !props.data.profRating.approval ?
         <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
     let modalId = "#confirmModal" + props.data.id.toString()
     return (
