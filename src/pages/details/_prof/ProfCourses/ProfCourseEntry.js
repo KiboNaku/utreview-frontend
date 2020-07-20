@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom'
 
 function ProfCourseEntry(props) {
-
+    
     let percentLiked = props.percentLiked !== null ? `${props.percentLiked}%` : "N/A%"
     let eCIS = props.eCIS !== null ? `${props.eCIS}` : "N/A"
     let difficulty = props.difficulty !== null ? `${props.difficulty}` : "N/A"
@@ -14,6 +14,12 @@ function ProfCourseEntry(props) {
     if(props.topicNum >= 0){
         coursePath += "_" + props.topicNum.toString()
     } 
+    let profFirst = props.prof.firstName
+    let profLast = props.prof.lastName
+    profLast = profLast.split(" ")
+    profLast = profLast[profLast.length - 1]
+
+    let syllabiLink = `https://utdirect.utexas.edu/apps/student/coursedocs/nlogon/?semester=&department=${props.courseDept}&course_number=${props.courseNum}&course_title=&unique=&instructor_first=${profFirst}&instructor_last=${profLast}&course_type=In+Residence&search=Search`
     return (
         <tr>
             <td align="center">  
@@ -31,7 +37,7 @@ function ProfCourseEntry(props) {
             <td align="center">{usefulness}</td>
             <td align="center">{workload}</td>
             <td align="center">
-                <a href="https://www.google.com" > Syllabi </a>
+                <a href={syllabiLink} rel="noopener noreferrer" target="_blank"> Syllabi </a>
             </td>
             <td align="center">
                 <a href="https://www.google.com" > UT Catalyst </a>
