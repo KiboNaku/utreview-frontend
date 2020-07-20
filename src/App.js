@@ -21,7 +21,9 @@ function App() {
 	return (
 		<Router>
 			<div className="App">
+				
 				<ScrollTop/>
+
 				<Switch>
 					<Route exact path="/" component={() => <NavBar showSearch="false" transparent="true" />} />
 					<Route path="/" component={() => <NavBar showSearch="true" transparent="false" />} />
@@ -38,11 +40,12 @@ function App() {
 					<Route path={"/course-results/:courseId"} render={(props) => <CourseDetails />} />
 					<Route path={"/prof-results/:profId"} render={(props) => <ProfDetails />} />
 				</Switch>
-				<Footer />
 
+				<Footer />
 				<Login />
 				<Signup />
 				<VerifyEmail />
+
 			</div>
 		</Router>
 	);
