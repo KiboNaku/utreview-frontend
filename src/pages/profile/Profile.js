@@ -11,7 +11,7 @@ import { SelectionPicture } from './_utils/ProfilePicture'
 import { ProfilePicModal } from './_utils/ProfilePicPopup'
 import Settings from './_utils/Settings'
 import { getMajor } from './../popups/_utils/UserFunctions'
-import { getProfilePictures, updateInfo, getReviews, deleteReview } from './_utils/ProfileFunctions'
+import { getProfilePictures, updateProfilePic, updateInfo, getReviews, deleteReview } from './_utils/ProfileFunctions'
 import Loading from './../_utils/Loading.js'
 import './Profile.css'
 import axios from 'axios'
@@ -201,35 +201,51 @@ class Profile extends Component {
     onImageChange(image) {
         this.setState({ profilePic: image })
         $('#change-profile-pic').modal('hide')
+        const user = {
+            email: this.state.email,
+            profile_pic: image
+        }
+
+        updateProfilePic(user).then(res => {
+            if (res.error) {
+                alert(res.error)
+            } 
+        })
     }
 
     //all need to add backend stuff
 
-    onSubmit(mode, firstName, lastName, password, major) {
+    onSubmit(mode, firstName, lastName, password, confirmPassword, major) {
         switch (mode) {
             case 'apply':
-                this.setState({
-                    firstName: firstName,
-                    lastName: lastName,
-                    major: major
-                })
-
-                const user = {
-                    first_name: this.state.firstName,
-                    last_name: this.state.lastName,
-                    email: this.state.email,
-                    password: password,
-                    major: this.state.major,
-                    profile_pic: this.state.profilePic
-                }
-
-                updateInfo(user).then(res => {
-                    if (res.error) {
-                        alert(res.error)
-                    } else {
-                        $('#settings').modal('hide')
+                
+                console.log(password)
+                if(password === confirmPassword){
+                    this.setState({
+                        firstName: firstName,
+                        lastName: lastName,
+                        major: major
+                    })
+                    const user = {
+                        first_name: firstName,
+                        last_name: lastName,
+                        email: this.state.email,
+                        password: password,
+                        major: major,
+                        profile_pic: this.state.profilePic
                     }
-                })
+    
+                    updateInfo(user).then(res => {
+                        if (res.error) {
+                            alert(res.error)
+                        } else {
+                            $('#settings').modal('hide')
+                        }
+                    })
+                }else{
+                    alert("Passwords must match")
+                }    
+                break
             default:
                 $('#settings').modal('hide')
         }
@@ -250,8 +266,8 @@ class Profile extends Component {
     }
 
     render() {
-        let loading = <Loading />
-        return (
+        let loading = <Loading /> 
+        let content = (
             <main>
                 <ProfileComponent
                     data={this.state}
@@ -265,6 +281,9 @@ class Profile extends Component {
                     onSubmit={this.onSubmit}
                 />
             </main>
+        )
+        return (
+            this.state.loaded ? content: loading
         )
     }
 }
