@@ -7,12 +7,6 @@
 
 .prof-table{
     margin-bottom: 0px;
-    max-height: 300px;
-}
-
-.prof-table thead th {
-    position: sticky; 
-    top: 0;
 }
 
 .prof-table th, tr, td{
@@ -21,7 +15,7 @@
 
 .prof-table thead th{
     background-color: #333f48;
-    border-top-width: 0;
+    border-color: #333f48;
     color: white;
 }
 
