@@ -3,7 +3,6 @@ import React from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import { makeStyles } from '@material-ui/core/styles';
 
 import CoursePanel from '../_utils/CoursePanel'
 import Filter from "./../_utils/Filter"
@@ -22,14 +21,6 @@ function ResultsComponent(props) {
     let numProfResults = props.profs.loaded ? "(" + props.profs.data.length.toString() + ")" : ""
     let courseLabel = "Courses " + numCourseResults
     let profLabel = "Professors " + numProfResults
-
-    const useStyles = makeStyles((theme) => ({
-        indicator: {
-            backgroundColor: '#bf5700',
-        }
-    }));
-
-    const classes = useStyles()
 
     return (
         <main className="results-main py-3">
@@ -60,8 +51,9 @@ function ResultsComponent(props) {
                                     variant="fullWidth"
                                     onChange={props.handleTabChange}
                                     centered
+
                                     classes={{
-                                        indicator:classes.indicator
+                                        indicator: 'custom-indicator',
                                     }}
                                 >
                                     <Tab label={courseLabel} aria-controls='tabpanel-0' className='font-weight-bold py-4' />

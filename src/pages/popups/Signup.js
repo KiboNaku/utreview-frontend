@@ -19,8 +19,7 @@ class Signup extends Component {
             password: '',
             confirm_password: '',
             major: '',
-            majorList: null,
-            firstSubmit: true
+            majorList: null
         }
 
         this.onChange = this.onChange.bind(this)
@@ -34,35 +33,34 @@ class Signup extends Component {
 
     onSubmit(e) {
         e.preventDefault()
-        if (this.state.firstSubmit) {
-            this.setState({ firstSubmit: false })
-            if (this.state.password != this.state.confirm_password) {
-                alert("Password fields don't match")
-                return
-            }
 
-            const newUser = {
-                first_name: this.state.first_name,
-                last_name: this.state.last_name,
-                email: this.state.email,
-                password: this.state.password,
-                major: this.state.major
-            }
-
-            this.setState({ loading: true })
-
-            signup(newUser).then(res => {
-
-                this.setState({ loading: false })
-
-                if (res.error) {
-                    alert(res.error)
-                } else {
-                    $("#signup-modal").modal("hide");
-                    $("#verifyemail-modal").modal("show");
-                }
-            })
+        if (this.state.password != this.state.confirm_password) {
+            alert("Password fields don't match")
+            return
         }
+
+        const newUser = {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            email: this.state.email,
+            password: this.state.password,
+            major: this.state.major
+        }
+
+        this.setState({ loading: true })
+
+        signup(newUser).then(res => {
+
+            this.setState({ loading: false })
+
+            if (res.error) {
+                alert(res.error)
+            } else {
+                $("#signup-modal").modal("hide");
+                $("#verifyemail-modal").modal("show");
+            }
+        })
+
     }
 
     handleMajorChange = (inputValue, { action }) => {

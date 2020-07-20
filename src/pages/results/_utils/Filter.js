@@ -76,7 +76,7 @@ function Filter(props) {
                     <div className="form-check sem-radio" onClick={() => { props.handleFilterChange(null, -1, -1, "all") }} >
                         <input className="form-check-input mb-0" type="radio" name="semester" value="all"
                             checked={props.filter.sem == "all"} />
-                        <label className="form-check-label text-left mb-0 ">All</label>
+                        <label className="form-check-labe text-left mb-0 ">All</label>
                     </div>
                     <br />
                     <div className="form-check sem-radio" onClick={() => { props.handleFilterChange(null, -1, -1, "current") }}>
