@@ -279,7 +279,7 @@ class CourseDetails extends React.Component {
             getCourseId(courseString).then(res => {
                 if (res.error) {
                     alert(res.error)
-                    this.setState({validProf: false})
+                    this.setState({validCourse: false})
                 } else {
                     courseId = res.courseId
                     console.log(courseId)
