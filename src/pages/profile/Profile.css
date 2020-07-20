@@ -24,8 +24,8 @@
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 30px;
-	overflow-y: scroll;
-	height: 520px;
+	overflow-y: auto;
+	height: 530px;
 }
 
 .review-container {
