@@ -11,13 +11,14 @@ function ProfAddReview(props) {
                 pathname: `/add-review/`,
                 search: `?prof=${profPath}`,
                 state: {
-                    profId: props.id
+                    profId: props.id,
+                    profFirst: props.firstName,
+                    profLast: props.lastName
                 }
             }}>
             <button style={{ height: "50px", width: "175px", fontSize: "20px" }} className="btn btn-dark font-weight-bold" type="button">
                 Add a Review
                 </button>
-                {props.firstName} {props.lastName}
         </Link>
     )
     const loginLink = (

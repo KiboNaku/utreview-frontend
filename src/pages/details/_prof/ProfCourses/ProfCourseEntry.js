@@ -16,14 +16,11 @@ function ProfCourseEntry(props) {
     } 
     return (
         <tr>
-            <td>
+            <td align="center">  
                 <Link
                     className="utcolor"
                     to={{
-                        pathname: `course-results/${coursePath}`,
-                        state: {
-                            courseId: props.courseId
-                        }
+                        pathname: `/course-results/${coursePath}`,
                     }}
                 > {courseName}
                 </Link>

@@ -6,22 +6,23 @@ import ReviewDetails from './ReviewDetails'
 
 function ReviewSummary(props) {
 
-    let courseLikeIcon = props.data.course_rating.approval ?
+    let courseLikeIcon = props.data.courseRating.approval ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
-    let courseDislikeIcon = !props.data.course_rating.approval ?
+    let courseDislikeIcon = !props.data.courseRating.approval ?
         <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
 
-    let profLikeIcon = props.data.professor_rating.approval ?
+    let profLikeIcon = props.data.profRating.approval ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
-    let profDislikeIcon = !props.data.professor_rating.approval ?
+    let profDislikeIcon = !props.data.profRating.approval ?
         <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
-
+    let modalId = "#confirmModal" + props.data.id.toString()
     return (
         <div className="review-container">
             <div className="profile-review-wrapper"> 
                 <Confirm
                     title="Delete Review"
                     message="Are you sure you want to delete this review?"
+                    id={props.data.id}
                     handleOk={() => props.deleteReview(props.data.id)}
                 />
                 <p className="course-name-wrapper" 
@@ -63,7 +64,7 @@ function ReviewSummary(props) {
                 </div>
 
                 <div className="delete-review">
-                    <div data-toggle="modal" data-target="#confirmModal">Delete</div>
+                    <div data-toggle="modal" data-target={modalId}>Delete</div>
                 </div>
             </div>
         </div>

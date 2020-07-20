@@ -5,14 +5,17 @@ import './CourseInfo.css'
 
 function CourseInfo(props) {
 	let parentPath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
-	parentPath += "_" + props.topicNum.toString()
+	parentPath += "_0"
 	let parentTopic = (
 		<div>
 			<span>Parent Topic: </span>
 			<Link
-				className="utcolor"
+				className="utcolor parent-topic"
 				to={{
-					pathname: `course-results/${parentPath}`,
+					pathname: `/course-results/${parentPath}`,
+					state: {
+						courseId: props.parentId
+					}
 				}}
 			> {props.parentTitle}
 			</Link>
