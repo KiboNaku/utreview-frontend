@@ -25,7 +25,7 @@ class Settings extends Component {
 	}
 
 	onChange(event) {
-		this.setState({ [event.target.name]: [event.target.value] })
+		this.setState({ [event.target.name]: event.target.value })
 	}
 
 	handleMajorChange = (inputValue, { action }) => {
@@ -146,7 +146,7 @@ class Settings extends Component {
 								<button
 									type='button'
 									className='btn btn-outline-dark font-weight-bold'
-									onClick={() => this.props.onSubmit('apply', this.state.firstName, this.state.lastName, this.state.password, this.state.major)}>
+									onClick={() => this.props.onSubmit('apply', this.state.firstName, this.state.lastName, this.state.password, this.state.confirmPassword, this.state.major)}>
 									Apply </button>
 								<button
 									type='button'
