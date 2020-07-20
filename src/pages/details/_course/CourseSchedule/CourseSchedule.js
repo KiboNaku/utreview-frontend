@@ -34,11 +34,7 @@ class CourseSchedule extends React.Component {
     render() {
         console.log(this.state.courseSchedule)
 
-        const styles = theme => ({
-            indicator: {
-              backgroundColor: '#bf5700',
-            },
-          })
+        const { classes } = this.props
 
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         const currentSemList = this.state.courseSchedule.currentSem.map(course => {
@@ -103,6 +99,11 @@ class CourseSchedule extends React.Component {
                         centered
                         name="currentTab"
                         onChange={this.handleTabChange}
+                        TabIndicatorProps={{
+                            style: {
+                                backgroundColor: '#bf5700'
+                            }
+                        }}
                     >
                         <Tab label="Summer 2020" aria-controls='tabpanel-0' />
                         <Tab label="Fall 2020" aria-controls='tabpanel-1' />
@@ -111,13 +112,13 @@ class CourseSchedule extends React.Component {
 
                 <div className="semSchedule">
                     <TabPanel index={0} value={this.state.currentTab}>
-                        {currentSemList.length > 0 ? currentSem: noCourses}
+                        {currentSemList.length > 0 ? currentSem : noCourses}
                     </TabPanel>
                 </div>
 
                 <div className="semSchedule">
                     <TabPanel index={1} value={this.state.currentTab}>
-                        {futureSemList.length > 0 ? futureSem: noCourses}
+                        {futureSemList.length > 0 ? futureSem : noCourses}
                     </TabPanel>
                 </div>
             </div>
