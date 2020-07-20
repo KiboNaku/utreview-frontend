@@ -20,10 +20,12 @@ li * {
 
 .btn-approval:hover {
     cursor: pointer;
+    transform: scale(1.15);
 }
 
 .btn-approval {
     padding-right: 15px;
+    display: inline-block;
 }
 
 .review-grade{
@@ -49,4 +51,5 @@ li * {
 .info-tooltip:focus{
     outline: none;
 }
+
 
