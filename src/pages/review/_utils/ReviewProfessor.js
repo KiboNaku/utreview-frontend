@@ -137,31 +137,12 @@ function ReviewProfessor(props) {
                 <td>
                     <StyledRating
                         type="rating"
-                        value={props.data.profRating.engaging}
+                        value={props.data.profRating.grading}
                         icon={<RadioButtonCheckedIcon />}
                         emptyIcon={<RadioButtonUncheckedIcon />}
-                        name="engaging"
+                        name="grading"
                         onChange={props.handleProfRatingChange}
                     /></td>
-                </tr>
-                <tr>
-                    <td> Grading Difficulty:
-                        {props.data.error.grading ? (
-                            <td>
-                                <small className="text-danger">{props.data.error.grading}</small>
-                            </td>
-                        ) : null}
-                    </td>
-                    <td>
-                        <StyledRating
-                            type="rating"
-                            value={props.data.profRating.grading}
-                            icon={<RadioButtonCheckedIcon />}
-                            emptyIcon={<RadioButtonUncheckedIcon />}
-                            name="grading"
-                            onChange={props.handleProfRatingChange}
-                        />
-                    </td>
                 </tr>
                 <tr>
                     <th colSpan="2">
