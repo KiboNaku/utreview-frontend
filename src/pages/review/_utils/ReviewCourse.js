@@ -7,9 +7,9 @@ import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded';
 import { BinaryFeedback } from 'react-simple-user-feedback'
 
 function ReviewCourse(props) {
-    let likeIcon = props.data.courseRating.likePressed ?
+    let likeIcon = props.data.CourseLikePressed ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
-    let dislikeIcon = props.data.courseRating.dislikePressed ?
+    let dislikeIcon = props.data.CourseDislikePressed ?
         <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
 
     const likeButton = (
@@ -37,9 +37,9 @@ function ReviewCourse(props) {
             <tbody>
                 <tr>
                     <td> Approval:
-                        {props.data.error.course.approval ? (
+                        {props.data.CourseApprovalError ? (
                             <td>
-                                <small className="text-danger">{props.data.error.course.approval}</small>
+                                <small className="text-danger">{props.data.CourseApprovalError}</small>
                             </td>
                         ) : null}
                     </td>
@@ -50,15 +50,15 @@ function ReviewCourse(props) {
                 </tr>
                 <tr>
                     <td> Usefulness:
-                        {props.data.error.course.usefulness ? (
+                        {props.data.UsefulnessError ? (
                             <td>
-                                <small className="text-danger">{props.data.error.course.usefulness}</small>
+                                <small className="text-danger">{props.data.UsefulnessError}</small>
                             </td>
                         ) : null}
                     </td>
                     <td> <StyledRating
                         type="rating"
-                        value={props.data.courseRating.usefulness}
+                        value={props.data.Usefulness}
                         icon={<RadioButtonCheckedIcon />}
                         emptyIcon={<RadioButtonUncheckedIcon />}
                         name="usefulness"
@@ -67,36 +67,36 @@ function ReviewCourse(props) {
                 </tr>
                 <tr>
                     <td> Difficulty:
-                        {props.data.error.difficulty ? (
+                        {props.data.DifficultyError ? (
                             <td>
-                                <small className="text-danger">{props.data.error.difficulty}</small>
+                                <small className="text-danger">{props.data.DifficultyError}</small>
                             </td>
                         ) : null}
                     </td>
                     <td> <StyledRating
                         type="rating"
-                        value={props.data.courseRating.difficulty}
+                        value={props.data.Difficulty}
                         icon={<RadioButtonCheckedIcon />}
                         emptyIcon={<RadioButtonUncheckedIcon />}
-                        name="difficulty"
-                        onChange={props.handleCourseRatingChange}
+                        name="Difficulty"
+                        onChange={props.handleChange}
                     /></td>
                 </tr>
                 <tr>
                     <td> Workload:
-                        {props.data.error.workload ? (
+                        {props.data.WorkloadError ? (
                             <td>
-                                <small className="text-danger">{props.data.error.workload}</small>
+                                <small className="text-danger">{props.data.WorkloadError}</small>
                             </td>
                         ) : null}
                     </td>
                     <td> <StyledRating
                         type="rating"
-                        value={props.data.courseRating.workload}
+                        value={props.data.Workload}
                         icon={<RadioButtonCheckedIcon />}
                         emptyIcon={<RadioButtonUncheckedIcon />}
-                        name="workload"
-                        onChange={props.handleCourseRatingChange}
+                        name="Workload"
+                        onChange={props.handleChange}
                     /></td>
                 </tr>
                 <tr>
@@ -104,10 +104,10 @@ function ReviewCourse(props) {
 
                         <textarea
                             className="form-control" rows="5"
-                            value={props.data.courseRating.comments}
+                            value={props.data.CourseComment}
                             placeholder="Please elaborate (optional)."
-                            name="comments"
-                            onChange={props.handleCourseRatingChange}></textarea>
+                            name="CourseComment"
+                            onChange={props.handleChange}></textarea>
                     </th>
                 </tr>
             </tbody>

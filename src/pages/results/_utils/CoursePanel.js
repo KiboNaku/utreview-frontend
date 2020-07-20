@@ -23,7 +23,7 @@ function CoursePanel(props) {
         const sortBy = props.sort.sortBy
         const courses = props.data
 
-        if (courses.length >= 0 && sortBy in a) {
+        if (courses.length >= 0) {
 
             // TODO: update with approval & # ratings
 
@@ -133,7 +133,7 @@ function CoursePanel(props) {
                         </th>
 
                         <th scope="col" colSpan="2" className="sortable" onClick={() => props.handleSortChange('courseTitle')}>
-                            <span>Course Name</span>
+                            <span>Course Title</span>
                             <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseTitle' ? '' : ' invisible')}></i>
                         </th>
 
