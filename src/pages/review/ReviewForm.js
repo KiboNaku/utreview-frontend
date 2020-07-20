@@ -308,8 +308,10 @@ class ReviewForm extends Component {
 			}
 
 			let profDisabled = false
+			let courseId = inputValue.id
 			if (topicSelected && this.state.topic.id === null) {
 				profDisabled = true
+				courseId = null
 			}
 
 			this.setState(prevState => ({
@@ -331,7 +333,7 @@ class ReviewForm extends Component {
 			}))
 			const token = localStorage.usertoken
 			const decoded = jwt_decode(token)
-			if (this.state.semester.id !== null && profId !== null) {
+			if (this.state.semester.id !== null && profId !== null && courseId !== null) {
 				const review = {
 					user_email: decoded.identity.email,
 					course_id: inputValue.id,
@@ -835,7 +837,10 @@ class ReviewForm extends Component {
 		if (this.props.location.state === undefined) {
 			let urlObject = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
 			if (urlObject.course) {
-				getCourseId(urlObject.course).then(res => {
+				const course = {
+					courseString: urlObject.course
+				}
+				getCourseId(course).then(res => {
 					if (res.error) {
 						alert(res.error)
 						this.setState({ invalidReview: true })
@@ -887,7 +892,10 @@ class ReviewForm extends Component {
 					}
 				})
 			} else if (urlObject.prof) {
-				getProfId(urlObject.prof).then(res => {
+				const prof = {
+					profString: urlObject.prof
+				}
+				getProfId(prof).then(res => {
 					if (res.error) {
 						alert(res.error)
 						this.setState({ invalidReview: true })
