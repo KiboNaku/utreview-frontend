@@ -8,59 +8,9 @@ import './CourseReviews.css'
 class CourseReviews extends React.Component {
 	constructor(props) {
 		super(props)
-		const courseReviews = [
-			{
-				key: 1,
-				review: "I fucking hated this class",
-				liked: false,
-				usefulness: 1,
-				difficulty: 5,
-				workload: 5,
-				userMajor: 'Electrical and Computer Engineering',
-				profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
-				profName: 'Yale Patt',
-				numLiked: 2,
-				numDisliked: 0,
-				likePressed: false,
-				dislikePressed: false,
-				date: new Date("2020-06-12")
-			},
-			{
-				key: 2,
-				review: "This was the most inspiring class of my life",
-				liked: true,
-				usefulness: 5,
-				difficulty: 2,
-				workload: 3,
-				userMajor: 'Electrical and Computer Engineering',
-				profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
-				profName: 'Seth Bank',
-				numLiked: 1,
-				numDisliked: 2,
-				likePressed: true,
-				dislikePressed: false,
-				date: new Date("2019-06-10")
-			},
-			{
-				key: 3,
-				review: "Why did I even take this class",
-				liked: false,
-				usefulness: 1,
-				difficulty: 2,
-				workload: 3,
-				userMajor: 'Business Honors',
-				profPic: "https://images.dog.ceo/breeds/pembroke/n02113023_12785.jpg",
-				profName: 'Emanuel Tutuc',
-				numLiked: 5,
-				numDisliked: 2,
-				likePressed: false,
-				dislikePressed: true,
-				date: new Date("2019-07-12")
-			},
-		]
 
 		const updatedReviews = props.courseReviews.slice().sort((a, b) => b.date - a.date)
-
+		console.log(props.courseReviews)
 		this.state = {
 			courseReviews: props.courseReviews,
 			reviewsFiltered: updatedReviews,
@@ -251,7 +201,7 @@ class CourseReviews extends React.Component {
 			)
 		})
 
-		const profOptions = this.state.reviewsFiltered.map(review => {
+		const profOptions = this.state.courseReviews.map(review => {
 			return {
 				value: review.profFirst + " " + review.profLast,
 				label: review.profFirst + " " + review.profLast
@@ -309,6 +259,7 @@ class CourseReviews extends React.Component {
 					className="basic-multi-select my-3 clear-both"
 					classNamePrefix="select"
 					name="review-sort"
+					placeholder="All Professors"
 					options={profOptions}
 					onChange={(objs) => {
 						let values = [];
@@ -321,7 +272,6 @@ class CourseReviews extends React.Component {
 
 						this.handleProfChange(values)
 					}}
-					placeholder="Select"
 					isClearable={true}
 					isSearchable={true}
 					isMulti

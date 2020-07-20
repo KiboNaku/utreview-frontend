@@ -77,6 +77,21 @@
     margin-top: 10px;
 }
 
+.requisites{
+    display: flex;
+    flex-direction: column;
+}
+
+.topics-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.topic-item{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
 @media screen and (max-width: 992px){
     .course-stats{
         flex-direction: column;
@@ -100,6 +115,13 @@
     }
 
     .courseRequisites{
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .courseTopics{
         margin-left: 50px;
         margin-right: 50px;
         margin-top: 50px;
@@ -135,6 +157,17 @@
         margin-top: 50px;
         margin-bottom: 50px;
     }
+
+    .requisites{
+        flex-direction: column;
+    }
+
+    .courseTopics{
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
 }
 
 @media screen and (max-width: 576px){   
@@ -162,6 +195,13 @@
     }
     
     .courseRequisites{
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .courseTopics{
         margin-left: 10px;
         margin-right: 10px;
         margin-top: 50px;
