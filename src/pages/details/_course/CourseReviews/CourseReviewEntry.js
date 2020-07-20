@@ -99,19 +99,18 @@ function CourseReviewEntry(props) {
     )
 
     const semester = "Fall 2020"
-
     const profPath = props.review.profFirst.toLowerCase().replace(" ", "") + "_" + props.review.profLast.toLowerCase().replace(" ", "")
     return (
         <div className="list-group-item review-list-item">
             <div className="course-review-entry">
                 <div className="userDes">
-                    <Avatar className={classes.large} src={require('./../../../../res/img/' + props.review.profilePic)}>  </Avatar>
+                    <Avatar className={classes.large} src={props.review.profilePic}>  </Avatar>
                     <div className="userText">
                         <span> {props.review.userMajor} student, taught by </span>
                         <Link
                             className="utcolor"
                             to={{
-                                pathname: `/prof-results/${profPath}`,
+                                pathname: `prof-results/${profPath}`,
                                 state: {
                                     profId: props.review.profId
                                 }
@@ -123,7 +122,7 @@ function CourseReviewEntry(props) {
                 </div>
                 <div className="userRev">
                     <p className="review-text">{props.review.comments}</p>
-                    <small className="review-date"> - {props.review.date.toLocaleDateString()}</small>
+                    <small className="review-date"> - {props.review.dateString}</small>
                     <br/>
                     <div className="review-like-grade">
                         <div className="LikeDislike">
