@@ -3,6 +3,7 @@ import { StyledRating } from './Rating'
 import Tooltip from '@material-ui/core/Tooltip';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import Button from '@material-ui/core/Button';
+import { withStyles } from "@material-ui/core/styles";
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
@@ -34,6 +35,23 @@ function ReviewProfessor(props) {
         </span>
     )
 
+    const StyledTooltip = withStyles({
+        tooltip: {
+            color: "white",
+            backgroundColor: "#bf5700",
+            fontSize: "12px"
+        },
+        arrow: {
+            color: "#bf5700"
+        }
+    })(Tooltip);
+    const commentsPlaceholder = `(Optional) Please elaborate on your experience with this professor.`
+    const commentsDescription = `What did you like/dislike about the professor's teaching style?
+    Was the professor approachable and accessible during office hours?
+    How difficult were this professor's assignments and exams?
+    Would you recommmend this professor to others?
+    Is there anything about this professor that future students would find helpful to know about?`
+
     const approvalDescription = `Did you like the professor overall?`
     const clearDescription = `How well did the professor explain the course material?
     1 - Explained poorly, 5 - Explained very well`
@@ -41,6 +59,22 @@ function ReviewProfessor(props) {
     1 - Could not keep my attention, 5 - Kept my attention very well`
     const gradingDescription = `How strict was the professor when grading your work?
     1 - Not strict at all, 5 - Very strict`
+
+    const [approvalOpen, approvalSetOpen] = React.useState(false);
+    const handleApprovalClose = () => {
+        approvalSetOpen(false);
+    };
+    const handleApprovalOpen = () => {
+        approvalSetOpen(true);
+    };
+
+    const [clearOpen, clearSetOpen] = React.useState(false);
+    const handleClearClose = () => {
+        clearSetOpen(false);
+    };
+    const handleClearOpen = () => {
+        clearSetOpen(true);
+    };
 
     const [engagingOpen, engagingSetOpen] = React.useState(false);
     const handleEngagingClose = () => {
@@ -50,17 +84,57 @@ function ReviewProfessor(props) {
         engagingSetOpen(true);
     };
 
+    const [gradingOpen, gradingSetOpen] = React.useState(false);
+    const handleGradingClose = () => {
+        gradingSetOpen(false);
+    };
+    const handleGradingOpen = () => {
+        gradingSetOpen(true);
+    };
+
+    const [commentsOpen, commentsSetOpen] = React.useState(false);
+    const handleCommentsClose = () => {
+        commentsSetOpen(false);
+    };
+    const handleCommentsOpen = () => {
+        commentsSetOpen(true);
+    };
+
     return (
 
         <table className="table table-borderless review-form">
             <tbody>
                 <tr>
-                    <td> Approval:
-                        {props.data.error.prof.approval ? (
-                            <td>
-                                <small className="text-danger">{props.data.error.prof.approval}</small>
-                            </td>
-                        ) : null}
+                <td style={{
+                        alignItems: 'center'}} >
+                            <span>Approval </span>
+                            <ClickAwayListener onClickAway={handleApprovalClose}>
+                                <StyledTooltip
+                                    title={approvalDescription}
+                                    placement="right"
+                                    arrow
+                                    PopperProps={{
+                                        disablePortal: true,
+                                    }}
+                                    onOpen={handleApprovalOpen}
+                                    onClose={handleApprovalClose}
+                                    open={approvalOpen}
+                                >
+                                    <span>
+                                        <button type="button" className="info-tooltip" onClick={handleApprovalOpen}>
+                                            <HelpOutlineIcon className="info-icon" style= {{fontSize: 15}} />
+                                        </button>
+                                    </span>
+
+                                </StyledTooltip>
+                            </ClickAwayListener>
+
+                        :
+                    {props.data.error.prof.approval ? (
+                        <td>
+                            <small className="text-danger">{props.data.error.prof.approval}</small>
+                        </td>
+                    ) : null}
                     </td>
                     <td>
                         {likeButton}
@@ -68,10 +142,35 @@ function ReviewProfessor(props) {
                     </td>
                 </tr>
                 <tr>
-                    <td> Clear:
-                        {props.data.error.clear ? (
+                    <td style={{
+                        alignItems: 'center'
+                    }} >
+                        <span>Clear  </span>
+                        <ClickAwayListener onClickAway={handleClearClose}>
+                            <StyledTooltip
+                                title={clearDescription}
+                                placement="right"
+                                arrow
+                                PopperProps={{
+                                    disablePortal: true,
+                                }}
+                                onOpen={handleClearOpen}
+                                onClose={handleClearClose}
+                                open={clearOpen}
+                            >
+                                <span>
+                                    <button type="button" className="info-tooltip" onClick={handleClearOpen}>
+                                        <HelpOutlineIcon className="info-icon" style={{ fontSize: 15 }} />
+                                    </button>
+                                </span>
+
+                            </StyledTooltip>
+                        </ClickAwayListener>
+
+                        :
+                    {props.data.error.prof.clear ? (
                             <td>
-                                <small className="text-danger">{props.data.error.clear}</small>
+                                <small className="text-danger">{props.data.error.prof.clear}</small>
                             </td>
                         ) : null}
                     </td>
@@ -86,77 +185,130 @@ function ReviewProfessor(props) {
                 </tr>
                 <tr>
                     <td style={{
-                        display: 'flex',
+                        alignItems: 'center'
+                    }} >
+                        <span>Engaging  </span>
+                        <ClickAwayListener onClickAway={handleEngagingClose}>
+                            <StyledTooltip
+                                title={engagingDescription}
+                                placement="right"
+                                arrow
+                                PopperProps={{
+                                    disablePortal: true,
+                                }}
+                                onOpen={handleEngagingOpen}
+                                onClose={handleEngagingClose}
+                                open={engagingOpen}
+                            >
+                                <span>
+                                    <button type="button" className="info-tooltip" onClick={handleEngagingOpen}>
+                                        <HelpOutlineIcon className="info-icon" style={{ fontSize: 15 }} />
+                                    </button>
+                                </span>
+
+                            </StyledTooltip>
+                        </ClickAwayListener>
+
+                        :
+                    {props.data.error.prof.engaging ? (
+                            <td>
+                                <small className="text-danger">{props.data.error.prof.engaging}</small>
+                            </td>
+                        ) : null}
+                    </td>
+                    <td> <StyledRating
+                        type="rating"
+                        value={props.data.profRating.engaging}
+                        icon={<RadioButtonCheckedIcon />}
+                        emptyIcon={<RadioButtonUncheckedIcon />}
+                        name="engaging"
+                        onChange={props.handleProfRatingChange}
+                    /></td>
+                </tr>
+                <tr>
+                <td style={{
+                        alignItems: 'center'
+                    }} >
+                        <span>Grading  </span>
+                        <ClickAwayListener onClickAway={handleGradingClose}>
+                            <StyledTooltip
+                                title={gradingDescription}
+                                placement="right"
+                                arrow
+                                PopperProps={{
+                                    disablePortal: true,
+                                }}
+                                onOpen={handleGradingOpen}
+                                onClose={handleGradingClose}
+                                open={gradingOpen}
+                            >
+                                <span>
+                                    <button type="button" className="info-tooltip" onClick={handleGradingOpen}>
+                                        <HelpOutlineIcon className="info-icon" style={{ fontSize: 15 }} />
+                                    </button>
+                                </span>
+
+                            </StyledTooltip>
+                        </ClickAwayListener>
+
+                        :
+                    {props.data.error.prof.grading ? (
+                            <td>
+                                <small className="text-danger">{props.data.error.prof.grading}</small>
+                            </td>
+                        ) : null}
+                    </td>
+                    <td>
+                        <StyledRating
+                            type="rating"
+                            value={props.data.profRating.grading}
+                            icon={<RadioButtonCheckedIcon />}
+                            emptyIcon={<RadioButtonUncheckedIcon />}
+                            name="grading"
+                            onChange={props.handleProfRatingChange}
+                        />
+                    </td>
+                </tr>
+                <tr>
+                <td style={{
                         alignItems: 'center'}} >
-                            <span>Engaging  </span>
-                            <ClickAwayListener onClickAway={handleEngagingClose}>
-                                <Tooltip
-                                    title={engagingDescription}
+                            <span>Comments </span>
+                            <ClickAwayListener onClickAway={handleCommentsClose}>
+                                <StyledTooltip
+                                    title={commentsDescription}
                                     placement="right"
                                     arrow
                                     PopperProps={{
                                         disablePortal: true,
                                     }}
-                                    onOpen={handleEngagingOpen}
-                                    onClose={handleEngagingClose}
-                                    open={engagingOpen}
+                                    onOpen={handleCommentsOpen}
+                                    onClose={handleCommentsClose}
+                                    open={commentsOpen}
                                 >
                                     <span>
-                                        <button type="button" className="info-tooltip" onClick={handleEngagingOpen}>
+                                        <button type="button" className="info-tooltip" onClick={handleCommentsOpen}>
                                             <HelpOutlineIcon className="info-icon" style= {{fontSize: 15}} />
                                         </button>
                                     </span>
 
-                                </Tooltip>
+                                </StyledTooltip>
                             </ClickAwayListener>
 
                         :
-                    {props.data.error.engaging ? (
-                        <td>
-                            <small className="text-danger">{props.data.error.engaging}</small>
-                        </td>
-                    ) : null}
                     </td>
-                <td> <StyledRating
-                    type="rating"
-                    value={props.data.profRating.engaging}
-                    icon={<RadioButtonCheckedIcon />}
-                    emptyIcon={<RadioButtonUncheckedIcon />}
-                    name="engaging"
-                    onChange={props.handleProfRatingChange}
-                /></td>
                 </tr>
-            <tr>
-                <td> Grading Difficulty:
-                        {props.data.error.grading ? (
-                        <td>
-                            <small className="text-danger">{props.data.error.grading}</small>
-                        </td>
-                    ) : null}
-                </td>
-                <td>
-                    <StyledRating
-                        type="rating"
-                        value={props.data.profRating.grading}
-                        icon={<RadioButtonCheckedIcon />}
-                        emptyIcon={<RadioButtonUncheckedIcon />}
-                        name="grading"
-                        onChange={props.handleProfRatingChange}
-                    />
-                </td>
-            </tr>
-            <tr>
-                <th colSpan="2">
+                <tr>
+                    <th colSpan="2">
 
-                    <textarea
-                        className="form-control"
-                        rows="5"
-                        value={props.data.profRating.comments}
-                        placeholder="Please elaborate (optional)."
-                        name="comments"
-                        onChange={props.handleProfRatingChange}></textarea>
-                </th>
-            </tr>
+                        <textarea
+                            className="form-control"
+                            rows="5"
+                            value={props.data.profRating.comments}
+                            placeholder={commentsPlaceholder}
+                            name="comments"
+                            onChange={props.handleProfRatingChange}></textarea>
+                    </th>
+                </tr>
             </tbody>
         </table >
     )
