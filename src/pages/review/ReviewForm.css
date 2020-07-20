@@ -21,3 +21,28 @@ li * {
 .btn-approval {
     padding-right: 15px;
 }
+
+.review-grade{
+    padding-top: 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.grade-input{
+    margin-left: 20px;
+    width: 50px;
+    height: 30px;
+}
+
+.info-tooltip{
+    padding-left: 5px; 
+    padding-right: 0px;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+.info-tooltip:focus{
+    outline: none;
+}
+
