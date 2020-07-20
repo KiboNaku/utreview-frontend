@@ -393,7 +393,7 @@ class CourseDetails extends React.Component {
                 </div>
                 
                 <div className="course-tables">
-                    <CourseProfs courseProfs = {this.state.courseProfs} key={this.state.courseProfs} />
+                    <CourseProfs courseInfo = {this.state.courseInfo} courseProfs = {this.state.courseProfs} key={this.state.courseProfs} />
                 </div>
 
                 <CourseSchedule courseSchedule = {this.state.courseSchedule} key={this.state.courseSchedule.currentSem}/>
