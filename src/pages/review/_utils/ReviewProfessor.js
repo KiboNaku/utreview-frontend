@@ -11,9 +11,9 @@ import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded';
 import { BinaryFeedback } from 'react-simple-user-feedback'
 
 function ReviewProfessor(props) {
-    let likeIcon = props.data.ProfessorLikePressed ?
+    let likeIcon = props.data.profRating.likePressed ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
-    let dislikeIcon = props.data.ProfessorDislikePressed ?
+    let dislikeIcon = props.data.profRating.dislikePressed ?
         <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
 
     const likeButton = (
@@ -56,9 +56,9 @@ function ReviewProfessor(props) {
             <tbody>
                 <tr>
                     <td> Approval:
-                        {props.data.ProfessorApprovalError ? (
+                        {props.data.error.prof.approval ? (
                             <td>
-                                <small className="text-danger">{props.data.ProfessorApprovalError}</small>
+                                <small className="text-danger">{props.data.error.prof.approval}</small>
                             </td>
                         ) : null}
                     </td>
@@ -69,19 +69,19 @@ function ReviewProfessor(props) {
                 </tr>
                 <tr>
                     <td> Clear:
-                        {props.data.ClearError ? (
+                        {props.data.error.clear ? (
                             <td>
-                                <small className="text-danger">{props.data.ClearError}</small>
+                                <small className="text-danger">{props.data.error.clear}</small>
                             </td>
                         ) : null}
                     </td>
                     <td> <StyledRating
                         type="rating"
-                        value={props.data.Clear}
+                        value={props.data.profRating.clear}
                         icon={<RadioButtonCheckedIcon />}
                         emptyIcon={<RadioButtonUncheckedIcon />}
-                        name="Clear"
-                        onChange={props.handleChange}
+                        name="clear"
+                        onChange={props.handleProfRatingChange}
                     /></td>
                 </tr>
                 <tr>
@@ -137,44 +137,26 @@ function ReviewProfessor(props) {
                 <td>
                     <StyledRating
                         type="rating"
-                        value={props.data.Engaging}
+                        value={props.data.profRating.grading}
                         icon={<RadioButtonCheckedIcon />}
                         emptyIcon={<RadioButtonUncheckedIcon />}
-                        name="Engaging"
-                        onChange={props.handleChange}
-                    /></td>
-                </tr>
-                <tr>
-                    <td> Grading Difficulty:
-                        {props.data.GradingDifficultyError ? (
-                            <td>
-                                <small className="text-danger">{props.data.GradingDifficultyError}</small>
-                            </td>
-                        ) : null}
-                    </td>
-                    <td>
-                        <StyledRating
-                            type="rating"
-                            value={props.data.GradingDifficulty}
-                            icon={<RadioButtonCheckedIcon />}
-                            emptyIcon={<RadioButtonUncheckedIcon />}
-                            name="GradingDifficulty"
-                            onChange={props.handleChange}
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <th colSpan="2">
+                        name="grading"
+                        onChange={props.handleProfRatingChange}
+                    />
+                </td>
+            </tr>
+            <tr>
+                <th colSpan="2">
 
-                        <textarea
-                            className="form-control"
-                            rows="5"
-                            value={props.data.ProfessorComment}
-                            placeholder="Please elaborate (optional)."
-                            name="ProfessorComment"
-                            onChange={props.handleChange}></textarea>
-                    </th>
-                </tr>
+                    <textarea
+                        className="form-control"
+                        rows="5"
+                        value={props.data.profRating.comments}
+                        placeholder="Please elaborate (optional)."
+                        name="comments"
+                        onChange={props.handleProfRatingChange}></textarea>
+                </th>
+            </tr>
             </tbody>
         </table >
     )

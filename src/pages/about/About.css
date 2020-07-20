@@ -78,21 +78,8 @@
 	object-fit: cover;
 }
 
-.special-thanks-title {
-	font-size: 150%;
-	margin-bottom: 0px;
-}
-
 @media (max-width: 576px) {
 	.about-header-2 {
 		font-size: 130%;
 	}
-	.special-thanks-title {
-		font-size: 120%;
-	}
-
-	.special-thanks-content {
-		font-size: 80%;
-	}
 }
-
