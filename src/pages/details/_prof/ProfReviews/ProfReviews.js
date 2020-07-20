@@ -272,7 +272,7 @@ class ProfReviews extends React.Component {
 
 						this.handleCourseChange(values)
 					}}
-					placeholder="Select"
+					placeholder="All Courses"
 					isClearable={true}
 					isSearchable={true}
 					isMulti

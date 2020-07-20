@@ -106,13 +106,13 @@ function ProfReviewEntry(props) {
         <div className="list-group-item review-list-item">
             <div className="prof-review-entry">
                 <div className="userDes">
-                    <Avatar className={classes.large} src={props.review.profilePic}>  </Avatar>
+                    <Avatar className={classes.large} src={require('./../../../../res/img/' + props.review.profilePic)}>  </Avatar>
                     <div className="userText">
                         <span> {props.review.userMajor} student, enrolled in </span>
                         <Link
                             className="utcolor"
                             to={{
-                                pathname: `course-results/${coursePath}`,
+                                pathname: `/course-results/${coursePath}`,
                                 state: {
                                     courseId: props.review.courseId
                                 }

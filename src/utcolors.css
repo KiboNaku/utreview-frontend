@@ -32,7 +32,7 @@ a.utcolor:active, link.utcolor:active {
 }
 
 input[type="radio"] {
-    /* display: none; */
+    display: none;
 }
 
 input[type="radio"]+label:before {
