@@ -16,7 +16,7 @@ class Home extends Component {
 
                             <br />
 
-                            <div className="search-wrapper container">
+                            <div className="search-wrapper-lg container">
                                 <SearchBar />
                             </div>
                         </div>

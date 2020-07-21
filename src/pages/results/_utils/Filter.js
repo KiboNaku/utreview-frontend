@@ -4,6 +4,7 @@ import Select from 'react-select'
 import './Filter.css'
 
 function Filter(props) {
+
     return (
 
         <div className='card'>
@@ -74,19 +75,19 @@ function Filter(props) {
                     <label className="font-weight-bold text-left float-left">Semester</label>
                     <br />
                     <div className="form-check sem-radio" onClick={() => { props.handleFilterChange(null, -1, -1, "all") }} >
-                        <input className="form-check-input mb-0" type="radio" name="semester" value="all"
+                        <input className="form-check-input mb-0 utcolor" type="radio" name="semester" value="all"
                             checked={props.filter.sem == "all"} />
                         <label className="form-check-labe text-left mb-0 ">All</label>
                     </div>
                     <br />
                     <div className="form-check sem-radio" onClick={() => { props.handleFilterChange(null, -1, -1, "current") }}>
-                        <input className="form-check-input" type="radio" name="semester" value="current"
+                        <input className="form-check-input utcolor" type="radio" name="semester" value="current"
                             checked={props.filter.sem == "current"} />
                         <label className="form-check-label text-left ">Current (insert semester)</label>
                     </div>
                     <br />
                     <div className="form-check sem-radio" onClick={() => { props.handleFilterChange(null, -1, -1, "next") }} >
-                        <input className="form-check-input" type="radio" name="semester" value="next"
+                        <input className="form-check-input utcolor" type="radio" name="semester" value="next"
                             checked={props.filter.sem == "next"}/>
                         <label className="form-check-label text-left ">Next (insert semester)</label>
                     </div>
