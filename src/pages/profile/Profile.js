@@ -157,7 +157,7 @@ class Profile extends Component {
     editReview(id) {
         let review
         this.state.reviews.map(r => {
-            if (r.id == id) {
+            if (r.id === id) {
                 review = r
             }
         })
@@ -217,28 +217,26 @@ class Profile extends Component {
 
     onSubmit(mode, firstName, lastName, password, confirmPassword, major) {
         switch (mode) {
-            case 'apply':
-                
+            case 'apply':    
                 console.log(password)
                 if(password === confirmPassword){
-                    this.setState({
-                        firstName: firstName,
-                        lastName: lastName,
-                        major: major
-                    })
                     const user = {
                         first_name: firstName,
                         last_name: lastName,
                         email: this.state.email,
                         password: password,
                         major: major,
-                        profile_pic: this.state.profilePic
                     }
     
                     updateInfo(user).then(res => {
                         if (res.error) {
                             alert(res.error)
                         } else {
+                            this.setState(prevState => ({
+                                firstName: firstName !== null && firstName !== "" ? firstName : prevState.firstName,
+                                lastName: lastName !== null && lastName !== "" ? lastName : prevState.lastName,
+                                major: major !== null && major !== "" ? major : prevState.major,
+                            }))
                             $('#settings').modal('hide')
                         }
                     })
