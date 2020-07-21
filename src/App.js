@@ -14,15 +14,18 @@ import Signup from './pages/popups/Signup'
 import "./App.css"
 import ConfirmEmail from './pages/confirm-email/ConfirmEmail';
 import VerifyEmail from './pages/popups/VerifyEmail';
+import ScrollTop from './pages/_utils/ScrollTop'
 
 function App() {
 
 	return (
 		<Router>
 			<div className="App">
+				
+				<ScrollTop/>
 
 				<Switch>
-					<Route exact path="/" component={() => <NavBar showSearch="false" transparent="true"/>} />
+					<Route exact path="/" component={() => <NavBar showSearch="false" transparent="true" />} />
 					<Route path="/" component={() => <NavBar showSearch="true" transparent="false" />} />
 				</Switch>
 
@@ -31,17 +34,18 @@ function App() {
 					<Route path="/profile" component={Profile} />
 					<Route path="/about" component={About} />
 					<Route exact path="/results" component={Results} />
-					<Route path="/add-review" render={(props) => <ReviewForm /> } />
+					<Route path="/add-review" render={(props) => <ReviewForm />} />
 					<Route path="/edit-review" component={ReviewForm} />
-					<Route path="/confirm_email" component={ConfirmEmail}/>
+					<Route path="/confirm_email" component={ConfirmEmail} />
 					<Route path={"/course-results/:courseId"} render={(props) => <CourseDetails />} />
 					<Route path={"/prof-results/:profId"} render={(props) => <ProfDetails />} />
 				</Switch>
-				<Footer />
 
-		        <Login />
-		        <Signup />
+				<Footer />
+				<Login />
+				<Signup />
 				<VerifyEmail />
+
 			</div>
 		</Router>
 	);

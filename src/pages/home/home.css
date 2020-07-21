@@ -20,6 +20,18 @@ main.home-page {
     color: #9cadb7;
 }
 
+
+h1.home-main-txt {
+    font-size: 300%;
+}
+
+@media screen and (max-width: 992px){
+
+    h1.home-main-txt {
+        font-size: 250%;
+    }
+}
+
 @media screen and (max-width: 768px){
 
     h1.home-main-txt {
