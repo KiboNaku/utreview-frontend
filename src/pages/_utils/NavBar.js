@@ -24,12 +24,21 @@ class NavBar extends Component {
     }
 
     render() {
-        const login = (
-            <button type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#login-modal">Log in</button>
+
+        const btnDuo = (
+
+            <span>
+                <span className="align-self-center mr-2 d-none d-md-inline">
+                    <button type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#signup-modal">Sign up</button>
+                </span>
+                <span className="align-self-center mr-2 d-md-inline">
+                    <button type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#login-modal">Log in</button>
+                </span>
+            </span>
         )
 
-        // make photo dynamic
-        const logout = (
+        // TODO: make photo dynamic
+        const dropdownMenu = (
             <div className="d-inline-block menu-dropdown d-flex align-items-center">
 
                 <div className="float-right ">
@@ -53,10 +62,6 @@ class NavBar extends Component {
                 </li>
             </div>
 
-        )
-
-        const signup = (
-            <button type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#signup-modal">Sign up</button>
         )
 
         /**
@@ -89,28 +94,27 @@ class NavBar extends Component {
                         </div>
                         <div className="ml-auto">
 
-                            {!localStorage.usertoken &&
-                                <span className="align-self-center mr-2 d-none d-md-inline">
-                                    {signup}
-                                </span>
-                            }
-
+                            {localStorage.usertoken? dropdownMenu: btnDuo}
+{/* 
                             <div className="align-self-center mr-2">
                                 {localStorage.usertoken ? logout : login}
-                            </div>
+                            </div> */}
                         </div>
-
                     </nav>
                 }
 
                 <nav className={"navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar py-3 justify-content-between "
                     + (transparent ? "transparent" : "bg-dark")}>
 
-                    <div className="navbar-brand" className={"font-weight-bold float-left align-self-center" + (showSearch && " d-none d-md-block")}>
+                    <div className="d-none d-md-block px-3 mx-3"></div>
+
+                    <div className={"navbar-brand font-weight-bold float-left align-self-center " + (showSearch && "d-none d-sm-block")}>
                         <Link className={(showSearch ? "brand-txt" : "big-brand-txt") + " px-2"} to="/">
                             UT Review
                         </Link>
                     </div>
+
+                    <div className="d-none d-md-block px-1 mx-1"></div>
 
                     <div className={showSearch ? "search-wrapper mr-auto" : "d-none"} >
                         <SearchBar />
@@ -118,17 +122,12 @@ class NavBar extends Component {
 
                     <div className="ml-auto">
 
-                        {!localStorage.usertoken &&
-                            <span className="align-self-center mr-2 d-none d-md-inline">
-                                {signup}
-                            </span>
-                        }
-
-                        <div className="align-self-center mr-2">
-                            {localStorage.usertoken ? logout : login}
+                            {localStorage.usertoken? dropdownMenu: btnDuo}
+{/* 
+                            <div className="align-self-center mr-2">
+                                {localStorage.usertoken ? logout : login}
+                            </div> */}
                         </div>
-                    </div>
-
                 </nav>
             </div>
         )
