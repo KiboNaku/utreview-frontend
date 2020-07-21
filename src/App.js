@@ -15,6 +15,7 @@ import Signup from './pages/popups/Signup'
 import "./App.css"
 import ConfirmEmail from './pages/confirm-email/ConfirmEmail';
 import VerifyEmail from './pages/popups/VerifyEmail';
+import ScrollTop from './pages/_utils/ScrollTop'
 
 class App extends Component{
 
@@ -42,6 +43,7 @@ class App extends Component{
 		return (
 			<Router>
 				<div className="App">
+					<ScrollTop/>
 	
 					<Switch>
 						<Route exact path="/" component={() => <NavBar profilePic={this.state.profilePic} showSearch="false" transparent="true"/>} />

@@ -58,3 +58,15 @@ h1 {
 h2 {
 	font-family: Georgia, serif;
 }
+
+.bg-dark {
+	background-color: #282c34;
+}
+
+.bg-grey {
+	background-color: #9cadb7;
+}
+
+.bg-light {
+	background-color: #d6d2c4;
+}
