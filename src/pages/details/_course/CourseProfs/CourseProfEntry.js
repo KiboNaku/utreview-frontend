@@ -10,6 +10,12 @@ function CourseProfEntry(props) {
     let grading = props.grading !== null ? `${props.grading}` : "N/A"
     let prof_id = "prof" + props.id.toString()
     const profPath = props.firstName.toLowerCase().replace(" ", "") + "_" + props.lastName.toLowerCase().replace(" ", "")
+    let profFirst = props.firstName
+    let profLast = props.lastName
+    profLast = profLast.split(" ")
+    profLast = profLast[profLast.length - 1]
+
+    let syllabiLink = `https://utdirect.utexas.edu/apps/student/coursedocs/nlogon/?semester=&department=${props.course.courseDept}&course_number=${props.course.courseNum}&course_title=&unique=&instructor_first=${profFirst}&instructor_last=${profLast}&course_type=In+Residence&search=Search`
     return (
         <tr key={props.id}>
             <td>
@@ -30,7 +36,7 @@ function CourseProfEntry(props) {
             <td align="center">{engaging}</td>
             <td align="center">{grading}</td>
             <td align="center">
-                <a href="https://www.google.com" > Syllabi </a>
+                <a href={syllabiLink} rel="noopener noreferrer" target="_blank"> Syllabi </a>
             </td>
             <td align="center">
                 <a href="https://www.google.com" > UT Catalyst </a>
