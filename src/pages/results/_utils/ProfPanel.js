@@ -63,42 +63,47 @@ function ProfPanel(props) {
             // TODO: update with filter
 
             let sortedProfs = props.data
+                .filter(prof =>
+                    (filter.mApp <= prof.approval) &&
+                    (filter.mNum <= prof.numRatings))
                 .sort(sortTypes[sortDir].fn)
                 .slice(0, props.calcTableEdge(props.page, props.data.length))
 
-            return sortedProfs.map(prof => {
-                const { firstName, lastName } = prof
+            if (sortedProfs.length > 0) {
+                return sortedProfs.map(prof => {
+                    const { firstName, lastName } = prof
 
-                // TODO: temporary numbers to fill table: remove later
-                const rating = Math.floor(Math.random() * 70 + 30)
-                const numRating = Math.floor(Math.random() * 1500)
-                const profPath = firstName.toLowerCase().replace(" ", "") + "_" + lastName.toLowerCase().replace(" ", "")
-                return (
-                    <tr key={prof.id} ref={loadRef}>
-                        <td colSpan="3" className="class-name">{
-                            <Link
-                                className="utcolor"
-                                to={{
-                                    pathname: `/prof-results/${profPath}`,
-                                    state: {
-                                        profId: prof.id
-                                    }
-                                }}
-                            > {firstName} {lastName}
-                            </Link>
-                        }</td>
-                        <td colSpan="1">
-                            {prof.eCIS !== null ? prof.eCIS : "N/A"}
+                    // TODO: temporary numbers to fill table: remove later
+                    const rating = Math.floor(Math.random() * 70 + 30)
+                    const numRating = Math.floor(Math.random() * 1500)
+                    const profPath = firstName.toLowerCase().replace(" ", "") + "_" + lastName.toLowerCase().replace(" ", "")
+                    return (
+                        <tr key={prof.id} ref={loadRef}>
+                            <td colSpan="3" className="class-name">{
+                                <Link
+                                    className="utcolor"
+                                    to={{
+                                        pathname: `/prof-results/${profPath}`,
+                                        state: {
+                                            profId: prof.id
+                                        }
+                                    }}
+                                > {firstName} {lastName}
+                                </Link>
+                            }</td>
+                            <td colSpan="1">
+                                {prof.eCIS !== null ? prof.eCIS : "N/A"}
+                            </td>
+                            <td colSpan="1">
+                                {prof.approval !== null ? prof.approval : "N/A"}%
 							</td>
-                        <td colSpan="1">
-                            {prof.approval !== null ? prof.approval: "N/A"}%
-							</td>
-                        <td colSpan="1">
-                            {prof.numRatings}
-                        </td>
-                    </tr>
-                )
-            })
+                            <td colSpan="1">
+                                {prof.numRatings}
+                            </td>
+                        </tr>
+                    )
+                })
+            }
         }
     }
 
@@ -132,7 +137,7 @@ function ProfPanel(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {setTableData()}
+                    {setTableData(props.loading)}
                 </tbody>
             </table>
             <div>{hasMore && props.loading}</div>

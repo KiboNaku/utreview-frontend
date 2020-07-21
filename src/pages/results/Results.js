@@ -72,7 +72,7 @@ class Results extends Component {
 				let list = new Array()
 				for (const i in data) {
 					list.push({
-						value: data[i]['name'],
+						value: data[i]['abr'],
 						label: data[i]['name']
 					})
 				}

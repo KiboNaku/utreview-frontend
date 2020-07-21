@@ -3,7 +3,7 @@ import TabPanel from './TabPanel'
 import { Link } from 'react-router-dom'
 
 function CoursePanel(props) {
-    
+
     const { sortDir, sortBy } = props.sort
     const [hasMore, setHasMore] = useState(true)
     const observer = useRef()
@@ -40,79 +40,85 @@ function CoursePanel(props) {
         return null;
     }
 
-    function setTableData() {
+    function setTableData(tableData) {
 
         if (props.data != null) {
 
-            const { sortDir } = props.sort
-            const filter = props.filter
-
-            const sortTypes = {
-                up: {
-                    class: 'sortUp',
-                    fn: (a, b) => sort(a, b)
-                },
-                down: {
-                    class: 'sortDown',
-                    fn: (a, b) => sort(b, a)
-                },
-                default: {
-                    class: 'sort',
-                    fn: (a, b) => a
-                }
-            }
-
             // TODO: update filter with other filters
 
-            let sortedCourses = props.data
-                .filter(course => filter.depts.length <= 0 || filter.depts.includes(course.courseDept))
-                .sort(sortTypes[sortDir].fn)
-                .slice(0, props.calcTableEdge(props.page, props.data.length))
+            if (sortedCourses.length > 0) {
 
-            return sortedCourses.map((course, index) => {
-                const { courseTitle } = course
-                
-                let courseName = course.courseDept + " " + course.courseNum
-                let coursePath = course.courseDept.toLowerCase().replace(' ', '') + "_" + course.courseNum.toLowerCase()
-                if(course.courseTopic >= 0){
-                    coursePath += "_" + course.courseTopic.toString()
-                } 
-                // TODO: temporary numbers to fill table: remove later
-                // const rating = Math.floor(Math.random() * 70 + 30)
-                // const numRating = Math.floor(Math.random() * 1500)
+                return sortedCourses.map((course, index) => {
+                    const { courseTitle } = course
 
-                let rating = 1
-                let numRating = 1
-                return (
+                    let courseName = course.courseDept + " " + course.courseNum
+                    let coursePath = course.courseDept.toLowerCase().replace(' ', '') + "_" + course.courseNum.toLowerCase()
+                    if (course.courseTopic >= 0) {
+                        coursePath += "_" + course.courseTopic.toString()
+                    }
+                    // TODO: temporary numbers to fill table: remove later
+                    // const rating = Math.floor(Math.random() * 70 + 30)
+                    // const numRating = Math.floor(Math.random() * 1500)
 
-                    <tr key={course.id} ref={loadRef}>
-                        <td colSpan="1">{courseName}</td>
-                        <td colSpan="2" className="class-name">{
-                            <Link
-                                className="utcolor"
-                                to={{
-                                    pathname: `/course-results/${coursePath}`,
-                                    state: {
-                                        courseId: course.id
-                                    }
-                                }}
-                            > {courseTitle}
-                            </Link>
-                        }</td>
-                        <td colSpan="1">
-                            {course.eCIS !== null ? course.eCIS: "N/A"}
+                    let rating = 1
+                    let numRating = 1
+                    return (
+
+                        <tr key={course.id} ref={loadRef}>
+                            <td colSpan="1">{courseName}</td>
+                            <td colSpan="2" className="class-name">{
+                                <Link
+                                    className="utcolor"
+                                    to={{
+                                        pathname: `/course-results/${coursePath}`,
+                                        state: {
+                                            courseId: course.id
+                                        }
+                                    }}
+                                > {courseTitle}
+                                </Link>
+                            }</td>
+                            <td colSpan="1">
+                                {course.eCIS !== null ? course.eCIS : "N/A"}
+                            </td>
+                            <td colSpan="1">
+                                {course.approval !== null ? course.approval : "N/A"}%
 							</td>
-                        <td colSpan="1">
-                            {course.approval !== null ? course.approval: "N/A"}%
-							</td>
-                        <td colSpan="1">
-                            {course.numRatings}
-                        </td>
-                    </tr>
-                )
-            })
+                            <td colSpan="1">
+                                {course.numRatings}
+                            </td>
+                        </tr>
+                    )
+                })
+            }
         }
     }
+
+    const filter = props.filter
+
+    const sortTypes = {
+        up: {
+            class: 'sortUp',
+            fn: (a, b) => sort(a, b)
+        },
+        down: {
+            class: 'sortDown',
+            fn: (a, b) => sort(b, a)
+        },
+        default: {
+            class: 'sort',
+            fn: (a, b) => a
+        }
+    }
+
+    let sortedCourses = props.data
+        .filter(course =>
+            (filter.depts.length <= 0 || filter.depts.includes(course.courseDept)) &&
+            (course.approval !== null || filter.mApp <= course.approval) &&
+            (course.numRatings != null || filter.mNum <= course.numRatings))
+        .sort(sortTypes[sortDir].fn)
+        .slice(0, props.calcTableEdge(props.page, props.data.length))
+
 
     let courseTable = (
         <div>
@@ -149,7 +155,7 @@ function CoursePanel(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {setTableData()}
+                    {setTableData(sortedCourses)}
                 </tbody>
             </table>
             <div>{hasMore && props.loading}</div>
@@ -158,7 +164,7 @@ function CoursePanel(props) {
 
     return (
         <TabPanel index={0} value={props.tabIndex} className="table-panel">
-            {props.loaded ? (props.data.length == 0 ? props.emptyTable : courseTable) : props.loading}
+            {props.loaded ? (sortedCourses.length == 0 ? props.emptyTable : courseTable) : props.loading}
         </TabPanel>
     )
 }
