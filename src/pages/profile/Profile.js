@@ -211,6 +211,8 @@ class Profile extends Component {
                 alert(res.error)
             } 
         })
+
+        this.props.handleProfilePicChange(image)
     }
 
     //all need to add backend stuff

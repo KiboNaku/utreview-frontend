@@ -1,11 +1,21 @@
 
 import React, { Component } from 'react'
+import jwt_decode from 'jwt-decode'
 import { Link, Route, Switch, withRouter } from 'react-router-dom';
 
 import SearchBar from './SearchBar'
 import "./NavBar.css"
 
 class NavBar extends Component {
+    constructor(){
+        super()
+        const token = localStorage.usertoken
+        const decoded = jwt_decode(token)
+        const profilePic = decoded.identity.profile_pic
+        this.state = {
+            profilePic: profilePic
+        }
+    }
 
     logOut(e) {
         e.preventDefault()
@@ -14,7 +24,6 @@ class NavBar extends Component {
     }
 
     render() {
-
         const login = (
             <button type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#login-modal">Log in</button>
         )
@@ -25,7 +34,7 @@ class NavBar extends Component {
 
                 <div className="float-right ">
                     <Link to="/profile">
-                        <img className="rounded-circle nav-bar-profile" src={require("./../../res/img/default.jpg")}
+                        <img className="rounded-circle nav-bar-profile" src={require("./../../res/img/" + this.props.profilePic)}
                             data-holder-rendered="true" />
                     </Link>
                 </div>
