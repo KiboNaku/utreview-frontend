@@ -8,15 +8,28 @@ export const getProfilePictures = () => {
 		})
 }
 
+export const updateProfilePic = user => {
+	return axios
+		.post('/api/update_profile_pic', {
+			email: user.email,
+			profile_pic: user.profile_pic
+		})
+		.then(response => {
+			console.log(response)
+			localStorage.setItem('usertoken', response.data)
+			return response.data
+		})
+}
+
 export const updateInfo = user => {
 	return axios
-		.post('/api/update_info', {
+		.post('/api/update_user_info', {
 			first_name: user.first_name,
 			last_name: user.last_name,
-			email: user.email + '@utexas.edu',
+			email: user.email,
 			password: user.password,
 			major: user.major,
-			image: user.image
+			profile_pic: user.profile_pic
 		})
 		.then(response => {
 			console.log(response)

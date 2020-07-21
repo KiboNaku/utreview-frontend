@@ -24,7 +24,7 @@ class ProfCourses extends React.Component {
     render() {
         const profCourseList = this.state.profCourses.map(course => {
             return [
-                <ProfCourseEntry {...course} />,
+                <ProfCourseEntry prof={this.props.profInfo} {...course} />,
             ]
 
         })
