@@ -2,6 +2,7 @@ import React from 'react';
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import AppBar from '@material-ui/core/AppBar'
+import { makeStyles } from '@material-ui/core/styles';
 import TabPanel from '../TabPanel'
 import ProfScheduleEntry from './ProfScheduleEntry'
 import './ProfSchedule.css'
@@ -32,12 +33,6 @@ class ProfSchedule extends React.Component {
     }
 
     render() {
-
-        const styles = theme => ({
-            indicator: {
-                backgroundColor: '#bf5700',
-            },
-        })
 
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         const currentSemList = this.state.profSchedule.currentSem.map(prof => {
@@ -102,6 +97,11 @@ class ProfSchedule extends React.Component {
                         centered
                         name="currentTab"
                         onChange={this.handleTabChange}
+                        TabIndicatorProps={{
+                            style: {
+                                backgroundColor: '#bf5700'
+                            }
+                        }}
                     >
                         <Tab label="Summer 2020" aria-controls='tabpanel-0' />
                         <Tab label="Fall 2020" aria-controls='tabpanel-1' />
