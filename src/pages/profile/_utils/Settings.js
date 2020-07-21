@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
 import ModalHeader from './../../popups/_utils/ModalHeader'
+import $ from './../../../../node_modules/jquery'
 import UTEmail from './../../popups/_utils/UTEmail'
 
 class Settings extends Component {
@@ -8,11 +9,11 @@ class Settings extends Component {
 		super(props)
 
 		this.state = {
-			firstName: '',
-			lastName: '',
+			firstName: props.data.firstName,
+			lastName: props.data.lastName,
 			password: '',
-			confirmPassord: '',
-			major: '',
+			confirmPassword: '',
+			major: props.data.major,
 			email: ''
 		}
 
@@ -22,6 +23,8 @@ class Settings extends Component {
 		this.onChange = this.onChange.bind(this)
 		this.handleMajorChange = this.handleMajorChange.bind(this)
 		this.setValues = this.setValues.bind(this)
+		this.handleCancel = this.handleCancel.bind(this)
+		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 
 	onChange(event) {
@@ -31,6 +34,8 @@ class Settings extends Component {
 	handleMajorChange = (inputValue, { action }) => {
 		if (inputValue !== null) {
 			this.setState({ major: inputValue.value })
+		}else{
+			this.setState({major: null})
 		}
 	}
 
@@ -43,6 +48,30 @@ class Settings extends Component {
 				email: this.props.data.email
 			})
 		}
+	}
+
+	handleCancel() {
+		console.log(this.props)
+		this.setState({
+			firstName: this.props.data.firstName,
+			lastName: this.props.data.lastName,
+			password: '',
+			confirmPassword: '',
+			major: this.props.data.major,
+			email: ''
+		})
+		$('#settings').modal('hide')
+	}
+
+	handleSubmit(){
+		this.setState(prevState => ({
+			firstName: prevState.firstName !== null && prevState.firstName !== "" ? prevState.firstName: this.props.data.firstName,
+			lastName: prevState.lastName !== null && prevState.lastName !== "" ? prevState.lastName: this.props.data.lastName,
+			password: '',
+			confirmPassword: '',
+			major: prevState.major !== null && prevState.major !== "" ? prevState.major: this.props.data.major,
+		}))
+		this.props.onSubmit('apply', this.state.firstName, this.state.lastName, this.state.password, this.state.confirmPassword, this.state.major)
 	}
 
 	componentDidUpdate(prevProps) {
@@ -105,7 +134,8 @@ class Settings extends Component {
 												placeholder="Select major..."
 												isClearable={true}
 												isSearchable={true}
-												defaultValue={{ label: this.state.major, value: this.state.major }}
+												value={this.state.major !== null ?
+													this.props.data.majorList.filter(major => major.value === this.state.major) : null}
 											/>
 										</div>
 									</div>
@@ -132,7 +162,7 @@ class Settings extends Component {
 											<input
 												id='confirmPassword'
 												type="password"
-												name="confirm_password"
+												name="confirmPassword"
 												className="form-control"
 												value={this.state.confirmPassword}
 												onChange={this.onChange}
@@ -146,12 +176,12 @@ class Settings extends Component {
 								<button
 									type='button'
 									className='btn btn-outline-dark font-weight-bold'
-									onClick={() => this.props.onSubmit('apply', this.state.firstName, this.state.lastName, this.state.password, this.state.confirmPassword, this.state.major)}>
+									onClick={() => this.handleSubmit()}>
 									Apply </button>
 								<button
 									type='button'
 									className='btn btn-outline-dark font-weight-bold'
-									onClick={() => this.props.onSubmit('cancel')}>
+									onClick={() => this.handleCancel()}>
 									Cancel </button>
 							</div>
 						</div>
