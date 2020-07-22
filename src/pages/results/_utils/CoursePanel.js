@@ -23,7 +23,7 @@ function CoursePanel(props) {
         const sortBy = props.sort.sortBy
         const courses = props.data
 
-        if (courses.length >= 0 && sortBy in a) {
+        if (courses.length >= 0) {
 
             // TODO: update with approval & # ratings
 
@@ -34,9 +34,32 @@ function CoursePanel(props) {
                     return courseNameB.localeCompare(courseNameA)
                 case 'courseTitle':
                     return b.courseTitle.localeCompare(a.courseTitle)
+                case 'courseECIS':
+                    if (a.eCIS !== null && b.eCIS !== null) return b.eCIS - a.eCIS
+                    else if (a.eCIS === null && b.eCIS !== null) {
+                        if(props.sort.sortDir === 'up') return 1 
+                        else return -1
+                    }
+                    else if (a.eCIS !== null && b.eCIS === null) {
+                        if(props.sort.sortDir === 'up') return -1 
+                        else return 1
+                    }
+                    else return 0
+                case 'courseApproval':
+                    if (a.approval !== null && b.approval !== null) return b.approval - a.approval
+                    else if (a.approval === null && b.approval !== null) {
+                        if(props.sort.sortDir === 'up') return 1 
+                        else return -1
+                    }
+                    else if (a.approval !== null && b.approval === null) {
+                        if(props.sort.sortDir === 'up') return -1 
+                        else return 1
+                    }
+                    else return 0
+                case 'courseRatings':
+                    return b.numRatings - a.numRatings
             }
         }
-
         return null;
     }
 
@@ -82,7 +105,7 @@ function CoursePanel(props) {
                                 {course.eCIS !== null ? course.eCIS : "N/A"}
                             </td>
                             <td colSpan="1">
-                                {course.approval !== null ? course.approval : "N/A"}%
+                                {course.approval !== null ? course.approval+'%' : "N/A"}
 							</td>
                             <td colSpan="1">
                                 {course.numRatings}
@@ -138,19 +161,19 @@ function CoursePanel(props) {
                         </th>
 
                         {/* TODO: update with onclick functions */}
-                        <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for eCIS")}>
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => props.handleSortChange('courseECIS')}>
                             <span>eCIS</span>
-                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'eCIS' ? '' : ' invisible')}></i>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseECIS' ? '' : ' invisible')}></i>
                         </th>
 
-                        <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for approval")}>
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => props.handleSortChange('courseApproval')}>
                             <span>Approval</span>
-                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'approval' ? '' : ' invisible')}></i>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseApproval' ? '' : ' invisible')}></i>
                         </th>
 
-                        <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for num ratings")}>
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => props.handleSortChange('courseRatings')}>
                             <span># Ratings</span>
-                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'ratings' ? '' : ' invisible')}></i>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'courseRatings' ? '' : ' invisible')}></i>
                         </th>
                     </tr>
                 </thead>
