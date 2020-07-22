@@ -7,13 +7,10 @@ import SearchBar from './SearchBar'
 import "./NavBar.css"
 
 class NavBar extends Component {
-    constructor(){
-        super()
-        const token = localStorage.usertoken
-        const decoded = jwt_decode(token)
-        const profilePic = decoded.identity.profile_pic
+    constructor(props){
+        super(props)
         this.state = {
-            profilePic: profilePic
+            profilePic: props.profilePic
         }
     }
 

@@ -33,6 +33,35 @@ export const login = user => {
 		})
 }
 
+export const forgotPassword = user => {
+	
+	return axios
+		.post('/api/forgot_password', {
+			email: user.email + '@utexas.edu',
+		})
+		.then(response => {
+			if(response.data.success >= 0) 
+				localStorage.setItem('email', response.data.email)
+			return response.data
+		})
+		.catch(err => {
+			console.log(err)
+		})
+}
+
+export const sendResetPassword = () => {
+
+	if(localStorage.email !== 'undefined'){
+
+		return axios
+			.post('/api/send_reset_password', {
+				email: localStorage.email
+			})
+	}
+
+	return null
+}
+
 export const getProfile = user => {
 	return axios
 		.get('/users/profile', {

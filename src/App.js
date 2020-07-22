@@ -15,8 +15,11 @@ import Login from './pages/popups/Login'
 import Signup from './pages/popups/Signup'
 import "./App.css"
 import ConfirmEmail from './pages/confirm-email/ConfirmEmail';
+import ResetPassword from './pages/reset-password/ResetPassword';
 import VerifyEmail from './pages/popups/VerifyEmail';
 import ScrollTop from './pages/_utils/ScrollTop'
+import ForgotPassword from './pages/popups/ForgotPassword';
+import VerifyPassword from './pages/popups/VerifyPassword';
 
 class App extends Component{
 
@@ -25,7 +28,7 @@ class App extends Component{
 		const token = localStorage.usertoken
         
 		let profilePic = 'default.jpg'
-		if(token !== undefined || token !== null){
+		if(token !== undefined && token !== null){
 			const decoded = jwt_decode(token)
 			profilePic = decoded.identity.profile_pic
 		}
@@ -60,6 +63,7 @@ class App extends Component{
 						<Route path="/add-review" render={(props) => <ReviewForm /> } />
 						<Route path="/edit-review" component={ReviewForm} />
 						<Route path="/confirm_email" component={ConfirmEmail}/>
+						<Route path="/reset_password" component={ResetPassword} />
 						<Route path={"/course-results/:courseId"} render={(props) => <CourseDetails />} />
 						<Route path={"/prof-results/:profId"} render={(props) => <ProfDetails />} />
 					</Switch>
@@ -68,6 +72,8 @@ class App extends Component{
 					<Login />
 					<Signup />
 					<VerifyEmail />
+					<ForgotPassword />
+					<VerifyPassword />
 				</div>
 			</Router>
 		);
