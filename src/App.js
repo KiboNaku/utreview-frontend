@@ -4,6 +4,7 @@ import NavBar from './pages/_utils/NavBar'
 import Footer from './pages/_utils/Footer'
 import Home from './pages/home/Home'
 import About from './pages/about/About'
+import PrivacyPolicy from './pages/privacy-policy/PrivacyPolicy'
 import CourseDetails from './pages/details/CourseDetails'
 import ProfDetails from './pages/details/ProfDetails'
 import ReviewForm from './pages/review/ReviewForm'
@@ -54,6 +55,7 @@ class App extends Component{
 						<Route exact path="/" component={Home} />
 						<Route path="/profile" render={(props) => <Profile handleProfilePicChange={this.handleProfilePicChange} />} />
 						<Route path="/about" component={About} />
+						<Route path="/privacy-policy" component={PrivacyPolicy} />
 						<Route exact path="/results" component={Results} />
 						<Route path="/add-review" render={(props) => <ReviewForm /> } />
 						<Route path="/edit-review" component={ReviewForm} />
