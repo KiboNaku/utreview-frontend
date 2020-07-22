@@ -15,7 +15,7 @@ function VerifyEmailComponent(props) {
 		</p>
 
 	return (
-		<div className="modal fade absolute" id="verifyemail-modal" role="dialog">
+		<div className="modal fade" id="verifyemail-modal" role="dialog">
 			<div className="modal-dialog modal-dialog-centered" role="document">
 				<div className="modal-content">
 
