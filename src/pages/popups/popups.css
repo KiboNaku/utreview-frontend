@@ -24,3 +24,9 @@
 .loading-text {
 	padding-top: 1em;
 }
+
+.forgot-password-text{
+	text-align: center;
+	margin: 0 auto;
+	display: block;
+}
