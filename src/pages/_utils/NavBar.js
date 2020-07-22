@@ -104,7 +104,7 @@ class NavBar extends Component {
                         </Link>
                     </div>
 
-                    <div className="d-none d-md-block px-1 mx-1"></div>
+                    <div className="d-none d-md-block px-3 mx-3"></div>
 
                     <div className={showSearch ? "search-wrapper mr-auto" : "d-none"} >
                         <SearchBar />
