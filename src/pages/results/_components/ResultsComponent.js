@@ -42,8 +42,6 @@ function ResultsComponent(props) {
                                 handleFilterChange={props.handleFilterChange} />
                         </div>
 
-
-
                         <div className="col-md-9">
                             <AppBar position="static" color="default">
                                 <Tabs
@@ -73,7 +71,8 @@ function ResultsComponent(props) {
 
                                 calcTableEdge={props.calcTableEdge}
                                 handlePageInc={props.handlePageInc}
-                                handleSortChange={props.handleSortChange} />
+                                handleSortChange={props.handleSortChange}
+                                isSemester={props.isSemester} />
                             <ProfPanel
                                 {...props.profs}
                                 loading={loading}
@@ -84,7 +83,8 @@ function ResultsComponent(props) {
 
                                 calcTableEdge={props.calcTableEdge}
                                 handlePageInc={props.handlePageInc}
-                                handleSortChange={props.handleSortChange} />
+                                handleSortChange={props.handleSortChange}
+                                isSemester={props.isSemester} />
                         </div>
                     </div>
                 </div>

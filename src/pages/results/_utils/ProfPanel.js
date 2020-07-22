@@ -38,36 +38,9 @@ function ProfPanel(props) {
         return null;
     }
 
-    function setTableData() {
+    function setTableData(sortedProfs) {
 
         if (props.data != null) {
-
-            const { sortDir } = props.sort
-            const filter = props.filter
-
-            const sortTypes = {
-                up: {
-                    class: 'sortUp',
-                    fn: (a, b) => sort(a, b)
-                },
-                down: {
-                    class: 'sortDown',
-                    fn: (a, b) => sort(b, a)
-                },
-                default: {
-                    class: 'sort',
-                    fn: (a) => a
-                }
-            }
-            // TODO: update with prof info
-            // TODO: update with filter
-
-            let sortedProfs = props.data
-                .filter(prof =>
-                    (filter.mApp <= prof.approval) &&
-                    (filter.mNum <= prof.numRatings))
-                .sort(sortTypes[sortDir].fn)
-                .slice(0, props.calcTableEdge(props.page, props.data.length))
 
             if (sortedProfs.length > 0) {
                 return sortedProfs.map(prof => {
@@ -107,6 +80,33 @@ function ProfPanel(props) {
         }
     }
 
+    const filter = props.filter
+
+    const sortTypes = {
+        up: {
+            class: 'sortUp',
+            fn: (a, b) => sort(a, b)
+        },
+        down: {
+            class: 'sortDown',
+            fn: (a, b) => sort(b, a)
+        },
+        default: {
+            class: 'sort',
+            fn: (a) => a
+        }
+    }
+    // TODO: update with prof info
+    // TODO: update with filter
+
+    let sortedProfs = props.data
+        .filter(prof =>
+            (filter.mApp <= prof.approval) &&
+            (filter.mNum <= prof.numRatings) &&
+            (props.isSemester(filter.sem, prof)))
+        .sort(sortTypes[sortDir].fn)
+        .slice(0, props.calcTableEdge(props.page, props.data.length))
+
     let profTable = (
 
         <div>
@@ -137,7 +137,7 @@ function ProfPanel(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {setTableData(props.loading)}
+                    {setTableData(sortedProfs)}
                 </tbody>
             </table>
             <div>{hasMore && props.loading}</div>
@@ -146,7 +146,7 @@ function ProfPanel(props) {
 
     return (
         <TabPanel index={1} value={props.tabIndex}>
-            {props.loaded ? (props.data.length == 0 ? props.emptyTable : profTable) : props.loading}
+            {props.loaded ? (sortedProfs.length == 0 ? props.emptyTable : profTable) : props.loading}
         </TabPanel>
     )
 }

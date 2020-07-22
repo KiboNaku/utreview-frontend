@@ -58,6 +58,7 @@ class Results extends Component {
 		this.handleTabChange = this.handleTabChange.bind(this)
 		this.handleFilterChange = this.handleFilterChange.bind(this)
 		this.handlePageInc = this.handlePageInc.bind(this)
+		this.isSemester = this.isSemester.bind(this)
 	}
 
 	componentDidMount() {
@@ -136,6 +137,18 @@ class Results extends Component {
 			}
 		))
 	}
+
+	isSemester(sem, profcourse){
+
+        if(sem === 'all'){
+            return true
+        } else if(sem === 'current'){
+            return profcourse.semesters[0]
+        } else if(sem === 'next'){
+            return profcourse.semesters[1]
+        }
+        return true
+    }
 
     calcTableEdge(page, length) {
         return Math.min(25 * (page + 1), length)
@@ -286,6 +299,7 @@ class Results extends Component {
 			handleTabChange={this.handleTabChange}
 			handleFilterChange={this.handleFilterChange}
 			handleSortChange={this.handleSortChange}
+			isSemester={this.isSemester}
 
 			match={this.props.match}
 			search={this.props.location.state.searchValue} />)
