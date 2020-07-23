@@ -63,7 +63,7 @@ function CoursePanel(props) {
         return null;
     }
 
-    function setTableData(tableData) {
+    function setTableData(sortedCourses) {
 
         if (props.data != null) {
 
@@ -71,7 +71,7 @@ function CoursePanel(props) {
 
             if (sortedCourses.length > 0) {
 
-                return sortedCourses.map((course, index) => {
+                return sortedCourses.map((course) => {
                     const { courseTitle } = course
 
                     let courseName = course.courseDept + " " + course.courseNum
@@ -83,8 +83,6 @@ function CoursePanel(props) {
                     // const rating = Math.floor(Math.random() * 70 + 30)
                     // const numRating = Math.floor(Math.random() * 1500)
 
-                    let rating = 1
-                    let numRating = 1
                     return (
 
                         <tr key={course.id} ref={loadRef}>
@@ -137,11 +135,10 @@ function CoursePanel(props) {
     let sortedCourses = props.data
         .filter(course =>
             (filter.depts.length <= 0 || filter.depts.includes(course.courseDept)) &&
-            (course.approval !== null || filter.mApp <= course.approval) &&
-            (course.numRatings != null || filter.mNum <= course.numRatings))
+            (filter.mNum <= course.numRatings) &&
+            (props.isSemester(filter.sem, course)))
         .sort(sortTypes[sortDir].fn)
         .slice(0, props.calcTableEdge(props.page, props.data.length))
-
 
     let courseTable = (
         <div>
