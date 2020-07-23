@@ -15,6 +15,7 @@ import "./App.css"
 import ConfirmEmail from './pages/confirm-email/ConfirmEmail';
 import VerifyEmail from './pages/popups/VerifyEmail';
 import ScrollTop from './pages/_utils/ScrollTop'
+import NotFound from './pages/not-found/NotFound'
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
 					<Route path="/confirm_email" component={ConfirmEmail} />
 					<Route path={"/course-results/:courseId"} render={(props) => <CourseDetails />} />
 					<Route path={"/prof-results/:profId"} render={(props) => <ProfDetails />} />
+					<Route component={NotFound} />
 				</Switch>
 
 				<Footer />
