@@ -12,6 +12,20 @@ function SignupComponent(props) {
             <Loading />
         </div>
 
+    let otherMajor = (
+            <div className='col-sm-8'>
+                <input
+                    id="otherMajor"
+                    type="text"
+                    name="otherMajor"
+                    className="form-control"
+                    placeholder="other major"
+                    value={props.data.otherMajor}
+                    onChange={props.onChange}
+                />
+            </div>
+    )
+
     return (
         <div className="modal fade absolute" id="signup-modal" role="dialog">
             <div className="modal-dialog modal-dialog-centered" role="document">
@@ -61,6 +75,20 @@ function SignupComponent(props) {
                                     isSearchable={true}
                                 />
                             </div>
+                            <div className="form-group row">
+                                <div className="col-sm-4">
+                                    <input
+                                        role="button"
+                                        id='showOtherMajor'
+                                        type="checkbox"
+                                        name="showOtherMajor"
+                                        checked={props.data.showOtherMajor}
+                                        onChange={props.handleShowOtherMajor} />
+                                    <label for="showOtherMajor" className="other-major-label" > Other major</label>
+                                </div>
+                                {props.data.showOtherMajor ? otherMajor : null}
+                            </div>
+                            
 
                             <div className="form-group my-3">
                                 <input

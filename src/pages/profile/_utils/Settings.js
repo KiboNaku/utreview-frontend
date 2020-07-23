@@ -14,9 +14,9 @@ class Settings extends Component {
 			password: '',
 			confirmPassword: '',
 			major: props.data.major,
-			otherMajor: props.data.otherMajor !== null ? props.data.otherMajor : '',
+			otherMajor: props.data.otherMajor !== null && props.data.otherMajor !== "" ? props.data.otherMajor : '',
 			email: '',
-			showOtherMajor: props.data.otherMajor !== null ? true : false
+			showOtherMajor: props.data.otherMajor !== null && props.data.otherMajor !== "" ? true : false
 		}
 
 		console.log('constructor', this.state)
@@ -43,7 +43,7 @@ class Settings extends Component {
 	}
 
 	handleShowOtherMajor(e) {
-		if (e.target.checked) {			
+		if (e.target.checked) {
 			this.setState({
 				showOtherMajor: true,
 				major: null
@@ -86,14 +86,14 @@ class Settings extends Component {
 		let showOtherMajor = this.state.showOtherMajor
 		let otherMajor = this.state.otherMajor
 		let major = this.state.major
-		if(this.state.showOtherMajor){
-			if(this.state.otherMajor == null || this.state.otherMajor === ""){
+		if (this.state.showOtherMajor) {
+			if (this.state.otherMajor == null || this.state.otherMajor === "") {
 				showOtherMajor = this.props.data.otherMajor !== null && this.props.data.otherMajor !== ""
 				otherMajor = this.props.data.otherMajor
 				major = this.props.data.major
 			}
-		}else{
-			if(this.state.major == null || this.state.major === ""){
+		} else {
+			if (this.state.major == null || this.state.major === "") {
 				showOtherMajor = this.props.data.otherMajor !== null && this.props.data.otherMajor !== ""
 				major = this.props.data.major
 				otherMajor = this.props.data.otherMajor
@@ -133,18 +133,23 @@ class Settings extends Component {
 						placeholder="other major"
 						value={this.state.otherMajor}
 						onChange={this.onChange}
-						 />
+					/>
 				</div>
 			</div>
 		)
 
-		let otherMajorText = this.state.showOtherMajor ?  "Select from pre-existing majors" : "Don't see your major?"
+		let otherMajorText = this.state.showOtherMajor ? "Select from pre-existing majors" : "Don't see your major?"
 		console.log('render', this.props)
 		return (
 			<div className="modal fade" id={'settings'} role="dialog">
 				<div className="modal-dialog modal-dialog-centered" role="document">
 					<div className="modal-content">
-						<ModalHeader text="Settings" />
+						<div className="modal-header">
+							<h5 className="modal-title">Settings</h5>
+							<button onClick={() => this.handleCancel()} type="button" className="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
 						<div className="modal-body">
 							<form>
 								<div>
@@ -205,8 +210,8 @@ class Settings extends Component {
 												type="checkbox"
 												name="showOtherMajor"
 												checked={this.state.showOtherMajor}
-												onChange={this.handleShowOtherMajor}/>
-												<label for="showOtherMajor" className="other-major-label" > Other major</label>
+												onChange={this.handleShowOtherMajor} />
+											<label for="showOtherMajor" className="other-major-label" > Other major</label>
 										</div>
 									</div>
 									{this.state.showOtherMajor ? otherMajor : null}

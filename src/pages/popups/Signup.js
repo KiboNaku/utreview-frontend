@@ -19,17 +19,34 @@ class Signup extends Component {
             password: '',
             confirm_password: '',
             major: '',
-            majorList: null
+            majorList: null,
+            otherMajor: '',
+            showOtherMajor: false
         }
 
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.handleMajorChange = this.handleMajorChange.bind(this)
+        this.handleShowOtherMajor = this.handleShowOtherMajor.bind(this)
     }
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
+
+    handleShowOtherMajor(e) {
+		if (e.target.checked) {
+			this.setState({
+				showOtherMajor: true,
+				major: null
+			})
+		} else {
+			this.setState({
+				showOtherMajor: false,
+				otherMajor: ''
+			})
+		}
+	}
 
     onSubmit(e) {
         e.preventDefault()
@@ -93,7 +110,8 @@ class Signup extends Component {
         return (
             <div>
                 <SignupComponent onSubmit={this.onSubmit} onChange={this.onChange}
-                    handleMajorChange={this.handleMajorChange} data={this.state} />
+                    handleMajorChange={this.handleMajorChange} handleShowOtherMajor={this.handleShowOtherMajor} 
+                    data={this.state} />
             </div>
         )
     }
