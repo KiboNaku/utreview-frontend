@@ -5,6 +5,8 @@ import './Filter.css'
 
 function ProfFilter(props) {
 
+    let numRatingOptions = props.minNumRatings.length
+
     return (
 
         <div className='card'>
@@ -20,9 +22,9 @@ function ProfFilter(props) {
                     <label className="float-left text-left font-weight-bold">Min # of ratings:</label>
                     <label className="float-right">{props.filter.mNum}</label>
 
-                    <input type="range" min="0" max="1000" className="c-range form-control-range" step="100"
+                    <input type="range" min="0" max={numRatingOptions.toString()} className="c-range form-control-range" step="1"
                         value={props.filter.mNum}
-                        onChange={(event) => { props.handleFilterChange(null, event.target.value) }} />
+                        onChange={(event) => { props.handleFilterChange(null, props.minNumRatings[event.target.value]) }} />
                 </div>
 
                 {/* semester filter */}

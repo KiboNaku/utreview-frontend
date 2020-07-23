@@ -91,7 +91,7 @@ class Results extends Component {
 
 	componentDidUpdate(prevProps) {
 
-		if (prevProps.location.search != this.props.location.search) {
+		if (prevProps.location.search !== this.props.location.search) {
 
 			const search = {
 				searchValue: this.props.location.state.searchValue
@@ -203,7 +203,7 @@ class Results extends Component {
 		//TODO: update variable names
 		const { tabIndex } = this.state
 
-		if (tabIndex == 0) {
+		if (tabIndex === 0) {
 			const { sortDir, sortBy } = this.state.courses.sort;
 			let nextSort;
 
@@ -224,7 +224,7 @@ class Results extends Component {
 			}))
 
 			console.log(sortByName, nextSort)
-		} else if (tabIndex == 1) {
+		} else if (tabIndex === 1) {
 			const { sortDir, sortBy } = this.state.profs.sort;
 			let nextSort;
 
@@ -248,7 +248,7 @@ class Results extends Component {
 
 	handleFilterChange(depts = null, mNum = -1, sem = null) {
 
-		if (this.state.tabIndex == 0) {
+		if (this.state.tabIndex === 0) {
 			this.setState(prevState => {
 
 				let filter = prevState.courses.filter
@@ -257,14 +257,14 @@ class Results extends Component {
 						...prevState.courses,
 						page: 0,
 						filter: {
-							depts: depts == null ? filter.depts : depts,
+							depts: depts === null ? filter.depts : depts,
 							mNum: mNum < 0 ? filter.mNum : mNum,
-							sem: sem == null ? filter.sem : sem
+							sem: sem === null ? filter.sem : sem
 						}
 					}
 				}
 			})
-		} else if (this.state.tabIndex == 1) {
+		} else if (this.state.tabIndex === 1) {
 			this.setState((prevState) => {
 
 				let filter = prevState.profs.filter
@@ -274,7 +274,7 @@ class Results extends Component {
 						page: 0,
 						filter: {
 							mNum: mNum < 0 ? filter.mNum : mNum,
-							sem: sem == null ? filter.sem : sem
+							sem: sem === null ? filter.sem : sem
 						}
 					}
 				}
