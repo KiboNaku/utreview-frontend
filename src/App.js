@@ -69,7 +69,7 @@ class App extends Component{
 					</Switch>
 					<Footer />
 	
-					<Login />
+					<Login handleProfilePicChange={this.handleProfilePicChange}/>
 					<Signup />
 					<VerifyEmail />
 					<ForgotPassword />

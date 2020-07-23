@@ -16,7 +16,8 @@ class ResetPassword extends Component {
             error: null,
             password: '',
             confirmPassword: '',
-            passwordsNoMatch: false
+            passwordsNoMatch: false,
+            passwordUpdated: false
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -51,7 +52,7 @@ class ResetPassword extends Component {
                 password: this.state.password
             })
             .then(response => {
-                this.props.history.push('/')
+                this.setState({passwordUpdated: true})
             })
         }
     }
@@ -65,7 +66,7 @@ class ResetPassword extends Component {
             message = "An error has occured: " + this.state.error
         }
 
-        let loading = <Loading />
+        let successMessage = "Your password has been successfully updated"
 
         let resetForm = <ResetPasswordForm onSubmit={this.onSubmit} onChange={this.onChange} data={this.state}/>
 
@@ -74,7 +75,7 @@ class ResetPassword extends Component {
                 <div className="main-sub container py-5">
                     <div className="container justify-content-center px-5 py-5 col-12 col-sm-11 col-md-9 col-lg-7 bg-light">
                         <h3 className='py-5 text-center'>
-                            {this.state.success < 0 ? message : resetForm}
+                            {this.state.passwordUpdated ? successMessage: (this.state.success < 0 ? message : resetForm)}
                         </h3>
                     </div>
                 </div>

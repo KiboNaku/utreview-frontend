@@ -83,6 +83,7 @@ class Profile extends Component {
             email: 'yxue22@utexas.edu',
             major: 'ee',
             profilePic: '',
+            otherMajor: '',
             profilePicList: [],
             reviews: reviewList,
             majorList: [],
@@ -107,7 +108,8 @@ class Profile extends Component {
             lastName: decoded.identity.last_name,
             email: decoded.identity.email,
             major: decoded.identity.major,
-            profilePic: decoded.identity.profile_pic
+            profilePic: decoded.identity.profile_pic,
+            otherMajor: decoded.identity.other_major
         })
 
         getMajor().then(res => {
@@ -217,7 +219,7 @@ class Profile extends Component {
 
     //all need to add backend stuff
 
-    onSubmit(mode, firstName, lastName, password, confirmPassword, major) {
+    onSubmit(mode, firstName, lastName, password, confirmPassword, major, otherMajor) {
         switch (mode) {
             case 'apply':    
                 console.log(password)
@@ -228,6 +230,7 @@ class Profile extends Component {
                         email: this.state.email,
                         password: password,
                         major: major,
+                        other_major: otherMajor
                     }
     
                     updateInfo(user).then(res => {
@@ -237,7 +240,8 @@ class Profile extends Component {
                             this.setState(prevState => ({
                                 firstName: firstName !== null && firstName !== "" ? firstName : prevState.firstName,
                                 lastName: lastName !== null && lastName !== "" ? lastName : prevState.lastName,
-                                major: major !== null && major !== "" ? major : prevState.major,
+                                major: major,
+                                otherMajor: otherMajor,
                             }))
                             $('#settings').modal('hide')
                         }
