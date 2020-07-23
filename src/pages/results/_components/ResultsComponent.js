@@ -6,7 +6,8 @@ import Tab from '@material-ui/core/Tab'
 import { makeStyles } from '@material-ui/core/styles';
 
 import CoursePanel from '../_utils/CoursePanel'
-import Filter from "./../_utils/Filter"
+import CourseFilter from "../_utils/CourseFilter"
+import ProfFilter from "../_utils/ProfFilter"
 import Loading from './../../_utils/Loading.js'
 import ProfPanel from '../_utils/ProfPanel'
 
@@ -22,6 +23,10 @@ function ResultsComponent(props) {
     let numProfResults = props.profs.loaded ? "(" + props.profs.data.length.toString() + ")" : ""
     let courseLabel = "Courses " + numCourseResults
     let profLabel = "Professors " + numProfResults
+    let filter = <CourseFilter filter={props.courses.filter} depts={props.depts} handleFilterChange={props.handleFilterChange} />
+    if(props.tabIndex == 1){
+        filter = <ProfFilter  filter={props.profs.filter} depts={props.depts} handleFilterChange={props.handleFilterChange} />
+    }
 
     return (
         <main className="results-main py-3">
@@ -35,11 +40,7 @@ function ResultsComponent(props) {
                     <div className='row'>
 
                         <div className="col-md-3">
-                            <Filter
-                                header={props.tabIndex == 0 ? "Course Filters:" : "Professor Filters:"}
-                                filter={props.tabIndex == 0 ? props.courses.filter : props.profs.filter}
-                                depts={props.depts}
-                                handleFilterChange={props.handleFilterChange} />
+                            {filter}
                         </div>
 
                         <div className="col-md-9">

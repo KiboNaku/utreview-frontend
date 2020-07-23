@@ -135,8 +135,7 @@ function CoursePanel(props) {
     let sortedCourses = props.data
         .filter(course =>
             (filter.depts.length <= 0 || filter.depts.includes(course.courseDept)) &&
-            (course.approval !== null || filter.mApp <= course.approval) &&
-            (course.numRatings != null || filter.mNum <= course.numRatings) &&
+            (filter.mNum <= course.numRatings) &&
             (props.isSemester(filter.sem, course)))
         .sort(sortTypes[sortDir].fn)
         .slice(0, props.calcTableEdge(props.page, props.data.length))
