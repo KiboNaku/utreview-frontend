@@ -34,8 +34,6 @@ class CourseSchedule extends React.Component {
     render() {
         console.log(this.state.courseSchedule)
 
-        const { classes } = this.props
-
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         const currentSemList = this.state.courseSchedule.currentSem.map(course => {
             return (
