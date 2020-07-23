@@ -23,7 +23,7 @@ function ProfPanel(props) {
         const sortBy = props.sort.sortBy
         const profs = props.data
 
-        if (profs.length >= 0 && sortBy in a) {
+        if (profs.length >= 0) {
 
             // TODO: update with approval & # ratings
 
@@ -32,6 +32,30 @@ function ProfPanel(props) {
                     let profNameA = a.firstName + " " + a.lastName
                     let profNameB = b.firstName + " " + b.lastName
                     return profNameB.localeCompare(profNameA)
+                case 'profECIS':
+                    if (a.eCIS !== null && b.eCIS !== null) return b.eCIS - a.eCIS
+                    else if (a.eCIS === null && b.eCIS !== null) {
+                        if(props.sort.sortDir === 'up') return 1 
+                        else return -1
+                    }
+                    else if (a.eCIS !== null && b.eCIS === null) {
+                        if(props.sort.sortDir === 'up') return -1 
+                        else return 1
+                    }
+                    else return 0
+                case 'profApproval':
+                    if (a.approval !== null && b.approval !== null) return b.approval - a.approval
+                    else if (a.approval === null && b.approval !== null) {
+                        if(props.sort.sortDir === 'up') return 1 
+                        else return -1
+                    }
+                    else if (a.approval !== null && b.approval === null) {
+                        if(props.sort.sortDir === 'up') return -1 
+                        else return 1
+                    }
+                    else return 0
+                case 'profRatings':
+                    return b.numRatings - a.numRatings
             }
         }
 
@@ -44,7 +68,6 @@ function ProfPanel(props) {
 
             const { sortDir } = props.sort
             const filter = props.filter
-
             const sortTypes = {
                 up: {
                     class: 'sortUp',
@@ -95,8 +118,8 @@ function ProfPanel(props) {
                                 {prof.eCIS !== null ? prof.eCIS : "N/A"}
                             </td>
                             <td colSpan="1">
-                                {prof.approval !== null ? prof.approval : "N/A"}%
-							</td>
+                                {prof.approval !== null ? prof.approval + '%' : "N/A"}
+                            </td>
                             <td colSpan="1">
                                 {prof.numRatings}
                             </td>
@@ -120,19 +143,19 @@ function ProfPanel(props) {
                         </th>
 
                         {/* TODO: update with onclick functions */}
-                        <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for eCIS")}>
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => props.handleSortChange('profECIS')}>
                             <span>eCIS</span>
-                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'eCIS' ? '' : ' invisible')}></i>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'profECIS' ? '' : ' invisible')}></i>
                         </th>
 
-                        <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for approval")}>
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => props.handleSortChange('profApproval')}>
                             <span>Approval</span>
-                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'approval' ? '' : ' invisible')}></i>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'profApproval' ? '' : ' invisible')}></i>
                         </th>
 
-                        <th scope="col" colSpan="1" className="sortable" onClick={() => console.log("No sort for num ratings")}>
+                        <th scope="col" colSpan="1" className="sortable" onClick={() => props.handleSortChange('profRatings')}>
                             <span># Ratings</span>
-                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'ratings' ? '' : ' invisible')}></i>
+                            <i className={'pl-3 fas fa-sort-' + sortDir + (sortBy === 'profRatings' ? '' : ' invisible')}></i>
                         </th>
                     </tr>
                 </thead>
