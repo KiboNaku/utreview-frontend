@@ -53,12 +53,11 @@ class ConfirmEmail extends Component {
             <main className="bg-grey">
                 <div className="main-sub container py-5">
                     <div className="container justify-content-center px-5 py-5 col-12 col-sm-11 col-md-9 col-lg-7 bg-light">
-                        <h3 className='py-5 text-center'>
-                            {message}
-
+                        <div className='py-5 text-center'>
+                            <h3>{message}</h3>
                             <h3>You will be automatically redirected soon. Otherwise, please <Link className="utcolor" to="/">click here</Link>.</h3>
                             {this.state.redirect ? redirect : this.state.success == 0 && loading}
-                        </h3>
+                        </div>
                     </div>
                 </div>
             </main>
