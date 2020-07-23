@@ -30,7 +30,6 @@ class Results extends Component {
 				},
 				filter: {
 					depts: [],
-					mApp: 0,
 					mNum: 0,
 					sem: "all"
 				}
@@ -45,8 +44,6 @@ class Results extends Component {
 					sortDir: 'down',
 				},
 				filter: {
-					depts: [],
-					mApp: 0,
 					mNum: 0,
 					sem: "all"
 				}
@@ -249,10 +246,10 @@ class Results extends Component {
 		}
 	}
 
-	handleFilterChange(depts = null, mApp = -1, mNum = -1, sem = null) {
+	handleFilterChange(depts = null, mNum = -1, sem = null) {
 
 		if (this.state.tabIndex == 0) {
-			this.setState((prevState) => {
+			this.setState(prevState => {
 
 				let filter = prevState.courses.filter
 				return {
@@ -261,7 +258,6 @@ class Results extends Component {
 						page: 0,
 						filter: {
 							depts: depts == null ? filter.depts : depts,
-							mApp: mApp < 0 ? filter.mApp : mApp,
 							mNum: mNum < 0 ? filter.mNum : mNum,
 							sem: sem == null ? filter.sem : sem
 						}
@@ -277,8 +273,6 @@ class Results extends Component {
 						...prevState.profs,
 						page: 0,
 						filter: {
-							depts: depts == null ? filter.depts : depts,
-							mApp: mApp < 0 ? filter.mApp : mApp,
 							mNum: mNum < 0 ? filter.mNum : mNum,
 							sem: sem == null ? filter.sem : sem
 						}

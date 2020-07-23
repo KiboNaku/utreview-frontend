@@ -101,7 +101,6 @@ function ProfPanel(props) {
 
     let sortedProfs = props.data
         .filter(prof =>
-            (filter.mApp <= prof.approval) &&
             (filter.mNum <= prof.numRatings) &&
             (props.isSemester(filter.sem, prof)))
         .sort(sortTypes[sortDir].fn)
