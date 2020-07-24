@@ -59,8 +59,6 @@ function ProfReviewEntry(props) {
             >
                 {likeIcon}
             </button>
-            <Login />
-            <Signup />
         </span>
 
     )
@@ -74,8 +72,6 @@ function ProfReviewEntry(props) {
             >
                 {dislikeIcon}
             </button>
-            <Login />
-            <Signup />
         </span>
     )
 
@@ -108,7 +104,7 @@ function ProfReviewEntry(props) {
                 <div className="userDes">
                     <Avatar className={classes.large} src={require('./../../../../res/img/' + props.review.profilePic)}>  </Avatar>
                     <div className="userText">
-                        <span> {props.review.userMajor} student, enrolled in </span>
+                        <span> {props.review.userMajor !== null ? props.review.userMajor + " student," : "Student"} enrolled in </span>
                         <Link
                             className="utcolor"
                             to={{

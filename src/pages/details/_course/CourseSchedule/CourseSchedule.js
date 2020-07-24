@@ -103,8 +103,8 @@ class CourseSchedule extends React.Component {
                             }
                         }}
                     >
-                        <Tab label="Summer 2020" aria-controls='tabpanel-0' />
-                        <Tab label="Fall 2020" aria-controls='tabpanel-1' />
+                        <Tab className="schedule-tabs" label="Summer 2020" aria-controls='tabpanel-0' />
+                        <Tab className="schedule-tabs" label="Fall 2020" aria-controls='tabpanel-1' />
                     </Tabs>
                 </AppBar>
 

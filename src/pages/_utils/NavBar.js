@@ -1,11 +1,18 @@
 
 import React, { Component } from 'react'
+import jwt_decode from 'jwt-decode'
 import { Link, Route, Switch, withRouter } from 'react-router-dom';
 
 import SearchBar from './SearchBar'
 import "./NavBar.css"
 
 class NavBar extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            profilePic: props.profilePic
+        }
+    }
 
     logOut(e) {
         e.preventDefault()
@@ -33,7 +40,7 @@ class NavBar extends Component {
 
                 <div className="float-right ">
                     <Link to="/profile">
-                        <img className="rounded-circle nav-bar-profile" src={require("./../../res/img/default.jpg")}
+                        <img className="rounded-circle nav-bar-profile" src={require("./../../res/img/" + this.props.profilePic)}
                             data-holder-rendered="true" />
                     </Link>
                 </div>

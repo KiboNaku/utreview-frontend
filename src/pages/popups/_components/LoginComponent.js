@@ -40,14 +40,16 @@ function LoginComponent(props) {
                                     required />
                             </div>
 
-                            <div className="form-label-group checkbox my-1">
+                            {/* <div className="form-label-group checkbox my-1">
                                 <input type="checkbox" value="remember-me" />
                                 <label className="pl-2">Remember me</label>
-                            </div>
+                            </div> */}
 
                             <button className="btn btn-lg btn-utcolor btn-block mt-2 font-weight-bold" type="submit">Log In</button>
 
-                            <a href="#"><p className="text-center">Forgot password?</p></a>
+                            <span className="forgot-password-text center" type="button" data-toggle="modal" data-target="#forgot-password-modal">
+                                    <a data-dismiss="modal" data-toggle="modal" data-target="#forgot-password-modal" className="utcolor"><p className="center">Forgot Password?</p></a>
+                                </span>
 
                         </form>
 

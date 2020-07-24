@@ -139,7 +139,7 @@ function ReviewFormComponent(props) {
                             <span>
                                 (Optional) Give us the grade you obtained in {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num + ':' : '...'}
                             </span>
-                            <div className="review-grade">
+                            <div className="review-form-grade">
                                 <Select
                                     className="basic-single col-sm-10"
                                     classNamePrefix="select"

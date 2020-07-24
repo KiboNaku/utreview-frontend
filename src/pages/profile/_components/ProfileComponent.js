@@ -24,7 +24,10 @@ function ProfileComponent(props) {
 						/>
 						<h1 className='profile-name'>{props.data.firstName + ' ' + props.data.lastName}</h1>
 						<p> <b>Email:</b> {props.data.email} </p>
-						<p> <b>Major:</b> {props.data.major} </p>
+						<p> <b>Major:</b> {props.data.major !== null ? props.data.major : (props.data.otherMajor !== null && props.data.otherMajor !== "" ? props.data.otherMajor : "N/A")} </p>
+					</div>
+					<div className="reviews-title">
+						Reviews
 					</div>
 					<hr className='profile-divider' />
 						{props.data.loaded ? reviewList: loading}

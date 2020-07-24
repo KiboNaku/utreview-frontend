@@ -14,17 +14,25 @@
 
 .search-input {
     
-    line-height: 40px;
+    line-height: 39px;
     width: calc(100% - 45px);
 
     padding: 0 10px;
     border: 0;
     outline: 0;
 
-    color: #bf5700;
+    color: #333f48;
     background: none;
 
-    caret-color: #bf5700;
+    caret-color: #333f48;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+   -webkit-transition-delay: 9999s;
+   transition-delay: 9999s;
 }
 
 .searchbar-wrapper {
