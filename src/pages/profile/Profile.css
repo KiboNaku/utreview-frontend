@@ -170,3 +170,11 @@
 .review-buttons:focus {
 	outline: none;
 }
+
+.other-major-text{
+	margin-bottom: 0px;
+}
+
+.other-major-label{
+	padding-left: 10px;
+}
