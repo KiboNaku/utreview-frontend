@@ -29,7 +29,6 @@ li * {
 }
 
 .review-grade{
-    padding-top: 15px;
     display: flex;
     flex-direction: row;
 }
@@ -51,5 +50,4 @@ li * {
 .info-tooltip:focus{
     outline: none;
 }
-
 

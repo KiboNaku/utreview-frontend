@@ -2,7 +2,7 @@ import React from 'react'
 import ModalHeader from './../_utils/ModalHeader'
 import Loading from './../../_utils/Loading'
 
-function VerifyEmailComponent(props) {
+function VerifyPasswordComponent(props) {
 
 	let loading =
 		<div className="on-top">
@@ -15,16 +15,16 @@ function VerifyEmailComponent(props) {
 		</p>
 
 	return (
-		<div className="modal fade" id="verifyemail-modal" role="dialog">
+		<div className="modal fade absolute" id="verify-password-modal" role="dialog">
 			<div className="modal-dialog modal-dialog-centered" role="document">
 				<div className="modal-content">
 
-					<ModalHeader text="Verify Account" />
+					<ModalHeader text="Password Reset" />
 
 					<div className="modal-body">
 
 						<p className="text-center">
-							For your protection, a verification email has been sent to the address provided. Please click the link provided to verify this email.
+							A password reset email has been sent to the address provided. Please click the link provided to reset your password.
 						</p>
 
 						<div className="form-wrapper">
@@ -43,4 +43,4 @@ function VerifyEmailComponent(props) {
 	)
 }
 
-export default VerifyEmailComponent
+export default VerifyPasswordComponent

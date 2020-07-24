@@ -8,7 +8,7 @@ export const signup = newUser => {
 			email: newUser.email + '@utexas.edu',
 			password: newUser.password,
 			major: newUser.major,
-			image: newUser.image
+			other_major : newUser.other_major
 		})
 		.then(response => {
 			localStorage.setItem('email', response.data.email)
@@ -31,6 +31,35 @@ export const login = user => {
 		.catch(err => {
 			console.log(err)
 		})
+}
+
+export const forgotPassword = user => {
+	
+	return axios
+		.post('/api/forgot_password', {
+			email: user.email + '@utexas.edu',
+		})
+		.then(response => {
+			if(response.data.success >= 0) 
+				localStorage.setItem('email', response.data.email)
+			return response.data
+		})
+		.catch(err => {
+			console.log(err)
+		})
+}
+
+export const sendResetPassword = () => {
+
+	if(localStorage.email !== 'undefined'){
+
+		return axios
+			.post('/api/send_reset_password', {
+				email: localStorage.email
+			})
+	}
+
+	return null
 }
 
 export const getProfile = user => {

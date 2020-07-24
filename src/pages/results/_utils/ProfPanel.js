@@ -38,69 +38,73 @@ function ProfPanel(props) {
         return null;
     }
 
-    function setTableData() {
+    function setTableData(sortedProfs) {
 
         if (props.data != null) {
 
-            const { sortDir } = props.sort
-            const filter = props.filter
+            if (sortedProfs.length > 0) {
+                return sortedProfs.map(prof => {
+                    const { firstName, lastName } = prof
 
-            const sortTypes = {
-                up: {
-                    class: 'sortUp',
-                    fn: (a, b) => sort(a, b)
-                },
-                down: {
-                    class: 'sortDown',
-                    fn: (a, b) => sort(b, a)
-                },
-                default: {
-                    class: 'sort',
-                    fn: (a) => a
-                }
+                    // TODO: temporary numbers to fill table: remove later
+                    const rating = Math.floor(Math.random() * 70 + 30)
+                    const numRating = Math.floor(Math.random() * 1500)
+                    const profPath = firstName.toLowerCase().replace(" ", "") + "_" + lastName.toLowerCase().replace(" ", "")
+                    return (
+                        <tr key={prof.id} ref={loadRef}>
+                            <td colSpan="3" className="class-name">{
+                                <Link
+                                    className="utcolor"
+                                    to={{
+                                        pathname: `/prof-results/${profPath}`,
+                                        state: {
+                                            profId: prof.id
+                                        }
+                                    }}
+                                > {firstName} {lastName}
+                                </Link>
+                            }</td>
+                            <td colSpan="1">
+                                {prof.eCIS !== null ? prof.eCIS : "N/A"}
+                            </td>
+                            <td colSpan="1">
+                                {prof.approval !== null ? prof.approval : "N/A"}%
+							</td>
+                            <td colSpan="1">
+                                {prof.numRatings}
+                            </td>
+                        </tr>
+                    )
+                })
             }
-            // TODO: update with prof info
-            // TODO: update with filter
-
-            let sortedProfs = props.data
-                .sort(sortTypes[sortDir].fn)
-                .slice(0, props.calcTableEdge(props.page, props.data.length))
-
-            return sortedProfs.map(prof => {
-                const { firstName, lastName } = prof
-
-                // TODO: temporary numbers to fill table: remove later
-                const rating = Math.floor(Math.random() * 70 + 30)
-                const numRating = Math.floor(Math.random() * 1500)
-                const profPath = firstName.toLowerCase().replace(" ", "") + "_" + lastName.toLowerCase().replace(" ", "")
-                return (
-                    <tr key={prof.id} ref={loadRef}>
-                        <td colSpan="3" className="class-name">{
-                            <Link
-                                className="utcolor"
-                                to={{
-                                    pathname: `/prof-results/${profPath}`,
-                                    state: {
-                                        profId: prof.id
-                                    }
-                                }}
-                            > {firstName} {lastName}
-                            </Link>
-                        }</td>
-                        <td colSpan="1">
-                            {prof.eCIS !== null ? prof.eCIS : "N/A"}
-							</td>
-                        <td colSpan="1">
-                            {prof.approval !== null ? prof.approval: "N/A"}%
-							</td>
-                        <td colSpan="1">
-                            {prof.numRatings}
-                        </td>
-                    </tr>
-                )
-            })
         }
     }
+
+    const filter = props.filter
+
+    const sortTypes = {
+        up: {
+            class: 'sortUp',
+            fn: (a, b) => sort(a, b)
+        },
+        down: {
+            class: 'sortDown',
+            fn: (a, b) => sort(b, a)
+        },
+        default: {
+            class: 'sort',
+            fn: (a) => a
+        }
+    }
+    // TODO: update with prof info
+    // TODO: update with filter
+
+    let sortedProfs = props.data
+        .filter(prof =>
+            (filter.mNum <= prof.numRatings) &&
+            (props.isSemester(filter.sem, prof)))
+        .sort(sortTypes[sortDir].fn)
+        .slice(0, props.calcTableEdge(props.page, props.data.length))
 
     let profTable = (
 
@@ -132,7 +136,7 @@ function ProfPanel(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {setTableData()}
+                    {setTableData(sortedProfs)}
                 </tbody>
             </table>
             <div>{hasMore && props.loading}</div>
@@ -141,7 +145,7 @@ function ProfPanel(props) {
 
     return (
         <TabPanel index={1} value={props.tabIndex}>
-            {props.loaded ? (props.data.length == 0 ? props.emptyTable : profTable) : props.loading}
+            {props.loaded ? (sortedProfs.length == 0 ? props.emptyTable : profTable) : props.loading}
         </TabPanel>
     )
 }
