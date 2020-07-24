@@ -17,7 +17,15 @@
 .profile-divider {
 	border: 0;
 	height: 1px;
+	margin-top: auto;
+	width: 50%;
 	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.reviews-title {
+	font-size: 28px;
+	margin-top: 20px;
+	font-weight: lighter;
 }
 
 .profile-review-list {
@@ -25,7 +33,7 @@
 	margin-right: 10px;
 	margin-bottom: 30px;
 	overflow-y: auto;
-	height: 530px;
+	max-height: 530px;
 }
 
 .review-container {
