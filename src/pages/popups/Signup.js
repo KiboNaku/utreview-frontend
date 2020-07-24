@@ -18,7 +18,7 @@ class Signup extends Component {
             email: '',
             password: '',
             confirm_password: '',
-            major: '',
+            major: null,
             majorList: null,
             otherMajor: '',
             showOtherMajor: false
@@ -51,7 +51,7 @@ class Signup extends Component {
     onSubmit(e) {
         e.preventDefault()
 
-        if (this.state.password != this.state.confirm_password) {
+        if (this.state.password !== this.state.confirm_password) {
             alert("Password fields don't match")
             return
         }
@@ -61,7 +61,8 @@ class Signup extends Component {
             last_name: this.state.last_name,
             email: this.state.email,
             password: this.state.password,
-            major: this.state.major
+            major: this.state.major,
+            other_major: this.state.otherMajor
         }
 
         this.setState({ loading: true })
@@ -83,6 +84,8 @@ class Signup extends Component {
     handleMajorChange = (inputValue, { action }) => {
         if (inputValue !== null) {
             this.setState({ major: inputValue.value })
+        }else{
+            this.setState({major : null})
         }
     }
 

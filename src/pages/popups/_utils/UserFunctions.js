@@ -8,7 +8,7 @@ export const signup = newUser => {
 			email: newUser.email + '@utexas.edu',
 			password: newUser.password,
 			major: newUser.major,
-			image: newUser.image
+			other_major : newUser.other_major
 		})
 		.then(response => {
 			localStorage.setItem('email', response.data.email)

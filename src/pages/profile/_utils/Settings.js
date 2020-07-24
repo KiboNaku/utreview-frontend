@@ -88,15 +88,15 @@ class Settings extends Component {
 		let major = this.state.major
 		if (this.state.showOtherMajor) {
 			if (this.state.otherMajor == null || this.state.otherMajor === "") {
-				showOtherMajor = this.props.data.otherMajor !== null && this.props.data.otherMajor !== ""
-				otherMajor = this.props.data.otherMajor
-				major = this.props.data.major
+				showOtherMajor = false
+				otherMajor = null
+				major = null
 			}
 		} else {
 			if (this.state.major == null || this.state.major === "") {
-				showOtherMajor = this.props.data.otherMajor !== null && this.props.data.otherMajor !== ""
-				major = this.props.data.major
-				otherMajor = this.props.data.otherMajor
+				showOtherMajor = false
+				otherMajor = null
+				major = null
 			}
 		}
 		this.setState(prevState => ({
@@ -151,7 +151,7 @@ class Settings extends Component {
 							</button>
 						</div>
 						<div className="modal-body">
-							<form>
+							<form className="form-signin mt-3">
 								<div>
 									<h4>Personal Information: </h4>
 									<div className="form-group row">
@@ -165,7 +165,9 @@ class Settings extends Component {
 												placeholder="first name"
 												value={this.state.firstName}
 												onChange={this.onChange}
-												autoFocus />
+												autoFocus 
+												required
+												/>
 										</div>
 									</div>
 									<div className='form-group row'>
@@ -179,7 +181,9 @@ class Settings extends Component {
 												placeholder="last name"
 												value={this.state.lastName}
 												onChange={this.onChange}
-												autoFocus />
+												autoFocus 
+												required
+												/>
 										</div>
 									</div>
 									<div className="form-group row">
@@ -253,7 +257,8 @@ class Settings extends Component {
 								<button
 									type='button'
 									className='btn btn-outline-dark font-weight-bold'
-									onClick={() => this.handleSubmit()}>
+									onClick={() => this.handleSubmit()}
+									>
 									Apply </button>
 								<button
 									type='button'
