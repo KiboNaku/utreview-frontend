@@ -26,6 +26,9 @@ function ProfileComponent(props) {
 						<p> <b>Email:</b> {props.data.email} </p>
 						<p> <b>Major:</b> {props.data.major} </p>
 					</div>
+					<div className="reviews-title">
+						Reviews
+					</div>
 					<hr className='profile-divider' />
 						{props.data.loaded ? reviewList: loading}
 				</div>
