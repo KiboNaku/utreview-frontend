@@ -1,0 +1,22 @@
+.privacy{
+    margin-bottom: 50px;
+    padding-top: 30px;
+}
+
+.privacy-content{
+    text-align: left;
+    max-width: 750px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.privacy-block{
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.privacy-header {
+	padding: 20px;
+	margin-bottom: 0px;
+	overflow: hidden;
+}

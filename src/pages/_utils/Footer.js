@@ -21,7 +21,7 @@ class Footer extends Component {
                         </Link>
                     </li>
                     <li className="nav-item" className="nav-link">
-                        <Link className="footer-link" to="/">
+                        <Link className="footer-link" to="/privacy-policy">
                             Privacy Policy
                         </Link>
                     </li>

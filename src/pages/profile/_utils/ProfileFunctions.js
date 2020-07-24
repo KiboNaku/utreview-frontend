@@ -29,7 +29,8 @@ export const updateInfo = user => {
 			email: user.email,
 			password: user.password,
 			major: user.major,
-			profile_pic: user.profile_pic
+			profile_pic: user.profile_pic,
+			other_major: user.other_major
 		})
 		.then(response => {
 			console.log(response)

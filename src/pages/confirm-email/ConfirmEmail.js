@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter, Link, Redirect } from 'react-router-dom'
+import Loading from './../_utils/Loading'   
 import axios from 'axios'
 import qs from 'qs'
-import Loading from './../_utils/Loading'
 
 class ConfirmEmail extends Component {
 
     constructor() {
-    
+
         super()
         this.state = {
             redirect: false,
@@ -42,7 +42,7 @@ class ConfirmEmail extends Component {
             message = "The email has been confirmed."
         }
 
-        let loading = <Loading/>
+        let loading = <Loading />
 
         let redirect =
             <div>
@@ -50,16 +50,14 @@ class ConfirmEmail extends Component {
             </div>
 
         return (
-            <main>
-                <div className="main-sub">
-
-                    <div className="container justify-content-center px-5 py-5">
-                        <h3 className='py-5'>
-                            {message}
-
+            <main className="bg-grey">
+                <div className="main-sub container py-5">
+                    <div className="container justify-content-center px-5 py-5 col-12 col-sm-11 col-md-9 col-lg-7 bg-light">
+                        <div className='py-5 text-center'>
+                            <h3>{message}</h3>
                             <h3>You will be automatically redirected soon. Otherwise, please <Link className="utcolor" to="/">click here</Link>.</h3>
                             {this.state.redirect ? redirect : this.state.success == 0 && loading}
-                        </h3>
+                        </div>
                     </div>
                 </div>
             </main>
