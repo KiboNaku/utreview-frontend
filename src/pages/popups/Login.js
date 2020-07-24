@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import jwt_decode from 'jwt-decode'
 import { Link, withRouter } from 'react-router-dom'
 import { login } from './_utils/UserFunctions'
 import LoginComponent from './_components/LoginComponent'
@@ -47,6 +48,14 @@ class Login extends Component {
                     alert(res.error)
                 }
             } else {
+                const token = localStorage.usertoken
+        
+                let profilePic = 'default.jpg'
+                if(token !== undefined && token !== null){
+                    const decoded = jwt_decode(token)
+                    profilePic = decoded.identity.profile_pic
+                }
+                this.props.handleProfilePicChange(profilePic)
                 $("#login-modal").modal("hide")
                 this.props.history.push('/profile')
             }

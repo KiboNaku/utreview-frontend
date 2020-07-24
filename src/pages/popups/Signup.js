@@ -18,23 +18,40 @@ class Signup extends Component {
             email: '',
             password: '',
             confirm_password: '',
-            major: '',
-            majorList: null
+            major: null,
+            majorList: null,
+            otherMajor: '',
+            showOtherMajor: false
         }
 
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.handleMajorChange = this.handleMajorChange.bind(this)
+        this.handleShowOtherMajor = this.handleShowOtherMajor.bind(this)
     }
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
 
+    handleShowOtherMajor(e) {
+		if (e.target.checked) {
+			this.setState({
+				showOtherMajor: true,
+				major: null
+			})
+		} else {
+			this.setState({
+				showOtherMajor: false,
+				otherMajor: ''
+			})
+		}
+	}
+
     onSubmit(e) {
         e.preventDefault()
 
-        if (this.state.password != this.state.confirm_password) {
+        if (this.state.password !== this.state.confirm_password) {
             alert("Password fields don't match")
             return
         }
@@ -44,7 +61,8 @@ class Signup extends Component {
             last_name: this.state.last_name,
             email: this.state.email,
             password: this.state.password,
-            major: this.state.major
+            major: this.state.major,
+            other_major: this.state.otherMajor
         }
 
         this.setState({ loading: true })
@@ -66,6 +84,8 @@ class Signup extends Component {
     handleMajorChange = (inputValue, { action }) => {
         if (inputValue !== null) {
             this.setState({ major: inputValue.value })
+        }else{
+            this.setState({major : null})
         }
     }
 
@@ -93,7 +113,8 @@ class Signup extends Component {
         return (
             <div>
                 <SignupComponent onSubmit={this.onSubmit} onChange={this.onChange}
-                    handleMajorChange={this.handleMajorChange} data={this.state} />
+                    handleMajorChange={this.handleMajorChange} handleShowOtherMajor={this.handleShowOtherMajor} 
+                    data={this.state} />
             </div>
         )
     }
