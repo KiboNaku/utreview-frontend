@@ -27,7 +27,7 @@ function SignupComponent(props) {
     )
 
     return (
-        <div className="modal fade absolute" id="signup-modal" role="dialog">
+        <div className="modal fade" id="signup-modal" role="dialog">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
 

@@ -30,7 +30,6 @@ class Results extends Component {
 				},
 				filter: {
 					depts: [],
-					mApp: 0,
 					mNum: 0,
 					sem: "all"
 				}
@@ -45,8 +44,6 @@ class Results extends Component {
 					sortDir: 'down',
 				},
 				filter: {
-					depts: [],
-					mApp: 0,
 					mNum: 0,
 					sem: "all"
 				}
@@ -58,6 +55,7 @@ class Results extends Component {
 		this.handleTabChange = this.handleTabChange.bind(this)
 		this.handleFilterChange = this.handleFilterChange.bind(this)
 		this.handlePageInc = this.handlePageInc.bind(this)
+		this.isSemester = this.isSemester.bind(this)
 	}
 
 	componentDidMount() {
@@ -93,7 +91,7 @@ class Results extends Component {
 
 	componentDidUpdate(prevProps) {
 
-		if (prevProps.location.search != this.props.location.search) {
+		if (prevProps.location.search !== this.props.location.search) {
 
 			const search = {
 				searchValue: this.props.location.state.searchValue
@@ -136,6 +134,18 @@ class Results extends Component {
 			}
 		))
 	}
+
+	isSemester(sem, profcourse){
+
+        if(sem === 'all'){
+            return true
+        } else if(sem === 'current'){
+            return profcourse.semesters[0]
+        } else if(sem === 'next'){
+            return profcourse.semesters[1]
+        }
+        return true
+    }
 
     calcTableEdge(page, length) {
         return Math.min(25 * (page + 1), length)
@@ -193,7 +203,7 @@ class Results extends Component {
 		//TODO: update variable names
 		const { tabIndex } = this.state
 
-		if (tabIndex == 0) {
+		if (tabIndex === 0) {
 			const { sortDir, sortBy } = this.state.courses.sort;
 			let nextSort;
 
@@ -214,7 +224,7 @@ class Results extends Component {
 			}))
 
 			console.log(sortByName, nextSort)
-		} else if (tabIndex == 1) {
+		} else if (tabIndex === 1) {
 			const { sortDir, sortBy } = this.state.profs.sort;
 			let nextSort;
 
@@ -236,10 +246,10 @@ class Results extends Component {
 		}
 	}
 
-	handleFilterChange(depts = null, mApp = -1, mNum = -1, sem = null) {
+	handleFilterChange(depts = null, mNum = -1, sem = null) {
 
-		if (this.state.tabIndex == 0) {
-			this.setState((prevState) => {
+		if (this.state.tabIndex === 0) {
+			this.setState(prevState => {
 
 				let filter = prevState.courses.filter
 				return {
@@ -247,15 +257,14 @@ class Results extends Component {
 						...prevState.courses,
 						page: 0,
 						filter: {
-							depts: depts == null ? filter.depts : depts,
-							mApp: mApp < 0 ? filter.mApp : mApp,
+							depts: depts === null ? filter.depts : depts,
 							mNum: mNum < 0 ? filter.mNum : mNum,
-							sem: sem == null ? filter.sem : sem
+							sem: sem === null ? filter.sem : sem
 						}
 					}
 				}
 			})
-		} else if (this.state.tabIndex == 1) {
+		} else if (this.state.tabIndex === 1) {
 			this.setState((prevState) => {
 
 				let filter = prevState.profs.filter
@@ -264,10 +273,8 @@ class Results extends Component {
 						...prevState.profs,
 						page: 0,
 						filter: {
-							depts: depts == null ? filter.depts : depts,
-							mApp: mApp < 0 ? filter.mApp : mApp,
 							mNum: mNum < 0 ? filter.mNum : mNum,
-							sem: sem == null ? filter.sem : sem
+							sem: sem === null ? filter.sem : sem
 						}
 					}
 				}
@@ -286,6 +293,7 @@ class Results extends Component {
 			handleTabChange={this.handleTabChange}
 			handleFilterChange={this.handleFilterChange}
 			handleSortChange={this.handleSortChange}
+			isSemester={this.isSemester}
 
 			match={this.props.match}
 			search={this.props.location.state.searchValue} />)

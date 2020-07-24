@@ -11,10 +11,6 @@
 	background-color: rgba(255, 255, 255, .7)
 }
 
-.absolute {
-	position: absolute;
-}
-
 .form-wrapper {
 	position: relative;
     flex: 1 1 auto;
