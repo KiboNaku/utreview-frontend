@@ -25,7 +25,7 @@ function CourseInfo(props) {
 		<div className="course-info">
 			<div className="course-code"> {props.courseDept} {props.courseNum} </div>
 			<div className="course-name"> {props.courseTitle} </div>
-			<hr></hr>
+			<hr className="course-name-underline"></hr>
 			<p> {props.courseDes} </p>
 			{props.topicNum > 0 ? parentTopic: null}
 		</div>
