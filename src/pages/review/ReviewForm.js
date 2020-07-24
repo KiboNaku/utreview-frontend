@@ -3,9 +3,11 @@ import qs from 'qs'
 import { withRouter } from 'react-router-dom'
 import { getCourses, getProfs, getSemesters, getTopics, getCourseId, getProfId } from './_utils/ReviewFormFunctions'
 import { checkDuplicate, newReview, editReview } from './_utils/ReviewFunctions'
+import Error from './../_utils/Error'
 import jwt_decode from 'jwt-decode'
 import ReviewFormComponent from './_components/ReviewFormComponent'
 import Loading from './../_utils/Loading.js'
+import $ from './../../../node_modules/jquery'
 
 class ReviewForm extends Component {
 	constructor(props) {
@@ -106,7 +108,8 @@ class ReviewForm extends Component {
 			formDisabled: true,
 			duplicateReview: false,
 			oldReview: props.location.state === undefined || props.location.state.review === undefined ? null : props.location.state.review,
-			invalidReview: false
+			invalidReview: false,
+			errorMessage: ''
 		}
 
 		console.log(this.state.oldReview)
@@ -521,8 +524,8 @@ class ReviewForm extends Component {
 	checkDuplicate = (review) => {
 		checkDuplicate(review).then(res => {
 			if (res.error) {
-				alert(res.error)
-				this.setState({ duplicateReview: true, formDisabled: true })
+				this.setState({ duplicateReview: true, formDisabled: true, errorMessage: res.error })
+				$("#errorModalreviewForm").modal("show");
 			} else {
 				console.log(res)
 			}
@@ -1158,6 +1161,7 @@ class ReviewForm extends Component {
 		return (
 			<div>
 				{this.state.invalidReview ? invalidReview : (loaded ? content : loading)}
+				<Error message={this.state.errorMessage} id="reviewForm" title="Error"/>
 			</div>
 		);
 	}
