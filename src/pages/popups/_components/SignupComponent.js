@@ -73,6 +73,9 @@ function SignupComponent(props) {
                                     placeholder="select field of study"
                                     isClearable={true}
                                     isSearchable={true}
+                                    isDisabled={props.data.showOtherMajor}
+                                    value={props.data.major !== null ?
+                                        props.data.majorList.filter(major => major.value === props.data.major) : null}
                                 />
                             </div>
                             <div className="form-group row">
