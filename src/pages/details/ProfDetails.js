@@ -333,7 +333,7 @@ class ProfDetails extends React.Component {
 
                 </div>
                 <div className="prof-tables">
-                    <ProfCourses profCourses={this.state.profCourses} key={this.state.profCourses}/>
+                    <ProfCourses profInfo={this.state.profInfo} profCourses={this.state.profCourses} key={this.state.profCourses}/>
                 </div>
 
                 <ProfSchedule profSchedule={this.state.profSchedule} key={this.state.profSchedule.currentSem}/>
