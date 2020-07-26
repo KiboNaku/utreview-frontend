@@ -22,6 +22,11 @@ class Login extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
+    signup(){
+        $("#signup-modal").modal("show");
+        $("#login-modal").modal("hide");
+    }
+
     onSubmit(e) {
 
         const NOT_VERIFIED = -101
@@ -65,7 +70,7 @@ class Login extends Component {
     render() {
 
         return (
-            <LoginComponent onSubmit={this.onSubmit} onChange={this.onChange} data={this.state} />
+            <LoginComponent signup={this.signup} onSubmit={this.onSubmit} onChange={this.onChange} data={this.state} />
         )
     }
 }

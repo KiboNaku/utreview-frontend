@@ -48,21 +48,25 @@ class Signup extends Component {
 		}
 	}
 
-    onSubmit(e) {
-        e.preventDefault()
-
-        if (this.state.password !== this.state.confirm_password) {
-            alert("Password fields don't match")
-            return
+    onSubmit(values) {
+        console.log(values)
+        let major = values.major
+        let otherMajor = values.otherMajor
+        if(values.showOtherMajor){
+            major = null
+        }else if(values.noMajor){
+            major = null
+            otherMajor = null
+        }else{
+            otherMajor = null
         }
-
         const newUser = {
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            email: this.state.email,
-            password: this.state.password,
-            major: this.state.major,
-            other_major: this.state.otherMajor
+            first_name: values.firstName,
+            last_name: values.lastName,
+            email: values.email,
+            password: values.password,
+            major: major,
+            other_major: otherMajor
         }
 
         this.setState({ loading: true })
@@ -72,7 +76,7 @@ class Signup extends Component {
             this.setState({ loading: false })
 
             if (res.error) {
-                alert(res.error)
+                // alert(res.error)
             } else {
                 $("#signup-modal").modal("hide");
                 $("#verifyemail-modal").modal("show");
