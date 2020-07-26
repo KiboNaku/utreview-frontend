@@ -32,49 +32,6 @@ function invalidInputStyle(errors, touched, fieldName) {
 
 function SignupComponent(props) {
 
-    const validate = values => {
-        const errors = {};
-        if (!values.firstName) {
-            errors.firstName = 'Required';
-        } else if (values.firstName.length > 50) {
-            errors.firstName = 'Must be 50 characters or less';
-        } else if (values.firstName.length < 2) {
-            errors.firstName = 'Must be at least 2 characters';
-        } else if (containsSpecialChars(values.firstName)) {
-            errors.firstName = 'Must not contain special characters';
-        } else if (containsNumbers(values.firstName)) {
-            errors.firstName = 'Must not contain numbers';
-        }
-
-        if (!values.lastName) {
-            errors.lastName = 'Required';
-        } else if (values.lastName.length > 50) {
-            errors.firstName = 'Must be 50 characters or less';
-        } else if (values.lastName.length < 2) {
-            errors.lastName = 'Must be at least 2 characters';
-        } else if (containsSpecialChars(values.lastName)) {
-            errors.firstName = 'Must not contain special characters';
-        } else if (containsNumbers(values.lastName)) {
-            errors.firstName = 'Must not contain numbers';
-        }
-
-        if (!values.email) {
-            errors.email = 'Required';
-        } else {
-            axios
-                .post('/api/check_email', {
-                    email: values.email + '@utexas.edu',
-                })
-                .then(response => {
-                    if (response.data.error) {
-                        errors.email = response.data.error
-                    }
-                })
-        }
-
-        return errors;
-    };
-
     const SignupForm = () => {
         return (
             <Formik
@@ -131,7 +88,7 @@ function SignupComponent(props) {
                             function (value) {
                                 return new Promise((resolve, reject) => {
                                     axios
-                                        .post('/api/check_email', {
+                                        .post('/api/check_duplicate_email', {
                                             email: value + '@utexas.edu',
                                         })
                                         .then(response => {
@@ -345,88 +302,6 @@ function SignupComponent(props) {
 
                         {props.data.loading && loading}
                         <SignupForm />
-
-                        {/* <form className="form-signin mt-3" onSubmit={props.handleSubmit}>
-
-                            <div className="form-group my-3">
-                                <input
-                                    type="text"
-                                    name="first_name"
-                                    className="form-control d-inline col-6"
-                                    placeholder="first name"
-                                    value={props.data.first_name}
-                                    onChange={props.onChange}
-                                    required autoFocus />
-
-                                <input
-                                    type="text"
-                                    name="last_name"
-                                    className="form-control d-inline col-6"
-                                    placeholder="last name"
-                                    value={props.data.last_name}
-                                    onChange={props.onChange}
-                                    required autoFocus />
-                            </div>
-
-                            <div className="my-3">
-                                <UTEmail email={props.data.email} onChange={props.onChange} />
-                            </div>
-
-                            <div className="form-group my-3">
-                                <Select
-                                    className="basic-single"
-                                    classNamePrefix="select"
-                                    name="major"
-                                    options={props.data.majorList}
-                                    onChange={props.handleMajorChange}
-                                    placeholder="select field of study"
-                                    isClearable={true}
-                                    isSearchable={true}
-                                    isDisabled={props.data.showOtherMajor}
-                                    value={props.data.major !== null ?
-                                        props.data.majorList.filter(major => major.value === props.data.major) : null}
-                                />
-                            </div>
-                            <div className="form-group row">
-                                <div className="col-sm-4">
-                                    <input
-                                        role="button"
-                                        id='showOtherMajor'
-                                        type="checkbox"
-                                        name="showOtherMajor"
-                                        checked={props.data.showOtherMajor}
-                                        onChange={props.handleShowOtherMajor} />
-                                    <label for="showOtherMajor" className="other-major-label" > Other major</label>
-                                </div>
-                                {props.data.showOtherMajor ? otherMajor : null}
-                            </div>
-
-
-                            <div className="form-group my-3">
-                                <input
-                                    type="password"
-                                    name="password"
-                                    className="form-control"
-                                    value={props.data.password}
-                                    onChange={props.onChange}
-                                    placeholder="password"
-                                    required />
-                            </div>
-
-                            <div className={"form-group my-3"}>
-                                <input
-                                    type="password"
-                                    name="confirm_password"
-                                    className="form-control"
-                                    value={props.data.confirm_password}
-                                    onChange={props.onChange}
-                                    placeholder="confirm password"
-                                    required />
-                            </div>
-
-                            <button className="btn btn-lg btn-utcolor btn-block mt-2 font-weight-bold" type="submit"> Sign up </button>
-
-                        </form> */}
 
                         <div className="text-center my-3">
                             <h5><strong>OR</strong></h5>
