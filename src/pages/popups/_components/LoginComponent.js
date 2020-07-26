@@ -66,8 +66,8 @@ function LoginComponent(props) {
                         <label className="center-text pt-3 d-inline-block">
                             <h6>
                                 New to UT Flow?&nbsp;
-                                    <span type="button" data-toggle="modal" data-target="#signup-modal">
-                                    <a data-dismiss="modal" data-toggle="modal" data-target="#signup-modal" className="utcolor">Sign Up</a>
+                                    <span type="button" onClick={props.signup}>
+                                    <a className="utcolor">Sign Up</a>
                                 </span>
                             </h6>
                         </label>
