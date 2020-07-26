@@ -1,3 +1,8 @@
+.modal { overflow-y: auto}
+body.modal-open {
+    overflow: hidden;
+}
+
 .on-top {
 	top: 0;
 	left: 0;
