@@ -25,6 +25,11 @@ class Footer extends Component {
                             Privacy Policy
                         </Link>
                     </li>
+                    <li className="nav-item" className="nav-link">
+                        <Link className="footer-link" to="/contact-us">
+                            Contact Us
+                        </Link>
+                    </li>
                 </ul>
             </footer>
         )
