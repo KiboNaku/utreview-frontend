@@ -49,6 +49,17 @@ function ContactUsComponent(props) {
 					</Formik>
 				</div>
 			</div>
+
+			<div id='feedback-received' className="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+				<div className="toast-body feedback-notif">
+					<button type="button" className="close feedback-notif-close" data-dismiss="toast" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<div className='feedback-notif-text'>
+						Thank you. We will use your feedback to improve your experience.
+					</div>
+				</div>
+			</div>
 		</main>
 	)
 }

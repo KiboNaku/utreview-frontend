@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 import { withRouter } from 'react-router-dom'
+import $ from './../../../node_modules/jquery'
 import ContactUsComponent from './_components/ContactUsComponent'
 import './ContactUs.css'
 import { sendMessage } from './_util/ContactUsFunctions'
@@ -31,8 +32,12 @@ class ContactUs extends Component {
 
 	handleSubmit = (values, { setSubmitting }) => {
 		setTimeout(() => {
-			alert(JSON.stringify(values, null, 2));
-			sendMessage(values)
+			// alert(JSON.stringify(values, null, 2));
+			let response = sendMessage(values)
+			console.log(response)
+			if(response !== null) {
+				$('#feedback-received').toast('show')
+			}
 			setSubmitting(false);
 		}, 400);
 	}
