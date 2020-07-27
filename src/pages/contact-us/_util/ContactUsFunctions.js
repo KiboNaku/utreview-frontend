@@ -1,18 +1,31 @@
-import React from 'react'
-import { useField } from 'formik';
+import * as Yup from 'yup'
+import axios from 'axios'
 
-export const TextInput = ({ label, ...props }) => {
-	const [field, meta] = useField(props);
-	return (
-		<div>
-			<label className='col-sm-4 contact-form-label' htmlFor={props.id || props.name}>{label}<small className='warning'> *</small></label>
-			<br />
-			<input className={`col-sm-4 contact-form-input text-input ${props.name}-input`} {...field} {...props} />
-			{meta.touched && meta.error ? (
-				<div>
-					<small className="error warning">{meta.error}</small>
-				</div>
-			) : null}
-		</div>
-	);
-};
+
+export const sendMessage = values => {
+	return axios
+		.post('/api/contact_us_message', {
+			first_name: values.firstname,
+			last_name: values.lastname,
+			email: values.email,
+			message: values.message
+		})
+		.then(response => {
+			console.log(response)
+			return response.data
+		})
+}
+
+export const validation = Yup.object({
+	firstname: Yup.string()
+		.required('Required'),
+	lastname: Yup.string()
+		.required('Required'),
+	email: Yup.string()
+		.required('Required')
+		.email('Invalid email address'),
+	message: Yup.string()
+		.required('Required')
+})
+
+

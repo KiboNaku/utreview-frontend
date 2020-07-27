@@ -1,17 +1,16 @@
 import React from 'react'
-import { Formik, Form } from 'formik';
-import { TextInput } from './../_util/ContactUsFunctions'
-
+import { Formik, Form } from 'formik'
+import { validation } from './../_util/ContactUsFunctions'
+import { TextInput, TextArea, } from './../_util/ContactUsFormElements'
 
 function ContactUsComponent(props) {
 
 	let initialValues = {
-		name: props.data.name,
+		firstname: props.data.firstName,
+		lastname: props.data.lastName,
 		email: props.data.email,
 		message: ''
 	}
-
-	console.log(initialValues)
 
 	return (
 		<main className='main-sub about container-fluid'>
@@ -21,35 +20,18 @@ function ContactUsComponent(props) {
 					<Formik
 						enableReinitialize
 						initialValues={initialValues}
-						validate={(values => {
-							const errors = {};
-							if (!values.name) {
-								errors.name = 'Required';
-							}
-
-							if (!values.email) {
-								errors.email = 'Required';
-							} else if (!/^[A-Z0-9._%+-]+@utexas.edu$/i.test(values.email)) {
-								errors.email = 'Invalid email address';
-							}
-
-							if (!values.message) {
-								errors.message = 'Required';
-							}
-
-							return errors;
-						})}
-						onSubmit={(values, { setSubmitting }) => {
-							setTimeout(() => {
-								alert(JSON.stringify(values, null, 2));
-								setSubmitting(false);
-							}, 400);
-						}}
+						validationSchema={validation}
+						onSubmit={props.handleSubmit}
 					>
 						<Form>
 							<TextInput
-								label='Name'
-								name='name'
+								label='First Name'
+								name='firstname'
+								type='text'
+							/>
+							<TextInput
+								label='Last Name'
+								name='lastname'
 								type='text'
 							/>
 							<TextInput
@@ -57,12 +39,12 @@ function ContactUsComponent(props) {
 								name='email'
 								type='text'
 							/>
-							<TextInput
+							<TextArea
 								label='Message'
 								name='message'
 								type='text'
 							/>
-							<button className='contact-submit' type="submit">Submit</button>
+							<button className='btn btn-outline-dark font-weight-bold contact-submit' type="submit">Submit</button>
 						</Form>
 					</Formik>
 				</div>
