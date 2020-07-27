@@ -10,7 +10,6 @@ class Signup extends Component {
     constructor() {
         super()
         this.state = {
-
             loading: false,
             verifyEmail: false,
             majorList: null,

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
-import ModalHeader from './../../popups/_utils/ModalHeader'
-import $ from './../../../../node_modules/jquery'
-import UTEmail from './../../popups/_utils/UTEmail'
+import ModalHeader from '../../popups/_utils/ModalHeader'
+import $ from 'jquery'
+import UTEmail from '../../popups/_utils/UTEmail'
 
 class Settings extends Component {
 	constructor(props) {
