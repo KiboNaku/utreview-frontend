@@ -50,7 +50,7 @@ class Signup extends Component {
 
     onSubmit(values) {
         console.log(values)
-        let major = values.major
+        let major = values.major.value
         let otherMajor = values.otherMajor
         if(values.showOtherMajor){
             major = null
