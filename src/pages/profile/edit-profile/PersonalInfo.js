@@ -2,11 +2,8 @@ import React from 'react'
 import Select from 'react-select'
 import axios from 'axios'
 import * as Yup from 'yup'
-import { useFormik, Field, Formik, Form, ErrorMessage, getIn } from 'formik'
-import MajorSelect from './MajorSelect'
-import GoogleButton from "./../_utils/GoogleButton"
-import ModalHeader from './../_utils/ModalHeader'
-import UTEmail from './../_utils/UTEmail'
+import { useFormik, Field, Formik, Form, ErrorMessage, getIn, setNestedObjectValues } from 'formik'
+import MajorSelect from './../../popups/_components/MajorSelect'
 import Loading from './../../_utils/Loading'
 import { contains } from 'jquery'
 
@@ -30,21 +27,18 @@ function invalidInputStyle(errors, touched, fieldName) {
     }
 }
 
-function SignupComponent(props) {
+function PersonalInfo(props) {
 
     const SignupForm = () => {
         return (
             <Formik
                 initialValues={{
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    major: '',
-                    otherMajor: '',
-                    password: '',
-                    confirmPassword: '',
-                    showOtherMajor: false,
-                    noMajor: false
+                    firstName: props.data.firstName,
+                    lastName: props.data.lastName,
+                    major: props.data.major !== null && props.data.major !== "" ? {"value": props.data.major, "label": props.data.major}: '',
+                    otherMajor: props.data.otherMajor !== null && props.data.otherMajor !== "" ? props.data.otherMajor : '',
+                    showOtherMajor: props.data.otherMajor !== null && props.data.otherMajor !== "" ? true : false,
+                    noMajor: props.data.otherMajor === null && props.data.major === null ? true : false
                 }}
                 validationSchema={Yup.object({
                     firstName: Yup.string()
@@ -83,25 +77,6 @@ function SignupComponent(props) {
                                 return !containsNumbers(value);
                             }
                         ),
-                    email: Yup.string()
-                        .test('Check duplicate email', 'An account already exists for this email',
-                            function (value) {
-                                return new Promise((resolve, reject) => {
-                                    axios
-                                        .post('/api/check_duplicate_email', {
-                                            email: value + '@utexas.edu',
-                                        })
-                                        .then(response => {
-                                            if (response.data.error) {
-                                                resolve(false)
-                                            } else {
-                                                resolve(true)
-                                            }
-                                        })
-                                })
-                            }
-                        )
-                        .required('Required'),
                     showOtherMajor: Yup.boolean(),
                     noMajor: Yup.boolean(),
                     major: Yup.string()
@@ -117,36 +92,9 @@ function SignupComponent(props) {
                             then: Yup.string()
                                 .required('Required')
                         }),
-                    password: Yup.string()
-                        .required('Required')
-                        .max(50, 'Must be 50 characters or less')
-                        .min(8, 'Must be at least 8 characters')
-                        .test(
-                            'Not enough alphabet characters',
-                            'Must contain at least 1 alphabet character',
-                            function (value) {
-                                return /[a-zA-Z]/.test(value)
-                            }
-                        )
-                        .test(
-                            'Not enough special characters',
-                            'Must contain at least 1 special character',
-                            function (value) {
-                                return containsSpecialChars(value);
-                            }
-                        )
-                        .test(
-                            'Not enough numeric characters',
-                            'Must contain at least 1 numeric character',
-                            function (value) {
-                                return containsNumbers(value);
-                            }
-                        ),
-                    confirmPassword: Yup.string()
-                        .required('Required')
-                        .oneOf([Yup.ref('password'), null], 'Passwords must match')
                 })}
-                onSubmit={(values) => {
+                onSubmit={(values, actions) => {
+                    actions.setStatus({submitted: true})
                     props.onSubmit(values)
                 }}
             >
@@ -178,6 +126,14 @@ function SignupComponent(props) {
                         </div>
                     )
 
+                    let success = (
+                        <div className="text-success">
+                            Your changes have been saved
+                        </div>
+                    )
+
+                    console.log(formik)
+
                     return (
                         <form onSubmit={formik.handleSubmit}>
                             <div className="form-group my-3">
@@ -202,24 +158,6 @@ function SignupComponent(props) {
                                         style={invalidInputStyle(formik.errors, formik.touched, 'lastName')}
                                     />
                                     <ErrorMessage component="div" className="text-danger" name="lastName" />
-                                </div>
-                            </div>
-
-
-                            <div className="my-3">
-                                <div className="form-label-group">
-                                    <label htmlFor="email">Email</label>
-                                    <span className="d-flex">
-                                        <Field
-                                            name="email"
-                                            type="text"
-                                            className="form-control d-inline"
-                                            placeholder="john.doe"
-                                            style={invalidInputStyle(formik.errors, formik.touched, 'email')}
-                                        />
-                                        <label className="px-2 float-right" style={{ marginTop: 6 }}>@utexas.edu</label>
-                                    </span>
-                                    <ErrorMessage component="div" className="text-danger" name="email" />
                                 </div>
                             </div>
 
@@ -251,30 +189,20 @@ function SignupComponent(props) {
                                 {formik.values.showOtherMajor ? otherMajor : noMajor}
                             </div>
 
-
-                            <div className="form-group my-3">
-                                <label htmlFor="password">Password</label>
-                                <Field
-                                    name="password"
-                                    type="password"
-                                    className="form-control"
-                                    style={invalidInputStyle(formik.errors, formik.touched, 'password')}
-                                />
-                                <ErrorMessage component="div" className="text-danger" name="password" />
-                            </div>
-
-                            <div className="form-group my-3">
-                                <label htmlFor="confirmPassword">Confirm Password</label>
-                                <Field
-                                    name="confirmPassword"
-                                    type="password"
-                                    className="form-control"
-                                    style={invalidInputStyle(formik.errors, formik.touched, 'confirmPassword')}
-                                />
-                                <ErrorMessage component="div" className="text-danger" name="confirmPassword" />
-                            </div>
-
-                            <button className="btn btn-lg btn-utcolor btn-block mt-2 font-weight-bold" type="submit"> Sign up </button>
+                            <div className='modal-footer d-block' align='center'>
+                                {formik.dirty ? null : success}
+								<button
+									type='submit'
+									className='btn btn-outline-dark font-weight-bold'
+									>
+									Apply </button>
+								<button
+									type='button'
+                                    className='btn btn-outline-dark font-weight-bold'
+                                    onClick={formik.handleReset}
+                                    >
+									Cancel </button>
+							</div>
 
                         </form>
                     )
@@ -292,40 +220,8 @@ function SignupComponent(props) {
 
 
     return (
-        <div className="modal fade" id="signup-modal" role="dialog">
-            <div className="modal-dialog modal-dialog-centered" role="document">
-                <div className="modal-content">
-
-                    <ModalHeader text="Sign Up" />
-
-                    <div className="modal-body">
-
-                        {props.data.loading && loading}
-                        <SignupForm />
-
-                        <div className="text-center my-3">
-                            <h5><strong>OR</strong></h5>
-                        </div>
-
-                        <form className="mb-3">
-                            <GoogleButton text="Sign Up with Google" />
-                        </form>
-                    </div>
-
-                    <div className="modal-footer d-block" align="center">
-                        <label className="center-text pt-3 d-inline-block">
-                            <h6>
-                                Already have an account?&nbsp;
-                                    <span type="button" data-toggle="modal" data-target="#signup-modal">
-                                    <a data-dismiss="modal" data-toggle="modal" data-target="#login-modal" className="utcolor">Log In</a>
-                                </span>
-                            </h6>
-                        </label>
-                    </div>
-                </div>
-            </div >
-        </div >
+        <SignupForm />
     )
 }
 
-export default SignupComponent
+export default PersonalInfo

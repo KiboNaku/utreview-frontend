@@ -9,9 +9,10 @@ import ProfileComponent from './_components/ProfileComponent'
 import ReviewSummary from './_utils/ReviewSummary'
 import { SelectionPicture } from './_utils/ProfilePicture'
 import { ProfilePicModal } from './_utils/ProfilePicPopup'
-import Settings from './_utils/Settings'
+import Settings from './edit-profile/Settings'
+import EditProfile from './edit-profile/EditProfile'
 import { getMajor } from './../popups/_utils/UserFunctions'
-import { getProfilePictures, updateProfilePic, updateInfo, getReviews, deleteReview } from './_utils/ProfileFunctions'
+import { getProfilePictures, updateProfilePic, updatePersonalInfo, getReviews, deleteReview } from './_utils/ProfileFunctions'
 import Loading from './../_utils/Loading.js'
 import './Profile.css'
 import axios from 'axios'
@@ -37,8 +38,8 @@ class Profile extends Component {
         this.editReview = this.editReview.bind(this)
         this.setImageData = this.setImageData.bind(this)
         this.onImageChange = this.onImageChange.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
         this.deleteReview = this.deleteReview.bind(this)
+        this.editPersonalInfo = this.editPersonalInfo.bind(this)
     }
 
     componentDidMount() {
@@ -161,40 +162,35 @@ class Profile extends Component {
 
     //all need to add backend stuff
 
-    onSubmit(mode, firstName, lastName, password, confirmPassword, major, otherMajor) {
-        switch (mode) {
-            case 'apply':    
-                console.log(password)
-                if(password === confirmPassword){
-                    const user = {
-                        first_name: firstName,
-                        last_name: lastName,
-                        email: this.state.email,
-                        password: password,
-                        major: major,
-                        other_major: otherMajor
-                    }
-    
-                    updateInfo(user).then(res => {
-                        if (res.error) {
-                            alert(res.error)
-                        } else {
-                            this.setState(prevState => ({
-                                firstName: firstName !== null && firstName !== "" ? firstName : prevState.firstName,
-                                lastName: lastName !== null && lastName !== "" ? lastName : prevState.lastName,
-                                major: major,
-                                otherMajor: otherMajor,
-                            }))
-                            $('#settings').modal('hide')
-                        }
-                    })
-                }else{
-                    alert("Passwords must match")
-                }    
-                break
-            default:
-                $('#settings').modal('hide')
+    editPersonalInfo(values){
+        let major = values.major
+        let otherMajor = values.otherMajor
+        if(values.showOtherMajor){
+            major = null
+        }else if(values.noMajor){
+            major = null
+            otherMajor = null
+        }else{
+            otherMajor = null
         }
+
+        const user = {
+            first_name: values.firstName,
+            last_name: values.lastName,
+            email: this.state.email,
+            major: major !== null ? values.major.value : null,
+            other_major: otherMajor
+        }
+
+        updatePersonalInfo(user).then(res => {
+            this.setState(prevState => ({
+                firstName: values.firstName,
+                lastName: values.lastName,
+                major: major !== null ? values.major.value : null,
+                otherMajor: otherMajor,
+            }))
+            
+        })
     }
 
     //TODO: write this function and implement backend 
@@ -222,9 +218,9 @@ class Profile extends Component {
                 <ProfilePicModal
                     setImageData={this.setImageData}
                 />
-                <Settings
+                <EditProfile
                     data={this.state}
-                    onSubmit={this.onSubmit}
+                    editPersonalInfo={this.editPersonalInfo}
                 />
             </main>
         )
