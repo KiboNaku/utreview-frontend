@@ -7,6 +7,7 @@ import ModalHeader from '../../popups/_utils/ModalHeader'
 import $ from 'jquery'
 import UTEmail from '../../popups/_utils/UTEmail'
 import PersonalInfo from './PersonalInfo'
+import ChangePassword from './ChangePassword'
 
 class EditProfile extends Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class EditProfile extends Component {
                                     <PersonalInfo {...this.props} onSubmit={this.props.editPersonalInfo}/>
                                 </Tab>
                                 <Tab eventKey="edit-password" title="Password">
-                                    Password
+                                    <ChangePassword {...this.props} onSubmit={this.props.changePassword} />
                                 </Tab>
                             </Tabs>
 

@@ -40,6 +40,7 @@ class Profile extends Component {
         this.onImageChange = this.onImageChange.bind(this)
         this.deleteReview = this.deleteReview.bind(this)
         this.editPersonalInfo = this.editPersonalInfo.bind(this)
+        this.changePassword = this.changePassword.bind(this)
     }
 
     componentDidMount() {
@@ -193,6 +194,17 @@ class Profile extends Component {
         })
     }
 
+    changePassword(values){
+        axios
+        .post('/api/reset_password', {
+            email: localStorage.email,
+            password: values.password
+        })
+        .then(response => {
+            
+        })
+    }
+
     //TODO: write this function and implement backend 
     deleteReview(id){
         const review = {
@@ -221,6 +233,7 @@ class Profile extends Component {
                 <EditProfile
                     data={this.state}
                     editPersonalInfo={this.editPersonalInfo}
+                    changePassword={this.changePassword}
                 />
             </main>
         )
