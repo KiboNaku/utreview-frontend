@@ -14,8 +14,9 @@ function ProfileComponent(props) {
 			<div className='d-flex justify-content-center'>
 				<div className='col-lg-8 profile'>
 					<div className='settings-button'>
-						<button type="button" className="btn btn-outline-dark font-weight-bold" data-toggle="modal" data-target={'#settings'} >
-							Settings </button>
+						<button type="button" className="btn btn-outline-dark font-weight-bold" data-toggle="modal" data-target={'#edit-profile'} >
+							Edit Profile
+						</button>
 					</div>
 					<div className='user-information'>
 						<ProfilePicture

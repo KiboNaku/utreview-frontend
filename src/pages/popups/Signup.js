@@ -40,7 +40,7 @@ class Signup extends Component {
             last_name: values.lastName,
             email: values.email,
             password: values.password,
-            major: major,
+            major: major !== null ? major.value : null,
             other_major: otherMajor
         }
 
