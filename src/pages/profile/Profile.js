@@ -20,73 +20,16 @@ import axios from 'axios'
 
 class Profile extends Component {
     constructor() {
-
-        const reviewList = [
-            {
-                'id': 1,
-                'date': '2020-01-01',
-                'grade': "A",
-
-                'semester': {
-                    'id': 1,
-                    'semester': 'Spring',
-                    'year': 2020
-                },
-
-                'user': {
-                    'major': {
-                        'abr': 'EE',
-                        'name': 'Electrical Engineering '
-                    }
-                },
-
-                'prof': {
-                    'id': 3,
-                    'firstName': 'Seth',
-                    'lastName': 'Bank'
-                },
-
-                'course': {
-                    'id': 3,
-                    'dept': {
-                        'abr': 'EE',
-                        'name': 'Electrical Engineering'
-                    },
-                    'num': 302,
-                    'title': 'intro to ee',
-                    'topicNum': 1,
-                    'topicId': 4,
-                    'parentId': 1
-                },
-
-                'courseRating': {
-                    'approval': false,
-                    'usefulness': 3,
-                    'difficulty': 2,
-                    'workload': 4,
-                    'comments': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus.",
-                },
-
-                'profRating': {
-                    'approval': true,
-                    'clear': 4,
-                    'engaging': 3,
-                    'grading': 5,
-                    'comments': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo ultrices luctus.",
-                },
-            }
-        ]
-
         super()
         this.state = {
-            firstName: 'Vina',
-            lastName: 'Xue',
-            email: 'yxue22@utexas.edu',
-            major: 'ee',
+            firstName: '',
+            lastName: '',
+            email: '',
+            major: '',
             profilePic: '',
             otherMajor: '',
             profilePicList: [],
-            reviews: reviewList,
+            reviews: [],
             majorList: [],
             loaded: false
         }
@@ -103,7 +46,6 @@ class Profile extends Component {
 
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
-        console.log(decoded)
         this.setState({
             firstName: decoded.identity.first_name,
             lastName: decoded.identity.last_name,
