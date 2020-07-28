@@ -29,7 +29,7 @@ function invalidInputStyle(errors, touched, fieldName) {
 
 function PersonalInfo(props) {
 
-    const SignupForm = () => {
+    const PersonalInfoForm = () => {
         return (
             <Formik
                 initialValues={{
@@ -220,7 +220,7 @@ function PersonalInfo(props) {
 
 
     return (
-        <SignupForm />
+        <PersonalInfoForm />
     )
 }
 

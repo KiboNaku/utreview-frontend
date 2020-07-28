@@ -28,15 +28,8 @@ function ResetPasswordComponent(props) {
         return (
             <Formik
                 initialValues={{
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    major: '',
-                    otherMajor: '',
                     password: '',
-                    confirmPassword: '',
-                    showOtherMajor: false,
-                    noMajor: false
+                    confirmPassword: ''
                 }}
                 validationSchema={Yup.object({
                     password: Yup.string()
