@@ -253,19 +253,6 @@ class Settings extends Component {
 									</div>
 								</div>
 							</form>
-							<div className='modal-footer d-block' align='center'>
-								<button
-									type='button'
-									className='btn btn-outline-dark font-weight-bold'
-									onClick={() => this.handleSubmit()}
-									>
-									Apply </button>
-								<button
-									type='button'
-									className='btn btn-outline-dark font-weight-bold'
-									onClick={() => this.handleCancel()}>
-									Cancel </button>
-							</div>
 						</div>
 					</div>
 				</div>
