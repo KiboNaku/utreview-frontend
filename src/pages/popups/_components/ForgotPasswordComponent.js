@@ -9,7 +9,7 @@ function ForgotPasswordComponent(props) {
 
     let loading =
         <div className="on-top">
-            <Loading />
+            <Loading size='30px' bare="True" />
         </div>
 
     return (
@@ -21,17 +21,18 @@ function ForgotPasswordComponent(props) {
                     <ModalHeader text="Forgot Password" />
 
                     <div className="modal-body">
+                        <div className="form-wrapper">
+                            {props.data.loading && loading}
+                            <form className="form-signin mt-3" onSubmit={props.onSubmit}>
 
-                        {props.data.loading && loading}
-                        <form className="form-signin mt-3" onSubmit={props.onSubmit}>
+                                <div className="my-3">
+                                    <UTEmail email={props.data.email} onChange={props.onChange} />
+                                </div>
 
-                            <div className="my-3">
-                                <UTEmail email={props.data.email} onChange={props.onChange} />
-                            </div>
+                                <button className="btn btn-sm btn-utcolor btn-block mt-2 font-weight-bold" type="submit">Send Password Reset Email</button>
 
-                            <button className="btn btn-lg btn-utcolor btn-block mt-2 font-weight-bold" type="submit">Send Password Reset Email</button>
-
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div >
