@@ -39,6 +39,22 @@ export const updateInfo = user => {
 		})
 }
 
+export const updatePersonalInfo = user => {
+	return axios
+		.post('/api/update_personal_info', {
+			first_name: user.first_name,
+			last_name: user.last_name,
+			email: user.email,
+			major: user.major,
+			other_major: user.other_major
+		})
+		.then(response => {
+			console.log(response)
+			localStorage.setItem('usertoken', response.data)
+			return response.data
+		})
+}
+
 export const getReviews = user => {
 	return axios
 		.post('/api/review_list', {

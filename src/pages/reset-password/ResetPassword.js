@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter, Link, Redirect } from 'react-router-dom'
-import ResetPasswordForm from './ResetPasswordForm'
-import Loading from './../_utils/Loading'
+import ResetPasswordComponent from './ResetPasswordComponent'
+import Loading from './../_utils/Loading'   
 import axios from 'axios'
 import qs from 'qs'
 
@@ -15,9 +15,6 @@ class ResetPassword extends Component {
             redirect: false,
             success: 0,
             error: null,
-            password: '',
-            confirmPassword: '',
-            passwordsNoMatch: false,
             passwordUpdated: false
         }
         this.onChange = this.onChange.bind(this)
@@ -41,22 +38,18 @@ class ResetPassword extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    onSubmit(e) {
-        e.preventDefault()
-
-        if (this.state.password !== this.state.confirmPassword) {
-            this.setState({ passwordsNoMatch: true })
-        } else {
-            this.setState({ passwordsNoMatch: false, loading: true })
-            axios
-                .post('/api/reset_password', {
-                    email: localStorage.email,
-                    password: this.state.password
-                })
-                .then(response => {
-                    this.setState({ passwordUpdated: true, loading: false })
-                })
-        }
+    onSubmit(values){
+        
+        this.setState({ loading: true })
+        axios
+        .post('/api/reset_password', {
+            email: localStorage.email,
+            password: values.password
+        })
+        .then(response => {
+            this.setState({passwordUpdated: true, loading: false})
+        })
+        
     }
 
 
@@ -70,12 +63,16 @@ class ResetPassword extends Component {
             </div>
 
         if (this.state.success < 0) {
-            message = "An error has occured: " + this.state.error
+            message = (
+            <h3>{"An error has occured: " + this.state.error}</h3>
+            )
         }
 
-        let successMessage = "Your password has been successfully updated"
-
-        let resetForm = <ResetPasswordForm onSubmit={this.onSubmit} onChange={this.onChange} data={this.state} />
+        let successMessage = (
+            <h3>Your password has been successfully updated</h3>
+        )
+        
+        let resetForm = <ResetPasswordComponent onSubmit={this.onSubmit} onChange={this.onChange} data={this.state}/>
 
         return (
             <main className="bg-grey">
