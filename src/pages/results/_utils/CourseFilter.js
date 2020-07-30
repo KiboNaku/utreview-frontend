@@ -52,21 +52,42 @@ function CourseFilter(props) {
                 </div>
 
                 <div>
-                    <label class="container">One
-                        <input type="checkbox" checked="checked" />
-                    </label>
-
-                    <label class="container">Two
-                        <input type="checkbox" />
-                    </label>
-
-                    <label class="container">Three
-                        <input type="checkbox" />
-                    </label>
-
-                    <label class="container">Four
-                        <input type="checkbox" />
-                    </label>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, {one:true}) }}>
+                        <input type="checkbox" className="d-none" checked={ props.filter.hours.one }/>
+                        <div class="checkbox-container">
+                            1XX
+                        </div>
+                    </div>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, {two:true}) }}>
+                        <input type="checkbox" className="d-none" checked={ props.filter.hours.two }/>
+                        <div class="checkbox-container">
+                            2XX
+                        </div>
+                    </div>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, {three:true}) }}>
+                        <input type="checkbox" className="d-none" checked={ props.filter.hours.three }/>
+                        <div class="checkbox-container">
+                            3XX
+                        </div>
+                    </div>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, {four:true}) }}>
+                        <input type="checkbox" className="d-none" checked={ props.filter.hours.four }/>
+                        <div class="checkbox-container">
+                            4XX
+                        </div>
+                    </div>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, {five:true}) }}>
+                        <input type="checkbox" className="d-none" checked={ props.filter.hours.five }/>
+                        <div class="checkbox-container">
+                            5XX
+                        </div>
+                    </div>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, {six:true}) }}>
+                        <input type="checkbox" className="d-none" checked={ props.filter.hours.six }/>
+                        <div class="checkbox-container">
+                            6XX
+                        </div>
+                    </div>
                 </div>
 
                 {/* min num of ratings filter */}

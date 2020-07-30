@@ -43,32 +43,29 @@
     cursor: pointer;
 }
 
-/* Customize the checkbox*/
-
-.container {
-    border: 1px solid black;
-
-    display: block;
-    position: relative;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+.custom-checkbox {
+    display: inline-block;
+    text-align: center;
 }
 
-/* Hide the browser's default checkbox */
-
-.container input {
-    position: absolute;
-    opacity: 0;
+.custom-checkbox:hover {
     cursor: pointer;
-    height: 0;
-    width: 0;
 }
 
-/* Show the checkmark when checked */
+.custom-checkbox:hover .checkbox-container {
 
-.container input:checked {
-    display: block;
+}
+
+.checkbox-container {
+    padding: 5px;
+    margin: 3px;
+    border: 2px solid #bf5700;
+    border-radius: 30%;
+    display: inline-block;
+    color: #bf5700;
+}
+
+input[type=checkbox]:checked + .checkbox-container {
+    background-color: #bf5700;
+    color: white;
 }
