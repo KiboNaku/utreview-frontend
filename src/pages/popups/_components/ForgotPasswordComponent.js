@@ -67,7 +67,7 @@ function ForgotPasswordComponent(props) {
                         <form onSubmit={formik.handleSubmit}>
                             <div className="my-3">
                                 <div className="form-label-group">
-                                    <label htmlFor="email">Email</label>
+                                    <label htmlFor="email">Email<small className='warning'> *</small></label>
                                     <span className="d-flex">
                                         <Field
                                             name="email"

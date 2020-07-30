@@ -70,7 +70,7 @@ function ResetPasswordComponent(props) {
                     return (
                         <form className="form-signin" onSubmit={formik.handleSubmit}>
                             <div className="form-group my-3">
-                                <label htmlFor="password">Password</label>
+                                <label htmlFor="password">Password<small className='warning'> *</small></label>
                                 <Field
                                     name="password"
                                     type="password"
@@ -81,7 +81,7 @@ function ResetPasswordComponent(props) {
                             </div>
 
                             <div className="form-group my-3">
-                                <label htmlFor="confirmPassword">Confirm Password</label>
+                                <label htmlFor="confirmPassword">Confirm Password<small className='warning'> *</small></label>
                                 <Field
                                     name="confirmPassword"
                                     type="password"
