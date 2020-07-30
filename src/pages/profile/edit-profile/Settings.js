@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
-import ModalHeader from './../../popups/_utils/ModalHeader'
-import $ from './../../../../node_modules/jquery'
-import UTEmail from './../../popups/_utils/UTEmail'
+import ModalHeader from '../../popups/_utils/ModalHeader'
+import $ from 'jquery'
+import UTEmail from '../../popups/_utils/UTEmail'
 
 class Settings extends Component {
 	constructor(props) {
@@ -253,19 +253,6 @@ class Settings extends Component {
 									</div>
 								</div>
 							</form>
-							<div className='modal-footer d-block' align='center'>
-								<button
-									type='button'
-									className='btn btn-outline-dark font-weight-bold'
-									onClick={() => this.handleSubmit()}
-									>
-									Apply </button>
-								<button
-									type='button'
-									className='btn btn-outline-dark font-weight-bold'
-									onClick={() => this.handleCancel()}>
-									Cancel </button>
-							</div>
 						</div>
 					</div>
 				</div>
