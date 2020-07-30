@@ -61,7 +61,7 @@ function ReviewFormComponent(props) {
                         <li className="py-3">
 
                             <span >
-                                Select a semester:
+                                Select a semester<small className='warning'> *</small>
                             </span>
 
                             <Select
@@ -81,7 +81,7 @@ function ReviewFormComponent(props) {
                         <li className="py-2">
 
                             <span >
-                                Select a course:
+                                Select a course<small className='warning'> *</small>
                             </span>
 
                             <Select
@@ -104,7 +104,7 @@ function ReviewFormComponent(props) {
                         <li className="py-3" >
 
                             <span>
-                                Select a professor:
+                                Select a professor<small className='warning'> *</small>
                             </span>
 
                             <Select
@@ -124,24 +124,24 @@ function ReviewFormComponent(props) {
 
                         <li className="py-3" style={disableStyle}>
                             <span>
-                                Give us your review for {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num + ':' : '...'}
+                                Give us your review for {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}<small className='warning'> *</small>
                             </span>
                             <ReviewCourse {...props} />
                         </li>
 
                         <li className="py-3" style={disableStyle}>
                             <span>
-                                Give us your review for {props.data.prof.id !== null ? props.data.prof.firstName + " " + props.data.prof.lastName + ':' : '...'}
+                                Give us your review for {props.data.prof.id !== null ? props.data.prof.firstName + " " + props.data.prof.lastName : '...'}<small className='warning'> *</small>
                             </span>
                             <ReviewProfessor {...props} />
                         </li>
                         <li className="py-3" style={disableStyle}>
                             <span>
-                                (Optional) Give us the grade you obtained in {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num + ':' : '...'}
+                                (Optional) Give us the grade you obtained in {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}
                             </span>
                             <div className="review-form-grade">
                                 <Select
-                                    className="basic-single col-sm-10"
+                                    className="basic-single col-12 col-sm-10 col-md-8 mt-2"
                                     classNamePrefix="select"
                                     name="grade"
                                     options={gradeList}
