@@ -31,7 +31,15 @@ class Results extends Component {
 				filter: {
 					depts: [],
 					mNum: 0,
-					sem: "all"
+					sem: "all",
+					hours: {
+						one: true,
+						two: true,
+						three: true,
+						four: true,
+						five: true,
+						six: true
+					}
 				}
 			},
 
@@ -246,12 +254,17 @@ class Results extends Component {
 		}
 	}
 
-	handleFilterChange(depts = null, mNum = -1, sem = null) {
+	handleFilterChange(depts = null, mNum = -1, sem = null, hours = null) {
 
 		if (this.state.tabIndex === 0) {
 			this.setState(prevState => {
 
 				let filter = prevState.courses.filter
+			
+				for(let hour in hours){
+					hours[hour] = !filter.hours[hour]
+				}
+
 				return {
 					courses: {
 						...prevState.courses,
@@ -259,7 +272,11 @@ class Results extends Component {
 						filter: {
 							depts: depts === null ? filter.depts : depts,
 							mNum: mNum < 0 ? filter.mNum : mNum,
-							sem: sem === null ? filter.sem : sem
+							sem: sem === null ? filter.sem : sem,
+							hours: hours === null ? filter.hours: {
+								...prevState.courses.filter.hours,
+								...hours
+							}
 						}
 					}
 				}
