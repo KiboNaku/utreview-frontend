@@ -13,7 +13,7 @@ function invalidInputStyle(errors, touched, fieldName) {
         return {
             border: '1px solid red'
         }
-    }else{
+    } else {
         return null
     }
 }
@@ -22,9 +22,9 @@ function ForgotPasswordComponent(props) {
 
     let loading =
         <div className="on-top">
-            <Loading />
+            <Loading size='30px' bare="True" />
         </div>
-    
+
     const ForgotPasswordForm = () => {
         return (
             <Formik
@@ -37,7 +37,7 @@ function ForgotPasswordComponent(props) {
                     email: Yup.string()
                         .test('Check valid email', 'An account does not exist for this email',
                             function (value) {
-                                if(value === undefined){
+                                if (value === undefined) {
                                     return true
                                 }
                                 return new Promise((resolve, reject) => {
@@ -100,9 +100,11 @@ function ForgotPasswordComponent(props) {
                     <ModalHeader text="Forgot Password" />
 
                     <div className="modal-body">
+                        <div className="form-wrapper">
 
-                        {props.data.loading && loading}
-                        <ForgotPasswordForm />
+                            {props.data.loading && loading}
+                            <ForgotPasswordForm />
+                        </div>
                     </div>
                 </div>
             </div >
