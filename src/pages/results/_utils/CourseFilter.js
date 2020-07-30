@@ -51,6 +51,24 @@ function CourseFilter(props) {
                     />
                 </div>
 
+                <div>
+                    <label class="container">One
+                        <input type="checkbox" checked="checked" />
+                    </label>
+
+                    <label class="container">Two
+                        <input type="checkbox" />
+                    </label>
+
+                    <label class="container">Three
+                        <input type="checkbox" />
+                    </label>
+
+                    <label class="container">Four
+                        <input type="checkbox" />
+                    </label>
+                </div>
+
                 {/* min num of ratings filter */}
                 <div className="form-group my-3 clear-both">
                     <label className="float-left text-left font-weight-bold">Min # of ratings:</label>
