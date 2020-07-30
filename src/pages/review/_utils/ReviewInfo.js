@@ -27,85 +27,45 @@ function invalidInputStyle(errors, touched, fieldName) {
     }
 }
 
-function PersonalInfo(props) {
+function ReviewInfo(props) {
 
-    const PersonalInfoForm = () => {
+    const ReviewInfoForm = () => {
         return (
             <Formik
                 initialValues={{
-                    firstName: props.data.firstName,
-                    lastName: props.data.lastName,
-                    major: props.data.major !== null && props.data.major !== "" ? {"value": props.data.major, "label": props.data.major}: '',
-                    otherMajor: props.data.otherMajor !== null && props.data.otherMajor !== "" ? props.data.otherMajor : '',
-                    showOtherMajor: props.data.otherMajor !== null && props.data.otherMajor !== "" ? true : false,
-                    noMajor: props.data.otherMajor === null && props.data.major === null ? true : false
+                    courseApproval: null,
+                    courseDifficulty: null,
+                    courseUsefulness: null,
+                    courseWorkload: null,
+                    courseComments: '',
+                    profApproval: null,
+                    profClear: null,
+                    profEngaging: null,
+                    profGrading: null,
+                    profComments: ''
                 }}
                 validationSchema={Yup.object({
-                    firstName: Yup.string()
-                        .required('Required')
-                        .max(50, 'Must be 50 characters or less')
-                        .min(2, 'Must be at least 2 characters')
-                        .test(
-                            'No special characters',
-                            'Must not contain special characters',
-                            function (value) {
-                                return !containsSpecialChars(value);
-                            }
-                        )
-                        .test(
-                            'No numeric characters',
-                            'Must not contain numeric characters',
-                            function (value) {
-                                return !containsNumbers(value);
-                            }
-                        ),
-                    lastName: Yup.string()
-                        .required('Required')
-                        .max(50, 'Must be 50 characters or less')
-                        .min(2, 'Must be at least 2 characters')
-                        .test(
-                            'No special characters',
-                            'Must not contain special characters',
-                            function (value) {
-                                return !containsSpecialChars(value);
-                            }
-                        )
-                        .test(
-                            'No numeric characters',
-                            'Must not contain numeric characters',
-                            function (value) {
-                                return !containsNumbers(value);
-                            }
-                        ),
-                    showOtherMajor: Yup.boolean(),
-                    noMajor: Yup.boolean(),
-                    major: Yup.string()
-                        .nullable()
-                        .when(['showOtherMajor', 'noMajor'], {
-                            is: (showOtherMajor, noMajor) => !showOtherMajor && !noMajor,
-                            then: Yup.string()
-                                .required('Required')
-                        }),
-                    otherMajor: Yup.string()
-                        .when('showOtherMajor', {
-                            is: (showOtherMajor) => showOtherMajor,
-                            then: Yup.string()
-                                .required('Required')
-                        })
-                        .test(
-                            'No special characters',
-                            'Must not contain special characters',
-                            function (value) {
-                                return !containsSpecialChars(value);
-                            }
-                        )
-                        .test(
-                            'No numeric characters',
-                            'Must not contain numeric characters',
-                            function (value) {
-                                return !containsNumbers(value);
-                            }
-                        ),
+                    courseApproval: Yup.boolean()
+                    .required('Required')
+                    .nullable(),
+                    courseDifficulty: Yup.number()
+                    .required('Required')
+                    .nullable(),
+                    courseWorkload: Yup.number()
+                    .required('Required')
+                    .nullable(),
+                    courseComments: Yup.number()
+                    .required('Required')
+                    .nullable(),
+                    profClear: Yup.number()
+                    .required('Required')
+                    .nullable(),
+                    profEngaging: Yup.number()
+                    .required('Required')
+                    .nullable(),
+                    profGrading: Yup.number()
+                    .required('Required')
+                    .nullable(),
                 })}
                 onSubmit={(values, actions) => {
                     actions.setStatus({submitted: true})
@@ -152,7 +112,7 @@ function PersonalInfo(props) {
                         <form onSubmit={formik.handleSubmit}>
                             <div className="form-group my-3">
                                 <div className="form-group my-3">
-                                    <label htmlFor="firstName">First Name<small className='warning'> *</small></label>
+                                    <label htmlFor="firstName">First Name</label>
                                     <Field
                                         name="firstName"
                                         type="text"
@@ -163,7 +123,7 @@ function PersonalInfo(props) {
                                     <ErrorMessage component="div" className="text-danger" name="firstName" />
                                 </div>
                                 <div className="form-group my-3">
-                                    <label htmlFor="lastName">Last Name<small className='warning'> *</small></label>
+                                    <label htmlFor="lastName">Last Name</label>
                                     <Field
                                         name="lastName"
                                         type="text"
@@ -234,8 +194,8 @@ function PersonalInfo(props) {
 
 
     return (
-        <PersonalInfoForm />
+        <ReviewInfoForm />
     )
 }
 
-export default PersonalInfo
+export default ReviewInfo

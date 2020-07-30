@@ -22,7 +22,7 @@ class MajorSelect extends React.Component {
         }
         return (
             <div>
-                <label htmlFor="major">Major</label>
+                <label htmlFor="major">Major<small className='warning'> *</small></label>
                 <Select
                     className="basic-single"
                     classNamePrefix="select"

@@ -86,7 +86,7 @@ function LoginComponent(props) {
                         <form onSubmit={formik.handleSubmit}>
                             <div className="my-3">
                                 <div className="form-label-group">
-                                    <label htmlFor="email">Email</label>
+                                    <label htmlFor="email">Email<small className='warning'> *</small></label>
                                     <span className="d-flex">
                                         <Field
                                             name="email"
@@ -102,7 +102,7 @@ function LoginComponent(props) {
                             </div>
 
                             <div className="form-group my-3">
-                                <label htmlFor="password">Password</label>
+                                <label htmlFor="password">Password<small className='warning'> *</small></label>
                                 <Field
                                     name="password"
                                     type="password"
