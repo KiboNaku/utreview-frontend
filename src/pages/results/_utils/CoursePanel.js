@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import TabPanel from './TabPanel'
 import { Link } from 'react-router-dom'
 
@@ -6,17 +6,15 @@ function CoursePanel(props) {
 
     const { sortDir, sortBy } = props.sort
     const [hasMore, setHasMore] = useState(true)
-    const observer = useRef()
-    const loadRef = useCallback(node => {
-        if (observer.current) observer.current.disconnect()
-        observer.current = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting && hasMore) {
-                props.handlePageInc()
-                if (props.calcTableEdge(props.page, props.data.length) >= props.data.length) setHasMore(false)
-            }
-        })
-        if (node) observer.current.observe(node)
-    }, [props.loading, props.hasMore])
+    const [buttonDOM, setButtonDOM] = useState(null)
+
+    function loadCourses() {
+        if (buttonDOM != null) buttonDOM.blur();
+        if (hasMore) {
+            props.handlePageInc()
+            if (props.calcTableEdge(props.page, props.data.length) >= props.data.length) setHasMore(false)
+        }
+    }
 
     function sort(a, b) {
 
@@ -37,22 +35,22 @@ function CoursePanel(props) {
                 case 'courseECIS':
                     if (a.eCIS !== null && b.eCIS !== null) return b.eCIS - a.eCIS
                     else if (a.eCIS === null && b.eCIS !== null) {
-                        if(props.sort.sortDir === 'up') return 1 
+                        if (props.sort.sortDir === 'up') return 1
                         else return -1
                     }
                     else if (a.eCIS !== null && b.eCIS === null) {
-                        if(props.sort.sortDir === 'up') return -1 
+                        if (props.sort.sortDir === 'up') return -1
                         else return 1
                     }
                     else return 0
                 case 'courseApproval':
                     if (a.approval !== null && b.approval !== null) return b.approval - a.approval
                     else if (a.approval === null && b.approval !== null) {
-                        if(props.sort.sortDir === 'up') return 1 
+                        if (props.sort.sortDir === 'up') return 1
                         else return -1
                     }
                     else if (a.approval !== null && b.approval === null) {
-                        if(props.sort.sortDir === 'up') return -1 
+                        if (props.sort.sortDir === 'up') return -1
                         else return 1
                     }
                     else return 0
@@ -79,13 +77,10 @@ function CoursePanel(props) {
                     if (course.courseTopic >= 0) {
                         coursePath += "_" + course.courseTopic.toString()
                     }
-                    // TODO: temporary numbers to fill table: remove later
-                    // const rating = Math.floor(Math.random() * 70 + 30)
-                    // const numRating = Math.floor(Math.random() * 1500)
 
                     return (
 
-                        <tr key={course.id} ref={loadRef}>
+                        <tr key={course.id}>
                             <td colSpan="1">{courseName}</td>
                             <td colSpan="2" className="class-name">{
                                 <Link
@@ -103,8 +98,8 @@ function CoursePanel(props) {
                                 {course.eCIS !== null ? course.eCIS : "N/A"}
                             </td>
                             <td colSpan="1">
-                                {course.approval !== null ? course.approval+'%' : "N/A"}
-							</td>
+                                {course.approval !== null ? course.approval + '%' : "N/A"}
+                            </td>
                             <td colSpan="1">
                                 {course.numRatings}
                             </td>
@@ -131,7 +126,6 @@ function CoursePanel(props) {
             fn: (a, b) => a
         }
     }
-    console.log(props.data)
 
     let sortedCourses = props.data
         .filter(course =>
@@ -140,7 +134,7 @@ function CoursePanel(props) {
             (props.isSemester(filter.sem, course)) &&
             (props.isHour(course, filter)) &&
             (props.isDivision(course, filter))
-        
+
         )
         .sort(sortTypes[sortDir].fn)
         .slice(0, props.calcTableEdge(props.page, props.data.length))
@@ -183,7 +177,11 @@ function CoursePanel(props) {
                     {setTableData(sortedCourses)}
                 </tbody>
             </table>
-            <div>{hasMore && props.loading}</div>
+            {hasMore &&
+                <div>
+                    <button onClick={loadCourses} className="btn btn-block btn-more-results" ref={(buttonDOM) => { setButtonDOM(buttonDOM) }}>More results</button>
+                </div>
+            }
         </div>
     )
 
