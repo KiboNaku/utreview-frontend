@@ -65,13 +65,11 @@ input[type=checkbox]:checked + .checkbox-container:hover {
 }
 
 .checkbox-container {
+    font-size: 13px;
     padding: 0 5px;
     margin: 3px;
     border: 2px solid #bf5700;
-    border-top-left-radius: 100%50px;
-    border-bottom-right-radius: 100%50px;   
-    border-top-right-radius: 100%50px;
-    border-bottom-left-radius: 100%50px;
+    border-radius: 20px;
     display: inline-block;
     color: #bf5700;
 }

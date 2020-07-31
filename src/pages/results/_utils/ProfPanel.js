@@ -135,8 +135,11 @@ function ProfPanel(props) {
                 </tbody>
             </table>
             {hasMore &&
-                <div>
-                    <button onClick={loadCourses} className="btn btn-block btn-more-results" ref={(buttonDOM) => { setButtonDOM(buttonDOM) }}>More results</button>
+                <div className="d-flex justify-content-center">
+                    <button onClick={loadCourses} className="btn btn-block btn-more-results col-12 col-sm-9 col-md-8 col-lg-7" 
+                        ref={(buttonDOM) => { setButtonDOM(buttonDOM) }}>
+                        More results
+                    </button>
                 </div>
             }
         </div>
