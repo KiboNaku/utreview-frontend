@@ -75,7 +75,9 @@ function ResultsComponent(props) {
                                 calcTableEdge={props.calcTableEdge}
                                 handlePageInc={props.handlePageInc}
                                 handleSortChange={props.handleSortChange}
-                                isSemester={props.isSemester} />
+                                isSemester={props.isSemester}
+                                isHour={props.isHour} 
+                                isDivision={props.isDivision}/>
                             <ProfPanel
                                 {...props.profs}
                                 loading={loading}
