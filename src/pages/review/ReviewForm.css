@@ -18,6 +18,23 @@ li * {
 	border-style: hidden;
 }
 
+.review-row{
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    max-width: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.review-rating{
+    padding-top: 3px;
+}
+
+.approval-buttons{
+    margin-bottom: 5px;
+}
+
 .btn-approval:hover {
     cursor: pointer;
     transform: scale(1.15);

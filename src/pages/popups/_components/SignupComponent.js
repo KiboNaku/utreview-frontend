@@ -116,7 +116,21 @@ function SignupComponent(props) {
                             is: (showOtherMajor) => showOtherMajor,
                             then: Yup.string()
                                 .required('Required')
-                        }),
+                        })
+                        .test(
+                            'No special characters',
+                            'Must not contain special characters',
+                            function (value) {
+                                return !containsSpecialChars(value);
+                            }
+                        )
+                        .test(
+                            'No numeric characters',
+                            'Must not contain numeric characters',
+                            function (value) {
+                                return !containsNumbers(value);
+                            }
+                        ),
                     password: Yup.string()
                         .required('Required')
                         .max(50, 'Must be 50 characters or less')
@@ -151,6 +165,8 @@ function SignupComponent(props) {
                 }}
             >
                 {formik => {
+
+                    console.log(formik.errors)
                     let noMajor = (
                         <div className="col-sm-4">
                             <input
@@ -178,22 +194,24 @@ function SignupComponent(props) {
                         </div>
                     )
 
+                    console.log(formik.errors.firstName !== undefined && formik.touched.firstName !== undefined)
+
                     return (
                         <form onSubmit={formik.handleSubmit}>
                             <div className="form-group my-3">
                                 <div className="form-group my-3">
-                                    <label htmlFor="firstName">First Name</label>
+                                    <label htmlFor="firstName">First Name<small className='warning'> *</small></label>
                                     <Field
                                         name="firstName"
                                         type="text"
                                         className="form-control"
                                         placeholder="John"
-                                        style={invalidInputStyle(formik.errors, formik.touched, 'firstName')}
+                                        style={formik.errors.firstName && formik.touched.firstName ? {"border": '1px solid red'} : null}
                                     />
                                     <ErrorMessage component="div" className="text-danger" name="firstName" />
                                 </div>
                                 <div className="form-group my-3">
-                                    <label htmlFor="lastName">Last Name</label>
+                                    <label htmlFor="lastName">Last Name<small className='warning'> *</small></label>
                                     <Field
                                         name="lastName"
                                         type="text"
@@ -208,7 +226,7 @@ function SignupComponent(props) {
 
                             <div className="my-3">
                                 <div className="form-label-group">
-                                    <label htmlFor="email">Email</label>
+                                    <label htmlFor="email">Email<small className='warning'> *</small></label>
                                     <span className="d-flex">
                                         <Field
                                             name="email"
@@ -253,7 +271,7 @@ function SignupComponent(props) {
 
 
                             <div className="form-group my-3">
-                                <label htmlFor="password">Password</label>
+                                <label htmlFor="password">Password<small className='warning'> *</small></label>
                                 <Field
                                     name="password"
                                     type="password"
@@ -264,7 +282,7 @@ function SignupComponent(props) {
                             </div>
 
                             <div className="form-group my-3">
-                                <label htmlFor="confirmPassword">Confirm Password</label>
+                                <label htmlFor="confirmPassword">Confirm Password<small className='warning'> *</small></label>
                                 <Field
                                     name="confirmPassword"
                                     type="password"
