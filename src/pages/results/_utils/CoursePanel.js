@@ -139,8 +139,10 @@ function CoursePanel(props) {
             (filter.mNum <= course.numRatings) &&
             (props.isSemester(filter.sem, course)) &&
             (filter.hours[(
-                parseInt(course.courseNum.replace(/\D/g,'')[0]))
-            ]))
+                Math.min(parseInt(course.courseNum.replace(/\D/g,'')[0]), 6))
+            ])
+        
+        )
         .sort(sortTypes[sortDir].fn)
         .slice(0, props.calcTableEdge(props.page, props.data.length))
 
