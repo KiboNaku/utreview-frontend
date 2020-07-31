@@ -129,7 +129,7 @@ function CourseReviewEntry(props) {
                             <span> {props.review.numDisliked} </span>
                         </div>
                         <div className="review-grade">
-                            <span> Grade: {props.review.grade}</span>
+                            <span> Grade: {props.review.grade !== null ? props.review.grade : "N/A"}</span>
                         </div>
                     </div>
                 </div>
