@@ -22,7 +22,7 @@ class Results extends Component {
 
 			courses: {
 				loaded: false,
-				page: props.location.state.page,
+				page: 0,
 				data: [],
 				sort: {
 					sortBy: 'courseName',
@@ -50,7 +50,7 @@ class Results extends Component {
 
 			profs: {
 				loaded: false,
-				page: props.location.state.page,
+				page: 0,
 				data: [],
 				sort: {
 					sortBy: 'profName',
@@ -179,7 +179,7 @@ class Results extends Component {
 	}
 
 	calcTableEdge(page, length) {
-		return Math.min(25 * (page + 1), length)
+		return Math.min(40 * (page + 1), length)
 	}
 
 	handlePageInc() {
