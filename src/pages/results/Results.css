@@ -36,6 +36,7 @@ td {
 
 .btn-more-results {
     border: 1px solid #bf5700;
+    border-radius: 20px;
 }
 
 .btn-more-results:hover {
