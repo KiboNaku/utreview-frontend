@@ -52,40 +52,59 @@ function CourseFilter(props) {
                 </div>
 
                 <div>
-                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, {one:true}) }}>
-                        <input type="checkbox" className="d-none" checked={ props.filter.hours.one }/>
+                    <label className="text-left font-weight-bold">Hours: </label>
+                    <br />
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { one: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.hours.one} />
                         <div class="checkbox-container">
                             1XX
                         </div>
                     </div>
-                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, {two:true}) }}>
-                        <input type="checkbox" className="d-none" checked={ props.filter.hours.two }/>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { two: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.hours.two} />
                         <div class="checkbox-container">
                             2XX
                         </div>
                     </div>
-                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, {three:true}) }}>
-                        <input type="checkbox" className="d-none" checked={ props.filter.hours.three }/>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { three: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.hours.three} />
                         <div class="checkbox-container">
                             3XX
                         </div>
                     </div>
-                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, {four:true}) }}>
-                        <input type="checkbox" className="d-none" checked={ props.filter.hours.four }/>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { four: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.hours.four} />
                         <div class="checkbox-container">
                             4XX
                         </div>
                     </div>
-                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, {five:true}) }}>
-                        <input type="checkbox" className="d-none" checked={ props.filter.hours.five }/>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { five: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.hours.five} />
                         <div class="checkbox-container">
                             5XX
                         </div>
                     </div>
-                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, {six:true}) }}>
-                        <input type="checkbox" className="d-none" checked={ props.filter.hours.six }/>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { six: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.hours.six} />
                         <div class="checkbox-container">
                             6XX
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label className="text-left font-weight-bold">Divisions: </label>
+                    <br />
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, null, { upper: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.divisions.upper} />
+                        <div class="checkbox-container">
+                            Upper
+                        </div>
+                    </div>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, null, { lower: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.divisions.lower} />
+                        <div class="checkbox-container">
+                            Lower
                         </div>
                     </div>
                 </div>
