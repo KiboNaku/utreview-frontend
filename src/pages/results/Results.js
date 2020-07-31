@@ -31,7 +31,20 @@ class Results extends Component {
 				filter: {
 					depts: [],
 					mNum: 0,
-					sem: "all"
+					sem: "all",
+					hours: {
+						1: true,
+						2: true,
+						3: true,
+						4: true,
+						5: true,
+						6: true
+					},
+					divisions: {
+						lower: true,
+						upper: true,
+						graduate: true
+					}
 				}
 			},
 
@@ -56,6 +69,8 @@ class Results extends Component {
 		this.handleFilterChange = this.handleFilterChange.bind(this)
 		this.handlePageInc = this.handlePageInc.bind(this)
 		this.isSemester = this.isSemester.bind(this)
+		this.isHour = this.isHour.bind(this)
+		this.isDivision = this.isDivision.bind(this)
 	}
 
 	componentDidMount() {
@@ -135,21 +150,37 @@ class Results extends Component {
 		))
 	}
 
-	isSemester(sem, profcourse){
+	isSemester(sem, profcourse) {
 
-        if(sem === 'all'){
-            return true
-        } else if(sem === 'current'){
-            return profcourse.semesters[0]
-        } else if(sem === 'next'){
-            return profcourse.semesters[1]
-        }
-        return true
-    }
+		if (sem === 'all') {
+			return true
+		} else if (sem === 'current') {
+			return profcourse.semesters[0]
+		} else if (sem === 'next') {
+			return profcourse.semesters[1]
+		}
+		return true
+	}
 
-    calcTableEdge(page, length) {
-        return Math.min(25 * (page + 1), length)
-    }
+	isHour(course, filter) {
+		return filter.hours[(
+			Math.min(
+				parseInt(
+					course.courseNum.replace(/\D/g, '')[0]
+				), 6
+			)
+		)]
+	}
+
+	isDivision(course, filter) {
+
+		let divNum = parseInt(course.courseNum.replace(/\D/g, '')[1])
+		return (filter.divisions.lower && divNum < 2) || (filter.divisions.upper && divNum >= 2 && divNum < 8) || (filter.divisions.graduate && divNum >= 8)
+	}
+
+	calcTableEdge(page, length) {
+		return Math.min(25 * (page + 1), length)
+	}
 
 	handlePageInc() {
 
@@ -157,20 +188,20 @@ class Results extends Component {
 
 			case 0:
 				this.setState(
-					prevState => ({ 
+					prevState => ({
 						courses: {
 							...prevState.courses,
-							page: prevState.courses.page + 1 
+							page: prevState.courses.page + 1
 						}
 					})
 				)
 				break
 			case 1:
 				this.setState(
-					prevState => ({ 
+					prevState => ({
 						profs: {
 							...prevState.profs,
-							page: prevState.profs.page + 1 
+							page: prevState.profs.page + 1
 						}
 					})
 				)
@@ -183,9 +214,9 @@ class Results extends Component {
 	handleTabChange(event, newValue) {
 
 
-		this.setState(prevState =>(
-			{ 
-				tabIndex: newValue,  
+		this.setState(prevState => (
+			{
+				tabIndex: newValue,
 				courses: {
 					...prevState.courses,
 					page: 0
@@ -246,12 +277,26 @@ class Results extends Component {
 		}
 	}
 
-	handleFilterChange(depts = null, mNum = -1, sem = null) {
+	handleFilterChange(depts = null, mNum = -1, sem = null, hours = null, divisions = null) {
 
 		if (this.state.tabIndex === 0) {
 			this.setState(prevState => {
 
 				let filter = prevState.courses.filter
+
+				if (hours) {
+					for (let hour in hours) {
+						hours[hour] = !filter.hours[hour]
+					}
+				}
+
+				if (divisions) {
+
+					for (let division in divisions) {
+						divisions[division] = !filter.divisions[division]
+					}
+				}
+
 				return {
 					courses: {
 						...prevState.courses,
@@ -259,7 +304,15 @@ class Results extends Component {
 						filter: {
 							depts: depts === null ? filter.depts : depts,
 							mNum: mNum < 0 ? filter.mNum : mNum,
-							sem: sem === null ? filter.sem : sem
+							sem: sem === null ? filter.sem : sem,
+							hours: hours === null ? filter.hours : {
+								...prevState.courses.filter.hours,
+								...hours
+							},
+							divisions: divisions == null ? filter.divisions : {
+								...prevState.courses.filter.divisions,
+								...divisions
+							}
 						}
 					}
 				}
@@ -294,10 +347,12 @@ class Results extends Component {
 			handleFilterChange={this.handleFilterChange}
 			handleSortChange={this.handleSortChange}
 			isSemester={this.isSemester}
+			isHour={this.isHour}
+			isDivision={this.isDivision}
 
-			match={this.props.match}
-			search={this.props.location.state.searchValue} />)
-	}
+	match = { this.props.match }
+	search = { this.props.location.state.searchValue } />)
+}
 }
 
 export default withRouter(Results);
