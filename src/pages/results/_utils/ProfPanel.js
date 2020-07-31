@@ -1,4 +1,4 @@
-import React, { Component, useCallback, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import TabPanel from './TabPanel'
 import { Link } from 'react-router-dom'
 
@@ -6,17 +6,15 @@ function ProfPanel(props) {
 
     const { sortDir, sortBy } = props.sort
     const [hasMore, setHasMore] = useState(true)
-    const observer = useRef()
-    const loadRef = useCallback(node => {
-        if (observer.current) observer.current.disconnect()
-        observer.current = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting && hasMore) {
-                props.handlePageInc()
-                if (props.calcTableEdge(props.page, props.data.length) >= props.data.length) setHasMore(false)
-            }
-        })
-        if (node) observer.current.observe(node)
-    }, [props.loading, props.hasMore])
+    const [buttonDOM, setButtonDOM] = useState(null)
+
+    function loadCourses() {
+        if (buttonDOM != null) buttonDOM.blur();
+        if (hasMore) {
+            props.handlePageInc()
+            if (props.calcTableEdge(props.page, props.data.length) >= props.data.length) setHasMore(false)
+        }
+    }
 
     function sort(a, b) {
 
@@ -46,12 +44,9 @@ function ProfPanel(props) {
                 return sortedProfs.map(prof => {
                     const { firstName, lastName } = prof
 
-                    // TODO: temporary numbers to fill table: remove later
-                    const rating = Math.floor(Math.random() * 70 + 30)
-                    const numRating = Math.floor(Math.random() * 1500)
                     const profPath = firstName.toLowerCase().replace(" ", "") + "_" + lastName.toLowerCase().replace(" ", "")
                     return (
-                        <tr key={prof.id} ref={loadRef}>
+                        <tr key={prof.id}>
                             <td colSpan="3" className="class-name">{
                                 <Link
                                     className="utcolor"
@@ -139,7 +134,11 @@ function ProfPanel(props) {
                     {setTableData(sortedProfs)}
                 </tbody>
             </table>
-            <div>{hasMore && props.loading}</div>
+            {hasMore &&
+                <div>
+                    <button onClick={loadCourses} className="btn btn-block btn-more-results" ref={(buttonDOM) => { setButtonDOM(buttonDOM) }}>More results</button>
+                </div>
+            }
         </div>
     )
 
