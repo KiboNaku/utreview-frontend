@@ -39,6 +39,10 @@ class Results extends Component {
 						four: true,
 						five: true,
 						six: true
+					},
+					divisions: {
+						upper: true,
+						lower: true
 					}
 				}
 			},
@@ -143,21 +147,21 @@ class Results extends Component {
 		))
 	}
 
-	isSemester(sem, profcourse){
+	isSemester(sem, profcourse) {
 
-        if(sem === 'all'){
-            return true
-        } else if(sem === 'current'){
-            return profcourse.semesters[0]
-        } else if(sem === 'next'){
-            return profcourse.semesters[1]
-        }
-        return true
-    }
+		if (sem === 'all') {
+			return true
+		} else if (sem === 'current') {
+			return profcourse.semesters[0]
+		} else if (sem === 'next') {
+			return profcourse.semesters[1]
+		}
+		return true
+	}
 
-    calcTableEdge(page, length) {
-        return Math.min(25 * (page + 1), length)
-    }
+	calcTableEdge(page, length) {
+		return Math.min(25 * (page + 1), length)
+	}
 
 	handlePageInc() {
 
@@ -165,20 +169,20 @@ class Results extends Component {
 
 			case 0:
 				this.setState(
-					prevState => ({ 
+					prevState => ({
 						courses: {
 							...prevState.courses,
-							page: prevState.courses.page + 1 
+							page: prevState.courses.page + 1
 						}
 					})
 				)
 				break
 			case 1:
 				this.setState(
-					prevState => ({ 
+					prevState => ({
 						profs: {
 							...prevState.profs,
-							page: prevState.profs.page + 1 
+							page: prevState.profs.page + 1
 						}
 					})
 				)
@@ -191,9 +195,9 @@ class Results extends Component {
 	handleTabChange(event, newValue) {
 
 
-		this.setState(prevState =>(
-			{ 
-				tabIndex: newValue,  
+		this.setState(prevState => (
+			{
+				tabIndex: newValue,
 				courses: {
 					...prevState.courses,
 					page: 0
@@ -254,15 +258,24 @@ class Results extends Component {
 		}
 	}
 
-	handleFilterChange(depts = null, mNum = -1, sem = null, hours = null) {
+	handleFilterChange(depts = null, mNum = -1, sem = null, hours = null, divisions = null) {
 
 		if (this.state.tabIndex === 0) {
 			this.setState(prevState => {
 
 				let filter = prevState.courses.filter
-			
-				for(let hour in hours){
-					hours[hour] = !filter.hours[hour]
+
+				if (hours) {
+					for (let hour in hours) {
+						hours[hour] = !filter.hours[hour]
+					}
+				}
+
+				if (divisions) {
+
+					for (let division in divisions) {
+						divisions[division] = !filter.divisions[division]
+					}
 				}
 
 				return {
@@ -273,9 +286,13 @@ class Results extends Component {
 							depts: depts === null ? filter.depts : depts,
 							mNum: mNum < 0 ? filter.mNum : mNum,
 							sem: sem === null ? filter.sem : sem,
-							hours: hours === null ? filter.hours: {
+							hours: hours === null ? filter.hours : {
 								...prevState.courses.filter.hours,
 								...hours
+							},
+							divisions: divisions == null ? filter.divisions : {
+								...prevState.courses.filter.divisions,
+								...divisions
 							}
 						}
 					}
