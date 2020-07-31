@@ -41,8 +41,9 @@ class Results extends Component {
 						6: true
 					},
 					divisions: {
+						lower: true,
 						upper: true,
-						lower: true
+						graduate: true
 					}
 				}
 			},
@@ -68,6 +69,8 @@ class Results extends Component {
 		this.handleFilterChange = this.handleFilterChange.bind(this)
 		this.handlePageInc = this.handlePageInc.bind(this)
 		this.isSemester = this.isSemester.bind(this)
+		this.isHour = this.isHour.bind(this)
+		this.isDivision = this.isDivision.bind(this)
 	}
 
 	componentDidMount() {
@@ -157,6 +160,22 @@ class Results extends Component {
 			return profcourse.semesters[1]
 		}
 		return true
+	}
+
+	isHour(course, filter) {
+		return filter.hours[(
+			Math.min(
+				parseInt(
+					course.courseNum.replace(/\D/g, '')[0]
+				), 6
+			)
+		)]
+	}
+
+	isDivision(course, filter) {
+
+		let divNum = parseInt(course.courseNum.replace(/\D/g, '')[1])
+		return (filter.divisions.lower && divNum < 2) || (filter.divisions.upper && divNum >= 2 && divNum < 8) || (filter.divisions.graduate && divNum >= 8)
 	}
 
 	calcTableEdge(page, length) {
@@ -328,10 +347,12 @@ class Results extends Component {
 			handleFilterChange={this.handleFilterChange}
 			handleSortChange={this.handleSortChange}
 			isSemester={this.isSemester}
+			isHour={this.isHour}
+			isDivision={this.isDivision}
 
-			match={this.props.match}
-			search={this.props.location.state.searchValue} />)
-	}
+	match = { this.props.match }
+	search = { this.props.location.state.searchValue } />)
+}
 }
 
 export default withRouter(Results);

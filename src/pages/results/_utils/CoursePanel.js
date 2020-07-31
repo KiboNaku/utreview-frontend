@@ -138,9 +138,8 @@ function CoursePanel(props) {
             (filter.depts.length <= 0 || filter.depts.includes(course.courseDept)) &&
             (filter.mNum <= course.numRatings) &&
             (props.isSemester(filter.sem, course)) &&
-            (filter.hours[(
-                Math.min(parseInt(course.courseNum.replace(/\D/g,'')[0]), 6))
-            ])
+            (props.isHour(course, filter)) &&
+            (props.isDivision(course, filter))
         
         )
         .sort(sortTypes[sortDir].fn)
