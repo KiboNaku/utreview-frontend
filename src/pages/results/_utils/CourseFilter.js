@@ -95,16 +95,22 @@ function CourseFilter(props) {
                 <div>
                     <label className="text-left font-weight-bold">Divisions: </label>
                     <br />
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, null, { lower: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.divisions.lower} />
+                        <div class="checkbox-container">
+                            Lower
+                        </div>
+                    </div>
                     <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, null, { upper: true }) }}>
                         <input type="checkbox" className="d-none" checked={props.filter.divisions.upper} />
                         <div class="checkbox-container">
                             Upper
                         </div>
                     </div>
-                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, null, { lower: true }) }}>
-                        <input type="checkbox" className="d-none" checked={props.filter.divisions.lower} />
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, null, { graduate: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.divisions.graduate} />
                         <div class="checkbox-container">
-                            Lower
+                            Grad
                         </div>
                     </div>
                 </div>
