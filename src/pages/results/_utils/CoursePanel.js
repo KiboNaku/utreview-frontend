@@ -131,12 +131,16 @@ function CoursePanel(props) {
             fn: (a, b) => a
         }
     }
+    console.log(props.data)
 
     let sortedCourses = props.data
         .filter(course =>
             (filter.depts.length <= 0 || filter.depts.includes(course.courseDept)) &&
             (filter.mNum <= course.numRatings) &&
-            (props.isSemester(filter.sem, course)))
+            (props.isSemester(filter.sem, course)) &&
+            (filter.hours[(
+                parseInt(course.courseNum.replace(/\D/g,'')[0]))
+            ]))
         .sort(sortTypes[sortDir].fn)
         .slice(0, props.calcTableEdge(props.page, props.data.length))
 

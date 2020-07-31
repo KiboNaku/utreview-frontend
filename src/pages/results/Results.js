@@ -33,12 +33,12 @@ class Results extends Component {
 					mNum: 0,
 					sem: "all",
 					hours: {
-						one: true,
-						two: true,
-						three: true,
-						four: true,
-						five: true,
-						six: true
+						1: true,
+						2: true,
+						3: true,
+						4: true,
+						5: true,
+						6: true
 					},
 					divisions: {
 						upper: true,
