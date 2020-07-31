@@ -1,8 +1,10 @@
 import React from 'react';
 import Select from 'react-select'
 import ProfReviewEntry from './ProfReviewEntry';
+import ReportComment from './../../../report-comment/ReportComment'
 import { reviewFeedback } from '../ProfFunctions'
 import jwt_decode from 'jwt-decode'
+import $ from './../../../../../node_modules/jquery'
 import './ProfReviews.css'
 
 class ProfReviews extends React.Component {
@@ -14,7 +16,7 @@ class ProfReviews extends React.Component {
 		this.state = {
 			profReviews: props.profReviews,
 			reviewsFiltered: updatedReviews,
-			sortBy: "most-recent"
+			sortBy: "most-recent",
 		}
 
 		this.handleLike = this.handleLike.bind(this)
@@ -23,6 +25,12 @@ class ProfReviews extends React.Component {
 		this.dislikeReview = this.dislikeReview.bind(this)
 		this.handleSortChange = this.handleSortChange.bind(this)
 		this.handleCourseChange = this.handleCourseChange.bind(this)
+		this.handleReport = this.handleReport.bind(this)
+	}
+
+	handleReport(id){
+		this.setState({reviewId: id})
+		$(`#report-comment-modal-${id}`).modal("show");
 	}
 
 	likeReview(profReview, id){
@@ -167,7 +175,7 @@ class ProfReviews extends React.Component {
 	handleCourseChange(values){
 		
 		let updatedReviews = []
-		if(values.length == 0){
+		if(values.length === 0){
 			updatedReviews = this.state.profReviews
 		}else{
 			let courses = []
@@ -194,11 +202,16 @@ class ProfReviews extends React.Component {
 	render() {
 		const profReviewList = this.state.reviewsFiltered.map(review => {
 			return (
-				<ProfReviewEntry
+				<div>
+					<ProfReviewEntry
 					review={review}
 					handleLike={this.handleLike}
 					handleDislike={this.handleDislike}
+					handleReport={this.handleReport}
 				/>
+					<ReportComment reviewId={review.id} isCourse={false}/>
+				</div>
+				
 			)
 		})
 
@@ -281,6 +294,8 @@ class ProfReviews extends React.Component {
 
 		)
 
+		console.log(this.state.reviewId)
+
 		return (
 			<div className="profReviews">
 				<div className="card prof-card">
@@ -295,6 +310,7 @@ class ProfReviews extends React.Component {
 						{this.state.profReviews.length > 0 ? reviews : noReviews}
 					</div>
 				</div>
+				
 			</div>
 
 		)

@@ -81,6 +81,7 @@ function LoginComponent(props) {
                 }}
             >
                 {formik => {
+                    console.log(props.reviewId)
 
                     return (
                         <form onSubmit={formik.handleSubmit}>
