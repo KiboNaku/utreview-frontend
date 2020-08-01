@@ -487,6 +487,10 @@
         -moz-transform:rotate(70deg);
         -ms-transform: rotate(70deg);
     }
+
+    .background-credits {
+        font-size: 12px;
+    }
 }
 
 /** for tablet displays **/
@@ -593,6 +597,10 @@
         -webkit-transform: rotate(70deg);
         -moz-transform:rotate(70deg);
         -ms-transform: rotate(70deg);
+    }
+
+    .background-credits {
+        font-size: 11px;
     }
 }
 
@@ -726,8 +734,8 @@
         visibility: visible;
         position: relative;
         margin-top: 12vh;
-        margin-left: 250px;
-        font-size: 12px;
+        margin-left: 37%;
+        font-size: 11px;
     }
 }
 
