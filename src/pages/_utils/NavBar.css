@@ -35,6 +35,7 @@
 }
 
 .big-brand-txt {
+    visibility: hidden;
     color: white;
     font-size: 155%;
 }
