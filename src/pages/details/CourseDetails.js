@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef }  from 'react';
 import CourseInfo from './_course/CourseInfo/CourseInfo';
 import CourseTopics from './_course/CourseInfo/CourseTopics';
 import CourseRatings from './_course/CourseInfo/CourseRatings';
@@ -234,6 +234,8 @@ class CourseDetails extends React.Component {
             },
         ]
 
+        this.reviewRef = React.createRef()
+
         this.state = {
             courseInfo: courseInfo,
             courseRatings: courseRatings,
@@ -243,10 +245,18 @@ class CourseDetails extends React.Component {
             courseSchedule: courseSchedule,
             loaded: false,
             validCourse: true,
-            isParent: courseInfo.topicNum == 0,
-            courseURL: props.location.pathname
+            isParent: courseInfo.topicNum === 0,
+            courseURL: props.location.pathname,
         }
 
+        this.handleScrollToReview = this.handleScrollToReview.bind(this)
+
+    }    
+
+    handleScrollToReview(){
+        console.log(this.reviewRef)
+        const scrollToRef = () => window.scrollTo(0, this.reviewRef.current.offsetTop - 100)
+        scrollToRef()
     }
 
     componentDidUpdate (){
@@ -378,7 +388,7 @@ class CourseDetails extends React.Component {
             <div className="CourseDetails">
                 <div className="course-stats">
                     <CourseInfo
-                        {...this.state.courseInfo}
+                        {...this.state.courseInfo} handleScrollToReview={this.handleScrollToReview}
                     />
                     <CourseRatings
                         {...this.state.courseRatings}
@@ -400,7 +410,10 @@ class CourseDetails extends React.Component {
                 <CourseAddReview
                     {...this.state.courseInfo}
                 />
-                <CourseReviews courseReviews = {this.state.courseReviews} key={this.state.courseReviews}/>
+                <div ref={this.reviewRef}>
+                    <CourseReviews courseReviews = {this.state.courseReviews} key={this.state.courseReviews}/>
+                </div>
+                
             </div>
         )
         return (

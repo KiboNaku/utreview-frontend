@@ -70,3 +70,7 @@ h2 {
 .bg-light {
 	background-color: #d6d2c4;
 }
+
+html {
+	scroll-behavior: smooth;
+}
