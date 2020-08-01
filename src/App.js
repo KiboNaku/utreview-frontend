@@ -67,8 +67,8 @@ class App extends Component{
 						<Route path="/edit-review" component={ReviewForm} />
 						<Route path="/confirm_email" component={ConfirmEmail}/>
 						<Route path="/reset_password" component={ResetPassword} />
-						<Route path={"/course-results/:courseId"} render={(props) => <CourseDetails />} />
-						<Route path={"/prof-results/:profId"} render={(props) => <ProfDetails />} />
+						<Route path={"/course-results/:courseId"} component={CourseDetails} />
+						<Route path={"/prof-results/:profId"} component={ProfDetails} />
 						<Route path="/contact-us" render={ContactUs} />
 						<Route component={NotFound} />
 					</Switch>

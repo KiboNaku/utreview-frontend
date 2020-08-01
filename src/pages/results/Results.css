@@ -33,3 +33,16 @@ td {
     color: white;
     background-color: #333f48;
 }
+
+.btn-more-results {
+    border: 1px solid #bf5700;
+    border-radius: 20px;
+}
+
+.btn-more-results:hover {
+    background-color: #d6d2cccc
+}
+
+.btn-more-results:active {
+    background-color: #d6d2cccc
+}

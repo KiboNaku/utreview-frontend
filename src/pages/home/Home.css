@@ -1,46 +1,880 @@
 
-main.home-page {
+.all-wrapper {
+}
 
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.52), rgba(191, 87, 0, 0.73)), url('./../../res/img/triangles.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
+.home-wrapper {
+    display: grid;
+    grid-template-rows: minmax(250px, 35vh) minmax(370px, 60vh);
+    grid-template-areas: "top"
+                         "bottom";
+    height: 100%;
+}
 
+.top-wrapper {
+    grid-area: top;
+    overflow: hidden;
+    background-image: linear-gradient(#333f48, white);
+}
+
+.top-background {
+    width: 120%;
+    opacity: 0.95;
+}
+
+.bottom-wrapper {
+    grid-area: bottom;
+    border-top: 3px solid white;
+    background-image: linear-gradient(#bf5600bd, #bf5600e8);
+}
+
+.circle-logo {
+    position: relative;
+    height: 550px;
+    margin-top: -227px;
+    margin-left: -70px;
+}
+
+.floating-box {
+    height: 120px;
+    width: 500px;
+    position: relative;
+    margin-left: 615px;
+    margin-top: -420px;
+    background-color: #333f48;
+    border-radius: 20px;
+    border: 2.5px solid white;
+}
+
+.floating-box-content {
+    margin-top: 23px;
+    margin-left: 50px;
     color: white;
 }
 
-.home-sub {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.floating-box-text {
+    margin-top: 10px;
+    font-style: italic;
 }
 
-.figure-caption{
-    background-color: #333f48;
-    color: #9cadb7;
+.find-your-class {
+    float: left;
 }
 
-
-h1.home-main-txt {
-    font-size: 300%;
+.plan-your-schedule {
+    float: left;
+    margin-left: 32px;
 }
 
-@media screen and (max-width: 992px){
+.leave-a-review {
+    float: left;
+    margin-left: 32px;
+}
 
-    h1.home-main-txt {
-        font-size: 250%;
+.magnifying-glass {
+    width: 50px;
+    margin-left: 25px;
+}
+
+.schedule {
+    width: 50px;
+    margin-left: 40px;
+}
+
+.checklist {
+    width: 50px;
+    margin-left: 29px;
+}
+
+.searchbar-wrapper-home {
+    position: relative;
+    margin-top: 35px;
+    margin-left: 615px;
+}
+
+.homepage-sentence {
+    position: relative;
+    color: white;
+    margin-left: 620px;
+    margin-top: 60px;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.sentence-underline {
+    border-bottom: 2px solid white;
+}
+
+.bottom-sentence {
+    margin-left: 160px;
+}
+
+.arrow {
+	position: relative;
+    margin-left: 820px;
+    margin-top: -95px;
+    width: 100px;
+}
+
+.arrow .curve {
+	border: 2px solid white;
+	border-color: white white transparent transparent;
+	height: 70px;
+	width: 100px;
+    border-radius: 650px 400px 400px 0;
+}
+
+.arrow .point {
+	position: relative;
+	left: 40px;
+	top: 170px;
+}
+
+.arrow .point:before, .arrow .point:after {
+	border: 1px solid white;
+	height: 20px;
+	content: "";
+	position: absolute;
+}
+
+.arrow .point:before {
+	top: -200px;
+	left: 48.5px;
+	transform:rotate(5deg);
+	-webkit-transform:rotate(5deg);
+    -moz-transform:rotate(5deg);
+    -ms-transform: rotate(5deg);
+}
+
+.arrow .point:after {
+    top: -196px;
+    left: 57.5px;
+    transform:rotate(60deg);
+    -webkit-transform: rotate(60deg);
+    -moz-transform:rotate(60deg);
+    -ms-transform: rotate(60deg);
+}
+
+.bottom-links-mobile {
+    visibility: hidden;
+}
+
+.background-credits {
+    position: absolute;
+    background: transparent;
+    margin-top: 11px;
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.credits {
+    color: rgba(255, 255, 255, 0.699);
+}
+
+.credits:hover {
+    text-decoration: none;
+}
+
+/** for larger and 4k displays **/
+
+@media screen and (min-width: 2000px) {
+    .home-wrapper {
+        grid-template-rows: minmax(380px, 35vh) minmax(400px, 62vh);
     }
-}
 
-@media screen and (max-width: 768px){
-
-    h1.home-main-txt {
-        font-size: 200%;
+    .circle-logo {
+        height: 860px;
+        margin-top: -355px;
+        margin-left: 30px;
     }
-}
 
-@media screen and (max-width: 576px){
+    .floating-box {
+        height: 10rem;
+        width: 800px;
+        margin-left: 1070px;
+        margin-top: -640px;
+    }
+
+    .floating-box-content {
+        margin-top: 30px;
+        margin-left: 64px;
+    }
     
-    h1.home-main-txt {
-        font-size: 175%;    }
+    .floating-box-text {
+        margin-top: 10px;
+        font-size: 26px;
+    }
+    
+    .plan-your-schedule {
+        margin-left: 49px;
+    }
+    
+    .leave-a-review {
+        margin-left: 49px;
+    }
+    
+    .magnifying-glass {
+        width: 65px;
+        margin-left: 45px;
+    }
+    
+    .schedule {
+        width: 65px;
+        margin-left: 70px;
+    }
+    
+    .checklist {
+        width: 65px;
+        margin-left: 53px;
+    }
+    
+    .searchbar-wrapper-home {
+        margin-top: 50px;
+        margin-left: 1080px;
+    }
+
+    .homepage-sentence {
+        margin-left: 1080px;
+        margin-top: 100px;
+        font-size: 38px;
+    }
+
+    .arrow {
+        margin-left: 1350px;
+        margin-top: -125px;
+    }
+}
+
+
+/** for bigger displays **/
+
+@media screen and (min-width: 1600px) and (max-width: 2001px){
+    .home-wrapper {
+        grid-template-rows: minmax(300px, 35vh) minmax(400px, 62vh);
+    }
+
+    .circle-logo {
+        height: 660px;
+        margin-top: -275px;
+        margin-left: -20px;
+    }
+
+    .floating-box {
+        height: 8.5rem;
+        width: 650px;
+        margin-left: 820px;
+        margin-top: -490px;
+    }
+
+    .floating-box-content {
+        margin-top: 20px;
+        margin-left: 45px;
+    }
+    
+    .floating-box-text {
+        margin-top: 10px;
+        font-size: 21px;
+    }
+    
+    .plan-your-schedule {
+        margin-left: 49px;
+    }
+    
+    .leave-a-review {
+        margin-left: 49px;
+    }
+    
+    .magnifying-glass {
+        width: 55px;
+        margin-left: 35px;
+    }
+    
+    .schedule {
+        width: 55px;
+        margin-left: 60px;
+    }
+    
+    .checklist {
+        width: 55px;
+        margin-left: 43px;
+    }
+    
+    .searchbar-wrapper-home {
+        margin-top: 40px;
+        margin-left: 820px;
+    }
+
+    .homepage-sentence {
+        margin-left: 825px;
+        margin-top: 55px;
+        font-size: 32px;
+    }
+
+    .arrow {
+        margin-left: 1050px;
+        margin-top: -105px;
+    }
+}
+
+/** for smaller laptop displays **/
+
+@media screen and (min-width: 1040px) and (max-width: 1185px){
+    .home-wrapper {
+        grid-template-rows: minmax(230px, 35vh) minmax(400px, 62vh);
+    }
+
+    .circle-logo {
+        height: 480px;
+        margin-top: -200px;
+        margin-left: -50px;
+    }
+
+    .floating-box {
+        height: 115px;
+        width: 430px;
+        margin-left: 560px;
+        margin-top: -365px;
+    }
+
+    .floating-box-content {
+        margin-top: 20px;
+        margin-left: 35px;
+    }
+    
+    .floating-box-text {
+        margin-top: 10px;
+        font-size: 15px;
+    }
+    
+    .plan-your-schedule {
+        margin-left: 21px;
+    }
+    
+    .leave-a-review {
+        margin-left: 24px;
+    }
+    
+    .magnifying-glass {
+        width: 47px;
+        margin-left: 25px;
+    }
+    
+    .schedule {
+        width: 47px;
+        margin-left: 40px;
+    }
+    
+    .checklist {
+        width: 47px;
+        margin-left: 28px;
+    }
+    
+    .searchbar-wrapper-home {
+        margin-top: 30px;
+        margin-left: 560px;
+    }
+
+    .homepage-sentence {
+        margin-left: 566px;
+        margin-top: 60px;
+        font-size: 20px;
+    }
+
+    .arrow {
+        margin-left: 690px;
+        margin-top: -89px;
+    }
+}
+
+/** for tiny laptop displays **/
+
+@media screen and (min-width: 850px) and (max-width: 1040px){
+    .home-wrapper {
+        grid-template-rows: minmax(200px, 35vh) minmax(400px, 62vh);
+    }
+
+    .circle-logo {
+        height: 380px;
+        margin-top: -157px;
+        margin-left: -50px;
+    }
+
+    .floating-box {
+        height: 100px;
+        width: 400px;
+        margin-left: 410px;
+        margin-top: -305px;
+    }
+
+    .floating-box-content {
+        margin-top: 15px;
+        margin-left: 25px;
+    }
+    
+    .floating-box-text {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+    
+    .plan-your-schedule {
+        margin-left: 21px;
+    }
+    
+    .leave-a-review {
+        margin-left: 24px;
+    }
+    
+    .magnifying-glass {
+        width: 40px;
+        margin-left: 25px;
+    }
+    
+    .schedule {
+        width: 40px;
+        margin-left: 40px;
+    }
+    
+    .checklist {
+        width: 40px;
+        margin-left: 28px;
+    }
+    
+    .searchbar-wrapper-home {
+        margin-top: 30px;
+        margin-left: 408px;
+    }
+
+    .homepage-sentence {
+        margin-left: 420px;
+        margin-top: 60px;
+        font-size: 18px;
+    }
+
+    .arrow {
+        margin-left: 545px;
+        margin-top: -82px;
+    }
+
+    .arrow .curve {
+        height: 60px;
+        width: 90px;
+        border-radius: 750px 400px 400px 0;
+    }
+    
+    .arrow .point {
+        left: 32px;
+        top: 102px;
+    }
+    
+    .arrow .point:before, .arrow .point:after {
+        height: 15px;
+    }
+    
+    .arrow .point:before {
+        top: -124.9px;
+        left: 46.8px;
+        transform:rotate(0deg);
+        -webkit-transform:rotate(0deg);
+        -moz-transform:rotate(0deg);
+        -ms-transform: rotate(0deg);
+    }
+    
+    .arrow .point:after {
+        top: -120.5px;
+        left: 54.2px;
+        transform:rotate(70deg);
+        -webkit-transform: rotate(70deg);
+        -moz-transform:rotate(70deg);
+        -ms-transform: rotate(70deg);
+    }
+
+    .background-credits {
+        font-size: 12px;
+    }
+}
+
+/** for tablet displays **/
+
+@media screen and (min-width: 687px) and (max-width: 849px){
+    .home-wrapper {
+        grid-template-rows: minmax(220px, 35vh) minmax(400px, 62vh);
+    }
+
+    .circle-logo {
+        height: 280px;
+        margin-top: -116px;
+        margin-left: -50px;
+    }
+
+    .floating-box {
+        height: 85px;
+        width: 320px;
+        margin-left: 310px;
+        margin-top: -230px;
+    }
+
+    .floating-box-content {
+        margin-top: 15px;
+        margin-left: 17px;
+    }
+    
+    .floating-box-text {
+        margin-top: 8px;
+        font-size: 11px;
+    }
+    
+    .plan-your-schedule {
+        margin-left: 18px;
+    }
+    
+    .leave-a-review {
+        margin-left: 18px;
+    }
+    
+    .magnifying-glass {
+        width: 30px;
+        margin-left: 23px;
+    }
+    
+    .schedule {
+        width: 30px;
+        margin-left: 32px;
+    }
+    
+    .checklist {
+        width: 30px;
+        margin-left: 23px;
+    }
+    
+    .searchbar-wrapper-home {
+        margin-top: 20px;
+        margin-left: 306px;
+    }
+
+    .homepage-sentence {
+        margin-left: 320px;
+        margin-top: 40px;
+        font-size: 15px;
+    }
+
+    .bottom-sentence {
+        margin-left: 130px;
+    }
+
+    .arrow {
+        margin-left: 419px;
+        margin-top: -59px;
+    }
+
+    .arrow .curve {
+        height: 40px;
+        width: 70px;
+        border-radius: 1350px 900px 500px 0;
+    }
+    
+    .arrow .point {
+        left: 16.9px;
+        top: 107px;
+    }
+    
+    .arrow .point:before, .arrow .point:after {
+        height: 10px;
+    }
+    
+    .arrow .point:before {
+        top: -120.9px;
+        left: 46.8px;
+        transform:rotate(-5deg);
+        -webkit-transform:rotate(-5deg);
+        -moz-transform:rotate(-5deg);
+        -ms-transform: rotate(-5deg);
+    }
+    
+    .arrow .point:after {
+        top: -118.5px;
+        left: 52.2px;
+        transform:rotate(70deg);
+        -webkit-transform: rotate(70deg);
+        -moz-transform:rotate(70deg);
+        -ms-transform: rotate(70deg);
+    }
+
+    .background-credits {
+        font-size: 11px;
+    }
+}
+
+/** for large mobile displays **/
+
+@media screen and (min-width: 450px) and (max-width: 685px){
+
+    .all-wrapper {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        overflow-x: hidden; 
+        overflow-y: hidden;
+    }
+
+    .home-wrapper {
+        grid-template-rows: minmax(150px, 28vh) minmax(520px, 70vh);
+    }
+
+    .circle-logo {
+        height: 180px;
+        left: 50%;
+        margin-left: -122px;
+        margin-top: -75px;
+    }
+
+    .floating-box {
+        left: 50%;
+        height: 85px;
+        width: 320px;
+        margin-left: -159px;
+        margin-top: 25px;
+    }
+
+    .floating-box-content {
+        margin-top: 15px;
+        margin-left: 17px;
+    }
+    
+    .floating-box-text {
+        margin-top: 8px;
+        font-size: 11px;
+    }
+    
+    .plan-your-schedule {
+        margin-left: 18px;
+    }
+    
+    .leave-a-review {
+        margin-left: 18px;
+    }
+    
+    .magnifying-glass {
+        width: 30px;
+        margin-left: 23px;
+    }
+    
+    .schedule {
+        width: 30px;
+        margin-left: 32px;
+    }
+    
+    .checklist {
+        width: 30px;
+        margin-left: 23px;
+    }
+    
+    .searchbar-wrapper-home {
+        margin-top: 2rem;
+        margin-left: -200px;
+        width: 400px;
+        left: 50%;
+    }
+
+    .homepage-sentence {
+        left: 50%;
+        margin-left: -130px;
+        margin-top: 3.5rem;
+        font-size: 14px;
+    }
+
+    .bottom-sentence {
+        margin-left: 70px;
+    }
+
+    .arrow {
+        left: 50%;
+        margin-left: -40px;
+        margin-top: -3.5rem;
+    }
+
+    .arrow .curve {
+        height: 40px;
+        width: 70px;
+        border-radius: 1350px 900px 500px 0;
+    }
+    
+    .arrow .point {
+        left: 16px;
+        top: 108px;
+    }
+    
+    .arrow .point:before, .arrow .point:after {
+        height: 10px;
+    }
+    
+    .arrow .point:before {
+        top: -120.9px;
+        left: 46.8px;
+        transform:rotate(-5deg);
+        -webkit-transform:rotate(-5deg);
+        -moz-transform:rotate(-5deg);
+        -ms-transform: rotate(-5deg);
+    }
+    
+    .arrow .point:after {
+        top: -118.5px;
+        left: 52px;
+        transform:rotate(70deg);
+        -webkit-transform: rotate(70deg);
+        -moz-transform:rotate(70deg);
+        -ms-transform: rotate(70deg);
+    }
+
+    .background-credits {
+        visibility: hidden;
+    }
+
+    .background-credits-mobile {
+        visibility: visible;
+        position: relative;
+        margin-top: 12vh;
+        margin-left: 37%;
+        font-size: 11px;
+    }
+}
+
+/** for mobile**/
+
+@media screen and (min-width: 15px) and (max-width: 450px){
+
+    .all-wrapper {
+    }
+    
+    .home-wrapper {
+        position: fixed;
+        grid-template-rows: minmax(100px, 20vh) minmax(600px, 80vh);
+    }
+
+    .circle-logo {
+        height: 180px;
+        left: 50%;
+        margin-left: -122px;
+        margin-top: -75px;
+    }
+
+    .floating-box {
+        left: 50%;
+        height: 85px;
+        width: 320px;
+        margin-left: -159px;
+        margin-top: 1rem;
+    }
+
+    .floating-box-content {
+        margin-top: 15px;
+        margin-left: 17px;
+    }
+    
+    .floating-box-text {
+        margin-top: 8px;
+        font-size: 11px;
+    }
+    
+    .plan-your-schedule {
+        margin-left: 18px;
+    }
+    
+    .leave-a-review {
+        margin-left: 18px;
+    }
+    
+    .magnifying-glass {
+        width: 30px;
+        margin-left: 23px;
+    }
+    
+    .schedule {
+        width: 30px;
+        margin-left: 32px;
+    }
+    
+    .checklist {
+        width: 30px;
+        margin-left: 23px;
+    }
+    
+    .searchbar-wrapper-home {
+        margin-top: 2.5rem;
+        margin-left: -150px;
+        width: 300px;
+        left: 50%;
+    }
+
+    .homepage-sentence {
+        left: 50%;
+        margin-left: -130px;
+        margin-top: 3.5rem;
+        font-size: 14px;
+    }
+
+    .bottom-sentence {
+        margin-left: 70px;
+    }
+
+    .arrow {
+        left: 50%;
+        margin-left: -38px;
+        margin-top: -3.5rem;
+    }
+
+    .arrow .curve {
+        height: 40px;
+        width: 70px;
+        border-radius: 1350px 900px 500px 0;
+    }
+    
+    .arrow .point {
+        left: 16.3px;
+        top: 108px;
+    }
+    
+    .arrow .point:before, .arrow .point:after {
+        height: 10px;
+    }
+    
+    .arrow .point:before {
+        top: -120.9px;
+        left: 46.8px;
+        transform:rotate(-5deg);
+        -webkit-transform:rotate(-5deg);
+        -moz-transform:rotate(-5deg);
+        -ms-transform: rotate(-5deg);
+    }
+    
+    .arrow .point:after {
+        top: -118.9px;
+        left: 52.2px;
+        transform:rotate(70deg);
+        -webkit-transform: rotate(70deg);
+        -moz-transform:rotate(70deg);
+        -ms-transform: rotate(70deg);
+    }
+
+    .bottom-links-mobile {
+        position: absolute;
+        bottom: 25px;
+        right: 1%;
+        visibility: visible;
+    }
+
+    .bottom-links {
+        margin-right: 30px;
+    }
+
+    .background-credits {
+        visibility: hidden;
+    }
+
+    .background-credits-mobile {
+        visibility: visible;
+        margin-top: 10px;
+        margin-right: 2px;
+        font-size: 9px;
+    }
 }

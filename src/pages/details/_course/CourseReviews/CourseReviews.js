@@ -1,8 +1,10 @@
 import React from 'react';
 import Select from 'react-select'
 import CourseReviewEntry from './CourseReviewEntry';
+import ReportComment from './../../../report-comment/ReportComment'
 import { reviewFeedback } from '../CourseFunctions'
 import jwt_decode from 'jwt-decode'
+import $ from './../../../../../node_modules/jquery'
 import './CourseReviews.css'
 
 class CourseReviews extends React.Component {
@@ -14,14 +16,48 @@ class CourseReviews extends React.Component {
 		this.state = {
 			courseReviews: props.courseReviews,
 			reviewsFiltered: updatedReviews,
-			sortBy: "most-recent"
+			sortBy: "most-recent",
+			page: 0,
+			hasMore: true
 		}
+
+		this.buttonDOM = React.createRef()
 
 		this.handleLike = this.handleLike.bind(this)
 		this.handleDislike = this.handleDislike.bind(this)
 		this.likeReview = this.likeReview.bind(this)
 		this.dislikeReview = this.dislikeReview.bind(this)
 		this.handleSortChange = this.handleSortChange.bind(this)
+		this.handleReport = this.handleReport.bind(this)
+		this.handlePageInc = this.handlePageInc.bind(this)
+		this.loadReviews = this.loadReviews.bind(this)
+	}
+
+	loadReviews() {
+        if (this.buttonDOM != null) this.buttonDOM.current.blur();
+        if (this.state.hasMore) {
+            this.handlePageInc()
+            if (this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length){
+				this.setState({hasMore: false})
+			}
+        }
+    }
+
+	calcTableEdge(page, length) {
+		return Math.min(10 * (page + 1), length)
+	}
+
+	handlePageInc() {
+		this.setState(
+			prevState => ({
+				page: prevState.page + 1
+			})
+		)
+	}
+
+	handleReport(id){
+		this.setState({reviewId: id})
+		$(`#report-comment-modal-${id}`).modal("show");
 	}
 
 	likeReview(courseReview, id){
@@ -153,19 +189,23 @@ class CourseReviews extends React.Component {
 	}
 
 	handleSortChange(value){
+		let hasMore = true
+		if (this.calcTableEdge(0, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length){
+			hasMore = false
+		}
 		if(value.value === "most-recent"){
 			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.date - a.date)
-			this.setState({reviewsFiltered: updatedReviews, sortBy: value.value})
+			this.setState({reviewsFiltered: updatedReviews, sortBy: value.value, page: 0, hasMore: hasMore})
 		}else if(value.value === "most-helpful"){
 			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.numLiked - a.numLiked)
-			this.setState({reviewsFiltered: updatedReviews, sortBy: value.value})
+			this.setState({reviewsFiltered: updatedReviews, sortBy: value.value, page: 0, hasMore: hasMore})
 		}
 	}
 
 	handleProfChange(values){
 		
 		let updatedReviews = []
-		if(values.length == 0){
+		if(values.length === 0){
 			updatedReviews = this.state.courseReviews
 		}else{
 			let profs = []
@@ -180,24 +220,35 @@ class CourseReviews extends React.Component {
 			})
 		}
 
+		let hasMore = true
+		if (this.calcTableEdge(0, updatedReviews.length) >= updatedReviews.length){
+			hasMore = false
+		}
+
 		if(this.state.sortBy === "most-recent"){
 			updatedReviews = updatedReviews.slice().sort((a, b) => b.date - a.date)
-			this.setState({reviewsFiltered: updatedReviews, sortBy: "most-recent"})
+			this.setState({reviewsFiltered: updatedReviews, sortBy: "most-recent" , page: 0, hasMore: hasMore })
 		}else if(this.state.sortBy === "most-helpful"){
 			updatedReviews = updatedReviews.slice().sort((a, b) => b.numLiked - a.numLiked)
-			this.setState({reviewsFiltered: updatedReviews, sortBy: "most-helpful"})
+			this.setState({reviewsFiltered: updatedReviews, sortBy: "most-helpful", page: 0, hasMore: hasMore })
 		}
 	}
 
 	render() {
 		console.log(this.state)
-		const courseReviewList = this.state.reviewsFiltered.map(review => {
+		const courseReviewList = this.state.reviewsFiltered.slice(0, this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length)).map(review => {
 			return (
-				<CourseReviewEntry
+				<div>
+					<CourseReviewEntry
 					review={review}
 					handleLike={this.handleLike}
 					handleDislike={this.handleDislike}
+					handleReport={this.handleReport}
 				/>
+					<ReportComment reviewId={review.id} isCourse={true}/>
+				</div>
+
+				
 			)
 		})
 
@@ -277,8 +328,12 @@ class CourseReviews extends React.Component {
 					isMulti
 				/>
 			</div>
-
 		)
+
+		let hasMore = this.state.hasMore
+		if (this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length){
+			hasMore = false
+		}
 
 		return (
 			<div className="courseReviews">
@@ -292,6 +347,14 @@ class CourseReviews extends React.Component {
 							{profFilter}
 						</div>
 						{this.state.courseReviews.length > 0 ? reviews : noReviews}
+						{hasMore &&
+							<div className="d-flex justify-content-center">
+								<button onClick={this.loadReviews} className="btn btn-block btn-more-reviews btn-more-results "
+									ref={this.buttonDOM}>
+									More reviews
+                    			</button>
+							</div>
+						}
 					</div>
 				</div>
 			</div>

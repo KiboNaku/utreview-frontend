@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import qs from 'qs'
 import { withRouter } from 'react-router-dom'
 
 import ResultsComponent from './_components/ResultsComponent'
@@ -15,6 +16,7 @@ class Results extends Component {
 		super(props);
 
 		this.state = {
+			searchValue: "",
 
 			tabIndex: 0,
 
@@ -22,7 +24,7 @@ class Results extends Component {
 
 			courses: {
 				loaded: false,
-				page: props.location.state.page,
+				page: 0,
 				data: [],
 				sort: {
 					sortBy: 'courseName',
@@ -50,7 +52,7 @@ class Results extends Component {
 
 			profs: {
 				loaded: false,
-				page: props.location.state.page,
+				page: 0,
 				data: [],
 				sort: {
 					sortBy: 'profName',
@@ -94,10 +96,24 @@ class Results extends Component {
 		})
 
 		// fetch search results
+		let search
+		if (this.props.location.state === undefined) {
+			let urlObject = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
+			if (urlObject.search) {
+				search = {
+					searchValue: urlObject.search
+				}
+				this.setState({ searchValue: urlObject.search })
+			} else {
 
-		const search = {
-			searchValue: this.props.location.state.searchValue
+			}
+		} else {
+			search = {
+				searchValue: this.props.location.state.searchValue
+			}
+			this.setState({ searchValue: this.props.location.state.searchValue })
 		}
+
 
 		populateResults(search).then(res => {
 			this.parseResValues(res)
@@ -108,8 +124,22 @@ class Results extends Component {
 
 		if (prevProps.location.search !== this.props.location.search) {
 
-			const search = {
-				searchValue: this.props.location.state.searchValue
+			let search
+			if (this.props.location.state === undefined) {
+				let urlObject = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
+				if (urlObject.search) {
+					search = {
+						searchValue: urlObject.search
+					}
+					this.setState({ searchValue: urlObject.search })
+				} else {
+
+				}
+			} else {
+				search = {
+					searchValue: this.props.location.state.searchValue
+				}
+				this.setState({ searchValue: this.props.location.state.searchValue })
 			}
 
 			this.setState(prevState => ({
@@ -179,7 +209,7 @@ class Results extends Component {
 	}
 
 	calcTableEdge(page, length) {
-		return Math.min(25 * (page + 1), length)
+		return Math.min(40 * (page + 1), length)
 	}
 
 	handlePageInc() {
@@ -350,9 +380,9 @@ class Results extends Component {
 			isHour={this.isHour}
 			isDivision={this.isDivision}
 
-	match = { this.props.match }
-	search = { this.props.location.state.searchValue } />)
-}
+			match={this.props.match}
+			search={this.state.searchValue} />)
+	}
 }
 
 export default withRouter(Results);

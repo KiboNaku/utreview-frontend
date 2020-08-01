@@ -89,6 +89,10 @@
     margin-bottom: 5px;
 }
 
+.btn-more-reviews{
+    margin-top: 20px;
+}
+
 @media screen and (max-width: 992px){
     .profAddReview{
         justify-content: center;
