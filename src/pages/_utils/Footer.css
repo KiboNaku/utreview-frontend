@@ -14,3 +14,7 @@
 .footer-link:active {
     color: #f8971f;
 }
+
+.footer-txt {
+    font-size: 90%;
+}

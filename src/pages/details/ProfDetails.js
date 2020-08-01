@@ -210,6 +210,8 @@ class ProfDetails extends React.Component {
             },
         ]
 
+        this.reviewRef = React.createRef()
+
         this.state = {
             profInfo: profInfo,
             profRatings: profRatings,
@@ -220,6 +222,14 @@ class ProfDetails extends React.Component {
             loaded: false
         }    
 
+        this.handleScrollToReview = this.handleScrollToReview.bind(this)
+
+    }
+
+    handleScrollToReview(){
+        console.log(this.reviewRef)
+        const scrollToRef = () => window.scrollTo(0, this.reviewRef.current.offsetTop - 100)
+        scrollToRef()
     }
 
     componentDidMount() {
@@ -325,7 +335,7 @@ class ProfDetails extends React.Component {
             <div className="profDetails">
                 <div className="prof-stats">
                     <ProfInfo
-                        {...this.state.profInfo}
+                        {...this.state.profInfo} handleScrollToReview={this.handleScrollToReview}
                     />
                     <ProfRatings
                         {...this.state.profRatings}
@@ -340,7 +350,10 @@ class ProfDetails extends React.Component {
                 <ProfAddReview
                     {...this.state.profInfo}
                 />
-                <ProfReviews profReviews={this.state.profReviews} key={this.state.profReviews} />
+                <div ref={this.reviewRef}>
+                    <ProfReviews profReviews={this.state.profReviews} key={this.state.profReviews} />
+                </div>
+                
             </div>
         )
         return (

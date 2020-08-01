@@ -47,6 +47,8 @@
     color: black;
 }
 
+/** course requisites **/
+
 .courseRequisites{
     margin-left: 100px;
     margin-right: 100px;
@@ -54,6 +56,13 @@
     margin-bottom: 30px;
     flex-grow: 1;
 }
+
+.requisites{
+    display: flex;
+    flex-direction: column;
+}
+
+/**/
 
 .userRatings{
     display: flex;
@@ -79,11 +88,6 @@
 .p-rating {
     margin-bottom: 5px;
     margin-top: 10px;
-}
-
-.requisites{
-    display: flex;
-    flex-direction: column;
 }
 
 .topics-list{

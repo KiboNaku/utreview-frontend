@@ -32,8 +32,6 @@ function CourseAddReview(props) {
             <button style={{ height: "50px", width: "175px", fontSize: "20px" }} className="btn btn-dark font-weight-bold" type="button" data-toggle="modal" data-target="#login-modal">
                 Add a Review
             </button>
-            <Login />
-            <Signup />
         </div>
 
     )
