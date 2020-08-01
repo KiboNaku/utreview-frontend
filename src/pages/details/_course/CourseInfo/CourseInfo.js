@@ -28,6 +28,7 @@ function CourseInfo(props) {
 			<hr className="course-name-underline"></hr>
 			<p> {props.courseDes} </p>
 			{props.topicNum > 0 ? parentTopic: null}
+			<a className="utcolor" role="button" onClick={props.handleScrollToReview}>View Reviews</a>
 		</div>
 	);
 }
