@@ -40,6 +40,13 @@ function ProfScheduleEntry(props) {
         > {courseName}
         </Link>
     )
+    
+    let location
+    if(props.location !== null && props.location !== "N/A"){
+        let buildingName = props.location.split()[0]
+        let locationLink = `https://utdirect.utexas.edu/apps/campus/buildings/nlogon/maps/UTM/${buildingName}/`
+        location = <a href={locationLink} rel="noopener noreferrer" target="_blank"> {props.location} </a>
+    }
     return (
         <tr>
             <td align="center">
@@ -58,7 +65,7 @@ function ProfScheduleEntry(props) {
                 {props.days !== "" ? props.days : "N/A"}
             </td>
             <td align="center">
-                {props.location !== null ? props.location : "N/A"}
+                {props.location !== null && props.location !== "N/A" ? location : "N/A"}
             </td>
             <td align="center">
                 {props.crossListed.length > 0 ? <ul>{crossListed}</ul> : "N/A"}

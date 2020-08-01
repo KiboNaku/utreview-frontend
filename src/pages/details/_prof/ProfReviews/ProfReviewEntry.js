@@ -12,6 +12,7 @@ import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded';
 import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import FlagRoundedIcon from '@material-ui/icons/FlagRounded';
 import Rating from '@material-ui/lab/Rating';
 import Login from '../../../popups/Login'
 import Signup from '../../../popups/Signup'
@@ -37,6 +38,8 @@ function ProfReviewEntry(props) {
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
     let dislikeIcon = props.review.dislikePressed ?
         <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
+
+    let reportIcon = <FlagRoundedIcon style={{ fill: 'gray' }} />
     const useStyles = makeStyles((theme) => ({
         large: {
             width: theme.spacing(8),
@@ -49,6 +52,18 @@ function ProfReviewEntry(props) {
             color: '#bf5700',
         },
     })(Rating);
+
+    const reportButton = (
+        <span>
+            <button
+                className="reportButton"
+                onClick={() => props.handleReport(props.review.id)}
+            >
+                {reportIcon}
+            </button>
+        </span>
+
+    )
 
     const likeLoginLink = (
         <span>
@@ -130,6 +145,9 @@ function ProfReviewEntry(props) {
                         </div>
                         <div className="review-grade">
                             <span> Grade: {props.review.grade !== null ? props.review.grade : "N/A"}</span>
+                        </div>
+                        <div className="review-report">
+                            {reportButton}
                         </div>
                     </div>
                 </div>
