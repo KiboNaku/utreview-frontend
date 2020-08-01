@@ -29,7 +29,7 @@ class ConfirmEmail extends Component {
     }
 
     componentWillUnmount() {
-        if (this.state.success != 0) clearTimeout(this.id)
+        if (this.state.success !== 0) clearTimeout(this.id)
     }
 
     render() {
@@ -56,7 +56,7 @@ class ConfirmEmail extends Component {
                         <div className='py-5 text-center'>
                             <h3>{message}</h3>
                             <h3>You will be automatically redirected soon. Otherwise, please <Link className="utcolor" to="/">click here</Link>.</h3>
-                            {this.state.redirect ? redirect : this.state.success == 0 && loading}
+                            {this.state.redirect ? redirect : this.state.success === 0 && loading}
                         </div>
                     </div>
                 </div>

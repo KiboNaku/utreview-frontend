@@ -1,5 +1,4 @@
 import React from 'react'
-import { Fade } from "react-awesome-reveal"
 
 function PrivacyPolicyComponent (props) {
     let introduction = "At UT Review, accessible from utexasreview.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document outlines information we collect and how we use it. If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us through email at info@utexasreview.com."

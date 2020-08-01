@@ -1,5 +1,4 @@
 import React from 'react';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import './ProfInfo.css'
 function ProfInfo(props) {
 	return (
