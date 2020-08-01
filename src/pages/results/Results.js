@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import qs from 'qs'
 import { withRouter } from 'react-router-dom'
 
 import ResultsComponent from './_components/ResultsComponent'
@@ -15,6 +16,7 @@ class Results extends Component {
 		super(props);
 
 		this.state = {
+			searchValue: "",
 
 			tabIndex: 0,
 
@@ -94,10 +96,24 @@ class Results extends Component {
 		})
 
 		// fetch search results
+		let search
+		if(this.props.location.state === undefined){
+			let urlObject = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
+			if(urlObject.search){
+				search = {
+					searchValue: urlObject.search
+				}
+				this.setState({searchValue: urlObject.search})
+			}else{
 
-		const search = {
-			searchValue: this.props.location.state.searchValue
+			}
+		}else{
+			search = {
+				searchValue: this.props.location.state.searchValue
+			}
+			this.setState({searchValue: this.props.location.state.searchValue})
 		}
+
 
 		populateResults(search).then(res => {
 			this.parseResValues(res)
@@ -351,7 +367,7 @@ class Results extends Component {
 			isDivision={this.isDivision}
 
 	match = { this.props.match }
-	search = { this.props.location.state.searchValue } />)
+	search = { this.state.searchValue } />)
 }
 }
 
