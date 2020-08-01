@@ -1,0 +1,39 @@
+.contact-form-label {
+	text-align: left;
+	padding-left: 0px;
+	margin-top: 20px;
+}
+
+.contact-header {
+	padding-top: 20px;
+}
+
+.contact-submit {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.warning {
+	color: red;
+}
+
+.message-input {
+	height: 100px;
+}
+
+.feedback-notif{
+	display: inline-block;
+	padding-top: 5px;
+	padding-right: 10px;
+}
+
+.feedback-notif-text {
+	margin-top: 10px;
+	margin-right: 25px;
+}
+
+@media (max-width: 576px) {
+	.contact-header {
+		font-size: 365%;
+	}
+}

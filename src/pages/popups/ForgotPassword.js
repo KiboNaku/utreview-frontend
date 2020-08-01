@@ -20,15 +20,13 @@ class ForgotPassword extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    onSubmit(e) {
+    onSubmit(values) {
 
         const NOT_VERIFIED = -101
-        localStorage.setItem('email', this.state.email + "@utexas.edu")
-
-        e.preventDefault()
+        localStorage.setItem('email', values.email + "@utexas.edu")
 
         const user = {
-            email: this.state.email,
+            email: values.email,
         }
 
         this.setState({ loading: true })

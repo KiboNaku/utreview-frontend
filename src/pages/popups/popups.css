@@ -1,3 +1,8 @@
+.modal { overflow-y: auto}
+body.modal-open {
+    overflow: hidden;
+}
+
 .on-top {
 	top: 0;
 	left: 0;
@@ -19,6 +24,11 @@
 
 .loading-text {
 	padding-top: 1em;
+}
+
+.btn.focus, .btn:focus {
+    outline: 0;
+	box-shadow: 0 0 0 0.2rem rgba(191, 87, 0, 0.25);
 }
 
 .forgot-password-text{
