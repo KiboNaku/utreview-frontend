@@ -1,13 +1,12 @@
 
 import React, { Component } from 'react'
-import jwt_decode from 'jwt-decode'
-import { Link, Route, Switch, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import SearchBar from './SearchBar'
 import "./NavBar.css"
 
 class NavBar extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             profilePic: props.profilePic
@@ -31,19 +30,19 @@ class NavBar extends Component {
          *    values = "true", "false" (all other values default to "false")
          *    Note: if false, will take up space on page
          */
-        let showSearch = this.props.showSearch == "true"
-        let transparent = this.props.transparent == "true"
+        let showSearch = this.props.showSearch === "true"
+        let transparent = this.props.transparent === "true"
 
         const btnDuo = (
 
             <span>
                 <span className="align-self-center mr-2 d-none d-md-inline">
-                    <button style={transparent ? {color: "#333f48", border: "1px solid #333f48", backgroundColor: "rgba(255, 255, 255, 0.637)"} : {color: "white"}} 
-                    type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#signup-modal">Sign up</button>
+                    <button style={transparent ? { color: "#333f48", border: "1px solid #333f48", backgroundColor: "rgba(255, 255, 255, 0.637)" } : { color: "white" }}
+                        type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#signup-modal">Sign up</button>
                 </span>
                 <span className="align-self-center mr-2 d-md-inline">
-                    <button style={transparent ? {color: "#333f48", border: "1px solid #333f48", backgroundColor: "rgba(255, 255, 255, 0.637)"} : {color: "white"}} 
-                    type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#login-modal">Log in</button>
+                    <button style={transparent ? { color: "#333f48", border: "1px solid #333f48", backgroundColor: "rgba(255, 255, 255, 0.637)" } : { color: "white" }}
+                        type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#login-modal">Log in</button>
                 </span>
             </span>
         )
@@ -54,7 +53,7 @@ class NavBar extends Component {
 
                 <div className="float-right ">
                     <Link to="/profile">
-                        <img className="rounded-circle nav-bar-profile" src={require("./../../res/img/" + this.props.profilePic)}
+                        <img className="rounded-circle nav-bar-profile" alt="profile icon" src={require("./../../res/img/" + this.props.profilePic)}
                             data-holder-rendered="true" />
                     </Link>
                 </div>
@@ -103,8 +102,8 @@ class NavBar extends Component {
                         </div>
                         <div className="ml-auto">
 
-                            {localStorage.usertoken? dropdownMenu: btnDuo}
-{/* 
+                            {localStorage.usertoken ? dropdownMenu : btnDuo}
+                            {/* 
                             <div className="align-self-center mr-2">
                                 {localStorage.usertoken ? logout : login}
                             </div> */}
@@ -131,12 +130,12 @@ class NavBar extends Component {
 
                     <div className="ml-auto" >
 
-                            {localStorage.usertoken? dropdownMenu: btnDuo}
-{/* 
+                        {localStorage.usertoken ? dropdownMenu : btnDuo}
+                        {/* 
                             <div className="align-self-center mr-2">
                                 {localStorage.usertoken ? logout : login}
                             </div> */}
-                        </div>
+                    </div>
                 </nav>
             </div>
         )
