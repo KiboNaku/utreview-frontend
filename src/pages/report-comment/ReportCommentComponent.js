@@ -148,6 +148,16 @@ function ReportCommentComponent(props) {
                     </div>
                 </div>
             </div >
+            <div id='report-comment' className="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+				<div className="toast-body feedback-notif">
+					<button type="button" className="close feedback-notif-close" data-dismiss="toast" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<div className='feedback-notif-text'>
+						Thank you for submitting a report. We will look into it as soon as possible.
+					</div>
+				</div>
+			</div>
         </div >
     )
 }

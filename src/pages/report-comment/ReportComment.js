@@ -15,22 +15,14 @@ class ReportComment extends Component {
 
         console.log(props.reviewId)
 
-        this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
     
-    onChange(e) {
-        this.setState({ [e.target.name]: e.target.value })
-    }
-
-    signup(){
-        $("#signup-modal").modal("show");
-        $("#login-modal").modal("hide");
-    }
 
     onSubmit(values) {
 
         this.setState({ loading: true })
+        $('#report-comment').toast('show')
 
         axios
         .post('/api/report_comment', {
@@ -49,7 +41,7 @@ class ReportComment extends Component {
     render() {
 
         return (
-            <ReportCommentComponent signup={this.signup} onSubmit={this.onSubmit} onChange={this.onChange} data={this.state} />
+            <ReportCommentComponent reviewId={this.props.reviewId} onSubmit={this.onSubmit} data={this.state} />
         )
     }
 }
