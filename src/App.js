@@ -22,6 +22,7 @@ import ForgotPassword from './pages/popups/ForgotPassword';
 import VerifyPassword from './pages/popups/VerifyPassword';
 import NotFound from './pages/not-found/NotFound'
 import ContactUs from './pages/contact-us/ContactUs';
+import ReportBug from './pages/popups/ReportBug';
 
 class App extends Component{
 
@@ -78,6 +79,7 @@ class App extends Component{
 					<VerifyEmail />
 					<ForgotPassword />
 					<VerifyPassword />
+					<ReportBug />
 				</div>
 			</Router>
 		);
