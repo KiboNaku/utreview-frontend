@@ -1,16 +1,26 @@
-.contact-form-label {
-	text-align: left;
-	padding-left: 0px;
-	margin-top: 20px;
+.contact-us {
+	background-color: white;
+	min-height: 100vh;
 }
 
 .contact-header {
 	padding-top: 20px;
 }
 
+.contact-description {
+	margin-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.contact-form-element {
+	text-align: left;
+}
+
 .contact-submit {
 	margin-top: 30px;
 	margin-bottom: 30px;
+	text-align: center;
 }
 
 .warning {
@@ -19,6 +29,7 @@
 
 .message-input {
 	height: 100px;
+	resize: none;
 }
 
 .feedback-notif{
@@ -32,8 +43,17 @@
 	margin-right: 25px;
 }
 
+#feedback-received {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+}
+
 @media (max-width: 576px) {
 	.contact-header {
 		font-size: 365%;
+	}
+	.contact-description {
+		font-size: 100%
 	}
 }
