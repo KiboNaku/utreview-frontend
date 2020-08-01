@@ -100,6 +100,11 @@ function ProfPanel(props) {
             (props.isSemester(filter.sem, prof)))
         .sort(sortTypes[sortDir].fn)
         .slice(0, props.calcTableEdge(props.page, props.data.length))
+        
+    let moreResults = hasMore 
+    if (props.calcTableEdge(props.page, props.data.length) >= props.data.length){
+        moreResults = false
+    }
 
     let profTable = (
 
@@ -134,7 +139,7 @@ function ProfPanel(props) {
                     {setTableData(sortedProfs)}
                 </tbody>
             </table>
-            {hasMore &&
+            {moreResults &&
                 <div className="d-flex justify-content-center">
                     <button onClick={loadCourses} className="btn btn-block btn-more-results col-12 col-sm-9 col-md-8 col-lg-7" 
                         ref={(buttonDOM) => { setButtonDOM(buttonDOM) }}>
