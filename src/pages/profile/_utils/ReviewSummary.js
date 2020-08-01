@@ -1,20 +1,9 @@
 import React from 'react'
-import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded'
-import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded'
 import Confirm from './../../_utils/Confirm'
 import ReviewDetails from './ReviewDetails'
 
 function ReviewSummary(props) {
 
-    let courseLikeIcon = props.data.courseRating.approval ?
-        <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
-    let courseDislikeIcon = !props.data.courseRating.approval ?
-        <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
-
-    let profLikeIcon = props.data.profRating.approval ?
-        <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
-    let profDislikeIcon = !props.data.profRating.approval ?
-        <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
     let modalId = "#confirmModal" + props.data.id.toString()
     return (
         <div className="review-container">

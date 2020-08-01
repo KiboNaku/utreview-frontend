@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 import { withRouter } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import $ from './../../../node_modules/jquery'
@@ -9,7 +8,6 @@ import ProfileComponent from './_components/ProfileComponent'
 import ReviewSummary from './_utils/ReviewSummary'
 import { SelectionPicture } from './_utils/ProfilePicture'
 import { ProfilePicModal } from './_utils/ProfilePicPopup'
-import Settings from './edit-profile/Settings'
 import EditProfile from './edit-profile/EditProfile'
 import { getMajor } from './../popups/_utils/UserFunctions'
 import { getProfilePictures, updateProfilePic, updatePersonalInfo, getReviews, deleteReview } from './_utils/ProfileFunctions'
@@ -61,7 +59,7 @@ class Profile extends Component {
                 alert(res.error)
             } else {
                 let data = res.majors
-                let list = new Array()
+                let list = []
                 for (const i in data) {
                     list.push({
                         value: data[i]['name'],
@@ -77,7 +75,7 @@ class Profile extends Component {
                 alert(res.error)
             } else {
                 let data = res.profile_pics
-                let list = new Array()
+                let list = []
                 for (const i in data) {
                     list.push(data[i]['profile_pic'])
                 }
@@ -102,10 +100,8 @@ class Profile extends Component {
 
     editReview(id) {
         let review
-        this.state.reviews.map(r => {
-            if (r.id === id) {
-                review = r
-            }
+        this.state.reviews.forEach((_review) => {
+            if(_review.id == id) review = _review
         })
 
         this.props.history.push({
