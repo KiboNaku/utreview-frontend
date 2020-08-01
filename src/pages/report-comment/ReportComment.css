@@ -1,0 +1,24 @@
+.report-type{
+    display: inline;
+}
+
+.report-type-header{
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.report-checkbox{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.report-other{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.report-other-field{
+    margin-left: 10px;
+    width: 300px;
+}
