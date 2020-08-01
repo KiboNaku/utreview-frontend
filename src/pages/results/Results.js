@@ -97,21 +97,21 @@ class Results extends Component {
 
 		// fetch search results
 		let search
-		if(this.props.location.state === undefined){
+		if (this.props.location.state === undefined) {
 			let urlObject = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
-			if(urlObject.search){
+			if (urlObject.search) {
 				search = {
 					searchValue: urlObject.search
 				}
-				this.setState({searchValue: urlObject.search})
-			}else{
+				this.setState({ searchValue: urlObject.search })
+			} else {
 
 			}
-		}else{
+		} else {
 			search = {
 				searchValue: this.props.location.state.searchValue
 			}
-			this.setState({searchValue: this.props.location.state.searchValue})
+			this.setState({ searchValue: this.props.location.state.searchValue })
 		}
 
 
@@ -124,8 +124,22 @@ class Results extends Component {
 
 		if (prevProps.location.search !== this.props.location.search) {
 
-			const search = {
-				searchValue: this.props.location.state.searchValue
+			let search
+			if (this.props.location.state === undefined) {
+				let urlObject = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
+				if (urlObject.search) {
+					search = {
+						searchValue: urlObject.search
+					}
+					this.setState({ searchValue: urlObject.search })
+				} else {
+
+				}
+			} else {
+				search = {
+					searchValue: this.props.location.state.searchValue
+				}
+				this.setState({ searchValue: this.props.location.state.searchValue })
 			}
 
 			this.setState(prevState => ({
@@ -366,9 +380,9 @@ class Results extends Component {
 			isHour={this.isHour}
 			isDivision={this.isDivision}
 
-	match = { this.props.match }
-	search = { this.state.searchValue } />)
-}
+			match={this.props.match}
+			search={this.state.searchValue} />)
+	}
 }
 
 export default withRouter(Results);
