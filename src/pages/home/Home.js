@@ -1,30 +1,98 @@
 import React, { Component } from 'react'
-import SearchBar from './../_utils/SearchBar'
+import SearchBarHome from './../_utils/SearchBarHome'
 import './Home.css'
+import {Link} from 'react-router-dom';
 
 class Home extends Component {
     render() {
         return (
-            <div>
-                <main className="home-page">
-                    <div className="main-sub home-sub">
-                        <div className="container text-center">
-                            <div>
-                                <h1 className="home-main-txt">What starts here</h1>
-                                <h1 className="home-main-txt">changes your course schedule</h1>
-                            </div>
-
-                            <br />
-
-                            <div className="search-wrapper-lg container">
-                                <SearchBar />
-                            </div>
-                        </div>
+            <div className="all-wrapper">
+                <div className="home-wrapper">
+                    <div className="top-wrapper">
+                        <img className="top-background"
+                        src={require('./../../res/img/utreview-homebackground.jpg')} />
                     </div>
-                </main>
 
-                <figcaption className="figure-caption text-right clear-top px-3 py-3">Photo by Joel Filipe on Unsplash</figcaption>
-            </div >
+                    <div className="bottom-wrapper">     
+                        
+                        <img className="circle-logo"
+                        src={require('./../../res/img/utreview-homelogotransparent-orangewhite.png')} />   
+                        
+                        <div className="floating-box">
+                            <div className="floating-box-content">
+                                <div className="find-your-class">
+                                    <img className="magnifying-glass"
+                                    src={require('./../../res/img/magnifying glass.png')} />
+                                    <br></br>
+                                    <div className="floating-box-text">
+                                        Find your class.
+                                    </div>
+                                </div>
+                                <div className="plan-your-schedule">
+                                    <img className="schedule"
+                                    src={require('./../../res/img/schedule.png')} />
+                                    <br></br>
+                                    <div className="floating-box-text">
+                                        Plan your schedule.
+                                    </div>
+                                </div>
+                                <div className="leave-a-review">
+                                    <img className="checklist"
+                                    src={require('./../../res/img/checklist.png')} />
+                                    <br></br>
+                                    <div className="floating-box-text">
+                                        Leave a review.
+                                    </div>
+                                </div>
+                            </div>                        
+                        </div>
+
+                        <div className="search-wrapper-lg searchbar-wrapper-home">
+                            < SearchBarHome />
+                        </div>
+
+                        <div className="homepage-sentence">
+                            What starts <span className="sentence-underline">here</span> <br></br>
+                            <div className="bottom-sentence">changes your course schedule</div>
+                        </div>
+
+                        <div class="arrow">
+                            <div class="curve"></div>
+                            <div class="point"></div>
+                        </div>
+
+                        <footer className="bottom-links-mobile">
+                            <ul className="nav justify-content-end">
+                                <li className="bottom-links">
+                                    <Link className="footer-link" to="/">
+                                        Home
+                                    </Link>
+                                </li>
+                                <li className="bottom-links">
+                                    <Link className="footer-link" to="/about">
+                                        About
+                                    </Link>
+                                </li>
+                                <li className="bottom-links">
+                                    <Link className="footer-link" to="/privacy-policy">
+                                        Privacy Policy
+                                    </Link>
+                                </li>
+                            </ul>
+                            <div className="background-credits-mobile">
+                                <a className="credits" href="https://www.freepik.com/vectors/background">
+                                    Background vector created by starline - www.freepik.com
+                                </a>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+                <div className="background-credits">
+                    <a className="credits" href="https://www.freepik.com/vectors/background">
+                        Background vector created by starline - www.freepik.com
+                    </a>
+                </div>
+            </div>
         )
     }
 }
