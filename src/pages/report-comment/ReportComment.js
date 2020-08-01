@@ -22,7 +22,6 @@ class ReportComment extends Component {
     onSubmit(values) {
 
         this.setState({ loading: true })
-        $('#report-comment').toast('show')
 
         axios
         .post('/api/report_comment', {
@@ -34,6 +33,7 @@ class ReportComment extends Component {
         })
         .then(response => {
             this.setState({loading: false})
+            $(`#report-comment-modal-${this.props.reviewId}`).modal('hide')
         })
 
     }
