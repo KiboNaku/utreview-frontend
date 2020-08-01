@@ -1,7 +1,6 @@
 import React from 'react'
-import axios from 'axios'
 import * as Yup from 'yup'
-import { useFormik, Field, Formik, Form, ErrorMessage, getIn } from 'formik'
+import { Field, Formik, ErrorMessage, getIn } from 'formik'
 import ModalHeader from "./../popups/_utils/ModalHeader"
 import './../../utcolors.css'
 import Loading from './../_utils/Loading'

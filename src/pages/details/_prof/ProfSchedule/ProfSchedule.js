@@ -2,7 +2,6 @@ import React from 'react';
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import AppBar from '@material-ui/core/AppBar'
-import { makeStyles } from '@material-ui/core/styles';
 import TabPanel from '../TabPanel'
 import ProfScheduleEntry from './ProfScheduleEntry'
 import './ProfSchedule.css'

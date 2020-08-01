@@ -271,7 +271,7 @@ class ReviewForm extends Component {
 						alert(res.error)
 					} else {
 						let data = res.topics
-						let topicList = new Array()
+						let topicList = []
 						for (const i in data) {
 							topicList.push({
 								value: data[i]['topicTitle'],
@@ -281,7 +281,7 @@ class ReviewForm extends Component {
 								topicNum: data[i]['topicNum']
 							})
 						}
-						let profList = new Array()
+						let profList = []
 						for (const i in res.profs) {
 							profList.push({
 								id: res.profs[i]['id']
@@ -378,7 +378,7 @@ class ReviewForm extends Component {
 				alert(res.error)
 			} else {
 				let data = res.profs
-				let profList = new Array()
+				let profList = []
 				for (const i in data) {
 					profList.push({
 						value: data[i]['firstName'] + " " + data[i]['lastName'],
@@ -547,7 +547,7 @@ class ReviewForm extends Component {
 					alert(res.error)
 				} else {
 					let data = res.courses
-					let courseList = new Array()
+					let courseList = []
 					for (const i in data) {
 						courseList.push({
 							value: data[i]['dept'] + " " + data[i]['num'],
@@ -559,13 +559,13 @@ class ReviewForm extends Component {
 							topicNum: data[i]['topicNum']
 						})
 					}
-					let topicList = new Array()
+					let topicList = []
 					for (const i in res.topics) {
 						topicList.push({
 							id: res.topics[i]['id']
 						})
 					}
-					let profList = new Array()
+					let profList = []
 					for (const i in res.profs) {
 						profList.push({
 							id: res.profs[i]['id']
@@ -626,7 +626,7 @@ class ReviewForm extends Component {
 								alert(res.error)
 							} else {
 								let data = res.topics
-								let topicList = new Array()
+								let topicList = []
 								for (const i in data) {
 									topicList.push({
 										value: data[i]['topicTitle'],
@@ -801,6 +801,9 @@ class ReviewForm extends Component {
 						approval: true
 					}
 				}))
+				break
+			default:
+				break
 		}
 	}
 
@@ -825,6 +828,9 @@ class ReviewForm extends Component {
 						approval: false
 					}
 				}))
+				break
+			default:
+				break
 		}
 	}
 
@@ -879,7 +885,7 @@ class ReviewForm extends Component {
 									alert(res.error)
 								} else {
 									let data = res.topics
-									let topicList = new Array()
+									let topicList = []
 									for (const i in data) {
 										topicList.push({
 											value: data[i]['topicTitle'],
@@ -949,7 +955,7 @@ class ReviewForm extends Component {
 							alert(res.error)
 						} else {
 							let data = res.topics
-							let topicList = new Array()
+							let topicList = []
 							for (const i in data) {
 								topicList.push({
 									value: data[i]['topicTitle'],
@@ -984,7 +990,7 @@ class ReviewForm extends Component {
 				alert(res.error)
 			} else {
 				let data = res.semesters
-				let semList = new Array()
+				let semList = []
 				for (const i in data) {
 					semList.push({
 						value: data[i]['semester'] + " " + data[i]['year'].toString(),
@@ -1012,7 +1018,7 @@ class ReviewForm extends Component {
 				alert(res.error)
 			} else {
 				let data = res.courses
-				let courseList = new Array()
+				let courseList = []
 				for (const i in data) {
 					courseList.push({
 						value: data[i]['dept'] + " " + data[i]['num'],
@@ -1061,7 +1067,7 @@ class ReviewForm extends Component {
 					alert(res.error)
 				} else {
 					let data = res.topics
-					let topicList = new Array()
+					let topicList = []
 					for (const i in data) {
 						topicList.push({
 							value: data[i]['topicTitle'],

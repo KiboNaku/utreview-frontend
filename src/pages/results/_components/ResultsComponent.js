@@ -3,7 +3,6 @@ import React from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import { makeStyles } from '@material-ui/core/styles';
 
 import CoursePanel from '../_utils/CoursePanel'
 import CourseFilter from "../_utils/CourseFilter"
@@ -26,7 +25,7 @@ function ResultsComponent(props) {
     
     let minNumRatings = [0, 1, 5, 10]
     let filter = <CourseFilter filter={props.courses.filter} minNumRatings={minNumRatings} depts={props.depts} handleFilterChange={props.handleFilterChange} />
-    if(props.tabIndex == 1){
+    if(props.tabIndex === 1){
         filter = <ProfFilter  filter={props.profs.filter} minNumRatings={minNumRatings} depts={props.depts} handleFilterChange={props.handleFilterChange} />
     }
 
