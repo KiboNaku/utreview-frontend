@@ -1,8 +1,10 @@
 import React from 'react';
 import Select from 'react-select'
 import CourseReviewEntry from './CourseReviewEntry';
+import ReportComment from './../../../report-comment/ReportComment'
 import { reviewFeedback } from '../CourseFunctions'
 import jwt_decode from 'jwt-decode'
+import $ from './../../../../../node_modules/jquery'
 import './CourseReviews.css'
 
 class CourseReviews extends React.Component {
@@ -14,7 +16,8 @@ class CourseReviews extends React.Component {
 		this.state = {
 			courseReviews: props.courseReviews,
 			reviewsFiltered: updatedReviews,
-			sortBy: "most-recent"
+			sortBy: "most-recent",
+			reviewId: null
 		}
 
 		this.handleLike = this.handleLike.bind(this)
@@ -22,6 +25,12 @@ class CourseReviews extends React.Component {
 		this.likeReview = this.likeReview.bind(this)
 		this.dislikeReview = this.dislikeReview.bind(this)
 		this.handleSortChange = this.handleSortChange.bind(this)
+		this.handleReport = this.handleReport.bind(this)
+	}
+
+	handleReport(id){
+		this.setState({reviewId: id})
+		$(`#report-comment-modal-${id}`).modal("show");
 	}
 
 	likeReview(courseReview, id){
@@ -193,11 +202,17 @@ class CourseReviews extends React.Component {
 		console.log(this.state)
 		const courseReviewList = this.state.reviewsFiltered.map(review => {
 			return (
-				<CourseReviewEntry
+				<div>
+					<CourseReviewEntry
 					review={review}
 					handleLike={this.handleLike}
 					handleDislike={this.handleDislike}
+					handleReport={this.handleReport}
 				/>
+					<ReportComment reviewId={review.id} isCourse={true}/>
+				</div>
+
+				
 			)
 		})
 

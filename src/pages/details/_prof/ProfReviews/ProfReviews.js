@@ -29,7 +29,6 @@ class ProfReviews extends React.Component {
 	}
 
 	handleReport(id){
-		console.log("called")
 		this.setState({reviewId: id})
 		$(`#report-comment-modal-${id}`).modal("show");
 	}
