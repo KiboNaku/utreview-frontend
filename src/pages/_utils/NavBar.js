@@ -22,14 +22,28 @@ class NavBar extends Component {
 
     render() {
 
+        /**
+         * Properties:
+         * 1. showSearch: show search bar on the navbar
+         *    values = "true", "false" (all other values default to "false")
+         *    default value = "false"
+         * 2. transparent: show background of navbar
+         *    values = "true", "false" (all other values default to "false")
+         *    Note: if false, will take up space on page
+         */
+        let showSearch = this.props.showSearch == "true"
+        let transparent = this.props.transparent == "true"
+
         const btnDuo = (
 
             <span>
                 <span className="align-self-center mr-2 d-none d-md-inline">
-                    <button type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#signup-modal">Sign up</button>
+                    <button style={transparent ? {color: "#333f48", border: "1px solid #333f48", backgroundColor: "rgba(255, 255, 255, 0.637)"} : {color: "white"}} 
+                    type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#signup-modal">Sign up</button>
                 </span>
                 <span className="align-self-center mr-2 d-md-inline">
-                    <button type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#login-modal">Log in</button>
+                    <button style={transparent ? {color: "#333f48", border: "1px solid #333f48", backgroundColor: "rgba(255, 255, 255, 0.637)"} : {color: "white"}} 
+                    type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#login-modal">Log in</button>
                 </span>
             </span>
         )
@@ -71,8 +85,6 @@ class NavBar extends Component {
          *    Note: if false, will take up space on page
          */
 
-        let showSearch = this.props.showSearch == "true"
-        let transparent = this.props.transparent == "true"
 
         return (
             <div>
@@ -117,7 +129,7 @@ class NavBar extends Component {
                         <SearchBar />
                     </div>
 
-                    <div className="ml-auto">
+                    <div className="ml-auto" >
 
                             {localStorage.usertoken? dropdownMenu: btnDuo}
 {/* 
