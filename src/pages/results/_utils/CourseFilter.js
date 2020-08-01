@@ -51,6 +51,70 @@ function CourseFilter(props) {
                     />
                 </div>
 
+                <div>
+                    <label className="text-left font-weight-bold">Hours: </label>
+                    <br />
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { 1: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.hours[1]} />
+                        <div class="checkbox-container">
+                            1XX
+                        </div>
+                    </div>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { 2: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.hours[2]} />
+                        <div class="checkbox-container">
+                            2XX
+                        </div>
+                    </div>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { 3: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.hours[3]} />
+                        <div class="checkbox-container">
+                            3XX
+                        </div>
+                    </div>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { 4: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.hours[4]} />
+                        <div class="checkbox-container">
+                            4XX
+                        </div>
+                    </div>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { 5: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.hours[5]} />
+                        <div class="checkbox-container">
+                            5XX
+                        </div>
+                    </div>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { 6: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.hours[6]} />
+                        <div class="checkbox-container">
+                            6XX+
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label className="text-left font-weight-bold">Divisions: </label>
+                    <br />
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, null, { lower: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.divisions.lower} />
+                        <div class="checkbox-container">
+                            Lower
+                        </div>
+                    </div>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, null, { upper: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.divisions.upper} />
+                        <div class="checkbox-container">
+                            Upper
+                        </div>
+                    </div>
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, null, { graduate: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.divisions.graduate} />
+                        <div class="checkbox-container">
+                            Grad
+                        </div>
+                    </div>
+                </div>
+
                 {/* min num of ratings filter */}
                 <div className="form-group my-3 clear-both">
                     <label className="float-left text-left font-weight-bold">Min # of ratings:</label>

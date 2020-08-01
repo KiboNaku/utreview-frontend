@@ -102,215 +102,209 @@ function ReviewProfessor(props) {
 
     return (
 
-        <table className="table table-borderless review-form">
-            <tbody>
-                <tr>
-                <td style={{
-                        alignItems: 'center'}} >
-                            <span>Approval </span>
-                            <ClickAwayListener onClickAway={handleApprovalClose}>
-                                <StyledTooltip
-                                    title={approvalDescription}
-                                    placement="right"
-                                    arrow
-                                    PopperProps={{
-                                        disablePortal: true,
-                                    }}
-                                    onOpen={handleApprovalOpen}
-                                    onClose={handleApprovalClose}
-                                    open={approvalOpen}
-                                >
-                                    <span>
-                                        <button type="button" className="info-tooltip" onClick={handleApprovalOpen}>
-                                            <HelpOutlineIcon className="info-icon" style= {{fontSize: 15}} />
-                                        </button>
-                                    </span>
+        <div className="review-form">
+            <div className="review-row">
+                <div className="col" style={{ alignItems: 'center' }} >
+                    <span>Approval<small className='warning'> *</small></span>
+                    <ClickAwayListener onClickAway={handleApprovalClose}>
+                        <StyledTooltip
+                            title={approvalDescription}
+                            placement="right"
+                            arrow
+                            PopperProps={{
+                                disablePortal: true,
+                            }}
+                            onOpen={handleApprovalOpen}
+                            onClose={handleApprovalClose}
+                            open={approvalOpen}
+                        >
+                            <span>
+                                <button type="button" className="info-tooltip" onClick={handleApprovalOpen}>
+                                    <HelpOutlineIcon className="info-icon" style={{ fontSize: 15 }} />
+                                </button>
+                            </span>
 
-                                </StyledTooltip>
-                            </ClickAwayListener>
+                        </StyledTooltip>
+                    </ClickAwayListener>
 
                         :
                     {props.data.error.prof.approval ? (
-                        <td>
+                        <div>
                             <small className="text-danger">{props.data.error.prof.approval}</small>
-                        </td>
+                        </div>
                     ) : null}
-                    </td>
-                    <td>
-                        {likeButton}
-                        {dislikeButton}
-                    </td>
-                </tr>
-                <tr>
-                    <td style={{
-                        alignItems: 'center'
-                    }} >
-                        <span>Clear  </span>
-                        <ClickAwayListener onClickAway={handleClearClose}>
-                            <StyledTooltip
-                                title={clearDescription}
-                                placement="right"
-                                arrow
-                                PopperProps={{
-                                    disablePortal: true,
-                                }}
-                                onOpen={handleClearOpen}
-                                onClose={handleClearClose}
-                                open={clearOpen}
-                            >
-                                <span>
-                                    <button type="button" className="info-tooltip" onClick={handleClearOpen}>
-                                        <HelpOutlineIcon className="info-icon" style={{ fontSize: 15 }} />
-                                    </button>
-                                </span>
+                </div>
+                <div className="approval-buttons">
+                    {likeButton}
+                    {dislikeButton}
+                </div>
+            </div>
+            <div className="review-row">
+                <div className="col" style={{ alignItems: 'center' }} >
+                    <span>Clear<small className='warning'> *</small></span>
+                    <ClickAwayListener onClickAway={handleClearClose}>
+                        <StyledTooltip
+                            title={clearDescription}
+                            placement="right"
+                            arrow
+                            PopperProps={{
+                                disablePortal: true,
+                            }}
+                            onOpen={handleClearOpen}
+                            onClose={handleClearClose}
+                            open={clearOpen}
+                        >
+                            <span>
+                                <button type="button" className="info-tooltip" onClick={handleClearOpen}>
+                                    <HelpOutlineIcon className="info-icon" style={{ fontSize: 15 }} />
+                                </button>
+                            </span>
 
-                            </StyledTooltip>
-                        </ClickAwayListener>
+                        </StyledTooltip>
+                    </ClickAwayListener>
 
                         :
                     {props.data.error.prof.clear ? (
-                            <td>
-                                <small className="text-danger">{props.data.error.prof.clear}</small>
-                            </td>
-                        ) : null}
-                    </td>
-                    <td> <StyledRating
+                        <div>
+                            <small className="text-danger">{props.data.error.prof.clear}</small>
+                        </div>
+                    ) : null}
+                </div>
+                <div className="review-rating">
+                    <StyledRating
                         type="rating"
                         value={props.data.profRating.clear}
                         icon={<RadioButtonCheckedIcon />}
                         emptyIcon={<RadioButtonUncheckedIcon />}
                         name="clear"
                         onChange={props.handleProfRatingChange}
-                    /></td>
-                </tr>
-                <tr>
-                    <td style={{
-                        alignItems: 'center'
-                    }} >
-                        <span>Engaging  </span>
-                        <ClickAwayListener onClickAway={handleEngagingClose}>
-                            <StyledTooltip
-                                title={engagingDescription}
-                                placement="right"
-                                arrow
-                                PopperProps={{
-                                    disablePortal: true,
-                                }}
-                                onOpen={handleEngagingOpen}
-                                onClose={handleEngagingClose}
-                                open={engagingOpen}
-                            >
-                                <span>
-                                    <button type="button" className="info-tooltip" onClick={handleEngagingOpen}>
-                                        <HelpOutlineIcon className="info-icon" style={{ fontSize: 15 }} />
-                                    </button>
-                                </span>
+                    />
+                </div>
+            </div>
+            <div className="review-row">
+                <div className="col" style={{ alignItems: 'center' }} >
+                    <span>Engaging<small className='warning'> *</small></span>
+                    <ClickAwayListener onClickAway={handleEngagingClose}>
+                        <StyledTooltip
+                            title={engagingDescription}
+                            placement="right"
+                            arrow
+                            PopperProps={{
+                                disablePortal: true,
+                            }}
+                            onOpen={handleEngagingOpen}
+                            onClose={handleEngagingClose}
+                            open={engagingOpen}
+                        >
+                            <span>
+                                <button type="button" className="info-tooltip" onClick={handleEngagingOpen}>
+                                    <HelpOutlineIcon className="info-icon" style={{ fontSize: 15 }} />
+                                </button>
+                            </span>
 
-                            </StyledTooltip>
-                        </ClickAwayListener>
+                        </StyledTooltip>
+                    </ClickAwayListener>
 
                         :
                     {props.data.error.prof.engaging ? (
-                            <td>
-                                <small className="text-danger">{props.data.error.prof.engaging}</small>
-                            </td>
-                        ) : null}
-                    </td>
-                    <td> <StyledRating
+                        <div>
+                            <small className="text-danger">{props.data.error.prof.engaging}</small>
+                        </div>
+                    ) : null}
+                </div>
+                <div className="review-rating">
+                    <StyledRating
                         type="rating"
                         value={props.data.profRating.engaging}
                         icon={<RadioButtonCheckedIcon />}
                         emptyIcon={<RadioButtonUncheckedIcon />}
                         name="engaging"
                         onChange={props.handleProfRatingChange}
-                    /></td>
-                </tr>
-                <tr>
-                <td style={{
-                        alignItems: 'center'
-                    }} >
-                        <span>Grading  </span>
-                        <ClickAwayListener onClickAway={handleGradingClose}>
-                            <StyledTooltip
-                                title={gradingDescription}
-                                placement="right"
-                                arrow
-                                PopperProps={{
-                                    disablePortal: true,
-                                }}
-                                onOpen={handleGradingOpen}
-                                onClose={handleGradingClose}
-                                open={gradingOpen}
-                            >
-                                <span>
-                                    <button type="button" className="info-tooltip" onClick={handleGradingOpen}>
-                                        <HelpOutlineIcon className="info-icon" style={{ fontSize: 15 }} />
-                                    </button>
-                                </span>
+                    />
+                </div>
+            </div>
+            <div className="review-row">
+                <div className="col" style={{ alignItems: 'center' }} >
+                    <span>Grading<small className='warning'> *</small></span>
+                    <ClickAwayListener onClickAway={handleGradingClose}>
+                        <StyledTooltip
+                            title={gradingDescription}
+                            placement="right"
+                            arrow
+                            PopperProps={{
+                                disablePortal: true,
+                            }}
+                            onOpen={handleGradingOpen}
+                            onClose={handleGradingClose}
+                            open={gradingOpen}
+                        >
+                            <span>
+                                <button type="button" className="info-tooltip" onClick={handleGradingOpen}>
+                                    <HelpOutlineIcon className="info-icon" style={{ fontSize: 15 }} />
+                                </button>
+                            </span>
 
-                            </StyledTooltip>
-                        </ClickAwayListener>
+                        </StyledTooltip>
+                    </ClickAwayListener>
 
                         :
                     {props.data.error.prof.grading ? (
-                            <td>
-                                <small className="text-danger">{props.data.error.prof.grading}</small>
-                            </td>
-                        ) : null}
-                    </td>
-                    <td>
-                        <StyledRating
-                            type="rating"
-                            value={props.data.profRating.grading}
-                            icon={<RadioButtonCheckedIcon />}
-                            emptyIcon={<RadioButtonUncheckedIcon />}
-                            name="grading"
-                            onChange={props.handleProfRatingChange}
-                        />
-                    </td>
-                </tr>
-                <tr>
-                <td style={{
-                        alignItems: 'center'}} >
-                            <span>Comments </span>
-                            <ClickAwayListener onClickAway={handleCommentsClose}>
-                                <StyledTooltip
-                                    title={commentsDescription}
-                                    placement="right"
-                                    arrow
-                                    PopperProps={{
-                                        disablePortal: true,
-                                    }}
-                                    onOpen={handleCommentsOpen}
-                                    onClose={handleCommentsClose}
-                                    open={commentsOpen}
-                                >
-                                    <span>
-                                        <button type="button" className="info-tooltip" onClick={handleCommentsOpen}>
-                                            <HelpOutlineIcon className="info-icon" style= {{fontSize: 15}} />
-                                        </button>
-                                    </span>
+                        <div>
+                            <small className="text-danger">{props.data.error.prof.grading}</small>
+                        </div>
+                    ) : null}
+                </div>
+                <div className="review-rating">
+                    <StyledRating
+                        type="rating"
+                        value={props.data.profRating.grading}
+                        icon={<RadioButtonCheckedIcon />}
+                        emptyIcon={<RadioButtonUncheckedIcon />}
+                        name="grading"
+                        onChange={props.handleProfRatingChange}
+                    />
+                </div>
+            </div>
+            <div className="review-row">
+                <div className="col" style={{ alignItems: 'center' }} >
+                    <span>Comments </span>
+                    <ClickAwayListener onClickAway={handleCommentsClose}>
+                        <StyledTooltip
+                            title={commentsDescription}
+                            placement="right"
+                            arrow
+                            PopperProps={{
+                                disablePortal: true,
+                            }}
+                            onOpen={handleCommentsOpen}
+                            onClose={handleCommentsClose}
+                            open={commentsOpen}
+                        >
+                            <span>
+                                <button type="button" className="info-tooltip" onClick={handleCommentsOpen}>
+                                    <HelpOutlineIcon className="info-icon" style={{ fontSize: 15 }} />
+                                </button>
+                            </span>
 
-                                </StyledTooltip>
-                            </ClickAwayListener>
+                        </StyledTooltip>
+                    </ClickAwayListener>
 
                         :
-                    </td>
-                </tr>
-                <tr>
-                    <th colSpan="2">
-
-                        <textarea
-                            className="form-control"
-                            rows="5"
-                            value={props.data.profRating.comments}
-                            placeholder={commentsPlaceholder}
-                            name="comments"
-                            onChange={props.handleProfRatingChange}></textarea>
-                    </th>
-                </tr>
-            </tbody>
-        </table >
+                </div>
+            </div>
+            <div>
+                <textarea
+                    className="form-control"
+                    rows="5"
+                    value={props.data.profRating.comments}
+                    placeholder={commentsPlaceholder}
+                    name="comments"
+                    onChange={props.handleProfRatingChange}
+                    maxlength="1000"
+                >
+                </textarea>
+            </div>
+        </div >
     )
 }
 

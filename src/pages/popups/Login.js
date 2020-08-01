@@ -10,8 +10,7 @@ class Login extends Component {
     constructor() {
         super()
         this.state = {
-            email: '',
-            password: ''
+            loading: false
         }
 
         this.onChange = this.onChange.bind(this)
@@ -22,16 +21,19 @@ class Login extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    onSubmit(e) {
+    signup(){
+        $("#signup-modal").modal("show");
+        $("#login-modal").modal("hide");
+    }
+
+    onSubmit(values) {
 
         const NOT_VERIFIED = -101
-        localStorage.setItem('email', this.state.email + "@utexas.edu")
-
-        e.preventDefault()
+        localStorage.setItem('email', values.email + "@utexas.edu")
 
         const user = {
-            email: this.state.email,
-            password: this.state.password
+            email: values.email,
+            password: values.password
         }
 
         this.setState({ loading: true })
@@ -41,7 +43,7 @@ class Login extends Component {
             this.setState({ loading: false })
 
             if (res.error) {
-                if (res.success == NOT_VERIFIED) {
+                if (res.success === NOT_VERIFIED) {
                     $("#login-modal").modal("hide");
                     $("#verifyemail-modal").modal("show");
                 } else {
@@ -65,7 +67,7 @@ class Login extends Component {
     render() {
 
         return (
-            <LoginComponent onSubmit={this.onSubmit} onChange={this.onChange} data={this.state} />
+            <LoginComponent signup={this.signup} onSubmit={this.onSubmit} onChange={this.onChange} data={this.state} />
         )
     }
 }

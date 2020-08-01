@@ -3,9 +3,11 @@ import qs from 'qs'
 import { withRouter } from 'react-router-dom'
 import { getCourses, getProfs, getSemesters, getTopics, getCourseId, getProfId } from './_utils/ReviewFormFunctions'
 import { checkDuplicate, newReview, editReview } from './_utils/ReviewFunctions'
+import Error from './../_utils/Error'
 import jwt_decode from 'jwt-decode'
 import ReviewFormComponent from './_components/ReviewFormComponent'
 import Loading from './../_utils/Loading.js'
+import $ from './../../../node_modules/jquery'
 
 class ReviewForm extends Component {
 	constructor(props) {
@@ -106,7 +108,8 @@ class ReviewForm extends Component {
 			formDisabled: true,
 			duplicateReview: false,
 			oldReview: props.location.state === undefined || props.location.state.review === undefined ? null : props.location.state.review,
-			invalidReview: false
+			invalidReview: false,
+			errorMessage: ''
 		}
 
 		console.log(this.state.oldReview)
@@ -122,16 +125,16 @@ class ReviewForm extends Component {
 		let engagingError = "";
 		let gradingError = "";
 
-		let emptyErrorMessage = 'This field cannot be empty.';
-
-		if (this.state.course.approval === null) { courseApprovalError = emptyErrorMessage; }
-		if (this.state.course.usefulness === "") { usefulnessError = emptyErrorMessage; }
-		if (this.state.course.difficulty === "") { difficultyError = emptyErrorMessage; }
-		if (this.state.course.workload === "") { workloadError = emptyErrorMessage; }
-		if (this.state.prof.approval === null) { profApprovalError = emptyErrorMessage; }
-		if (this.state.prof.clear === "") { clearError = emptyErrorMessage; }
-		if (this.state.prof.engaging === "") { engagingError = emptyErrorMessage; }
-		if (this.state.prof.grading === "") { gradingError = emptyErrorMessage; }
+		let emptyErrorMessage = 'This field is required.';
+		
+		if (this.state.courseRating.approval === null) { courseApprovalError = emptyErrorMessage; }
+		if (this.state.courseRating.usefulness === "") { usefulnessError = emptyErrorMessage; }
+		if (this.state.courseRating.difficulty === "") { difficultyError = emptyErrorMessage; }
+		if (this.state.courseRating.workload === "") { workloadError = emptyErrorMessage; }
+		if (this.state.profRating.approval === null) { profApprovalError = emptyErrorMessage; }
+		if (this.state.profRating.clear === "") { clearError = emptyErrorMessage; }
+		if (this.state.profRating.engaging === "") { engagingError = emptyErrorMessage; }
+		if (this.state.profRating.grading === "") { gradingError = emptyErrorMessage; }
 
 		if (courseApprovalError || usefulnessError || difficultyError || workloadError ||
 			profApprovalError || clearError || engagingError || gradingError) {
@@ -160,6 +163,7 @@ class ReviewForm extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		const isValid = this.validate();
+		console.log(isValid)
 		if (isValid) {
 			const token = localStorage.usertoken
 			const decoded = jwt_decode(token)
@@ -521,8 +525,8 @@ class ReviewForm extends Component {
 	checkDuplicate = (review) => {
 		checkDuplicate(review).then(res => {
 			if (res.error) {
-				alert(res.error)
-				this.setState({ duplicateReview: true, formDisabled: true })
+				this.setState({ duplicateReview: true, formDisabled: true, errorMessage: res.error })
+				$("#errorModalreviewForm").modal("show");
 			} else {
 				console.log(res)
 			}
@@ -1158,6 +1162,7 @@ class ReviewForm extends Component {
 		return (
 			<div>
 				{this.state.invalidReview ? invalidReview : (loaded ? content : loading)}
+				<Error message={this.state.errorMessage} id="reviewForm" title="Error"/>
 			</div>
 		);
 	}

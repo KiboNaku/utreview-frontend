@@ -1,5 +1,3 @@
-
-
 .c-rating label {
     margin: 0
 }
@@ -8,14 +6,11 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     -ms-appearance: none;
-    
     background-color: #333f48;
     border-radius: 10px;
     height: 10px;
-    
-    
     outline: none;
-    opacity: 0.9; 
+    opacity: 0.9;
     color: #bf5700;
 }
 
@@ -26,10 +21,8 @@
 .c-range::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-
     width: 20px;
     height: 20px;
-
     background: #bf5700;
     border-radius: 50%;
     border: 3px solid #333f48;
@@ -48,4 +41,40 @@
 
 .sem-radio label:hover {
     cursor: pointer;
+}
+
+.custom-checkbox {
+    display: inline-block;
+    text-align: center;
+}
+
+.custom-checkbox:hover {
+    cursor: pointer;
+}
+
+.checkbox-container:hover {
+    background-color: #e9f2eb;
+}
+
+.checkbox-container:active {
+    background-color: #e9f2eb;
+}
+
+input[type=checkbox]:checked + .checkbox-container:hover {
+    background-color: #9c4700;
+}
+
+.checkbox-container {
+    font-size: 13px;
+    padding: 0 5px;
+    margin: 3px;
+    border: 2px solid #bf5700;
+    border-radius: 20px;
+    display: inline-block;
+    color: #bf5700;
+}
+
+input[type=checkbox]:checked + .checkbox-container {
+    background-color: #bf5700;
+    color: white;
 }
