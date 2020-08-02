@@ -56,9 +56,9 @@ class Home extends Component {
                             <div className="bottom-sentence">changes your course schedule</div>
                         </div>
 
-                        <div class="arrow">
-                            <div class="curve"></div>
-                            <div class="point"></div>
+                        <div className="arrow">
+                            <div className="curve"></div>
+                            <div className="point"></div>
                         </div>
 
                         <footer className="bottom-links-mobile">
