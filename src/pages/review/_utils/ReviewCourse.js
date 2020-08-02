@@ -10,9 +10,9 @@ import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded';
 import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded';
 
 function ReviewCourse(props) {
-    let likeIcon = props.data.courseRating.likePressed ?
+    let likeIcon = props.data.courseRating.approval != null && props.data.courseRating.approval ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
-    let dislikeIcon = props.data.courseRating.dislikePressed ?
+    let dislikeIcon = props.data.courseRating.approval != null && !props.data.courseRating.approval ?
         <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
 
     const likeButton = (
