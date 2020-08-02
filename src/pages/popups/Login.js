@@ -59,7 +59,6 @@ class Login extends Component {
                 }
                 this.props.handleProfilePicChange(profilePic)
                 $("#login-modal").modal("hide")
-                this.props.history.push('/profile')
             }
         })
     }
