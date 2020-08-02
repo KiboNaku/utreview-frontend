@@ -93,15 +93,10 @@ function ProfPanel(props) {
             fn: (a) => a
         }
     }
-    // TODO: update with prof info
-    // TODO: update with filter
 
-    let sortedProfs = props.data
-        .filter(prof =>
-            (filter.mNum <= prof.numRatings) &&
-            (props.isSemester(filter.sem, prof)))
-        .sort(sortTypes[sortDir].fn)
-        .slice(0, props.calcTableEdge(props.page, props.data.length))
+    let sortedProfs = props.filtered
+    .sort(sortTypes[sortDir].fn)
+    .slice(0, props.calcTableEdge(props.page, props.data.length))
         
     let moreResults = hasMore 
     if (props.calcTableEdge(props.page, props.data.length) >= props.data.length){
