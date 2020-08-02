@@ -195,7 +195,7 @@ function CoursePanel(props) {
 
     return (
         <TabPanel index={0} value={props.tabIndex} className="table-panel">
-            {props.loaded ? (sortedCourses.length == 0 ? props.emptyTable : courseTable) : props.loading}
+            {props.loaded ? (sortedCourses.length === 0 ? props.emptyTable : courseTable) : props.loading}
         </TabPanel>
     )
 }

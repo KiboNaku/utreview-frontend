@@ -1,5 +1,6 @@
 import React from 'react';
 import ProfCourseEntry from './ProfCourseEntry'
+import GradeDistributions from './../../../grade-distributions/GradeDistributions'
 import './ProfCourses.css'
 
 class ProfCourses extends React.Component {
@@ -25,6 +26,7 @@ class ProfCourses extends React.Component {
         const profCourseList = this.state.profCourses.map(course => {
             return [
                 <ProfCourseEntry prof={this.props.profInfo} {...course} />,
+                <GradeDistributions course={course} prof={this.props.profInfo} courseId={course.id} profId={this.props.profInfo.id} />
             ]
 
         })
