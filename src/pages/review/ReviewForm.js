@@ -16,27 +16,6 @@ class ReviewForm extends Component {
 
 		this.state = {
 			reviewId: null,
-			courseList: [{
-				value: 'EE 302', label: 'EE 302', id: 1, topicNum: 0, courseDept: "EE", courseNum: "302"
-			}, {
-				value: 'EE 306', label: 'EE 306', id: 2, topicNum: -1, courseDept: "EE", courseNum: "306"
-			}],
-			topicList: [{
-				value: 'Circuits', label: 'Circuits', id: 3, topicNum: 1,
-			}, {
-				value: 'Electricity', label: 'Electricity', id: 4, topicNum: 2,
-			}],
-			profList: [{
-				value: 'Yu', label: 'Edward Yu', id: 1, firstName: "Edward", lastName: "Yu"
-			}, {
-				value: 'Bank', label: 'Seth Bank', id: 3, firstName: "Seth", lastName: "Bank"
-			}],
-			semesterList: [{
-				value: 'Spring 2020', label: 'Spring 2020', id: 1, semester: "Spring", year: 2020
-			},
-			{
-				value: 'Fall 2020', label: 'Fall 2020', id: 2, semester: "Fall", year: 2020
-			}],
 
 			semester: {
 				id: null,
@@ -61,8 +40,6 @@ class ReviewForm extends Component {
 			},
 
 			courseRating: {
-				likePressed: false,
-				dislikePressed: false,
 				approval: null,
 				usefulness: "",
 				difficulty: "",
@@ -79,8 +56,6 @@ class ReviewForm extends Component {
 			},
 
 			profRating: {
-				likePressed: false,
-				dislikePressed: false,
 				approval: null,
 				clear: "",
 				engaging: "",
@@ -111,8 +86,6 @@ class ReviewForm extends Component {
 			invalidReview: false,
 			errorMessage: ''
 		}
-
-		console.log(this.state.oldReview)
 	}
 
 	validate = () => {
@@ -786,8 +759,6 @@ class ReviewForm extends Component {
 				this.setState(prevState => ({
 					courseRating: {
 						...prevState.courseRating,
-						likePressed: true,
-						dislikePressed: false,
 						approval: true
 					}
 				}))
@@ -796,8 +767,6 @@ class ReviewForm extends Component {
 				this.setState(prevState => ({
 					profRating: {
 						...prevState.profRating,
-						likePressed: true,
-						dislikePressed: false,
 						approval: true
 					}
 				}))
@@ -813,8 +782,6 @@ class ReviewForm extends Component {
 				this.setState(prevState => ({
 					courseRating: {
 						...prevState.courseRating,
-						likePressed: false,
-						dislikePressed: true,
 						approval: false
 					}
 				}))
@@ -823,8 +790,6 @@ class ReviewForm extends Component {
 				this.setState(prevState => ({
 					profRating: {
 						...prevState.profRating,
-						likePressed: false,
-						dislikePressed: true,
 						approval: false
 					}
 				}))
@@ -1106,8 +1071,6 @@ class ReviewForm extends Component {
 			},
 			courseRating: {
 				...prevState.courseRating,
-				likePressed: oldReview.courseRating.approval,
-				dislikePressed: !oldReview.courseRating.approval,
 				approval: oldReview.courseRating.approval,
 				usefulness: oldReview.courseRating.usefulness,
 				difficulty: oldReview.courseRating.difficulty,
@@ -1122,8 +1085,6 @@ class ReviewForm extends Component {
 			},
 			profRating: {
 				...prevState.profRating,
-				likePressed: oldReview.profRating.approval,
-				dislikePressed: !oldReview.profRating.approval,
 				approval: oldReview.profRating.approval,
 				clear: oldReview.profRating.clear,
 				engaging: oldReview.profRating.engaging,
