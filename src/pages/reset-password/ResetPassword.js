@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, Link, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import ResetPasswordComponent from './ResetPasswordComponent'
 import Loading from './../_utils/Loading'   
 import axios from 'axios'

@@ -106,7 +106,7 @@
 .settings-button {
 	margin-top: 15px;
 	display: flex;
-	justify-content: start;
+	justify-content: flex-start;
 }
 
 .user-information {
@@ -185,8 +185,4 @@
 
 .other-major-label{
 	padding-left: 10px;
-}
-
-.edit-profile-tabs{
-
 }

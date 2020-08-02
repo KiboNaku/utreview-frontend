@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import VerifyEmailComponent from './_components/VerifyEmailComponent'
-import { signup, getMajor, sendConfirmEmail } from './_utils/UserFunctions'
+import { sendConfirmEmail } from './_utils/UserFunctions'
 import { withRouter } from 'react-router-dom'
-import $ from './../../../node_modules/jquery'
 import './popups.css'
 
 class VerifyEmail extends Component {

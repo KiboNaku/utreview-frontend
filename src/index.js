@@ -4,8 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import App from './App';
 import { BrowserRouter } from 'react-router-dom'
-import * as serviceWorker from './serviceWorker';
-import ScrollTop from './pages/_utils/ScrollTop'
+import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
 	<React.StrictMode>

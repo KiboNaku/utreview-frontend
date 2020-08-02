@@ -1,12 +1,7 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded';
 import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded';
@@ -14,8 +9,6 @@ import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import FlagRoundedIcon from '@material-ui/icons/FlagRounded';
 import Rating from '@material-ui/lab/Rating';
-import Login from '../../../popups/Login'
-import Signup from '../../../popups/Signup'
 
 /* 
     Properties:
@@ -107,8 +100,6 @@ function CourseReviewEntry(props) {
             {dislikeIcon}
         </button>
     )
-
-    const semester = "Fall 2020"
 
     const profPath = props.review.profFirst.toLowerCase().replace(" ", "") + "_" + props.review.profLast.toLowerCase().replace(" ", "")
     return (

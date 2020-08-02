@@ -9,19 +9,19 @@ class Home extends Component {
             <div className="all-wrapper">
                 <div className="home-wrapper">
                     <div className="top-wrapper">
-                        <img className="top-background"
+                        <img alt="top background" className="top-background"
                         src={require('./../../res/img/utreview-homebackground.jpg')} />
                     </div>
 
                     <div className="bottom-wrapper">     
                         
-                        <img className="circle-logo"
+                        <img alt="circle logo" className="circle-logo"
                         src={require('./../../res/img/utreview-homelogotransparent-orangewhite.png')} />   
                         
                         <div className="floating-box">
                             <div className="floating-box-content">
                                 <div className="find-your-class">
-                                    <img className="magnifying-glass"
+                                    <img alt="magnifying class icon" className="magnifying-glass"
                                     src={require('./../../res/img/magnifying glass.png')} />
                                     <br></br>
                                     <div className="floating-box-text">
@@ -29,7 +29,7 @@ class Home extends Component {
                                     </div>
                                 </div>
                                 <div className="plan-your-schedule">
-                                    <img className="schedule"
+                                    <img alt="schedule icon" className="schedule"
                                     src={require('./../../res/img/schedule.png')} />
                                     <br></br>
                                     <div className="floating-box-text">
@@ -37,7 +37,7 @@ class Home extends Component {
                                     </div>
                                 </div>
                                 <div className="leave-a-review">
-                                    <img className="checklist"
+                                    <img alt="checklist icon" className="checklist"
                                     src={require('./../../res/img/checklist.png')} />
                                     <br></br>
                                     <div className="floating-box-text">
