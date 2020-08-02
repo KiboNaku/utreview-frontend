@@ -12,16 +12,17 @@ import $ from './../../../node_modules/jquery'
 class ReviewForm extends Component {
 	constructor(props) {
 		super(props);
-		console.log(props.location.state)
 
 		this.state = {
 			reviewId: null,
+			order: 0,
 
 			semester: {
 				id: null,
 				semester: "",
 				year: null,
-				loaded: false
+				loaded: false,
+				disabled: true,
 			},
 
 			topic: {
@@ -213,6 +214,7 @@ class ReviewForm extends Component {
 	}
 
 	handleCourseChange = (inputValue, { action }) => {
+		
 		if (inputValue !== null) {
 			let topicSelected = inputValue.topicNum >= 0
 			let profId = this.state.prof.id
@@ -509,247 +511,16 @@ class ReviewForm extends Component {
 
 	handleSemesterChange = (inputValue, { action }) => {
 		if (inputValue !== null) {
-			let courseInfo = {
-				semesterId: inputValue.id,
-				all: false
-			}
-			let courseId = null
-			let profId = null
-			getCourses(courseInfo).then(res => {
-				if (res.error) {
-					alert(res.error)
-				} else {
-					let data = res.courses
-					let courseList = []
-					for (const i in data) {
-						courseList.push({
-							value: data[i]['dept'] + " " + data[i]['num'],
-							label: data[i]['dept'] + " " + data[i]['num'],
-							id: data[i]['id'],
-							topicId: data[i]['topicId'],
-							courseDept: data[i]['dept'],
-							courseNum: data[i]['num'],
-							topicNum: data[i]['topicNum']
-						})
+			this.setState(prevState =>(
+				{
+					semester: {				
+						...prevState.semester,
+						id: inputValue.id,
+						semester: inputValue.semester,
+						year: inputValue.year
 					}
-					let topicList = []
-					for (const i in res.topics) {
-						topicList.push({
-							id: res.topics[i]['id']
-						})
-					}
-					let profList = []
-					for (const i in res.profs) {
-						profList.push({
-							id: res.profs[i]['id']
-						})
-					}
-					console.log(profList)
-					courseId = this.state.course.id
-					profId = this.state.prof.id
-					if (courseId === null) {
-						if (profId !== null) {
-							if (!profList.map(prof => prof.id).includes(profId)) {
-								this.setState(prevState => ({
-									prof: {
-										...prevState.prof,
-										id: null,
-										firstName: "",
-										lastName: "",
-										disabled: true
-									},
-									formDisabled: true
-								}))
-								profId = null
-							}
-						}
-					} else if (!courseList.map(course => course.id).includes(courseId)) {
-
-						this.setState(prevState => ({
-							course: {
-								...prevState.course,
-								id: null,
-								dept: "",
-								num: "",
-								topicId: null
-							},
-							prof: {
-								...prevState.prof,
-								id: null,
-								firstName: "",
-								lastName: "",
-								disabled: true
-							},
-							topic: {
-								...prevState.topic,
-								id: null,
-								selected: false
-							},
-							formDisabled: true
-						}))
-						courseId = null
-						profId = null
-					}  else if (this.state.topic.selected) {
-						let topicInfo = {
-							topicId: this.state.course.topicId,
-							semesterId: inputValue.id
-						}
-						getTopics(topicInfo).then(res => {
-							if (res.error) {
-								alert(res.error)
-							} else {
-								let data = res.topics
-								let topicList = []
-								for (const i in data) {
-									topicList.push({
-										value: data[i]['topicTitle'],
-										label: data[i]['topicTitle'],
-										id: data[i]['id'],
-										topicTitle: data[i]['topicTitle'],
-										topicNum: data[i]['topicNum']
-									})
-								}
-								this.setState({ topicList: topicList })
-							}
-						})
-						if (!topicList.map(topic => topic.id).includes(this.state.topic.id)) {
-							console.log("No topic, has course")
-							console.log(this.state.topic.id)
-							console.log(topicList)
-							if (courseList.map(course => course.id).includes(courseId)) {
-								this.setState(prevState => ({
-									topic: {
-										...prevState.topic,
-										id: null,
-									},
-									prof: {
-										...prevState.prof,
-										id: null,
-										firstName: "",
-										lastName: "",
-										disabled: true
-									},
-									formDisabled: true
-								}))
-							} else {
-								this.setState(prevState => ({
-									course: {
-										...prevState.course,
-										id: null, 
-										dept: "",
-										num: "",
-										topicId: null
-									},
-									prof: {
-										...prevState.prof,
-										id: null,
-										firstName: "",
-										lastName: "",
-										disabled: true
-									},
-									topic: {
-										...prevState.topic,
-										id: null,
-										selected: false
-									},
-									formDisabled: true
-								}))
-							}
-							courseId = null
-							profId = null
-						}else{
-							let profInfo = {
-								semesterId: inputValue.id,
-								courseId: this.state.topic.id,
-								all: false
-							}
-							this.setProfInfo(profInfo)
-							this.setState(prevState => ({
-								prof: {
-									...prevState.prof,
-									disabled: false
-								}
-							}))
-						}
-					}else {
-						courseId = this.state.topic.selected ? this.state.topic.id : courseId
-						let profInfo = {
-							semesterId: inputValue.id,
-							courseId: courseId,
-							all: false
-						}
-						this.setProfInfo(profInfo)
-						this.setState(prevState => ({
-							prof: {
-								...prevState.prof,
-								disabled: false
-							}
-						}))
-					}
-					this.setState(prevState => ({
-						courseList: courseList,
-						course: {
-							...prevState.course,
-							loaded: true
-						}
-					}))
 				}
-			})
-			this.setState(prevState => ({
-				semester: {
-					...prevState.semester,
-					id: inputValue.id,
-					semester: inputValue.semester,
-					year: inputValue.year
-				},
-				course: {
-					...prevState.course,
-					disabled: false
-				}
-			}))
-
-			const token = localStorage.usertoken
-			const decoded = jwt_decode(token)
-			if (courseId !== null && profId !== null) {
-				const review = {
-					user_email: decoded.identity.email,
-					course_id: courseId,
-					prof_id: profId,
-					sem_id: inputValue.id
-				}
-				this.checkDuplicate(review)
-			}
-
-		} else {
-			this.setState(prevState => ({
-				semester: {
-					...prevState.semester,
-					id: null,
-					semester: "",
-					year: ""
-				},
-				course: {
-					...prevState.course,
-					id: null,
-					dept: "",
-					num: "",
-					topicId: null,
-					disabled: true
-				},
-				prof: {
-					...prevState.prof,
-					id: null,
-					firstName: "",
-					lastName: "",
-					disabled: true
-				},
-				topic: {
-					...prevState.topic,
-					id: null,
-					selected: false
-				},
-				formDisabled: true
-			}))
+			))
 		}
 	}
 
@@ -810,6 +581,7 @@ class ReviewForm extends Component {
 
 	componentDidMount() {
 		if (this.props.location.state === undefined) {
+			
 			let urlObject = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
 			if (urlObject.course) {
 				const course = {
@@ -821,12 +593,17 @@ class ReviewForm extends Component {
 						this.setState({ invalidReview: true })
 					} else {
 						this.setState(prevState => ({
+							order: 0,
 							course: {
 								...prevState.course,
 								id: res.courseId,
 								dept: res.courseDept,
 								num: res.courseNum,
-								topicId: res.topicId
+								topicId: res.topicId,
+								disabled: false
+							},
+							prof: {
+								disabled: false
 							}
 						}))
 						if (res.topicId !== -1) {
@@ -876,11 +653,16 @@ class ReviewForm extends Component {
 						this.setState({ invalidReview: true })
 					} else {
 						this.setState(prevState => ({
+							order: 1,
 							prof: {
 								...prevState.prof,
 								id: res.profId,
 								firstName: res.firstName,
-								lastName: res.lastName
+								lastName: res.lastName,
+								disabled: false
+							},
+							course: {
+								disabled: false
 							}
 						}))
 					}
@@ -889,14 +671,21 @@ class ReviewForm extends Component {
 				this.setState({ invalidReview: false })
 			}
 		} else {
+
+			console.log("did not mount undefined")
 			if (this.props.location.state.courseId !== undefined) {
 				this.setState(prevState => ({
+					order: 0,
 					course: {
 						...prevState.course,
 						id: this.props.location.state.courseId,
 						dept: this.props.location.state.courseDept,
 						num: this.props.location.state.courseNum,
-						topicId: this.props.location.state.topicId
+						topicId: this.props.location.state.topicId,
+						disabled: false,
+					},
+					prof: {
+						disabled: false
 					}
 				}))
 				if (this.props.location.state.topicId !== null) {
@@ -936,11 +725,16 @@ class ReviewForm extends Component {
 				}
 			} else if (this.props.location.state.profId !== undefined) {
 				this.setState(prevState => ({
+					order: 1, 
 					prof: {
 						...prevState.prof,
 						id: this.props.location.state.profId,
 						firstName: this.props.location.state.profFirst,
-						lastName: this.props.location.state.profLast
+						lastName: this.props.location.state.profLast,
+						disabled: false,
+					},
+					course: {
+						disabled: false
 					}
 				}))
 			} else {
@@ -1011,6 +805,8 @@ class ReviewForm extends Component {
 			all: true
 		}
 		this.setProfInfo(profInfo)
+
+		console.log(this.state)
 	}
 
 	setOldReviewData = () => {
