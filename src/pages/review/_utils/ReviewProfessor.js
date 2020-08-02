@@ -8,7 +8,6 @@ import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded';
 import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded';
-import { BinaryFeedback } from 'react-simple-user-feedback'
 
 function ReviewProfessor(props) {
     let likeIcon = props.data.profRating.approval != null && props.data.profRating.approval ?
