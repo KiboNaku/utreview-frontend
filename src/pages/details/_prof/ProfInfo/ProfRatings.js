@@ -12,7 +12,6 @@ function ProfRatings(props) {
 
         },
     }));
-    const classes = useStyles()
 
     const StyledRating = withStyles({
         iconFilled: {

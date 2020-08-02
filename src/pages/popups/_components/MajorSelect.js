@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
-import { useFormik, Field, Form, ErrorMessage } from 'formik'
+import { ErrorMessage } from 'formik'
 
 class MajorSelect extends React.Component {
     handleChange = value => {

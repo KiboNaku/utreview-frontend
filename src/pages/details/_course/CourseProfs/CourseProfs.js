@@ -1,7 +1,6 @@
 import React from 'react';
 import CourseProfEntry from './CourseProfEntry'
 import GradeDistributions from './../../../grade-distributions/GradeDistributions'
-import CourseProfExpanded from './CourseProfExpanded'
 import './CourseProfs.css'
 
 class CourseProfs extends React.Component {

@@ -56,9 +56,10 @@ function CoursePanel(props) {
                     else return 0
                 case 'courseRatings':
                     return b.numRatings - a.numRatings
+                default:
+                    return null;
             }
         }
-        return null;
     }
 
     function setTableData(sortedCourses) {
