@@ -39,7 +39,7 @@ function CourseProfEntry(props) {
                 <a href={syllabiLink} rel="noopener noreferrer" target="_blank"> Syllabi </a>
             </td>
             <td align="center">
-                <a className="utcolor" role="button" data-toggle="modal" data-target={`#grade-distributions-modal-${props.course.id}-${props.id}`}> UT Catalyst </a>
+                <a className="utcolor" role="button" data-toggle="modal" data-target={`#grade-distributions-modal-${props.course.id}-${props.id}`}> Grades </a>
             </td>
         </tr>
     );
