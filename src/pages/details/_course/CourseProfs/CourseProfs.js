@@ -48,7 +48,7 @@ class CourseProfs extends React.Component {
                         <th scope="col">Engaging</th>
                         <th scope="col">Grading</th>
                         <th scope="col">Syllabi</th>
-                        <th scope="col">Catalyst</th>
+                        <th scope="col">Grades</th>
                     </tr>
                 </thead>
                 <tbody>

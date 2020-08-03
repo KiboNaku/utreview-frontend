@@ -47,7 +47,7 @@ class ProfCourses extends React.Component {
                         <th scope="col">Usefulness</th>
                         <th scope="col">Workload</th>
                         <th scope="col">Syllabi</th>
-                        <th scope="col">Catalyst</th>
+                        <th scope="col">Grades</th>
                     </tr>
                 </thead>
                 <tbody>

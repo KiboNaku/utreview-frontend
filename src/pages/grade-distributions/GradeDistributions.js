@@ -6,7 +6,6 @@ import Loading from './../_utils/Loading'
 
 import jwt_decode from 'jwt-decode'
 import { Link, withRouter } from 'react-router-dom'
-import GradeDistributionsComponent from './GradeDistributionsComponent'
 import $ from './../../../node_modules/jquery'
 import axios from 'axios'
 
