@@ -28,7 +28,7 @@ class CourseProfs extends React.Component {
             let profId = prof.id
             return [
                     <CourseProfEntry course={this.props.courseInfo} {...prof} />,
-                    <GradeDistributions course={this.props.courseInfo} prof={prof} courseId={courseId} profId={profId} />
+                    <GradeDistributions isCourse={true} course={this.props.courseInfo} prof={prof} courseId={courseId} profId={profId} />
             ]
 
         })
