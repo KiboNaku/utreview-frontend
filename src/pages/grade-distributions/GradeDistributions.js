@@ -13,9 +13,14 @@ class GradeDistributions extends Component {
 
     constructor(props) {
         super(props)
+        let idString = props.courseId + "-" + props.profId + "-course"
+        if(!props.isCourse){
+            idString = props.profId + "-" + props.courseId + "-prof"
+        }
         this.state = {
             loading: true,
-            noResults: false
+            noResults: false,
+            id: idString
         }
 
         Exporting(Highcharts)
@@ -72,7 +77,7 @@ class GradeDistributions extends Component {
 
     chart(grades) {
         return (
-            Highcharts.chart(`grades-chart-${this.props.courseId}-${this.props.profId}`, {
+            Highcharts.chart(`grades-chart-${this.state.id}`, {
                 chart: {
                     type: 'column'
                 },
@@ -150,7 +155,7 @@ class GradeDistributions extends Component {
         )
 
         return (
-            <div className="modal fade" id={`grade-distributions-modal-${this.props.courseId}-${this.props.profId}`} role="dialog">
+            <div className="modal fade" id={`grade-distributions-modal-${this.state.id}`} role="dialog">
 
                 <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div className="modal-content">
@@ -158,7 +163,7 @@ class GradeDistributions extends Component {
                         <ModalHeader text="Grade Distribution" />
 
                         <div className="modal-body">
-                            <div id={`grades-chart-${this.props.courseId}-${this.props.profId}`}>
+                            <div id={`grades-chart-${this.state.id}`}>
                                 {this.state.loading ? loading: (this.state.noResults ? noResults :null)}
                                 
                             </div>

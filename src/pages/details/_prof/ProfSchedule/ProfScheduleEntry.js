@@ -27,6 +27,19 @@ function ProfScheduleEntry(props) {
     if (props.topicNum >= 0) {
         coursePath += "_" + props.topicNum.toString()
     }
+
+    let semester = 9
+    if(props.semester === "Summer"){
+        semester = 6
+    }else if(props.semester === "Spring"){
+        semester = 2
+    }
+
+    let semYear = props.year.toString() + semester.toString()
+
+    let uniqueNumLink = `https://utdirect.utexas.edu/apps/registrar/course_schedule/${semYear}/${props.uniqueNum}/`
+    let uniqueNum = <a href={uniqueNumLink} rel="noopener noreferrer" target="_blank"> {props.uniqueNum} </a>
+
     let enrollment = props.seatsTaken === null || props.maxEnrollment === null ? "N/A" : props.seatsTaken + "/" + props.maxEnrollment
     let course = (
         <Link
@@ -50,7 +63,7 @@ function ProfScheduleEntry(props) {
     return (
         <tr>
             <td align="center">
-                {props.uniqueNum !== null ? props.uniqueNum: "N/A"}
+                {props.uniqueNum !== null ? uniqueNum: "N/A"}
             </td>
             <td align="center">
                 {props.courseId !== null ? course : "N/A"}
