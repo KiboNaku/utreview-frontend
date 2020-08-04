@@ -1,13 +1,14 @@
-import * as Yup from 'yup'
 import axios from 'axios'
 
-export const validation = Yup.object({
-
-	page: Yup.array()
-		.of(
-			Yup.object().shape({
-				label: Yup.string().required('Required'),
-				value: Yup.string().required('Required')
-			})
-		)
-})
+export const sendBug = bug => {
+	return axios
+		.post('/api/report_bug', {
+			page: bug.page,
+			bug_type: bug.bug_type,
+			description: bug.description,
+		})
+		.then(response => {
+			console.log(response)
+			return response.data
+		})
+}
