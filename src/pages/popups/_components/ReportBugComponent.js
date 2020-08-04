@@ -1,6 +1,5 @@
 import React from 'react'
 import Select from "react-select"
-import UTEmail from './../_utils/UTEmail'
 import ModalHeader from "./../_utils/ModalHeader"
 
 function ReportBugComponent(props) {
@@ -24,6 +23,11 @@ function ReportBugComponent(props) {
 									isClearable={true}
 									isSearchable={true}
 								/>
+								{props.data.error.pageError ? (
+									<div>
+										<small className="text-danger">{props.data.error.pageError}</small>
+									</div>
+								) : null}
 							</div>
 							{props.data.page !== '' && props.data.page !== null && props.data.page !== undefined &&
 								<div className='form-group'>
@@ -38,6 +42,11 @@ function ReportBugComponent(props) {
 										isClearable={true}
 										isSearchable={true}
 									/>
+									{props.data.error.bugTypeError ? (
+										<div>
+											<small className="text-danger">{props.data.error.bugTypeError}</small>
+										</div>
+									) : null}
 								</div>
 							}
 							<div className='form-group'>
@@ -50,10 +59,15 @@ function ReportBugComponent(props) {
 									onChange={props.handleChange}
 									maxlength="1000"
 								/>
+								{props.data.error.descriptionError ? (
+									<div>
+										<small className="text-danger">{props.data.error.descriptionError}</small>
+									</div>
+								) : null}
 							</div>
 
 							<div style={{ textAlign: 'center' }} className='mb-3'>
-								<button className='btn btn-outline-dark font-weight-bold' type="submit">Submit</button>
+								<button className='btn btn-outline-dark font-weight-bold' type='submit' onClick={props.handleSubmit}>Submit</button>
 							</div>
 						</form>
 					</div>
