@@ -61,7 +61,7 @@ function ReviewFormComponent(props) {
                         <li className="py-3">
 
                             <span >
-                                Select a semester<small className='warning'> *</small>
+                                Select a semester<small className='text-danger'> *</small>
                             </span>
 
                             <Select
@@ -81,7 +81,7 @@ function ReviewFormComponent(props) {
                         <li className="py-2">
 
                             <span >
-                                Select a course<small className='warning'> *</small>
+                                Select a course<small className='text-danger'> *</small>
                             </span>
 
                             <Select
@@ -104,7 +104,7 @@ function ReviewFormComponent(props) {
                         <li className="py-3" >
 
                             <span>
-                                Select a professor<small className='warning'> *</small>
+                                Select a professor<small className='text-danger'> *</small>
                             </span>
 
                             <Select
@@ -124,14 +124,14 @@ function ReviewFormComponent(props) {
 
                         <li className="py-3" style={disableStyle}>
                             <span>
-                                Give us your review for {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}<small className='warning'> *</small>
+                                Give us your review for {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}<small className='text-danger'> *</small>
                             </span>
                             <ReviewCourse {...props} />
                         </li>
 
                         <li className="py-3" style={disableStyle}>
                             <span>
-                                Give us your review for {props.data.prof.id !== null ? props.data.prof.firstName + " " + props.data.prof.lastName : '...'}<small className='warning'> *</small>
+                                Give us your review for {props.data.prof.id !== null ? props.data.prof.firstName + " " + props.data.prof.lastName : '...'}<small className='wartext-dangerning'> *</small>
                             </span>
                             <ReviewProfessor {...props} />
                         </li>

@@ -1,19 +1,9 @@
 import React from 'react'
-import { useFormik, Field, Formik, Form, ErrorMessage, getIn } from 'formik'
-import { validation } from './../_utils/ReportBugFunctions'
+import Select from "react-select"
+import UTEmail from './../_utils/UTEmail'
 import ModalHeader from "./../_utils/ModalHeader"
-import { BugAreaSelect } from './ReportBugElements'
-import { TextInput, TextArea, } from './../../contact-us/_util/ContactUsFormElements'
 
 function ReportBugComponent(props) {
-
-	let initialValues = {
-		firstname: '',
-		lastname: '',
-		email: '',
-		bugArea: '',
-		message: ''
-	}
 
 	return (
 		<div className="modal fade" id="report-bug" role="dialog">
@@ -21,62 +11,55 @@ function ReportBugComponent(props) {
 				<div className="modal-content">
 					<ModalHeader text="Report A Bug" />
 					<div className="modal-body">
-						<Formik
-							enableReinitialize
-							initialValues={initialValues}
-							validationSchema={validation}
-							onSubmit={props.handleSubmit}
-						>
-							<Form>
-								{/* 
-									name
-									email 
-									types of bug
-										seperate by pages
-									description 
-								 */}
-
-								<TextInput
-									label='First Name'
-									name='firstname'
-									type='text'
-								/>
-								<TextInput
-									label='Last Name'
-									name='lastname'
-									type='text'
-								/>
-								<TextInput
-									label='Email'
-									name='email'
-									type='text'
-								/>
-
-								<BugAreaSelect
-									value={values.bugArea}
+						<form class="needs-validation" novalidate>
+							<div className='form-group'>
+								<label for='page'>Page <small className='text-danger'>*</small></label>
+								<Select
+									name="page"
+									value={props.data.page !== null ?
+										props.data.pages.filter(page => page.value === props.data.page) : null}
 									options={props.data.pages}
-									onChange={setFieldValue}
-									onBlur={setFieldTouched}
-									error={errors.topics}
-									touched={touched.topics}
-									style={invalidInputStyle(errors, touched, 'bugArea')}
+									onChange={props.handlePageChange}
+									placeholder='location of bug'
+									isClearable={true}
+									isSearchable={true}
 								/>
-
-								<TextArea
-									label='Message'
-									name='message'
-									type='text'
-								/>
-
-								<div className='contact-submit'>
-									<button className='btn btn-outline-dark font-weight-bold' type="submit">Submit</button>
+							</div>
+							{props.data.page !== '' && props.data.page !== null && props.data.page !== undefined &&
+								<div className='form-group'>
+									<label for='page'>Bug Type <small className='text-danger'>*</small></label>
+									<Select
+										name="bugType"
+										value={props.data.bugType !== null ?
+											props.data.bugTypes[props.data.page].filter(bugType => bugType.value === props.data.bugType) : null}
+										options={props.data.bugTypes[props.data.page]}
+										onChange={props.handleBugTypeChange}
+										placeholder='type of bug'
+										isClearable={true}
+										isSearchable={true}
+									/>
 								</div>
-							</Form>
-						</Formik>
+							}
+							<div className='form-group'>
+								<label for='description'>Description <small className='text-danger'>*</small></label>
+								<textarea
+									className="form-control" rows="3"
+									name='description'
+									value={props.data.description}
+									placeholder="describe the bug"
+									onChange={props.handleChange}
+									maxlength="1000"
+								/>
+							</div>
+
+							<div style={{ textAlign: 'center' }} className='mb-3'>
+								<button className='btn btn-outline-dark font-weight-bold' type="submit">Submit</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div >
 	)
 }
 

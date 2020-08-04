@@ -152,7 +152,7 @@ function PersonalInfo(props) {
                         <form onSubmit={formik.handleSubmit}>
                             <div className="form-group my-3">
                                 <div className="form-group my-3">
-                                    <label htmlFor="firstName">First Name<small className='warning'> *</small></label>
+                                    <label htmlFor="firstName">First Name<small className='text-danger'> *</small></label>
                                     <Field
                                         name="firstName"
                                         type="text"
@@ -163,7 +163,7 @@ function PersonalInfo(props) {
                                     <ErrorMessage component="div" className="text-danger" name="firstName" />
                                 </div>
                                 <div className="form-group my-3">
-                                    <label htmlFor="lastName">Last Name<small className='warning'> *</small></label>
+                                    <label htmlFor="lastName">Last Name<small className='text-danger'> *</small></label>
                                     <Field
                                         name="lastName"
                                         type="text"

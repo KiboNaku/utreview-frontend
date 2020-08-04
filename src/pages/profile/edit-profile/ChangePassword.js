@@ -101,7 +101,7 @@ class ChangePassword extends React.Component {
                         return (
                             <form className="form-signin" onSubmit={formik.handleSubmit}>
                                 <div className="form-group my-3">
-                                    <label htmlFor="currentPassword">Current Password<small className='warning'> *</small></label>
+                                    <label htmlFor="currentPassword">Current Password<small className='text-danger'> *</small></label>
                                     <Field
                                         name="currentPassword"
                                         type="password"
@@ -184,7 +184,7 @@ class ChangePassword extends React.Component {
                             <form className="form-signin" onSubmit={formik.handleSubmit}>
 
                                 <div className="form-group my-3">
-                                    <label htmlFor="password">New Password<small className='warning'> *</small></label>
+                                    <label htmlFor="password">New Password<small className='text-danger'> *</small></label>
                                     <Field
                                         name="password"
                                         type="password"
@@ -196,7 +196,7 @@ class ChangePassword extends React.Component {
                                 </div>
 
                                 <div className="form-group my-3">
-                                    <label htmlFor="confirmPassword">Confirm New Password<small className='warning'> *</small></label>
+                                    <label htmlFor="confirmPassword">Confirm New Password<small className='text-danger'> *</small></label>
                                     <Field
                                         name="confirmPassword"
                                         type="password"
