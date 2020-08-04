@@ -1,7 +1,5 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom'
-import Login from '../../../popups/Login'
-import Signup from '../../../popups/Signup'
 
 function CourseAddReview(props) {
     let coursePath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()

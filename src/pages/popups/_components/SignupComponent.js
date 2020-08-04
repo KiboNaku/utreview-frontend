@@ -1,14 +1,11 @@
 import React from 'react'
-import Select from 'react-select'
 import axios from 'axios'
 import * as Yup from 'yup'
-import { useFormik, Field, Formik, Form, ErrorMessage, getIn } from 'formik'
+import { Field, Formik, ErrorMessage, getIn } from 'formik'
 import MajorSelect from './MajorSelect'
 import GoogleButton from "./../_utils/GoogleButton"
 import ModalHeader from './../_utils/ModalHeader'
-import UTEmail from './../_utils/UTEmail'
 import Loading from './../../_utils/Loading'
-import { contains } from 'jquery'
 
 function containsSpecialChars(str) {
     var regex = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;

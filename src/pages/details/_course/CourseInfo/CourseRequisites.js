@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 
 class CourseRequisites extends React.Component {
 
@@ -20,7 +19,6 @@ class CourseRequisites extends React.Component {
     }
 
     render() {
-        let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         return (
             <div className="courseRequisites">
                 <div className="card course-card">

@@ -1,18 +1,10 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 
 function CourseRatings(props) {
-
-    const useStyles = makeStyles((theme) => ({
-        aligned: {
-
-        },
-    }));
-    const classes = useStyles()
 
     const StyledRating = withStyles({
         iconFilled: {

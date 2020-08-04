@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { forgotPassword } from './_utils/UserFunctions'
 import ForgotPasswordComponent from './_components/ForgotPasswordComponent'
 import $ from './../../../node_modules/jquery'
@@ -22,7 +22,6 @@ class ForgotPassword extends Component {
 
     onSubmit(values) {
 
-        const NOT_VERIFIED = -101
         localStorage.setItem('email', values.email + "@utexas.edu")
 
         const user = {
