@@ -200,7 +200,7 @@ function SignupComponent(props) {
                         <form onSubmit={formik.handleSubmit}>
                             <div className="form-group my-3">
                                 <div className="form-group my-3">
-                                    <label htmlFor="firstName">First Name<small className='warning'> *</small></label>
+                                    <label htmlFor="firstName">First Name<small className='text-danger'> *</small></label>
                                     <Field
                                         name="firstName"
                                         type="text"
@@ -211,7 +211,7 @@ function SignupComponent(props) {
                                     <ErrorMessage component="div" className="text-danger" name="firstName" />
                                 </div>
                                 <div className="form-group my-3">
-                                    <label htmlFor="lastName">Last Name<small className='warning'> *</small></label>
+                                    <label htmlFor="lastName">Last Name<small className='text-danger'> *</small></label>
                                     <Field
                                         name="lastName"
                                         type="text"
@@ -226,7 +226,7 @@ function SignupComponent(props) {
 
                             <div className="my-3">
                                 <div className="form-label-group">
-                                    <label htmlFor="email">Email<small className='warning'> *</small></label>
+                                    <label htmlFor="email">Email<small className='text-danger'> *</small></label>
                                     <span className="d-flex">
                                         <Field
                                             name="email"
@@ -271,7 +271,7 @@ function SignupComponent(props) {
 
 
                             <div className="form-group my-3">
-                                <label htmlFor="password">Password<small className='warning'> *</small></label>
+                                <label htmlFor="password">Password<small className='text-danger'> *</small></label>
                                 <Field
                                     name="password"
                                     type="password"
@@ -282,7 +282,7 @@ function SignupComponent(props) {
                             </div>
 
                             <div className="form-group my-3">
-                                <label htmlFor="confirmPassword">Confirm Password<small className='warning'> *</small></label>
+                                <label htmlFor="confirmPassword">Confirm Password<small className='text-danger'> *</small></label>
                                 <Field
                                     name="confirmPassword"
                                     type="password"
