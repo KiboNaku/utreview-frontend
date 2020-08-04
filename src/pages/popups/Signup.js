@@ -66,7 +66,7 @@ class Signup extends Component {
                 alert(res.error)
             } else {
                 let data = res.majors
-                let list = new Array()
+                let list = []
                 for (const i in data) {
                     list.push({
                         value: data[i]['name'],

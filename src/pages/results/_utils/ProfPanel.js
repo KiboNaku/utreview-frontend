@@ -30,6 +30,8 @@ function ProfPanel(props) {
                     let profNameA = a.firstName + " " + a.lastName
                     let profNameB = b.firstName + " " + b.lastName
                     return profNameB.localeCompare(profNameA)
+                default:
+                    return 0
             }
         }
 
@@ -152,7 +154,7 @@ function ProfPanel(props) {
 
     return (
         <TabPanel index={1} value={props.tabIndex}>
-            {props.loaded ? (sortedProfs.length == 0 ? props.emptyTable : profTable) : props.loading}
+            {props.loaded ? (sortedProfs.length === 0 ? props.emptyTable : profTable) : props.loading}
         </TabPanel>
     )
 }

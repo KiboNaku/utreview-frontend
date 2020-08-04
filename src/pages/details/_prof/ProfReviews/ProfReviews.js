@@ -1,4 +1,4 @@
-import React, {createRef} from 'react';
+import React from 'react';
 import Select from 'react-select'
 import ProfReviewEntry from './ProfReviewEntry';
 import ReportComment from './../../../report-comment/ReportComment'

@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
-import Select from 'react-select'
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
-import ModalHeader from '../../popups/_utils/ModalHeader'
-import $ from 'jquery'
-import UTEmail from '../../popups/_utils/UTEmail'
 import PersonalInfo from './PersonalInfo'
 import ChangePassword from './ChangePassword'
 

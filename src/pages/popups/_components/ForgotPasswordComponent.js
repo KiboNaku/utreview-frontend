@@ -1,10 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import * as Yup from 'yup'
-import { useFormik, Field, Formik, Form, ErrorMessage, getIn } from 'formik'
-import GoogleButton from "./../_utils/GoogleButton"
+import { Field, Formik, ErrorMessage, getIn } from 'formik'
 import ModalHeader from "./../_utils/ModalHeader"
-import UTEmail from "./../_utils/UTEmail"
 import './../../../utcolors.css'
 import Loading from './../../_utils/Loading'
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { login } from './_utils/UserFunctions'
 import LoginComponent from './_components/LoginComponent'
 import $ from './../../../node_modules/jquery'
@@ -59,7 +59,6 @@ class Login extends Component {
                 }
                 this.props.handleProfilePicChange(profilePic)
                 $("#login-modal").modal("hide")
-                this.props.history.push('/profile')
             }
         })
     }

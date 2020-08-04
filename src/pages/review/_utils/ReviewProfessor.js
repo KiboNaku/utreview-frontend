@@ -2,7 +2,6 @@ import React from 'react'
 import { StyledRating } from './Rating'
 import Tooltip from '@material-ui/core/Tooltip';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import Button from '@material-ui/core/Button';
 import { withStyles } from "@material-ui/core/styles";
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'

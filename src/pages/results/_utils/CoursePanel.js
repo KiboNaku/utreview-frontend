@@ -56,9 +56,10 @@ function CoursePanel(props) {
                     else return 0
                 case 'courseRatings':
                     return b.numRatings - a.numRatings
+                default:
+                    return null;
             }
         }
-        return null;
     }
 
     function setTableData(sortedCourses) {
@@ -195,7 +196,7 @@ function CoursePanel(props) {
 
     return (
         <TabPanel index={0} value={props.tabIndex} className="table-panel">
-            {props.loaded ? (sortedCourses.length == 0 ? props.emptyTable : courseTable) : props.loading}
+            {props.loaded ? (sortedCourses.length === 0 ? props.emptyTable : courseTable) : props.loading}
         </TabPanel>
     )
 }

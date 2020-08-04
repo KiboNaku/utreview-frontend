@@ -1,7 +1,6 @@
 import React from 'react'
 import * as Yup from 'yup'
-import { useFormik, Field, Formik, Form, ErrorMessage, getIn } from 'formik'
-import ModalHeader from '../popups/_utils/ModalHeader'
+import { Field, Formik, ErrorMessage, getIn } from 'formik'
 
 function containsSpecialChars(str) {
     var regex = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;

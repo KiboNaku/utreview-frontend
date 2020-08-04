@@ -1,4 +1,4 @@
-import React, { useRef }  from 'react';
+import React from 'react';
 import CourseInfo from './_course/CourseInfo/CourseInfo';
 import CourseTopics from './_course/CourseInfo/CourseTopics';
 import CourseRatings from './_course/CourseInfo/CourseRatings';
@@ -9,7 +9,7 @@ import CourseRequisites from './_course/CourseInfo/CourseRequisites'
 import CourseSchedule from './_course/CourseSchedule/CourseSchedule'
 import { getCourseInfo, getCourseId } from './_course/CourseFunctions'
 import Loading from './../_utils/Loading'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import './CourseDetails.css'
 
@@ -376,12 +376,6 @@ class CourseDetails extends React.Component {
                     {...this.state.courseInfo}
                 />
             </div>
-        )
-
-        let addReview = (
-            <CourseAddReview
-                {...this.state.courseInfo}
-            />
         )
 
         let content = (
