@@ -252,12 +252,21 @@ class CourseReviews extends React.Component {
 			)
 		})
 
-		const profOptions = this.state.courseReviews.map(review => {
-			return {
-				value: review.profFirst + " " + review.profLast,
-				label: review.profFirst + " " + review.profLast
+		const profs = []
+		const profOptions = []
+		for (let i = 0; i < this.state.courseReviews.length; i++){
+			let profString = this.state.courseReviews[i].profFirst + " " + this.state.courseReviews[i].profLast
+			if(profs.includes(profString)){
+				continue
 			}
-		})
+			profs.push(profString)
+			
+			let obj = {
+				value: profString,
+				label: profString
+			}
+			profOptions.push(obj)
+		}
 
 		let noReviews = (
 			<h5> No reviews yet for this course </h5>

@@ -5,7 +5,8 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import $ from './../../../node_modules/jquery'
 import ProfileComponent from './_components/ProfileComponent'
-import ReviewSummary from './_utils/ReviewSummary'
+import ReviewSummary from './review-list/ReviewSummary'
+
 import { SelectionPicture } from './_utils/ProfilePicture'
 import { ProfilePicModal } from './_utils/ProfilePicPopup'
 import EditProfile from './edit-profile/EditProfile'
@@ -29,7 +30,59 @@ class Profile extends Component {
             profilePicList: [],
             reviews: [],
             majorList: [],
-            loaded: false
+            loaded: false,
+            uploadedCourses: false,
+            userCourses: [
+                {
+
+                    semester:'Spring',
+                    year: 2020,
+                    index: 0,
+                    courses: [
+                        {
+                            courseId: 1,
+                            profId: 1,
+                            semId: 1,
+                            uniqueNum: 12345,
+                            courseDept: 'E E',
+                            courseNum: '302',
+                            topicNum: -1,
+                            profFirst: 'Nina',
+                            profLast: 'Telang'
+                        },
+                        {
+                            courseId: 5,
+                            profId: 5,
+                            semId: 5,
+                            uniqueNum: 52345,
+                            courseDept: 'E E',
+                            courseNum: '360C',
+                            topicNum: -1,
+                            profFirst: 'Pedro',
+                            profLast: 'Santacruz'
+                        },
+                    ]
+                },
+                {
+
+                    semester:'Fall',
+                    year: 2019,
+                    index: 1,
+                    courses: [
+                        {
+                            courseId: 2,
+                            profId: 4,
+                            semId: 3,
+                            uniqueNum: 12345,
+                            courseDept: 'E E',
+                            courseNum: '306',
+                            topicNum: -1,
+                            profFirst: 'Yale',
+                            profLast: 'Patt'
+                        }
+                    ]
+                }
+            ],
         }
 
         this.setReviewData = this.setReviewData.bind(this)
@@ -45,14 +98,16 @@ class Profile extends Component {
 
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
-        this.setState({
+        this.setState(prevState => ({
             firstName: decoded.identity.first_name,
             lastName: decoded.identity.last_name,
             email: decoded.identity.email,
             major: decoded.identity.major,
             profilePic: decoded.identity.profile_pic,
-            otherMajor: decoded.identity.other_major
-        })
+            otherMajor: decoded.identity.other_major,
+            userCourses: decoded.identity.user_courses,
+            uploadedCourses: decoded.identity.user_courses !== null && decoded.identity.user_courses !== undefined ? true : false
+        }))
 
         getMajor().then(res => {
             if (res.error) {
@@ -101,7 +156,7 @@ class Profile extends Component {
     editReview(id) {
         let review
         this.state.reviews.forEach((_review) => {
-            if(_review.id == id) review = _review
+            if(_review.id === id) review = _review
         })
 
         this.props.history.push({
@@ -222,6 +277,8 @@ class Profile extends Component {
                 <ProfileComponent
                     data={this.state}
                     setReviewData={this.setReviewData}
+                    editReview={this.editReview}
+                    deleteReview={this.deleteReview}
                 />
                 <ProfilePicModal
                     setImageData={this.setImageData}
