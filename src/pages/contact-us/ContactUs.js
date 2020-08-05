@@ -30,15 +30,14 @@ class ContactUs extends Component {
 		}
 	}
 
-	handleSubmit = (values, { setSubmitting }) => {
+	handleSubmit = (values, { setSubmitting, resetForm }) => {
 		setTimeout(() => {
-			// alert(JSON.stringify(values, null, 2));
 			let response = sendMessage(values)
-			console.log(response)
-			if(response !== null) {
+			if (response !== null) {
 				$('#feedback-received').toast('show')
 			}
-			setSubmitting(false);
+			setSubmitting(false)
+			resetForm()
 		}, 400);
 	}
 

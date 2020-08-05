@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./Footer.css"
 
 class Footer extends Component {
@@ -26,6 +26,11 @@ class Footer extends Component {
                     <li className="nav-item" className="nav-link">
                         <Link className="footer-link" to="/contact-us">
                             Contact Us
+                        </Link>
+                    </li>
+                    <li className="nav-item" className="nav-link">
+                        <Link className="footer-link" data-toggle="modal" data-target="#report-bug">
+                            <i className="fas fa-exclamation-triangle"></i>
                         </Link>
                     </li>
                 </ul>
