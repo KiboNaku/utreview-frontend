@@ -66,7 +66,7 @@ class NavBar extends Component {
                         <Link className="dropdown-item" to="/profile">
                             Profile
                         </Link>
-                        <div class="dropdown-divider"></div>
+                        <div className="dropdown-divider"></div>
                         <span className="dropdown-item clickable" onClick={this.logOut.bind(this)}>Log out</span>
                     </div>
                 </li>

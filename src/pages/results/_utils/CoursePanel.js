@@ -128,17 +128,9 @@ function CoursePanel(props) {
         }
     }
 
-    let sortedCourses = props.data
-        .filter(course =>
-            (filter.depts.length <= 0 || filter.depts.includes(course.courseDept)) &&
-            (filter.mNum <= course.numRatings) &&
-            (props.isSemester(filter.sem, course)) &&
-            (props.isHour(course, filter)) &&
-            (props.isDivision(course, filter))
-
-        )
-        .sort(sortTypes[sortDir].fn)
-        .slice(0, props.calcTableEdge(props.page, props.data.length))
+    let sortedCourses = props.filtered
+    .sort(sortTypes[sortDir].fn)
+    .slice(0, props.calcTableEdge(props.page, props.data.length))
 
     let moreResults = hasMore 
     if (props.calcTableEdge(props.page, props.data.length) >= props.data.length){

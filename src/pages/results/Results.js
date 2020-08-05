@@ -16,16 +16,16 @@ class Results extends Component {
 		super(props);
 
 		this.state = {
+
 			searchValue: "",
-
 			tabIndex: 0,
-
 			depts: [],
 
 			courses: {
 				loaded: false,
 				page: 0,
 				data: [],
+				filtered: [],
 				sort: {
 					sortBy: 'courseName',
 					sortDir: 'down',
@@ -54,6 +54,7 @@ class Results extends Component {
 				loaded: false,
 				page: 0,
 				data: [],
+				filtered: [],
 				sort: {
 					sortBy: 'profName',
 					sortDir: 'down',
@@ -161,7 +162,11 @@ class Results extends Component {
 
 	}
 
+
 	parseResValues = (res) => {
+
+		let course_data = res.courses === "empty" ? [] : res.courses
+		let prof_data = res.profs === "empty" ? [] : res.profs
 
 		this.setState(prevState => (
 
@@ -169,12 +174,14 @@ class Results extends Component {
 				courses: {
 					...prevState.courses,
 					loaded: true,
-					data: res.courses === "empty" ? [] : res.courses
+					data: course_data,
+					filtered: course_data,
 				},
 				profs: {
 					...prevState.profs,
 					loaded: true,
-					data: res.profs === "empty" ? [] : res.profs
+					data: prof_data,
+					filtered: prof_data,
 				}
 			}
 		))
@@ -312,6 +319,7 @@ class Results extends Component {
 	handleFilterChange(depts = null, mNum = -1, sem = null, hours = null, divisions = null) {
 
 		if (this.state.tabIndex === 0) {
+
 			this.setState(prevState => {
 
 				let filter = prevState.courses.filter
@@ -349,7 +357,29 @@ class Results extends Component {
 					}
 				}
 			})
+
+			this.setState(prevState => {
+
+				let filter = prevState.courses.filter
+				let filtered = prevState.courses.data
+					.filter(course =>
+						(filter.depts.length <= 0 || filter.depts.includes(course.courseDept)) &&
+						(filter.mNum <= course.numRatings) &&
+						(this.isSemester(filter.sem, course)) &&
+						(this.isHour(course, filter)) &&
+						(this.isDivision(course, filter))
+					)
+				return {
+					courses: {
+						...prevState.courses,
+						filtered: filtered
+					}
+				}
+			})
+			
+
 		} else if (this.state.tabIndex === 1) {
+
 			this.setState((prevState) => {
 
 				let filter = prevState.profs.filter
@@ -361,6 +391,21 @@ class Results extends Component {
 							mNum: mNum < 0 ? filter.mNum : mNum,
 							sem: sem === null ? filter.sem : sem
 						}
+					}
+				}
+			})
+
+			this.setState((prevState) => {
+
+				let filter = prevState.profs.filter
+				let filtered = prevState.profs.data
+					.filter(prof =>
+						(filter.mNum <= prof.numRatings) &&
+						(this.isSemester(filter.sem, prof)))
+				return {
+					profs: {
+						...prevState.profs,
+						filtered: filtered
 					}
 				}
 			})
