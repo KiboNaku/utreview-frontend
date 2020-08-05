@@ -61,30 +61,11 @@ class Home extends Component {
                             <div className="point"></div>
                         </div>
 
-                        <footer className="bottom-links-mobile">
-                            <ul className="nav justify-content-end">
-                                <li className="bottom-links">
-                                    <Link className="footer-link" to="/">
-                                        Home
-                                    </Link>
-                                </li>
-                                <li className="bottom-links">
-                                    <Link className="footer-link" to="/about">
-                                        About
-                                    </Link>
-                                </li>
-                                <li className="bottom-links">
-                                    <Link className="footer-link" to="/privacy-policy">
-                                        Privacy Policy
-                                    </Link>
-                                </li>
-                            </ul>
-                            <div className="background-credits-mobile">
-                                <a className="credits" href="https://www.freepik.com/vectors/background">
-                                    Background vector created by starline - www.freepik.com
-                                </a>
-                            </div>
-                        </footer>
+                        <div className="background-credits-mobile">
+                            <a className="credits" href="https://www.freepik.com/vectors/background">
+                                Background vector created by starline - www.freepik.com
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div className="background-credits">
