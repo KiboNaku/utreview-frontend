@@ -103,7 +103,7 @@ function ReviewProfessor(props) {
         <div className="review-form">
             <div className="review-row">
                 <div className="col" style={{ alignItems: 'center' }} >
-                    <span>Approval<small className='warning'> *</small></span>
+                    <span>Approval<small className='text-danger'> *</small></span>
                     <ClickAwayListener onClickAway={handleApprovalClose}>
                         <StyledTooltip
                             title={approvalDescription}
@@ -139,7 +139,7 @@ function ReviewProfessor(props) {
             </div>
             <div className="review-row">
                 <div className="col" style={{ alignItems: 'center' }} >
-                    <span>Clear<small className='warning'> *</small></span>
+                    <span>Clear<small className='text-danger'> *</small></span>
                     <ClickAwayListener onClickAway={handleClearClose}>
                         <StyledTooltip
                             title={clearDescription}
@@ -181,7 +181,7 @@ function ReviewProfessor(props) {
             </div>
             <div className="review-row">
                 <div className="col" style={{ alignItems: 'center' }} >
-                    <span>Engaging<small className='warning'> *</small></span>
+                    <span>Engaging<small className='text-danger'> *</small></span>
                     <ClickAwayListener onClickAway={handleEngagingClose}>
                         <StyledTooltip
                             title={engagingDescription}
@@ -223,7 +223,7 @@ function ReviewProfessor(props) {
             </div>
             <div className="review-row">
                 <div className="col" style={{ alignItems: 'center' }} >
-                    <span>Grading<small className='warning'> *</small></span>
+                    <span>Grading<small className='text-danger'> *</small></span>
                     <ClickAwayListener onClickAway={handleGradingClose}>
                         <StyledTooltip
                             title={gradingDescription}

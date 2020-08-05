@@ -12,44 +12,60 @@ function ContactUsComponent(props) {
 		message: ''
 	}
 
+	let nextState = {
+		firstname: '',
+		lastname: '',
+		email: '',
+		message: ''
+	}
+
 	return (
-		<main className='main-sub about container-fluid'>
-			<h1 className='display-3 contact-header'>Contact Us</h1>
-			<div className='d-flex justify-content-center'>
-				<div className='col-lg-8'>
-					<Formik
-						enableReinitialize
-						initialValues={initialValues}
-						validationSchema={validation}
-						onSubmit={props.handleSubmit}
-					>
-						<Form>
-							<TextInput
-								label='First Name'
-								name='firstname'
-								type='text'
-							/>
-							<TextInput
-								label='Last Name'
-								name='lastname'
-								type='text'
-							/>
-							<TextInput
-								label='Email'
-								name='email'
-								type='text'
-							/>
-							<TextArea
-								label='Message'
-								name='message'
-								type='text'
-							/>
-							<button className='btn btn-outline-dark font-weight-bold contact-submit' type="submit">Submit</button>
-						</Form>
-					</Formik>
+		<main className='main-sub container-fluid' >
+			<div className='contact-us col-lg-6 mx-auto'>
+				<div style={{ textAlign: 'center' }}>
+					<h1 className='display-3 contact-header'>Contact Us</h1>
+					<div className='contact-description lead'>
+						We would like to hear your thoughts on our website. <br /> Send us a feedback so we can improve!
+					</div>
+				</div>
+				<div className='d-flex justify-content-center'>
+					<div className='col-sm-6'>
+						<Formik
+							enableReinitialize
+							initialValues={initialValues}
+							validationSchema={validation}
+							onSubmit={props.handleSubmit}
+							nextInitialState={nextState}
+						>
+							<Form>
+								<TextInput
+									label='First Name'
+									name='firstname'
+									type='text'
+								/>
+								<TextInput
+									label='Last Name'
+									name='lastname'
+									type='text'
+								/>
+								<TextInput
+									label='Email'
+									name='email'
+									type='text'
+								/>
+								<TextArea
+									label='Message'
+									name='message'
+									type='text'
+								/>
+								<div className='contact-submit'>
+									<button className='btn btn-outline-dark font-weight-bold' type="submit">Submit</button>
+								</div>
+							</Form>
+						</Formik>
+					</div>
 				</div>
 			</div>
-
 			<div id='feedback-received' className="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
 				<div className="toast-body feedback-notif">
 					<button type="button" className="close feedback-notif-close" data-dismiss="toast" aria-label="Close">

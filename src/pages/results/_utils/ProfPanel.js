@@ -65,7 +65,7 @@ function ProfPanel(props) {
                                 {prof.eCIS !== null ? prof.eCIS : "N/A"}
                             </td>
                             <td colSpan="1">
-                                {prof.approval !== null ? prof.approval : "N/A"}%
+                                {prof.approval !== null ? prof.approval+'%' : "N/A"}
 							</td>
                             <td colSpan="1">
                                 {prof.numRatings}
