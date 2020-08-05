@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export const sendMessage = values => {
 	return axios
-		.post('/api/contact_us_message', {
+		.post('/api/user_feedback', {
 			first_name: values.firstname,
 			last_name: values.lastname,
 			email: values.email,

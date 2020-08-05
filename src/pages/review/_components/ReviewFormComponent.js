@@ -6,19 +6,19 @@ import './../ReviewForm.css'
 
 function ReviewFormComponent(props) {
     let gradeList = [
-        { value: "A", label: "A"},
-        { value: "A-", label: "A-"},
-        { value: "B+", label: "B+"},
-        { value: "B", label: "B"},
-        { value: "B-", label: "B-"},
-        { value: "C+", label: "C+"},
-        { value: "C", label: "C"},
-        { value: "C-", label: "C-"},
-        { value: "D+", label: "D+"},
-        { value: "D", label: "D"},
-        { value: "D-", label: "D-"},
-        { value: "F", label: "F"},
-        { value: "P", label: "P"},
+        { value: "A", label: "A" },
+        { value: "A-", label: "A-" },
+        { value: "B+", label: "B+" },
+        { value: "B", label: "B" },
+        { value: "B-", label: "B-" },
+        { value: "C+", label: "C+" },
+        { value: "C", label: "C" },
+        { value: "C-", label: "C-" },
+        { value: "D+", label: "D+" },
+        { value: "D", label: "D" },
+        { value: "D-", label: "D-" },
+        { value: "F", label: "F" },
+        { value: "P", label: "P" },
     ]
     let disableStyle = (props.data.formDisabled ? {
         pointerEvents: "none",
@@ -49,6 +49,56 @@ function ReviewFormComponent(props) {
         </li>
     )
 
+    let courseSelect = (
+
+        <li className="py-2">
+
+            <span >
+                Select a course<small className='warning'> *</small>
+            </span>
+
+            <Select
+                className="basic-single col-12 col-sm-10 col-md-8 mt-2"
+                classNamePrefix="select"
+                name="courseName"
+                options={props.data.courseList}
+                onChange={props.handleCourseChange}
+                placeholder="Course"
+                isClearable={true}
+                isSearchable={true}
+                isDisabled={props.data.oldReview || props.data.course.disabled ? true : false}
+                value={props.data.course.id !== null ?
+                    props.data.courseList.filter(course => course.id === props.data.course.id) : null}
+            />
+
+            {props.data.topic.selected ? topicSelect : null}
+        </li>
+
+    )
+
+    let profSelect = (
+        <li className="py-3" >
+
+            <span>
+                Select a professor<small className='warning'> *</small>
+            </span>
+
+            <Select
+                className="basic-single col-12 col-sm-10 col-md-8 mt-2"
+                classNamePrefix="select"
+                name="ProfessorName"
+                options={props.data.profList}
+                onChange={props.handleProfessorChange}
+                placeholder="Professor"
+                isClearable={true}
+                isSearchable={true}
+                isDisabled={props.data.oldReview || props.data.prof.disabled ? true : false}
+                value={props.data.prof.id !== null ?
+                    props.data.profList.filter(prof => prof.id === props.data.prof.id) : null}
+            />
+        </li>
+    )
+
     return (
         <div style={{ width: "100%", backgroundColor: "#9cadb7" }}>
             <div className="container-fluid col-12 col-sm-10 col-md-8 col-lg-6 border rounded" style={{ backgroundColor: "white" }}>
@@ -58,69 +108,9 @@ function ReviewFormComponent(props) {
                     <h4 className="pb-4">Let us know about your experience.</h4>
 
                     <ol className="px-5">
-                        <li className="py-3">
 
-                            <span >
-                                Select a semester<small className='warning'> *</small>
-                            </span>
-
-                            <Select
-                                className="basic-single col-12 col-sm-10 col-md-8 mt-2"
-                                classNamePrefix="select"
-                                name="semester"
-                                options={props.data.semesterList}
-                                onChange={props.handleSemesterChange}
-                                placeholder="Semester"
-                                isClearable={true}
-                                isSearchable={true}
-                                isDisabled={props.data.oldReview ? true : false}
-                                value={props.data.semester.id !== null ?
-                                    props.data.semesterList.filter(sem => sem.id === props.data.semester.id) : null}
-                            />
-                        </li>
-                        <li className="py-2">
-
-                            <span >
-                                Select a course<small className='warning'> *</small>
-                            </span>
-
-                            <Select
-                                className="basic-single col-12 col-sm-10 col-md-8 mt-2"
-                                classNamePrefix="select"
-                                name="courseName"
-                                options={props.data.courseList}
-                                onChange={props.handleCourseChange}
-                                placeholder="Course"
-                                isClearable={true}
-                                isSearchable={true}
-                                isDisabled={props.data.oldReview || props.data.course.disabled ? true : false}
-                                value={props.data.course.id !== null ?
-                                    props.data.courseList.filter(course => course.id === props.data.course.id) : null}
-                            />
-                        </li>
-
-                        {props.data.topic.selected ? topicSelect : null}
-
-                        <li className="py-3" >
-
-                            <span>
-                                Select a professor<small className='warning'> *</small>
-                            </span>
-
-                            <Select
-                                className="basic-single col-12 col-sm-10 col-md-8 mt-2"
-                                classNamePrefix="select"
-                                name="ProfessorName"
-                                options={props.data.profList}
-                                onChange={props.handleProfessorChange}
-                                placeholder="Professor"
-                                isClearable={true}
-                                isSearchable={true}
-                                isDisabled={props.data.oldReview || props.data.prof.disabled ? true : false}
-                                value={props.data.prof.id !== null ?
-                                    props.data.profList.filter(prof => prof.id === props.data.prof.id) : null}
-                            />
-                        </li>
+                        {props.data.order === 0? courseSelect: profSelect}
+                        {props.data.order === 0? profSelect: courseSelect}
 
                         <li className="py-3" style={disableStyle}>
                             <span>
@@ -134,6 +124,26 @@ function ReviewFormComponent(props) {
                                 Give us your review for {props.data.prof.id !== null ? props.data.prof.firstName + " " + props.data.prof.lastName : '...'}<small className='warning'> *</small>
                             </span>
                             <ReviewProfessor {...props} />
+                        </li>
+                        <li className="py-3" style={disableStyle}>
+
+                            <span >
+                                (Optional) Give us the semester you took {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}
+                            </span>
+
+                            <Select
+                                className="basic-single col-12 col-sm-10 col-md-8 mt-2"
+                                classNamePrefix="select"
+                                name="semester"
+                                options={props.data.semesterList}
+                                onChange={props.handleSemesterChange}
+                                placeholder="Semester"
+                                isClearable={true}
+                                isSearchable={true}
+                                isDisabled={props.data.formDisabled ? true : false}
+                                value={props.data.semester.id !== null ?
+                                    props.data.semesterList.filter(sem => sem.id === props.data.semester.id) : null}
+                            />
                         </li>
                         <li className="py-3" style={disableStyle}>
                             <span>
