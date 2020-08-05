@@ -103,7 +103,7 @@ function ReviewCourse(props) {
         <div className="review-form">
             <div className="review-row">
                 <div className="col" style={{ alignItems: 'center' }} >
-                    <span>Approval<small className='warning'> *</small></span>
+                    <span>Approval<small className='text-danger'> *</small></span>
                     <ClickAwayListener onClickAway={handleApprovalClose}>
                         <StyledTooltip
                             title={approvalDescription}
@@ -139,7 +139,7 @@ function ReviewCourse(props) {
             </div>
             <div className="review-row">
                 <div className="col" style={{ alignItems: 'center' }} >
-                    <span>Usefulness<small className='warning'> *</small></span>
+                    <span>Usefulness<small className='text-danger'> *</small></span>
                     <ClickAwayListener onClickAway={handleUsefulnessClose}>
                         <StyledTooltip
                             title={usefulnessDescription}
@@ -181,7 +181,7 @@ function ReviewCourse(props) {
             </div>
             <div className="review-row">
                 <div className="col" style={{ alignItems: 'center' }} >
-                    <span>Difficulty<small className='warning'> *</small></span>
+                    <span>Difficulty<small className='text-danger'> *</small></span>
                     <ClickAwayListener onClickAway={handleDifficultyClose}>
                         <StyledTooltip
                             title={difficultyDescription}
@@ -223,7 +223,7 @@ function ReviewCourse(props) {
             </div>
             <div className="review-row">
                 <div className="col" style={{ alignItems: 'center' }} >
-                    <span>Workload<small className='warning'> *</small></span>
+                    <span>Workload<small className='text-danger'> *</small></span>
                     <ClickAwayListener onClickAway={handleWorkloadClose}>
                         <StyledTooltip
                             title={workloadDescription}
