@@ -52,11 +52,11 @@ function AboutComponent(props) {
                     <h2 className='about-header-2'>Special Thanks</h2>
                     <div className='d-flex justify-content-center'>
                         <div className='col-lg-8'>
-                            <p className='lead special-thanks-title'>Nick Hinojosa</p>
+                            {/* <p className='lead special-thanks-title'>Nick Hinojosa</p>
                             <blockquote className="blockquote text-center">
                                 <p className="mb-0 special-thanks-content">for your continued support of our website</p>
                             </blockquote>
-                            <br />
+                            <br /> */}
                             <p className='lead special-thanks-title'>UW Flow</p>
                             <blockquote className="blockquote text-center">
                                 <p className="mb-0 special-thanks-content">for the website inspiration</p>
