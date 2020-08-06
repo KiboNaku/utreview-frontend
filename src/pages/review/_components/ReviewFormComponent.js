@@ -42,7 +42,7 @@ function ReviewFormComponent(props) {
                 placeholder="Topic"
                 isClearable={true}
                 isSearchable={true}
-                isDisabled={props.data.oldReview || props.data.course.disabled ? true : false}
+                isDisabled={props.data.oldReview || props.data.order === 0 ? true : false}
                 value={props.data.topic.id !== null ?
                     props.data.topicList.filter(topic => topic.id === props.data.topic.id) : null}
             />
@@ -51,28 +51,31 @@ function ReviewFormComponent(props) {
 
     let courseSelect = (
 
-        <li className="py-2">
+        <div>
 
-            <span >
-                Select a course<small className='warning'> *</small>
-            </span>
+            <li className="py-2">
 
-            <Select
-                className="basic-single col-12 col-sm-10 col-md-8 mt-2"
-                classNamePrefix="select"
-                name="courseName"
-                options={props.data.courseList}
-                onChange={props.handleCourseChange}
-                placeholder="Course"
-                isClearable={true}
-                isSearchable={true}
-                isDisabled={props.data.oldReview || props.data.course.disabled ? true : false}
-                value={props.data.course.id !== null ?
-                    props.data.courseList.filter(course => course.id === props.data.course.id) : null}
-            />
+                <span >
+                    Select a course<small className='warning'> *</small>
+                </span>
 
+                <Select
+                    className="basic-single col-12 col-sm-10 col-md-8 mt-2"
+                    classNamePrefix="select"
+                    name="courseName"
+                    options={props.data.courseList}
+                    onChange={props.handleCourseChange}
+                    placeholder="Course"
+                    isClearable={true}
+                    isSearchable={true}
+                    isDisabled={props.data.oldReview || props.data.order === 0 ? true : false}
+                    value={props.data.course.id !== null ?
+                        props.data.courseList.filter(course => course.id === props.data.course.id) : null}
+                />
+
+            </li>
             {props.data.topic.selected ? topicSelect : null}
-        </li>
+        </div>
 
     )
 
@@ -92,7 +95,7 @@ function ReviewFormComponent(props) {
                 placeholder="Professor"
                 isClearable={true}
                 isSearchable={true}
-                isDisabled={props.data.oldReview || props.data.prof.disabled ? true : false}
+                isDisabled={props.data.oldReview || props.data.order === 1 ? true : false}
                 value={props.data.prof.id !== null ?
                     props.data.profList.filter(prof => prof.id === props.data.prof.id) : null}
             />
@@ -109,8 +112,46 @@ function ReviewFormComponent(props) {
 
                     <ol className="px-5">
 
-                        {props.data.order === 0? courseSelect: profSelect}
-                        {props.data.order === 0? profSelect: courseSelect}
+                        {props.data.order === 0 ? courseSelect : profSelect}
+                        {props.data.order === 0 ? profSelect : courseSelect}
+
+                        <li className="py-3">
+
+                            <span >
+                                Select a semester<small className='warning'> *</small>
+                            </span>
+                            <br />
+
+                            <div className="semester-select">
+                                <Select
+                                    className="basic-single col-12 col-sm-10 col-md-8 mt-2"
+                                    classNamePrefix="select"
+                                    name="semester"
+                                    options={props.data.semesterList}
+                                    onChange={props.handleSemesterChange}
+                                    placeholder="Semester"
+                                    isClearable={true}
+                                    isSearchable={true}
+                                    isDisabled={props.data.oldReview !== null ? true : false}
+                                    value={props.data.semester.semester !== "" ?
+                                        props.data.semesterList.filter(sem => sem.value === props.data.semester.semester) : null}
+                                />
+                                <Select
+                                    className="basic-single col-12 col-sm-10 col-md-8 mt-2"
+                                    classNamePrefix="select"
+                                    name="year"
+                                    options={props.data.yearList}
+                                    onChange={props.handleYearChange}
+                                    placeholder="Year"
+                                    isClearable={true}
+                                    isSearchable={true}
+                                    isDisabled={props.data.oldReview !== null ? true : false}
+                                    value={props.data.semester.year !== null ?
+                                        props.data.yearList.filter(year => year.value === props.data.semester.year) : null}
+                                />
+                            </div>
+
+                        </li>
 
                         <li className="py-3" style={disableStyle}>
                             <span>
@@ -124,26 +165,6 @@ function ReviewFormComponent(props) {
                                 Give us your review for {props.data.prof.id !== null ? props.data.prof.firstName + " " + props.data.prof.lastName : '...'}<small className='warning'> *</small>
                             </span>
                             <ReviewProfessor {...props} />
-                        </li>
-                        <li className="py-3" style={disableStyle}>
-
-                            <span >
-                                (Optional) Give us the semester you took {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}
-                            </span>
-
-                            <Select
-                                className="basic-single col-12 col-sm-10 col-md-8 mt-2"
-                                classNamePrefix="select"
-                                name="semester"
-                                options={props.data.semesterList}
-                                onChange={props.handleSemesterChange}
-                                placeholder="Semester"
-                                isClearable={true}
-                                isSearchable={true}
-                                isDisabled={props.data.formDisabled ? true : false}
-                                value={props.data.semester.id !== null ?
-                                    props.data.semesterList.filter(sem => sem.id === props.data.semester.id) : null}
-                            />
                         </li>
                         <li className="py-3" style={disableStyle}>
                             <span>

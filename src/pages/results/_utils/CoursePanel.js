@@ -130,10 +130,10 @@ function CoursePanel(props) {
 
     let sortedCourses = props.filtered
     .sort(sortTypes[sortDir].fn)
-    .slice(0, props.calcTableEdge(props.page, props.data.length))
+    .slice(0, props.calcTableEdge(props.page, props.filtered.length))
 
     let moreResults = hasMore 
-    if (props.calcTableEdge(props.page, props.data.length) >= props.data.length){
+    if (props.calcTableEdge(props.page, props.filtered.length) >= props.filtered.length){
         moreResults = false
     }
 

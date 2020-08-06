@@ -348,7 +348,7 @@ class ReviewList extends React.Component {
 			<div>
 
                     <div className="reviews-title">
-						Reviews ({this.state.reviewsFiltered.length})
+						Your Reviews ({this.state.reviewsFiltered.length})
 					</div>
 					<hr className='profile-divider' />
 
