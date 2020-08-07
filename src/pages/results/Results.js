@@ -35,6 +35,7 @@ class Results extends Component {
 					mNum: 0,
 					sem: "all",
 					hours: {
+						0: true,
 						1: true,
 						2: true,
 						3: true,
