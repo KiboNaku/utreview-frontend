@@ -34,7 +34,7 @@ function CourseScheduleEntry(props) {
     let semYear = props.year.toString() + semester.toString()
 
     let uniqueNumLink = `https://utdirect.utexas.edu/apps/registrar/course_schedule/${semYear}/${props.uniqueNum}/`
-    let uniqueNum = <a href={uniqueNumLink} rel="noopener noreferrer" target="_blank"> {props.uniqueNum} </a>
+    let uniqueNum = <a className="utcolor" href={uniqueNumLink} rel="noopener noreferrer" target="_blank"> {props.uniqueNum} </a>
     let prof = (
         <Link
             className="utcolor"

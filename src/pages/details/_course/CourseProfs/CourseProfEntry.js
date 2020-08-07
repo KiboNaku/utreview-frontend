@@ -36,7 +36,7 @@ function CourseProfEntry(props) {
             <td align="center">{engaging}</td>
             <td align="center">{grading}</td>
             <td align="center">
-                <a href={syllabiLink} rel="noopener noreferrer" target="_blank"> Syllabi </a>
+                <a className="utcolor" href={syllabiLink} rel="noopener noreferrer" target="_blank"> Syllabi </a>
             </td>
             <td align="center">
                 <a className="utcolor" role="button" data-toggle="modal" data-target={`#grade-distributions-modal-${props.course.id}-${props.id}-course`}> Grades </a>
