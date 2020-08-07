@@ -29,7 +29,7 @@ function ReportBugComponent(props) {
 									</div>
 								) : null}
 							</div>
-							{props.data.page !== '' && props.data.page !== null && props.data.page !== undefined &&
+							{props.data.page !== '' && props.data.page !== null &&
 								<div className='form-group'>
 									<label for='page'>Bug Type <small className='text-danger'>*</small></label>
 									<Select
