@@ -8,7 +8,6 @@ export const sendBug = bug => {
 			description: bug.description,
 		})
 		.then(response => {
-			console.log(response)
 			return response.data
 		})
 }

@@ -11,14 +11,9 @@ class EditProfile extends Component {
         this.state = {
             tabValue: 0
         }
-
-        console.log('constructor', this.state)
-        console.log(props)
     }
 
     render() {
-
-        console.log(this.props)
 
         return (
             <div className="modal fade" id={'edit-profile'} role="dialog">
