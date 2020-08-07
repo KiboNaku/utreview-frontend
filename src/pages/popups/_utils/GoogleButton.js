@@ -11,4 +11,9 @@ function GoogleButton(props) {
     )
 }
 
+function onSignIn(user) {
+    let profile = user.getBasicProfile()
+    console.log(profile.getName())
+}
+
 export default GoogleButton
