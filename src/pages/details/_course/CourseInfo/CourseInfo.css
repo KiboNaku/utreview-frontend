@@ -31,7 +31,7 @@
 
 .course-info{
     margin-right: 50px;
-    margin-left: 110px;
+    margin-left: 85px;
     margin-top: -10px;
     max-width: 48%;
 }
@@ -88,6 +88,8 @@
     margin-top: 30px;
     position: relative;
     z-index: 2;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .view-reviews-wrapper {
@@ -194,7 +196,6 @@
 
 @media screen and (max-width: 1220px) { /* adjustment for user rating block */
     .course-info{
-        margin-left: 90px;
         max-width: 42%;
     }
 }
