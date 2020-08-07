@@ -4,12 +4,12 @@ $clip-distance: .04;
 $clip-size: $box-size * (1 + $clip-distance * 2) - 33;
 $path-width: 2px;
 
-@media screen and (min-width: 1074px){
+@media screen and (min-width: 579px){
     .CourseRatings{
         position: relative;
         width: $box-size;
         height: $box-size - 120;
-        background-color: rgba(255, 255, 255, 0.014);
+        background-color: rgba(255, 255, 255, 0.021);
         margin-top: 10px;
         padding: 25px;
         color: white;
