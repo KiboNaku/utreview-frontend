@@ -170,7 +170,8 @@ class ReviewForm extends Component {
 				user_email: decoded.identity.email,
 				course_id: courseId,
 				prof_id: this.state.prof.id,
-				sem_id: this.state.semester.id,
+				semester: this.state.semester.semester,
+				year: this.state.semester.year,
 				course_comments: this.state.courseRating.comments,
 				course_approval: this.state.courseRating.approval,
 				course_usefulness: this.state.courseRating.usefulness,
@@ -244,6 +245,7 @@ class ReviewForm extends Component {
 						selected: false
 					}
 				}))
+				this.checkReviewComplete(inputValue.id, this.state.prof.id, this.state.semester.semester, this.state.semester.year, null, topicSelected)
 			} else {
 				console.log(this.state.prof.id)
 				let topicInfo = {
@@ -317,6 +319,7 @@ class ReviewForm extends Component {
 					id: inputValue.id
 				}
 			}))
+			this.checkReviewComplete(this.state.course.id, this.state.prof.id, this.state.semester.semester, this.state.semester.year, inputValue.id, this.state.topic.selected)
 		} else {
 			this.setState(prevState => ({
 				topic: {
@@ -339,6 +342,7 @@ class ReviewForm extends Component {
 					lastName: inputValue.lastName,
 				},
 			}))
+			this.checkReviewComplete(this.state.course.id, inputValue.id, this.state.semester.semester, this.state.semester.year, this.state.topic.id, this.state.topic.selected)
 
 		} else {
 			this.setState(prevState => ({
@@ -375,6 +379,7 @@ class ReviewForm extends Component {
 					}
 				}
 			))
+			this.checkReviewComplete(this.state.course.id, this.state.prof.id, inputValue.value, this.state.semester.year, this.state.topic.id, this.state.topic.selected)
 		}else{
 			this.setState(prevState => (
 				{
@@ -398,6 +403,8 @@ class ReviewForm extends Component {
 					}
 				}
 			))
+
+			this.checkReviewComplete(this.state.course.id, this.state.prof.id, this.state.semester.semester, inputValue.value, this.state.topic.id, this.state.topic.selected)
 		}else{
 			this.setState(prevState => (
 				{
@@ -824,7 +831,8 @@ class ReviewForm extends Component {
 				id: courseId,
 				dept: oldReview.course.dept.abr,
 				num: oldReview.course.num,
-				topicId: oldReview.course.topicId
+				topicId: oldReview.course.topicId,
+				loaded: true
 			},
 			topic: {
 				...prevState.topic,
@@ -844,6 +852,7 @@ class ReviewForm extends Component {
 				id: oldReview.prof.id,
 				firstName: oldReview.prof.firstName,
 				lastName: oldReview.prof.lastName,
+				loaded: true,
 			},
 			profRating: {
 				...prevState.profRating,
@@ -859,20 +868,40 @@ class ReviewForm extends Component {
 
 	}
 
+	checkReviewComplete = (courseId, profId, semester, year, topicId, topicSelected) => {
+		const token = localStorage.usertoken
+		const decoded = jwt_decode(token)
+		const email = decoded.identity.email
+
+		if(courseId !== null && profId !== null && 
+			semester !== "" && year !== null){
+			if(topicSelected){
+				if(topicId !== null){
+					const review = {
+						course_id: topicId,
+						prof_id: profId,
+						semester: semester,
+						year: year,
+						user_email: email
+					}
+					this.checkDuplicate(review)
+				}
+			}else{
+				const review = {
+					course_id: courseId,
+					prof_id: profId,
+					semester: semester,
+					year: year,
+					user_email: email
+				}
+				this.checkDuplicate(review)
+			}
+		}
+	}
+
 	render() {
 		if (this.state.oldReview !== null && this.state.course.dept === "") {
 			this.setOldReviewData()
-		}
-
-		if(this.state.course.id !== null && this.state.prof.id !== null && 
-			this.state.semester.semester !== "" && this.state.semester.year !== null){
-			if(this.state.topic.selected){
-				if(this.state.topic.id !== null){
-					this.checkDuplicate()
-				}
-			}else{
-				this.checkDuplicate()
-			}
 		}
 
 		let invalidReview = <h1>
