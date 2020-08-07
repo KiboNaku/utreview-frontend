@@ -20,34 +20,25 @@ class CourseRequisites extends React.Component {
 
     render() {
         return (
-            <div className="courseRequisites">
-                <div className="card course-card">
-                    <div className="card-header course-header" onClick={this.handleCollapse} data-toggle="collapse" data-target="#requisites-collapse">
-                        <h4 className="details-header"> Requisites </h4>
-                    </div>
-                    <div>
-                        <div className="card-body">
-                            <div className="requisites">
-                                <div>
-                                    <h5> Prerequisites </h5>
-                                    <ul>
-                                        <li>
-                                            {this.props.preReqs !== "" ? this.props.preReqs: "No prerequisites"}
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h5> Restrictions </h5>
-                                    <ul>
-                                        <li>
-                                            {this.props.restrictions !== "" ? this.props.restrictions: "No restrictions"}
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+            <div>
+                <div className="course-requisites">                 
+                    <div className="prerequisites-wrapper">
+                        <div className="requisites-title">Prerequisites</div>
+                        <ul>
+                            <li>
+                                {this.props.preReqs !== "" ? this.props.preReqs: "No prerequisites"}
+                            </li>
+                        </ul>
                     </div>
 
+                    <div className="restrictions-wrapper">
+                        <div className="requisites-title">Restrictions</div>
+                        <ul>
+                            <li>
+                                {this.props.restrictions !== "" ? this.props.restrictions: "No restrictions"}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         );
