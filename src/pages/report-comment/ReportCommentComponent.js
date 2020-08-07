@@ -47,8 +47,6 @@ function ReportCommentComponent(props) {
             >
                 {formik => {
 
-                    console.log(formik)
-
                     return (
                         <form onSubmit={formik.handleSubmit}>
 

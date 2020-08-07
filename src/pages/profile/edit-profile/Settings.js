@@ -19,9 +19,6 @@ class Settings extends Component {
 			showOtherMajor: props.data.otherMajor !== null && props.data.otherMajor !== "" ? true : false
 		}
 
-		console.log('constructor', this.state)
-		console.log(props)
-
 		this.onChange = this.onChange.bind(this)
 		this.handleMajorChange = this.handleMajorChange.bind(this)
 		this.setValues = this.setValues.bind(this)
@@ -68,7 +65,6 @@ class Settings extends Component {
 	}
 
 	handleCancel() {
-		console.log(this.props)
 		this.setState({
 			firstName: this.props.data.firstName,
 			lastName: this.props.data.lastName,
@@ -139,7 +135,6 @@ class Settings extends Component {
 		)
 
 		let otherMajorText = this.state.showOtherMajor ? "Select from pre-existing majors" : "Don't see your major?"
-		console.log('render', this.props)
 		return (
 			<div className="modal fade" id={'settings'} role="dialog">
 				<div className="modal-dialog modal-dialog-centered" role="document">
