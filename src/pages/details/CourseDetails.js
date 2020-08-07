@@ -387,7 +387,6 @@ class CourseDetails extends React.Component {
                     <CourseRatings
                         {...this.state.courseRatings}
                     />
-
                 </div>
                 <div className="topics-requisites">
                     {this.state.isParent ? childTopics : null}
