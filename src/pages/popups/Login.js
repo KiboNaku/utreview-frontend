@@ -16,12 +16,12 @@ class Login extends Component {
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
-    
+
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    signup(){
+    signup() {
         $("#signup-modal").modal("show");
         $("#login-modal").modal("hide");
     }
@@ -51,9 +51,9 @@ class Login extends Component {
                 }
             } else {
                 const token = localStorage.usertoken
-        
+
                 let profilePic = 'default.jpg'
-                if(token !== undefined && token !== null){
+                if (token !== undefined && token !== null) {
                     const decoded = jwt_decode(token)
                     profilePic = decoded.identity.profile_pic
                 }
