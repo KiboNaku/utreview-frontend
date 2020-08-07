@@ -137,7 +137,6 @@
     width: 47%;
     background-color: #2f3d47f5;
     padding: 20px;
-    border: 1px solid rgba(255, 166, 0, 0.486);
 }
 
 .restrictions-wrapper {
@@ -145,8 +144,6 @@
     width: 47%;
     background-color: #2f3d47f5;
     padding: 20px;
-    border: 1px solid rgba(255, 0, 0, 0.5);
-
 }
 
 .requisites-title {
@@ -210,25 +207,15 @@
         background-image: none;
     }
 
-    .CourseInfo{
-        margin-right: 50px;
-        margin-left: 50px;
-        margin-top: 50px;
+    .course-info{
+        margin-left: 4%;
+        margin-top: 20px;
+        margin-bottom: 100px;
+        max-width: 50%;
     }
     
     .userRatings{
         flex-direction: row;
-    }
-
-    .CourseRatings{
-        border: 3px outset #308ccace;
-        background-color: rgba(255, 255, 255, 0.021);
-        padding: 30px;
-        border-radius: 40px;
-        margin: 0 auto;
-        margin-top: 50px;
-        justify-content: center;
-        display: inline-block;
     }
 
     .courseRequisites{
@@ -287,7 +274,51 @@
     }
 }
 
-@media screen and (max-width: 576px){   
+@media screen and (max-width: 603px){
+    .course-info {
+        max-width: 70%;
+        margin-bottom: 50px;
+    }
+    .course-code{
+        font-size: 60px;
+    }
+
+    .view-reviews-wrapper {
+        margin-top: 20px;
+        margin-left: -50%;
+    }
+    .view-reviews {
+        width: 110px;
+        font-size: 15px;
+    }
+
+    .course-requisites{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        margin-left: 8%;
+    }
+    
+    .prerequisites-wrapper {
+        color: white;
+        width: 90%;
+        background-color: #2f3d47f5;
+        padding: 20px;
+    }
+    
+    .restrictions-wrapper {
+        margin-top: 20px;
+        color: white;
+        width: 90%;
+        background-color: #2f3d47f5;
+        padding: 20px;
+
+    }
+    
+}
+
+
+@media screen and (max-width: 578px){   
     .course-stats{
         flex-direction: column;
         justify-content: center;
@@ -298,17 +329,22 @@
         flex-direction: column;
     }
 
-    .CourseInfo{
+    .course-info{
         margin-right: 10px;
         margin-left: 10px;
-        margin-top: 50px;
+        margin-top: 20px;
+        margin-bottom: 15px;
     }
-
     .CourseRatings{
+        border: 3px outset #308ccace;
+        background-color: rgba(255, 255, 255, 0.021);
+        padding: 30px;
+        border-radius: 40px;
         margin: 0 auto;
         margin-top: 50px;
         justify-content: center;
         width: auto;
+        display: inline-block;
     }
     
     .courseRequisites{
@@ -323,5 +359,11 @@
         margin-right: 10px;
         margin-top: 50px;
         margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 373px){
+    .course-code {
+        font-size: 50px;
     }
 }
