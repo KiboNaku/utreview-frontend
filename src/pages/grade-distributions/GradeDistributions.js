@@ -38,7 +38,6 @@ class GradeDistributions extends Component {
             })
             .then(response => {
                 this.setState({loading: false})
-                console.log(response.data)
                 if (response.data === null) {
                     this.setState({ noResults: true, loading: false })
                 } else {

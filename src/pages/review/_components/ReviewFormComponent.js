@@ -24,8 +24,6 @@ function ReviewFormComponent(props) {
         pointerEvents: "none",
         opacity: "0.4"
     } : {})
-    console.log(props.data.topic.id)
-    console.log(props.data.course.id)
     let topicSelect = (
         <li className="py-2">
 
