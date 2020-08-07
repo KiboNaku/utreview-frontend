@@ -631,14 +631,14 @@
     .floating-box {
         left: 50%;
         height: 85px;
-        width: 320px;
-        margin-left: -159px;
+        width: 350px;
+        margin-left: -175px;
         margin-top: 25px;
     }
 
     .floating-box-content {
         margin-top: 15px;
-        margin-left: 17px;
+        margin-left: 35px;
     }
     
     .floating-box-text {
@@ -766,14 +766,14 @@
     .floating-box {
         left: 50%;
         height: 85px;
-        width: 300px;
-        margin-left: -150px;
+        width: 315px;
+        margin-left: -157.5px;
         margin-top: 1rem;
     }
 
     .floating-box-content {
         margin-top: 15px;
-        margin-left: 21px;
+        margin-left: 28px;
     }
     
     .floating-box-text {
