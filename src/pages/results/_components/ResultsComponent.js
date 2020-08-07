@@ -18,8 +18,8 @@ function ResultsComponent(props) {
         <h6> No results for your search. Please check your spelling and try again.</h6>
     )
 
-    let numCourseResults = props.courses.loaded ? "(" + props.courses.data.length.toString() + ")" : ""
-    let numProfResults = props.profs.loaded ? "(" + props.profs.data.length.toString() + ")" : ""
+    let numCourseResults = props.courses.loaded ? "(" + props.courses.filtered.length.toString() + ")" : ""
+    let numProfResults = props.profs.loaded ? "(" + props.profs.filtered.length.toString() + ")" : ""
     let courseLabel = "Courses " + numCourseResults
     let profLabel = "Professors " + numProfResults
     

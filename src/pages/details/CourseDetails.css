@@ -1,11 +1,7 @@
 .course-details-main {
-    background-color: #fbfbfb;
+    background-color: #d6d2c456;
     background-size: cover;
     margin: 0;
-}
-
-.course-details-main a{
-    color:#bf5700;
 }
 
 .course-details-main table {
