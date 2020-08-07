@@ -12,7 +12,6 @@ class CourseReviews extends React.Component {
 		super(props)
 
 		const updatedReviews = props.courseReviews.slice().sort((a, b) => b.date - a.date)
-		console.log(props.courseReviews)
 		this.state = {
 			courseReviews: props.courseReviews,
 			reviewsFiltered: updatedReviews,
@@ -235,7 +234,6 @@ class CourseReviews extends React.Component {
 	}
 
 	render() {
-		console.log(this.state)
 		const courseReviewList = this.state.reviewsFiltered.slice(0, this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length)).map(review => {
 			return (
 				<div>

@@ -11,9 +11,7 @@ class ReportComment extends Component {
         this.state = {
             loading: false,
         }
-
-        console.log(props.reviewId)
-
+        
         this.onSubmit = this.onSubmit.bind(this)
     }
     

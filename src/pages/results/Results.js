@@ -294,7 +294,6 @@ class Results extends Component {
 				}
 			}))
 
-			console.log(sortByName, nextSort)
 		} else if (tabIndex === 1) {
 			const { sortDir, sortBy } = this.state.profs.sort;
 			let nextSort;

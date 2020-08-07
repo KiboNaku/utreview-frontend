@@ -254,15 +254,12 @@ class CourseDetails extends React.Component {
     }    
 
     handleScrollToReview(){
-        console.log(this.reviewRef)
         const scrollToRef = () => window.scrollTo(0, this.reviewRef.current.offsetTop - 100)
         scrollToRef()
     }
 
     componentDidUpdate (){
         const courseURL = this.props.location.pathname
-        console.log(this.state.courseURL)
-        console.log(courseURL)
         if(courseURL !== this.state.courseURL){
             this.setState({loaded: false, courseURL: courseURL})
             this.componentDidMount()
@@ -279,9 +276,7 @@ class CourseDetails extends React.Component {
             email = decoded.identity.email
         }
         let courseId = null
-        console.log(this.props.location)
         if(this.props.location.state === undefined){
-            console.log("State undefined")
             let coursePath = window.location.pathname.split("/").pop()
             let courseString = {
                 courseString: coursePath
@@ -292,7 +287,6 @@ class CourseDetails extends React.Component {
                     this.setState({validCourse: false})
                 } else {
                     courseId = res.courseId
-                    console.log(courseId)
                     const course = {
                         courseId: courseId,
                         loggedIn: loggedIn,
@@ -323,7 +317,6 @@ class CourseDetails extends React.Component {
                 })
             }else{
                 courseId = this.props.location.state.courseId
-                console.log(" Course id " + courseId)
                 const course = {
                     courseId: courseId,
                     loggedIn: loggedIn,
@@ -335,12 +328,10 @@ class CourseDetails extends React.Component {
     }
 
     courseDetailsRequest = (course) => {
-        console.log("course details request")
         getCourseInfo(course).then(res => {
             if (res.error) {
                 alert(res.error)
             } else {
-                console.log("Got course info")
                 let courseRevs = res.course_reviews.map(review => {
                     return {
                         ...review,
