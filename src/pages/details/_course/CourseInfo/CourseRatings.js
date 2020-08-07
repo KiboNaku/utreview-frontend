@@ -30,7 +30,6 @@ function CourseRatings(props) {
     const numRatings = props.numRatings
     return (
         <div className="CourseRatings">
-            <div className="card card-body">
             <h3 className="rating-heading"> User Ratings ({numRatings})</h3>
             <div className="rating">
                 <p className="p-rating"> Liked: {`${percentLiked}%`} </p>
@@ -54,8 +53,8 @@ function CourseRatings(props) {
                         style={{ verticalAlign: "middle" }}
                         defaultValue={eCISValue}
                         precision={0.1}
-                        icon={<RadioButtonCheckedIcon fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon fontSize="large" />}
+                        icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -65,8 +64,8 @@ function CourseRatings(props) {
                         style={{ verticalAlign: "middle" }}
                         defaultValue={usefulnessValue}
                         precision={0.1}
-                        icon={<RadioButtonCheckedIcon fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon fontSize="large" />}
+                        icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -79,8 +78,8 @@ function CourseRatings(props) {
                         style={{ verticalAlign: "middle" }}
                         defaultValue={workloadValue}
                         precision={0.1}
-                        icon={<RadioButtonCheckedIcon fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon fontSize="large" />}
+                        icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -90,12 +89,11 @@ function CourseRatings(props) {
                         style={{ verticalAlign: "middle" }}
                         defaultValue={difficultyValue}
                         precision={0.1}
-                        icon={<RadioButtonCheckedIcon fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon fontSize="large" />}
+                        icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
-            </div>
             </div>
 
             
