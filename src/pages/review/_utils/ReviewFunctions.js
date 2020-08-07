@@ -5,7 +5,8 @@ export const checkDuplicate = review => {
     .post('/api/review_error', {
       course_id: review.course_id,
       prof_id: review.prof_id,
-      sem_id: review.sem_id,
+      semester: review.semester,
+      year: review.year,
       user_email: review.user_email
     })
     .then(response => {
