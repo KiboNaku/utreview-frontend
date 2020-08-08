@@ -1,19 +1,24 @@
 import React from 'react'
 
-function GoogleButton(props) {
-    return (
-        // <button className="btn btn-lg btn-dark btn-block font-weight-bold" type="submit">
-        //     <span className="fab fa-google px-3"></span>
-        //     <span>{props.text}</span>
-        // </button>
-        
-        <div className="g-signin2" data-onsuccess="onSignIn"></div>
-    )
-}
+const GOOGLE_BUTTON_ID = "google-sign-in-button";
 
-function onSignIn(user) {
-    let profile = user.getBasicProfile()
-    console.log(profile.getName())
+class GoogleButton extends React.Component {
+    componentDidMount() {
+        window.gapi.signin2.render(GOOGLE_BUTTON_ID, {
+            width: 400,
+            height: 50,
+            onsuccess: this.onSuccess
+        });
+    }
+
+    onSuccess(googleUser) {
+        const profile = googleUser.getBasicProfile()
+        console.log("Name: " + profile.getName())
+    }
+
+    render() {
+        return <div id={GOOGLE_BUTTON_ID} />
+    }
 }
 
 export default GoogleButton
