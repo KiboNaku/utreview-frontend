@@ -13,7 +13,7 @@ function CourseRatings(props) {
     })(Rating);
 
     const percentLikedValue = props.percentLiked === null ? 0 : props.percentLiked
-    const percentLiked = props.percentLiked === null ? "N/A" : props.percentLiked
+    const percentLiked = props.percentLiked === null ? "N/A" : props.percentLiked.toString() + "%"
 
     const difficultyValue = props.difficulty === null ? 0 : props.difficulty
     const difficulty = props.difficulty === null ? "N/A" : props.difficulty
@@ -32,7 +32,7 @@ function CourseRatings(props) {
         <div className="course-ratings">
             <h3 className="rating-heading"> User Ratings ({numRatings})</h3>
             <div className="rating">
-                <p className="p-rating"> Liked: {`${percentLiked}%`} </p>
+                <p className="p-rating"> Liked: {percentLiked} </p>
                 <div className="progress">
                     <div
                         className="progress-bar"
@@ -42,7 +42,6 @@ function CourseRatings(props) {
                         aria-valuemin="0"
                         aria-valuemax="100"
                     >
-                        
                     </div>
                 </div>
             </div>
