@@ -20,6 +20,7 @@ class Results extends Component {
 			searchValue: "",
 			tabIndex: 0,
 			depts: [],
+			deptsLoaded: false,
 			invalidPage: false,
 
 			courses: {
@@ -94,7 +95,7 @@ class Results extends Component {
 						label: data[i]['name']
 					})
 				}
-				this.setState({ depts: list })
+				this.setState({ depts: list, deptsLoaded: true })
 			}
 		})
 
