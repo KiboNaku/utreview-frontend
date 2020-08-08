@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import qs from 'qs'
 import { withRouter } from 'react-router-dom'
-
+import NotFound from './../not-found/NotFound'
 import ResultsComponent from './_components/ResultsComponent'
 import { populateResults } from './_utils/ResultsFunctions'
 import { getMajor } from './../popups/_utils/UserFunctions'
@@ -20,6 +20,7 @@ class Results extends Component {
 			searchValue: "",
 			tabIndex: 0,
 			depts: [],
+			invalidPage: false,
 
 			courses: {
 				loaded: false,
@@ -35,6 +36,7 @@ class Results extends Component {
 					mNum: 0,
 					sem: "all",
 					hours: {
+						0: true,
 						1: true,
 						2: true,
 						3: true,
@@ -101,14 +103,16 @@ class Results extends Component {
 		if (this.props.location.state === undefined) {
 			let urlObject = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
 			if (urlObject.search) {
+				this.props.handleSearchValueChange(urlObject.search)
 				search = {
 					searchValue: urlObject.search
 				}
 				this.setState({ searchValue: urlObject.search })
 			} else {
-
+				this.setState({invalidPage: true})
 			}
 		} else {
+			this.props.handleSearchValueChange(this.props.location.state.searchValue)
 			search = {
 				searchValue: this.props.location.state.searchValue
 			}
@@ -293,7 +297,6 @@ class Results extends Component {
 				}
 			}))
 
-			console.log(sortByName, nextSort)
 		} else if (tabIndex === 1) {
 			const { sortDir, sortBy } = this.state.profs.sort;
 			let nextSort;
@@ -414,7 +417,7 @@ class Results extends Component {
 
 	render() {
 
-		return (<ResultsComponent
+		return (this.state.invalidPage ? <NotFound /> : <ResultsComponent
 
 			{...this.state}
 

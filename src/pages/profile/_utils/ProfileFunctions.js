@@ -15,7 +15,6 @@ export const updateProfilePic = user => {
 			profile_pic: user.profile_pic
 		})
 		.then(response => {
-			console.log(response)
 			localStorage.setItem('usertoken', response.data)
 			return response.data
 		})
@@ -33,7 +32,6 @@ export const updateInfo = user => {
 			other_major: user.other_major
 		})
 		.then(response => {
-			console.log(response)
 			localStorage.setItem('usertoken', response.data)
 			return response.data
 		})
@@ -49,7 +47,6 @@ export const updatePersonalInfo = user => {
 			other_major: user.other_major
 		})
 		.then(response => {
-			console.log(response)
 			localStorage.setItem('usertoken', response.data)
 			return response.data
 		})

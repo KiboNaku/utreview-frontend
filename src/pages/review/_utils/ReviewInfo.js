@@ -106,8 +106,6 @@ function ReviewInfo(props) {
                         </div>
                     )
 
-                    console.log(formik)
-
                     return (
                         <form onSubmit={formik.handleSubmit}>
                             <div className="form-group my-3">

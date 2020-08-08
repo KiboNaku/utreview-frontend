@@ -70,7 +70,6 @@ class ChangePassword extends React.Component {
                                         return true
                                     }
 
-                                    console.log(value)
                                     return new Promise((resolve, reject) => {
                                         axios
                                             .post('/api/check_valid_password', {

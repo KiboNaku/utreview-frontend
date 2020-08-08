@@ -68,7 +68,6 @@ export const getProfile = user => {
 			//headers: { Authorization: ` ${this.getToken()}` }
 		})
 		.then(response => {
-			console.log(response)
 			return response.data
 		})
 		.catch(err => {

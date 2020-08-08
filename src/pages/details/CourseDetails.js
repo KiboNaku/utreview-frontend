@@ -1,4 +1,5 @@
 import React from 'react';
+import NotFound from './../not-found/NotFound'
 import CourseInfo from './_course/CourseInfo/CourseInfo';
 import CourseTopics from './_course/CourseInfo/CourseTopics';
 import CourseRatings from './_course/CourseInfo/CourseRatings';
@@ -254,15 +255,12 @@ class CourseDetails extends React.Component {
     }    
 
     handleScrollToReview(){
-        console.log(this.reviewRef)
         const scrollToRef = () => window.scrollTo(0, this.reviewRef.current.offsetTop - 100)
         scrollToRef()
     }
 
     componentDidUpdate (){
         const courseURL = this.props.location.pathname
-        console.log(this.state.courseURL)
-        console.log(courseURL)
         if(courseURL !== this.state.courseURL){
             this.setState({loaded: false, courseURL: courseURL})
             this.componentDidMount()
@@ -279,20 +277,16 @@ class CourseDetails extends React.Component {
             email = decoded.identity.email
         }
         let courseId = null
-        console.log(this.props.location)
         if(this.props.location.state === undefined){
-            console.log("State undefined")
             let coursePath = window.location.pathname.split("/").pop()
             let courseString = {
                 courseString: coursePath
             }
             getCourseId(courseString).then(res => {
                 if (res.error) {
-                    alert(res.error)
                     this.setState({validCourse: false})
                 } else {
                     courseId = res.courseId
-                    console.log(courseId)
                     const course = {
                         courseId: courseId,
                         loggedIn: loggedIn,
@@ -309,7 +303,6 @@ class CourseDetails extends React.Component {
                 }
                 getCourseId(courseString).then(res => {
                     if (res.error) {
-                        alert(res.error)
                         this.setState({validCourse: false})
                     } else {
                         courseId = res.courseId
@@ -323,7 +316,6 @@ class CourseDetails extends React.Component {
                 })
             }else{
                 courseId = this.props.location.state.courseId
-                console.log(" Course id " + courseId)
                 const course = {
                     courseId: courseId,
                     loggedIn: loggedIn,
@@ -335,12 +327,10 @@ class CourseDetails extends React.Component {
     }
 
     courseDetailsRequest = (course) => {
-        console.log("course details request")
         getCourseInfo(course).then(res => {
             if (res.error) {
                 alert(res.error)
             } else {
-                console.log("Got course info")
                 let courseRevs = res.course_reviews.map(review => {
                     return {
                         ...review,
@@ -412,7 +402,7 @@ class CourseDetails extends React.Component {
         return (
             <main className="course-details-main">
                 <div className="main-sub">
-                    {this.state.validCourse ? (this.state.loaded ? content : loading): invalidCourse}
+                    {this.state.validCourse ? (this.state.loaded ? content : loading): <NotFound />}
                 </div>
 
             </main>
