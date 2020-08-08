@@ -16,18 +16,108 @@ class ReportBug extends Component {
 			bugType: '',
 			description: '',
 			pages: [
+				{ value: 'About', label: 'About' },
+				{ value: 'AddReview', label: 'Add Review' },
+				{ value: 'ContactUs', label: 'Contact Us' },
+				{ value: 'Course', label: 'Course' },
+				{ value: 'GradeDistribution', label: 'Grade Distribution' },
 				{ value: 'Home', label: 'Home' },
-				{ value: 'SignUp', label: 'Sign Up' }
+				{ value: 'Login', label: 'Login' },
+				{ value: 'PrivacyPolicy', label: 'Privacy Policy' },
+				{ value: 'Professor', label: 'Professor' },
+				{ value: 'Profile', label: 'Profile' },
+				{ value: 'Search Results', label: 'Search Results' },
+				{ value: 'SignUp', label: 'Sign Up' },
+				{ value: 'Other', label: 'Other' }
 			],
 			bugTypes: {
+				About:
+					[
+						{ value: 'Broken Links', label: 'Broken Links' },
+						{ value: 'Incorrect Information', label: 'Incorrect Information' },
+						{ value: 'Other', label: 'Other' }
+					],
+				AddReview:
+					[
+						{ value: 'Fail to Add Review', label: 'Fail to Add Review' },
+						{ value: 'Incorrect Information', label: 'Incorrect Information' },
+						{ value: 'Incorrect Validation', label: 'Incorrect Validation' },
+						{ value: 'Missing Information', label: 'Missing Information' },
+						{ value: 'Other', label: 'Other' }
+					],
+				ContactUs:
+					[
+						{ value: 'Fail to Submit Feedback', label: 'Fail to Submit Feedback' },
+						{ value: 'Other', label: 'Other' }
+					],
+				Course:
+					[
+						{ value: 'Broken Links', label: 'Broken Links' },
+						{ value: 'Fail to Report Comments', label: 'Fail to Report Comments' },
+						{ value: 'Incorrect Information', label: 'Incorrect Information' },
+						{ value: 'Missing Information', label: 'Missing Information' },
+						{ value: 'Other', label: 'Other' }
+					],
+				GradeDistribution:
+					[
+						{ value: 'Incorrect Information', label: 'Incorrect Information' },
+						{ value: 'Other', label: 'Other' }
+					],
 				Home:
 					[
-						{ value: 'Broken Links', label: 'Broken Links' }
+						{ value: 'Broken Links', label: 'Broken Links' },
+						{ value: 'Other', label: 'Other' }
+					],
+				Login:
+					[
+						{ value: 'Fail to Login', label: 'Fail to Login' },
+						{ value: 'Fail to Reset Password', label: 'Fail to Reset Password' },
+						{ value: 'Other', label: 'Other' }
+					],
+				PrivacyPolicy:
+					[
+						{ value: 'Incorrect Information', label: 'Incorrect Information' },
+						{ value: 'Other', label: 'Other' }
+					],
+				Professor:
+					[
+						{ value: 'Broken Links', label: 'Broken Links' },
+						{ value: 'Fail to Report Comments', label: 'Fail to Report Comments' },
+						{ value: 'Incorrect Information', label: 'Incorrect Information' },
+						{ value: 'Missing Information', label: 'Missing Information' },
+						{ value: 'Other', label: 'Other' }
+					],
+				Profile:
+					[						
+						{ value: 'Broken Links', label: 'Broken Links' },
+						{ value: 'Fail to Change Information', label: 'Fail to Change Information' },
+						{ value: 'Fail to Reset Password', label: 'Fail to Reset Password' },
+						{ value: 'Incorrect Information', label: 'Incorrect Information' },
+						{ value: 'Other', label: 'Other' }
+					],
+				SearchResults:
+					[
+						{ value: 'Broken Links', label: 'Broken Links' },
+						{ value: 'Fail to Filter Results', label: 'Fail to Filter Results' }, 
+						{ value: 'Fail to Sort Results', label: 'Fail to Sort Results'},
+						{ value: 'Incorrect Information', label: 'Incorrect Information'},
+						{ value: 'Missing Results', label: 'Missing Results' },
+						{ value: 'Other', label: 'Other' }
 					],
 				SignUp:
 					[
-						{ value: 'Unable to Sign Up', label: 'Unable to Sign Up' }
-					]
+						{ value: 'Broken Links', label: 'Broken Links'},
+						{ value: 'Fail to Sign Up', label: 'Fail to Sign Up' },
+						{ value: 'Fail to Verify', label: 'Fail to Verify' },
+						{ value: 'Other', label: 'Other' }
+					],
+				Other:
+					[
+						{ value: 'Browser Incompatability', label: 'Browser Incompatability' },
+						{ value: 'Non-Responsive Page', label: 'Non-Responsive Page' },
+						{ value: 'Slow Website', label: 'Slow Website' },
+						{ value: 'Other', label: 'Other' }
+					],
 			},
 			error: {
 				pageError: '',
@@ -95,7 +185,7 @@ class ReportBug extends Component {
 		if (isValid) {
 			$('#report-bug').modal("hide");
 			const bug = {
-				page: this.state.page,
+				page: this.state.page.replace(/([A-Z])/g, ' $1').trim(),
 				bug_type: this.state.bugType,
 				description: this.state.description
 			}

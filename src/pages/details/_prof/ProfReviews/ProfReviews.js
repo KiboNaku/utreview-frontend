@@ -195,7 +195,6 @@ class ProfReviews extends React.Component {
 			hasMore = false
 		}
 		if (value.value === "most-recent") {
-			console.log("most-recent")
 			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.date - a.date)
 			this.setState({ reviewsFiltered: updatedReviews, sortBy: value.value, page: 0, hasMore: hasMore})
 		} else if (value.value === "most-helpful") {
@@ -339,8 +338,6 @@ class ProfReviews extends React.Component {
 			</div>
 
 		)
-
-		console.log(this.state)
 
 		let hasMore = this.state.hasMore
 		if (this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length){

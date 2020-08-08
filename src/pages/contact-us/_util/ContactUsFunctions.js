@@ -11,7 +11,6 @@ export const sendMessage = values => {
 			message: values.message
 		})
 		.then(response => {
-			console.log(response)
 			return response.data
 		})
 }

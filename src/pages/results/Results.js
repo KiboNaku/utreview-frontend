@@ -35,6 +35,7 @@ class Results extends Component {
 					mNum: 0,
 					sem: "all",
 					hours: {
+						0: true,
 						1: true,
 						2: true,
 						3: true,
@@ -293,7 +294,6 @@ class Results extends Component {
 				}
 			}))
 
-			console.log(sortByName, nextSort)
 		} else if (tabIndex === 1) {
 			const { sortDir, sortBy } = this.state.profs.sort;
 			let nextSort;

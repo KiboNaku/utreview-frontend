@@ -8,7 +8,6 @@ export const getProfInfo = (prof) => {
 			loggedIn: prof.loggedIn
 		})
 		.then(response => {
-			console.log(response)
 			return response.data
 		})
 }
@@ -32,7 +31,6 @@ export const reviewFeedback = (feedback) => {
 			reviewId: feedback.reviewId
 		})
 		.then(response => {
-			console.log(response)
 			return response.data
 		})
 }
