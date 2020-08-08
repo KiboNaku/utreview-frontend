@@ -15,15 +15,18 @@ class CourseTopics extends React.Component {
     handleCollapse() {
         this.setState((prevState) => ({
             open: !prevState.open
-        })
-        )
+        }))
     }
 
     render() {
-        let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
+        let arrowIcon = this.state.open ? 
+        <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
+        
         let topicsList = this.props.topicsList.map(topic => {
+
             let topicPath = this.props.courseDept.toLowerCase().replace(' ', '') + "_" + this.props.courseNum.toLowerCase()
 	        topicPath += "_" + topic.topicNum.toString()
+            
             return (
                 <li className="topic-item">
                     <Link
@@ -39,6 +42,7 @@ class CourseTopics extends React.Component {
                 </li>
             )
         })
+
         return (
             <div className="courseTopics">
                 <div className="card course-card">
@@ -54,12 +58,10 @@ class CourseTopics extends React.Component {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         );
     }
-
 }
 
 export default withRouter(CourseTopics);
