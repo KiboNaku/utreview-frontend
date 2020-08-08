@@ -149,7 +149,14 @@ function LoginComponent(props) {
                         </div>
 
                         <form className="mb-3">
-                            <GoogleButton />
+                            <GoogleButton
+                                loginGoogle={props.loginGoogle}
+                                handleLoginFailureGoogle={props.handleLoginFailureGoogle}
+                                logoutGoogle={props.logoutGoogle}
+                                handleLogoutFailureGoogle={props.handleLogoutFailureGoogle}
+                                data={props.data}
+                                text='Login'
+                            />
                         </form>
                     </div>
 
