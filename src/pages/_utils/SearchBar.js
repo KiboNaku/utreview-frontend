@@ -4,10 +4,11 @@ import './SearchBar.css'
 
 class SearchBar extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        console.log(props.searchValue)
+        super(props)
         this.searchValue = " "
-        this.state = { searchValue: " " }
+        this.state = { searchValue: props.searchValue }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleKeyPress = this.handleKeyPress.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -22,8 +23,6 @@ class SearchBar extends React.Component {
                 search: `?search=${e.target.value}`,
                 state: { searchValue: e.target.value, page: 0 }
             })
-        } else {
-            this.setState({ searchValue: e.target.value + e.key })
         }
     }
 
@@ -56,6 +55,7 @@ class SearchBar extends React.Component {
                                 onChange={this.handleChange}
                                 name="searchValue"
                                 onKeyPress={this.handleKeyPress}
+                                value={this.state.searchValue}
                                 placeholder="Search for courses or professors" />
 
                             <button type="submit" className="search-icon">
