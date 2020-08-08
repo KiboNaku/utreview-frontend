@@ -2,7 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 function CourseScheduleEntry(props) {
-    const profPath = props.profFirst.toLowerCase().replace(" ", "") + "_" + props.profLast.toLowerCase().replace(" ", "")
+    let prof = null
+    if(props.profId !== null){
+        const profPath = props.profFirst.toLowerCase().replace(" ", "") + "_" + props.profLast.toLowerCase().replace(" ", "")
+        prof = (
+            <Link
+                className="utcolor"
+                to={{
+                    pathname: `/prof-results/${profPath}`,
+                    state: {
+                        profId: props.profId
+                    }
+                }}
+            > {props.profFirst} {props.profLast}
+            </Link>
+        )
+    }
+   
     let crossListed = props.crossListed.map(course => {
         let coursePath = course.dept.toLowerCase().replace(' ', '') + "_" + course.num.toLowerCase()
         if (course.topicNum >= -1) {
@@ -35,25 +51,19 @@ function CourseScheduleEntry(props) {
 
     let uniqueNumLink = `https://utdirect.utexas.edu/apps/registrar/course_schedule/${semYear}/${props.uniqueNum}/`
     let uniqueNum = <a className="utcolor" href={uniqueNumLink} rel="noopener noreferrer" target="_blank"> {props.uniqueNum} </a>
-    let prof = (
-        <Link
-            className="utcolor"
-            to={{
-                pathname: `/prof-results/${profPath}`,
-                state: {
-                    profId: props.profId
-                }
-            }}
-        > {props.profFirst} {props.profLast}
-        </Link>
-    )
+    
     let enrollment = props.seatsTaken === null || props.maxEnrollment === null ? "N/A" : props.seatsTaken + "/" + props.maxEnrollment
 
     let location
     if(props.location !== null && props.location !== "N/A"){
-        let buildingName = props.location.split()[0]
-        let locationLink = `https://utdirect.utexas.edu/apps/campus/buildings/nlogon/maps/UTM/${buildingName}/`
-        location = <a href={locationLink} rel="noopener noreferrer" target="_blank"> {props.location} </a>
+        if(props.location === "WEB"){
+            location = "Online"
+        }else{
+            let buildingName = props.location.split()[0]
+            let locationLink = `https://utdirect.utexas.edu/apps/campus/buildings/nlogon/maps/UTM/${buildingName}/`
+            location = <a className="utcolor" href={locationLink} rel="noopener noreferrer" target="_blank"> {props.location} </a>
+        }
+        
     }
     return (
         <tr key={props.id}>
@@ -61,7 +71,7 @@ function CourseScheduleEntry(props) {
                 {props.uniqueNum !== null ? uniqueNum: "N/A"}
             </td>
             <td align="center">
-                {props.profId !== null ? prof : "N/A"}
+                {prof !== null ? prof : "N/A"}
             </td>
             <td align="center">
                 {enrollment}
