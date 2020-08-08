@@ -54,6 +54,12 @@ function CourseFilter(props) {
                 <div>
                     <label className="text-left font-weight-bold">Hours: </label>
                     <br />
+                    <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { 0: true }) }}>
+                        <input type="checkbox" className="d-none" checked={props.filter.hours[0]} />
+                        <div className="checkbox-container">
+                            0XX
+                        </div>
+                    </div>
                     <div className="custom-checkbox" onClick={() => { props.handleFilterChange(null, -1, null, { 1: true }) }}>
                         <input type="checkbox" className="d-none" checked={props.filter.hours[1]} />
                         <div className="checkbox-container">

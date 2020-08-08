@@ -71,7 +71,7 @@ function AboutComponent(props) {
                     <h2 className='about-header-2'>Credits</h2>
                     <div className='d-flex justify-content-center'>
                         <div className='col-lg-8'>
-                            <ul className="list-group credits">
+                            <ul class="list-group credits" style={{color:'black'}}>
                                 <div className="list-group-item flex-column align-items-start credit">
                                     <div className="d-flex justify-content-center">
                                         <p className="h5"><u>Home Page Photo</u></p>

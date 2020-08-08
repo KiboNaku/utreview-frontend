@@ -228,7 +228,6 @@ class ProfDetails extends React.Component {
     }
 
     handleScrollToReview(){
-        console.log(this.reviewRef)
         const scrollToRef = () => window.scrollTo(0, this.reviewRef.current.offsetTop - 100)
         scrollToRef()
     }
@@ -245,18 +244,15 @@ class ProfDetails extends React.Component {
 
         let profId = null
         if(this.props.location.state === undefined){
-            console.log("helloooo")
             let profPath = window.location.pathname.split("/").pop()
             let profString = {
                 profString: profPath
             }
-            console.log(profString)
             getProfId(profString).then(res => {
                 if (res.error) {
                     alert(res.error)
                     this.setState({validProf: false})
                 } else {
-                    console.log(res)
                     profId = res.profId
                     const prof = {
                         profId: profId,
@@ -272,7 +268,6 @@ class ProfDetails extends React.Component {
                 let profString = {
                     profString: profPath
                 }
-                console.log(profString)
                 getProfId(profString).then(res => {
                     if (res.error) {
                         alert(res.error)
@@ -305,7 +300,6 @@ class ProfDetails extends React.Component {
             if (res.error) {
                 alert(res.error)
             } else {
-                console.log("here")
                 let profRevs = res.prof_reviews.map(review => {
                     return {
                         ...review,

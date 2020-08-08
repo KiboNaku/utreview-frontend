@@ -155,7 +155,6 @@ class ReviewForm extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		const isValid = this.validate();
-		console.log(isValid)
 		if (isValid) {
 			const token = localStorage.usertoken
 			const decoded = jwt_decode(token)
@@ -222,8 +221,6 @@ class ReviewForm extends Component {
 
 	handleCourseRatingChange = (event) => {
 		const { name, value } = event.target
-		console.log(name)
-		console.log(value)
 		this.setState(prevState => ({
 			courseRating: {
 				...prevState.courseRating,
@@ -636,7 +633,6 @@ class ReviewForm extends Component {
 			}
 		} else {
 
-			console.log("did not mount undefined")
 			if (this.props.location.state.courseId !== undefined) {
 				let courseList = []
 				courseList.push({
@@ -779,8 +775,6 @@ class ReviewForm extends Component {
 
 	setOldReviewData = () => {
 		const { oldReview } = this.state
-
-		console.log(oldReview)
 		let topicId = null
 		let courseId = oldReview.course.id
 		let topicSelected = oldReview.course.topicNum >= 0
@@ -911,7 +905,6 @@ class ReviewForm extends Component {
 		let loaded = this.state.course.loaded && this.state.prof.loaded
 
 		let loading = <Loading />
-		console.log(this.state)
 
 		let content = <ReviewFormComponent
 			key={this.state.courseList}

@@ -142,8 +142,6 @@ class Profile extends Component {
             email: decoded.identity.email
         }
 
-        console.log(user)
-
         getReviews(user).then(res => {
             if (res.error) {
                 alert(res.error)
