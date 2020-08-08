@@ -23,7 +23,6 @@ class VerifyEmail extends Component {
         this.id = setTimeout(() => {
 
             if(this.state.loading > 0){
-                console.log("loading:", this.state.loading)
                 this.setState(prevState => ({ loading: prevState.loading-1 }))
                 this.timeout()
             }

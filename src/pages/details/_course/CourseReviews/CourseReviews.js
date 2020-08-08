@@ -12,7 +12,6 @@ class CourseReviews extends React.Component {
 		super(props)
 
 		const updatedReviews = props.courseReviews.slice().sort((a, b) => b.date - a.date)
-		console.log(props.courseReviews)
 		this.state = {
 			courseReviews: props.courseReviews,
 			reviewsFiltered: updatedReviews,
@@ -235,7 +234,6 @@ class CourseReviews extends React.Component {
 	}
 
 	render() {
-		console.log(this.state)
 		const courseReviewList = this.state.reviewsFiltered.slice(0, this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length)).map(review => {
 			return (
 				<div>
@@ -252,12 +250,21 @@ class CourseReviews extends React.Component {
 			)
 		})
 
-		const profOptions = this.state.courseReviews.map(review => {
-			return {
-				value: review.profFirst + " " + review.profLast,
-				label: review.profFirst + " " + review.profLast
+		const profs = []
+		const profOptions = []
+		for (let i = 0; i < this.state.courseReviews.length; i++){
+			let profString = this.state.courseReviews[i].profFirst + " " + this.state.courseReviews[i].profLast
+			if(profs.includes(profString)){
+				continue
 			}
-		})
+			profs.push(profString)
+			
+			let obj = {
+				value: profString,
+				label: profString
+			}
+			profOptions.push(obj)
+		}
 
 		let noReviews = (
 			<h5> No reviews yet for this course </h5>

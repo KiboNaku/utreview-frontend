@@ -56,9 +56,14 @@ function ProfScheduleEntry(props) {
     
     let location
     if(props.location !== null && props.location !== "N/A"){
-        let buildingName = props.location.split()[0]
-        let locationLink = `https://utdirect.utexas.edu/apps/campus/buildings/nlogon/maps/UTM/${buildingName}/`
-        location = <a href={locationLink} rel="noopener noreferrer" target="_blank"> {props.location} </a>
+        if(props.location === "WEB"){
+            location = "Online"
+        }else{
+            let buildingName = props.location.split()[0]
+            let locationLink = `https://utdirect.utexas.edu/apps/campus/buildings/nlogon/maps/UTM/${buildingName}/`
+            location = <a className="utcolor" href={locationLink} rel="noopener noreferrer" target="_blank"> {props.location} </a>
+        }
+        
     }
     return (
         <tr>

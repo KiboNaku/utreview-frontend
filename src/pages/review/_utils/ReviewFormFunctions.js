@@ -3,8 +3,7 @@ import axios from 'axios'
 export const getCourses = (info) => {
     return axios
         .post('/api/get_courses', {
-            semesterId: info.semesterId,
-            all: info.all
+            profId: info.profId
         })
         .then(response => {
             return response.data
@@ -15,7 +14,7 @@ export const getTopics = (info) => {
     return axios
         .post('/api/get_topics', {
             topicId: info.topicId,
-            semesterId: info.semesterId
+            profId: info.profId
         })
         .then(response => {
             return response.data
@@ -25,9 +24,7 @@ export const getTopics = (info) => {
 export const getProfs = (info) => {
     return axios
         .post('/api/get_profs', {
-            semesterId: info.semesterId,
             courseId: info.courseId,
-            all: info.all
         })
         .then((response) => {
             return response.data

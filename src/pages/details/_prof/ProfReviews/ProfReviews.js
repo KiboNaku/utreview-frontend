@@ -195,7 +195,6 @@ class ProfReviews extends React.Component {
 			hasMore = false
 		}
 		if (value.value === "most-recent") {
-			console.log("most-recent")
 			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.date - a.date)
 			this.setState({ reviewsFiltered: updatedReviews, sortBy: value.value, page: 0, hasMore: hasMore})
 		} else if (value.value === "most-helpful") {
@@ -252,12 +251,21 @@ class ProfReviews extends React.Component {
 			)
 		})
 
-		const courseOptions = this.state.profReviews.map(review => {
-			return {
-				value: review.courseDept + " " + review.courseNum,
-				label: review.courseDept + " " + review.courseNum
+		const courses = []
+		const courseOptions = []
+		for (let i = 0; i < this.state.profReviews.length; i++){
+			let courseString = this.state.profReviews[i].courseDept + " " + this.state.profReviews[i].courseNum
+			if(courses.includes(courseString)){
+				continue
 			}
-		})
+			courses.push(courseString)
+			
+			let obj = {
+				value: courseString,
+				label: courseString
+			}
+			courseOptions.push(obj)
+		}
 
 		let noReviews = (
 			<h5> No reviews yet for this professor </h5>
@@ -330,8 +338,6 @@ class ProfReviews extends React.Component {
 			</div>
 
 		)
-
-		console.log(this.state)
 
 		let hasMore = this.state.hasMore
 		if (this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length){

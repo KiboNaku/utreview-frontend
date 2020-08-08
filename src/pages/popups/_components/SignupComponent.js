@@ -163,7 +163,6 @@ function SignupComponent(props) {
             >
                 {formik => {
 
-                    console.log(formik.errors)
                     let noMajor = (
                         <div className="col-sm-4">
                             <input
@@ -190,8 +189,6 @@ function SignupComponent(props) {
                             <ErrorMessage component="div" className="text-danger" name="otherMajor" />
                         </div>
                     )
-
-                    console.log(formik.errors.firstName !== undefined && formik.touched.firstName !== undefined)
 
                     return (
                         <form onSubmit={formik.handleSubmit}>
@@ -246,6 +243,7 @@ function SignupComponent(props) {
                                     onBlur={formik.setFieldTouched}
                                     error={formik.errors.topics}
                                     touched={formik.touched.topics}
+                                    isLoading={!props.majorListLoaded}
                                     style={invalidInputStyle(formik.errors, formik.touched, 'major')}
                                     disabled={formik.values.showOtherMajor || formik.values.noMajor}
                                 />
