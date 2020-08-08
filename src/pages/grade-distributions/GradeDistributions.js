@@ -84,7 +84,7 @@ class GradeDistributions extends Component {
                     text: this.props.course.courseDept + " " + this.props.course.courseNum
                 },
                 subtitle: {
-                    text: "Aggregate" + " - " + this.props.prof.firstName + " " + this.props.prof.lastName
+                    text: this.props.prof.firstName + " " + this.props.prof.lastName
                 },
                 legend: {
                     enabled: false

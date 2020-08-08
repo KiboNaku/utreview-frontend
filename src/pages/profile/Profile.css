@@ -186,3 +186,12 @@
 .other-major-label{
 	padding-left: 10px;
 }
+.btn-upload-courses{
+	margin-bottom: 20px;
+}
+
+.upload-courses-body{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
