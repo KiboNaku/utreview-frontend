@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import qs from 'qs'
 import { withRouter } from 'react-router-dom'
-
+import NotFound from './../not-found/NotFound'
 import ResultsComponent from './_components/ResultsComponent'
 import { populateResults } from './_utils/ResultsFunctions'
 import { getMajor } from './../popups/_utils/UserFunctions'
@@ -20,6 +20,8 @@ class Results extends Component {
 			searchValue: "",
 			tabIndex: 0,
 			depts: [],
+			deptsLoaded: false,
+			invalidPage: false,
 
 			courses: {
 				loaded: false,
@@ -93,7 +95,7 @@ class Results extends Component {
 						label: data[i]['name']
 					})
 				}
-				this.setState({ depts: list })
+				this.setState({ depts: list, deptsLoaded: true })
 			}
 		})
 
@@ -102,14 +104,16 @@ class Results extends Component {
 		if (this.props.location.state === undefined) {
 			let urlObject = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
 			if (urlObject.search) {
+				this.props.handleSearchValueChange(urlObject.search)
 				search = {
 					searchValue: urlObject.search
 				}
 				this.setState({ searchValue: urlObject.search })
 			} else {
-
+				this.setState({invalidPage: true})
 			}
 		} else {
+			this.props.handleSearchValueChange(this.props.location.state.searchValue)
 			search = {
 				searchValue: this.props.location.state.searchValue
 			}
@@ -414,7 +418,7 @@ class Results extends Component {
 
 	render() {
 
-		return (<ResultsComponent
+		return (this.state.invalidPage ? <NotFound /> : <ResultsComponent
 
 			{...this.state}
 

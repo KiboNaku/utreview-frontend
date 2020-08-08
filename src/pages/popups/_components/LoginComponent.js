@@ -149,7 +149,8 @@ function LoginComponent(props) {
                         </div>
 
                         <form className="mb-3">
-                            <GoogleButton text="Log In with Google" />
+                            {/* <GoogleButton text="Log In with Google" /> */}
+                            <GoogleButton />
                         </form>
                     </div>
 

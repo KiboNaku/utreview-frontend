@@ -32,10 +32,11 @@ class MajorSelect extends React.Component {
                     onChange={this.handleChange}
                     onBlur={this.handleBlur}
                     value={this.props.value}
-                    isDisabled={this.props.disabled}
+                    isDisabled={this.props.disabled || this.props.isLoading}
                     placeholder="Select major"
                     isClearable={true}
                     isSearchable={true}
+                    isLoading={this.props.isLoading}
                 />
                 <ErrorMessage component="div" className="text-danger" name="major" />
             </div>
