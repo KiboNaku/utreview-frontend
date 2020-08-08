@@ -36,8 +36,7 @@ function ProfRatings(props) {
 
     const numRatings = props.numRatings
     return (
-        <div className="profRatings">
-            <div className="card card-body">
+        <div className="prof-ratings">
             <h3 className="rating-heading"> User Ratings ({numRatings})</h3>
             <div className="rating">
                 <p className="p-rating"> Liked: {`${percentLiked}%`} </p>
@@ -61,8 +60,8 @@ function ProfRatings(props) {
                         style={{ verticalAlign: "middle" }}
                         defaultValue={eCISValue}
                         precision={0.1}
-                        icon={<RadioButtonCheckedIcon fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon fontSize="large" />}
+                        icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -72,8 +71,8 @@ function ProfRatings(props) {
                         style={{ verticalAlign: "middle" }}
                         defaultValue={clearValue}
                         precision={0.1}
-                        icon={<RadioButtonCheckedIcon fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon fontSize="large" />}
+                        icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -86,8 +85,8 @@ function ProfRatings(props) {
                         style={{ verticalAlign: "middle" }}
                         defaultValue={engagingValue}
                         precision={0.1}
-                        icon={<RadioButtonCheckedIcon fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon fontSize="large" />}
+                        icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -97,16 +96,12 @@ function ProfRatings(props) {
                         style={{ verticalAlign: "middle" }}
                         defaultValue={gradingValue}
                         precision={0.1}
-                        icon={<RadioButtonCheckedIcon fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon fontSize="large" />}
+                        icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
             </div>
-            </div>
-
-            
-
         </div>
     );
 }

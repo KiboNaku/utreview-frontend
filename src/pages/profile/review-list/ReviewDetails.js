@@ -42,7 +42,7 @@ function ReviewDetails(props) {
 									<td> {props.data.profRating.grading}</td>
 								</tr>
 								<tr>
-									<td style={{ borderRight: 'solid 1px' }} colSpan='2'>{props.data.courseRating.comments}</td>
+									<td colSpan='2'>{props.data.courseRating.comments}</td>
 									<td colSpan='2'>{props.data.profRating.comments}</td>
 								</tr>
 							</tbody>
