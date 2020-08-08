@@ -7,6 +7,7 @@ function ProfScheduleEntry(props) {
         if (course.topicNum >= -1) {
             coursePath += "_" + course.topicNum.toString()
         }
+
         return (
             <li>
                 <Link
@@ -22,6 +23,7 @@ function ProfScheduleEntry(props) {
             </li>
         )
     })
+
     let courseName = props.courseDept + " " + props.courseNum
     let coursePath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
     if (props.topicNum >= 0) {
@@ -34,13 +36,13 @@ function ProfScheduleEntry(props) {
     }else if(props.semester === "Spring"){
         semester = 2
     }
-
     let semYear = props.year.toString() + semester.toString()
 
     let uniqueNumLink = `https://utdirect.utexas.edu/apps/registrar/course_schedule/${semYear}/${props.uniqueNum}/`
     let uniqueNum = <a href={uniqueNumLink} rel="noopener noreferrer" target="_blank"> {props.uniqueNum} </a>
 
     let enrollment = props.seatsTaken === null || props.maxEnrollment === null ? "N/A" : props.seatsTaken + "/" + props.maxEnrollment
+    
     let course = (
         <Link
             className="utcolor"
@@ -63,8 +65,8 @@ function ProfScheduleEntry(props) {
             let locationLink = `https://utdirect.utexas.edu/apps/campus/buildings/nlogon/maps/UTM/${buildingName}/`
             location = <a className="utcolor" href={locationLink} rel="noopener noreferrer" target="_blank"> {props.location} </a>
         }
-        
     }
+    
     return (
         <tr>
             <td align="center">

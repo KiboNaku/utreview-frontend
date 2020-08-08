@@ -22,7 +22,7 @@ function AboutComponent(props) {
                                 UT Review would not be possible without the reviews from students like you. Had a bad prof? We want to know. Had a great one? Tell us as well. Found a course completely and utterly useless? Leave a review. Your experiences can help more than 50,000 students like you every month choose great courses and avoid not so great ones.
                             </p>
                             <p>
-                                You can help shape the future of UT Review! Let us know what we can improve on or what you think we're doing a good job with. We're always looking
+                                You can help shape the future of UT Review! Let us know what we can improve on or what you think we're already doing a good job with. We're always looking
                                 for new ideas, new features to implement, and new ways to improve your experience.  
                             </p>
                         </div>

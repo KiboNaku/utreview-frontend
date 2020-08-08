@@ -26,13 +26,12 @@ import Rating from '@material-ui/lab/Rating';
 function ProfReviewEntry(props) {
     let thumbsIcon = props.review.liked ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} />
-
     let likeIcon = props.review.likePressed ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
     let dislikeIcon = props.review.dislikePressed ?
         <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
-
     let reportIcon = <FlagRoundedIcon style={{ fill: 'gray' }} />
+    
     const useStyles = makeStyles((theme) => ({
         large: {
             width: theme.spacing(8),
@@ -55,7 +54,6 @@ function ProfReviewEntry(props) {
                 {reportIcon}
             </button>
         </span>
-
     )
 
     const likeLoginLink = (
@@ -68,7 +66,6 @@ function ProfReviewEntry(props) {
                 {likeIcon}
             </button>
         </span>
-
     )
 
     const dislikeLoginLink = (
@@ -105,6 +102,7 @@ function ProfReviewEntry(props) {
     if (props.review.courseTopic >= 0) {
         coursePath += "_" + props.review.courseTopic.toString()
     }
+    
     return (
         <div className="list-group-item review-list-item">
             <div className="prof-review-entry">
