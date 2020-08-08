@@ -338,7 +338,6 @@ class ProfDetails extends React.Component {
                     <ProfRatings
                         {...this.state.profRatings}
                     />
-
                 </div>
                 <div className="prof-tables">
                     <ProfCourses profInfo={this.state.profInfo} profCourses={this.state.profCourses} key={this.state.profCourses}/>
