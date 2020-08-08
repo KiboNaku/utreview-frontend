@@ -37,13 +37,19 @@ class App extends Component{
 		}
 		
 		this.state = {
-			profilePic : profilePic
+			profilePic : profilePic,
+			searchValue: ''
 		}
 		this.handleProfilePicChange = this.handleProfilePicChange.bind(this)
+		this.handleSearchValueChange = this.handleSearchValueChange.bind(this)
 	}
 
 	handleProfilePicChange(profilePic){
 		this.setState({profilePic: profilePic})
+	}
+
+	handleSearchValueChange(searchValue){
+		this.setState({searchValue: searchValue})
 	}
 
 	render() {
@@ -53,8 +59,8 @@ class App extends Component{
 					<ScrollTop/>
 	
 					<Switch>
-						<Route exact path="/" component={() => <NavBar profilePic={this.state.profilePic} showSearch="false" transparent="true"/>} />
-						<Route path="/" component={() => <NavBar profilePic={this.state.profilePic} showSearch="true" transparent="false" />} />
+						<Route exact path="/" component={() => <NavBar profilePic={this.state.profilePic} searchValue={this.state.searchValue} showSearch="false" transparent="true"/>} />
+						<Route path="/" component={() => <NavBar profilePic={this.state.profilePic} searchValue={this.state.searchValue} showSearch="true" transparent="false" />} />
 					</Switch>
 	
 					<Switch>
@@ -62,7 +68,7 @@ class App extends Component{
 						<Route path="/profile" render={(props) => <Profile handleProfilePicChange={this.handleProfilePicChange} />} />
 						<Route path="/about" component={About} />
 						<Route path="/privacy-policy" component={PrivacyPolicy} />
-						<Route exact path="/results" component={Results} />
+						<Route exact path="/results" render={(props) => <Results handleSearchValueChange={this.handleSearchValueChange}/>} />
 						<Route path="/add-review" render={(props) => <ReviewForm /> } />
 						<Route path="/edit-review" component={ReviewForm} />
 						<Route path="/confirm_email" component={ConfirmEmail}/>

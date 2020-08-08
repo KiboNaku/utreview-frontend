@@ -1,4 +1,5 @@
 import React from 'react';
+import NotFound from './../not-found/NotFound'
 import ProfInfo from './_prof/ProfInfo/ProfInfo';
 import ProfRatings from './_prof/ProfInfo/ProfRatings';
 import ProfCourses from './_prof/ProfCourses/ProfCourses';
@@ -228,7 +229,6 @@ class ProfDetails extends React.Component {
     }
 
     handleScrollToReview(){
-        console.log(this.reviewRef)
         const scrollToRef = () => window.scrollTo(0, this.reviewRef.current.offsetTop - 100)
         scrollToRef()
     }
@@ -245,18 +245,14 @@ class ProfDetails extends React.Component {
 
         let profId = null
         if(this.props.location.state === undefined){
-            console.log("helloooo")
             let profPath = window.location.pathname.split("/").pop()
             let profString = {
                 profString: profPath
             }
-            console.log(profString)
             getProfId(profString).then(res => {
                 if (res.error) {
-                    alert(res.error)
                     this.setState({validProf: false})
                 } else {
-                    console.log(res)
                     profId = res.profId
                     const prof = {
                         profId: profId,
@@ -272,10 +268,8 @@ class ProfDetails extends React.Component {
                 let profString = {
                     profString: profPath
                 }
-                console.log(profString)
                 getProfId(profString).then(res => {
                     if (res.error) {
-                        alert(res.error)
                         this.setState({validProf: false})
                     } else {
                         profId = res.profId
@@ -305,7 +299,6 @@ class ProfDetails extends React.Component {
             if (res.error) {
                 alert(res.error)
             } else {
-                console.log("here")
                 let profRevs = res.prof_reviews.map(review => {
                     return {
                         ...review,
@@ -360,7 +353,7 @@ class ProfDetails extends React.Component {
         return (
             <main className="prof-details-main">
                 <div className="main-sub">
-                {this.state.validProf ? (this.state.loaded ? content : loading): invalidProf}
+                {this.state.validProf ? (this.state.loaded ? content : loading): <NotFound />}
                 </div>
 
             </main>
