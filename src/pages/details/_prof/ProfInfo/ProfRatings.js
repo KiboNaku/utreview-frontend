@@ -96,8 +96,8 @@ function ProfRatings(props) {
                     />
                 </div>
             </div>
-            </div>
         </div>
+
     );
 }
 
