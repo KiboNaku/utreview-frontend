@@ -9,6 +9,7 @@ import jwt_decode from 'jwt-decode'
 import ReviewFormComponent from './_components/ReviewFormComponent'
 import Loading from './../_utils/Loading.js'
 import $ from './../../../node_modules/jquery'
+import { TextareaAutosize } from '@material-ui/core'
 
 class ReviewForm extends Component {
 	constructor(props) {
@@ -49,7 +50,8 @@ class ReviewForm extends Component {
 			topic: {
 				id: null,
 				loaded: false,
-				selected: false
+				selected: false,
+				loaded: false
 			},
 
 			course: {
@@ -240,7 +242,8 @@ class ReviewForm extends Component {
 					topic: {
 						...prevState.topic,
 						id: null,
-						selected: false
+						selected: false,
+						loaded: false
 					}
 				}))
 				this.checkReviewComplete(inputValue.id, this.state.prof.id, this.state.semester.semester, this.state.semester.year, null, topicSelected)
@@ -303,6 +306,7 @@ class ReviewForm extends Component {
 					...prevState.topic,
 					id: null,
 					selected: false,
+					loaded: false
 				},
 				formDisabled: true
 			}))
@@ -531,7 +535,8 @@ class ReviewForm extends Component {
 								topic: {
 									...prevState.topic,
 									selected: true,
-									id: res.courseId
+									id: res.courseId,
+									loaded: true
 								},
 								course: {
 									...prevState.course,
@@ -679,7 +684,8 @@ class ReviewForm extends Component {
 						topic: {
 							...prevState.topic,
 							id: this.props.location.state.courseId,
-							selected: true
+							selected: true,
+							loaded: true
 						},
 						course: {
 							...prevState.course,
@@ -931,7 +937,7 @@ class ReviewForm extends Component {
 
 		return (
 			<div>
-				{this.state.invalidReview ? <NotFound /> : (loaded ? content : loading)}
+				{this.state.invalidReview ? <NotFound /> : (content)}
 				<Error message={this.state.errorMessage} id="reviewForm" title="Error" />
 			</div>
 		);
