@@ -73,6 +73,7 @@
 .course-name {
 	font-size: 28px;
 	font-weight: bold;
+	z-index: 0;
 }
 
 .semester-date {
