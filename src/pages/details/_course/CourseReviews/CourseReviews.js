@@ -12,6 +12,7 @@ class CourseReviews extends React.Component {
 		super(props)
 
 		const updatedReviews = props.courseReviews.slice().sort((a, b) => b.date - a.date)
+		
 		this.state = {
 			courseReviews: props.courseReviews,
 			reviewsFiltered: updatedReviews,
@@ -64,6 +65,7 @@ class CourseReviews extends React.Component {
 		let dislikeNum = courseReview.numDisliked
 		let likeNum = courseReview.numLiked
 		let like = courseReview.likePressed
+
 		if (id === courseReview.id) {
 			if (dislike) {
 				dislike = false
@@ -80,6 +82,7 @@ class CourseReviews extends React.Component {
 				}
 			}
 		}
+
 		return {
 			...courseReview,
 			numLiked: likeNum,
@@ -95,6 +98,7 @@ class CourseReviews extends React.Component {
 		let dislikeNum = courseReview.numDisliked
 		let likeNum = courseReview.numLiked
 		let like = courseReview.likePressed
+
 		if (id === courseReview.id) {
 			if (like) {
 				like = false
@@ -111,6 +115,7 @@ class CourseReviews extends React.Component {
 				}
 			}
 		}
+
 		return {
 			...courseReview,
 			numLiked: likeNum,
@@ -144,15 +149,13 @@ class CourseReviews extends React.Component {
 				courseReviews: updatedReviews,
 				reviewsFiltered: reviewsFiltered
 			}
-		}
-		)
+		})
 
 		reviewFeedback(feedback).then(res => {
 			if (res.error) {
 				alert(res.error)
 			}
 		})
-
 	}
 
 	handleDislike(id) {
@@ -178,8 +181,8 @@ class CourseReviews extends React.Component {
 				courseReviews: updatedReviews,
 				reviewsFiltered: reviewsFiltered
 			}
-		}
-		)
+		})
+
 		reviewFeedback(feedback).then(res => {
 			if (res.error) {
 				alert(res.error)
@@ -192,6 +195,7 @@ class CourseReviews extends React.Component {
 		if (this.calcTableEdge(0, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length){
 			hasMore = false
 		}
+
 		if(value.value === "most-recent"){
 			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.date - a.date)
 			this.setState({reviewsFiltered: updatedReviews, sortBy: value.value, page: 0, hasMore: hasMore})
@@ -204,6 +208,7 @@ class CourseReviews extends React.Component {
 	handleProfChange(values){
 		
 		let updatedReviews = []
+
 		if(values.length === 0){
 			updatedReviews = this.state.courseReviews
 		}else{
@@ -245,8 +250,6 @@ class CourseReviews extends React.Component {
 				/>
 					<ReportComment reviewId={review.id} isCourse={true}/>
 				</div>
-
-				
 			)
 		})
 
@@ -306,7 +309,6 @@ class CourseReviews extends React.Component {
 					autosize={true}
 				/>
 			</div>
-
 		)
 
 		let profFilter = (
@@ -365,7 +367,6 @@ class CourseReviews extends React.Component {
 					</div>
 				</div>
 			</div>
-
 		)
 	}
 

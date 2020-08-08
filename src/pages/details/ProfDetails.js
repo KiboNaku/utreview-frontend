@@ -234,6 +234,7 @@ class ProfDetails extends React.Component {
     }
 
     componentDidMount() {
+
         let loggedIn = false
         let email = ''
         const token = localStorage.usertoken
@@ -245,10 +246,12 @@ class ProfDetails extends React.Component {
 
         let profId = null
         if(this.props.location.state === undefined){
+
             let profPath = window.location.pathname.split("/").pop()
             let profString = {
                 profString: profPath
             }
+
             getProfId(profString).then(res => {
                 if (res.error) {
                     this.setState({validProf: false})
@@ -261,13 +264,16 @@ class ProfDetails extends React.Component {
                     }
                     this.profDetailsRequest(prof)
                 }
-            })        
+            })       
+
         }else{
             if(this.props.location.state.profId === undefined){
+
                 let profPath = window.location.pathname.split("/").pop()
                 let profString = {
                     profString: profPath
                 }
+
                 getProfId(profString).then(res => {
                     if (res.error) {
                         this.setState({validProf: false})
@@ -281,6 +287,7 @@ class ProfDetails extends React.Component {
                         this.profDetailsRequest(prof)
                     }
                 })
+
             }else{
                 profId = this.props.location.state.profId
                 const prof = {
@@ -295,6 +302,7 @@ class ProfDetails extends React.Component {
     }
 
     profDetailsRequest = (prof) => {
+
         getProfInfo(prof).then(res => {
             if (res.error) {
                 alert(res.error)
@@ -320,10 +328,6 @@ class ProfDetails extends React.Component {
     render() {
 
         let loading = <Loading />
-    
-        let invalidProf = (
-            <h1> This professor doesn't exist </h1>
-        )
 
         let content = (
             <div className="profDetails">
@@ -350,17 +354,15 @@ class ProfDetails extends React.Component {
                 
             </div>
         )
+
         return (
             <main className="prof-details-main">
                 <div className="main-sub">
                 {this.state.validProf ? (this.state.loaded ? content : loading): <NotFound />}
                 </div>
-
             </main>
-
         );
     }
-
 }
 
 export default withRouter(ProfDetails);

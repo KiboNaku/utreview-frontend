@@ -268,6 +268,7 @@ class CourseDetails extends React.Component {
     }
 
     componentDidMount() {
+
         let loggedIn = false
         let email = ''
         const token = localStorage.usertoken
@@ -276,12 +277,15 @@ class CourseDetails extends React.Component {
             loggedIn = true
             email = decoded.identity.email
         }
+
         let courseId = null
         if(this.props.location.state === undefined){
+
             let coursePath = window.location.pathname.split("/").pop()
             let courseString = {
                 courseString: coursePath
             }
+
             getCourseId(courseString).then(res => {
                 if (res.error) {
                     this.setState({validCourse: false})
@@ -295,12 +299,15 @@ class CourseDetails extends React.Component {
                     this.courseDetailsRequest(course)
                 }
             })
+
         }else{
             if(this.props.location.state.courseId === undefined){
+
                 let coursePath = window.location.pathname.split("/").pop()
                 let courseString = {
                     courseString: coursePath
                 }
+
                 getCourseId(courseString).then(res => {
                     if (res.error) {
                         this.setState({validCourse: false})
@@ -314,7 +321,9 @@ class CourseDetails extends React.Component {
                         this.courseDetailsRequest(course)
                     }
                 })
+
             }else{
+
                 courseId = this.props.location.state.courseId
                 const course = {
                     courseId: courseId,
@@ -322,11 +331,13 @@ class CourseDetails extends React.Component {
                     userEmail: email
                 }
                 this.courseDetailsRequest(course)
+
             }  
         }
     }
 
     courseDetailsRequest = (course) => {
+
         getCourseInfo(course).then(res => {
             if (res.error) {
                 alert(res.error)
@@ -354,11 +365,6 @@ class CourseDetails extends React.Component {
     render() {
 
         let loading = <Loading />
-    
-        
-        let invalidCourse = (
-            <h1> This course doesn't exist </h1>
-        )
 
         let childTopics = (
             <div className="course-topics">
@@ -399,17 +405,15 @@ class CourseDetails extends React.Component {
                 
             </div>
         )
+
         return (
             <main className="course-details-main">
                 <div className="main-sub">
                     {this.state.validCourse ? (this.state.loaded ? content : loading): <NotFound />}
                 </div>
-
             </main>
-
         );
     }
-
 }
 
 export default withRouter(CourseDetails);
