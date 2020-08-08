@@ -18,25 +18,27 @@ class CourseProfs extends React.Component {
     handleCollapse() {
         this.setState((prevState) => ({
             open: !prevState.open
-        })
-        )
+        }))
     }
 
     render() {
         const courseProfList = this.state.courseProfs.map(prof => {
+
             let courseId = this.props.courseInfo.id
             let profId = prof.id
+
             return [
                     <CourseProfEntry course={this.props.courseInfo} {...prof} />,
                     <GradeDistributions isCourse={true} course={this.props.courseInfo} prof={prof} courseId={courseId} profId={profId} />
             ]
-
         })
+
         let noProfs = (
             <h5 className="none-scheduled">
                 No Professors available
             </h5>
         )
+
         let profTable = (
             <table className='table table-hover table-responsive prof-table' >
                 <thead>
@@ -56,7 +58,10 @@ class CourseProfs extends React.Component {
                 </tbody>
             </table>
         )
-        let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
+
+        let arrowIcon = this.state.open ? 
+        <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
+        
         return (
             <div className="courseProfs">
                 <div className="card course-card">
@@ -68,13 +73,10 @@ class CourseProfs extends React.Component {
                             {courseProfList.length > 0 ? profTable: noProfs}
                         </div>
                     </div>
-
                 </div>
-
             </div>
         )
     }
-
 }
 
 export default CourseProfs;

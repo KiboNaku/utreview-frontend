@@ -1,7 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import ModalHeader from './../../popups/_utils/ModalHeader'
+import $ from './../../../../node_modules/jquery'
 
 function ReviewDetails(props) {
+	const profPath = props.data.prof.firstName.toLowerCase().replace(" ", "") + "_" + props.data.prof.lastName.toLowerCase().replace(" ", "")
+	let coursePath = props.data.course.dept.abr.toLowerCase().replace(' ', '') + "_" + props.data.course.num.toLowerCase()
+	if (props.data.course.topicNum >= 0) {
+		coursePath += "_" + props.data.course.topicNum.toString()
+	}
 	return (
 		<div className="modal fade" id={'review-details-modal' + props.data.id} role="dialog">
 
@@ -15,10 +22,27 @@ function ReviewDetails(props) {
 							<thead>
 								<tr>
 									<th className='review-cell' scope="col" colSpan='2'>
-										Course: {props.data.course.dept.abr + " " + props.data.course.num}
+										Course: <Link
+											className="utcolor"
+											to={{
+												pathname: `/course-results/${coursePath}`,
+											}}
+											onClick={() => { $('.modal').modal('hide') }}
+										> {props.data.course.dept.abr + " " + props.data.course.num}
+										</Link>
 									</th>
 									<th className='review-cell' scope="col" colSpan='2'>
-										Professor: {props.data.prof.firstName + " " + props.data.prof.lastName}
+										Professor: <Link
+											className="utcolor"
+											to={{
+												pathname: `/prof-results/${profPath}`,
+												state: {
+													profId: props.data.prof.id
+												}
+											}}
+											onClick={() => { $('.modal').modal('hide') }}
+										> {props.data.prof.firstName} {props.data.prof.lastName}
+										</Link>
 									</th>
 								</tr>
 							</thead>
@@ -42,7 +66,7 @@ function ReviewDetails(props) {
 									<td> {props.data.profRating.grading}</td>
 								</tr>
 								<tr>
-									<td style={{ borderRight: 'solid 1px' }} colSpan='2'>{props.data.courseRating.comments}</td>
+									<td colSpan='2'>{props.data.courseRating.comments}</td>
 									<td colSpan='2'>{props.data.profRating.comments}</td>
 								</tr>
 							</tbody>

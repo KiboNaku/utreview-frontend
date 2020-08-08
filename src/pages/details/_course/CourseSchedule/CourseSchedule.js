@@ -27,13 +27,14 @@ class CourseSchedule extends React.Component {
     handleCollapse() {
         this.setState((prevState) => ({
             open: !prevState.open
-        })
-        )
+        }))
     }
 
     render() {
 
-        let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
+        let arrowIcon = this.state.open ? 
+        <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
+        
         const currentSemList = this.state.courseSchedule.currentSem.map(course => {
             return (
                 <CourseScheduleEntry {...course} />
@@ -44,11 +45,13 @@ class CourseSchedule extends React.Component {
                 <CourseScheduleEntry {...course} />
             )
         })
+
         let noCourses = (
             <h5 className="none-scheduled">
                 This course is not scheduled for this semester
             </h5>
         )
+
         let currentSem = (
             <table className='table table-hover table-responsive schedule-table'>
                 <thead>
@@ -119,7 +122,6 @@ class CourseSchedule extends React.Component {
                     </TabPanel>
                 </div>
             </div>
-
         )
 
         return (
@@ -137,7 +139,6 @@ class CourseSchedule extends React.Component {
             </div>
         )
     }
-
 }
 
 export default CourseSchedule;

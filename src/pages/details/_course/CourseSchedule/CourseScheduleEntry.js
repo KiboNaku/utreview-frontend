@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 function CourseScheduleEntry(props) {
+
     let prof = null
     if(props.profId !== null){
         const profPath = props.profFirst.toLowerCase().replace(" ", "") + "_" + props.profLast.toLowerCase().replace(" ", "")
@@ -24,6 +25,7 @@ function CourseScheduleEntry(props) {
         if (course.topicNum >= -1) {
             coursePath += "_" + course.topicNum.toString()
         }
+
         return (
             <li>
                 <Link
@@ -63,8 +65,8 @@ function CourseScheduleEntry(props) {
             let locationLink = `https://utdirect.utexas.edu/apps/campus/buildings/nlogon/maps/UTM/${buildingName}/`
             location = <a className="utcolor" href={locationLink} rel="noopener noreferrer" target="_blank"> {props.location} </a>
         }
-        
     }
+    
     return (
         <tr key={props.id}>
             <td>

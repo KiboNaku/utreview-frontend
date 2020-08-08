@@ -73,6 +73,7 @@
 .course-name {
 	font-size: 28px;
 	font-weight: bold;
+	z-index: 0;
 }
 
 .semester-date {
@@ -195,8 +196,4 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
-}
-
-.review-sort{
-	z-index: 1;
 }

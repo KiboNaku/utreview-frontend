@@ -1,12 +1,16 @@
 import React from 'react';
 import './ProfInfo.css'
+import './../../_course/CourseInfo/UserRatings.scss'
+
 function ProfInfo(props) {
 	return (
-		<div className="profInfo">
-			<div className="course-code"> {props.firstName} {props.lastName} </div>
+		<div className="prof-info">
+			<div className="prof-name"> {props.firstName} {props.lastName} </div>
 			<hr className="course-name-underline"></hr>
-			<h5>Median Grade: {props.medianGrade !== null ? props.medianGrade : "N/A"}</h5>
-			<a className="utcolor" role="button" onClick={props.handleScrollToReview}>View Reviews</a>
+			<div className="median-grade">Median Grade: {props.medianGrade !== null ? props.medianGrade : "N/A"}</div>
+			<div className="view-reviews-prof-wrapper" align="center">
+				<a class="view-reviews-prof" role="button" onClick={props.handleScrollToReview}>View Reviews</a>
+			</div>
 		</div>
 	);
 }
