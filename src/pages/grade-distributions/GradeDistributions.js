@@ -38,7 +38,6 @@ class GradeDistributions extends Component {
             })
             .then(response => {
                 this.setState({loading: false})
-                console.log(response.data)
                 if (response.data === null) {
                     this.setState({ noResults: true, loading: false })
                 } else {
@@ -85,7 +84,7 @@ class GradeDistributions extends Component {
                     text: this.props.course.courseDept + " " + this.props.course.courseNum
                 },
                 subtitle: {
-                    text: "Aggregate" + " - " + this.props.prof.firstName + " " + this.props.prof.lastName
+                    text: this.props.prof.firstName + " " + this.props.prof.lastName
                 },
                 legend: {
                     enabled: false

@@ -28,7 +28,7 @@ function ReviewSummary(props) {
                     <span>{props.data.semester.semester} {props.data.semester.year}</span>
                 </p>
 
-                <p className="update-date"><small>Last updated: {props.data.date}</small></p>
+                <p className="update-date"><small>Last updated: {props.data.timeAgo}</small></p>
 
                 <ReviewDetails
                     data={props.data}

@@ -206,6 +206,10 @@
     .course-stats:before {
         background-image: none;
     }
+    
+    .course-ratings {
+        max-width: 60%;
+    }
 
     .course-info{
         margin-left: 4%;
@@ -248,7 +252,7 @@
         flex-direction: row;
     }
 
-    .CourseRatings{
+    .course-ratings{
         margin: 0 auto;
         margin-top: 50px;
         justify-content: center;
@@ -335,7 +339,7 @@
         margin-top: 20px;
         margin-bottom: 15px;
     }
-    .CourseRatings{
+    .course-ratings{
         border: 3px outset #308ccace;
         background-color: rgba(255, 255, 255, 0.021);
         padding: 30px;
