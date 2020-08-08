@@ -268,6 +268,7 @@ class Profile extends Component {
             if (res.error) {
                 alert(res.error)
             } else {
+                this.setState({loaded: false})
                 this.componentDidMount()
             }
         })
