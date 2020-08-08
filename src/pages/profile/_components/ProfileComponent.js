@@ -40,6 +40,8 @@ function ProfileComponent(props) {
 					
 					{props.data.loading ? loading : <ReviewList editReview={props.editReview} 
 							deleteReview={props.deleteReview} reviewList={props.data.reviews}/>}
+					{props.data.uploadedCourses ? <UserCourses /> : uploadCourses}
+					<UploadCourses />
 				</div>
 			</div>
 		</div>

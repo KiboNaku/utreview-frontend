@@ -20,6 +20,7 @@ class NavBar extends Component {
     }
 
     render() {
+        console.log(this.props.searchValue)
 
         /**
          * Properties:
@@ -98,7 +99,7 @@ class NavBar extends Component {
                         </div>
 
                         <div className={showSearch ? "search-wrapper mr-auto" : "d-none"} >
-                            <SearchBar />
+                            <SearchBar searchValue={this.props.searchValue} />
                         </div>
                         <div className="ml-auto">
 
@@ -125,7 +126,7 @@ class NavBar extends Component {
                     <div className="d-none d-md-block px-3 mx-3"></div>
 
                     <div className={showSearch ? "search-wrapper mr-auto" : "d-none"} >
-                        <SearchBar />
+                        <SearchBar searchValue={this.props.searchValue}/>
                     </div>
 
                     <div className="ml-auto" >

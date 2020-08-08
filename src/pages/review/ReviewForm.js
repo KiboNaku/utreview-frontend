@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { getCourses, getProfs, getSemesters, getTopics, getCourseId, getProfId } from './_utils/ReviewFormFunctions'
 import { checkDuplicate, newReview, editReview } from './_utils/ReviewFunctions'
 import Error from './../_utils/Error'
+import NotFound from './../not-found/NotFound'
 import jwt_decode from 'jwt-decode'
 import ReviewFormComponent from './_components/ReviewFormComponent'
 import Loading from './../_utils/Loading.js'
@@ -474,6 +475,12 @@ class ReviewForm extends Component {
 		if (this.state.oldReview !== null) {
 			return
 		}
+		const token = localStorage.usertoken
+        if(token === null || token === undefined){
+            this.props.history.push('/')
+            $('#login-modal').modal('show')
+            return
+        }
 		if (this.props.location.state === undefined) {
 
 			let urlObject = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
@@ -924,7 +931,7 @@ class ReviewForm extends Component {
 
 		return (
 			<div>
-				{this.state.invalidReview ? invalidReview : (loaded ? content : loading)}
+				{this.state.invalidReview ? <NotFound /> : (loaded ? content : loading)}
 				<Error message={this.state.errorMessage} id="reviewForm" title="Error" />
 			</div>
 		);
