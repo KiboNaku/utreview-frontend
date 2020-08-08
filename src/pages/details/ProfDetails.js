@@ -1,4 +1,5 @@
 import React from 'react';
+import NotFound from './../not-found/NotFound'
 import ProfInfo from './_prof/ProfInfo/ProfInfo';
 import ProfRatings from './_prof/ProfInfo/ProfRatings';
 import ProfCourses from './_prof/ProfCourses/ProfCourses';
@@ -250,7 +251,6 @@ class ProfDetails extends React.Component {
             }
             getProfId(profString).then(res => {
                 if (res.error) {
-                    alert(res.error)
                     this.setState({validProf: false})
                 } else {
                     profId = res.profId
@@ -270,7 +270,6 @@ class ProfDetails extends React.Component {
                 }
                 getProfId(profString).then(res => {
                     if (res.error) {
-                        alert(res.error)
                         this.setState({validProf: false})
                     } else {
                         profId = res.profId
@@ -354,7 +353,7 @@ class ProfDetails extends React.Component {
         return (
             <main className="prof-details-main">
                 <div className="main-sub">
-                {this.state.validProf ? (this.state.loaded ? content : loading): invalidProf}
+                {this.state.validProf ? (this.state.loaded ? content : loading): <NotFound />}
                 </div>
 
             </main>
