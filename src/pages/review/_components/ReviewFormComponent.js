@@ -40,7 +40,8 @@ function ReviewFormComponent(props) {
                 placeholder="Topic"
                 isClearable={true}
                 isSearchable={true}
-                isDisabled={props.data.oldReview || props.data.order === 0 ? true : false}
+                isLoading={!props.data.topic.loaded}
+                isDisabled={!props.data.topic.loaded || props.data.oldReview || props.data.order === 0 ? true : false}
                 value={props.data.topic.id !== null ?
                     props.data.topicList.filter(topic => topic.id === props.data.topic.id) : null}
             />
@@ -66,7 +67,8 @@ function ReviewFormComponent(props) {
                     placeholder="Course"
                     isClearable={true}
                     isSearchable={true}
-                    isDisabled={props.data.oldReview || props.data.order === 0 ? true : false}
+                    isLoading={!props.data.course.loaded}
+                    isDisabled={!props.data.course.loaded || props.data.oldReview || props.data.order === 0 ? true : false}
                     value={props.data.course.id !== null ?
                         props.data.courseList.filter(course => course.id === props.data.course.id) : null}
                 />
@@ -93,7 +95,8 @@ function ReviewFormComponent(props) {
                 placeholder="Professor"
                 isClearable={true}
                 isSearchable={true}
-                isDisabled={props.data.oldReview || props.data.order === 1 ? true : false}
+                isLoading={!props.data.prof.loaded}
+                isDisabled={!props.data.prof.loaded || props.data.oldReview || props.data.order === 1 ? true : false}
                 value={props.data.prof.id !== null ?
                     props.data.profList.filter(prof => prof.id === props.data.prof.id) : null}
             />

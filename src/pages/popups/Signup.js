@@ -13,6 +13,7 @@ class Signup extends Component {
             loading: false,
             verifyEmail: false,
             majorList: null,
+            majorListLoaded: false,
         }
 
         this.onChange = this.onChange.bind(this)
@@ -73,7 +74,7 @@ class Signup extends Component {
                         label: data[i]['name']
                     })
                 }
-                this.setState({ majorList: list })
+                this.setState({ majorList: list, majorListLoaded: true })
             }
         })
     }
