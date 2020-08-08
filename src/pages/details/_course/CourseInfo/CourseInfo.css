@@ -206,6 +206,10 @@
     .course-stats:before {
         background-image: none;
     }
+    
+    .course-ratings {
+        max-width: 60%;
+    }
 
     .course-info{
         margin-left: 4%;
