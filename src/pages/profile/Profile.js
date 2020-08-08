@@ -18,8 +18,8 @@ import axios from 'axios'
 
 
 class Profile extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             firstName: '',
             lastName: '',
@@ -97,6 +97,11 @@ class Profile extends Component {
     componentDidMount() {
 
         const token = localStorage.usertoken
+        if(token === null || token === undefined){
+            this.props.history.push('/')
+            $('#login-modal').modal('show')
+            return
+        }
         const decoded = jwt_decode(token)
         this.setState(prevState => ({
             firstName: decoded.identity.first_name,

@@ -1,4 +1,5 @@
 import React from 'react';
+import NotFound from './../not-found/NotFound'
 import CourseInfo from './_course/CourseInfo/CourseInfo';
 import CourseTopics from './_course/CourseInfo/CourseTopics';
 import CourseRatings from './_course/CourseInfo/CourseRatings';
@@ -283,7 +284,6 @@ class CourseDetails extends React.Component {
             }
             getCourseId(courseString).then(res => {
                 if (res.error) {
-                    alert(res.error)
                     this.setState({validCourse: false})
                 } else {
                     courseId = res.courseId
@@ -303,7 +303,6 @@ class CourseDetails extends React.Component {
                 }
                 getCourseId(courseString).then(res => {
                     if (res.error) {
-                        alert(res.error)
                         this.setState({validCourse: false})
                     } else {
                         courseId = res.courseId
@@ -403,7 +402,7 @@ class CourseDetails extends React.Component {
         return (
             <main className="course-details-main">
                 <div className="main-sub">
-                    {this.state.validCourse ? (this.state.loaded ? content : loading): invalidCourse}
+                    {this.state.validCourse ? (this.state.loaded ? content : loading): <NotFound />}
                 </div>
 
             </main>
