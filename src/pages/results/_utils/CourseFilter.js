@@ -44,6 +44,8 @@ function CourseFilter(props) {
 
                             return false;
                         })}
+                        isLoading={!props.deptsLoaded}
+                        isDisabled={!props.deptsLoaded}
                         placeholder="Select"
                         isClearable={true}
                         isSearchable={true}
