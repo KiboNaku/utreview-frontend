@@ -29,7 +29,7 @@ function CourseRatings(props) {
 
     const numRatings = props.numRatings
     return (
-        <div className="CourseRatings">
+        <div className="course-ratings">
             <h3 className="rating-heading"> User Ratings ({numRatings})</h3>
             <div className="rating">
                 <p className="p-rating"> Liked: {`${percentLiked}%`} </p>
