@@ -9,7 +9,7 @@ function ReviewDetails(props) {
 				<div className="modal-content">
 					<ModalHeader text="Details" />
 					<div className="modal-body">
-						<h5>Last updated: {props.data.date} </h5>
+						<h5>Last updated: {props.data.timeAgo} </h5>
 						<h5> Grade: {props.data.grade !== null ? props.data.grade : "N/A"}</h5>
 						<table className='table table-borderless review-content'>
 							<thead>

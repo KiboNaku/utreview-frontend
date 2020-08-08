@@ -24,7 +24,7 @@ function ResultsComponent(props) {
     let profLabel = "Professors " + numProfResults
     
     let minNumRatings = [0, 1, 5, 10]
-    let filter = <CourseFilter filter={props.courses.filter} minNumRatings={minNumRatings} depts={props.depts} handleFilterChange={props.handleFilterChange} />
+    let filter = <CourseFilter filter={props.courses.filter} minNumRatings={minNumRatings} deptsLoaded={props.deptsLoaded} depts={props.depts} handleFilterChange={props.handleFilterChange} />
     if(props.tabIndex === 1){
         filter = <ProfFilter  filter={props.profs.filter} minNumRatings={minNumRatings} depts={props.depts} handleFilterChange={props.handleFilterChange} />
     }

@@ -50,6 +50,7 @@
 	border-radius: 10px;
 	height: 235px;
 	width: 200px;
+	z-index: 0;
 }
 
 .profile-review-wrapper:hover {
@@ -185,4 +186,17 @@
 
 .other-major-label{
 	padding-left: 10px;
+}
+.btn-upload-courses{
+	margin-bottom: 20px;
+}
+
+.upload-courses-body{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.review-sort{
+	z-index: 1;
 }

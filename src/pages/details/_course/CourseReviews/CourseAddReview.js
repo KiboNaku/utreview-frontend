@@ -15,8 +15,10 @@ function CourseAddReview(props) {
                     courseId: props.id,
                     courseDept: props.courseDept,
                     courseNum: props.courseNum,
+                    courseTitle: props.courseTitle,
                     topicId: props.topicId,
-                    parentId: props.parentId
+                    parentId: props.parentId,
+                    topicNum: props.topicNum,
                 }
             }}
         >
