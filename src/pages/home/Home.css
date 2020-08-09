@@ -638,7 +638,8 @@
 
     .floating-box-content {
         margin-top: 15px;
-        margin-left: 35px;
+        margin-left: 15px;
+        margin-right: 15px;
     }
     
     .floating-box-text {
@@ -773,7 +774,7 @@
 
     .floating-box-content {
         margin-top: 15px;
-        margin-left: 28px;
+        margin-left: 22px;
     }
     
     .floating-box-text {
