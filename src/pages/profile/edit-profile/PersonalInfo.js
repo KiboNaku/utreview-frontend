@@ -173,6 +173,7 @@ function PersonalInfo(props) {
                                 <MajorSelect
                                     value={formik.values.major}
                                     options={props.data.majorList}
+                                    isLoading={!props.data.majorListLoaded}
                                     onChange={formik.setFieldValue}
                                     onBlur={formik.setFieldTouched}
                                     error={formik.errors.topics}
