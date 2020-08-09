@@ -26,12 +26,12 @@ import Rating from '@material-ui/lab/Rating';
 function CourseReviewEntry(props) {
     let thumbsIcon = props.review.liked ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} />
-
     let likeIcon = props.review.likePressed ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
     let dislikeIcon = props.review.dislikePressed ?
         <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
     let reportIcon = <FlagRoundedIcon style={{ fill: 'gray' }} />
+    
     const useStyles = makeStyles((theme) => ({
         large: {
             width: theme.spacing(8),
@@ -101,6 +101,7 @@ function CourseReviewEntry(props) {
     )
 
     const profPath = props.review.profFirst.toLowerCase().replace(" ", "") + "_" + props.review.profLast.toLowerCase().replace(" ", "")
+    
     return (
         <div className="list-group-item review-list-item">
             <div className="course-review-entry">

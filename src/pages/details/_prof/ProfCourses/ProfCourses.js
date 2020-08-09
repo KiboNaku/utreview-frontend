@@ -18,8 +18,7 @@ class ProfCourses extends React.Component {
     handleCollapse() {
         this.setState((prevState) => ({
             open: !prevState.open
-        })
-        )
+        }))
     }
 
     render() {

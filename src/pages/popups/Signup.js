@@ -14,10 +14,50 @@ class Signup extends Component {
             verifyEmail: false,
             majorList: null,
             majorListLoaded: false,
+            isLogined: false,
+            accessToken: ''
         }
 
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.loginGoogle = this.loginGoogle.bind(this);
+        this.handleLoginFailureGoogle = this.handleLoginFailureGoogle.bind(this);
+        this.logoutGoogle = this.logoutGoogle.bind(this);
+        this.handleLogoutFailureGoogle = this.handleLogoutFailureGoogle.bind(this);
+    }
+
+    loginGoogle(response) {
+        console.log(response.profileObj)
+        if (response.accessToken) {
+            this.setState({
+                isLogined: true,
+                accessToken: response.accessToken
+            });
+        }
+        let email = response.profileObj.email
+        // if(/\S+@utexas.edu+/.test(email)) {
+        //     console.log('is ut email')
+        // }
+        let values = {
+            email: email.substring(0, email.indexOf("@")),
+            password: null
+        }
+        this.onSubmit(values);
+    }
+
+    logoutGoogle(response) {
+        this.setState({
+            isLogined: false,
+            accessToken: ''
+        });
+    }
+
+    handleLoginFailureGoogle(response) {
+        alert('Failed to log in')
+    }
+
+    handleLogoutFailureGoogle(response) {
+        alert('Failed to log out')
     }
 
     onChange(e) {
@@ -27,12 +67,12 @@ class Signup extends Component {
     onSubmit(values) {
         let major = values.major
         let otherMajor = values.otherMajor
-        if(values.showOtherMajor){
+        if (values.showOtherMajor) {
             major = null
-        }else if(values.noMajor){
+        } else if (values.noMajor) {
             major = null
             otherMajor = null
-        }else{
+        } else {
             otherMajor = null
         }
         const newUser = {
@@ -83,9 +123,17 @@ class Signup extends Component {
 
         return (
             <div>
-                <SignupComponent onSubmit={this.onSubmit} onChange={this.onChange}
-                    handleMajorChange={this.handleMajorChange} handleShowOtherMajor={this.handleShowOtherMajor} 
-                    data={this.state} />
+                <SignupComponent
+                    onSubmit={this.onSubmit}
+                    onChange={this.onChange}
+                    handleMajorChange={this.handleMajorChange}
+                    handleShowOtherMajor={this.handleShowOtherMajor}
+                    loginGoogle={this.loginGoogle}
+                    handleLoginFailureGoogle={this.handleLoginFailureGoogle}
+                    logoutGoogle={this.logoutGoogle}
+                    handleLogoutFailureGoogle={this.handleLogoutFailureGoogle}
+                    data={this.state}
+                />
             </div>
         )
     }
