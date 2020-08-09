@@ -1,19 +1,34 @@
 import React from 'react'
+import { GoogleLogin, GoogleLogout } from 'react-google-login'
 
-function GoogleButton(props) {
-    return (
-        // <button className="btn btn-lg btn-dark btn-block font-weight-bold" type="submit">
-        //     <span className="fab fa-google px-3"></span>
-        //     <span>{props.text}</span>
-        // </button>
-        
-        <div className="g-signin2" data-theme="dark" data-width="250" data-height="50px" data-longtitle="true" data-onsuccess="onSignIn"></div>
-    )
+
+const CLIENT_ID = '879307292662-75ogu33tfvgqedodsagga1jni88ueub4.apps.googleusercontent.com'
+
+class GoogleButton extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+    render() {
+        return (
+            <div>
+                {this.props.data.isLogined ?
+                    <GoogleLogout
+                        clientId={CLIENT_ID}
+                        buttonText='Logout'
+                        onLogoutSuccess={this.props.logoutGoogle}
+                        onFailure={this.props.handleLogoutFailureGoogle}
+                    /> : <GoogleLogin
+                        clientId={CLIENT_ID}
+                        buttonText={this.props.text}
+                        onSuccess={this.props.loginGoogle}
+                        onFailure={this.props.handleLoginFailureGoogle}
+                    />
+                }
+            </div>
+        )
+    }
 }
 
-function onSignIn(user) {
-    let profile = user.getBasicProfile()
-    console.log(profile.getName())
-}
 
 export default GoogleButton

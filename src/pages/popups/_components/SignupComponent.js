@@ -22,7 +22,7 @@ function invalidInputStyle(errors, touched, fieldName) {
         return {
             border: '1px solid red'
         }
-    }else{
+    } else {
         return null
     }
 }
@@ -200,7 +200,7 @@ function SignupComponent(props) {
                                         type="text"
                                         className="form-control"
                                         placeholder="John"
-                                        style={formik.errors.firstName && formik.touched.firstName ? {"border": '1px solid red'} : null}
+                                        style={formik.errors.firstName && formik.touched.firstName ? { "border": '1px solid red' } : null}
                                     />
                                     <ErrorMessage component="div" className="text-danger" name="firstName" />
                                 </div>
@@ -243,7 +243,7 @@ function SignupComponent(props) {
                                     onBlur={formik.setFieldTouched}
                                     error={formik.errors.topics}
                                     touched={formik.touched.topics}
-                                    isLoading={!props.majorListLoaded}
+                                    isLoading={!props.data.majorListLoaded}
                                     style={invalidInputStyle(formik.errors, formik.touched, 'major')}
                                     disabled={formik.values.showOtherMajor || formik.values.noMajor}
                                 />
@@ -320,8 +320,15 @@ function SignupComponent(props) {
                             <h5 style={{marginBottom: "60px"}}><strong>OR</strong></h5>
                         </div>
 
-                        <form className="mb-3" style={{position: "absolute", left: "50%", marginLeft: "-125px", marginTop: "-50px"}}>
-                            <GoogleButton text="Sign In with Google" />
+                        <form className="mb-3">
+                            <GoogleButton
+                                loginGoogle={props.loginGoogle}
+                                handleLoginFailureGoogle={props.handleLoginFailureGoogle}
+                                logoutGoogle={props.logoutGoogle}
+                                handleLogoutFailureGoogle={props.handleLogoutFailureGoogle}
+                                data={props.data}
+                                text='Sign Up'
+                            />
                         </form>
                     </div>
 
@@ -336,7 +343,7 @@ function SignupComponent(props) {
                         </label>
                     </div>
                 </div>
-            </div >
+            </div>
         </div >
     )
 }
