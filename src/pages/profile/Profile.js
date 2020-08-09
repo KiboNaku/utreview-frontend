@@ -30,6 +30,7 @@ class Profile extends Component {
             profilePicList: [],
             reviews: [],
             majorList: [],
+            majorListLoaded: false,
             loaded: false,
             uploadedCourses: false,
             userCourses: [
@@ -126,7 +127,7 @@ class Profile extends Component {
                         label: data[i]['name']
                     })
                 }
-                this.setState({ majorList: list })
+                this.setState({ majorList: list , majorListLoaded: true})
             }
         })
 
