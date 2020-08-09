@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Prompt } from 'react-router'
 import qs from 'qs'
 import { withRouter } from 'react-router-dom'
 import { getCourses, getProfs, getSemesters, getTopics, getCourseId, getProfId } from './_utils/ReviewFormFunctions'
@@ -16,6 +17,7 @@ class ReviewForm extends Component {
 		super(props);
 
 		this.state = {
+			pathname: window.location.pathname + window.location.search,
 			courseList: [],
 			topicList: [],
 			semesterList: [
@@ -108,6 +110,15 @@ class ReviewForm extends Component {
 			invalidReview: false,
 			errorMessage: ''
 		}
+
+		this.beforeunload.bind(this)
+		this.isBackButtonClicked = false
+
+		const token = localStorage.usertoken
+        if(token === null || token === undefined){
+            props.history.push('/')
+            $('#login-modal').modal('show')
+        }
 	}
 
 	validate = () => {
@@ -475,16 +486,29 @@ class ReviewForm extends Component {
 
 	}
 
+	beforeunload(e) {
+
+		e.preventDefault();
+		e.returnValue = true;
+		
+	}
+
+	onBackButtonEvent = (e) => {
+		e.preventDefault();
+	}
+
+	componentWillUnmount(){
+		window.removeEventListener("beforeunload", this.beforeunload);
+		window.removeEventListener("popstate", this.onBackButtonEvent)
+	}
+
 	componentDidMount() {
+		window.addEventListener("beforeunload", this.beforeunload);
+		window.addEventListener("popstate", this.onBackButtonEvent)
 		if (this.state.oldReview !== null) {
 			return
 		}
-		const token = localStorage.usertoken
-        if(token === null || token === undefined){
-            this.props.history.push('/')
-            $('#login-modal').modal('show')
-            return
-        }
+
 		if (this.props.location.state === undefined) {
 
 			let urlObject = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
@@ -937,6 +961,22 @@ class ReviewForm extends Component {
 
 		return (
 			<div>
+				<Prompt
+					when={true}
+					message={(location, action) => {
+						console.log(action)
+						console.log(location)
+						console.log(this.state.pathname)
+						// if(location.pathname + location.search === this.state.pathname){
+						// 	return true
+						// }
+						// if (action === 'POP') {
+						// 	this.props.history.push(this.state.pathname)
+						// }
+						return 'You have unsaved changes. Are you sure you want to leave?'
+						
+					  }}
+				/>
 				{this.state.invalidReview ? <NotFound /> : (content)}
 				<Error message={this.state.errorMessage} id="reviewForm" title="Error" />
 			</div>
