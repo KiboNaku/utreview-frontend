@@ -33,8 +33,7 @@
     margin-right: 50px;
     margin-left: 85px;
     margin-top: -10px;
-    max-width: 48%;
-    min-width: 42%;
+    width: 42%;
 }
 
 .info-header{
@@ -140,7 +139,7 @@
         margin-left: 50px;
         margin-top: 20px;
         margin-bottom: 50px;
-        width: 100%;
+        width: 60%;
     }
 
     .view-reviews-prof-wrapper {
@@ -179,8 +178,7 @@
         margin-right: 50px;
         margin-left: 50px;
         margin-top: 50px;
-        max-width: 80%;
-        min-width: 80%;
+        width: 80%;
     }
     
     .userRatings{

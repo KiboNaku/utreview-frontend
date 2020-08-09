@@ -7,7 +7,7 @@ function GoogleButton(props) {
         //     <span>{props.text}</span>
         // </button>
         
-        <div className="g-signin2" data-onsuccess="onSignIn"></div>
+        <div className="g-signin2" data-theme="dark" data-width="250" data-height="50px" data-longtitle="true" data-onsuccess="onSignIn"></div>
     )
 }
 
