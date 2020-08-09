@@ -12,7 +12,7 @@ function invalidInputStyle(errors, touched, fieldName) {
         return {
             border: '1px solid red'
         }
-    }else{
+    } else {
         return null
     }
 }
@@ -32,7 +32,7 @@ function LoginComponent(props) {
                     email: Yup.string()
                         .test('Check valid email', 'An account does not exist for this email',
                             function (value) {
-                                if(value === undefined){
+                                if (value === undefined) {
                                     return true
                                 }
                                 return new Promise((resolve, reject) => {
@@ -54,7 +54,7 @@ function LoginComponent(props) {
                     password: Yup.string()
                         .test('Check valid password', 'Invalid email/password combination',
                             function (value) {
-                                if(value === undefined){
+                                if (value === undefined) {
                                     return true
                                 }
                                 return new Promise((resolve, reject) => {
@@ -112,8 +112,8 @@ function LoginComponent(props) {
                             </div>
 
                             <span className="forgot-password-text center" type="button" data-toggle="modal" data-target="#forgot-password-modal">
-                                    <a data-dismiss="modal" data-toggle="modal" data-target="#forgot-password-modal" className="utcolor"><p className="center">Forgot Password?</p></a>
-                                </span>
+                                <a data-dismiss="modal" data-toggle="modal" data-target="#forgot-password-modal" className="utcolor"><p className="center">Forgot Password?</p></a>
+                            </span>
 
                             <button className="btn btn-lg btn-utcolor btn-block mt-2 font-weight-bold" type="submit"> Log in </button>
 
@@ -145,12 +145,18 @@ function LoginComponent(props) {
                         <LoginForm />
 
                         <div className="text-center my-3">
-                            <h5><strong>OR</strong></h5>
+                            <h5 style={{marginBottom: "60px"}}><strong>OR</strong></h5>
                         </div>
 
-                        <form className="mb-3">
-                            {/* <GoogleButton text="Log In with Google" /> */}
-                            <GoogleButton />
+                        <form className="mb-3" style={{position: "absolute", left: "50%", marginLeft: "-90px", marginTop: "-50px"}}>
+                            <GoogleButton
+                                loginGoogle={props.loginGoogle}
+                                handleLoginFailureGoogle={props.handleLoginFailureGoogle}
+                                logoutGoogle={props.logoutGoogle}
+                                handleLogoutFailureGoogle={props.handleLogoutFailureGoogle}
+                                data={props.data}
+                                text='Login with Google'
+                            />
                         </form>
                     </div>
 

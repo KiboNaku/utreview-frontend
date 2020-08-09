@@ -95,6 +95,7 @@ class NavBar extends Component {
                         <div className="navbar-brand" className={"font-weight-bold float-left align-self-center" + (showSearch && " d-none d-md-block")}>
                             <Link className={(!showSearch && "big-brand-txt ") + "px-2"} to="/">
                                 UT Review
+                                
                             </Link>
                         </div>
 
@@ -120,6 +121,7 @@ class NavBar extends Component {
                     <div className={"navbar-brand font-weight-bold float-left align-self-center " + (showSearch && "d-none d-sm-block")}>
                         <Link className={(showSearch ? "brand-txt" : "big-brand-txt") + " px-2"} to="/">
                             UT Review
+                            
                         </Link>
                     </div>
 

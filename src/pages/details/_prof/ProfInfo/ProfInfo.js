@@ -5,7 +5,7 @@ import './../../_course/CourseInfo/UserRatings.scss'
 function ProfInfo(props) {
 	return (
 		<div className="prof-info">
-			<div className="prof-name"> {props.firstName} {props.lastName} </div>
+			<div className="prof-name-info"> {props.firstName} {props.lastName} </div>
 			<hr className="course-name-underline"></hr>
 			<div className="median-grade">Median Grade: {props.medianGrade !== null ? props.medianGrade : "N/A"}</div>
 			<div className="view-reviews-prof-wrapper" align="center">
