@@ -4,6 +4,7 @@ import './CourseInfo.css'
 import './UserRatings.scss'
 
 function CourseInfo(props) {
+	
 	let parentPath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
 	parentPath += "_0"
 	let parentTopic = (
@@ -21,6 +22,7 @@ function CourseInfo(props) {
 			</Link>
 		</div>
 	)
+
 	return (
 		<div className="course-info">
 			<div className="course-code"> {props.courseDept} {props.courseNum} </div>
