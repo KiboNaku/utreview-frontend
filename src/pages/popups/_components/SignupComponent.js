@@ -243,7 +243,7 @@ function SignupComponent(props) {
                                     onBlur={formik.setFieldTouched}
                                     error={formik.errors.topics}
                                     touched={formik.touched.topics}
-                                    isLoading={!props.majorListLoaded}
+                                    isLoading={!props.data.majorListLoaded}
                                     style={invalidInputStyle(formik.errors, formik.touched, 'major')}
                                     disabled={formik.values.showOtherMajor || formik.values.noMajor}
                                 />
