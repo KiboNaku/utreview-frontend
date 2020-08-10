@@ -33,8 +33,7 @@
     margin-right: 50px;
     margin-left: 85px;
     margin-top: -10px;
-    max-width: 48%;
-    min-width: 42%;
+    width: 48%;
 }
 
 .course-name-underline {
@@ -194,7 +193,7 @@
 
 @media screen and (max-width: 1220px) { /* adjustment for user rating block */
     .course-info{
-        max-width: 42%;
+        width: 42%;
     }
 }
 
