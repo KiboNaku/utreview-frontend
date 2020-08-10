@@ -108,9 +108,9 @@ class ReviewForm extends Component {
 			duplicateReview: false,
 			oldReview: props.location.state === undefined || props.location.state.review === undefined ? null : props.location.state.review,
 			invalidReview: false,
-			errorMessage: ''
+			errorMessage: '',
+			submitPressed: false
 		}
-
 		this.beforeunload.bind(this)
 		this.isBackButtonClicked = false
 
@@ -170,6 +170,7 @@ class ReviewForm extends Component {
 		event.preventDefault();
 		const isValid = this.validate();
 		if (isValid) {
+			this.setState({submitPressed: true})
 			const token = localStorage.usertoken
 			const decoded = jwt_decode(token)
 
@@ -962,7 +963,7 @@ class ReviewForm extends Component {
 		return (
 			<div>
 				<Prompt
-					when={true}
+					when={!this.state.submitPressed}
 					message={(location, action) => {
 						console.log(action)
 						console.log(location)
