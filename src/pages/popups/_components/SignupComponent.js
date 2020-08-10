@@ -237,6 +237,7 @@ function SignupComponent(props) {
 
                             <div className="form-group my-3">
                                 <MajorSelect
+                                    required={true}
                                     value={formik.values.major}
                                     options={props.data.majorList}
                                     onChange={formik.setFieldValue}
@@ -327,7 +328,7 @@ function SignupComponent(props) {
                                 logoutGoogle={props.logoutGoogle}
                                 handleLogoutFailureGoogle={props.handleLogoutFailureGoogle}
                                 data={props.data}
-                                text='Sign Up'
+                                text='Sign Up with Google'
                             />
                         </form>
                     </div>

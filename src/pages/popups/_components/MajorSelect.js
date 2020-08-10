@@ -22,13 +22,13 @@ class MajorSelect extends React.Component {
         }
         return (
             <div>
-                <label htmlFor="major">Major<small className='text-danger'> *</small></label>
+                <label htmlFor="major">Major {this.props.required ? <small className='text-danger'> *</small> : ''}</label>
                 <Select
                     className="basic-single"
                     classNamePrefix="select"
                     name="major"
                     options={this.props.options}
-                    styles={this.props.style !== null ? customStyles: undefined}
+                    styles={this.props.style !== null ? customStyles : undefined}
                     onChange={this.handleChange}
                     onBlur={this.handleBlur}
                     value={this.props.value}
