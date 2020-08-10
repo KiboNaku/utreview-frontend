@@ -22,7 +22,7 @@ function invalidInputStyle(errors, touched, fieldName) {
         return {
             border: '1px solid red'
         }
-    }else{
+    } else {
         return null
     }
 }
@@ -46,29 +46,29 @@ function ReviewInfo(props) {
                 }}
                 validationSchema={Yup.object({
                     courseApproval: Yup.boolean()
-                    .required('Required')
-                    .nullable(),
+                        .required('Required')
+                        .nullable(),
                     courseDifficulty: Yup.number()
-                    .required('Required')
-                    .nullable(),
+                        .required('Required')
+                        .nullable(),
                     courseWorkload: Yup.number()
-                    .required('Required')
-                    .nullable(),
+                        .required('Required')
+                        .nullable(),
                     courseComments: Yup.number()
-                    .required('Required')
-                    .nullable(),
+                        .required('Required')
+                        .nullable(),
                     profClear: Yup.number()
-                    .required('Required')
-                    .nullable(),
+                        .required('Required')
+                        .nullable(),
                     profEngaging: Yup.number()
-                    .required('Required')
-                    .nullable(),
+                        .required('Required')
+                        .nullable(),
                     profGrading: Yup.number()
-                    .required('Required')
-                    .nullable(),
+                        .required('Required')
+                        .nullable(),
                 })}
                 onSubmit={(values, actions) => {
-                    actions.setStatus({submitted: true})
+                    actions.setStatus({ submitted: true })
                     props.onSubmit(values)
                 }}
             >
@@ -135,6 +135,7 @@ function ReviewInfo(props) {
 
                             <div className="form-group my-3">
                                 <MajorSelect
+                                    required={true}
                                     value={formik.values.major}
                                     options={props.data.majorList}
                                     onChange={formik.setFieldValue}
@@ -163,18 +164,18 @@ function ReviewInfo(props) {
 
                             <div className='modal-footer d-block' align='center'>
                                 {formik.dirty ? null : success}
-								<button
-									type='submit'
-									className='btn btn-outline-dark font-weight-bold'
-									>
-									Apply </button>
-								<button
-									type='button'
+                                <button
+                                    type='submit'
+                                    className='btn btn-outline-dark font-weight-bold'
+                                >
+                                    Apply </button>
+                                <button
+                                    type='button'
                                     className='btn btn-outline-dark font-weight-bold'
                                     onClick={formik.handleReset}
-                                    >
-									Cancel </button>
-							</div>
+                                >
+                                    Cancel </button>
+                            </div>
 
                         </form>
                     )

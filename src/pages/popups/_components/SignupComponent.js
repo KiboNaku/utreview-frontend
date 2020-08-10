@@ -237,6 +237,7 @@ function SignupComponent(props) {
 
                             <div className="form-group my-3">
                                 <MajorSelect
+                                    required={true}
                                     value={formik.values.major}
                                     options={props.data.majorList}
                                     onChange={formik.setFieldValue}
