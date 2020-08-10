@@ -23,6 +23,7 @@ import VerifyPassword from './pages/popups/VerifyPassword';
 import NotFound from './pages/not-found/NotFound'
 import ContactUs from './pages/contact-us/ContactUs';
 import ReportBug from './pages/popups/ReportBug';
+import CompleteProfile from './pages/popups/CompleteProfile';
 
 class App extends Component{
 
@@ -86,6 +87,7 @@ class App extends Component{
 					<ForgotPassword />
 					<VerifyPassword />
 					<ReportBug />
+					<CompleteProfile />
 				</div>
 			</Router>
 		);
