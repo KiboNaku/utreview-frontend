@@ -6,12 +6,12 @@ import GridListTile from '@material-ui/core/GridListTile';
 import $ from './../../../node_modules/jquery'
 import ProfileComponent from './_components/ProfileComponent'
 import ReviewSummary from './review-list/ReviewSummary'
-
+import {sendResetPassword } from './../popups/_utils/UserFunctions'
 import { SelectionPicture } from './_utils/ProfilePicture'
 import { ProfilePicModal } from './_utils/ProfilePicPopup'
 import EditProfile from './edit-profile/EditProfile'
 import { getMajor } from './../popups/_utils/UserFunctions'
-import { getProfilePictures, updateProfilePic, updatePersonalInfo, getReviews, deleteReview } from './_utils/ProfileFunctions'
+import { getProfilePictures, updateProfilePic, updatePersonalInfo, getReviews, hasPassword, deleteReview } from './_utils/ProfileFunctions'
 import Loading from './../_utils/Loading.js'
 import './Profile.css'
 import axios from 'axios'
@@ -33,6 +33,7 @@ class Profile extends Component {
             majorListLoaded: false,
             loaded: false,
             uploadedCourses: false,
+            hasPassword: false,
             userCourses: [
                 {
 
@@ -93,6 +94,7 @@ class Profile extends Component {
         this.deleteReview = this.deleteReview.bind(this)
         this.editPersonalInfo = this.editPersonalInfo.bind(this)
         this.changePassword = this.changePassword.bind(this)
+        this.setPassword = this.setPassword.bind(this)
     }
 
     componentDidMount() {
@@ -147,6 +149,14 @@ class Profile extends Component {
         const user = {
             email: decoded.identity.email
         }
+
+        hasPassword(user).then(res => {
+            if (res.error) {
+                alert(res.error)
+            } else {
+                this.setState({ hasPassword: res.hasPassword })
+            }
+        })
 
         getReviews(user).then(res => {
             if (res.error) {
@@ -238,13 +248,15 @@ class Profile extends Component {
             other_major: otherMajor
         }
 
+        this.setState(prevState => ({
+            firstName: values.firstName,
+            lastName: values.lastName,
+            major: major !== null ? values.major.value : null,
+            otherMajor: otherMajor,
+        }))
+
         updatePersonalInfo(user).then(res => {
-            this.setState(prevState => ({
-                firstName: values.firstName,
-                lastName: values.lastName,
-                major: major !== null ? values.major.value : null,
-                otherMajor: otherMajor,
-            }))
+            
             
         })
     }
@@ -275,6 +287,12 @@ class Profile extends Component {
         })
     }
 
+    setPassword(){
+        localStorage.setItem("email", this.state.email)
+        $("#verify-password-modal").modal("show");
+        sendResetPassword()
+    }
+
     render() {
         let loading = <Loading /> 
         let content = (
@@ -292,6 +310,7 @@ class Profile extends Component {
                     data={this.state}
                     editPersonalInfo={this.editPersonalInfo}
                     changePassword={this.changePassword}
+                    setPassword={this.setPassword}
                 />
             </main>
         )
