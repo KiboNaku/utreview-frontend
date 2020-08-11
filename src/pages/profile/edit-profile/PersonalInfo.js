@@ -103,9 +103,13 @@ function PersonalInfo(props) {
                             }
                         ),
                 })}
+                onReset={() => {
+                    props.handleSubmitChange(false)
+                }}
                 onSubmit={(values, actions) => {
-                    actions.setStatus({ submitted: true })
                     props.onSubmit(values)
+                    props.handleSubmitChange(true)
+                    actions.setStatus({ submitted: true })
                 }}
             >
                 {formik => {
@@ -141,6 +145,8 @@ function PersonalInfo(props) {
                             Your changes have been saved
                         </div>
                     )
+
+                    console.log(formik.dirty)
 
                     return (
                         <form onSubmit={formik.handleSubmit}>
@@ -200,7 +206,7 @@ function PersonalInfo(props) {
                             </div>
 
                             <div className='modal-footer d-block' align='center'>
-                                {formik.dirty ? null : success}
+                                {formik.dirty || !props.submitted ? null : success}
                                 <button
                                     type='submit'
                                     className='btn btn-outline-dark font-weight-bold'
