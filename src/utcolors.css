@@ -53,3 +53,8 @@ input[type="radio"].utcolor+label:before {
 input[type="radio"].utcolor:checked+label:before {
     background-color: #bf5700;
 }
+
+
+.utcolor a {
+    color: #bf5700;
+}

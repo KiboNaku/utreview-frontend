@@ -27,7 +27,7 @@ class EditProfile extends Component {
                         </div>
                         <div className="modal-body">
 
-                            <Tabs defaultActiveKey="edit-personal">
+                            <Tabs defaultActiveKey="edit-personal" className="utcolor">
                                 <Tab eventKey="edit-personal" title="Personal">
                                     <PersonalInfo {...this.props} onSubmit={this.props.editPersonalInfo}/>
                                 </Tab>
