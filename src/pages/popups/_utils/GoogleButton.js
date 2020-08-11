@@ -12,21 +12,13 @@ class GoogleButton extends React.Component {
     render() {
         return (
             <div>
-                {this.props.data.isLogined ?
-                    <GoogleLogout
-                        clientId={CLIENT_ID}
-                        buttonText='Logout'
-                        onLogoutSuccess={this.props.logoutGoogle}
-                        onFailure={this.props.handleLogoutFailureGoogle}
-                        theme="dark"
-                    /> : <GoogleLogin
-                        clientId={CLIENT_ID}
-                        buttonText={this.props.text}
-                        onSuccess={this.props.loginGoogle}
-                        onFailure={this.props.handleLoginFailureGoogle}
-                        theme="dark"
-                    />
-                }
+                <GoogleLogin
+                    clientId={CLIENT_ID}
+                    buttonText={this.props.text}
+                    onSuccess={this.props.loginGoogle}
+                    onFailure={this.props.handleLoginFailureGoogle}
+                    theme="dark"
+                />
             </div>
         )
     }
