@@ -3,7 +3,9 @@ import SignupComponent from './_components/SignupComponent'
 import { signup, getMajor } from './_utils/UserFunctions'
 import { withRouter } from 'react-router-dom'
 import $ from './../../../node_modules/jquery'
+import Error from './../_utils/Error'
 import './popups.css'
+import CompleteProfile from './CompleteProfile'
 
 class Signup extends Component {
 
@@ -15,7 +17,11 @@ class Signup extends Component {
             majorList: null,
             majorListLoaded: false,
             isLogined: false,
-            accessToken: ''
+            accessToken: '',
+            googleSignup: false,
+            firstName: '',
+            lastName: '',
+            email: ''
         }
 
         this.onChange = this.onChange.bind(this)
@@ -27,28 +33,44 @@ class Signup extends Component {
     }
 
     loginGoogle(response) {
-        console.log(response.profileObj)
         if (response.accessToken) {
-            this.setState({
-                isLogined: true,
-                accessToken: response.accessToken
-            });
+            let email = response.profileObj.email
+            if (/\S+@utexas.edu+/.test(email)) {
+                this.setState({
+                    isLogined: true,
+                    accessToken: response.accessToken,
+                    googleSignup: true
+                });
+
+                this.setState({
+                    firstName: response.profileObj.givenName,
+                    lastName: response.profileObj.familyName,
+                    email: email,
+                })
+
+                let values = {
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
+                    email: email.substring(0, email.indexOf("@")),
+                    password: null,
+                    major: null,
+                    otherMajor: null,
+                    showOtherMajor: false,
+                    noMajor: false
+                }
+
+                this.onSubmit(values)
+            } else {
+                alert('Invalid Email')
+            }
         }
-        let email = response.profileObj.email
-        // if(/\S+@utexas.edu+/.test(email)) {
-        //     console.log('is ut email')
-        // }
-        let values = {
-            email: email.substring(0, email.indexOf("@")),
-            password: null
-        }
-        this.onSubmit(values);
     }
 
     logoutGoogle(response) {
         this.setState({
             isLogined: false,
-            accessToken: ''
+            accessToken: '',
+            googleSignup: false
         });
     }
 
@@ -91,10 +113,17 @@ class Signup extends Component {
             this.setState({ loading: false })
 
             if (res.error) {
-                // alert(res.error)
+                if (this.state.googleSignup) {
+                    alert(res.error)
+                }
             } else {
-                $("#signup-modal").modal("hide");
-                $("#verifyemail-modal").modal("show");
+                if (this.state.googleSignup) {
+                    $("#signup-modal").modal("hide");
+                    $("#complete-profile").modal("show")
+                } else {
+                    $("#signup-modal").modal("hide");
+                    $("#verifyemail-modal").modal("show");
+                }
             }
         })
 
@@ -120,7 +149,6 @@ class Signup extends Component {
     }
 
     render() {
-
         return (
             <div>
                 <SignupComponent
@@ -132,6 +160,9 @@ class Signup extends Component {
                     handleLoginFailureGoogle={this.handleLoginFailureGoogle}
                     logoutGoogle={this.logoutGoogle}
                     handleLogoutFailureGoogle={this.handleLogoutFailureGoogle}
+                    data={this.state}
+                />
+                <CompleteProfile
                     data={this.state}
                 />
             </div>

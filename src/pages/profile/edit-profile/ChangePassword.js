@@ -47,8 +47,10 @@ class ChangePassword extends React.Component {
         )
 
         let forgotPassword = (
-            <span className="forgot-password-text center" type="button" data-toggle="modal" data-target="#forgot-password-modal">
-                <a data-dismiss="modal" data-toggle="modal" data-target="#forgot-password-modal" className="utcolor"><p className="center">Forgot Password?</p></a>
+            <span className="forgot-password-text center">
+                <a data-dismiss="modal"  type="button" data-toggle="modal" data-target="#forgot-password-modal" className="utcolor">
+                    <p className="center">Forgot Password?</p>
+                </a>
             </span>
         )
 

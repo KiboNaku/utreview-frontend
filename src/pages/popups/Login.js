@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { login } from './_utils/UserFunctions'
 import LoginComponent from './_components/LoginComponent'
 import $ from './../../../node_modules/jquery'
+import CompleteProfile from './_components/CompleteProfileComponent'
 
 class Login extends Component {
 
@@ -12,7 +13,8 @@ class Login extends Component {
         this.state = {
             loading: false,
             isLogined: false,
-            accessToken: ''
+            accessToken: '',
+            googleLogin: false
         }
 
         this.onChange = this.onChange.bind(this)
@@ -24,17 +26,14 @@ class Login extends Component {
     }
 
     loginGoogle(response) {
-        console.log(response.profileObj)
         if (response.accessToken) {
             this.setState({
                 isLogined: true,
-                accessToken: response.accessToken
+                accessToken: response.accessToken,
+                googleLogin: true
             });
         }
         let email = response.profileObj.email
-        // if(/\S+@utexas.edu+/.test(email)) {
-        //     console.log('is ut email')
-        // }
         let values = {
             email: email.substring(0, email.indexOf("@")),
             password: null
@@ -45,7 +44,8 @@ class Login extends Component {
     logoutGoogle(response) {
         this.setState({
             isLogined: false,
-            accessToken: ''
+            accessToken: '',
+            googleLogin: true
         });
     }
 

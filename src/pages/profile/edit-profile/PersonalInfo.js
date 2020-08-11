@@ -18,7 +18,7 @@ function invalidInputStyle(errors, touched, fieldName) {
         return {
             border: '1px solid red'
         }
-    }else{
+    } else {
         return null
     }
 }
@@ -31,7 +31,7 @@ function PersonalInfo(props) {
                 initialValues={{
                     firstName: props.data.firstName,
                     lastName: props.data.lastName,
-                    major: props.data.major !== null && props.data.major !== "" ? {"value": props.data.major, "label": props.data.major}: '',
+                    major: props.data.major !== null && props.data.major !== "" ? { "value": props.data.major, "label": props.data.major } : '',
                     otherMajor: props.data.otherMajor !== null && props.data.otherMajor !== "" ? props.data.otherMajor : '',
                     showOtherMajor: props.data.otherMajor !== null && props.data.otherMajor !== "" ? true : false,
                     noMajor: props.data.otherMajor === null && props.data.major === null ? true : false
@@ -104,7 +104,7 @@ function PersonalInfo(props) {
                         ),
                 })}
                 onSubmit={(values, actions) => {
-                    actions.setStatus({submitted: true})
+                    actions.setStatus({ submitted: true })
                     props.onSubmit(values)
                 }}
             >
@@ -171,6 +171,7 @@ function PersonalInfo(props) {
 
                             <div className="form-group my-3">
                                 <MajorSelect
+                                    required={true}
                                     value={formik.values.major}
                                     options={props.data.majorList}
                                     isLoading={!props.data.majorListLoaded}
@@ -200,18 +201,18 @@ function PersonalInfo(props) {
 
                             <div className='modal-footer d-block' align='center'>
                                 {formik.dirty ? null : success}
-								<button
-									type='submit'
-									className='btn btn-outline-dark font-weight-bold'
-									>
-									Apply </button>
-								<button
-									type='button'
+                                <button
+                                    type='submit'
+                                    className='btn btn-outline-dark font-weight-bold'
+                                >
+                                    Apply </button>
+                                <button
+                                    type='button'
                                     className='btn btn-outline-dark font-weight-bold'
                                     onClick={formik.handleReset}
-                                    >
-									Cancel </button>
-							</div>
+                                >
+                                    Cancel </button>
+                            </div>
 
                         </form>
                     )
