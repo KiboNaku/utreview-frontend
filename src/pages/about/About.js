@@ -10,8 +10,10 @@ class About extends Component {
             contributors: [
                 {
                     name: 'Andy Ni',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-                    image: 'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=960&q=80'
+                    description: 
+                    'Andy is a Software Engineering student who develops for UT Review during his free time.\
+                    When he is not working on the site, he enjoys playing Animal Crossing and being a jungler for his team in League of Legends.',
+                    image: require('./../../res/img/andy_photo.jpg')
                 },
                 {
                     name: 'Iris Zhang',
