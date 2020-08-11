@@ -24,7 +24,7 @@ import Rating from '@material-ui/lab/Rating';
 */
 
 function CourseReviewEntry(props) {
-    let thumbsIcon = props.review.liked ?
+    let thumbsIcon = props.review.approval ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} />
     let likeIcon = props.review.likePressed ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbUpRoundedIcon style={{ fill: 'gray' }} />
