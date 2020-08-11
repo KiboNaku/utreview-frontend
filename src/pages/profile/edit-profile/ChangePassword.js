@@ -35,13 +35,13 @@ class ChangePassword extends React.Component {
 
     render() {
         let success = (
-            <div className="text-success" style={{ "margin-bottom": "10px" }}>
+            <div className="text-success" style={{ "marginBottom": "10px" }}>
                 Your changes have been saved
             </div>
         )
 
         let passwordValidated = (
-            <div className="text-success" style={{ "margin-bottom": "10px" }}>
+            <div className="text-success" style={{ "marginBottom": "10px" }}>
                 Your password has been validated
             </div>
         )
