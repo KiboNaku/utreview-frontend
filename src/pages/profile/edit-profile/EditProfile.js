@@ -9,8 +9,21 @@ class EditProfile extends Component {
         super(props)
 
         this.state = {
-            tabValue: 0
+            tabValue: 0,
+            submitted: false,
+            passwordSubmitted: false
         }
+
+        this.handleSubmitChange = this.handleSubmitChange.bind(this)
+        this.handlePasswordSubmitChange = this.handlePasswordSubmitChange.bind(this)
+    }
+
+    handleSubmitChange(value) {
+        this.setState({ submitted: value })
+    }
+
+    handlePasswordSubmitChange(value) {
+        this.setState({ passwordSubmitted: value })
     }
 
     render() {
@@ -21,7 +34,7 @@ class EditProfile extends Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title">Edit Profile</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" onClick={() => { this.setState({ submitted: false, passwordSubmitted: false }) }} className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -29,10 +42,18 @@ class EditProfile extends Component {
 
                             <Tabs defaultActiveKey="edit-personal" className="utcolor">
                                 <Tab eventKey="edit-personal" title="Personal">
-                                    <PersonalInfo {...this.props} onSubmit={this.props.editPersonalInfo}/>
+                                    <PersonalInfo
+                                        {...this.props}
+                                        handleSubmitChange={this.handleSubmitChange}
+                                        submitted={this.state.submitted}
+                                        onSubmit={this.props.editPersonalInfo} />
                                 </Tab>
                                 <Tab eventKey="edit-password" title="Password">
-                                    <ChangePassword {...this.props} onSubmit={this.props.changePassword} />
+                                    <ChangePassword
+                                        {...this.props}
+                                        handleSubmitChange={this.handlePasswordSubmitChange}
+                                        submitted={this.state.passwordSubmitted}
+                                        onSubmit={this.props.changePassword} />
                                 </Tab>
                             </Tabs>
 

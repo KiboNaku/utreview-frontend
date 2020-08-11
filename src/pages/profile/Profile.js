@@ -238,13 +238,15 @@ class Profile extends Component {
             other_major: otherMajor
         }
 
+        this.setState(prevState => ({
+            firstName: values.firstName,
+            lastName: values.lastName,
+            major: major !== null ? values.major.value : null,
+            otherMajor: otherMajor,
+        }))
+
         updatePersonalInfo(user).then(res => {
-            this.setState(prevState => ({
-                firstName: values.firstName,
-                lastName: values.lastName,
-                major: major !== null ? values.major.value : null,
-                otherMajor: otherMajor,
-            }))
+            
             
         })
     }
