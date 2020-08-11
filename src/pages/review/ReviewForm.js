@@ -3,7 +3,7 @@ import { Prompt } from 'react-router'
 import qs from 'qs'
 import { withRouter } from 'react-router-dom'
 import { getCourses, getProfs, getSemesters, getTopics, getCourseId, getProfId } from './_utils/ReviewFormFunctions'
-import { checkDuplicate, newReview, editReview } from './_utils/ReviewFunctions'
+import { checkDuplicate, saveReview, newReview, editReview } from './_utils/ReviewFunctions'
 import Error from './../_utils/Error'
 import NotFound from './../not-found/NotFound'
 import jwt_decode from 'jwt-decode'
@@ -109,7 +109,8 @@ class ReviewForm extends Component {
 			oldReview: props.location.state === undefined || props.location.state.review === undefined ? null : props.location.state.review,
 			invalidReview: false,
 			errorMessage: '',
-			submitPressed: false
+			submitPressed: false,
+			reviewId: null
 		}
 		this.beforeunload.bind(this)
 		this.isBackButtonClicked = false
@@ -965,9 +966,41 @@ class ReviewForm extends Component {
 				<Prompt
 					when={!this.state.submitPressed}
 					message={(location, action) => {
-						console.log(action)
-						console.log(location)
-						console.log(this.state.pathname)
+						let courseId = this.state.topic.selected ? this.state.topic.id : this.state.course.id
+						// if(!this.state.oldReview && this.state.semester.semester !== ''
+						// && this.state.semester.year !== null 
+						// && this.state.prof.id !== null && courseId !== null){
+						// 	const token = localStorage.usertoken
+						// 	const decoded = jwt_decode(token)
+						// 	const review = {
+						// 		review_id: this.state.reviewId,
+						// 		user_email: decoded.identity.email,
+						// 		course_id: courseId,
+						// 		prof_id: this.state.prof.id,
+						// 		semester: this.state.semester.semester,
+						// 		year: this.state.semester.year,
+						// 		course_comments: this.state.courseRating.comments,
+						// 		course_approval: this.state.courseRating.approval,
+						// 		course_usefulness: this.state.courseRating.usefulness,
+						// 		course_difficulty: this.state.courseRating.difficulty,
+						// 		course_workload: this.state.courseRating.workload,
+						// 		prof_comments: this.state.profRating.comments,
+						// 		prof_approval: this.state.profRating.approval,
+						// 		prof_clear: this.state.profRating.clear,
+						// 		prof_engaging: this.state.profRating.engaging,
+						// 		prof_grading: this.state.profRating.grading,
+						// 		grade: this.state.grade
+						// 	}
+
+						// 	saveReview(review).then(res => {
+						// 		if (res.error) {
+						// 			alert(res.error)
+						// 		} else {
+						// 			this.setState({reviewId: res.result.id})
+						// 		}
+						// 	})
+
+						// }
 						// if(location.pathname + location.search === this.state.pathname){
 						// 	return true
 						// }
