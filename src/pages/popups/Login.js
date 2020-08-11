@@ -21,8 +21,6 @@ class Login extends Component {
         this.onSubmit = this.onSubmit.bind(this)
         this.loginGoogle = this.loginGoogle.bind(this);
         this.handleLoginFailureGoogle = this.handleLoginFailureGoogle.bind(this);
-        this.logoutGoogle = this.logoutGoogle.bind(this);
-        this.handleLogoutFailureGoogle = this.handleLogoutFailureGoogle.bind(this);
     }
 
     loginGoogle(response) {
@@ -41,20 +39,8 @@ class Login extends Component {
         this.onSubmit(values);
     }
 
-    logoutGoogle(response) {
-        this.setState({
-            isLogined: false,
-            accessToken: '',
-            googleLogin: true
-        });
-    }
-
     handleLoginFailureGoogle(response) {
         alert('Failed to log in')
-    }
-
-    handleLogoutFailureGoogle(response) {
-        alert('Failed to log out')
     }
 
     onChange(e) {
@@ -111,8 +97,6 @@ class Login extends Component {
                 onChange={this.onChange}
                 loginGoogle={this.loginGoogle}
                 handleLoginFailureGoogle={this.handleLoginFailureGoogle}
-                logoutGoogle={this.logoutGoogle}
-                handleLogoutFailureGoogle={this.handleLogoutFailureGoogle}
                 data={this.state} />
         )
     }
