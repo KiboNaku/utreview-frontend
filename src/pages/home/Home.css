@@ -755,6 +755,7 @@
 
     .home-wrapper {
         grid-template-rows: minmax(100px, 20vh) max(600px, 60vh);
+        grid-template-columns: 1fr;
     }
 
     .circle-logo {

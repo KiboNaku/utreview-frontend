@@ -23,6 +23,7 @@ class GoogleButton extends React.Component {
                     buttonText={this.props.text}
                     onSuccess={this.props.loginGoogle}
                     onFailure={this.props.handleLoginFailureGoogle}
+                    theme="dark"
                 />
             </div>
         )
