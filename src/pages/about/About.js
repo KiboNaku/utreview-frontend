@@ -20,8 +20,8 @@ class About extends Component {
                 },
                 {
                     name: 'Yangle Xue',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
-                    image: 'https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60'
+                    description: 'More widely known as Vina, Yangle is a software engineering student at the University of Texas at Austin. She enjoys drawing (follow her on Instagram @binabbyjy), dancing, and sleeping. She also loves boba and hotpot. \n League position: Top',
+                    image: require('./../../res/img/vina_pic.jpg')
                 },
                 {
                     name: 'Colin Wang',
