@@ -33,7 +33,7 @@ function CoursePanel(props) {
                 case 'courseTitle':
                     return b.courseTitle.localeCompare(a.courseTitle)
                 case 'courseECIS':
-                    if (a.eCIS !== null && b.eCIS !== null) return b.eCIS - a.eCIS
+                    if (a.eCIS !== null && b.eCIS !== null) return a.eCIS - b.eCIS 
                     else if (a.eCIS === null && b.eCIS !== null) {
                         if (props.sort.sortDir === 'up') return 1
                         else return -1
@@ -44,7 +44,7 @@ function CoursePanel(props) {
                     }
                     else return 0
                 case 'courseApproval':
-                    if (a.approval !== null && b.approval !== null) return b.approval - a.approval
+                    if (a.approval !== null && b.approval !== null) return a.approval - b.approval
                     else if (a.approval === null && b.approval !== null) {
                         if (props.sort.sortDir === 'up') return 1
                         else return -1
@@ -55,7 +55,7 @@ function CoursePanel(props) {
                     }
                     else return 0
                 case 'courseRatings':
-                    return b.numRatings - a.numRatings
+                    return a.numRatings - b.numRatings
                 default:
                     return null;
             }
