@@ -63,6 +63,16 @@ export const getReviews = user => {
 		})
 }
 
+export const hasPassword = user => {
+	return axios
+		.post('/api/has_password', {
+			email: user.email, 
+		})
+		.then(response => {
+			return response.data
+		})
+}
+
 export const deleteReview = review => {
 	return axios
 		.post('/api/delete_review', {

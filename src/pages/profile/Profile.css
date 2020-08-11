@@ -192,6 +192,11 @@
 	margin-bottom: 20px;
 }
 
+.btn-set-password{
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+
 .upload-courses-body{
 	display: flex;
 	flex-direction: row;
