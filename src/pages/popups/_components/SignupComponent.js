@@ -321,14 +321,13 @@ function SignupComponent(props) {
                             <h5 style={{marginBottom: "60px"}}><strong>OR</strong></h5>
                         </div>
 
-                        <form className="mb-3" style={{position: "absolute", left: "50%", marginLeft: "-90px", marginTop: "-50px"}}>
+                        <form className="mb-3">
                             <GoogleButton
                                 loginGoogle={props.loginGoogle}
                                 handleLoginFailureGoogle={props.handleLoginFailureGoogle}
                                 logoutGoogle={props.logoutGoogle}
                                 handleLogoutFailureGoogle={props.handleLogoutFailureGoogle}
                                 data={props.data}
-                                text='Sign Up with Google'
                             />
                         </form>
                     </div>
