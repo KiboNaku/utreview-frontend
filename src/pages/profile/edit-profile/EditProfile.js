@@ -28,6 +28,18 @@ class EditProfile extends Component {
 
     render() {
 
+        let setPassword = (
+            <div className='d-block btn-set-password' align='center'>
+                <button
+                    onClick={this.props.setPassword}
+                    className='btn btn-outline-dark font-weight-bold'
+                >
+                    Set Password
+                </button>
+            </div>
+
+        )
+
         return (
             <div className="modal fade" id={'edit-profile'} role="dialog">
                 <div className="modal-dialog modal-dialog-centered" role="document">
@@ -49,11 +61,13 @@ class EditProfile extends Component {
                                         onSubmit={this.props.editPersonalInfo} />
                                 </Tab>
                                 <Tab eventKey="edit-password" title="Password">
-                                    <ChangePassword
-                                        {...this.props}
-                                        handleSubmitChange={this.handlePasswordSubmitChange}
-                                        submitted={this.state.passwordSubmitted}
-                                        onSubmit={this.props.changePassword} />
+                                    {this.props.data.hasPassword ?
+                                        <ChangePassword
+                                            {...this.props}
+                                            handleSubmitChange={this.handlePasswordSubmitChange}
+                                            submitted={this.state.passwordSubmitted}
+                                            onSubmit={this.props.changePassword} />
+                                        : setPassword}
                                 </Tab>
                             </Tabs>
 
