@@ -78,11 +78,11 @@ class ResetPassword extends Component {
             <main className="bg-grey">
                 <div className="main-sub container py-5">
                     <div className="container justify-content-center px-5 py-5 col-12 col-sm-11 col-md-9 col-lg-7 bg-light">
-                        <h3 className='py-5 text-center'>
+                        <div className='py-5'>
 
                             {this.state.loading && loading}
                             {this.state.passwordUpdated ? successMessage : (this.state.success < 0 ? message : resetForm)}
-                        </h3>
+                        </div>
                     </div>
                 </div>
             </main>
