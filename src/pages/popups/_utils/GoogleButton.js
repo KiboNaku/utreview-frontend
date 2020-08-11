@@ -1,5 +1,6 @@
 import React from 'react'
 import { GoogleLogin } from 'react-google-login'
+import './GoogleButton.css'
 
 
 const CLIENT_ID = '879307292662-75ogu33tfvgqedodsagga1jni88ueub4.apps.googleusercontent.com'
