@@ -106,8 +106,15 @@ function AboutComponent(props) {
                                     <span>Photo by <a className='utcolor' href="https://unsplash.com/@florenciapotter?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"> Florencia Potter</a> on <a className='utcolor' href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"> Unsplash</a></span>
                                     <br />
                                     <span>Photos by <a className='utcolor' href="https://unsplash.com/@alvannee?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Alvan Nee</a> on <a className='utcolor' href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+                                    <br />
+                                    <span>Photo by <a className='utcolor' href="https://www.pexels.com/@glenn-970339?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels">Gleen</a> from <a className='utcolor' href="https://www.pexels.com/photo/high-angle-photo-of-a-corgi-looking-upwards-2664417/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels">Pexels</a></span>
+                                    <br />
+                                    <span>Photo by <a className='utcolor' href="https://www.pexels.com/@julia-khalimova-826746?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels">Julia Khalimova</a> from <a className='utcolor' href="https://www.pexels.com/photo/brown-and-white-corgi-puppy-sitting-on-brown-rock-near-body-of-water-3649170/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels">Pexels</a></span>
+                                    <br />
+                                    <span>Photo by <a href="https://unsplash.com/@cyanfoto?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Claudie-Ann Tremblay-cantin</a> on <a href="https://unsplash.com/s/photos/corgi?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+                                    <br />
+                                    <span>Photo by <a href="https://unsplash.com/@coleito?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Cole Keister</a> on <a href="https://unsplash.com/s/photos/corgi?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
                                 </div>
-
                             </ul>
                         </div>
                     </div>
