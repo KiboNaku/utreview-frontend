@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import { Prompt } from 'react-router'
 import qs from 'qs'
 import { withRouter } from 'react-router-dom'
 import { getCourses, getProfs, getSemesters, getTopics, getCourseId, getProfId } from './_utils/ReviewFormFunctions'
-import { checkDuplicate, newReview, editReview } from './_utils/ReviewFunctions'
+import { checkDuplicate, saveReview, newReview, editReview } from './_utils/ReviewFunctions'
 import Error from './../_utils/Error'
 import NotFound from './../not-found/NotFound'
 import jwt_decode from 'jwt-decode'
@@ -16,6 +17,7 @@ class ReviewForm extends Component {
 		super(props);
 
 		this.state = {
+			pathname: window.location.pathname + window.location.search,
 			courseList: [],
 			topicList: [],
 			semesterList: [
@@ -106,8 +108,18 @@ class ReviewForm extends Component {
 			duplicateReview: false,
 			oldReview: props.location.state === undefined || props.location.state.review === undefined ? null : props.location.state.review,
 			invalidReview: false,
-			errorMessage: ''
+			errorMessage: '',
+			submitPressed: false,
+			reviewId: null
 		}
+		this.beforeunload.bind(this)
+		this.isBackButtonClicked = false
+
+		const token = localStorage.usertoken
+        if(token === null || token === undefined){
+            props.history.push('/')
+            $('#login-modal').modal('show')
+        }
 	}
 
 	validate = () => {
@@ -159,6 +171,7 @@ class ReviewForm extends Component {
 		event.preventDefault();
 		const isValid = this.validate();
 		if (isValid) {
+			this.setState({submitPressed: true})
 			const token = localStorage.usertoken
 			const decoded = jwt_decode(token)
 
@@ -475,16 +488,29 @@ class ReviewForm extends Component {
 
 	}
 
+	beforeunload(e) {
+
+		e.preventDefault();
+		e.returnValue = true;
+		
+	}
+
+	onBackButtonEvent = (e) => {
+		e.preventDefault();
+	}
+
+	componentWillUnmount(){
+		window.removeEventListener("beforeunload", this.beforeunload);
+		window.removeEventListener("popstate", this.onBackButtonEvent)
+	}
+
 	componentDidMount() {
+		window.addEventListener("beforeunload", this.beforeunload);
+		window.addEventListener("popstate", this.onBackButtonEvent)
 		if (this.state.oldReview !== null) {
 			return
 		}
-		const token = localStorage.usertoken
-        if(token === null || token === undefined){
-            this.props.history.push('/')
-            $('#login-modal').modal('show')
-            return
-        }
+
 		if (this.props.location.state === undefined) {
 
 			let urlObject = qs.parse(this.props.location.search, { ignoreQueryPrefix: true })
@@ -937,6 +963,54 @@ class ReviewForm extends Component {
 
 		return (
 			<div>
+				<Prompt
+					when={!this.state.submitPressed}
+					message={(location, action) => {
+						let courseId = this.state.topic.selected ? this.state.topic.id : this.state.course.id
+						// if(!this.state.oldReview && this.state.semester.semester !== ''
+						// && this.state.semester.year !== null 
+						// && this.state.prof.id !== null && courseId !== null){
+						// 	const token = localStorage.usertoken
+						// 	const decoded = jwt_decode(token)
+						// 	const review = {
+						// 		review_id: this.state.reviewId,
+						// 		user_email: decoded.identity.email,
+						// 		course_id: courseId,
+						// 		prof_id: this.state.prof.id,
+						// 		semester: this.state.semester.semester,
+						// 		year: this.state.semester.year,
+						// 		course_comments: this.state.courseRating.comments,
+						// 		course_approval: this.state.courseRating.approval,
+						// 		course_usefulness: this.state.courseRating.usefulness,
+						// 		course_difficulty: this.state.courseRating.difficulty,
+						// 		course_workload: this.state.courseRating.workload,
+						// 		prof_comments: this.state.profRating.comments,
+						// 		prof_approval: this.state.profRating.approval,
+						// 		prof_clear: this.state.profRating.clear,
+						// 		prof_engaging: this.state.profRating.engaging,
+						// 		prof_grading: this.state.profRating.grading,
+						// 		grade: this.state.grade
+						// 	}
+
+						// 	saveReview(review).then(res => {
+						// 		if (res.error) {
+						// 			alert(res.error)
+						// 		} else {
+						// 			this.setState({reviewId: res.result.id})
+						// 		}
+						// 	})
+
+						// }
+						// if(location.pathname + location.search === this.state.pathname){
+						// 	return true
+						// }
+						// if (action === 'POP') {
+						// 	this.props.history.push(this.state.pathname)
+						// }
+						return 'You have unsaved changes. Are you sure you want to leave?'
+						
+					  }}
+				/>
 				{this.state.invalidReview ? <NotFound /> : (content)}
 				<Error message={this.state.errorMessage} id="reviewForm" title="Error" />
 			</div>
