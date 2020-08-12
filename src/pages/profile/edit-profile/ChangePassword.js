@@ -169,10 +169,12 @@ class ChangePassword extends React.Component {
                             .oneOf([Yup.ref('password'), null], 'Passwords must match')
                     })}
                     onReset={(values, actions) => {
+                        this.props.handleSubmitChange(false)
                         this.setState({ passwordValidated: false })
                     }}
                     onSubmit={(values) => {
                         this.props.onSubmit(values)
+                        this.props.handleSubmitChange(true)
                         this.setState({ passwordValidated: false })
                     }}
                 >
@@ -206,7 +208,7 @@ class ChangePassword extends React.Component {
                                 </div>
 
                                 <div className='modal-footer d-block' align='center'>
-                                    {formik.dirty ? null : success}
+                                    {formik.dirty || !this.props.submitted ? null : success}
                                     <button
                                         type='submit'
                                         className='btn btn-outline-dark font-weight-bold'

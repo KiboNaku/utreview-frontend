@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import VerifyPasswordComponent from './_components/VerifyPasswordComponent'
-import { sendConfirmEmail } from './_utils/UserFunctions'
+import { sendConfirmEmail, sendResetPassword } from './_utils/UserFunctions'
 import { withRouter } from 'react-router-dom'
 import './popups.css'
 
@@ -36,7 +36,7 @@ class VerifyPassword extends Component {
 
         this.timeout()
 
-        sendConfirmEmail()
+        sendResetPassword()
     }
 
     render() {
