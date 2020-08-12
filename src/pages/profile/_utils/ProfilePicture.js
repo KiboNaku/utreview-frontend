@@ -26,9 +26,9 @@ function ProfilePicture(props) {
 				<Avatar
 					alt={props.name}
 					src={props.image === ''
-						? require('./../../../res/img/default.jpg')
+						? require('./../../../res/img/corgi1.jpg')
 						: (props.image === undefined
-							? require('./../../../res/img/default.jpg')
+							? require('./../../../res/img/corgi1.jpg')
 							: require('./../../../res/img/' + props.image))
 					}
 					type='button'
@@ -47,9 +47,9 @@ export function SelectionPicture(props) {
 		<Avatar
 			alt={props.name}
 			src={props.image === ''
-				? require('./../../../res/img/default.jpg')
+				? require('./../../../res/img/corgi1.jpg')
 				: (props.image === undefined
-					? require('./../../../res/img/default.jpg')
+					? require('./../../../res/img/corgi1.jpg')
 					: require('./../../../res/img/' + props.image))
 			}
 			type='button'
