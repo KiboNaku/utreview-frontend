@@ -38,7 +38,7 @@ function AboutComponent(props) {
                     <div className='d-flex justify-content-center'>
                         <div className='col-lg-8'>
                             <div className='contributors'>
-                                <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3'>
+                                <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 justify-content-center'>
                                     <div className='col'>
                                         <Contributor
                                             name={props.data.contributors[0].name}
@@ -118,6 +118,10 @@ function AboutComponent(props) {
                                     <span>Photo by <a className='utcolor' href="https://unsplash.com/@cyanfoto?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Claudie-Ann Tremblay-cantin</a> on <a className='utcolor' href="https://unsplash.com/s/photos/corgi?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
                                     <br />
                                     <span>Photo by <a className='utcolor' href="https://unsplash.com/@coleito?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Cole Keister</a> on <a className='utcolor' href="https://unsplash.com/s/photos/corgi?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+                                    <br />
+                                    <span>Photo by <a className='utcolor' href="https://unsplash.com/@nkvitovska?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Nataliia Kvitovska</a> on <a className='utcolor' href="https://unsplash.com/s/photos/corgi?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+                                    <br />
+                                    <span>Photo by <a className='utcolor' href="https://pixabay.com/users/huoadg5888-8934889/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4415649">huoadg5888</a> from <a className='utcolor' href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4415649">Pixabay</a></span>
                                 </div>
                             </ul>
                         </div>
