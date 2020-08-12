@@ -77,7 +77,7 @@ class Login extends Component {
             } else {
                 const token = localStorage.usertoken
 
-                let profilePic = 'default.jpg'
+                let profilePic = 'corgi1.jpg'
                 if (token !== undefined && token !== null) {
                     const decoded = jwt_decode(token)
                     profilePic = decoded.identity.profile_pic
