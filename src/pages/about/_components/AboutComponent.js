@@ -12,14 +12,18 @@ function AboutComponent(props) {
                 <Fade triggerOnce duration='2000'>
                     <h2 className='about-header-2'>Welcome to UT Review</h2>
                     <div className='d-flex justify-content-center'>
-                        <div className='col-lg-8'>
-                            <p>What starts here changes your course schedule. Literally. UT Review is a course planning website made for UT students, by UT students. 
+                        <div className='col-lg-8 about-description'>
+                            <p>
+                                What starts here changes your course schedule. Literally. UT Review is a course planning website made for UT students, by UT students. 
                                 We've been through and understand the struggles of choosing courses/professors every semester and we want to
                                 make this process easier for everyone. Here at UT Review, you can find everything you need to make more informed course planning decisions, from grade distributions to pre-requisites to
                                 other students' opinions.
                             </p>
                             <p>
-                                UT Review would not be possible without the reviews from students like you. Had a bad prof? We want to know. Had a great one? Tell us as well. Found a course completely and utterly useless? Leave a review. Your experiences can help more than 50,000 students like you every month choose great courses and avoid not so great ones.
+                                UT Review would not be possible without the reviews from students like you. Let the UT community know if you thought a course was a waste of time. 
+                                We would also like to know if a course was worthwhile and interesting. Help us identify those blow-off courses, or warn us about the deadly ones. Talk to us about your professors too! Had bad ones? Roast them. The ones you loved? Hype them up. 
+                                Your experiences can help more than 50,000 students like you every semester choose great courses and avoid not so great ones. 
+                                Let's help eachother make better course planning decisions so we can get our money's worth out of our education!
                             </p>
                             <p>
                                 You can help shape the future of UT Review! Let us know what we can improve on or what you think we're already doing a good job with. We're always looking
@@ -111,9 +115,9 @@ function AboutComponent(props) {
                                     <br />
                                     <span>Photo by <a className='utcolor' href="https://www.pexels.com/@julia-khalimova-826746?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels">Julia Khalimova</a> from <a className='utcolor' href="https://www.pexels.com/photo/brown-and-white-corgi-puppy-sitting-on-brown-rock-near-body-of-water-3649170/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels">Pexels</a></span>
                                     <br />
-                                    <span>Photo by <a href="https://unsplash.com/@cyanfoto?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Claudie-Ann Tremblay-cantin</a> on <a href="https://unsplash.com/s/photos/corgi?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+                                    <span>Photo by <a className='utcolor' href="https://unsplash.com/@cyanfoto?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Claudie-Ann Tremblay-cantin</a> on <a className='utcolor' href="https://unsplash.com/s/photos/corgi?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
                                     <br />
-                                    <span>Photo by <a href="https://unsplash.com/@coleito?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Cole Keister</a> on <a href="https://unsplash.com/s/photos/corgi?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+                                    <span>Photo by <a className='utcolor' href="https://unsplash.com/@coleito?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Cole Keister</a> on <a className='utcolor' href="https://unsplash.com/s/photos/corgi?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
                                 </div>
                             </ul>
                         </div>
