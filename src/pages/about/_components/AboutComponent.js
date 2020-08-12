@@ -34,7 +34,7 @@ function AboutComponent(props) {
                     <div className='d-flex justify-content-center'>
                         <div className='col-lg-8'>
                             <div className='contributors'>
-                                <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3'>
+                                <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 justify-content-center'>
                                     <div className='col'>
                                         <Contributor
                                             name={props.data.contributors[0].name}
