@@ -17,8 +17,6 @@ class ReviewList extends React.Component {
         })
 
         const updatedReviews = userReviews.slice().sort((a, b) => b.date - a.date)
-        console.log(updatedReviews)
-		console.log(props.reviewList)
 		this.state = {
 			reviewList: userReviews,
 			reviewsFiltered: updatedReviews,

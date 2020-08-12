@@ -83,6 +83,7 @@
 .prof-name {
 	margin-bottom: 25px;
 	font-weight: bold;
+	font-size: 100%;
 }
 
 .update-date {
@@ -175,7 +176,7 @@
 	color: white;
 	transition: 0.2s all ease;
 	transform: scale(1.15);
-}
+} 
 
 .review-buttons:focus {
 	outline: none;
@@ -201,4 +202,10 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
+}
+
+@media (max-width: 576px) {
+	.profile-name{
+		font-size: 250%;
+	}
 }
