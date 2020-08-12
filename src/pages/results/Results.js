@@ -29,7 +29,7 @@ class Results extends Component {
 				data: [],
 				filtered: [],
 				sort: {
-					sortBy: 'courseName',
+					sortBy: 'courseRatings',
 					sortDir: 'down',
 				},
 				filter: {
@@ -59,7 +59,7 @@ class Results extends Component {
 				data: [],
 				filtered: [],
 				sort: {
-					sortBy: 'profName',
+					sortBy: 'profRatings',
 					sortDir: 'down',
 				},
 				filter: {
