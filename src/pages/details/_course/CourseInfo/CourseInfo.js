@@ -6,7 +6,7 @@ import './UserRatings.scss'
 function CourseInfo(props) {
 
 	let crossListed
-	if(props.crossListed !== null){
+	if(props.crossListed !== null && props.crossListed.length > 0){
 		let crossListedCourses = props.crossListed.map(course => {
 			let coursePath = course.dept.toLowerCase().replace(' ', '') + "_" + course.num.toLowerCase()
 			if (course.topicNum > -1) {
