@@ -83,15 +83,29 @@
 	margin-bottom: 0px;
 }
 
+@media (max-width: 768px) {
+	.about-header-2-long {
+		font-size: 170%
+	}
+}
+
 @media (max-width: 576px) {
 	.about-header-2 {
 		font-size: 130%;
 	}
+
 	.special-thanks-title {
 		font-size: 120%;
 	}
 
 	.special-thanks-content {
 		font-size: 80%;
+	}
+
+	.about-header-2-long::before {
+		content: none
+	}
+	.about-header-2-long::after {
+		content: none
 	}
 }
