@@ -31,8 +31,3 @@ body.modal-open {
 	box-shadow: 0 0 0 0.2rem rgba(191, 87, 0, 0.25);
 }
 
-.forgot-password-text{
-	text-align: center;
-	margin: 0 auto;
-	display: block;
-}
