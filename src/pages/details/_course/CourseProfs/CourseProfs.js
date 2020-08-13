@@ -24,13 +24,18 @@ class CourseProfs extends React.Component {
     render() {
         const courseProfList = this.state.courseProfs.map(prof => {
 
+            return (
+                    <CourseProfEntry course={this.props.courseInfo} {...prof} />
+                    
+            )
+        })
+
+        const gradeDistributions = this.state.courseProfs.map(prof =>{
             let courseId = this.props.courseInfo.id
             let profId = prof.id
-
-            return [
-                    <CourseProfEntry course={this.props.courseInfo} {...prof} />,
-                    <GradeDistributions isCourse={true} course={this.props.courseInfo} prof={prof} courseId={courseId} profId={profId} />
-            ]
+            return (
+                <GradeDistributions isCourse={true} course={this.props.courseInfo} prof={prof} courseId={courseId} profId={profId} />
+            )
         })
 
         let noProfs = (
@@ -74,6 +79,7 @@ class CourseProfs extends React.Component {
                         </div>
                     </div>
                 </div>
+                {gradeDistributions}
             </div>
         )
     }
