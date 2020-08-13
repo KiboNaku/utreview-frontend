@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function ProfScheduleEntry(props) {
     let crossListed = props.crossListed.map(course => {
         let coursePath = course.dept.toLowerCase().replace(' ', '') + "_" + course.num.toLowerCase()
-        if (course.topicNum >= -1) {
+        if (course.topicNum > -1) {
             coursePath += "_" + course.topicNum.toString()
         }
 
@@ -38,8 +38,14 @@ function ProfScheduleEntry(props) {
     }
     let semYear = props.year.toString() + semester.toString()
 
-    let uniqueNumLink = `https://utdirect.utexas.edu/apps/registrar/course_schedule/${semYear}/${props.uniqueNum}/`
-    let uniqueNum = <a href={uniqueNumLink} rel="noopener noreferrer" target="_blank"> {props.uniqueNum} </a>
+    let uniqueNumString = props.uniqueNum.toString()
+    while(uniqueNumString.length < 5){
+        let temp = "0"
+        temp += uniqueNumString
+        uniqueNumString = temp
+    }
+    let uniqueNumLink = `https://utdirect.utexas.edu/apps/registrar/course_schedule/${semYear}/${uniqueNumString}/`
+    let uniqueNum = <a href={uniqueNumLink} rel="noopener noreferrer" target="_blank"> {uniqueNumString} </a>
 
     let enrollment = props.seatsTaken === null || props.maxEnrollment === null ? "N/A" : props.seatsTaken + "/" + props.maxEnrollment
     
@@ -86,9 +92,6 @@ function ProfScheduleEntry(props) {
             </td>
             <td align="center">
                 {props.location !== null && props.location !== "N/A" ? location : "N/A"}
-            </td>
-            <td align="center">
-                {props.crossListed.length > 0 ? <ul>{crossListed}</ul> : "N/A"}
             </td>
         </tr>
     );

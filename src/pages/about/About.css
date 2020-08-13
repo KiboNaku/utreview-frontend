@@ -19,6 +19,10 @@
 	overflow: hidden;
 }
 
+.about-description{
+	text-align: left;
+}
+
 .about-header-2::after {
 	content: "";
 	display: inline-block;
