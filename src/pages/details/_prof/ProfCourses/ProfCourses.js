@@ -25,7 +25,7 @@ class ProfCourses extends React.Component {
         const profCourseList = this.state.profCourses.map(course => {
             return (
                 <ProfCourseEntry prof={this.props.profInfo} {...course} />
-                
+
             )
 
         })
@@ -62,17 +62,19 @@ class ProfCourses extends React.Component {
         )
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         return (
-            <div className="profCourses">
-                <div className="card prof-card">
-                    <div className="card-header prof-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#courses-collapse">
-                        <h4 className="details-header"> Courses {arrowIcon}</h4>
-                    </div>
-                    <div className="collapse show" id="courses-collapse" role="tabpanel">
-                        <div className="card-body card-table">
-                            {profCourseList.length > 0 ? courseTable: noCourses}
+            <div>
+                <div className="profCourses">
+                    <div className="card prof-card">
+                        <div className="card-header prof-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#courses-collapse">
+                            <h4 className="details-header"> Courses {arrowIcon}</h4>
                         </div>
-                    </div>
+                        <div className="collapse show" id="courses-collapse" role="tabpanel">
+                            <div className="card-body card-table">
+                                {profCourseList.length > 0 ? courseTable : noCourses}
+                            </div>
+                        </div>
 
+                    </div>
                 </div>
                 {gradeDistributions}
             </div>
