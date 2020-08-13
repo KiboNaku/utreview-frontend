@@ -8,12 +8,20 @@ const useStyles = makeStyles((theme) => ({
 		height: theme.spacing(12),
 		marginTop: 15,
 		marginBottom: 15,
-		margin: 'auto'
+		margin: 'auto',
+		"@media (max-width: 576px)": {
+			width: theme.spacing(9),
+			height: theme.spacing(9)
+		}
 	},
 	selection: {
 		width: theme.spacing(10),
 		height: theme.spacing(10),
-		marginBottom: 15
+		marginBottom: 15,
+		"@media (max-width: 576px)": {
+			width: theme.spacing(8),
+			height: theme.spacing(8)
+		}
 	}
 }));
 
