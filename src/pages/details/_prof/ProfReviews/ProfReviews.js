@@ -150,8 +150,7 @@ class ProfReviews extends React.Component {
 				profReviews: updatedReviews,
 				reviewsFiltered: reviewsFiltered
 			}
-		}
-		)
+		})
 
 		reviewFeedback(feedback).then(res => {
 			if (res.error) {
@@ -204,7 +203,16 @@ class ProfReviews extends React.Component {
 			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.date - a.date)
 			this.setState({ reviewsFiltered: updatedReviews, sortBy: value.value, page: 0, hasMore: hasMore})
 		} else if (value.value === "most-helpful") {
-			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.numLiked - a.numLiked)
+			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => {
+				if(b.numLiked === a.numLiked){
+                    if(b.numDisliked === a.numDisliked){
+                        return b.date - a.date
+                    }
+                    return a.numDisliked - b.numDisliked
+                }
+                return b.numLiked - a.numLiked
+            
+			})
 			this.setState({ reviewsFiltered: updatedReviews, sortBy: value.value, page: 0, hasMore: hasMore })
 		}
 	}
