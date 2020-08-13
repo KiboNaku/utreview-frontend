@@ -12,14 +12,18 @@ function AboutComponent(props) {
                 <Fade triggerOnce duration='2000'>
                     <h2 className='about-header-2 about-header-2-long'>Welcome to UT Review</h2>
                     <div className='d-flex justify-content-center'>
-                        <div className='col-lg-8'>
-                            <p>What starts here changes your course schedule. Literally. UT Review is a course planning website made for UT students, by UT students.
-                            We've been through and understand the struggles of choosing courses/professors every semester and we want to
-                            make this process easier for everyone. Here at UT Review, you can find everything you need to make more informed course planning decisions, from grade distributions to pre-requisites to
-                            other students' opinions.
+                        <div className='col-lg-8 about-description'>
+                            <p>
+                                What starts here changes your course schedule. Literally. UT Review is a course planning website made for UT students, by UT students. 
+                                We've been through and understand the struggles of choosing courses/professors every semester and we want to
+                                make this process easier for everyone. Here at UT Review, you can find everything you need to make more informed course planning decisions, from grade distributions to pre-requisites to
+                                other students' opinions.
                             </p>
                             <p>
-                                UT Review would not be possible without the reviews from students like you. Had a bad prof? We want to know. Had a great one? Tell us as well. Found a course completely and utterly useless? Leave a review. Your experiences can help more than 50,000 students like you every month choose great courses and avoid not so great ones.
+                                UT Review would not be possible without the reviews from students like you. Let the UT community know if you thought a course was a waste of time. 
+                                We would also like to know if a course was worthwhile and interesting. Help us identify those blow-off courses, or warn us about the deadly ones. Talk to us about your professors too! Had bad ones? Roast them. The ones you loved? Hype them up. 
+                                Your experiences can help more than 50,000 students like you every semester choose great courses and avoid not so great ones. 
+                                Let's help eachother make better course planning decisions so we can get our money's worth out of our education!
                             </p>
                             <p>
                                 You can help shape the future of UT Review! Let us know what we can improve on or what you think we're already doing a good job with. We're always looking

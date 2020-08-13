@@ -173,7 +173,7 @@ class CourseReviews extends React.Component {
 			const updatedReviews = prevState.courseReviews.map(courseReview => {
 				return this.dislikeReview(courseReview, id)
 			})
-			const reviewsFiltered = prevState.courseReviews.map(courseReview => {
+			const reviewsFiltered = prevState.reviewsFiltered.map(courseReview => {
 				return this.dislikeReview(courseReview, id)
 			})
 			return {
@@ -197,10 +197,18 @@ class CourseReviews extends React.Component {
 		}
 
 		if(value.value === "most-recent"){
-			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.date - a.date)
+			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => (b.date - a.date))
 			this.setState({reviewsFiltered: updatedReviews, sortBy: value.value, page: 0, hasMore: hasMore})
 		}else if(value.value === "most-helpful"){
-			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.numLiked - a.numLiked)
+			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => {
+                if(b.numLiked === a.numLiked){
+                    if(b.numDisliked === a.numDisliked){
+                        return b.date - a.date
+                    }
+                    return a.numDisliked - b.numDisliked
+                }
+                return b.numLiked - a.numLiked
+            })
 			this.setState({reviewsFiltered: updatedReviews, sortBy: value.value, page: 0, hasMore: hasMore})
 		}
 	}
