@@ -74,3 +74,7 @@ h2 {
 html {
 	scroll-behavior: smooth;
 }
+
+.button-type:hover {
+	cursor: pointer;
+}
