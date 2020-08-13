@@ -337,7 +337,9 @@ function SignupComponent(props) {
                         <label className="center-text pt-3 d-inline-block">
                             <h6>
                                 Already have an account?&nbsp;
-                                    <span type="button" data-toggle="modal" data-target="#signup-modal">
+                                    <span
+                                    // type="button" 
+                                    data-toggle="modal" data-target="#signup-modal">
                                     <a data-dismiss="modal" data-toggle="modal" data-target="#login-modal" className="utcolor">Log In</a>
                                 </span>
                             </h6>
