@@ -39,7 +39,7 @@ function ProfilePicture(props) {
 							? require('./../../../res/img/corgi1.jpg')
 							: require('./../../../res/img/' + props.image))
 					}
-					type='button'
+					// type='button'
 					data-toggle="modal"
 					data-target={'#change-profile-pic'}
 					className={classes.profile} />
@@ -60,7 +60,7 @@ export function SelectionPicture(props) {
 					? require('./../../../res/img/corgi1.jpg')
 					: require('./../../../res/img/' + props.image))
 			}
-			type='button'
+			// type='button'
 			className={classes.selection}
 			onClick={() => props.onImageChange(props.image)}
 		/>
