@@ -10,20 +10,20 @@ function AboutComponent(props) {
                 <h1 className='display-3 about-header'>About</h1>
 
                 <Fade triggerOnce duration='2000'>
-                    <h2 className='about-header-2'>Welcome to UT Review</h2>
+                    <h2 className='about-header-2 about-header-2-long'>Welcome to UT Review</h2>
                     <div className='d-flex justify-content-center'>
                         <div className='col-lg-8'>
-                            <p>What starts here changes your course schedule. Literally. UT Review is a course planning website made for UT students, by UT students. 
-                                We've been through and understand the struggles of choosing courses/professors every semester and we want to
-                                make this process easier for everyone. Here at UT Review, you can find everything you need to make more informed course planning decisions, from grade distributions to pre-requisites to
-                                other students' opinions.
+                            <p>What starts here changes your course schedule. Literally. UT Review is a course planning website made for UT students, by UT students.
+                            We've been through and understand the struggles of choosing courses/professors every semester and we want to
+                            make this process easier for everyone. Here at UT Review, you can find everything you need to make more informed course planning decisions, from grade distributions to pre-requisites to
+                            other students' opinions.
                             </p>
                             <p>
                                 UT Review would not be possible without the reviews from students like you. Had a bad prof? We want to know. Had a great one? Tell us as well. Found a course completely and utterly useless? Leave a review. Your experiences can help more than 50,000 students like you every month choose great courses and avoid not so great ones.
                             </p>
                             <p>
                                 You can help shape the future of UT Review! Let us know what we can improve on or what you think we're already doing a good job with. We're always looking
-                                for new ideas, new features to implement, and new ways to improve your experience.  
+                                for new ideas, new features to implement, and new ways to improve your experience.
                             </p>
                         </div>
                     </div>
@@ -91,17 +91,17 @@ function AboutComponent(props) {
                     <h2 className='about-header-2'>Credits</h2>
                     <div className='d-flex justify-content-center'>
                         <div className='col-lg-8'>
-                            <ul class="list-group credits" style={{color:'black'}}>
+                            <ul class="list-group credits" style={{ color: 'black' }}>
                                 <div className="list-group-item flex-column align-items-start credit">
                                     <div className="d-flex justify-content-center">
-                                        <p className="h5"><u>Home Page Photo</u></p>
+                                        <p className="lead special-thanks-title">Home Page Photo</p>
                                     </div>
-                                    <span>Photo by <a className='utcolor' href="https://unsplash.com/@joelfilip?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Joel Filipe</a> on <a className='utcolor' href="https://unsplash.com/@joelfilip?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+                                    <span>Background vector created by <a className='utcolor' href="https://www.freepik.com/vectors/background"> starline - www.freepik.com </a></span>
                                 </div>
 
                                 <div className="list-group-item flex-column align-items-start credit">
                                     <div className="d-flex justify-content-center">
-                                        <p className="h5"><u>Corgi Photos</u></p>
+                                        <p className="lead special-thanks-title">Corgi Photos</p>
                                     </div>
                                     <span>Photo by <a className='utcolor' href="https://unsplash.com/@florenciapotter?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"> Florencia Potter</a> on <a className='utcolor' href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"> Unsplash</a></span>
                                     <br />
