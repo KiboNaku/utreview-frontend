@@ -4,6 +4,36 @@ import './CourseInfo.css'
 import './UserRatings.scss'
 
 function CourseInfo(props) {
+
+	let crossListed
+	if(props.crossListed !== null && props.crossListed.length > 0){
+		let crossListedCourses = props.crossListed.map(course => {
+			let coursePath = course.dept.toLowerCase().replace(' ', '') + "_" + course.num.toLowerCase()
+			if (course.topicNum > -1) {
+				coursePath += "_" + course.topicNum.toString()
+			}
+			return (
+					<Link
+						className="parent-topic"
+						to={{
+							pathname: `/course-results/${coursePath}`,
+							state: {
+								courseId: course.id
+							}
+						}}
+					> {course.dept} {course.num}
+					</Link>
+			)
+		})
+
+		crossListed = (
+			<div className="parent-topic-wrapper">
+				<span>Cross listed: </span>
+				{crossListedCourses}
+			</div>
+		)
+	}
+	
 	
 	let parentPath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
 	parentPath += "_0"
@@ -30,6 +60,7 @@ function CourseInfo(props) {
 			<hr className="course-name-underline"></hr>
 			<p className="course-description"> {props.courseDes} </p>
 			{props.topicNum > 0 ? parentTopic: null}
+			{props.crossListed !== null ? crossListed: null}
 			<p className="median-grade">Median Grade: {props.medianGrade !== null ? props.medianGrade : "N/A"}</p>
 			<div className="view-reviews-wrapper" align="center">
 				<a class="view-reviews" role="button" onClick={props.handleScrollToReview}>View Reviews</a>
