@@ -22,7 +22,7 @@ function CourseScheduleEntry(props) {
    
     let crossListed = props.crossListed.map(course => {
         let coursePath = course.dept.toLowerCase().replace(' ', '') + "_" + course.num.toLowerCase()
-        if (course.topicNum >= -1) {
+        if (course.topicNum > -1) {
             coursePath += "_" + course.topicNum.toString()
         }
 

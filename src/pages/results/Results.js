@@ -110,7 +110,10 @@ class Results extends Component {
 				}
 				this.setState({ searchValue: urlObject.search })
 			} else {
-				this.setState({invalidPage: true})
+				search = {
+					searchValue: ''
+				}
+				this.setState({searchValue: ''})
 			}
 		} else {
 			this.props.handleSearchValueChange(this.props.location.state.searchValue)
@@ -139,7 +142,10 @@ class Results extends Component {
 					}
 					this.setState({ searchValue: urlObject.search })
 				} else {
-
+					search = {
+						searchValue: ''
+					}
+					this.setState({searchValue: ''})
 				}
 			} else {
 				search = {
