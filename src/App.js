@@ -14,6 +14,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Login from './pages/popups/Login'
 import Signup from './pages/popups/Signup'
 import "./App.css"
+import $ from './../node_modules/jquery'
 import ConfirmEmail from './pages/confirm-email/ConfirmEmail';
 import ResetPassword from './pages/reset-password/ResetPassword';
 import VerifyEmail from './pages/popups/VerifyEmail';
@@ -35,6 +36,10 @@ class App extends Component{
 		if(token !== undefined && token !== null){
 			const decoded = jwt_decode(token)
 			profilePic = decoded.identity.profile_pic
+		}
+
+		window.onpopstate = e => {
+			$('.modal').modal('hide')
 		}
 		
 		this.state = {
