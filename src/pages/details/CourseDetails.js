@@ -349,7 +349,7 @@ class CourseDetails extends React.Component {
                     let date = dateString + " " + dateTimeParsed[1]
                     return {
                         ...review,
-                        date: new Date(date)
+                        date: new Date(date).getTime()
                     }
                 })
                 this.setState({
