@@ -10,6 +10,7 @@ import { getProfInfo, getProfId } from './_prof/ProfFunctions'
 import Loading from './../_utils/Loading'
 import { withRouter } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
+import './Details.css'
 import './ProfDetails.css'
 
 class ProfDetails extends React.Component {
