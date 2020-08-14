@@ -18,7 +18,7 @@ class About extends Component {
                 {
                     name: 'Iris Zhang',
                     description: "Iris is a full-stack developer for UT Review. She's a true asian and is addicted to boba. In her free time, she enjoys spoiling her doggo, Momo, and getting carried (nope, not carrying) as her team's ADC in League of Legends.",
-                    image: require('./../../res/img/iris.jpg')
+                    image: require('./../../res/img/iris.JPG')
                 },
                 {
                     name: 'Yangle Xue',
