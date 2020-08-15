@@ -15,15 +15,6 @@
     visibility: hidden;
 }
 
-.btn-nav {
-    color: white
-}
-
-.btn-nav:hover {
-    color: white;
-    border: 1px solid white;
-}
-
 .brand-txt {
     color: white;
     font-size: 125%;
@@ -32,6 +23,7 @@
 .brand-txt:hover {
     color: #bf5700;
     text-decoration: none;
+    transition: 0.2s all ease;
 }
 
 .big-brand-txt {
