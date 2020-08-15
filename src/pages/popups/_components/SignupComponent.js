@@ -328,6 +328,7 @@ function SignupComponent(props) {
                                 logoutGoogle={props.logoutGoogle}
                                 handleLogoutFailureGoogle={props.handleLogoutFailureGoogle}
                                 data={props.data}
+                                text='Sign Up with Google'
                             />
                         </form>
                     </div>
