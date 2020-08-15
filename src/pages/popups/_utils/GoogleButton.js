@@ -1,8 +1,10 @@
 import React from 'react'
 import { GoogleLogin } from 'react-google-login'
+import './GoogleButton.css'
 
 
 const CLIENT_ID = '879307292662-75ogu33tfvgqedodsagga1jni88ueub4.apps.googleusercontent.com'
+
 
 class GoogleButton extends React.Component {
     constructor(props) {
@@ -11,7 +13,7 @@ class GoogleButton extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="google-button-wrapper">
                 <GoogleLogin
                     render={renderProps => (
                         <button className='btn btn-lg btn-dark btn-block mt-2 font-weight-bold'
@@ -20,11 +22,13 @@ class GoogleButton extends React.Component {
                         </button>
                     )}
                     clientId={CLIENT_ID}
-                    buttonText={this.props.text}
                     onSuccess={this.props.loginGoogle}
                     onFailure={this.props.handleLoginFailureGoogle}
+                    className="google-button"
                     theme="dark"
-                />
+                >
+                <span className="google-button-text">Sign In with Google</span>
+                </GoogleLogin>
             </div>
         )
     }
