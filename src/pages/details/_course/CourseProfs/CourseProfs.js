@@ -24,13 +24,18 @@ class CourseProfs extends React.Component {
     render() {
         const courseProfList = this.state.courseProfs.map(prof => {
 
+            return (
+                <CourseProfEntry course={this.props.courseInfo} {...prof} />
+
+            )
+        })
+
+        const gradeDistributions = this.state.courseProfs.map(prof => {
             let courseId = this.props.courseInfo.id
             let profId = prof.id
-
-            return [
-                    <CourseProfEntry course={this.props.courseInfo} {...prof} />,
-                    <GradeDistributions isCourse={true} course={this.props.courseInfo} prof={prof} courseId={courseId} profId={profId} />
-            ]
+            return (
+                <GradeDistributions isCourse={true} course={this.props.courseInfo} prof={prof} courseId={courseId} profId={profId} />
+            )
         })
 
         let noProfs = (
@@ -59,21 +64,24 @@ class CourseProfs extends React.Component {
             </table>
         )
 
-        let arrowIcon = this.state.open ? 
-        <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
-        
+        let arrowIcon = this.state.open ?
+            <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
+
         return (
-            <div className="courseProfs">
-                <div className="card course-card">
-                    <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#profs-collapse">
-                        <h4 className="details-header"> Professors {arrowIcon}</h4>
-                    </div>
-                    <div className="collapse show" id="profs-collapse" role="tabpanel">
-                        <div className="card-body card-table">
-                            {courseProfList.length > 0 ? profTable: noProfs}
+            <div>
+                <div className="courseProfs">
+                    <div className="card course-card">
+                        <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#profs-collapse">
+                            <h4 className="details-header"> Professors {arrowIcon}</h4>
+                        </div>
+                        <div className="collapse show" id="profs-collapse" role="tabpanel">
+                            <div className="card-body card-table">
+                                {courseProfList.length > 0 ? profTable : noProfs}
+                            </div>
                         </div>
                     </div>
                 </div>
+                {gradeDistributions}
             </div>
         )
     }

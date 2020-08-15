@@ -10,6 +10,7 @@ import { getProfInfo, getProfId } from './_prof/ProfFunctions'
 import Loading from './../_utils/Loading'
 import { withRouter } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
+import './Details.css'
 import './ProfDetails.css'
 
 class ProfDetails extends React.Component {
@@ -155,7 +156,7 @@ class ProfDetails extends React.Component {
                 engaging: 5,
                 grading: 5,
                 userMajor: 'Electrical and Computer Engineering',
-                profilePic: "default.jpg",
+                profilePic: "corgi1.jpg",
                 courseId: 1,
                 courseDept: 'EE',
                 courseNum: '302',
@@ -176,7 +177,7 @@ class ProfDetails extends React.Component {
                 engaging: 2,
                 grading: 3,
                 userMajor: 'Electrical and Computer Engineering',
-                profilePic: "default.jpg",
+                profilePic: "corgi1.jpg",
                 courseId: 2,
                 courseDept: 'EE',
                 courseNum: '306',
@@ -197,7 +198,7 @@ class ProfDetails extends React.Component {
                 engaging: 2,
                 grading: 3,
                 userMajor: 'Business Honors',
-                profilePic: "default.jpg",
+                profilePic: "corgi1.jpg",
                 courseId: 3,
                 courseDept: 'EE',
                 courseNum: '460N',
@@ -308,9 +309,13 @@ class ProfDetails extends React.Component {
                 alert(res.error)
             } else {
                 let profRevs = res.prof_reviews.map(review => {
+                    let dateTimeParsed = review.date.split(' ')
+                    let dateParsed = dateTimeParsed[0].split('-')
+                    let dateString = dateParsed[1] + "/" + dateParsed[2] + "/" + dateParsed[0]
+                    let date = dateString + " " + dateTimeParsed[1]
                     return {
                         ...review,
-                        date: new Date(review.date)
+                        date: new Date(date).getTime()
                     }
                 })
                 this.setState({

@@ -35,14 +35,14 @@ class ProfReviews extends React.Component {
 	}
 
 	loadReviews() {
-        if (this.buttonDOM != null) this.buttonDOM.current.blur();
-        if (this.state.hasMore) {
-            this.handlePageInc()
-            if (this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length){
-				this.setState({hasMore: false})
+		if (this.buttonDOM != null) this.buttonDOM.current.blur();
+		if (this.state.hasMore) {
+			this.handlePageInc()
+			if (this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length) {
+				this.setState({ hasMore: false })
 			}
-        }
-    }
+		}
+	}
 
 	calcTableEdge(page, length) {
 		return Math.min(10 * (page + 1), length)
@@ -150,8 +150,7 @@ class ProfReviews extends React.Component {
 				profReviews: updatedReviews,
 				reviewsFiltered: reviewsFiltered
 			}
-		}
-		)
+		})
 
 		reviewFeedback(feedback).then(res => {
 			if (res.error) {
@@ -196,15 +195,24 @@ class ProfReviews extends React.Component {
 	handleSortChange(value) {
 
 		let hasMore = true
-		if (this.calcTableEdge(0, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length){
+		if (this.calcTableEdge(0, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length) {
 			hasMore = false
 		}
 
 		if (value.value === "most-recent") {
 			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.date - a.date)
-			this.setState({ reviewsFiltered: updatedReviews, sortBy: value.value, page: 0, hasMore: hasMore})
+			this.setState({ reviewsFiltered: updatedReviews, sortBy: value.value, page: 0, hasMore: hasMore })
 		} else if (value.value === "most-helpful") {
-			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.numLiked - a.numLiked)
+			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => {
+				if (b.numLiked === a.numLiked) {
+					if (b.numDisliked === a.numDisliked) {
+						return b.date - a.date
+					}
+					return a.numDisliked - b.numDisliked
+				}
+				return b.numLiked - a.numLiked
+
+			})
 			this.setState({ reviewsFiltered: updatedReviews, sortBy: value.value, page: 0, hasMore: hasMore })
 		}
 	}
@@ -228,7 +236,7 @@ class ProfReviews extends React.Component {
 		}
 
 		let hasMore = true
-		if (this.calcTableEdge(0, updatedReviews.length) >= updatedReviews.length){
+		if (this.calcTableEdge(0, updatedReviews.length) >= updatedReviews.length) {
 			hasMore = false
 		}
 
@@ -251,20 +259,25 @@ class ProfReviews extends React.Component {
 						handleDislike={this.handleDislike}
 						handleReport={this.handleReport}
 					/>
-					<ReportComment reviewId={review.id} isCourse={false} />
 				</div>
+			)
+		})
+
+		const reportCommentList = this.state.profReviews.map(review => {
+			return (
+				<ReportComment reviewId={review.id} isCourse={false} />
 			)
 		})
 
 		const courses = []
 		const courseOptions = []
-		for (let i = 0; i < this.state.profReviews.length; i++){
+		for (let i = 0; i < this.state.profReviews.length; i++) {
 			let courseString = this.state.profReviews[i].courseDept + " " + this.state.profReviews[i].courseNum
-			if(courses.includes(courseString)){
+			if (courses.includes(courseString)) {
 				continue
 			}
 			courses.push(courseString)
-			
+
 			let obj = {
 				value: courseString,
 				label: courseString
@@ -343,33 +356,35 @@ class ProfReviews extends React.Component {
 		)
 
 		let hasMore = this.state.hasMore
-		if (this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length){
+		if (this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length) {
 			hasMore = false
 		}
 
 		return (
-			<div className="profReviews">
-				<div className="card prof-card">
-					<div className="card-header prof-header" >
-						<h4> Reviews ({this.state.reviewsFiltered.length}) </h4>
-					</div>
-					<div className="card-body">
-						<div className="review-filters">
-							{sort}
-							{courseFilter}
+			<div>
+				<div className="profReviews">
+					<div className="card prof-card">
+						<div className="card-header prof-header" >
+							<h4> Reviews ({this.state.reviewsFiltered.length}) </h4>
 						</div>
-						{this.state.profReviews.length > 0 ? reviews : noReviews}
-						{hasMore &&
-							<div className="d-flex justify-content-center">
-								<button onClick={this.loadReviews} className="btn btn-block btn-more-reviews btn-more-results "
-									ref={this.buttonDOM}>
-									More reviews
-                    			</button>
+						<div className="card-body">
+							<div className="review-filters">
+								{sort}
+								{courseFilter}
 							</div>
-						}
+							{this.state.profReviews.length > 0 ? reviews : noReviews}
+							{hasMore &&
+								<div className="d-flex justify-content-center">
+									<button onClick={this.loadReviews} className="btn btn-block btn-more-reviews btn-more-results "
+										ref={this.buttonDOM}>
+										More reviews
+                    			</button>
+								</div>
+							}
+						</div>
 					</div>
 				</div>
-
+				{reportCommentList}
 			</div>
 		)
 	}

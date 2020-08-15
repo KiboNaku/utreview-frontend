@@ -29,7 +29,7 @@ class Results extends Component {
 				data: [],
 				filtered: [],
 				sort: {
-					sortBy: 'courseName',
+					sortBy: 'courseRatings',
 					sortDir: 'down',
 				},
 				filter: {
@@ -59,7 +59,7 @@ class Results extends Component {
 				data: [],
 				filtered: [],
 				sort: {
-					sortBy: 'profName',
+					sortBy: 'profRatings',
 					sortDir: 'down',
 				},
 				filter: {
@@ -77,6 +77,8 @@ class Results extends Component {
 		this.isSemester = this.isSemester.bind(this)
 		this.isHour = this.isHour.bind(this)
 		this.isDivision = this.isDivision.bind(this)
+		this.filter_courses = this.filter_courses.bind(this)
+		this.filter_profs = this.filter_profs.bind(this)
 	}
 
 	componentDidMount() {
@@ -110,7 +112,10 @@ class Results extends Component {
 				}
 				this.setState({ searchValue: urlObject.search })
 			} else {
-				this.setState({invalidPage: true})
+				search = {
+					searchValue: ''
+				}
+				this.setState({searchValue: ''})
 			}
 		} else {
 			this.props.handleSearchValueChange(this.props.location.state.searchValue)
@@ -139,7 +144,10 @@ class Results extends Component {
 					}
 					this.setState({ searchValue: urlObject.search })
 				} else {
-
+					search = {
+						searchValue: ''
+					}
+					this.setState({searchValue: ''})
 				}
 			} else {
 				search = {
@@ -180,13 +188,13 @@ class Results extends Component {
 					...prevState.courses,
 					loaded: true,
 					data: course_data,
-					filtered: course_data,
+					filtered: this.filter_courses(prevState.courses.filter, course_data),
 				},
 				profs: {
 					...prevState.profs,
 					loaded: true,
 					data: prof_data,
-					filtered: prof_data,
+					filtered: this.filter_profs(prevState.profs.filter, prof_data),
 				}
 			}
 		))
@@ -365,14 +373,8 @@ class Results extends Component {
 			this.setState(prevState => {
 
 				let filter = prevState.courses.filter
-				let filtered = prevState.courses.data
-					.filter(course =>
-						(filter.depts.length <= 0 || filter.depts.includes(course.courseDept)) &&
-						(filter.mNum <= course.numRatings) &&
-						(this.isSemester(filter.sem, course)) &&
-						(this.isHour(course, filter)) &&
-						(this.isDivision(course, filter))
-					)
+				let filtered = this.filter_courses(filter, prevState.courses.data)
+					
 				return {
 					courses: {
 						...prevState.courses,
@@ -402,10 +404,7 @@ class Results extends Component {
 			this.setState((prevState) => {
 
 				let filter = prevState.profs.filter
-				let filtered = prevState.profs.data
-					.filter(prof =>
-						(filter.mNum <= prof.numRatings) &&
-						(this.isSemester(filter.sem, prof)))
+				let filtered = this.filter_profs(filter, prevState.profs.data)
 				return {
 					profs: {
 						...prevState.profs,
@@ -414,6 +413,22 @@ class Results extends Component {
 				}
 			})
 		}
+	}
+
+	filter_courses(filter, courses_data) {
+		return courses_data.filter(course =>
+			(filter.depts.length <= 0 || filter.depts.includes(course.courseDept)) &&
+			(filter.mNum <= course.numRatings) &&
+			(this.isSemester(filter.sem, course)) &&
+			(this.isHour(course, filter)) &&
+			(this.isDivision(course, filter))
+		)
+	}
+	
+	filter_profs(filter, profs_data) {
+		return profs_data.filter(prof =>
+			(filter.mNum <= prof.numRatings) &&
+			(this.isSemester(filter.sem, prof)))
 	}
 
 	render() {

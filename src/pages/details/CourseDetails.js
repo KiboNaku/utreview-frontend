@@ -12,6 +12,7 @@ import { getCourseInfo, getCourseId } from './_course/CourseFunctions'
 import Loading from './../_utils/Loading'
 import { withRouter } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
+import './Details.css'
 import './CourseDetails.css'
 
 class CourseDetails extends React.Component {
@@ -178,7 +179,7 @@ class CourseDetails extends React.Component {
                 difficulty: 5,
                 workload: 5,
                 userMajor: 'Electrical and Computer Engineering',
-                profilePic: "default.jpg",
+                profilePic: "corgi1.jpg",
                 profId: 1,
                 profFirst: 'Yale',
                 profLast: 'Patt',
@@ -199,7 +200,7 @@ class CourseDetails extends React.Component {
                 difficulty: 2,
                 workload: 3,
                 userMajor: 'Electrical and Computer Engineering',
-                profilePic: "default.jpg",
+                profilePic: "corgi1.jpg",
                 profId: 2,
                 profFirst: 'Seth',
                 profLast: 'Bank',
@@ -220,7 +221,7 @@ class CourseDetails extends React.Component {
                 difficulty: 2,
                 workload: 3,
                 userMajor: 'Business Honors',
-                profilePic: "default.jpg",
+                profilePic: "corgi1.jpg",
                 profId: 3,
                 profFirst: 'Emanuel',
                 profLast: 'Tutuc',
@@ -343,9 +344,13 @@ class CourseDetails extends React.Component {
                 alert(res.error)
             } else {
                 let courseRevs = res.course_reviews.map(review => {
+                    let dateTimeParsed = review.date.split(' ')
+                    let dateParsed = dateTimeParsed[0].split('-')
+                    let dateString = dateParsed[1] + "/" + dateParsed[2] + "/" + dateParsed[0]
+                    let date = dateString + " " + dateTimeParsed[1]
                     return {
                         ...review,
-                        date: new Date(review.date)
+                        date: new Date(date).getTime()
                     }
                 })
                 this.setState({
@@ -374,11 +379,13 @@ class CourseDetails extends React.Component {
             </div>
         )
 
+        let crossListed = this.state.courseSchedule.futureSem.length > 0 ? this.state.courseSchedule.futureSem[0].crossListed : null
+
         let content = (
             <div className="CourseDetails">
                 <div className="course-stats">
                     <CourseInfo
-                        {...this.state.courseInfo} handleScrollToReview={this.handleScrollToReview}
+                        {...this.state.courseInfo} crossListed={crossListed} handleScrollToReview={this.handleScrollToReview}
                     />
                     <CourseRatings
                         {...this.state.courseRatings}
