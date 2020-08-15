@@ -6,8 +6,8 @@ class SearchBarHome extends React.Component {
 
     constructor() {
         super()
-        this.searchValue = " "
-        this.state = { searchValue: " " }
+        this.searchValue = ""
+        this.state = { searchValue: "" }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleKeyPress = this.handleKeyPress.bind(this)
         this.handleChange = this.handleChange.bind(this)
