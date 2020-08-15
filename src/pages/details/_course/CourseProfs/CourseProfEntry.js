@@ -16,7 +16,7 @@ function CourseProfEntry(props) {
     profLast = profLast.split(" ")
     profLast = profLast[profLast.length - 1]
     let syllabiLink = `https://utdirect.utexas.edu/apps/student/coursedocs/nlogon/?semester=&department=${props.course.courseDept}&course_number=${props.course.courseNum}&course_title=&unique=&instructor_first=${profFirst}&instructor_last=${profLast}&course_type=In+Residence&search=Search`
-    
+   
     return (
         <tr key={props.id}>
             <td>
@@ -39,8 +39,7 @@ function CourseProfEntry(props) {
             <td align="center">
                 <a className="utcolor" href={syllabiLink} rel="noopener noreferrer" target="_blank"> Syllabi </a>
             </td>
-            <td align="center">
-                <a className="utcolor" role="button" data-toggle="modal" data-target={`#grade-distributions-modal-${props.course.id}-${props.id}-course`}> Grades </a>
+            <td role="button" data-toggle="modal" data-target={`#grade-distributions-modal-${props.course.id}-${props.id}-course`} align="center" className="gradesIcon">
             </td>
         </tr>
     );

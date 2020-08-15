@@ -40,8 +40,7 @@ function ProfCourseEntry(props) {
             <td align="center">
                 <a href={syllabiLink} rel="noopener noreferrer" target="_blank"> Syllabi </a>
             </td>
-            <td align="center">
-                <a className="utcolor" role="button" data-toggle="modal" data-target={`#grade-distributions-modal-${props.prof.id}-${props.id}-prof`}> Grades </a>
+            <td role="button" data-toggle="modal" data-target={`#grade-distributions-modal-${props.prof.id}-${props.id}-prof`}align="center" className="gradesIcon">
             </td>
         </tr>
     );
