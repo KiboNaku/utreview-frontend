@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.815744a9.chunk.css",
-    "main.js": "/static/js/main.02fbc7f8.chunk.js",
-    "main.js.map": "/static/js/main.02fbc7f8.chunk.js.map",
+    "main.css": "/static/css/main.2a36f6f9.chunk.css",
+    "main.js": "/static/js/main.9da1c8b7.chunk.js",
+    "main.js.map": "/static/js/main.9da1c8b7.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.e4470d16.js",
     "runtime-main.js.map": "/static/js/runtime-main.e4470d16.js.map",
     "static/css/2.af3c1da9.chunk.css": "/static/css/2.af3c1da9.chunk.css",
-    "static/js/2.ac2b5bc3.chunk.js": "/static/js/2.ac2b5bc3.chunk.js",
-    "static/js/2.ac2b5bc3.chunk.js.map": "/static/js/2.ac2b5bc3.chunk.js.map",
+    "static/js/2.82e29413.chunk.js": "/static/js/2.82e29413.chunk.js",
+    "static/js/2.82e29413.chunk.js.map": "/static/js/2.82e29413.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.4b8736541ad51f294b26eeb1a8af3185.js": "/precache-manifest.4b8736541ad51f294b26eeb1a8af3185.js",
+    "precache-manifest.d6c75985da4ff103c6ec8024b1a4a937.js": "/precache-manifest.d6c75985da4ff103c6ec8024b1a4a937.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.af3c1da9.chunk.css.map": "/static/css/2.af3c1da9.chunk.css.map",
-    "static/css/main.815744a9.chunk.css.map": "/static/css/main.815744a9.chunk.css.map",
-    "static/js/2.ac2b5bc3.chunk.js.LICENSE.txt": "/static/js/2.ac2b5bc3.chunk.js.LICENSE.txt",
+    "static/css/main.2a36f6f9.chunk.css.map": "/static/css/main.2a36f6f9.chunk.css.map",
+    "static/js/2.82e29413.chunk.js.LICENSE.txt": "/static/js/2.82e29413.chunk.js.LICENSE.txt",
     "static/media/MyUTAcademicSummary.PNG": "/static/media/MyUTAcademicSummary.c6d014d6.PNG",
     "static/media/andy_photo.jpg": "/static/media/andy_photo.d2c43285.jpg",
     "static/media/ProfInfo.css": "/static/media/blackboard-prof-background.f6777fea.jpg",
@@ -24,7 +24,9 @@
     "static/media/corgi7.jpg": "/static/media/corgi7.48250ed3.jpg",
     "static/media/corgi8.jpg": "/static/media/corgi8.c246420f.jpg",
     "static/media/corgi9.jpg": "/static/media/corgi9.95285b43.jpg",
+    "static/media/graph_icon.PNG": "/static/media/graph_icon.cf707835.PNG",
     "static/media/iris.JPG": "/static/media/iris.cb92d9d4.JPG",
+    "static/media/iris.jpg": "/static/media/iris.cb92d9d4.jpg",
     "static/media/magnifying glass.png": "/static/media/magnifying glass.ee3ab394.png",
     "static/media/schedule.png": "/static/media/schedule.3cf7bf3c.png",
     "static/media/CourseInfo.css": "/static/media/technology-course-background.e3bfbd76.jpg",
@@ -36,8 +38,8 @@
   "entrypoints": [
     "static/js/runtime-main.e4470d16.js",
     "static/css/2.af3c1da9.chunk.css",
-    "static/js/2.ac2b5bc3.chunk.js",
-    "static/css/main.815744a9.chunk.css",
-    "static/js/main.02fbc7f8.chunk.js"
+    "static/js/2.82e29413.chunk.js",
+    "static/css/main.2a36f6f9.chunk.css",
+    "static/js/main.9da1c8b7.chunk.js"
   ]
 }
