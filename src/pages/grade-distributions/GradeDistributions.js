@@ -131,7 +131,11 @@ class GradeDistributions extends Component {
                 },
                 series: [{
                     name: 'Grades',
-                    data: [{ y: grades['A'], color: '#99ff99' }, { y: grades['A-'], color: '#ccff99' }, { y: grades['B+'], color: '#ffe14d' }, { y: grades['B'], color: '#ffad33' }, { y: grades['B-'], color: '#ff704d' }, { y: grades['C+'], color: '#ff704d' }, { y: grades['C'], color: '#ff704d' }, { y: grades['C-'], color: '#ff704d' }, { y: grades['D+'], color: '#ff704d' }, { y: grades['D'], color: '#ff704d' }, { y: grades['D-'], color: '#ff704d' }, { y: grades['F'], color: '#ff704d' }]
+                    data: [{ y: grades['A'], color: '#99ff99' }, { y: grades['A-'], color: '#ccff99' }, 
+                    { y: grades['B+'], color: '#ffe14d' }, { y: grades['B'], color: '#ffad33' }, { y: grades['B-'], color: '#ff704d' }, 
+                    { y: grades['C+'], color: '#ff704d' }, { y: grades['C'], color: '#ff704d' }, { y: grades['C-'], color: '#ff704d' }, 
+                    { y: grades['D+'], color: '#ff704d' }, { y: grades['D'], color: '#ff704d' }, { y: grades['D-'], color: '#ff704d' }, 
+                    { y: grades['F'], color: '#ff704d' }]
 
                 }]
             })
