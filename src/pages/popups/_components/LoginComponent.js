@@ -155,7 +155,6 @@ function LoginComponent(props) {
                                 logoutGoogle={props.logoutGoogle}
                                 handleLogoutFailureGoogle={props.handleLogoutFailureGoogle}
                                 data={props.data}
-                                text='Login with Google'
                             />
                         </form>
                     </div>
