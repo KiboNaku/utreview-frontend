@@ -55,7 +55,7 @@ function ProfRatings(props) {
                         defaultValue={eCISValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "gray"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -66,7 +66,7 @@ function ProfRatings(props) {
                         defaultValue={clearValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "gray"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -80,7 +80,7 @@ function ProfRatings(props) {
                         defaultValue={engagingValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "gray"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -91,7 +91,7 @@ function ProfRatings(props) {
                         defaultValue={gradingValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "gray"}} fontSize="large" />}
                         readOnly
                     />
                 </div>

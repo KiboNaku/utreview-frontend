@@ -53,7 +53,7 @@ function CourseRatings(props) {
                         defaultValue={eCISValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "gray"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -64,7 +64,7 @@ function CourseRatings(props) {
                         defaultValue={usefulnessValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "gray"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -78,7 +78,7 @@ function CourseRatings(props) {
                         defaultValue={workloadValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "gray"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -89,7 +89,7 @@ function CourseRatings(props) {
                         defaultValue={difficultyValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "gray"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
