@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
     constructor(props) {
         console.log(props.searchValue)
         super(props)
-        this.searchValue = " "
+        this.searchValue = ""
         this.state = { searchValue: props.searchValue }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleKeyPress = this.handleKeyPress.bind(this)
