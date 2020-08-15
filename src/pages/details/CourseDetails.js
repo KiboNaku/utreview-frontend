@@ -12,6 +12,7 @@ import { getCourseInfo, getCourseId } from './_course/CourseFunctions'
 import Loading from './../_utils/Loading'
 import { withRouter } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
+import './Details.css'
 import './CourseDetails.css'
 
 class CourseDetails extends React.Component {
