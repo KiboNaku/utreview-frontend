@@ -8,12 +8,20 @@ const useStyles = makeStyles((theme) => ({
 		height: theme.spacing(12),
 		marginTop: 15,
 		marginBottom: 15,
-		margin: 'auto'
+		margin: 'auto',
+		"@media (max-width: 576px)": {
+			width: theme.spacing(9),
+			height: theme.spacing(9)
+		}
 	},
 	selection: {
 		width: theme.spacing(10),
 		height: theme.spacing(10),
-		marginBottom: 15
+		marginBottom: 15,
+		"@media (max-width: 576px)": {
+			width: theme.spacing(8),
+			height: theme.spacing(8)
+		}
 	}
 }));
 
@@ -26,12 +34,12 @@ function ProfilePicture(props) {
 				<Avatar
 					alt={props.name}
 					src={props.image === ''
-						? require('./../../../res/img/default.jpg')
+						? require('./../../../res/img/corgi1.jpg')
 						: (props.image === undefined
-							? require('./../../../res/img/default.jpg')
+							? require('./../../../res/img/corgi1.jpg')
 							: require('./../../../res/img/' + props.image))
 					}
-					type='button'
+					// type='button'
 					data-toggle="modal"
 					data-target={'#change-profile-pic'}
 					className={classes.profile} />
@@ -47,12 +55,12 @@ export function SelectionPicture(props) {
 		<Avatar
 			alt={props.name}
 			src={props.image === ''
-				? require('./../../../res/img/default.jpg')
+				? require('./../../../res/img/corgi1.jpg')
 				: (props.image === undefined
-					? require('./../../../res/img/default.jpg')
+					? require('./../../../res/img/corgi1.jpg')
 					: require('./../../../res/img/' + props.image))
 			}
-			type='button'
+			// type='button'
 			className={classes.selection}
 			onClick={() => props.onImageChange(props.image)}
 		/>

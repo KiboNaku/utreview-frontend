@@ -213,16 +213,6 @@ class ReportBug extends Component {
 					handleBugTypeChange={this.handleBugTypeChange}
 					handleSubmit={this.handleSubmit}
 				/>
-				{/* <div id='bug-report-received' className="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
-					<div className="toast-body feedback-notif">
-						<button type="button" className="close feedback-notif-close" data-dismiss="toast" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<div className='feedback-notif-text'>
-							Thank you. We will handle the bug soon.
-					</div>
-					</div>
-				</div> */}
 			</div>
 		)
 	}

@@ -62,7 +62,6 @@ class CourseSchedule extends React.Component {
                         <th scope="col">Time</th>
                         <th scope="col">Days</th>
                         <th scope="col">Location</th>
-                        <th scope="col">Cross Listed</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,7 +80,6 @@ class CourseSchedule extends React.Component {
                         <th scope="col">Time</th>
                         <th scope="col">Days</th>
                         <th scope="col">Location</th>
-                        <th scope="col">Cross Listed</th>
                     </tr>
                 </thead>
                 <tbody>

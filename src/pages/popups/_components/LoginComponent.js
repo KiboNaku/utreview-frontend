@@ -111,7 +111,7 @@ function LoginComponent(props) {
                                 <ErrorMessage component="div" className="text-danger" name="password" />
                             </div>
 
-                            <span className="forgot-password-text center" type="button" data-toggle="modal" data-target="#forgot-password-modal">
+                            <span className="forgot-password-text center button-type" data-toggle="modal" data-target="#forgot-password-modal">
                                 <a data-dismiss="modal" data-toggle="modal" data-target="#forgot-password-modal" className="utcolor"><p className="center">Forgot Password?</p></a>
                             </span>
 
@@ -163,7 +163,7 @@ function LoginComponent(props) {
                         <label className="center-text pt-3 d-inline-block">
                             <h6>
                                 New to UT Flow?&nbsp;
-                                    <span type="button" onClick={props.signup}>
+                                    <span className='button-type' onClick={props.signup}>
                                     <a className="utcolor">Sign Up</a>
                                 </span>
                             </h6>
