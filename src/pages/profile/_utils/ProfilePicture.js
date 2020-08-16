@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
 		"@media (max-width: 576px)": {
 			width: theme.spacing(9),
 			height: theme.spacing(9)
+		},
+		'&:hover':{
+			cursor:'pointer'
 		}
 	},
 	selection: {
@@ -21,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
 		"@media (max-width: 576px)": {
 			width: theme.spacing(8),
 			height: theme.spacing(8)
+		},
+		'&:hover':{
+			cursor:'pointer'
 		}
 	}
 }));
@@ -39,7 +45,6 @@ function ProfilePicture(props) {
 							? require('./../../../res/img/corgi1.jpg')
 							: require('./../../../res/img/' + props.image))
 					}
-					// type='button'
 					data-toggle="modal"
 					data-target={'#change-profile-pic'}
 					className={classes.profile} />
@@ -60,7 +65,6 @@ export function SelectionPicture(props) {
 					? require('./../../../res/img/corgi1.jpg')
 					: require('./../../../res/img/' + props.image))
 			}
-			// type='button'
 			className={classes.selection}
 			onClick={() => props.onImageChange(props.image)}
 		/>
