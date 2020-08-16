@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 import SearchBar from './SearchBar'
 import "./NavBar.css"
+import "./NavBar.scss"
 
 class NavBar extends Component {
     constructor(props) {
@@ -37,13 +38,27 @@ class NavBar extends Component {
         const btnDuo = (
 
             <span>
-                <span className="align-self-center mr-2 d-none d-md-inline">
-                    <button style={transparent ? { color: "#333f48", border: "1px solid #333f48", backgroundColor: "rgba(255, 255, 255, 0.637)" } : { color: "white" }}
-                        type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#signup-modal">Sign up</button>
+                <span className="align-self-center mr-2 d-none d-md-inline btn-nav-wrapper">
+                    <button style={transparent ? { color: "black", border: "1px black solid"} : { color: "white", border: "0.4px white solid" }}
+                        type="button" className="btn-nav" data-toggle="modal" data-target="#signup-modal">
+                            <div className="btn-nav-text-wrapper">
+                                <div className="btn-nav-background"></div>
+                                <div className="btn-nav-text">
+                                    Sign up
+                                </div>
+                            </div>
+                    </button>
                 </span>
-                <span className="align-self-center mr-2 d-md-inline">
-                    <button style={transparent ? { color: "#333f48", border: "1px solid #333f48", backgroundColor: "rgba(255, 255, 255, 0.637)" } : { color: "white" }}
-                        type="button" className="btn font-weight-bold btn-nav" data-toggle="modal" data-target="#login-modal">Log in</button>
+                <span className="align-self-center mr-2 d-md-inline btn-nav-wrapper">
+                    <button style={transparent ? { color: "black", border: "1px black solid"} : { color: "white", border: "0.4px white solid" }}
+                        type="button" className="btn-nav" data-toggle="modal" data-target="#login-modal">
+                            <div className="btn-nav-text-wrapper">
+                                <div className="btn-nav-background"></div>
+                                <div className="btn-nav-text">
+                                    Login
+                                </div>
+                            </div>
+                    </button>
                 </span>
             </span>
         )
