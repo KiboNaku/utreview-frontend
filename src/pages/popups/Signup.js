@@ -13,6 +13,7 @@ class Signup extends Component {
         super()
         this.state = {
             loading: false,
+            error: null,
             verifyEmail: false,
             majorList: null,
             majorListLoaded: false,
@@ -101,6 +102,8 @@ class Signup extends Component {
             if (res.error) {
                 if (this.state.googleSignup) {
                     alert(res.error)
+                } else {
+                    this.setState({error: res.error})
                 }
             } else {
                 if (this.state.googleSignup) {
