@@ -75,22 +75,22 @@ function ProfScheduleEntry(props) {
     
     return (
         <tr>
-            <td align="center">
+            <td>
                 {props.uniqueNum !== null ? uniqueNum: "N/A"}
             </td>
-            <td align="center">
+            <td>
                 {props.courseId !== null ? course : "N/A"}
             </td>
-            <td align="center">
+            <td>
                 {enrollment}
             </td>
-            <td align="center">
+            <td>
                 {props.timeFrom !== null ? (props.timeFrom + " - " + props.timeTo) : "N/A"}
             </td>
-            <td align="center">
+            <td>
                 {props.days !== "" ? props.days : "N/A"}
             </td>
-            <td align="center">
+            <td>
                 {props.location !== null && props.location !== "N/A" ? location : "N/A"}
             </td>
         </tr>
