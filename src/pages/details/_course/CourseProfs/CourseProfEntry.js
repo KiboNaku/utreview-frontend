@@ -13,6 +13,8 @@ function CourseProfEntry(props) {
     
     let profFirst = props.firstName
     let profLast = props.lastName
+    profFirst = profFirst.split(" ")
+    profFirst = profFirst[0]
     profLast = profLast.split(" ")
     profLast = profLast[profLast.length - 1]
     let syllabiLink = `https://utdirect.utexas.edu/apps/student/coursedocs/nlogon/?semester=&department=${props.course.courseDept}&course_number=${props.course.courseNum}&course_title=&unique=&instructor_first=${profFirst}&instructor_last=${profLast}&course_type=In+Residence&search=Search`
