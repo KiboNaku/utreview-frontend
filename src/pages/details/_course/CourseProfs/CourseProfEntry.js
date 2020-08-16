@@ -31,15 +31,15 @@ function CourseProfEntry(props) {
                 > {props.firstName} {props.lastName}
                 </Link>
             </td>
-            <td align="center">{percentLiked}</td>
-            <td align="center">{eCIS}</td>
-            <td align="center">{clear}</td>
-            <td align="center">{engaging}</td>
-            <td align="center">{grading}</td>
-            <td align="center">
+            <td colSpan="1">{percentLiked}</td>
+            <td>{eCIS}</td>
+            <td>{clear}</td>
+            <td>{engaging}</td>
+            <td>{grading}</td>
+            <td >
                 <a className="utcolor" href={syllabiLink} rel="noopener noreferrer" target="_blank"> Syllabi </a>
             </td>
-            <td role="button" data-toggle="modal" data-target={`#grade-distributions-modal-${props.course.id}-${props.id}-course`} align="center" className="gradesIcon">
+            <td role="button" data-toggle="modal" data-target={`#grade-distributions-modal-${props.course.id}-${props.id}-course`} className="gradesIcon">
             </td>
         </tr>
     );

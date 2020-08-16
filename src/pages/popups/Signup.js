@@ -132,6 +132,7 @@ class Signup extends Component {
                         label: data[i]['name']
                     })
                 }
+                list = list.sort((a, b) => a.label.localeCompare(b.label))
                 this.setState({ majorList: list, majorListLoaded: true })
             }
         })
