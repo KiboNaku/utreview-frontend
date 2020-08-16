@@ -4,7 +4,7 @@ import './Filter.css'
 
 function ProfFilter(props) {
 
-    let numRatingOptions = props.minNumRatings.length
+    let numRatingOptions = props.minNumRatings.length - 1
 
     return (
 
@@ -22,7 +22,7 @@ function ProfFilter(props) {
                     <label className="float-right">{props.filter.mNum}</label>
 
                     <input type="range" min="0" max={numRatingOptions.toString()} className="c-range form-control-range" step="1"
-                        value={props.filter.mNum}
+                        value={props.minNumRatings.indexOf(props.filter.mNum)}
                         onChange={(event) => { props.handleFilterChange(null, props.minNumRatings[event.target.value]) }} />
                 </div>
 
