@@ -42,6 +42,26 @@ function LoginComponent(props) {
                                 return isValidEmail(value);
                             }
                         )
+                        .test('Check email password', 'This account does not have an associated password. Login with Google and then create a password.',
+                            function (value) {
+                                if (value === undefined) {
+                                    return true
+                                }
+                                return new Promise((resolve, reject) => {
+                                    axios
+                                        .post('/api/check_email_password', {
+                                            email: value + '@utexas.edu',
+                                        })
+                                        .then(response => {
+                                            if (response.data.error) {
+                                                resolve(false)
+                                            } else {
+                                                resolve(true)
+                                            }
+                                        })
+                                })
+                            }
+                        )
                         .test('Check valid email', 'An account does not exist for this email',
                             function (value) {
                                 if (value === undefined) {
