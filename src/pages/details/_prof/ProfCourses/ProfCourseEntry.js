@@ -23,7 +23,7 @@ function ProfCourseEntry(props) {
     
     return (
         <tr>
-            <td align="center">  
+            <td>  
                 <Link
                     className="utcolor"
                     to={{
@@ -32,16 +32,15 @@ function ProfCourseEntry(props) {
                 > {courseName}
                 </Link>
             </td>
-            <td align="center">{percentLiked}</td>
-            <td align="center">{eCIS}</td>
-            <td align="center">{difficulty}</td>
-            <td align="center">{usefulness}</td>
-            <td align="center">{workload}</td>
-            <td align="center">
+            <td>{percentLiked}</td>
+            <td>{eCIS}</td>
+            <td>{usefulness}</td>
+            <td>{difficulty}</td>
+            <td>{workload}</td>
+            <td>
                 <a href={syllabiLink} rel="noopener noreferrer" target="_blank"> Syllabi </a>
             </td>
-            <td align="center">
-                <a className="utcolor" role="button" data-toggle="modal" data-target={`#grade-distributions-modal-${props.prof.id}-${props.id}-prof`}> Grades </a>
+            <td role="button" data-toggle="modal" data-target={`#grade-distributions-modal-${props.prof.id}-${props.id}-prof`} className="gradesIcon">
             </td>
         </tr>
     );

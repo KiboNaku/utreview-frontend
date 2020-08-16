@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
     constructor(props) {
         console.log(props.searchValue)
         super(props)
-        this.searchValue = " "
+        this.searchValue = ""
         this.state = { searchValue: props.searchValue }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleKeyPress = this.handleKeyPress.bind(this)
@@ -45,7 +45,7 @@ class SearchBar extends React.Component {
 
         return (
             <form className="form-inline form-search" onSubmit={this.handleSubmit}>
-                <div className="container">
+                <div className="container searchbar-outline">
                     <div className="d-flex justify-content-center searchbar-wrapper">
                         <div className="searchbar">
                             <input

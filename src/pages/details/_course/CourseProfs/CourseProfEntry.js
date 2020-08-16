@@ -16,7 +16,7 @@ function CourseProfEntry(props) {
     profLast = profLast.split(" ")
     profLast = profLast[profLast.length - 1]
     let syllabiLink = `https://utdirect.utexas.edu/apps/student/coursedocs/nlogon/?semester=&department=${props.course.courseDept}&course_number=${props.course.courseNum}&course_title=&unique=&instructor_first=${profFirst}&instructor_last=${profLast}&course_type=In+Residence&search=Search`
-    
+   
     return (
         <tr key={props.id}>
             <td>
@@ -31,16 +31,15 @@ function CourseProfEntry(props) {
                 > {props.firstName} {props.lastName}
                 </Link>
             </td>
-            <td align="center">{percentLiked}</td>
-            <td align="center">{eCIS}</td>
-            <td align="center">{clear}</td>
-            <td align="center">{engaging}</td>
-            <td align="center">{grading}</td>
-            <td align="center">
+            <td colSpan="1">{percentLiked}</td>
+            <td>{eCIS}</td>
+            <td>{clear}</td>
+            <td>{engaging}</td>
+            <td>{grading}</td>
+            <td >
                 <a className="utcolor" href={syllabiLink} rel="noopener noreferrer" target="_blank"> Syllabi </a>
             </td>
-            <td align="center">
-                <a className="utcolor" role="button" data-toggle="modal" data-target={`#grade-distributions-modal-${props.course.id}-${props.id}-course`}> Grades </a>
+            <td role="button" data-toggle="modal" data-target={`#grade-distributions-modal-${props.course.id}-${props.id}-course`} className="gradesIcon">
             </td>
         </tr>
     );
