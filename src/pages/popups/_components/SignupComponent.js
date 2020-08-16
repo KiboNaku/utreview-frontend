@@ -327,6 +327,9 @@ function SignupComponent(props) {
                     <div className="modal-body">
 
                         {props.data.loading && loading}
+                        <p className='text-danger'>
+                            {props.data.error && props.data.error}
+                        </p>
                         <SignupForm />
 
                         <div className="text-center my-3">
