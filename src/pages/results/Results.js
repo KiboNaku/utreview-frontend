@@ -97,6 +97,7 @@ class Results extends Component {
 						label: data[i]['name']
 					})
 				}
+				list = list.sort((a, b) => a.label.localeCompare(b.label))
 				this.setState({ depts: list, deptsLoaded: true })
 			}
 		})
