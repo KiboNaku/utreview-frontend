@@ -331,8 +331,6 @@ class Results extends Component {
 
 	handleFilterChange(depts = null, mNum = -1, sem = null, hours = null, divisions = null) {
 
-		console.log(mNum)
-
 		if (this.state.tabIndex === 0) {
 
 			this.setState(prevState => {
