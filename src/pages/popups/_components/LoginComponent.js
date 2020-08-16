@@ -7,6 +7,11 @@ import ModalHeader from "./../_utils/ModalHeader"
 import './../../../utcolors.css'
 import Loading from './../../_utils/Loading'
 
+function isValidEmail(str){
+    var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(str + "@utexas.edu")
+}
+
 function invalidInputStyle(errors, touched, fieldName) {
     if (getIn(errors, fieldName) && getIn(touched, fieldName)) {
         return {
@@ -30,6 +35,33 @@ function LoginComponent(props) {
                 validateOnBlur={false}
                 validationSchema={Yup.object({
                     email: Yup.string()
+                        .test(
+                            'Invalid email',
+                            'Invalid email',
+                            function(value){
+                                return isValidEmail(value);
+                            }
+                        )
+                        .test('Check email password', 'This account does not have an associated password. Login with Google and then create a password.',
+                            function (value) {
+                                if (value === undefined) {
+                                    return true
+                                }
+                                return new Promise((resolve, reject) => {
+                                    axios
+                                        .post('/api/check_email_password', {
+                                            email: value + '@utexas.edu',
+                                        })
+                                        .then(response => {
+                                            if (response.data.error) {
+                                                resolve(false)
+                                            } else {
+                                                resolve(true)
+                                            }
+                                        })
+                                })
+                            }
+                        )
                         .test('Check valid email', 'An account does not exist for this email',
                             function (value) {
                                 if (value === undefined) {
