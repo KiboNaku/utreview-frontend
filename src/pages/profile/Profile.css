@@ -204,6 +204,12 @@
 	justify-content: space-evenly;
 }
 
+.forgot-password-text{
+	margin: 0 auto;
+	text-align: center;
+	display: block;
+}
+
 @media (max-width: 576px) {
 	.profile-name{
 		font-size: 250%;

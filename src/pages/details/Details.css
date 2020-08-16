@@ -1,0 +1,14 @@
+
+.add-review{
+    margin: 0 30px
+}
+
+.gradesIcon {
+    background-image: url("./../../res/img/graph_icon.PNG");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.gradesIcon:hover {
+    background-color: #dedede;
+}

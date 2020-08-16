@@ -12,6 +12,7 @@ import { getCourseInfo, getCourseId } from './_course/CourseFunctions'
 import Loading from './../_utils/Loading'
 import { withRouter } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
+import './Details.css'
 import './CourseDetails.css'
 
 class CourseDetails extends React.Component {
@@ -343,9 +344,13 @@ class CourseDetails extends React.Component {
                 alert(res.error)
             } else {
                 let courseRevs = res.course_reviews.map(review => {
+                    let dateTimeParsed = review.date.split(' ')
+                    let dateParsed = dateTimeParsed[0].split('-')
+                    let dateString = dateParsed[1] + "/" + dateParsed[2] + "/" + dateParsed[0]
+                    let date = dateString + " " + dateTimeParsed[1]
                     return {
                         ...review,
-                        date: new Date(review.date)
+                        date: new Date(date).getTime()
                     }
                 })
                 this.setState({

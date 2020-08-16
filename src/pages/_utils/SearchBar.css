@@ -1,11 +1,19 @@
 
 .searchbar {
     min-width: 100%;
-    border: 2px solid #333f48;
-    height: 60px;
-    background-color: white;
-    border-radius: 30px;
-    padding: 10px;
+    height: 55px;
+    background-color: transparent;
+    padding: 9px;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+    
+.searchbar-outline {
+    background-color: rgba(255, 255, 255, 0.966);
+    border-radius: 22px;
+    box-shadow: 0 1px 4px #333f48, 0 0 0 3px #ffffff3f;
+    margin-left: -15px;
+    width: 95%;
 }
 
 .searchbar:hover {
@@ -60,6 +68,7 @@ input:-webkit-autofill:active {
     text-decoration: none;
     background: #bf5700;
     color: white;
+    transition: 0.2s all ease;
 }
 
 form {
@@ -73,4 +82,10 @@ form {
 
 .search-wrapper-lg {
     width: calc(100vw * .25 + 180px);
+}
+
+@media (max-width: 576px) {
+    .searchbar-outline {
+        margin-left: 5px;
+    }
 }

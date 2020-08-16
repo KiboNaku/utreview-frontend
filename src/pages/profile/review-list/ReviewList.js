@@ -10,9 +10,13 @@ class ReviewList extends React.Component {
         super(props)
         
         let userReviews = props.reviewList.map(review => {
+			let dateTimeParsed = review.date.split(' ')
+			let dateParsed = dateTimeParsed[0].split('-')
+			let dateString = dateParsed[1] + "/" + dateParsed[2] + "/" + dateParsed[0]
+			let date = dateString + " " + dateTimeParsed[1]
             return {
                 ...review,
-                date: new Date(review.date)
+                date: new Date(date).getTime()
             }
         })
 

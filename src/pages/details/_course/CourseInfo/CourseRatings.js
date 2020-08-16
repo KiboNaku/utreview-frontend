@@ -12,7 +12,7 @@ function CourseRatings(props) {
         },
     })(Rating);
 
-    const percentLikedValue = props.percentLiked === null ? 0 : props.percentLiked
+    const percentLikedValue = props.percentLiked === null ? 100 : props.percentLiked
     const percentLiked = props.percentLiked === null ? "N/A" : props.percentLiked.toString() + "%"
 
     const difficultyValue = props.difficulty === null ? 0 : props.difficulty
@@ -28,16 +28,19 @@ function CourseRatings(props) {
     const eCIS = props.eCIS === null ? "N/A" : props.eCIS
 
     const numRatings = props.numRatings
+
+    const progressClass = props.percentLiked === null ? "progress-bar progress-bar-striped" : "progress-bar"
+    
     return (
         <div className="course-ratings">
             <h3 className="rating-heading"> User Ratings ({numRatings})</h3>
             <div className="rating">
                 <p className="p-rating"> Liked: {percentLiked} </p>
-                <div className="progress">
+                <div className="progress" style={{backgroundColor: 'gray'}}>
                     <div
-                        className="progress-bar"
+                        className={progressClass}
                         role="progressbar"
-                        style={{ width: `${percentLikedValue}%`, backgroundColor: '#bf5700' }}
+                        style={{ width: `${percentLikedValue}%`, backgroundColor: props.percentLiked === null ? "gray": "#fbfbfb" }}
                         aria-valuenow={percentLikedValue}
                         aria-valuemin="0"
                         aria-valuemax="100"
@@ -53,7 +56,7 @@ function CourseRatings(props) {
                         defaultValue={eCISValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "gray"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -64,7 +67,7 @@ function CourseRatings(props) {
                         defaultValue={usefulnessValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "gray"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -78,7 +81,7 @@ function CourseRatings(props) {
                         defaultValue={workloadValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "gray"}} fontSize="large" />}
                         readOnly
                     />
                 </div>
@@ -89,7 +92,7 @@ function CourseRatings(props) {
                         defaultValue={difficultyValue}
                         precision={0.1}
                         icon={<RadioButtonCheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
-                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "#fbfbfb"}} fontSize="large" />}
+                        emptyIcon={<RadioButtonUncheckedIcon style={{color: "gray"}} fontSize="large" />}
                         readOnly
                     />
                 </div>

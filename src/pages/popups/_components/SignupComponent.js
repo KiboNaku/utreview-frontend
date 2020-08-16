@@ -7,6 +7,11 @@ import GoogleButton from "./../_utils/GoogleButton"
 import ModalHeader from './../_utils/ModalHeader'
 import Loading from './../../_utils/Loading'
 
+function isValidEmail(str){
+    var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(str + "@utexas.edu")
+}
+
 function containsSpecialChars(str) {
     var regex = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
     return regex.test(str);
@@ -81,6 +86,13 @@ function SignupComponent(props) {
                             }
                         ),
                     email: Yup.string()
+                        .test(
+                            'Invalid email',
+                            'Invalid email',
+                            function(value){
+                                return isValidEmail(value);
+                            }
+                        )
                         .test('Check duplicate email', 'An account already exists for this email',
                             function (value) {
                                 return new Promise((resolve, reject) => {
@@ -316,6 +328,9 @@ function SignupComponent(props) {
                     <div className="modal-body">
 
                         {props.data.loading && loading}
+                        <p className='text-danger'>
+                            {props.data.error && props.data.error}
+                        </p>
                         <SignupForm />
 
                         <div className="text-center my-3">
