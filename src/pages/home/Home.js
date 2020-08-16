@@ -68,6 +68,11 @@ class Home extends Component {
                         </div>
                     </div>
                 </div>
+                <div className="background-credits">
+                    <a className="credits" href="https://www.freepik.com/vectors/background">
+                        Background vector created by starline - www.freepik.com
+                    </a>
+                </div>
             </div>
         )
     }
