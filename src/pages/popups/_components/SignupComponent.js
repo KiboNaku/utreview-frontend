@@ -268,6 +268,7 @@ function SignupComponent(props) {
                                         id='showOtherMajor'
                                         type="checkbox"
                                         name="showOtherMajor"
+                                        className='utcolor'
                                         checked={formik.values.showOtherMajor}
                                         onBlur={formik.handleBlur}
                                         onChange={formik.handleChange}
@@ -327,6 +328,9 @@ function SignupComponent(props) {
                     <div className="modal-body">
 
                         {props.data.loading && loading}
+                        <p className='text-danger'>
+                            {props.data.error && props.data.error}
+                        </p>
                         <SignupForm />
 
                         <div className="text-center my-3">
