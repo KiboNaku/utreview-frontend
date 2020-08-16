@@ -84,6 +84,7 @@ class Login extends Component {
                 }
                 this.props.handleProfilePicChange(profilePic)
                 $("#login-modal").modal("hide")
+                window.location.reload()
             }
         })
     }
