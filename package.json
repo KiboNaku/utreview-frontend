@@ -16,7 +16,6 @@
 		"highcharts": "^8.1.2",
 		"jquery": "^3.5.1",
 		"jwt-decode": "^2.2.0",
-		"node-sass": "^4.14.1",
 		"prop-types": "^15.7.2",
 		"qs": "^6.9.4",
 		"react": "^16.13.1",
@@ -39,6 +38,7 @@
 		"yup": "^0.29.2"
 	},
 	"scripts": {
+		"compile:sass": "node-sass ./src/pages/details/_course/CourseInfo/UserRatings.scss ./src/pages/details/_course/CourseInfo/UserRatings.css",
 		"start": "react-scripts start",
 		"start-backend": "cd .. && cd utflow-backend && flask run --no-debugger",
 		"build": "react-scripts build",
@@ -61,5 +61,8 @@
 			"last 1 safari version"
 		]
 	},
-	"proxy": "http://localhost:5000"
+	"proxy": "http://localhost:5000",
+	"devDependencies": {
+		"node-sass": "^4.14.1"
+	}
 }

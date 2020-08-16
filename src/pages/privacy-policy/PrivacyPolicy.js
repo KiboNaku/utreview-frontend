@@ -3,7 +3,7 @@ import PrivacyPolicyComponent from './_components/PrivacyPolicyComponent'
 import './PrivacyPolicy.css'
 
 class PrivacyPolicy extends Component {
-    
+
     render() {
 
         return (
