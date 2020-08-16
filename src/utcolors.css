@@ -37,13 +37,11 @@ input[type="radio"].utcolor {
 
 input[type="radio"].utcolor+label:before {
     content: "";
-
     display: inline-block;
     width: 15px;
     height: 15px;
     padding: 3px;
     margin-right: 5px;
-
     background-clip: content-box;
     border: 1px solid #9cadb7;
     background-color: #e7e6e7;
@@ -54,7 +52,34 @@ input[type="radio"].utcolor:checked+label:before {
     background-color: #bf5700;
 }
 
-
 .utcolor a {
     color: #bf5700;
 }
+
+/* custom checkbox but it's really ugly :( */
+
+/* input[type="checkbox"] {
+    visibility: hidden;
+}
+
+input[type="checkbox"]+label:before {
+    border: 1px solid #333;
+    content: "\00a0";
+    display: inline-block;
+    font: 15px/1em sans-serif;
+    height: 16px;
+    margin: 0 .25em 0 0;
+    padding: 0;
+    width: 16px;
+}
+
+input[type="checkbox"]:checked+label:before {
+    background: #bf5700;
+    color: white;
+    content: "\2713";
+    text-align: center;
+}
+
+input[type="checkbox"]:disabled+label::before {
+    background: gray;
+} */
