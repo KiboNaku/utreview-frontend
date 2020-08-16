@@ -45,7 +45,7 @@ class SearchBar extends React.Component {
 
         return (
             <form className="form-inline form-search" onSubmit={this.handleSubmit}>
-                <div className="container">
+                <div className="container searchbar-outline">
                     <div className="d-flex justify-content-center searchbar-wrapper">
                         <div className="searchbar">
                             <input
