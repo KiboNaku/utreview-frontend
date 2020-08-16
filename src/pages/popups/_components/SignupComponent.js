@@ -256,6 +256,7 @@ function SignupComponent(props) {
                                         id='showOtherMajor'
                                         type="checkbox"
                                         name="showOtherMajor"
+                                        className='utcolor'
                                         checked={formik.values.showOtherMajor}
                                         onBlur={formik.handleBlur}
                                         onChange={formik.handleChange}
