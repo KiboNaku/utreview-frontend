@@ -17,7 +17,13 @@ class NavBar extends Component {
     logOut(e) {
         e.preventDefault()
         localStorage.removeItem('usertoken')
-        this.props.history.push(`/`)
+        console.log(this.props.location)
+        if(this.props.location.pathname === "/profile" || this.props.location.pathname === "/add-review"){
+            this.props.history.push(`/`)
+        }else{
+            window.location.reload()
+        }
+        
     }
 
     render() {
