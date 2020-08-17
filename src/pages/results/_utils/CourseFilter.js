@@ -147,13 +147,13 @@ function CourseFilter(props) {
                     <div className="form-check sem-radio" onClick={() => { props.handleFilterChange(null, -1, "current") }}>
                         <input className="form-check-input utcolor" type="radio" name="semester" value="current"
                             checked={props.filter.sem === "current"} />
-                        <label className="form-check-label text-left ">Current (insert semester)</label>
+                        <label className="form-check-label text-left ">Current {props.semesters && ('(' + props.semesters.current + ')')}</label>
                     </div>
                     <br />
                     <div className="form-check sem-radio" onClick={() => { props.handleFilterChange(null, -1, "next") }} >
                         <input className="form-check-input utcolor" type="radio" name="semester" value="next"
                             checked={props.filter.sem === "next"} />
-                        <label className="form-check-label text-left ">Next (insert semester)</label>
+                        <label className="form-check-label text-left ">Next {props.semesters && ('(' + props.semesters.next + ')')}</label>
                     </div>
                 </div>
             </div>

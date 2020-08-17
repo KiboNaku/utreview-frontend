@@ -190,12 +190,10 @@ function ReviewFormComponent(props) {
                     </ol>
 
                     <div className="text-center pt-4" style={disableStyle}>
-                        <input
-                            type="submit"
-                            className="btn btn-lg btn-outline-primary"
-                            value={props.data.oldReview ? "Update" : "Submit"}
-                            onSubmit={props.handleSubmit}
-                            disabled={props.data.submitPressed} />
+
+                        <button className="btn btn-lg btn-utcolor font-weight-bold" disabled={props.data.submitPressed} type="submit">
+                            {props.data.oldReview ? "Update" : "Submit"}
+                        </button>
                     </div>
                 </form>
             </div>
