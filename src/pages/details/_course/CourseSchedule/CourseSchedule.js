@@ -48,7 +48,7 @@ class CourseSchedule extends React.Component {
 
         let noCourses = (
             <h5 className="none-scheduled">
-                This course is not scheduled for this semester
+                This course is not scheduled for this semester <br></br><br></br>
             </h5>
         )
 
@@ -124,9 +124,9 @@ class CourseSchedule extends React.Component {
 
         return (
             <div className="courseSchedule">
-                <div className="card course-card">
-                    <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#schedule-collapse">
-                        <h4 className="details-header"> Course Schedule {arrowIcon}</h4>
+                <div className="course-card">
+                    <div className="card-header course-header" /*onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#schedule-collapse"*/>
+                        <h4 className="details-header"> Course Schedule</h4>
                     </div>
                     <div className="collapse show" id="schedule-collapse" role="tabpanel">
                         <div className="card-body card-table">
