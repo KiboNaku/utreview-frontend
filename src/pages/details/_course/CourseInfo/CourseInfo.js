@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './CourseInfo.css'
-import './UserRatings.css'
+import './UserRatings.scss'
 
 function CourseInfo(props) {
 
