@@ -1,7 +1,6 @@
 .courseProfs{
-    margin-right: 100px;
-    margin-left: 100px;
-    margin-top: 50px;
+    margin-right: 10px;
+    margin-left: 10px;
     margin-bottom: 50px;
 }
 
@@ -20,9 +19,14 @@
 }
 
 .prof-table thead th{
-    background-color: #333f48;
+    background-color: white;
     border-top-width: 0;
-    color: white;
+    color: #333f48;
+    font-weight: 400;
+    font-size: 13px;
+    font-family: 'Open sans', sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 992px){

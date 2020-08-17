@@ -1,6 +1,7 @@
+
 .courseSchedule{
-    margin-right: 100px;
-    margin-left: 100px;
+    margin-right: 10px;
+    margin-left: 10px;
     margin-top: 50px;
     margin-bottom: 50px;
 }
@@ -22,16 +23,17 @@
 .schedule-table thead th {
     position: sticky; 
     top: 0;
+    background-color: white !important;
+    color: #333f48 !important;
+    font-size: 13px;
+    font-weight: 400;
+    font-family: 'Open sans', sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
 }
 
 .schedule-table th, tr, td{
     width: 1%;
-}
-
-.schedule-table thead th{
-    background-color: #333f48;
-    border-top-width: 0;
-    color: white;
 }
 
 .none-scheduled{
@@ -42,6 +44,12 @@
     margin-right: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
+    color: #333f48;
+}
+
+.table-information {
+    font-weight: 900 !important;
 }
 
 @media screen and (max-width: 992px){
