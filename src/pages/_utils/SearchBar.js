@@ -51,7 +51,6 @@ class SearchBar extends React.Component {
                             <input
                                 className="search-input"
                                 type="text"
-                                id="search-input1234"
                                 onChange={this.handleChange}
                                 name="searchValue"
                                 onKeyPress={this.handleKeyPress}
