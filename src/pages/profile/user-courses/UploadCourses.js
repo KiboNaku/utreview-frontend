@@ -36,8 +36,6 @@ class UploadCourses extends Component {
     onSubmit(){
         const formData = new FormData()
         formData.append("image", this.state.selectedFile);
-        console.log(formData)
-        console.log(formData.keys)
         axios.post("/api/parse_academic_summary", formData);
         $("#upload-courses").modal("hide") 
     }
