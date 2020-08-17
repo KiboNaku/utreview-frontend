@@ -9,6 +9,7 @@
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.5.0",
 		"@testing-library/user-event": "^7.2.1",
+		"aws-amplify": "^3.0.23",
 		"axios": "^0.19.2",
 		"bootstrap": "^4.5.0",
 		"dot-prop": "^5.2.0",
@@ -16,6 +17,7 @@
 		"highcharts": "^8.1.2",
 		"jquery": "^3.5.1",
 		"jwt-decode": "^2.2.0",
+		"mysql": "^2.18.1",
 		"node-sass": "^4.14.1",
 		"prop-types": "^15.7.2",
 		"qs": "^6.9.4",
@@ -30,6 +32,7 @@
 		"react-native-sqlite-storage": "^5.0.0",
 		"react-rating": "^2.0.5",
 		"react-router-dom": "^5.2.0",
+		"react-router-sitemap": "^1.2.0",
 		"react-scripts": "^3.4.3",
 		"react-select": "^3.1.0",
 		"react-simple-user-feedback": "^0.1.3",
@@ -44,7 +47,8 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"test-backend": "cd .. && cd utflow-backend && flask test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"sitemap": "babel-node ./src/sitemap_generator.js"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
@@ -61,5 +65,11 @@
 			"last 1 safari version"
 		]
 	},
-	"proxy": "http://localhost:5000"
+	"proxy": "http://localhost:5000",
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-preset-es2015": "^6.24.1",
+		"babel-preset-react": "^6.24.1",
+		"babel-register": "^6.26.0"
+	}
 }
