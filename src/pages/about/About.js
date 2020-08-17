@@ -10,8 +10,8 @@ class About extends Component {
             contributors: [
                 {
                     name: 'Andy Ni',
-                    description: 
-                    'Andy is a Software Engineering student who develops for UT Review during his free time.\
+                    description:
+                        'Andy is a Software Engineering student who develops for UT Review during his free time.\
                     When he is not working on the site, he enjoys playing Animal Crossing and being a jungler for his team in League of Legends.',
                     image: require('./../../res/img/andy_photo.jpg')
                 },
@@ -32,6 +32,10 @@ class About extends Component {
                 }
             ]
         }
+    }
+
+    componentDidMount() {
+        document.title = 'About - UT Review';
     }
 
     render() {

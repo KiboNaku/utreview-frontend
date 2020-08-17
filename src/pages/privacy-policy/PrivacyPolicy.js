@@ -32,6 +32,11 @@ class PrivacyPolicy extends Component {
         }
     }
 
+    componentDidMount(){
+        document.title = "Privacy Policy - UT Review"
+    }
+
+
     render() {
 
         return (

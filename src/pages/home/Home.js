@@ -1,28 +1,33 @@
 import React, { Component } from 'react'
 import SearchBarHome from './../_utils/SearchBarHome'
 import './Home.css'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
+
+    componentDidMount() {
+        document.title = "UT Review"
+    }
+
     render() {
         return (
             <div className="all-wrapper">
                 <div className="home-wrapper">
                     <div className="top-wrapper">
                         <img alt="top background" className="top-background"
-                        src={require('./../../res/img/utreview-homebackground.jpg')} />
+                            src={require('./../../res/img/utreview-homebackground.jpg')} />
                     </div>
 
-                    <div className="bottom-wrapper">     
-                        
+                    <div className="bottom-wrapper">
+
                         <img alt="circle logo" className="circle-logo"
-                        src={require('./../../res/img/utreview-homelogotransparent-orangewhite.png')} />   
-                        
+                            src={require('./../../res/img/utreview-homelogotransparent-orangewhite.png')} />
+
                         <div className="floating-box">
                             <div className="floating-box-content">
                                 <div className="find-your-class">
                                     <img alt="magnifying class icon" className="magnifying-glass"
-                                    src={require('./../../res/img/magnifying glass.png')} />
+                                        src={require('./../../res/img/magnifying glass.png')} />
                                     <br></br>
                                     <div className="floating-box-text">
                                         Find your class.
@@ -30,7 +35,7 @@ class Home extends Component {
                                 </div>
                                 <div className="plan-your-schedule">
                                     <img alt="schedule icon" className="schedule"
-                                    src={require('./../../res/img/schedule.png')} />
+                                        src={require('./../../res/img/schedule.png')} />
                                     <br></br>
                                     <div className="floating-box-text">
                                         Plan your schedule.
@@ -38,13 +43,13 @@ class Home extends Component {
                                 </div>
                                 <div className="leave-a-review">
                                     <img alt="checklist icon" className="checklist"
-                                    src={require('./../../res/img/checklist.png')} />
+                                        src={require('./../../res/img/checklist.png')} />
                                     <br></br>
                                     <div className="floating-box-text">
                                         Leave a review.
                                     </div>
                                 </div>
-                            </div>                        
+                            </div>
                         </div>
 
                         <div className="search-wrapper-lg searchbar-wrapper-home">

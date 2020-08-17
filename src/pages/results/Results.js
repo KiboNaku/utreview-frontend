@@ -85,6 +85,7 @@ class Results extends Component {
 	componentDidMount() {
 
 		// fetch departments
+		document.title = "Search Results - UT Review"
 
 		getMajor().then(res => {
 			if (res.error) {

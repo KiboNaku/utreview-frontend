@@ -235,6 +235,8 @@ class ProfDetails extends React.Component {
     }
 
     componentDidMount() {
+        
+        document.title = "UT Review"
 
         let loggedIn = false
         let email = ''
@@ -326,6 +328,9 @@ class ProfDetails extends React.Component {
                     profReviews: profRevs,
                     loaded: true
                 })
+
+                const {firstName, lastName} = res.prof_info
+                document.title = firstName + " " + lastName + " - UT Review"
             }
         })
     }

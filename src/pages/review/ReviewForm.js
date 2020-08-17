@@ -502,6 +502,7 @@ class ReviewForm extends Component {
 	}
 
 	componentDidMount() {
+		document.title = "Add Review - UT Review"
 		window.addEventListener("beforeunload", this.beforeunload);
 		window.addEventListener("popstate", this.onBackButtonEvent)
 		if (this.state.oldReview !== null) {

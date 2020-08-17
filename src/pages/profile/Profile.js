@@ -99,6 +99,8 @@ class Profile extends Component {
 
     componentDidMount() {
 
+        document.title = "Profile - UT Review"
+
         const token = localStorage.usertoken
         if(token === null || token === undefined){
             this.props.history.push('/')
