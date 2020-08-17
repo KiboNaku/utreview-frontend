@@ -22,8 +22,8 @@
     width: 100%;
     height: 541px;
     z-index: 1;
+    background-image: url('./../../../../res/img/backgrounds/technology-course-background.jpg');
     opacity: 0.017;
-    background-image: url('./../../../../res/img/technology-course-background.jpg');
     background-repeat: no-repeat;
     background-position: 50% 0;
     -ms-background-size: cover;
