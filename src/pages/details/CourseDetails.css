@@ -14,10 +14,9 @@
 }
 
 .course-card{
-    border-color: #9cadb7;
     padding-right: 0px;
     padding-left: 0px;
-    background-color: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .card-table{
@@ -38,6 +37,15 @@
     color: white;
 }
 
+.details-header {
+    font-family: 'Questrial', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: -5px;
+    letter-spacing: 0.65px;
+}
+
 .details-header i{
     float: right;
 }
@@ -45,6 +53,25 @@
 .name-column{
     text-align: left;
 }
+
+.course-details-block-wrapper {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 100px;
+    margin-left: 20px;
+}
+
+.prof-schedule-tables {
+    width: 80%;
+    margin-top: 1px;
+    padding-right: 20px;
+}
+
+.table-information-text {
+    font-family: 'Open Sans', sans-serif;
+}
+
 
 
 
