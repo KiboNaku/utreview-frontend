@@ -182,7 +182,7 @@ class CourseProfs extends React.Component {
                             <i className={'pl-3 fas fa-sort-' + this.state.sortDir + (this.state.sortBy === 'profGrading' ? '' : ' invisible')}></i>
                         </th>
                         <th scope="col">Syllabi</th>
-                        <th scope="col">Grades</th>
+                        <th scope="col" style={{textAlign: 'center'}}>Grades</th>
                     </tr>
                 </thead>
                 <tbody>
