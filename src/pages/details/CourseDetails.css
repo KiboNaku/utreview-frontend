@@ -63,8 +63,9 @@
 }
 
 .prof-schedule-tables {
-    width: 71%;
+    width: 80%;
     margin-top: 1px;
+    padding-right: 20px;
 }
 
 .table-information-text {
