@@ -209,6 +209,7 @@ export default function CompleteProfileComponent(props) {
 									name="password"
 									type="password"
 									className="form-control"
+                                    placeholder="********"
 									style={invalidInputStyle(formik.errors, formik.touched, 'password')}
 								/>
 								<ErrorMessage component="div" className="text-danger" name="password" />
@@ -220,6 +221,7 @@ export default function CompleteProfileComponent(props) {
 									name="confirmPassword"
 									type="password"
 									className="form-control"
+                                    placeholder="********"
 									style={invalidInputStyle(formik.errors, formik.touched, 'confirmPassword')}
 								/>
 								<ErrorMessage component="div" className="text-danger" name="confirmPassword" />

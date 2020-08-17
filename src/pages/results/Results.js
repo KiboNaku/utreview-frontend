@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import NotFound from './../not-found/NotFound'
 import ResultsComponent from './_components/ResultsComponent'
 import { populateResults } from './_utils/ResultsFunctions'
-import { getMajor } from './../popups/_utils/UserFunctions'
+import { getMajor, getSemester } from './../popups/_utils/UserFunctions'
 
 import "./Results.css"
 
@@ -22,6 +22,7 @@ class Results extends Component {
 			depts: [],
 			deptsLoaded: false,
 			invalidPage: false,
+			semesters: null,
 
 			courses: {
 				loaded: false,
@@ -100,6 +101,10 @@ class Results extends Component {
 				list = list.sort((a, b) => a.label.localeCompare(b.label))
 				this.setState({ depts: list, deptsLoaded: true })
 			}
+		})
+
+		getSemester().then(res => {
+			this.setState({semesters: res})
 		})
 
 		// fetch search results
