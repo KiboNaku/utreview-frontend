@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { getMajor } from './_utils/UserFunctions'
 import $ from './../../../node_modules/jquery'
 import CompleteProfileComponent from './_components/CompleteProfileComponent'
-import { updatePersonalInfo } from './../profile/_utils/ProfileFunctions'
+import { updateMajor } from './_utils/CompleteProfileFunctions'
 
 class CompleteProfile extends Component {
 
@@ -19,10 +19,11 @@ class CompleteProfile extends Component {
 		this.onMajorCompletion = this.onMajorCompletion.bind(this)
 		this.onPasswordCompletion = this.onPasswordCompletion.bind(this)
 		this.handleSkip = this.handleSkip.bind(this)
+		this.handleClose = this.handleClose.bind(this)
 	}
 
-	handleSkip(){
-		if(this.state.majorPage){
+	handleSkip() {
+		if (this.state.majorPage) {
 			this.setState({
 				majorPage: false
 			})
@@ -52,20 +53,24 @@ class CompleteProfile extends Component {
 			other_major: otherMajor
 		}
 
-		updatePersonalInfo(user)
+		updateMajor(user)
 	}
 
 
 	onPasswordCompletion(values) {
 		axios
 			.post('/api/reset_password', {
-				email: localStorage.email,
+				email: this.props.data.email,
 				password: values.password
 			})
 			.then(response => {
 			})
 	}
 
+	handleClose() {
+		this.setState({ majorPage: true })
+		$("#complete-profile").modal("hide");
+	}
 
 	componentDidMount() {
 		getMajor().then(res => {
@@ -85,6 +90,7 @@ class CompleteProfile extends Component {
 				this.setState({ majorList: list, majorListLoaded: true })
 			}
 		})
+		this.setState({ majorPage: true })
 	}
 
 	render() {
@@ -94,6 +100,7 @@ class CompleteProfile extends Component {
 				onMajorCompletion={this.onMajorCompletion}
 				onPasswordCompletion={this.onPasswordCompletion}
 				handleSkip={this.handleSkip}
+				handleClose={this.handleClose}
 			/>
 		)
 	}
