@@ -138,6 +138,7 @@ function LoginComponent(props) {
                                     name="password"
                                     type="password"
                                     className="form-control"
+                                    placeholder="********"
                                     style={invalidInputStyle(formik.errors, formik.touched, 'password')}
                                 />
                                 <ErrorMessage component="div" className="text-danger" name="password" />

@@ -104,6 +104,7 @@ class ChangePassword extends React.Component {
                                         name="currentPassword"
                                         type="password"
                                         className="form-control"
+                                        placeholder="********"
                                         style={invalidInputStyle(formik.errors, formik.touched, 'currentPassword')}
                                         disabled={this.state.passwordValidated}
                                     />
@@ -189,6 +190,7 @@ class ChangePassword extends React.Component {
                                         name="password"
                                         type="password"
                                         className="form-control"
+                                        placeholder="********"
                                         style={invalidInputStyle(formik.errors, formik.touched, 'password')}
                                         disabled={!this.state.passwordValidated}
                                     />
@@ -201,6 +203,7 @@ class ChangePassword extends React.Component {
                                         name="confirmPassword"
                                         type="password"
                                         className="form-control"
+                                        placeholder="********"
                                         style={invalidInputStyle(formik.errors, formik.touched, 'confirmPassword')}
                                         disabled={!this.state.passwordValidated}
                                     />
