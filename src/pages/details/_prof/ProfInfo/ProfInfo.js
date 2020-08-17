@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProfInfo.css'
-import './../../_course/CourseInfo/UserRatings.css'
+import './../../_course/CourseInfo/UserRatings.scss'
 
 function ProfInfo(props) {
 	return (
