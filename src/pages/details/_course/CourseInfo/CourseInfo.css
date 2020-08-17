@@ -141,7 +141,7 @@
 .prerequisites-wrapper {
     color: #333f48;
     width: 90%;
-    background-color: rgba(255, 255, 255, 0.74);
+    background-color: rgba(255, 255, 255, 0.692);
     border: 0.5px solid #333f4880;
     padding: 20px;
     border-radius: 10px;
@@ -154,7 +154,7 @@
 .restrictions-wrapper {
     color: #333f48;
     width: 90%;
-    background-color: rgba(255, 255, 255, 0.74);
+    background-color: rgba(255, 255, 255, 0.692);
     border: 0.5px solid #333f4880;
     padding: 20px;
     margin-top: 10px;
