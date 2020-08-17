@@ -69,7 +69,7 @@ class NavBar extends Component {
 
                 <div className="float-right ">
                     <Link to="/profile">
-                        <img className="rounded-circle nav-bar-profile" alt="profile icon" src={require("./../../res/img/" + this.props.profilePic)}
+                        <img className="rounded-circle nav-bar-profile" alt="profile icon" src={require("./../../res/img/profile-pictures/" + this.props.profilePic)}
                             data-holder-rendered="true" />
                     </Link>
                 </div>

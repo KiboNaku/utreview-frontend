@@ -2,7 +2,6 @@ import React from 'react'
 import * as Yup from 'yup'
 import { Field, Formik, ErrorMessage, getIn } from 'formik'
 import MajorSelect from './../../popups/_components/MajorSelect'
-import ModalHeader from "../_utils/ModalHeader"
 
 function containsSpecialChars(str) {
 	var regex = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
@@ -258,7 +257,12 @@ export default function CompleteProfileComponent(props) {
 		<div className="modal fade" id="complete-profile" role="dialog">
 			<div className="modal-dialog modal-dialog-centered" role="document">
 				<div className="modal-content">
-					<ModalHeader text="Complete Your Profile (Optional)" />
+					<div className="modal-header">
+						<h5 className="modal-title">Complete Your Profile (Optional)</h5>
+						<button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={props.handleClose}>
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
 					<div className="modal-body">
 						{props.data.majorPage ?
 							<CompleteMajorForm /> :
