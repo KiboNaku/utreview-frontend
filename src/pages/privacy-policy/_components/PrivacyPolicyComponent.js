@@ -9,7 +9,7 @@ function PrivacyPolicyComponent (props) {
     let consent = "By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions."
     return (
         <main>
-            <div className='main-sub about container-fluid py-5'>
+            <div className='main-sub about container-fluid'>
                 <h1 className='display-3 privacy'>Privacy Policy</h1>
                 <div className='privacy-block'>
                     <div className="privacy-content">
