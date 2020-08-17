@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://utexasreview.com/</loc> </url>
+<url> <loc>https://utexasreview.com/</loc> </url>
+<url> <loc>https://utexasreview.com/profile</loc> </url>
+<url> <loc>https://utexasreview.com/about</loc> </url>
+<url> <loc>https://utexasreview.com/privacy-policy</loc> </url>
+<url> <loc>https://utexasreview.com/results</loc> </url>
+<url> <loc>https://utexasreview.com/add-review</loc> </url>
+<url> <loc>https://utexasreview.com/edit-review</loc> </url>
+<url> <loc>https://utexasreview.com/confirm_email</loc> </url>
+<url> <loc>https://utexasreview.com/reset_password</loc> </url>
+<url> <loc>https://utexasreview.com/course-results/:courseId</loc> </url>
+<url> <loc>https://utexasreview.com/prof-results/:profId</loc> </url>
+<url> <loc>https://utexasreview.com/contact-us</loc> </url>
+</urlset>
