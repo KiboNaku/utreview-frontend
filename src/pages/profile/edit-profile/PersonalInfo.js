@@ -146,8 +146,6 @@ function PersonalInfo(props) {
                         </div>
                     )
 
-                    console.log(formik.dirty)
-
                     return (
                         <form onSubmit={formik.handleSubmit}>
                             <div className="form-group my-3">
