@@ -72,7 +72,6 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-
 .course-reviews-block-wrapper {
     margin-top: 20px;
     display: flex;
@@ -179,6 +178,7 @@
     .course-reviews-block-wrapper {
         margin-left: 38px;
     }
+
 }
 
 @media screen and (max-width: 810px){
@@ -189,9 +189,17 @@
     }
 
     .course-reviews-wrapper {
-        width: 91%;
-        margin-left: 0px;
+        width: 95%;
+        margin-left: -3%;
         margin-top: 20px;
+    }
+
+    .courseAddReview {
+        margin-left: 0px;
+    }
+
+    .courseAddReview{
+        margin-left: -20px;
     }
 }
 
@@ -200,6 +208,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin-left: 0px;
     }
 
     .course-requisites{
@@ -209,7 +218,7 @@
     }
 
     .prof-schedule-tables {
-        width: 91%;
+        width: 94%;
         margin-left: 0px;
         padding-right: 0px;
         margin-top: 1px;
@@ -218,11 +227,11 @@
     .courseTopics {
         width: 50%;
         font-size: 14px;
-        margin-left: 24%;
+        margin-left: 25%;
     }
 
     .prerequisites-wrapper {
-        margin-left: 50px;
+        margin-left: 60px;
         width: 400px;
     }
 
@@ -250,9 +259,51 @@
 
     .restrictions-wrapper {
         width: 200px;
+        margin-top: -20px;
+
     }
 
     .prerequisites-wrapper {
         width: 200px;
+        margin-left: -10px;
     }
+}
+
+@media screen and (max-width: 505px){
+    .restrictions-wrapper {
+        width: 160px;
+        margin-top: -20px;
+
+    }
+
+    .prerequisites-wrapper {
+        width: 160px;
+        margin-left: -10px;
+    }
+
+    .restrictions-wrapper {
+        margin-left: 10px;
+    }
+
+    .courseTopics {
+        width: 60%;
+        font-size: 14px;
+        margin-left: 20%;
+    }
+
+    .course-details-block-wrapper {
+        margin-bottom: 5px;
+    }
+
+    .prof-schedule-tables {
+        width: 95%;
+        margin-left: 0px;
+        padding-right: 0px;
+        margin-top: 1px;
+    }
+
+    .requisites-title {
+        font-size: 16px;
+    }
+
 }
