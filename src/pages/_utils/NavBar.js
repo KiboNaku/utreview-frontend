@@ -1,10 +1,11 @@
 
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom';
-
+import Toast from './Toast'
 import SearchBar from './SearchBar'
 import "./NavBar.css"
 import "./NavBar.scss"
+import $ from './../../../node_modules/jquery'
 
 class NavBar extends Component {
     constructor(props) {
@@ -16,12 +17,14 @@ class NavBar extends Component {
 
     logOut(e) {
         e.preventDefault()
+        this.setState({profilePic: 'corgi1.jpg'})
         localStorage.removeItem('usertoken')
         console.log(this.props.location)
         if(this.props.location.pathname === "/profile" || this.props.location.pathname === "/add-review"){
-            this.props.history.push(`/`)
+            this.props.history.push('/')
+            localStorage.setItem("logout-message", true)
         }else{
-            window.location.reload()
+            $("#toast-logout-success").toast("show")
         }
         
     }
@@ -160,7 +163,17 @@ class NavBar extends Component {
                                 {localStorage.usertoken ? logout : login}
                             </div> */}
                     </div>
+                    <div aria-live="polite" aria-atomic="true" >
+						<Toast id="login-success" message="You have successfully logged in." />
+						<Toast id="logout-success" message="You have successfully logged out." />
+                        <Toast id="report-comment" message="Your comment report has been successfully submitted." />
+                        <Toast id="report-bug" message="Your bug report has been successfully submitted." />
+                        <Toast id="new-review" message="Your review has been successfully submitted." />
+                        <Toast id="edit-review" message="Your review has been successfully updated." />
+                        <Toast id="delete-review" message="Your review has been successfully deleted." />
+					</div>
                 </nav>
+                
             </div>
         )
     }

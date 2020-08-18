@@ -31,6 +31,7 @@ class ReportComment extends Component {
         .then(response => {
             this.setState({loading: false})
             $(`#report-comment-modal-${this.props.reviewId}`).modal('hide')
+            $("#toast-report-comment").toast('show')
         })
 
     }
