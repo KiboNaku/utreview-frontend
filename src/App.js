@@ -25,6 +25,15 @@ import NotFound from './pages/not-found/NotFound'
 import ContactUs from './pages/contact-us/ContactUs';
 import ReportBug from './pages/popups/ReportBug';
 import CompleteProfile from './pages/popups/CompleteProfile';
+import ReactGA from 'react-ga';
+import createHistory from 'history/createBrowserHistory'
+
+const history = createHistory()
+ReactGA.initialize('UA-175608532-1');
+history.listen((location, action) => {
+    ReactGA.pageview(location.pathname + location.search);
+});
+
 
 class App extends Component{
 
@@ -60,7 +69,7 @@ class App extends Component{
 
 	render() {
 		return (
-			<Router>
+			<Router history={history}>
 				<div className="App">
 					<ScrollTop/>
 	

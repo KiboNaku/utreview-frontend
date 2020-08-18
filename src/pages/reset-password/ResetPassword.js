@@ -23,6 +23,8 @@ class ResetPassword extends Component {
 
     componentDidMount() {
 
+        document.title = "Reset Password - UT Review"
+
         axios
             .post('/api/reset_password_link', {
                 token: qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).token
