@@ -50,7 +50,7 @@
 		"test": "react-scripts test",
 		"test-backend": "cd .. && cd utflow-backend && flask test",
 		"eject": "react-scripts eject",
-		"sitemap": "babel-node ./src/sitemap_generator.js"
+		"sitemap": "babel-node ./src/sitemapGenerator.js"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
