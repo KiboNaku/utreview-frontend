@@ -7,31 +7,40 @@ import qs from 'qs'
 
 class ResetPassword extends Component {
 
-    constructor() {
+    constructor(props) {
 
-        super()
+        super(props)
         this.state = {
             loading: false,
             redirect: false,
             success: 0,
             error: null,
-            passwordUpdated: false
+            passwordUpdated: false,
+            reset: props.location.pathname === "/reset-password"
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
 
     componentDidMount() {
-
         document.title = "Reset Password - UT Review"
-
-        axios
+        if(this.state.reset){
+            axios
             .post('/api/reset_password_link', {
                 token: qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).token
             })
             .then(response => {
                 this.setState({ success: response.data.success, error: response.data.error })
             })
+        }else{
+            axios
+            .post('/api/create_password_link', {
+                token: qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).token
+            })
+            .then(response => {
+                this.setState({ success: response.data.success, error: response.data.error })
+            })
+        }        
     }
 
 

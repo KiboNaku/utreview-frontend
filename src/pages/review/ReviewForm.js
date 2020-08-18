@@ -205,6 +205,7 @@ class ReviewForm extends Component {
 					if (res.error) {
 						alert(res.error)
 					} else {
+						localStorage.setItem("edit-review-message", true)
 						this.props.history.push("/profile")
 					}
 				})
@@ -213,6 +214,7 @@ class ReviewForm extends Component {
 					if (res.error) {
 						alert(res.error)
 					} else {
+						localStorage.setItem("new-review-message", true)
 						this.props.history.push("/profile")
 					}
 				})
