@@ -148,8 +148,8 @@ class CourseProfs extends React.Component {
         })
 
         let noProfs = (
-            <h5 className="none-scheduled">
-                No Professors available
+            <h5 className="none-scheduled"  style={{marginTop: "0px"}}>
+                <br></br>No Professors available <br></br><br></br>
             </h5>
         )
 
@@ -182,7 +182,7 @@ class CourseProfs extends React.Component {
                             <i className={'pl-3 fas fa-sort-' + this.state.sortDir + (this.state.sortBy === 'profGrading' ? '' : ' invisible')}></i>
                         </th>
                         <th scope="col">Syllabi</th>
-                        <th scope="col">Grades</th>
+                        <th scope="col" style={{textAlign: 'center'}}>Grades</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -197,9 +197,9 @@ class CourseProfs extends React.Component {
         return (
             <div>
                 <div className="courseProfs">
-                    <div className="card course-card">
-                        <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#profs-collapse">
-                            <h4 className="details-header"> Professors {arrowIcon}</h4>
+                    <div className="course-card">
+                        <div className="card-header course-header" /*onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#profs-collapse"*/ >
+                            <h4 className="details-header"> Professors </h4>
                         </div>
                         <div className="collapse show" id="profs-collapse" role="tabpanel">
                             <div className="card-body card-table">

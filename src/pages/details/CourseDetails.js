@@ -388,26 +388,32 @@ class CourseDetails extends React.Component {
 
         let content = (
             <div className="CourseDetails">
-                <div className="course-stats">
-                    <CourseInfo
-                        {...this.state.courseInfo} crossListed={crossListed} handleScrollToReview={this.handleScrollToReview}
-                    />
-                    <CourseRatings
-                        {...this.state.courseRatings}
-                    />
-                </div>
-                <div className="topics-requisites">
-                    {this.state.isParent ? childTopics : null}
-                    <CourseRequisites
-                        {...this.state.courseRequisites}
-                    />
-                </div>
-                
-                <div className="course-tables">
-                    <CourseProfs courseInfo = {this.state.courseInfo} courseProfs = {this.state.courseProfs} key={this.state.courseProfs} />
+                    <div className="course-stats">
+                        <CourseInfo
+                            {...this.state.courseInfo} crossListed={crossListed} handleScrollToReview={this.handleScrollToReview}
+                        />
+                        <CourseRatings
+                            {...this.state.courseRatings}
+                        />
+                    </div>
+
+                <div className="course-details-block-wrapper">
+                    <div className="topics-requisites">
+                        {this.state.isParent ? childTopics : null}
+                        <CourseRequisites
+                            {...this.state.courseRequisites}
+                        />
+                    </div>
+                    
+                    <div className="prof-schedule-tables">
+                        <div className="course-tables">
+                            <CourseProfs courseInfo = {this.state.courseInfo} courseProfs = {this.state.courseProfs} key={this.state.courseProfs} />
+                        </div>
+
+                        <CourseSchedule courseSchedule = {this.state.courseSchedule} key={this.state.courseSchedule.currentSem}/>
+                    </div>
                 </div>
 
-                <CourseSchedule courseSchedule = {this.state.courseSchedule} key={this.state.courseSchedule.currentSem}/>
                 <CourseAddReview
                     {...this.state.courseInfo}
                 />
