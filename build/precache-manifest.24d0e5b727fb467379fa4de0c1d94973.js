@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2e4b08349eb96c6ebfe00498ac8cb160",
+    "revision": "e1727eeb479a352dbe267168d8361231",
     "url": "/index.html"
   },
   {
-    "revision": "8d8c772712db96314f9f",
+    "revision": "018169f35021e0631894",
     "url": "/static/css/2.af3c1da9.chunk.css"
   },
   {
-    "revision": "b088fcee1f1db7ff5e5e",
-    "url": "/static/css/main.3ee0c05f.chunk.css"
+    "revision": "5c9930f3d0bbf5222193",
+    "url": "/static/css/main.ab156a68.chunk.css"
   },
   {
-    "revision": "8d8c772712db96314f9f",
-    "url": "/static/js/2.e4bcef01.chunk.js"
+    "revision": "018169f35021e0631894",
+    "url": "/static/js/2.b17b4614.chunk.js"
   },
   {
     "revision": "2b156bd3db49f128b32cdca8ac5e35e1",
-    "url": "/static/js/2.e4bcef01.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.b17b4614.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b088fcee1f1db7ff5e5e",
-    "url": "/static/js/main.30fa478a.chunk.js"
+    "revision": "5c9930f3d0bbf5222193",
+    "url": "/static/js/main.b39486d4.chunk.js"
   },
   {
     "revision": "5965b389e27dd0dc5b93",
@@ -33,15 +33,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   },
   {
     "revision": "d2c4328531aeebc15af5de13c9cfb7be",
-    "url": "/static/media/andy_photo.d2c43285.jpg"
+    "url": "/static/media/andy.d2c43285.jpg"
   },
   {
     "revision": "f6777fea6ba0465d125deff122b755ec",
     "url": "/static/media/blackboard-prof-background.f6777fea.jpg"
   },
   {
-    "revision": "3383f457cbfd2b62c8ff3300ebe7261c",
-    "url": "/static/media/colin.3383f457.jpg"
+    "revision": "820bd03412a04e49e4e24f60696f42c9",
+    "url": "/static/media/colin.820bd034.jpg"
   },
   {
     "revision": "d43b531e801f43d3018516834e16105f",
@@ -76,8 +76,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/graph_icon.cf707835.PNG"
   },
   {
-    "revision": "77141e4739bd13ec66801aa161c3323c",
-    "url": "/static/media/iris.77141e47.jpg"
+    "revision": "969586103d76caeddac23e2eb3871380",
+    "url": "/static/media/iris.96958610.jpg"
   },
   {
     "revision": "ee3ab394a4d2e5e0773952d583f682a2",
@@ -92,19 +92,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/technology-course-background.e3bfbd76.jpg"
   },
   {
-    "revision": "391805eada319f9e156d2058c5dd72dc",
-    "url": "/static/media/triangles.391805ea.jpg"
-  },
-  {
     "revision": "2818b1f779639674df69b28557046471",
     "url": "/static/media/utreview-homebackground.2818b1f7.jpg"
   },
   {
-    "revision": "47ae4c017800cbb54270d5b56cbfacfd",
-    "url": "/static/media/utreview-homelogotransparent-orangewhite.47ae4c01.png"
+    "revision": "b1ed0dcef610ac3c48a8e0ffd3e70173",
+    "url": "/static/media/utreview-homelogotransparent-orangewhite.b1ed0dce.png"
   },
   {
     "revision": "752d55ab0e365d5a31d68cb1401ceb3d",
-    "url": "/static/media/vina_pic.752d55ab.jpg"
+    "url": "/static/media/vina.752d55ab.jpg"
   }
 ]);
