@@ -360,26 +360,24 @@ class CourseReviews extends React.Component {
 
 		return (
 			<div>
-				<div className="courseReviews">
-					<div className="card course-card">
-						<div className="card-header course-header" >
-							<h4> Reviews ({this.state.reviewsFiltered.length}) </h4>
+				<div className="course-card" style={{backgroundColor: "white"}}>
+					<div className="card-header course-header" >
+						<h4 className="details-header"> Reviews ({this.state.reviewsFiltered.length}) </h4>
+					</div>
+					<div className="card-body">
+						<div className="review-filters">
+							{sort}
+							{profFilter}
 						</div>
-						<div className="card-body">
-							<div className="review-filters">
-								{sort}
-								{profFilter}
+						{this.state.courseReviews.length > 0 ? reviews : noReviews}
+						{hasMore &&
+							<div className="d-flex justify-content-center">
+								<button onClick={this.loadReviews} className="btn btn-block btn-more-reviews btn-more-results "
+									ref={this.buttonDOM}>
+									More reviews
+							</button>
 							</div>
-							{this.state.courseReviews.length > 0 ? reviews : noReviews}
-							{hasMore &&
-								<div className="d-flex justify-content-center">
-									<button onClick={this.loadReviews} className="btn btn-block btn-more-reviews btn-more-results "
-										ref={this.buttonDOM}>
-										More reviews
-                    			</button>
-								</div>
-							}
-						</div>
+						}
 					</div>
 				</div>
 				{reportCommentList}

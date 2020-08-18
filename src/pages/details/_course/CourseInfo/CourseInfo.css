@@ -45,10 +45,15 @@
 }
 
 .courseTopics{
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    color: #333f48;
+    width: 88%;
+    background-color: rgba(255, 255, 255, 0.692);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    font-size: 17px;
+    font-family: 'Zilla Slab', serif;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
 
 .parent-topic-wrapper {
@@ -245,19 +250,6 @@
         flex-direction: row;
     }
 
-    .courseRequisites{
-        margin-left: 50px;
-        margin-right: 50px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-
-    .courseTopics{
-        margin-left: 50px;
-        margin-right: 50px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
 }
 
 @media screen and (max-width: 768px){
@@ -280,24 +272,6 @@
         justify-content: center;
         display: inline-block;
     }
-
-    .courseRequisites{
-        margin-left: 50px;
-        margin-right: 50px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-
-    .requisites{
-        flex-direction: column;
-    }
-
-    .courseTopics{
-        margin-left: 50px;
-        margin-right: 50px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
 }
 
 @media screen and (max-width: 603px){
@@ -318,30 +292,6 @@
         width: auto;
         font-size: 15px;
     }
-
-    .course-requisites{
-        margin-top: 50px;
-        display: flex;
-        flex-direction: column;
-        margin-left: 8%;
-    }
-    
-    .prerequisites-wrapper {
-        color: white;
-        width: 90%;
-        background-color: #2f3d47f5;
-        padding: 20px;
-    }
-    
-    .restrictions-wrapper {
-        margin-top: 20px;
-        color: white;
-        width: 90%;
-        background-color: #2f3d47f5;
-        padding: 20px;
-
-    }
-    
 }
 
 
@@ -375,20 +325,6 @@
         justify-content: center;
         width: auto;
         display: inline-block;
-    }
-    
-    .courseRequisites{
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-
-    .courseTopics{
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 50px;
-        margin-bottom: 50px;
     }
 }
 
