@@ -22,6 +22,7 @@ import ScrollTop from './pages/_utils/ScrollTop'
 import Toast from './pages/_utils/Toast'
 import ForgotPassword from './pages/popups/ForgotPassword';
 import VerifyPassword from './pages/popups/VerifyPassword';
+import VerifyNewPassword from './pages/popups/VerifyNewPassword';
 import NotFound from './pages/not-found/NotFound'
 import ContactUs from './pages/contact-us/ContactUs';
 import ReportBug from './pages/popups/ReportBug';
@@ -35,6 +36,7 @@ class App extends Component {
 
 		let profilePic = 'corgi1.jpg'
 		if (token !== undefined && token !== null) {
+			// get token 
 			const decoded = jwt_decode(token)
 			profilePic = decoded.identity.profile_pic
 		}
@@ -84,7 +86,8 @@ class App extends Component {
 						<Route path="/add-review" render={(props) => <ReviewForm />} />
 						<Route path="/edit-review" component={ReviewForm} />
 						<Route path="/confirm_email" component={ConfirmEmail} />
-						<Route path="/reset_password" component={ResetPassword} />
+						<Route path="/reset-password" component={ResetPassword} />
+						<Route path="/create-password" component={ResetPassword} />
 						<Route path={"/course-results/:courseId"} component={CourseDetails} />
 						<Route path={"/prof-results/:profId"} component={ProfDetails} />
 						<Route path="/contact-us" render={ContactUs} />
@@ -97,6 +100,7 @@ class App extends Component {
 					<VerifyEmail />
 					<ForgotPassword />
 					<VerifyPassword />
+					<VerifyNewPassword />
 					<ReportBug />
 					<CompleteProfile />
 					
