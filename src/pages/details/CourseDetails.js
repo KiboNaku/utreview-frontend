@@ -414,12 +414,17 @@ class CourseDetails extends React.Component {
                     </div>
                 </div>
 
-                <CourseAddReview
-                    {...this.state.courseInfo}
-                />
-                <div ref={this.reviewRef}>
-                    <CourseReviews courseReviews = {this.state.courseReviews} key={this.state.courseReviews}/>
+                <div className="course-reviews-block-wrapper">
+                    <div className="add-review-wrapper">
+                        <CourseAddReview
+                            {...this.state.courseInfo}
+                        />
+                    </div>
+                    <div ref={this.reviewRef} className="course-reviews-wrapper">
+                        <CourseReviews courseReviews = {this.state.courseReviews} key={this.state.courseReviews}/>
+                    </div>
                 </div>
+
                 
             </div>
         )

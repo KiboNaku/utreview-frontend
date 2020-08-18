@@ -1,20 +1,43 @@
 .courseAddReview{
-    display: flex;   
+    display: flex;
+    width: 300px;   
     text-align: center;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
+    flex-flow: column;
+    border: 0.5px solid #333f4880;
+    padding-right: 21px;
+    padding-top: 25px;
+    padding-left: 21px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgba(255, 255, 255, 0.692);
 }
 
 .add-review-text{
     display: inline-block;
+    font-weight: normal;
+    font-size: 22px;
 }
 
-.courseReviews{
-    margin-right: 100px;
-    margin-left: 100px;
-    margin-top: 50px;
-    padding-bottom: 50px;
+.add-review-button {
+    margin-top: 10px;
+    width: 300px;
+    margin-left: -51.5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 60px;
+    border: none;
+    color: white;
+    background-color: #333f48;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: all 0.5s;
+}
+
+.add-review-button:hover {
+    padding-right: 25px;
 }
 
 .review-filters{
