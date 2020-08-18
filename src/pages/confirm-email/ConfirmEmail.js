@@ -18,6 +18,8 @@ class ConfirmEmail extends Component {
 
     componentDidMount() {
 
+        document.title = "Confirm Email - UT Review"
+
         axios
             .post('/api/confirm_email', {
                 token: qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).token

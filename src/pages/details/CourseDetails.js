@@ -269,6 +269,7 @@ class CourseDetails extends React.Component {
     }
 
     componentDidMount() {
+        document.title = "UT Review"
 
         let loggedIn = false
         let email = ''
@@ -363,6 +364,10 @@ class CourseDetails extends React.Component {
                     isParent: res.is_parent,
                     loaded: true
                 })
+                
+                const {courseDept, courseNum, courseTitle} = res.course_info
+                let courseName = courseDept + " " + courseNum
+                document.title = courseName + " - " + courseTitle + " - UT Review"
             }
         })
     }
