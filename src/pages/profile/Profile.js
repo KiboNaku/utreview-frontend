@@ -6,7 +6,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import $ from './../../../node_modules/jquery'
 import ProfileComponent from './_components/ProfileComponent'
 import ReviewSummary from './review-list/ReviewSummary'
-import {sendResetPassword } from './../popups/_utils/UserFunctions'
+import {sendResetPassword, sendCreatePassword } from './../popups/_utils/UserFunctions'
 import { SelectionPicture } from './_utils/ProfilePicture'
 import { ProfilePicModal } from './_utils/ProfilePicPopup'
 import EditProfile from './edit-profile/EditProfile'
@@ -301,8 +301,9 @@ class Profile extends Component {
 
     setPassword(){
         localStorage.setItem("email", this.state.email)
-        $("#verify-password-modal").modal("show");
-        sendResetPassword()
+        $("#edit-profile").modal("hide")
+        $("#verify-new-password-modal").modal("show");
+        sendCreatePassword()
     }
 
     render() {

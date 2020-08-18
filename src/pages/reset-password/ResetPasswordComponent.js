@@ -92,7 +92,7 @@ function ResetPasswordComponent(props) {
                                 <ErrorMessage component="div" className="text-danger" name="confirmPassword" />
                             </div>
 
-                            <button className="btn btn-lg btn-utcolor btn-block mt-2 font-weight-bold" type="submit"> Reset password </button>
+                            <button className="btn btn-lg btn-utcolor btn-block mt-2 font-weight-bold" type="submit"> {props.data.reset ? "Reset Password" : "Create Password"} </button>
 
                         </form>
                     )
@@ -105,7 +105,7 @@ function ResetPasswordComponent(props) {
     return (
         <div className="modal-content">
             <div className="modal-header">
-                <h3>Reset Password</h3>
+                <h3>{props.data.reset ? "Reset Password" : "Create Password"}</h3>
             </div>
             <div className="modal-body">
                 <ResetPasswordForm />
