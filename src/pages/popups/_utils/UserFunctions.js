@@ -62,6 +62,19 @@ export const sendResetPassword = () => {
 	return null
 }
 
+export const sendCreatePassword = () => {
+
+	if(localStorage.email !== 'undefined'){
+
+		return axios
+			.post('/api/send_create_password', {
+				email: localStorage.email
+			})
+	}
+
+	return null
+}
+
 export const getProfile = user => {
 	return axios
 		.get('/users/profile', {

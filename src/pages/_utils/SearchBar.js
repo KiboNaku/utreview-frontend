@@ -5,7 +5,6 @@ import './SearchBar.css'
 class SearchBar extends React.Component {
 
     constructor(props) {
-        console.log(props.searchValue)
         super(props)
         this.searchValue = ""
         this.state = { searchValue: props.searchValue }

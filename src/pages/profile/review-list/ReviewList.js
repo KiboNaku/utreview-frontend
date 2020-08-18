@@ -62,9 +62,6 @@ class ReviewList extends React.Component {
 			)
         }
 
-        console.log(profs)
-        console.log(updatedReviews)
-
         if(this.state.courseValues.length > 0){
             updatedReviews = updatedReviews.filter(review => 
                 this.state.courseValues.includes(review.course.dept.abr + " " + review.course.num)
@@ -159,7 +156,6 @@ class ReviewList extends React.Component {
     }
 
 	render() {
-		console.log(this.state)
 		const userReviewList = this.state.reviewsFiltered.map(review => {
 
 				return (<ReviewSummary

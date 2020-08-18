@@ -269,6 +269,7 @@ class CourseDetails extends React.Component {
     }
 
     componentDidMount() {
+        document.title = "UT Review"
 
         let loggedIn = false
         let email = ''
@@ -363,6 +364,10 @@ class CourseDetails extends React.Component {
                     isParent: res.is_parent,
                     loaded: true
                 })
+                
+                const {courseDept, courseNum, courseTitle} = res.course_info
+                let courseName = courseDept + " " + courseNum
+                document.title = courseName + " - " + courseTitle + " - UT Review"
             }
         })
     }
@@ -409,12 +414,17 @@ class CourseDetails extends React.Component {
                     </div>
                 </div>
 
-                <CourseAddReview
-                    {...this.state.courseInfo}
-                />
-                <div ref={this.reviewRef}>
-                    <CourseReviews courseReviews = {this.state.courseReviews} key={this.state.courseReviews}/>
+                <div className="course-reviews-block-wrapper">
+                    <div className="add-review-wrapper">
+                        <CourseAddReview
+                            {...this.state.courseInfo}
+                        />
+                    </div>
+                    <div ref={this.reviewRef} className="course-reviews-wrapper">
+                        <CourseReviews courseReviews = {this.state.courseReviews} key={this.state.courseReviews}/>
+                    </div>
                 </div>
+
                 
             </div>
         )

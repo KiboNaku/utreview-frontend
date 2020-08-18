@@ -205,6 +205,7 @@ class ReviewForm extends Component {
 					if (res.error) {
 						alert(res.error)
 					} else {
+						localStorage.setItem("edit-review-message", true)
 						this.props.history.push("/profile")
 					}
 				})
@@ -213,6 +214,7 @@ class ReviewForm extends Component {
 					if (res.error) {
 						alert(res.error)
 					} else {
+						localStorage.setItem("new-review-message", true)
 						this.props.history.push("/profile")
 					}
 				})
@@ -246,8 +248,6 @@ class ReviewForm extends Component {
 	}
 
 	handleCourseChange = (inputValue, { action }) => {
-		console.log('handle course change')
-
 		if (inputValue !== null) {
 			let topicSelected = inputValue.topicNum >= 0
 			if (!topicSelected) {
@@ -261,7 +261,6 @@ class ReviewForm extends Component {
 				}))
 				this.checkReviewComplete(inputValue.id, this.state.prof.id, this.state.semester.semester, this.state.semester.year, null, topicSelected)
 			} else {
-				console.log(this.state.prof.id)
 				let topicInfo = {
 					topicId: inputValue.topicId,
 					profId: this.state.prof.id
@@ -505,6 +504,7 @@ class ReviewForm extends Component {
 	}
 
 	componentDidMount() {
+		document.title = "Add Review - UT Review"
 		window.addEventListener("beforeunload", this.beforeunload);
 		window.addEventListener("popstate", this.onBackButtonEvent)
 		if (this.state.oldReview !== null) {
@@ -808,8 +808,6 @@ class ReviewForm extends Component {
 				}
 			}
 		}
-
-		console.log(this.state)
 	}
 
 	setOldReviewData = () => {
