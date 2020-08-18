@@ -1,4 +1,5 @@
 import React from 'react';
+import CourseLink from './../../_utils/CourseLink'
 import { Link } from 'react-router-dom'
 
 function UserCourseEntry(props) {
@@ -7,19 +8,15 @@ function UserCourseEntry(props) {
     if (props.topicNum >= -1) {
         coursePath += "_" + props.topicNum.toString()
     }
-    let course = 
-    (
-            <Link
-                className="utcolor"
-                to={{
-                    pathname: `/course-results/${coursePath}`,
-                    state: {
-                        courseId: props.courseId
-                    }
-                }}
-            > {props.courseDept} {props.courseNum}
-            </Link>
-    )
+    let course =
+        (
+            <CourseLink
+                courseId={props.courseId}
+                courseDept={props.courseDept}
+                courseNum={props.courseNum}
+                topicNum={props.topicNum}
+            />
+        )
 
 
     let semester = 9

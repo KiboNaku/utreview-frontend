@@ -1,4 +1,5 @@
 import React from 'react';
+import CourseLink from './../../../_utils/CourseLink'
 import { Link } from 'react-router-dom'
 import './CourseInfo.css'
 import './UserRatings.scss'

@@ -26,6 +26,9 @@ function ReviewDetails(props) {
 											className="utcolor"
 											to={{
 												pathname: `/course-results/${coursePath}`,
+												state: {
+													courseId: props.data.course.id
+												}
 											}}
 											onClick={() => { $('.modal').modal('hide') }}
 										> {props.data.course.dept.abr + " " + props.data.course.num}
