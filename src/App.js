@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode'
 import NavBar from './pages/_utils/NavBar'
 import Footer from './pages/_utils/Footer'
@@ -19,6 +19,7 @@ import ConfirmEmail from './pages/confirm-email/ConfirmEmail';
 import ResetPassword from './pages/reset-password/ResetPassword';
 import VerifyEmail from './pages/popups/VerifyEmail';
 import ScrollTop from './pages/_utils/ScrollTop'
+import Toast from './pages/_utils/Toast'
 import ForgotPassword from './pages/popups/ForgotPassword';
 import VerifyPassword from './pages/popups/VerifyPassword';
 import NotFound from './pages/not-found/NotFound'
@@ -26,14 +27,14 @@ import ContactUs from './pages/contact-us/ContactUs';
 import ReportBug from './pages/popups/ReportBug';
 import CompleteProfile from './pages/popups/CompleteProfile';
 
-class App extends Component{
+class App extends Component {
 
-	constructor(){
+	constructor() {
 		super()
 		const token = localStorage.usertoken
-        
+
 		let profilePic = 'corgi1.jpg'
-		if(token !== undefined && token !== null){
+		if (token !== undefined && token !== null) {
 			const decoded = jwt_decode(token)
 			profilePic = decoded.identity.profile_pic
 		}
@@ -41,43 +42,48 @@ class App extends Component{
 		window.onpopstate = e => {
 			$('.modal').modal('hide')
 		}
-		
+
 		this.state = {
-			profilePic : profilePic,
-			searchValue: ''
+			profilePic: profilePic,
+			searchValue: '',
 		}
 		this.handleProfilePicChange = this.handleProfilePicChange.bind(this)
 		this.handleSearchValueChange = this.handleSearchValueChange.bind(this)
+		this.handleLogin = this.handleLogin.bind(this)
 	}
 
-	handleProfilePicChange(profilePic){
-		this.setState({profilePic: profilePic})
+	handleLogin(){
+		$("#toast-login-success").toast("show")
 	}
 
-	handleSearchValueChange(searchValue){
-		this.setState({searchValue: searchValue})
+	handleProfilePicChange(profilePic) {
+		this.setState({ profilePic: profilePic })
+	}
+
+	handleSearchValueChange(searchValue) {
+		this.setState({ searchValue: searchValue })
 	}
 
 	render() {
 		return (
 			<Router>
 				<div className="App">
-					<ScrollTop/>
-	
+					<ScrollTop />
+
 					<Switch>
-						<Route exact path="/" component={() => <NavBar profilePic={this.state.profilePic} searchValue={this.state.searchValue} showSearch="false" transparent="true"/>} />
+						<Route exact path="/" component={() => <NavBar profilePic={this.state.profilePic} searchValue={this.state.searchValue} showSearch="false" transparent="true" />} />
 						<Route path="/" component={() => <NavBar profilePic={this.state.profilePic} searchValue={this.state.searchValue} showSearch="true" transparent="false" />} />
 					</Switch>
-	
+
 					<Switch>
 						<Route exact path="/" component={Home} />
 						<Route path="/profile" render={(props) => <Profile handleProfilePicChange={this.handleProfilePicChange} />} />
 						<Route path="/about" component={About} />
 						<Route path="/privacy-policy" component={PrivacyPolicy} />
-						<Route exact path="/results" render={(props) => <Results handleSearchValueChange={this.handleSearchValueChange}/>} />
-						<Route path="/add-review" render={(props) => <ReviewForm /> } />
+						<Route exact path="/results" render={(props) => <Results handleSearchValueChange={this.handleSearchValueChange} />} />
+						<Route path="/add-review" render={(props) => <ReviewForm />} />
 						<Route path="/edit-review" component={ReviewForm} />
-						<Route path="/confirm_email" component={ConfirmEmail}/>
+						<Route path="/confirm_email" component={ConfirmEmail} />
 						<Route path="/reset_password" component={ResetPassword} />
 						<Route path={"/course-results/:courseId"} component={CourseDetails} />
 						<Route path={"/prof-results/:profId"} component={ProfDetails} />
@@ -85,19 +91,20 @@ class App extends Component{
 						<Route component={NotFound} />
 					</Switch>
 					<Footer />
-	
-					<Login handleProfilePicChange={this.handleProfilePicChange}/>
+
+					<Login handleLogin={this.handleLogin} handleProfilePicChange={this.handleProfilePicChange} />
 					<Signup />
 					<VerifyEmail />
 					<ForgotPassword />
 					<VerifyPassword />
 					<ReportBug />
 					<CompleteProfile />
+					
 				</div>
 			</Router>
 		);
 	}
-	
+
 }
 
 export default App;

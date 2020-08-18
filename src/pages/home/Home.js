@@ -1,10 +1,20 @@
 import React, { Component } from 'react'
 import SearchBarHome from './../_utils/SearchBarHome'
+import $ from './../../../node_modules/jquery'
 import './Home.css'
 import {Link} from 'react-router-dom';
 
 class Home extends Component {
+
+    componentDidMount(){
+        if(localStorage.getItem("logout-message")){
+            $("#toast-logout-success").toast("show")
+            localStorage.removeItem("logout-message")
+        }
+    }
+
     render() {
+        
         return (
             <div className="all-wrapper">
                 <div className="home-wrapper">

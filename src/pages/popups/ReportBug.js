@@ -184,6 +184,7 @@ class ReportBug extends Component {
 		const isValid = this.validate()
 		if (isValid) {
 			$('#report-bug').modal("hide");
+			$('#toast-report-bug').toast("show")
 			const bug = {
 				page: this.state.page.replace(/([A-Z])/g, ' $1').trim(),
 				bug_type: this.state.bugType,

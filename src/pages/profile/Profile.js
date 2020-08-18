@@ -117,6 +117,16 @@ class Profile extends Component {
             uploadedCourses: decoded.identity.user_courses !== null && decoded.identity.user_courses !== undefined ? true : false
         }))
 
+        if(localStorage.getItem("new-review-message")){
+            $("#toast-new-review").toast("show")
+            localStorage.removeItem("new-review-message")
+        }
+
+        if(localStorage.getItem("edit-review-message")){
+            $("#toast-edit-review").toast("show")
+            localStorage.removeItem("edit2w-review-message")
+        }
+
         getMajor().then(res => {
             if (res.error) {
                 alert(res.error)
@@ -283,6 +293,7 @@ class Profile extends Component {
                 alert(res.error)
             } else {
                 this.setState({loaded: false})
+                $("#toast-delete-review").toast("show")
                 this.componentDidMount()
             }
         })
