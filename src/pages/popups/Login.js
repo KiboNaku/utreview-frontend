@@ -75,6 +75,7 @@ class Login extends Component {
                     alert(res.error)
                 }
             } else {
+                this.setState({isLogined: true})
                 const token = localStorage.usertoken
 
                 let profilePic = 'corgi1.jpg'
@@ -84,8 +85,11 @@ class Login extends Component {
                 }
                 this.props.handleProfilePicChange(profilePic)
                 $("#login-modal").modal("hide")
+                $("#toast-login-success").toast("show")
             }
+            
         })
+        
     }
 
     render() {
