@@ -1,4 +1,5 @@
 import React from 'react';
+import CourseLink from './../../../_utils/CourseLink'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
@@ -31,7 +32,7 @@ function ProfReviewEntry(props) {
     let dislikeIcon = props.review.dislikePressed ?
         <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
     let reportIcon = <FlagRoundedIcon style={{ fill: 'gray' }} />
-    
+
     const useStyles = makeStyles((theme) => ({
         large: {
             width: theme.spacing(8),
@@ -97,11 +98,6 @@ function ProfReviewEntry(props) {
             {dislikeIcon}
         </button>
     )
-    
-    let coursePath = props.review.courseDept.toLowerCase().replace(' ', '') + "_" + props.review.courseNum.toLowerCase()
-    if (props.review.courseTopic >= 0) {
-        coursePath += "_" + props.review.courseTopic.toString()
-    }
 
     return (
         <div className="list-group-item review-list-item">
@@ -110,16 +106,12 @@ function ProfReviewEntry(props) {
                     <Avatar className={classes.large} src={require('./../../../../res/img/profile-pictures/' + props.review.profilePic)}>  </Avatar>
                     <div className="userText">
                         <span> {props.review.userMajor !== null ? props.review.userMajor + " student," : "Student"} enrolled in </span>
-                        <Link
-                            className="utcolor"
-                            to={{
-                                pathname: `/course-results/${coursePath}`,
-                                state: {
-                                    courseId: props.review.courseId
-                                }
-                            }}
-                        > {props.review.courseDept} {props.review.courseNum}
-                        </Link>
+                        <CourseLink
+                            courseId={props.review.courseId}
+                            courseDept={props.review.courseDept}
+                            courseNum={props.review.courseNum}
+                            topicNum={props.review.courseTopic}
+                        />
                         <span>, {props.review.semester} {props.review.year}</span>
                     </div>
                 </div>

@@ -94,7 +94,7 @@ class App extends Component {
 						<Route exact path="/results" render={(props) => <Results handleSearchValueChange={this.handleSearchValueChange} />} />
 						<Route path="/add-review" render={(props) => <ReviewForm />} />
 						<Route path="/edit-review" component={ReviewForm} />
-						<Route path="/confirm_email" component={ConfirmEmail} />
+						<Route path="/confirm-email" component={ConfirmEmail} />
 						<Route path="/reset-password" component={ResetPassword} />
 						<Route path="/create-password" component={ResetPassword} />
 						<Route path={"/course-results/:courseId"} component={CourseDetails} />
