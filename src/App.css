@@ -78,3 +78,7 @@ html {
 .button-type:hover {
 	cursor: pointer;
 }
+
+.toast{
+	z-index: 101;
+}
