@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 class NotFound extends Component {
+
+	componentDidMount(){
+		document.title = 'Not Found - UT Review'
+	}
+
 	render() {
 		return (
 			<main className="bg-grey">
