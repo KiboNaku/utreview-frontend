@@ -20,7 +20,7 @@ function CourseProfEntry(props) {
     let syllabiLink = `https://utdirect.utexas.edu/apps/student/coursedocs/nlogon/?semester=&department=${props.course.courseDept}&course_number=${props.course.courseNum}&course_title=&unique=&instructor_first=${profFirst}&instructor_last=${profLast}&course_type=In+Residence&search=Search`
    
     return (
-        <tr key={props.id}>
+        <tr key={props.id} className="table-information-text">
             <td>
                 <Link
                     className="utcolor"

@@ -40,10 +40,10 @@ function ProfilePicture(props) {
 				<Avatar
 					alt={props.name}
 					src={props.image === ''
-						? require('./../../../res/img/corgi1.jpg')
+						? require('./../../../res/img/profile-pictures/corgi1.jpg')
 						: (props.image === undefined
-							? require('./../../../res/img/corgi1.jpg')
-							: require('./../../../res/img/' + props.image))
+							? require('./../../../res/img/profile-pictures/corgi1.jpg')
+							: require('./../../../res/img/profile-pictures/' + props.image))
 					}
 					data-toggle="modal"
 					data-target={'#change-profile-pic'}
@@ -60,10 +60,10 @@ export function SelectionPicture(props) {
 		<Avatar
 			alt={props.name}
 			src={props.image === ''
-				? require('./../../../res/img/corgi1.jpg')
+				? require('./../../../res/img/profile-pictures/corgi1.jpg')
 				: (props.image === undefined
-					? require('./../../../res/img/corgi1.jpg')
-					: require('./../../../res/img/' + props.image))
+					? require('./../../../res/img/profile-pictures/corgi1.jpg')
+					: require('./../../../res/img/profile-pictures/' + props.image))
 			}
 			className={classes.selection}
 			onClick={() => props.onImageChange(props.image)}
