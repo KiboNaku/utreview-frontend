@@ -6,7 +6,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import $ from './../../../node_modules/jquery'
 import ProfileComponent from './_components/ProfileComponent'
 import ReviewSummary from './review-list/ReviewSummary'
-import {sendResetPassword } from './../popups/_utils/UserFunctions'
+import {sendResetPassword, sendCreatePassword } from './../popups/_utils/UserFunctions'
 import { SelectionPicture } from './_utils/ProfilePicture'
 import { ProfilePicModal } from './_utils/ProfilePicPopup'
 import EditProfile from './edit-profile/EditProfile'
@@ -99,6 +99,8 @@ class Profile extends Component {
 
     componentDidMount() {
 
+        document.title = "Profile - UT Review"
+
         const token = localStorage.usertoken
         if(token === null || token === undefined){
             this.props.history.push('/')
@@ -116,6 +118,16 @@ class Profile extends Component {
             userCourses: decoded.identity.user_courses,
             uploadedCourses: decoded.identity.user_courses !== null && decoded.identity.user_courses !== undefined ? true : false
         }))
+
+        if(localStorage.getItem("new-review-message")){
+            $("#toast-new-review").toast("show")
+            localStorage.removeItem("new-review-message")
+        }
+
+        if(localStorage.getItem("edit-review-message")){
+            $("#toast-edit-review").toast("show")
+            localStorage.removeItem("edit2w-review-message")
+        }
 
         getMajor().then(res => {
             if (res.error) {
@@ -283,6 +295,7 @@ class Profile extends Component {
                 alert(res.error)
             } else {
                 this.setState({loaded: false})
+                $("#toast-delete-review").toast("show")
                 this.componentDidMount()
             }
         })
@@ -290,8 +303,9 @@ class Profile extends Component {
 
     setPassword(){
         localStorage.setItem("email", this.state.email)
-        $("#verify-password-modal").modal("show");
-        sendResetPassword()
+        $("#edit-profile").modal("hide")
+        $("#verify-new-password-modal").modal("show");
+        sendCreatePassword()
     }
 
     render() {
