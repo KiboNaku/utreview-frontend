@@ -54,7 +54,7 @@ function CourseScheduleEntry(props) {
     }
     
     return (
-        <tr key={props.id}>
+        <tr key={props.id} className="table-information-text">
             <td>
                 {props.uniqueNum !== null ? uniqueNum: "N/A"}
             </td>

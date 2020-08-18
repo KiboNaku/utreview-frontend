@@ -224,6 +224,7 @@ class Settings extends Component {
 											<input
 												id='password'
 												type="password"
+												placeholder="********"
 												name="password"
 												className="form-control"
 												value={this.state.password}
@@ -238,6 +239,7 @@ class Settings extends Component {
 											<input
 												id='confirmPassword'
 												type="password"
+												placeholder="********"
 												name="confirmPassword"
 												className="form-control"
 												value={this.state.confirmPassword}

@@ -83,6 +83,14 @@ export const getMajor = () => {
 		})
 }
 
+export const getSemester = () => {
+	return axios
+		.get('/api/get_semester')
+		.then(response => {
+			return response.data
+		})
+}
+
 export const sendConfirmEmail = () => {
 
 	if(localStorage.email !== 'undefined'){
