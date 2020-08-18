@@ -58,7 +58,7 @@
     margin-top: 50px;
     display: flex;
     flex-direction: row;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     margin-left: 20px;
 }
 
@@ -73,5 +73,186 @@
 }
 
 
+.course-reviews-block-wrapper {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+}
+
+.course-reviews-wrapper {
+    width: 70%;
+    margin-left: 50px;
+    margin-bottom: 100px;
+    padding-right: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
 
 
+@media screen and (max-width: 1233px){
+    .course-reviews-wrapper {
+        width: 650px;
+    }
+
+    .prof-schedule-tables {
+        width: 70.5%;
+    }
+}
+
+@media screen and (max-width: 1130px){
+    .prof-schedule-tables {
+        width: 70%;
+        margin-left: -50px;
+    }
+
+    .prerequisites-wrapper {
+        width: 70%;
+    }
+    
+    .restrictions-wrapper {
+        width: 70%;
+    }
+
+    .courseTopics {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 1065px){
+    .course-reviews-wrapper {
+        width: 680px;
+    }
+
+    .courseAddReview{
+        width: 195px;
+        padding-right: 15px;
+        padding-top: 20px;
+        padding-left: 15px;
+    }
+
+    .add-review-button {
+        width: 195px;
+        margin-left: -45.3px;
+    }
+    
+}
+
+@media screen and (max-width: 980px){
+    .course-reviews-wrapper {
+        width: 65%;
+    }
+}
+
+@media screen and (max-width: 949px){
+    .prof-schedule-tables {
+        width: 70%;
+        margin-left: -100px;
+    }
+
+    .prerequisites-wrapper {
+        width: 60%;
+        font-size: 14px;
+    }
+    
+    .restrictions-wrapper {
+        width: 60%;
+        font-size: 14px;
+    }
+
+    .courseTopics {
+        width: 60%;
+        font-size: 14px;
+    }
+
+    .requisites-title {
+        font-size: 18px;
+    }
+
+    .course-reviews-wrapper {
+        width: 70%;
+        margin-left: 20px;
+        margin-bottom: 100px;
+        padding-right: 20px;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .course-reviews-block-wrapper {
+        margin-left: 38px;
+    }
+}
+
+@media screen and (max-width: 810px){
+    .course-reviews-block-wrapper {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .course-reviews-wrapper {
+        width: 91%;
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 781px){
+    .course-details-block-wrapper {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .course-requisites{
+        flex-direction: row;
+        width: 80%;
+        margin-bottom: 50px;
+    }
+
+    .prof-schedule-tables {
+        width: 91%;
+        margin-left: 0px;
+        padding-right: 0px;
+        margin-top: 1px;
+    }
+
+    .courseTopics {
+        width: 50%;
+        font-size: 14px;
+        margin-left: 24%;
+    }
+
+    .prerequisites-wrapper {
+        margin-left: 50px;
+        width: 400px;
+    }
+
+    .restrictions-wrapper {
+        margin-left: 50px;
+        margin-top: 0px;
+    }
+
+}
+
+@media screen and (max-width: 688px){
+    .courseTopics {
+        width: 50%;
+        font-size: 14px;
+    }
+
+    .course-requisites {
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        width: 100%;
+        margin-bottom: 50px;
+        margin-left: 0px;
+    }
+
+    .restrictions-wrapper {
+        width: 200px;
+    }
+
+    .prerequisites-wrapper {
+        width: 200px;
+    }
+}
