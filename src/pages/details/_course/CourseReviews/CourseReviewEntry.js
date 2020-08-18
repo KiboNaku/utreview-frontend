@@ -106,7 +106,7 @@ function CourseReviewEntry(props) {
         <div className="list-group-item review-list-item">
             <div className="course-review-entry">
                 <div className="userDes">
-                    <Avatar className={classes.large} src={require('./../../../../res/img/profile-pictures/' + props.review.profilePic)}>  </Avatar>
+                    <Avatar className={classes.large} alt={props.review.profilePic} src={require('./../../../../res/img/profile-pictures/' + props.review.profilePic)}>  </Avatar>
                     <div className="userText">
                         <span> {props.review.userMajor !== null ? props.review.userMajor + " student," : "Student"} taught by </span>
                         <Link
