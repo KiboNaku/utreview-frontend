@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import SearchBarHome from './../_utils/SearchBarHome'
 import $ from './../../../node_modules/jquery'
 import './Home.css'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
 
+
     componentDidMount(){
+        document.title = "UT Review"
         if(localStorage.getItem("logout-message")){
             $("#toast-logout-success").toast("show")
             localStorage.removeItem("logout-message")
@@ -23,8 +25,8 @@ class Home extends Component {
                         src={require('./../../res/img/backgrounds/utreview-homebackground.jpg')} />
                     </div>
 
-                    <div className="bottom-wrapper">     
-                        
+                    <div className="bottom-wrapper">
+
                         <img alt="circle logo" className="circle-logo"
                         src={require('./../../res/img/other/utreview-homelogotransparent-orangewhite.png')} />   
                         
@@ -54,7 +56,7 @@ class Home extends Component {
                                         Leave a review.
                                     </div>
                                 </div>
-                            </div>                        
+                            </div>
                         </div>
 
                         <div className="search-wrapper-lg searchbar-wrapper-home">

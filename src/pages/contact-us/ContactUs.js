@@ -19,6 +19,9 @@ class ContactUs extends Component {
 	}
 
 	componentDidMount() {
+
+		document.title = "Contact Us - UT Review"
+
 		const token = localStorage.usertoken
 		if (token !== undefined) {
 			const decoded = jwt_decode(token)

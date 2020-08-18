@@ -23,6 +23,7 @@ class ResetPassword extends Component {
     }
 
     componentDidMount() {
+        document.title = "Reset Password - UT Review"
         if(this.state.reset){
             axios
             .post('/api/reset_password_link', {
@@ -39,9 +40,7 @@ class ResetPassword extends Component {
             .then(response => {
                 this.setState({ success: response.data.success, error: response.data.error })
             })
-        }
-
-        
+        }        
     }
 
 
