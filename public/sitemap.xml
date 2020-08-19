@@ -8,8 +8,10 @@
 <url> <loc>https://utexasreview.com/results</loc> </url>
 <url> <loc>https://utexasreview.com/add-review</loc> </url>
 <url> <loc>https://utexasreview.com/edit-review</loc> </url>
-<url> <loc>https://utexasreview.com/confirm_email</loc> </url>
-<url> <loc>https://utexasreview.com/reset_password</loc> </url>
+<url> <loc>https://utexasreview.com/confirm-email</loc> </url>
+<url> <loc>https://utexasreview.com/reset-password</loc> </url>
+<url> <loc>https://utexasreview.com/create-password</loc> </url>
+<url> <loc>https://utexasreview.com/contact-us</loc> </url>
 <url> <loc>https://utexasreview.com/course-results/aas_301</loc> </url>
 <url> <loc>https://utexasreview.com/course-results/aas_302</loc> </url>
 <url> <loc>https://utexasreview.com/course-results/aas_310_0</loc> </url>
@@ -10646,7 +10648,6 @@
 <url> <loc>https://utexasreview.com/course-results/j_356m</loc> </url>
 <url> <loc>https://utexasreview.com/course-results/j_356r</loc> </url>
 <url> <loc>https://utexasreview.com/course-results/j_359m_0</loc> </url>
-<url> <loc>https://utexasreview.com/course-results/j_360n</loc> </url>
 <url> <loc>https://utexasreview.com/course-results/j_363p</loc> </url>
 <url> <loc>https://utexasreview.com/course-results/j_381_6</loc> </url>
 <url> <loc>https://utexasreview.com/course-results/j_381m</loc> </url>
@@ -19626,7 +19627,7 @@
 <url> <loc>https://utexasreview.com/course-results/vib_290j</loc> </url>
 <url> <loc>https://utexasreview.com/course-results/vib_490j</loc> </url>
 <url> <loc>https://utexasreview.com/course-results/vio_201</loc> </url>
-<url> <loc>https://utexasreview.com/course-results/vio_2np10</loc> </url>
+<url> <loc>https://utexasreview.com/course-results/vio_210</loc> </url>
 <url> <loc>https://utexasreview.com/course-results/vio_212</loc> </url>
 <url> <loc>https://utexasreview.com/course-results/vio_312</loc> </url>
 <url> <loc>https://utexasreview.com/course-results/vio_412</loc> </url>
@@ -25030,11 +25031,4 @@
 <url> <loc>https://utexasreview.com/prof-results/gerardoe_delos santos</loc> </url>
 <url> <loc>https://utexasreview.com/prof-results/jasond_shumake</loc> </url>
 <url> <loc>https://utexasreview.com/prof-results/josephg_stephens</loc> </url>
-<url> <loc>https://utexasreview.com/prof-results/curran_nault</loc> </url>
-<url> <loc>https://utexasreview.com/prof-results/madeline_hsu</loc> </url>
-<url> <loc>https://utexasreview.com/prof-results/snehal_shingavi</loc> </url>
-<url> <loc>https://utexasreview.com/prof-results/aarti_bhalodia</loc> </url>
-<url> <loc>https://utexasreview.com/prof-results/heather_hindman</loc> </url>
-<url> <loc>https://utexasreview.com/prof-results/stephen_smith</loc> </url>
-<url> <loc>https://utexasreview.com/contact-us</loc> </url>
 </urlset>

@@ -63,7 +63,7 @@ class UploadCourses extends Component {
 
                         <div className="modal-body upload-courses-body">
                             <div>
-                                <img alt="" src={require('./../../../res/img/other/MyUTAcademicSummary.PNG')} height={300} width={500}></img>
+                                <img alt="Academic Summary" src={require('./../../../res/img/other/MyUTAcademicSummary.PNG')} height={300} width={500}></img>
                             </div>
                             <div>
                                 <h6> Upload your academic summary here </h6>
