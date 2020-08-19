@@ -1,4 +1,0 @@
-Sitemap: https://utexasreview.com/sitemap.xml
-# https://www.robotstxt.org/robotstxt.html
-User-agent: *
-Disallow:
