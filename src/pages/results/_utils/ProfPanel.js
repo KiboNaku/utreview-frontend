@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ProfLink from './../../_utils/ProfLink'
 import TabPanel from './TabPanel'
 import { Link } from 'react-router-dom'
 
@@ -69,21 +70,14 @@ function ProfPanel(props) {
             if (sortedProfs.length > 0) {
                 return sortedProfs.map(prof => {
                     const { firstName, lastName } = prof
-
-                    const profPath = firstName.toLowerCase().replace(" ", "") + "_" + lastName.toLowerCase().replace(" ", "")
                     return (
                         <tr key={prof.id}>
                             <td colSpan="3" className="class-name">{
-                                <Link
-                                    className="utcolor"
-                                    to={{
-                                        pathname: `/prof-results/${profPath}`,
-                                        state: {
-                                            profId: prof.id
-                                        }
-                                    }}
-                                > {firstName} {lastName}
-                                </Link>
+                                <ProfLink 
+                                    profId={prof.id}
+                                    firstName={firstName}
+                                    lastName={lastName}
+                                />
                             }</td>
                             <td colSpan="1">
                                 {prof.eCIS !== null ? prof.eCIS : "N/A"}

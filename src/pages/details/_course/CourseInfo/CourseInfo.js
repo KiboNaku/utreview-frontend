@@ -7,23 +7,17 @@ import './UserRatings.scss'
 function CourseInfo(props) {
 
 	let crossListed
-	if(props.crossListed !== null && props.crossListed.length > 0){
+	if (props.crossListed !== null && props.crossListed.length > 0) {
 		let crossListedCourses = props.crossListed.map(course => {
-			let coursePath = course.dept.toLowerCase().replace(' ', '') + "_" + course.num.toLowerCase()
-			if (course.topicNum > -1) {
-				coursePath += "_" + course.topicNum.toString()
-			}
 			return (
-					<Link
-						className="parent-topic"
-						to={{
-							pathname: `/course-results/${coursePath}`,
-							state: {
-								courseId: course.id
-							}
-						}}
-					> {course.dept} {course.num}
-					</Link>
+				<CourseLink
+					className="parent-topic"
+					courseId={course.id}
+					courseDept={course.dept}
+					courseNum={course.num}
+					topicNum={course.topicNum}
+					display="name"
+				/>
 			)
 		})
 
@@ -34,23 +28,19 @@ function CourseInfo(props) {
 			</div>
 		)
 	}
-	
-	
-	let parentPath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
-	parentPath += "_0"
+
 	let parentTopic = (
 		<div className="parent-topic-wrapper">
 			<span>Parent Topic: </span>
-			<Link
+			<CourseLink 
 				className="parent-topic"
-				to={{
-					pathname: `/course-results/${parentPath}`,
-					state: {
-						courseId: props.parentId
-					}
-				}}
-			> {props.parentTitle}
-			</Link>
+				courseId={props.parentId}
+				courseDept={props.courseDept}
+				courseNum={props.courseNum}
+				courseTitle={props.parentTitle}
+				topicNum={0}
+				display="title"
+			/>
 		</div>
 	)
 
@@ -60,8 +50,8 @@ function CourseInfo(props) {
 			<div className="course-name"> {props.courseTitle} </div>
 			<hr className="course-name-underline"></hr>
 			<p className="course-description"> {props.courseDes} </p>
-			{props.topicNum > 0 ? parentTopic: null}
-			{props.crossListed !== null ? crossListed: null}
+			{props.topicNum > 0 ? parentTopic : null}
+			{props.crossListed !== null ? crossListed : null}
 			<p className="median-grade">Median Grade: {props.medianGrade !== null ? props.medianGrade : "N/A"}</p>
 			<div className="view-reviews-wrapper" align="center">
 				<a class="view-reviews" role="button" onClick={props.handleScrollToReview}>View Reviews</a>

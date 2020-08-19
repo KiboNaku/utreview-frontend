@@ -111,6 +111,7 @@ function ProfReviewEntry(props) {
                             courseDept={props.review.courseDept}
                             courseNum={props.review.courseNum}
                             topicNum={props.review.courseTopic}
+                            display="name"
                         />
                         <span>, {props.review.semester} {props.review.year}</span>
                     </div>

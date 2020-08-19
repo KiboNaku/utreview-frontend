@@ -26,6 +26,7 @@ function ProfCourseEntry(props) {
                     courseDept={props.courseDept}
                     courseNum={props.courseNum}
                     topicNum={props.topicNum}
+                    display="name"
                 />
             </td>
             <td>{percentLiked}</td>
