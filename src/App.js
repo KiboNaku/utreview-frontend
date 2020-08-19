@@ -34,7 +34,7 @@ import axios from 'axios'
 const history = createHistory()
 ReactGA.initialize('UA-175608532-1');
 history.listen((location, action) => {
-    ReactGA.pageview(location.pathname + location.search);
+	ReactGA.pageview(location.pathname + location.search);
 });
 
 
@@ -47,16 +47,22 @@ class App extends Component {
 		let profilePic = 'corgi1.jpg'
 		if (token !== undefined && token !== null) {
 			// get token 
-			const decoded = jwt_decode(token)
-			axios
-            .post('/api/refresh_user_token', {
-                email: decoded.identity.email
-            })
-            .then(response => {
+			try {
+				const decoded = jwt_decode(token)
+				axios
+					.post('/api/refresh_user_token', {
+						email: decoded.identity.email
+					})
+					.then(response => {
+						localStorage.removeItem("usertoken")
+						localStorage.setItem('usertoken', response.data.token)
+					})
+				profilePic = decoded.identity.profile_pic
+			} catch (err) {
 				localStorage.removeItem("usertoken")
-                localStorage.setItem('usertoken', response.data.token)
-            })
-			profilePic = decoded.identity.profile_pic
+			}
+
+
 		}
 
 		window.onpopstate = e => {
@@ -72,7 +78,7 @@ class App extends Component {
 		this.handleLogin = this.handleLogin.bind(this)
 	}
 
-	handleLogin(){
+	handleLogin() {
 		$("#toast-login-success").toast("show")
 	}
 
@@ -121,7 +127,7 @@ class App extends Component {
 					<VerifyNewPassword />
 					<ReportBug />
 					<CompleteProfile />
-					
+
 				</div>
 			</Router>
 		);
