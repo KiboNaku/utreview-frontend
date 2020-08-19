@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 <url> <loc>https://www.utexasreview.com/</loc> </url>
-<url> <loc>https://www.utexasreview.com/</loc> </url>
-<url> <loc>https://www.utexasreview.com/profile</loc> </url>
 <url> <loc>https://www.utexasreview.com/about</loc> </url>
 <url> <loc>https://www.utexasreview.com/privacy-policy</loc> </url>
 <url> <loc>https://www.utexasreview.com/results</loc> </url>
-<url> <loc>https://www.utexasreview.com/add-review</loc> </url>
-<url> <loc>https://www.utexasreview.com/edit-review</loc> </url>
-<url> <loc>https://www.utexasreview.com/confirm-email</loc> </url>
-<url> <loc>https://www.utexasreview.com/reset-password</loc> </url>
-<url> <loc>https://www.utexasreview.com/create-password</loc> </url>
 <url> <loc>https://www.utexasreview.com/contact-us</loc> </url>
 <url> <loc>https://www.utexasreview.com/course-results/aas_301</loc> </url>
 <url> <loc>https://www.utexasreview.com/course-results/aas_302</loc> </url>
@@ -25031,4 +25024,6 @@
 <url> <loc>https://www.utexasreview.com/prof-results/gerardoe_delos santos</loc> </url>
 <url> <loc>https://www.utexasreview.com/prof-results/jasond_shumake</loc> </url>
 <url> <loc>https://www.utexasreview.com/prof-results/josephg_stephens</loc> </url>
+<url> <loc>https://www.utexasreview.com/confirm-email</loc> </url>
+<url> <loc>https://www.utexasreview.com/reset-password</loc> </url>
 </urlset>
