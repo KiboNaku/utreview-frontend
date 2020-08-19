@@ -29,6 +29,7 @@ import ReportBug from './pages/popups/ReportBug';
 import CompleteProfile from './pages/popups/CompleteProfile';
 import ReactGA from 'react-ga';
 import createHistory from 'history/createBrowserHistory'
+import axios from 'axios'
 
 const history = createHistory()
 ReactGA.initialize('UA-175608532-1');
@@ -47,6 +48,14 @@ class App extends Component {
 		if (token !== undefined && token !== null) {
 			// get token 
 			const decoded = jwt_decode(token)
+			axios
+            .post('/api/refresh_user_token', {
+                email: decoded.identity.email
+            })
+            .then(response => {
+				localStorage.removeItem("usertoken")
+                localStorage.setItem('usertoken', response.data.token)
+            })
 			profilePic = decoded.identity.profile_pic
 		}
 
