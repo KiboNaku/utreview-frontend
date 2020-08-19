@@ -1,4 +1,3 @@
-
 require("babel-register")({
 	presets: ["es2015", "react"]
 });
@@ -9,11 +8,12 @@ const Sitemap = require("react-router-sitemap").default;
 
 var mysql = require('mysql');
 
+var CONFIG = require("./config.json")
 var connection = mysql.createConnection({
-	host: "ut-review-db.cl2fpl9updu1.us-east-2.rds.amazonaws.com",
-	user: "admin",
-	password: "if(jG==Yi)momo15<3LuKeRan176",
-	port: "3306"
+	host: CONFIG.host,
+	user: CONFIG.user,
+	password: CONFIG.password,
+	port: CONFIG.port
 });
 
 var professors = []

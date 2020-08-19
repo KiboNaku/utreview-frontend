@@ -1,4 +1,5 @@
 import React from 'react';
+import ProfLink from './../../../_utils/ProfLink'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
@@ -31,7 +32,7 @@ function CourseReviewEntry(props) {
     let dislikeIcon = props.review.dislikePressed ?
         <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
     let reportIcon = <FlagRoundedIcon style={{ fill: 'gray' }} />
-    
+
     const useStyles = makeStyles((theme) => ({
         large: {
             width: theme.spacing(8),
@@ -99,33 +100,26 @@ function CourseReviewEntry(props) {
             {dislikeIcon}
         </button>
     )
-
-    const profPath = props.review.profFirst.toLowerCase().replace(" ", "") + "_" + props.review.profLast.toLowerCase().replace(" ", "")
     
     return (
         <div className="list-group-item review-list-item">
             <div className="course-review-entry">
                 <div className="userDes">
-                    <Avatar className={classes.large} src={require('./../../../../res/img/profile-pictures/' + props.review.profilePic)}>  </Avatar>
+                    <Avatar className={classes.large} alt={props.review.profilePic} src={require('./../../../../res/img/profile-pictures/' + props.review.profilePic)}>  </Avatar>
                     <div className="userText">
                         <span> {props.review.userMajor !== null ? props.review.userMajor + " student," : "Student"} taught by </span>
-                        <Link
-                            className="utcolor"
-                            to={{
-                                pathname: `/prof-results/${profPath}`,
-                                state: {
-                                    profId: props.review.profId
-                                }
-                            }}
-                        > {props.review.profFirst} {props.review.profLast}
-                        </Link>
+                        <ProfLink
+                            profId={props.review.profId}
+                            firstName={props.review.profFirst}
+                            lastName={props.review.profLast}
+                        />
                         <span>, {props.review.semester} {props.review.year}</span>
                     </div>
                 </div>
                 <div className="userRev">
                     <p className="review-text">{props.review.comments}</p>
                     <small className="review-date"> - {props.review.dateString}</small>
-                    <br/>
+                    <br />
                     <div className="review-like-grade">
                         <div className="LikeDislike">
                             {localStorage.usertoken ? likeButton : likeLoginLink}

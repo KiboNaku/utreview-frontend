@@ -1,26 +1,20 @@
 import React from 'react';
+import CourseLink from './../../_utils/CourseLink'
+import ProfLink from './../../_utils/ProfLink'
 import { Link } from 'react-router-dom'
 
 function UserCourseEntry(props) {
-    const profPath = props.profFirst.toLowerCase().replace(" ", "") + "_" + props.profLast.toLowerCase().replace(" ", "")
-    let coursePath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
-    if (props.topicNum >= -1) {
-        coursePath += "_" + props.topicNum.toString()
-    }
-    let course = 
-    (
-            <Link
-                className="utcolor"
-                to={{
-                    pathname: `/course-results/${coursePath}`,
-                    state: {
-                        courseId: props.courseId
-                    }
-                }}
-            > {props.courseDept} {props.courseNum}
-            </Link>
-    )
 
+    let course =
+        (
+            <CourseLink
+                courseId={props.courseId}
+                courseDept={props.courseDept}
+                courseNum={props.courseNum}
+                topicNum={props.topicNum}
+                display="name"
+            />
+        )
 
     let semester = 9
     if (props.semester === "Summer") {
@@ -34,16 +28,11 @@ function UserCourseEntry(props) {
     let uniqueNumLink = `https://utdirect.utexas.edu/apps/registrar/course_schedule/${semYear}/${props.uniqueNum}/`
     let uniqueNum = <a className="utcolor" href={uniqueNumLink} rel="noopener noreferrer" target="_blank"> {props.uniqueNum} </a>
     let prof = (
-        <Link
-            className="utcolor"
-            to={{
-                pathname: `/prof-results/${profPath}`,
-                state: {
-                    profId: props.profId
-                }
-            }}
-        > {props.profFirst} {props.profLast}
-        </Link>
+        <ProfLink
+            profId={props.profId}
+            firstName={props.profFirst}
+            lastName={props.profLast}
+        />
     )
 
     return (
