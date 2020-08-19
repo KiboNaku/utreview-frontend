@@ -29,6 +29,7 @@ function ProfScheduleEntry(props) {
             courseDept={props.courseDept}
             courseNum={props.courseNum}
             topicNum={props.topicNum}
+            display="name"
         />
     )
 
