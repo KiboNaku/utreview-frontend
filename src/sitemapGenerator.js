@@ -69,7 +69,7 @@ function generateSitemap() {
 	return (
 		new Sitemap(router)
 			.applyParams(paramsConfig)
-			.build("https://utexasreview.com")
+			.build("https://www.utexasreview.com")
 			.save("./public/sitemap.xml")
 	);
 }
