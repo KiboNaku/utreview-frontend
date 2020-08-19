@@ -1,4 +1,5 @@
 import React from 'react';
+import CourseLink from './../../../_utils/CourseLink'
 import { withRouter, Link } from 'react-router-dom'
 
 class CourseTopics extends React.Component {
@@ -19,26 +20,21 @@ class CourseTopics extends React.Component {
     }
 
     render() {
-        let arrowIcon = this.state.open ? 
-        <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
-        
+        let arrowIcon = this.state.open ?
+            <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
+
         let topicsList = this.props.topicsList.map(topic => {
 
-            let topicPath = this.props.courseDept.toLowerCase().replace(' ', '') + "_" + this.props.courseNum.toLowerCase()
-	        topicPath += "_" + topic.topicNum.toString()
-            
             return (
                 <li className="topic-item">
-                    <Link
-                        className="utcolor"
-                        to={{
-                            pathname: `/course-results/${topicPath}`,
-                            state: {
-                                courseId: topic.id
-                            }
-                        }}
-                    > {topic.title}
-                    </Link>
+                    <CourseLink
+                        courseId={topic.id}
+                        courseDept={this.props.courseDept}
+                        courseNum={this.props.courseNum}
+                        topicNum={topic.topicNum}
+                        courseTitle={topic.title}
+                        display="title"
+                    />
                 </li>
             )
         })
