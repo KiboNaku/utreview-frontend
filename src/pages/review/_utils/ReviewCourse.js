@@ -43,7 +43,7 @@ function ReviewCourse(props) {
             color: "#bf5700"
         }
     })(Tooltip);
-    const commentsPlaceholder = `(Optional) Please elaborate on your experience with this course.`
+    const commentsPlaceholder = `Please elaborate on your experience with this course.`
     const commentsDescription = `What did you like/dislike about the course's format/organizaton?
     How much did you learn from the course? Was the course content applicable to your future career?
     Would you recommmend this course to others?
