@@ -99,13 +99,15 @@ function ProfReviewEntry(props) {
         </button>
     )
 
+    let author = props.review.writtenByUser ? "You," : (props.review.userMajor !== null ? props.review.userMajor + " student," : "Student")
+
     return (
         <div className="list-group-item review-list-item">
             <div className="prof-review-entry">
                 <div className="userDes">
                     <Avatar className={classes.large} alt={props.review.profilePic} src={require('./../../../../res/img/profile-pictures/' + props.review.profilePic)}>  </Avatar>
                     <div className="userText">
-                        <span> {props.review.userMajor !== null ? props.review.userMajor + " student," : "Student"} enrolled in </span>
+                        <span> {author} enrolled in </span>
                         <CourseLink
                             courseId={props.review.courseId}
                             courseDept={props.review.courseDept}
