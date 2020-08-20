@@ -170,6 +170,7 @@ class NavBar extends Component {
                         <Toast id="new-review" message="Your review has been successfully submitted." />
                         <Toast id="edit-review" message="Your review has been successfully updated." />
                         <Toast id="delete-review" message="Your review has been successfully deleted." />
+                        <Toast id="contact-us" message="Your message has been successfully submitted." />
 					</div>
                 </nav>
                 
