@@ -1,4 +1,5 @@
 import React from 'react';
+import CourseLink from './../../../_utils/CourseLink'
 import { Link } from 'react-router-dom'
 
 function ProfCourseEntry(props) {
@@ -8,12 +9,6 @@ function ProfCourseEntry(props) {
     let difficulty = props.difficulty !== null ? `${props.difficulty}` : "N/A"
     let usefulness = props.usefulness !== null ? `${props.usefulness}` : "N/A"
     let workload = props.workload !== null ? `${props.workload}` : "N/A"
-
-    let courseName = props.courseDept + " " + props.courseNum
-    let coursePath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
-    if(props.topicNum >= 0){
-        coursePath += "_" + props.topicNum.toString()
-    } 
 
     let profFirst = props.prof.firstName
     let profLast = props.prof.lastName
@@ -26,13 +21,12 @@ function ProfCourseEntry(props) {
     return (
         <tr>
             <td>  
-                <Link
-                    className="utcolor"
-                    to={{
-                        pathname: `/course-results/${coursePath}`,
-                    }}
-                > {courseName}
-                </Link>
+                <CourseLink 
+                    courseId={props.id}
+                    courseDept={props.courseDept}
+                    courseNum={props.courseNum}
+                    topicNum={props.topicNum}
+                />
             </td>
             <td>{percentLiked}</td>
             <td>{eCIS}</td>
