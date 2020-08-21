@@ -39,10 +39,8 @@ class Login extends Component {
         this.onSubmit(values);
     }
 
-    handleLoginFailureGoogle(error, response) {
-        if (error.error !== 'idpiframe_initialization_failed') {
-            alert('Failed to log in')
-        }
+    handleLoginFailureGoogle(response) {
+        alert('Failed to log in')
     }
 
     onChange(e) {
@@ -77,7 +75,7 @@ class Login extends Component {
                     alert(res.error)
                 }
             } else {
-                this.setState({ isLogined: true })
+                this.setState({isLogined: true})
                 const token = localStorage.usertoken
 
                 let profilePic = 'corgi1.jpg'
@@ -89,9 +87,9 @@ class Login extends Component {
                 $("#login-modal").modal("hide")
                 $("#toast-login-success").toast("show")
             }
-
+            
         })
-
+        
     }
 
     render() {

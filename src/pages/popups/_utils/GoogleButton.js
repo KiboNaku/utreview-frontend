@@ -22,7 +22,7 @@ class GoogleButton extends React.Component {
                     clientId={CLIENT_ID}
                     buttonText={this.props.text}
                     onSuccess={this.props.loginGoogle}
-                    onFailure={(error) => this.props.handleLoginFailureGoogle(error)}
+                    onFailure={this.props.handleLoginFailureGoogle}
                     theme="dark"
                 />
             </div>
