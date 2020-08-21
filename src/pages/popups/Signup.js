@@ -65,8 +65,10 @@ class Signup extends Component {
         }
     }
 
-    handleLoginFailureGoogle(response) {
-        alert('Failed to log in')
+    handleLoginFailureGoogle(error, response) {
+        if (error.error !== 'idpiframe_initialization_failed') {
+            alert('Failed to log in')
+        }
     }
 
     onChange(e) {
@@ -103,7 +105,7 @@ class Signup extends Component {
                 if (this.state.googleSignup) {
                     alert(res.error)
                 } else {
-                    this.setState({error: res.error})
+                    this.setState({ error: res.error })
                 }
             } else {
                 if (this.state.googleSignup) {
