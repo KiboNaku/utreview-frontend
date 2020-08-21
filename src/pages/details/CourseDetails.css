@@ -57,15 +57,25 @@
 .course-details-block-wrapper {
     margin-top: 50px;
     display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-content: center;
+}
+
+.topics-requisites {
+    display: flex;
     flex-direction: row;
     margin-bottom: 50px;
-    margin-left: 20px;
+    justify-content: center;
+    align-content: center;
 }
 
 .prof-schedule-tables {
-    width: 80%;
+    width: 100%;
     margin-top: 1px;
-    padding-right: 20px;
+    padding-right: 70px;
+    padding-left: 70px;
 }
 
 .table-information-text {
@@ -73,237 +83,111 @@
 }
 
 .course-reviews-block-wrapper {
-    margin-top: 20px;
     display: flex;
-    flex-direction: row;
-    margin-left: 50px;
+    flex-direction: column;
 }
 
 .course-reviews-wrapper {
-    width: 70%;
-    margin-left: 50px;
+    width: 100%;
+    padding-right: 80px;
+    padding-left: 80px;
     margin-bottom: 100px;
-    padding-right: 20px;
     font-family: 'Open Sans', sans-serif;
 }
 
-
-@media screen and (max-width: 1233px){
-    .course-reviews-wrapper {
-        width: 650px;
-    }
-
-    .prof-schedule-tables {
-        width: 70.5%;
-    }
-}
-
-@media screen and (max-width: 1130px){
-    .prof-schedule-tables {
-        width: 70%;
-        margin-left: -50px;
-    }
-
-    .prerequisites-wrapper {
-        width: 70%;
-    }
-    
-    .restrictions-wrapper {
-        width: 70%;
-    }
+@media screen and (max-width: 1170px) {
 
     .courseTopics {
-        width: 70%;
-    }
-}
-
-@media screen and (max-width: 1065px){
-    .course-reviews-wrapper {
-        width: 680px;
+        margin-right: -50px;
+        width: 350px;
     }
 
-    .courseAddReview{
-        width: 195px;
-        padding-right: 15px;
-        padding-top: 20px;
-        padding-left: 15px;
-    }
-
-    .add-review-button {
-        width: 195px;
-        margin-left: -45.3px;
-    }
-    
-}
-
-@media screen and (max-width: 980px){
-    .course-reviews-wrapper {
-        width: 65%;
+    .course-requisites{
+        margin-left: 0px;
     }
 }
 
 @media screen and (max-width: 949px){
-    .prof-schedule-tables {
-        width: 70%;
-        margin-left: -100px;
-    }
-
-    .prerequisites-wrapper {
-        width: 60%;
-        font-size: 14px;
-    }
-    
-    .restrictions-wrapper {
-        width: 60%;
-        font-size: 14px;
-    }
-
     .courseTopics {
-        width: 60%;
         font-size: 14px;
+        width: 300px;
     }
 
     .requisites-title {
         font-size: 18px;
     }
 
-    .course-reviews-wrapper {
-        width: 70%;
-        margin-left: 20px;
-        margin-bottom: 100px;
-        padding-right: 20px;
-        font-family: 'Open Sans', sans-serif;
-    }
-
-    .course-reviews-block-wrapper {
-        margin-left: 38px;
-    }
-
-}
-
-@media screen and (max-width: 810px){
-    .course-reviews-block-wrapper {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .course-reviews-wrapper {
-        width: 95%;
-        margin-left: -3%;
-        margin-top: 20px;
-    }
-
-    .courseAddReview {
-        margin-left: 0px;
-    }
-
-    .courseAddReview{
-        margin-left: -20px;
-    }
-}
-
-@media screen and (max-width: 781px){
-    .course-details-block-wrapper {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-left: 0px;
-    }
-
-    .course-requisites{
-        flex-direction: row;
-        width: 80%;
-        margin-bottom: 50px;
-    }
-
     .prof-schedule-tables {
-        width: 94%;
-        margin-left: 0px;
-        padding-right: 0px;
-        margin-top: 1px;
+        padding-right: 20px;
+        padding-left: 20px;
     }
 
-    .courseTopics {
-        width: 50%;
-        font-size: 14px;
-        margin-left: 25%;
+    .course-reviews-wrapper {
+        padding-right: 20px;
+        padding-left: 20px;
     }
-
-    .prerequisites-wrapper {
-        margin-left: 60px;
-        width: 400px;
-    }
-
-    .restrictions-wrapper {
-        margin-left: 50px;
-        margin-top: 0px;
-    }
-
 }
 
-@media screen and (max-width: 688px){
-    .courseTopics {
-        width: 50%;
-        font-size: 14px;
+@media screen and (max-width: 822px){
+    .course-details-block-wrapper {
+        margin-top: 30px;
     }
 
     .course-requisites {
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        width: 100%;
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+    
+    .topics-requisites {
+        flex-direction: column;
         margin-bottom: 50px;
-        margin-left: 0px;
-    }
-
-    .restrictions-wrapper {
-        width: 200px;
-        margin-top: -20px;
-
-    }
-
-    .prerequisites-wrapper {
-        width: 200px;
-        margin-left: -10px;
-    }
-}
-
-@media screen and (max-width: 505px){
-    .restrictions-wrapper {
-        width: 160px;
-        margin-top: -20px;
-
-    }
-
-    .prerequisites-wrapper {
-        width: 160px;
-        margin-left: -10px;
-    }
-
-    .restrictions-wrapper {
-        margin-left: 10px;
     }
 
     .courseTopics {
-        width: 60%;
+        width: 80%;
         font-size: 14px;
-        margin-left: 20%;
+        margin-left: 10.1%;
     }
+}
 
-    .course-details-block-wrapper {
-        margin-bottom: 5px;
+@media screen and (max-width: 550px){
+    .courseTopics {
+        width: 80%;
+        margin-left: 10.1%;
     }
-
-    .prof-schedule-tables {
-        width: 95%;
-        margin-left: 0px;
-        padding-right: 0px;
-        margin-top: 1px;
-    }
-
     .requisites-title {
         font-size: 16px;
     }
 
+    .details-header {
+        font-size: 22px;
+    }
+
+    .course-details-block-wrapper {
+        margin-bottom: -20px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .course-requisites{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .prerequisites-wrapper {
+        margin-right: 0px;
+    }
+    
+    .restrictions-wrapper {
+        margin-top: 20px;
+    }
+
+    .prof-schedule-tables {
+        padding-right: 2px;
+        padding-left: 2px;
+        margin-top: 0px;
+    }
 }

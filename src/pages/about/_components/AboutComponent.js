@@ -5,27 +5,27 @@ import Contributor from './../_utils/Contributor'
 
 function AboutComponent(props) {
     return (
-        <main>
-            <div className='main-sub about container-fluid'>
-                <h1 className='display-3 about-header'>About</h1>
+        <main className="py-3">
+            <div className='main-sub about container-fluid py-5'>
+                <h1 className='display-3 about-header page-header'>About</h1>
 
                 <Fade triggerOnce duration='2000'>
                     <h2 className='about-header-2 about-header-2-long'>Welcome to UT Review</h2>
                     <div className='d-flex justify-content-center'>
                         <div className='col-lg-8 about-description'>
-                            <p>
+                            <p className="text-center">
                                 What starts here changes your course schedule. Literally. UT Review is a course planning website made for UT students, by UT students. 
                                 We've been through and understand the struggles of choosing courses/professors every semester and we want to
                                 make this process easier for everyone. Here at UT Review, you can find everything you need to make more informed course planning decisions, from grade distributions to pre-requisites to
                                 other students' opinions.
                             </p>
-                            <p>
+                            <p className="text-center">
                                 UT Review would not be possible without the reviews from students like you. Let the UT community know if you thought a course was a waste of time. 
                                 We would also like to know if a course was worthwhile and interesting. Help us identify those blow-off courses, or warn us about the deadly ones. Talk to us about your professors too! Had bad ones? Roast them. The ones you loved? Hype them up. 
                                 Your experiences can help more than 50,000 students like you every semester choose great courses and avoid not so great ones. 
-                                Let's help eachother make better course planning decisions so we can get our money's worth out of our education!
+                                Let's help each other make better course planning decisions so we can get our money's worth out of our education!
                             </p>
-                            <p>
+                            <p className="text-center">
                                 You can help shape the future of UT Review! Let us know what we can improve on or what you think we're already doing a good job with. We're always looking
                                 for new ideas, new features to implement, and new ways to improve your experience.
                             </p>
@@ -34,7 +34,7 @@ function AboutComponent(props) {
                 </Fade>
 
                 <Fade triggerOnce duration='2000'>
-                    <h2 className='about-header-2'>Meet the Team</h2>
+                    <h2 className='about-header-2 about-header-2-long'>Meet the Team</h2>
                     <div className='d-flex justify-content-center'>
                         <div className='col-lg-8'>
                             <div className='contributors'>
@@ -73,14 +73,9 @@ function AboutComponent(props) {
                     </div>
                 </Fade>
                 <Fade triggerOnce duration='2000'>
-                    <h2 className='about-header-2'>Special Thanks</h2>
+                    <h2 className='about-header-2 about-header-2-long'>Special Thanks</h2>
                     <div className='d-flex justify-content-center'>
                         <div className='col-lg-8'>
-                            {/* <p className='lead special-thanks-title'>Nick Hinojosa</p>
-                            <blockquote className="blockquote text-center">
-                                <p className="mb-0 special-thanks-content">for your continued support of our website</p>
-                            </blockquote>
-                            <br /> */}
                             <p className='lead special-thanks-title'>UW Flow</p>
                             <blockquote className="blockquote text-center">
                                 <p className="mb-0 special-thanks-content">for the website inspiration</p>
@@ -92,7 +87,7 @@ function AboutComponent(props) {
 
 
                 <Fade triggerOnce duration='2000'>
-                    <h2 className='about-header-2'>Credits</h2>
+                    <h2 className='about-header-2 about-header-2-long'>Credits</h2>
                     <div className='d-flex justify-content-center'>
                         <div className='col-lg-8'>
                             <ul class="list-group credits" style={{ color: 'black' }}>

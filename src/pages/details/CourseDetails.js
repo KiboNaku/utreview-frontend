@@ -388,14 +388,14 @@ class CourseDetails extends React.Component {
 
         let content = (
             <div className="CourseDetails">
-                    <div className="course-stats">
-                        <CourseInfo
-                            {...this.state.courseInfo} crossListed={crossListed} handleScrollToReview={this.handleScrollToReview}
-                        />
-                        <CourseRatings
-                            {...this.state.courseRatings}
-                        />
-                    </div>
+                <div className="course-stats">
+                    <CourseInfo
+                        {...this.state.courseInfo} crossListed={crossListed} handleScrollToReview={this.handleScrollToReview}
+                    />
+                    <CourseRatings
+                        {...this.state.courseRatings}
+                    />
+                </div>
 
                 <div className="course-details-block-wrapper">
                     <div className="topics-requisites">

@@ -170,7 +170,7 @@ function ReviewFormComponent(props) {
                         </li>
                         <li className="py-3" style={disableStyle}>
                             <span>
-                                (Optional) Give us the grade you obtained in {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}
+                                Give us the grade you obtained in {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}
                             </span>
                             <div className="review-form-grade">
                                 <Select

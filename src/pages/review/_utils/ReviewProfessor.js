@@ -43,7 +43,7 @@ function ReviewProfessor(props) {
             color: "#bf5700"
         }
     })(Tooltip);
-    const commentsPlaceholder = `(Optional) Please elaborate on your experience with this professor.`
+    const commentsPlaceholder = `Please elaborate on your experience with this professor.`
     const commentsDescription = `What did you like/dislike about the professor's teaching style?
     Was the professor approachable and accessible during office hours?
     How difficult were this professor's assignments and exams?

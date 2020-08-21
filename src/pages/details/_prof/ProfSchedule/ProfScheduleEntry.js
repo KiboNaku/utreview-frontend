@@ -29,6 +29,7 @@ function ProfScheduleEntry(props) {
             courseDept={props.courseDept}
             courseNum={props.courseNum}
             topicNum={props.topicNum}
+            display="name"
         />
     )
 
@@ -37,7 +38,7 @@ function ProfScheduleEntry(props) {
         if (props.location === "WEB") {
             location = "Online"
         } else {
-            let buildingName = props.location.split()[0]
+            let buildingName = props.location.split(" ")[0]
             let locationLink = `https://utdirect.utexas.edu/apps/campus/buildings/nlogon/maps/UTM/${buildingName}/`
             location = <a className="utcolor" href={locationLink} rel="noopener noreferrer" target="_blank"> {props.location} </a>
         }

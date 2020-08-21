@@ -126,7 +126,7 @@ class Profile extends Component {
 
         if(localStorage.getItem("edit-review-message")){
             $("#toast-edit-review").toast("show")
-            localStorage.removeItem("edit2w-review-message")
+            localStorage.removeItem("edit-review-message")
         }
 
         getMajor().then(res => {
