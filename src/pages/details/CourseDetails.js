@@ -19,237 +19,20 @@ import MetaTags from 'react-meta-tags';
 class CourseDetails extends React.Component {
     constructor(props) {
         super(props)
-        const courseInfo = {
-            id: 1,
-            courseDept: "EE",
-            courseNum: "302",
-            courseTitle: "Topics in Electrical Engineering",
-            courseDes: "The scope and nature of professional activities of electrical engineers, including problem-solving techniques; analysis and design methods; engineering professional ethics; analysis of analog resistive circuits, including Thevenin/Norton equivalents, mesh analysis, and nodal analysis; and operational amplifiers (DC response). Substantial teamwork is required for laboratory work in this course. Three lecture hours and two laboratory hours a week for one semester.",
-            topicId: 2,
-            topicNum: 0,
-            parentId: 1,
-            parentTitle: "Topics in Electrical Engineering",
-            topicsList: [
-                {
-                    'id': 2,
-                    'topicNum': 1,
-                    'title': "Introduction to Electrical Engineering (Circuits)"
-                },
-                {
-                    'id': 3,
-                    'topicNum': 2,
-                    'title': "Introduction to Electrical Engineering (Electricity)"
-                },
-            ]
-        }
-
-        const courseRatings = {
-            percentLiked: 50,
-            difficulty: 4.3,
-            usefulness: 3.2,
-            workload: 4.9,
-            eCIS: 4.3,
-            numRatings: 2
-        }
-
-        const courseProfs = [
-            {
-                id: 1,
-                firstName: 'Emanuel',
-                lastName: 'Tutuc',
-                percentLiked: 70,
-                eCIS: 4.2,
-                clear: 3.4,
-                engaging: 4.9,
-                grading: 2.5
-
-            },
-            {
-                id: 2,
-                firstName: 'Yale',
-                lastName: 'Patt',
-                percentLiked: 32,
-                eCIS: 3.6,
-                clear: 3.4,
-                engaging: 4.9,
-                grading: 2.5
-            },
-            {
-                id: 3,
-                firstName: 'Seth',
-                lastName: 'Bank',
-                percentLiked: 85,
-                eCIS: 4.8,
-                clear: 3.4,
-                engaging: 4.9,
-                grading: 2.5
-            },
-        ]
-
-        const courseRequisites = {
-            preReqs: "Credit with a grade of at least C- or registration for Mathematics 408C or 408K",
-            restrictions: "Electrical Engineering 302 and 302H may not both be counted"
-        }
-
-        const currentSem = [
-            {
-                id: 1,
-                uniqueNum: 12345,
-                maxEnrollment: 60,
-                seatsTaken: 30,
-                timeFrom: "9:00 AM",
-                timeTo: "10:30 AM",
-                days: "M W",
-                location: "EER 5.820",
-                profId: 1,
-                profFirst: 'Yale',
-                profLast: 'Patt',
-                semester: "Fall",
-                year: 2020,
-                crossListed: [
-                    {
-                        'id': 5,
-                        'dept': "ECE",
-                        'num': "319",
-                        'title': "Introduction to Electrical Engineering",
-                        'topicNum': 0
-                    }
-                ]
-            },
-            {
-                id: 2,
-                uniqueNum: 12345,
-                maxEnrollment: 60,
-                seatsTaken: 30,
-                timeFrom: "9:00 AM",
-                timeTo: "10:30 AM",
-                days: "M W",
-                location: "EER 5.820",
-                profId: 1,
-                profFirst: 'Yale',
-                profLast: 'Patt',
-                semester: "Fall",
-                year: 2020,
-                crossListed: [
-                    {
-                        'id': 5,
-                        'dept': "ECE",
-                        'num': "319",
-                        'title': "Introduction to Electrical Engineering",
-                        'topicNum': 0
-                    }
-                ]
-            },
-            {
-                id: 3,
-                uniqueNum: 12345,
-                maxEnrollment: 60,
-                seatsTaken: 30,
-                timeFrom: "9:00 AM",
-                timeTo: "10:30 AM",
-                days: "M W",
-                location: "EER 5.820",
-                profId: 1,
-                profFirst: 'Yale',
-                profLast: 'Patt',
-                semester: "Fall",
-                year: 2020,
-                crossListed: [
-                    {
-                        'id': 5,
-                        'dept': "ECE",
-                        'num': "319",
-                        'title': "Introduction to Electrical Engineering",
-                        'topicNum': 0
-                    }
-                ]
-            }
-        ]
-
-        const courseSchedule = {
-            currentSem: currentSem,
-            futureSem: currentSem
-        }
-
-        const courseReviews = [
-            {
-                id: 1,
-                comments: "I fucking hated this class",
-                approval: false,
-                usefulness: 1,
-                difficulty: 5,
-                workload: 5,
-                userMajor: 'Electrical and Computer Engineering',
-                profilePic: "corgi1.jpg",
-                profId: 1,
-                profFirst: 'Yale',
-                profLast: 'Patt',
-                grade: "A",
-                numLiked: 2,
-                numDisliked: 0,
-                likePressed: false,
-                dislikePressed: false,
-                date: new Date("2019-12-23"),
-                semester: "Fall",
-                year: 2019,
-            },
-            {
-                id: 2,
-                comments: "This was the most inspiring class of my life",
-                approval: true,
-                usefulness: 5,
-                difficulty: 2,
-                workload: 3,
-                userMajor: 'Electrical and Computer Engineering',
-                profilePic: "corgi1.jpg",
-                profId: 2,
-                profFirst: 'Seth',
-                profLast: 'Bank',
-                grade: "B-",
-                numLiked: 1,
-                numDisliked: 2,
-                likePressed: true,
-                dislikePressed: false,
-                date: new Date("2018-06-23"),
-                semester: "Spring",
-                year: 2019,
-            },
-            {
-                id: 3,
-                comments: "Why did I even take this class",
-                approval: false,
-                usefulness: 1,
-                difficulty: 2,
-                workload: 3,
-                userMajor: 'Business Honors',
-                profilePic: "corgi1.jpg",
-                profId: 3,
-                profFirst: 'Emanuel',
-                profLast: 'Tutuc',
-                numLiked: 5,
-                numDisliked: 2,
-                grade: "B",
-                likePressed: false,
-                dislikePressed: true,
-                date: new Date("2020-07-23"),
-                semester: "Spring",
-                year: 2020,
-            },
-        ]
 
         this.reviewRef = React.createRef()
 
         this.state = {
             title: null,
-            courseInfo: courseInfo,
-            courseRatings: courseRatings,
-            courseRequisites: courseRequisites,
-            courseProfs: courseProfs,
-            courseReviews: courseReviews,
-            courseSchedule: courseSchedule,
+            courseInfo: null,
+            courseRatings: null,
+            courseRequisites: null,
+            courseProfs: null,
+            courseReviews: null,
+            courseSchedule: null,
             loaded: false,
             validCourse: true,
-            isParent: courseInfo.topicNum === 0,
+            isParent: null,
             courseURL: props.location.pathname,
         }
 
@@ -377,58 +160,65 @@ class CourseDetails extends React.Component {
 
         let loading = <Loading />
 
-        let childTopics = (
-            <div className="course-topics">
-                <CourseTopics
-                    {...this.state.courseInfo}
-                />
-            </div>
-        )
+        let childTopics = null
+        let crossListed = null
+        let content = null
 
-        let crossListed = this.state.courseSchedule.futureSem.length > 0 ? this.state.courseSchedule.futureSem[0].crossListed : null
-
-        let content = (
-            <div className="CourseDetails">
-                <div className="course-stats">
-                    <CourseInfo
-                        {...this.state.courseInfo} crossListed={crossListed} handleScrollToReview={this.handleScrollToReview}
-                    />
-                    <CourseRatings
-                        {...this.state.courseRatings}
+        if (this.state.loaded) {
+            childTopics = (
+                <div className="course-topics">
+                    <CourseTopics
+                        {...this.state.courseInfo}
                     />
                 </div>
+            )
 
-                <div className="course-details-block-wrapper">
-                    <div className="topics-requisites">
-                        {this.state.isParent ? childTopics : null}
-                        <CourseRequisites
-                            {...this.state.courseRequisites}
+            crossListed = this.state.courseSchedule.futureSem.length > 0 ? this.state.courseSchedule.futureSem[0].crossListed : null
+
+            content = (
+                <div className="CourseDetails">
+                    <div className="course-stats">
+                        <CourseInfo
+                            {...this.state.courseInfo} crossListed={crossListed} handleScrollToReview={this.handleScrollToReview}
+                        />
+                        <CourseRatings
+                            {...this.state.courseRatings}
                         />
                     </div>
 
-                    <div className="prof-schedule-tables">
-                        <div className="course-tables">
-                            <CourseProfs courseInfo={this.state.courseInfo} courseProfs={this.state.courseProfs} key={this.state.courseProfs} />
+                    <div className="course-details-block-wrapper">
+                        <div className="topics-requisites">
+                            {this.state.isParent ? childTopics : null}
+                            <CourseRequisites
+                                {...this.state.courseRequisites}
+                            />
                         </div>
 
-                        <CourseSchedule courseSchedule={this.state.courseSchedule} key={this.state.courseSchedule.currentSem} />
+                        <div className="prof-schedule-tables">
+                            <div className="course-tables">
+                                <CourseProfs courseInfo={this.state.courseInfo} courseProfs={this.state.courseProfs} key={this.state.courseProfs} />
+                            </div>
+
+                            <CourseSchedule courseSchedule={this.state.courseSchedule} key={this.state.courseSchedule.currentSem} />
+                        </div>
                     </div>
+
+                    <div className="course-reviews-block-wrapper">
+                        <div className="add-review-wrapper">
+                            <CourseAddReview
+                                {...this.state.courseInfo}
+                            />
+                        </div>
+                        <div ref={this.reviewRef} className="course-reviews-wrapper">
+                            <CourseReviews courseReviews={this.state.courseReviews} key={this.state.courseReviews} />
+                        </div>
+                    </div>
+
+
                 </div>
+            )
 
-                <div className="course-reviews-block-wrapper">
-                    <div className="add-review-wrapper">
-                        <CourseAddReview
-                            {...this.state.courseInfo}
-                        />
-                    </div>
-                    <div ref={this.reviewRef} className="course-reviews-wrapper">
-                        <CourseReviews courseReviews={this.state.courseReviews} key={this.state.courseReviews} />
-                    </div>
-                </div>
-
-
-            </div>
-        )
+        }
 
         return (
             <div>
