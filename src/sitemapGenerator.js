@@ -61,15 +61,27 @@ connection.connect(function (err) {
 function generateSitemap() {
 
 	console.log("Generating sitemap.")
+	const courseDetailsURL = "/course-results"
+	const profDetailsURL = "/prof-results"
 
 	const paramsConfig = {
 		"/course-results/:courseId": courses,
 		"/prof-results/:profId": professors
 	};
-	return (
-		new Sitemap(router)
-			.applyParams(paramsConfig)
-			.build("https://www.utexasreview.com")
-			.save("./public/sitemap.xml")
-	);
+
+	let sitemap = new Sitemap(router)
+		.applyParams(paramsConfig)
+		.build("https://www.utexasreview.com")
+
+
+	console.log("Updating priority and lastmod")
+	for (let i = 0; i < sitemap.sitemaps[0].urls.length; i++) {
+		if(sitemap.sitemaps[0].urls[i].url.includes(courseDetailsURL) || sitemap.sitemaps[0].urls[i].url.includes(profDetailsURL)){
+			sitemap.sitemaps[0].urls[i].changefreq = 'daily'
+			sitemap.sitemaps[0].urls[i].priority = 0.5;
+			sitemap.sitemaps[0].urls[i].lastmod = new Date()
+		}
+	}
+
+	return sitemap.save("./public/sitemap.xml")
 }
