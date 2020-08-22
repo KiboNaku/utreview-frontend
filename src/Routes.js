@@ -6,9 +6,9 @@ export default (
 		<Route path="/privacy-policy"/>
 		<Route exact path="/results"/>
 		<Route path="/contact-us"/>
-		<Route path={"/course-results/:courseId"}/>
-		<Route path={"/prof-results/:profId"}/>
 		<Route path="/confirm-email"/>
 		<Route path="/reset-password"/>
+		<Route path={"/course-results/:courseId"}/>
+		<Route path={"/prof-results/:profId"}/>
 	</Route>
 );

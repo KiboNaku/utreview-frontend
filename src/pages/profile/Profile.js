@@ -6,7 +6,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import $ from './../../../node_modules/jquery'
 import ProfileComponent from './_components/ProfileComponent'
 import ReviewSummary from './review-list/ReviewSummary'
-import {sendResetPassword, sendCreatePassword } from './../popups/_utils/UserFunctions'
+import { sendResetPassword, sendCreatePassword } from './../popups/_utils/UserFunctions'
 import { SelectionPicture } from './_utils/ProfilePicture'
 import { ProfilePicModal } from './_utils/ProfilePicPopup'
 import EditProfile from './edit-profile/EditProfile'
@@ -15,6 +15,7 @@ import { getProfilePictures, updateProfilePic, updatePersonalInfo, getReviews, h
 import Loading from './../_utils/Loading.js'
 import './Profile.css'
 import axios from 'axios'
+import MetaTags from 'react-meta-tags';
 
 
 class Profile extends Component {
@@ -37,7 +38,7 @@ class Profile extends Component {
             userCourses: [
                 {
 
-                    semester:'Spring',
+                    semester: 'Spring',
                     year: 2020,
                     index: 0,
                     courses: [
@@ -67,7 +68,7 @@ class Profile extends Component {
                 },
                 {
 
-                    semester:'Fall',
+                    semester: 'Fall',
                     year: 2019,
                     index: 1,
                     courses: [
@@ -99,10 +100,8 @@ class Profile extends Component {
 
     componentDidMount() {
 
-        document.title = "Profile - UT Review"
-
         const token = localStorage.usertoken
-        if(token === null || token === undefined){
+        if (token === null || token === undefined) {
             this.props.history.push('/')
             $('#login-modal').modal('show')
             return
@@ -119,12 +118,12 @@ class Profile extends Component {
             uploadedCourses: decoded.identity.user_courses !== null && decoded.identity.user_courses !== undefined ? true : false
         }))
 
-        if(localStorage.getItem("new-review-message")){
+        if (localStorage.getItem("new-review-message")) {
             $("#toast-new-review").toast("show")
             localStorage.removeItem("new-review-message")
         }
 
-        if(localStorage.getItem("edit-review-message")){
+        if (localStorage.getItem("edit-review-message")) {
             $("#toast-edit-review").toast("show")
             localStorage.removeItem("edit-review-message")
         }
@@ -142,7 +141,7 @@ class Profile extends Component {
                     })
                 }
                 list = list.sort((a, b) => a.label.localeCompare(b.label))
-                this.setState({ majorList: list , majorListLoaded: true})
+                this.setState({ majorList: list, majorListLoaded: true })
             }
         })
 
@@ -183,7 +182,7 @@ class Profile extends Component {
     editReview(id) {
         let review
         this.state.reviews.forEach((_review) => {
-            if(_review.id === id) review = _review
+            if (_review.id === id) review = _review
         })
 
         this.props.history.push({
@@ -233,7 +232,7 @@ class Profile extends Component {
         updateProfilePic(user).then(res => {
             if (res.error) {
                 alert(res.error)
-            } 
+            }
         })
 
         this.props.handleProfilePicChange(image)
@@ -241,15 +240,15 @@ class Profile extends Component {
 
     //all need to add backend stuff
 
-    editPersonalInfo(values){
+    editPersonalInfo(values) {
         let major = values.major
         let otherMajor = values.otherMajor
-        if(values.showOtherMajor){
+        if (values.showOtherMajor) {
             major = null
-        }else if(values.noMajor){
+        } else if (values.noMajor) {
             major = null
             otherMajor = null
-        }else{
+        } else {
             otherMajor = null
         }
 
@@ -269,24 +268,24 @@ class Profile extends Component {
         }))
 
         updatePersonalInfo(user).then(res => {
-            
-            
+
+
         })
     }
 
-    changePassword(values){
+    changePassword(values) {
         axios
-        .post('/api/reset_password', {
-            email: localStorage.email,
-            password: values.password
-        })
-        .then(response => {
-            
-        })
+            .post('/api/reset_password', {
+                email: localStorage.email,
+                password: values.password
+            })
+            .then(response => {
+
+            })
     }
 
     //TODO: write this function and implement backend 
-    deleteReview(id){
+    deleteReview(id) {
         const review = {
             id: id
         }
@@ -294,14 +293,14 @@ class Profile extends Component {
             if (res.error) {
                 alert(res.error)
             } else {
-                this.setState({loaded: false})
+                this.setState({ loaded: false })
                 $("#toast-delete-review").toast("show")
                 this.componentDidMount()
             }
         })
     }
 
-    setPassword(){
+    setPassword() {
         localStorage.setItem("email", this.state.email)
         $("#edit-profile").modal("hide")
         $("#verify-new-password-modal").modal("show");
@@ -309,7 +308,7 @@ class Profile extends Component {
     }
 
     render() {
-        let loading = <Loading /> 
+        let loading = <Loading />
         let content = (
             <main>
                 <ProfileComponent
@@ -330,7 +329,15 @@ class Profile extends Component {
             </main>
         )
         return (
-            this.state.loaded ? content: loading
+
+            <div>
+                <MetaTags>
+                    <title>{this.props.title} | {this.props.mainTitle}</title>
+                    <meta name="description" content={this.props.description} />
+                </MetaTags>
+
+                {this.state.loaded ? content : loading}
+            </div>
         )
     }
 }
