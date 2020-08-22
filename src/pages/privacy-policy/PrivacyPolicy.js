@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PrivacyPolicyComponent from './_components/PrivacyPolicyComponent'
 import './PrivacyPolicy.css'
+import MetaTags from 'react-meta-tags';
 
 class PrivacyPolicy extends Component {
     constructor() {
@@ -32,17 +33,19 @@ class PrivacyPolicy extends Component {
         }
     }
 
-    componentDidMount(){
-        document.title = "Privacy Policy - UT Review"
-    }
-
-
     render() {
 
         return (
-            <PrivacyPolicyComponent
-                data={this.state}
-            />
+            <div>
+                <MetaTags>
+                    <title>{this.props.title} | {this.props.mainTitle}</title>
+                    <meta name="description" content={this.props.description} />
+                </MetaTags>
+
+                <PrivacyPolicyComponent
+                    data={this.state}
+                />
+            </div>
         )
     }
 }

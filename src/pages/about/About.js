@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import MetaTags from 'react-meta-tags';
 import AboutComponent from './_components/AboutComponent'
 import './About.css'
 
 class About extends Component {
+
     constructor() {
         super()
 
@@ -34,16 +36,19 @@ class About extends Component {
         }
     }
 
-    componentDidMount() {
-        document.title = 'About - UT Review';
-    }
-
     render() {
 
         return (
-            <AboutComponent
-                data={this.state}
-            />
+            <div>
+                <MetaTags>
+                    <title>{this.props.title} | {this.props.mainTitle}</title>
+                    <meta name="description" content={this.props.description} />
+                </MetaTags>
+
+                <AboutComponent
+                    data={this.state}
+                />
+            </div>
         )
     }
 }

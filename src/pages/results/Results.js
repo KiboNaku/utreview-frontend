@@ -5,6 +5,7 @@ import NotFound from './../not-found/NotFound'
 import ResultsComponent from './_components/ResultsComponent'
 import { populateResults } from './_utils/ResultsFunctions'
 import { getMajor, getSemester } from './../popups/_utils/UserFunctions'
+import MetaTags from 'react-meta-tags';
 
 import "./Results.css"
 
@@ -85,7 +86,6 @@ class Results extends Component {
 	componentDidMount() {
 
 		// fetch departments
-		document.title = "Search Results - UT Review"
 
 		getMajor().then(res => {
 			if (res.error) {
@@ -105,7 +105,7 @@ class Results extends Component {
 		})
 
 		getSemester().then(res => {
-			this.setState({semesters: res})
+			this.setState({ semesters: res })
 		})
 
 		// fetch search results
@@ -122,7 +122,7 @@ class Results extends Component {
 				search = {
 					searchValue: ''
 				}
-				this.setState({searchValue: ''})
+				this.setState({ searchValue: '' })
 			}
 		} else {
 			this.props.handleSearchValueChange(this.props.location.state.searchValue)
@@ -154,7 +154,7 @@ class Results extends Component {
 					search = {
 						searchValue: ''
 					}
-					this.setState({searchValue: ''})
+					this.setState({ searchValue: '' })
 				}
 			} else {
 				search = {
@@ -381,7 +381,7 @@ class Results extends Component {
 
 				let filter = prevState.courses.filter
 				let filtered = this.filter_courses(filter, prevState.courses.data)
-					
+
 				return {
 					courses: {
 						...prevState.courses,
@@ -389,7 +389,7 @@ class Results extends Component {
 					}
 				}
 			})
-			
+
 
 		} else if (this.state.tabIndex === 1) {
 
@@ -431,7 +431,7 @@ class Results extends Component {
 			(this.isDivision(course, filter))
 		)
 	}
-	
+
 	filter_profs(filter, profs_data) {
 		return profs_data.filter(prof =>
 			(filter.mNum <= prof.numRatings) &&
@@ -440,21 +440,31 @@ class Results extends Component {
 
 	render() {
 
-		return (this.state.invalidPage ? <NotFound /> : <ResultsComponent
+		return (
 
-			{...this.state}
+			<div>
+				<MetaTags>
+					<title>{this.props.title} | {this.props.mainTitle}</title>
+                    <meta name="description" content={this.props.description} />
+				</MetaTags>
 
-			calcTableEdge={this.calcTableEdge}
-			handlePageInc={this.handlePageInc}
-			handleTabChange={this.handleTabChange}
-			handleFilterChange={this.handleFilterChange}
-			handleSortChange={this.handleSortChange}
-			isSemester={this.isSemester}
-			isHour={this.isHour}
-			isDivision={this.isDivision}
+				{this.state.invalidPage ? <NotFound /> : <ResultsComponent
 
-			match={this.props.match}
-			search={this.state.searchValue} />)
+					{...this.state}
+
+					calcTableEdge={this.calcTableEdge}
+					handlePageInc={this.handlePageInc}
+					handleTabChange={this.handleTabChange}
+					handleFilterChange={this.handleFilterChange}
+					handleSortChange={this.handleSortChange}
+					isSemester={this.isSemester}
+					isHour={this.isHour}
+					isDivision={this.isDivision}
+
+					match={this.props.match}
+					search={this.state.searchValue} />}
+			</div>
+		)
 	}
 }
 

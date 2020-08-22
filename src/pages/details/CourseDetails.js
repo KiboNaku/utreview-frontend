@@ -14,6 +14,7 @@ import { withRouter } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import './Details.css'
 import './CourseDetails.css'
+import MetaTags from 'react-meta-tags';
 
 class CourseDetails extends React.Component {
     constructor(props) {
@@ -239,6 +240,7 @@ class CourseDetails extends React.Component {
         this.reviewRef = React.createRef()
 
         this.state = {
+            title: null,
             courseInfo: courseInfo,
             courseRatings: courseRatings,
             courseRequisites: courseRequisites,
@@ -253,23 +255,22 @@ class CourseDetails extends React.Component {
 
         this.handleScrollToReview = this.handleScrollToReview.bind(this)
 
-    }    
+    }
 
-    handleScrollToReview(){
+    handleScrollToReview() {
         const scrollToRef = () => window.scrollTo(0, this.reviewRef.current.offsetTop - 100)
         scrollToRef()
     }
 
-    componentDidUpdate (){
+    componentDidUpdate() {
         const courseURL = this.props.location.pathname
-        if(courseURL !== this.state.courseURL){
-            this.setState({loaded: false, courseURL: courseURL})
+        if (courseURL !== this.state.courseURL) {
+            this.setState({ loaded: false, courseURL: courseURL })
             this.componentDidMount()
         }
     }
 
     componentDidMount() {
-        document.title = "UT Review"
 
         let loggedIn = false
         let email = ''
@@ -281,7 +282,7 @@ class CourseDetails extends React.Component {
         }
 
         let courseId = null
-        if(this.props.location.state === undefined){
+        if (this.props.location.state === undefined) {
 
             let coursePath = window.location.pathname.split("/").pop()
             let courseString = {
@@ -290,7 +291,7 @@ class CourseDetails extends React.Component {
 
             getCourseId(courseString).then(res => {
                 if (res.error) {
-                    this.setState({validCourse: false})
+                    this.setState({ validCourse: false })
                 } else {
                     courseId = res.courseId
                     const course = {
@@ -302,8 +303,8 @@ class CourseDetails extends React.Component {
                 }
             })
 
-        }else{
-            if(this.props.location.state.courseId === undefined){
+        } else {
+            if (this.props.location.state.courseId === undefined) {
 
                 let coursePath = window.location.pathname.split("/").pop()
                 let courseString = {
@@ -312,7 +313,7 @@ class CourseDetails extends React.Component {
 
                 getCourseId(courseString).then(res => {
                     if (res.error) {
-                        this.setState({validCourse: false})
+                        this.setState({ validCourse: false })
                     } else {
                         courseId = res.courseId
                         const course = {
@@ -324,7 +325,7 @@ class CourseDetails extends React.Component {
                     }
                 })
 
-            }else{
+            } else {
 
                 courseId = this.props.location.state.courseId
                 const course = {
@@ -334,7 +335,7 @@ class CourseDetails extends React.Component {
                 }
                 this.courseDetailsRequest(course)
 
-            }  
+            }
         }
     }
 
@@ -354,7 +355,11 @@ class CourseDetails extends React.Component {
                         date: new Date(date).getTime()
                     }
                 })
+
+
+                const { courseDept, courseNum, courseTitle } = res.course_info
                 this.setState({
+                    title: courseDept + " " + courseNum + " - " + courseTitle,
                     courseInfo: res.course_info,
                     courseRatings: res.course_rating,
                     courseRequisites: res.course_requisites,
@@ -364,10 +369,6 @@ class CourseDetails extends React.Component {
                     isParent: res.is_parent,
                     loaded: true
                 })
-                
-                const {courseDept, courseNum, courseTitle} = res.course_info
-                let courseName = courseDept + " " + courseNum
-                document.title = courseName + " - " + courseTitle + " - UT Review"
             }
         })
     }
@@ -378,7 +379,7 @@ class CourseDetails extends React.Component {
 
         let childTopics = (
             <div className="course-topics">
-                <CourseTopics 
+                <CourseTopics
                     {...this.state.courseInfo}
                 />
             </div>
@@ -408,13 +409,13 @@ class CourseDetails extends React.Component {
                             {...this.state.courseRequisites}
                         />
                     </div>
-                    
+
                     <div className="prof-schedule-tables">
                         <div className="course-tables">
-                            <CourseProfs courseInfo = {this.state.courseInfo} courseProfs = {this.state.courseProfs} key={this.state.courseProfs} />
+                            <CourseProfs courseInfo={this.state.courseInfo} courseProfs={this.state.courseProfs} key={this.state.courseProfs} />
                         </div>
 
-                        <CourseSchedule courseSchedule = {this.state.courseSchedule} key={this.state.courseSchedule.currentSem}/>
+                        <CourseSchedule courseSchedule={this.state.courseSchedule} key={this.state.courseSchedule.currentSem} />
                     </div>
                 </div>
 
@@ -425,20 +426,27 @@ class CourseDetails extends React.Component {
                         />
                     </div>
                     <div ref={this.reviewRef} className="course-reviews-wrapper">
-                        <CourseReviews courseReviews = {this.state.courseReviews} key={this.state.courseReviews}/>
+                        <CourseReviews courseReviews={this.state.courseReviews} key={this.state.courseReviews} />
                     </div>
                 </div>
 
-                
+
             </div>
         )
 
         return (
-            <main className="course-details-main">
-                <div className="main-sub">
-                    {this.state.validCourse ? (this.state.loaded ? content : loading): <NotFound />}
-                </div>
-            </main>
+            <div>
+                <MetaTags>
+                    <title>{this.state.title ? this.state.title : this.props.title} | {this.props.mainTitle}</title>
+                    <meta name="description" content={this.props.description} />
+                </MetaTags>
+
+                <main className="course-details-main">
+                    <div className="main-sub">
+                        {this.state.validCourse ? (this.state.loaded ? content : loading) : <NotFound />}
+                    </div>
+                </main>
+            </div>
         );
     }
 }

@@ -5,6 +5,7 @@ import $ from './../../../node_modules/jquery'
 import ContactUsComponent from './_components/ContactUsComponent'
 import './ContactUs.css'
 import { sendMessage } from './_util/ContactUsFunctions'
+import MetaTags from 'react-meta-tags';
 
 class ContactUs extends Component {
 	constructor() {
@@ -19,8 +20,6 @@ class ContactUs extends Component {
 	}
 
 	componentDidMount() {
-
-		document.title = "Contact Us - UT Review"
 
 		const token = localStorage.usertoken
 		if (token !== undefined) {
@@ -46,10 +45,17 @@ class ContactUs extends Component {
 
 	render() {
 		return (
-			<ContactUsComponent
-				data={this.state}
-				handleSubmit={this.handleSubmit}
-			/>
+			<div>
+				<MetaTags>
+					<title>{this.props.title} | {this.props.mainTitle}</title>
+					<meta name="description" content={this.props.description} />
+				</MetaTags>
+
+				<ContactUsComponent
+					data={this.state}
+					handleSubmit={this.handleSubmit}
+				/>
+			</div>
 		)
 	}
 }
