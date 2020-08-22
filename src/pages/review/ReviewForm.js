@@ -11,6 +11,7 @@ import ReviewFormComponent from './_components/ReviewFormComponent'
 import Loading from './../_utils/Loading.js'
 import $ from './../../../node_modules/jquery'
 import { TextareaAutosize } from '@material-ui/core'
+import MetaTags from 'react-meta-tags';
 
 class ReviewForm extends Component {
 	constructor(props) {
@@ -116,10 +117,10 @@ class ReviewForm extends Component {
 		this.isBackButtonClicked = false
 
 		const token = localStorage.usertoken
-        if(token === null || token === undefined){
-            props.history.push('/')
-            $('#login-modal').modal('show')
-        }
+		if (token === null || token === undefined) {
+			props.history.push('/')
+			$('#login-modal').modal('show')
+		}
 	}
 
 	validate = () => {
@@ -171,7 +172,7 @@ class ReviewForm extends Component {
 		event.preventDefault();
 		const isValid = this.validate();
 		if (isValid) {
-			this.setState({submitPressed: true})
+			this.setState({ submitPressed: true })
 			const token = localStorage.usertoken
 			const decoded = jwt_decode(token)
 
@@ -377,7 +378,7 @@ class ReviewForm extends Component {
 				this.setState({ duplicateReview: true, formDisabled: true, errorMessage: res.error })
 				$("#errorModalreviewForm").modal("show");
 			} else {
-				this.setState({formDisabled: false})
+				this.setState({ formDisabled: false })
 			}
 		})
 
@@ -394,7 +395,7 @@ class ReviewForm extends Component {
 				}
 			))
 			this.checkReviewComplete(this.state.course.id, this.state.prof.id, inputValue.value, this.state.semester.year, this.state.topic.id, this.state.topic.selected)
-		}else{
+		} else {
 			this.setState(prevState => (
 				{
 					semester: {
@@ -419,7 +420,7 @@ class ReviewForm extends Component {
 			))
 
 			this.checkReviewComplete(this.state.course.id, this.state.prof.id, this.state.semester.semester, inputValue.value, this.state.topic.id, this.state.topic.selected)
-		}else{
+		} else {
 			this.setState(prevState => (
 				{
 					semester: {
@@ -491,20 +492,20 @@ class ReviewForm extends Component {
 
 		e.preventDefault();
 		e.returnValue = true;
-		
+
 	}
 
 	onBackButtonEvent = (e) => {
 		e.preventDefault();
 	}
 
-	componentWillUnmount(){
+	componentWillUnmount() {
 		window.removeEventListener("beforeunload", this.beforeunload);
 		window.removeEventListener("popstate", this.onBackButtonEvent)
 	}
 
 	componentDidMount() {
-		document.title = "Add Review - UT Review"
+		
 		window.addEventListener("beforeunload", this.beforeunload);
 		window.addEventListener("popstate", this.onBackButtonEvent)
 		if (this.state.oldReview !== null) {
@@ -904,10 +905,10 @@ class ReviewForm extends Component {
 		const decoded = jwt_decode(token)
 		const email = decoded.identity.email
 
-		if(courseId !== null && profId !== null && 
-			semester !== "" && year !== null){
-			if(topicSelected){
-				if(topicId !== null){
+		if (courseId !== null && profId !== null &&
+			semester !== "" && year !== null) {
+			if (topicSelected) {
+				if (topicId !== null) {
 					const review = {
 						course_id: topicId,
 						prof_id: profId,
@@ -917,7 +918,7 @@ class ReviewForm extends Component {
 					}
 					this.checkDuplicate(review)
 				}
-			}else{
+			} else {
 				const review = {
 					course_id: courseId,
 					prof_id: profId,
@@ -961,56 +962,61 @@ class ReviewForm extends Component {
 
 		return (
 			<div>
-				<Prompt
-					when={!this.state.submitPressed}
-					message={(location, action) => {
-						let courseId = this.state.topic.selected ? this.state.topic.id : this.state.course.id
-						// if(!this.state.oldReview && this.state.semester.semester !== ''
-						// && this.state.semester.year !== null 
-						// && this.state.prof.id !== null && courseId !== null){
-						// 	const token = localStorage.usertoken
-						// 	const decoded = jwt_decode(token)
-						// 	const review = {
-						// 		review_id: this.state.reviewId,
-						// 		user_email: decoded.identity.email,
-						// 		course_id: courseId,
-						// 		prof_id: this.state.prof.id,
-						// 		semester: this.state.semester.semester,
-						// 		year: this.state.semester.year,
-						// 		course_comments: this.state.courseRating.comments,
-						// 		course_approval: this.state.courseRating.approval,
-						// 		course_usefulness: this.state.courseRating.usefulness,
-						// 		course_difficulty: this.state.courseRating.difficulty,
-						// 		course_workload: this.state.courseRating.workload,
-						// 		prof_comments: this.state.profRating.comments,
-						// 		prof_approval: this.state.profRating.approval,
-						// 		prof_clear: this.state.profRating.clear,
-						// 		prof_engaging: this.state.profRating.engaging,
-						// 		prof_grading: this.state.profRating.grading,
-						// 		grade: this.state.grade
-						// 	}
+				<MetaTags>
+					<title>{this.props.title} | {this.props.mainTitle}</title>
+				</MetaTags>
+				<div>
+					<Prompt
+						when={!this.state.submitPressed}
+						message={(location, action) => {
+							let courseId = this.state.topic.selected ? this.state.topic.id : this.state.course.id
+							// if(!this.state.oldReview && this.state.semester.semester !== ''
+							// && this.state.semester.year !== null 
+							// && this.state.prof.id !== null && courseId !== null){
+							// 	const token = localStorage.usertoken
+							// 	const decoded = jwt_decode(token)
+							// 	const review = {
+							// 		review_id: this.state.reviewId,
+							// 		user_email: decoded.identity.email,
+							// 		course_id: courseId,
+							// 		prof_id: this.state.prof.id,
+							// 		semester: this.state.semester.semester,
+							// 		year: this.state.semester.year,
+							// 		course_comments: this.state.courseRating.comments,
+							// 		course_approval: this.state.courseRating.approval,
+							// 		course_usefulness: this.state.courseRating.usefulness,
+							// 		course_difficulty: this.state.courseRating.difficulty,
+							// 		course_workload: this.state.courseRating.workload,
+							// 		prof_comments: this.state.profRating.comments,
+							// 		prof_approval: this.state.profRating.approval,
+							// 		prof_clear: this.state.profRating.clear,
+							// 		prof_engaging: this.state.profRating.engaging,
+							// 		prof_grading: this.state.profRating.grading,
+							// 		grade: this.state.grade
+							// 	}
 
-						// 	saveReview(review).then(res => {
-						// 		if (res.error) {
-						// 			alert(res.error)
-						// 		} else {
-						// 			this.setState({reviewId: res.result.id})
-						// 		}
-						// 	})
+							// 	saveReview(review).then(res => {
+							// 		if (res.error) {
+							// 			alert(res.error)
+							// 		} else {
+							// 			this.setState({reviewId: res.result.id})
+							// 		}
+							// 	})
 
-						// }
-						// if(location.pathname + location.search === this.state.pathname){
-						// 	return true
-						// }
-						// if (action === 'POP') {
-						// 	this.props.history.push(this.state.pathname)
-						// }
-						return 'You have unsaved changes. Are you sure you want to leave?'
-						
-					  }}
-				/>
-				{this.state.invalidReview ? <NotFound /> : (content)}
-				<Error message={this.state.errorMessage} id="reviewForm" title="Error" />
+							// }
+							// if(location.pathname + location.search === this.state.pathname){
+							// 	return true
+							// }
+							// if (action === 'POP') {
+							// 	this.props.history.push(this.state.pathname)
+							// }
+							return 'You have unsaved changes. Are you sure you want to leave?'
+
+						}}
+					/>
+					{this.state.invalidReview ? <NotFound /> : (content)}
+					<Error message={this.state.errorMessage} id="reviewForm" title="Error" />
+				</div>
 			</div>
 		);
 	}

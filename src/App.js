@@ -33,7 +33,7 @@ import createHistory from 'history/createBrowserHistory'
 const history = createHistory()
 ReactGA.initialize('UA-175608532-1');
 history.listen((location, action) => {
-    ReactGA.pageview(location.pathname + location.search);
+	ReactGA.pageview(location.pathname + location.search);
 });
 
 
@@ -63,7 +63,7 @@ class App extends Component {
 		this.handleLogin = this.handleLogin.bind(this)
 	}
 
-	handleLogin(){
+	handleLogin() {
 		$("#toast-login-success").toast("show")
 	}
 
@@ -76,6 +76,21 @@ class App extends Component {
 	}
 
 	render() {
+		let mainPageTitle = "UT Review"
+		let profilePageTitle = "Profile"
+		let aboutPageTitle = "About"
+		let privacyPolicyPageTitle = "Privacy Policy"
+		let resultsPageTitle = "Search Results"
+		let addReviewPageTitle = "Add Review"
+		let editReviewPageTitle = "Edit Review"
+		let confirmEmailPageTitle = "Confirm Email"
+		let resetPasswordPageTitle = "Reset Password"
+		let createPasswordPageTitle = "Create Password"
+		let defaultCourseDetailsPageTitle = "Course Details"
+		let defaultProfDetailsPageTitle = "Professor Details"
+		let contactUsPageTitle = "Contact Us"
+		let notFoundPageTitle = "Not Found"
+
 		return (
 			<Router history={history}>
 				<div className="App">
@@ -87,20 +102,89 @@ class App extends Component {
 					</Switch>
 
 					<Switch>
-						<Route exact path="/" component={Home} />
-						<Route path="/profile" render={(props) => <Profile handleProfilePicChange={this.handleProfilePicChange} />} />
-						<Route path="/about" component={About} />
-						<Route path="/privacy-policy" component={PrivacyPolicy} />
-						<Route exact path="/results" render={(props) => <Results handleSearchValueChange={this.handleSearchValueChange} />} />
-						<Route path="/add-review" render={(props) => <ReviewForm />} />
-						<Route path="/edit-review" component={ReviewForm} />
-						<Route path="/confirm-email" component={ConfirmEmail} />
-						<Route path="/reset-password" component={ResetPassword} />
-						<Route path="/create-password" component={ResetPassword} />
-						<Route path={"/course-results/:courseId"} component={CourseDetails} />
-						<Route path={"/prof-results/:profId"} component={ProfDetails} />
-						<Route path="/contact-us" render={ContactUs} />
-						<Route component={NotFound} />
+						<Route
+							exact path="/"
+							component={() =>
+								<Home title={mainPageTitle} />
+							}
+						/>
+						<Route
+							path="/profile"
+							render={(props) =>
+								<Profile title={profilePageTitle} mainTitle={mainPageTitle} handleProfilePicChange={this.handleProfilePicChange} />
+							}
+						/>
+						<Route
+							path="/about"
+							component={() =>
+								<About title={aboutPageTitle} mainTitle={mainPageTitle} />
+							}
+						/>
+						<Route
+							path="/privacy-policy"
+							component={() =>
+								<PrivacyPolicy title={privacyPolicyPageTitle} mainTitle={mainPageTitle} />
+							}
+						/>
+						<Route
+							exact path="/results"
+							render={(props) =>
+								<Results title={resultsPageTitle} mainTitle={mainPageTitle} handleSearchValueChange={this.handleSearchValueChange} />
+							}
+						/>
+						<Route
+							path="/add-review"
+							render={(props) =>
+								<ReviewForm title={addReviewPageTitle} mainTitle={mainPageTitle} />
+							}
+						/>
+						<Route
+							path="/edit-review"
+							component={() =>
+								<ReviewForm title={editReviewPageTitle} mainTitle={mainPageTitle} />
+							}
+						/>
+						<Route
+							path="/confirm-email"
+							component={() =>
+								<ConfirmEmail title={confirmEmailPageTitle} mainTitle={mainPageTitle} />
+							}
+						/>
+						<Route
+							path="/reset-password"
+							component={() =>
+								<ResetPassword title={resetPasswordPageTitle} mainTitle={mainPageTitle} />
+							}
+						/>
+						<Route
+							path="/create-password"
+							component={() =>
+								<ResetPassword title={createPasswordPageTitle} mainTitle={mainPageTitle} />
+							}
+						/>
+						<Route
+							path={"/course-results/:courseId"}
+							component={() =>
+								<CourseDetails title={defaultCourseDetailsPageTitle} mainTitle={mainPageTitle} />
+							}
+						/>
+						<Route
+							path={"/prof-results/:profId"}
+							component={() =>
+								<ProfDetails title={defaultProfDetailsPageTitle} mainTitle={mainPageTitle} />
+							}
+						/>
+						<Route
+							path="/contact-us"
+							render={() =>
+								<ContactUs title={contactUsPageTitle} mainTitle={mainPageTitle} />
+							}
+						/>
+						<Route
+							component={() =>
+								<NotFound title={notFoundPageTitle} mainTitle={mainPageTitle} />
+							}
+						/>
 					</Switch>
 					<Footer />
 
@@ -112,7 +196,7 @@ class App extends Component {
 					<VerifyNewPassword />
 					<ReportBug />
 					<CompleteProfile />
-					
+
 				</div>
 			</Router>
 		);

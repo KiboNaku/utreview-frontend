@@ -10,6 +10,7 @@ import { getProfInfo, getProfId } from './_prof/ProfFunctions'
 import Loading from './../_utils/Loading'
 import { withRouter } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
+import MetaTags from 'react-meta-tags';
 import './Details.css'
 import './ProfDetails.css'
 
@@ -216,6 +217,7 @@ class ProfDetails extends React.Component {
         this.reviewRef = React.createRef()
 
         this.state = {
+            title: null,
             profInfo: profInfo,
             profRatings: profRatings,
             profCourses: profCourses,
@@ -223,20 +225,18 @@ class ProfDetails extends React.Component {
             profSchedule: profSchedule,
             validProf: true,
             loaded: false
-        }    
+        }
 
         this.handleScrollToReview = this.handleScrollToReview.bind(this)
 
     }
 
-    handleScrollToReview(){
+    handleScrollToReview() {
         const scrollToRef = () => window.scrollTo(0, this.reviewRef.current.offsetTop - 100)
         scrollToRef()
     }
 
     componentDidMount() {
-        
-        document.title = "UT Review"
 
         let loggedIn = false
         let email = ''
@@ -248,7 +248,7 @@ class ProfDetails extends React.Component {
         }
 
         let profId = null
-        if(this.props.location.state === undefined){
+        if (this.props.location.state === undefined) {
 
             let profPath = window.location.pathname.split("/").pop()
             let profString = {
@@ -257,7 +257,7 @@ class ProfDetails extends React.Component {
 
             getProfId(profString).then(res => {
                 if (res.error) {
-                    this.setState({validProf: false})
+                    this.setState({ validProf: false })
                 } else {
                     profId = res.profId
                     const prof = {
@@ -267,10 +267,10 @@ class ProfDetails extends React.Component {
                     }
                     this.profDetailsRequest(prof)
                 }
-            })       
+            })
 
-        }else{
-            if(this.props.location.state.profId === undefined){
+        } else {
+            if (this.props.location.state.profId === undefined) {
 
                 let profPath = window.location.pathname.split("/").pop()
                 let profString = {
@@ -279,7 +279,7 @@ class ProfDetails extends React.Component {
 
                 getProfId(profString).then(res => {
                     if (res.error) {
-                        this.setState({validProf: false})
+                        this.setState({ validProf: false })
                     } else {
                         profId = res.profId
                         const prof = {
@@ -291,7 +291,7 @@ class ProfDetails extends React.Component {
                     }
                 })
 
-            }else{
+            } else {
                 profId = this.props.location.state.profId
                 const prof = {
                     profId: profId,
@@ -320,7 +320,10 @@ class ProfDetails extends React.Component {
                         date: new Date(date).getTime()
                     }
                 })
+
+                const { firstName, lastName } = res.prof_info
                 this.setState({
+                    title: firstName + " " + lastName,
                     profInfo: res.prof_info,
                     profRatings: res.prof_rating,
                     profSchedule: res.prof_schedule,
@@ -328,9 +331,6 @@ class ProfDetails extends React.Component {
                     profReviews: profRevs,
                     loaded: true
                 })
-
-                const {firstName, lastName} = res.prof_info
-                document.title = firstName + " " + lastName + " - UT Review"
             }
         })
     }
@@ -350,26 +350,32 @@ class ProfDetails extends React.Component {
                     />
                 </div>
                 <div className="prof-tables">
-                    <ProfCourses profInfo={this.state.profInfo} profCourses={this.state.profCourses} key={this.state.profCourses}/>
+                    <ProfCourses profInfo={this.state.profInfo} profCourses={this.state.profCourses} key={this.state.profCourses} />
                 </div>
 
-                <ProfSchedule profSchedule={this.state.profSchedule} key={this.state.profSchedule.currentSem}/>
+                <ProfSchedule profSchedule={this.state.profSchedule} key={this.state.profSchedule.currentSem} />
                 <ProfAddReview
                     {...this.state.profInfo}
                 />
                 <div ref={this.reviewRef}>
                     <ProfReviews profReviews={this.state.profReviews} key={this.state.profReviews} />
                 </div>
-                
+
             </div>
         )
 
         return (
-            <main className="prof-details-main">
-                <div className="main-sub">
-                {this.state.validProf ? (this.state.loaded ? content : loading): <NotFound />}
-                </div>
-            </main>
+            <div>
+                <MetaTags>
+                    <title>{this.state.title ? this.state.title : this.props.title} | {this.props.mainTitle}</title>
+                </MetaTags>
+
+                <main className="prof-details-main">
+                    <div className="main-sub">
+                        {this.state.validProf ? (this.state.loaded ? content : loading) : <NotFound />}
+                    </div>
+                </main>
+            </div>
         );
     }
 }
