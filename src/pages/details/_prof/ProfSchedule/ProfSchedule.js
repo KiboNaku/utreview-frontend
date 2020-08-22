@@ -3,6 +3,7 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import AppBar from '@material-ui/core/AppBar'
 import TabPanel from '../TabPanel'
+import { getSemester } from './../../../popups/_utils/UserFunctions'
 import ProfScheduleEntry from './ProfScheduleEntry'
 import './ProfSchedule.css'
 
@@ -12,6 +13,8 @@ class ProfSchedule extends React.Component {
 
         this.state = {
             profSchedule: props.profSchedule,
+            currentSem: "Fall 2020",
+            futureSem: "Spring 2021",
             currentTab: 0,
             open: true
         }
@@ -30,25 +33,38 @@ class ProfSchedule extends React.Component {
         }))
     }
 
+    componentDidMount(){
+        getSemester().then(res => {
+			this.setState({currentSem: res['current'], futureSem: res['next']})
+		})
+    }
+
     render() {
 
         let arrowIcon = this.state.open ? 
         <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         
-        const currentSemList = this.state.profSchedule.currentSem.map(prof => {
+        const currentSemList = this.state.profSchedule.currentSem !== null ? this.state.profSchedule.currentSem.map(prof => {
             return (
                 <ProfScheduleEntry {...prof} />
             )
-        })
-        const futureSemList = this.state.profSchedule.futureSem.map(prof => {
+        }) : null
+
+        const futureSemList = this.state.profSchedule.futureSem !== null ? this.state.profSchedule.futureSem.map(prof => {
             return (
                 <ProfScheduleEntry {...prof} />
             )
-        })
+        }) : null
+
+        let unavailableCourses = (
+            <h5 className="none-scheduled">
+                The course schedule is not available yet for this semester <br></br><br></br>
+            </h5>
+        )
 
         let noCourses = (
             <h5 className="none-scheduled">
-                This professor is not scheduled for this semester
+                This professor is not scheduled for this semester <br></br><br></br>
             </h5>
         )
 
@@ -104,20 +120,20 @@ class ProfSchedule extends React.Component {
                             }
                         }}
                     >
-                        <Tab label="Summer 2020" aria-controls='tabpanel-0' />
-                        <Tab label="Fall 2020" aria-controls='tabpanel-1' />
+                        <Tab className="schedule-tabs" label={this.state.currentSem} aria-controls='tabpanel-0' />
+                        <Tab className="schedule-tabs" label={this.state.futureSem} aria-controls='tabpanel-1' />
                     </Tabs>
                 </AppBar>
 
                 <div className="semSchedule">
                     <TabPanel index={0} value={this.state.currentTab}>
-                        {currentSemList.length > 0 ? currentSem : noCourses}
+                        {currentSemList !== null ? (currentSemList.length > 0 ? currentSem : noCourses) : unavailableCourses}
                     </TabPanel>
                 </div>
 
                 <div className="semSchedule">
                     <TabPanel index={1} value={this.state.currentTab}>
-                        {futureSemList.length > 0 ? futureSem : noCourses}
+                        {futureSemList !== null ? (futureSemList.length > 0 ? futureSem : noCourses) : unavailableCourses}
                     </TabPanel>
                 </div>
             </div>
@@ -125,7 +141,7 @@ class ProfSchedule extends React.Component {
 
         return (
             <div className="profSchedule">
-                <div className="card prof-card">
+                <div className="course-card">
                     <div className="card-header prof-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#profschedule-collapse">
                         <h4 className="details-header"> Professor Schedule {arrowIcon}</h4>
                     </div>

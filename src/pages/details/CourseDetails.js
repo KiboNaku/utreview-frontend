@@ -383,8 +383,12 @@ class CourseDetails extends React.Component {
                 />
             </div>
         )
-
-        let crossListed = this.state.courseSchedule.futureSem.length > 0 ? this.state.courseSchedule.futureSem[0].crossListed : null
+        
+        let crossListed = null
+        if(this.state.courseSchedule.currentSem){
+            crossListed = this.state.courseSchedule.currentSem.length > 0 ? this.state.courseSchedule.currentSem[0].crossListed : null
+        }
+        
 
         let content = (
             <div className="CourseDetails">
