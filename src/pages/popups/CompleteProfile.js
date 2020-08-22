@@ -70,6 +70,7 @@ class CompleteProfile extends Component {
 	handleClose() {
 		this.setState({ majorPage: true })
 		$("#complete-profile").modal("hide");
+		$("#verifyemail-modal").modal("show");
 	}
 
 	componentDidMount() {

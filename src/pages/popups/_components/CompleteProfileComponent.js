@@ -256,7 +256,7 @@ export default function CompleteProfileComponent(props) {
 	}
 
 	return (
-		<div className="modal fade" id="complete-profile" role="dialog">
+		<div className="modal fade" id="complete-profile" role="dialog" data-backdrop="static">
 			<div className="modal-dialog modal-dialog-centered" role="document">
 				<div className="modal-content">
 					<div className="modal-header">
