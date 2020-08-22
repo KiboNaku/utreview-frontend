@@ -20,6 +20,7 @@ class Home extends Component {
             <div>
                 <MetaTags>
                     <title>{this.props.title}</title>
+                    <meta name="description" content={this.props.description} />
                 </MetaTags>
 
                 <div className="all-wrapper">

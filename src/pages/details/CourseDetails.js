@@ -434,6 +434,7 @@ class CourseDetails extends React.Component {
             <div>
                 <MetaTags>
                     <title>{this.state.title ? this.state.title : this.props.title} | {this.props.mainTitle}</title>
+                    <meta name="description" content={this.props.description} />
                 </MetaTags>
 
                 <main className="course-details-main">

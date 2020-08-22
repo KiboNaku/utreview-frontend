@@ -10,6 +10,7 @@ class NotFound extends Component {
 			<div>
 				<MetaTags>
 					<title>{this.props.title} | {this.props.mainTitle}</title>
+                    <meta name="description" content={this.props.description} />
 				</MetaTags>
 
 				<main className="bg-grey">

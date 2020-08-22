@@ -964,6 +964,7 @@ class ReviewForm extends Component {
 			<div>
 				<MetaTags>
 					<title>{this.props.title} | {this.props.mainTitle}</title>
+                    <meta name="description" content={this.props.description} />
 				</MetaTags>
 				<div>
 					<Prompt
