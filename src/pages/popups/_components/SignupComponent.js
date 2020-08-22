@@ -7,7 +7,7 @@ import GoogleButton from "./../_utils/GoogleButton"
 import ModalHeader from './../_utils/ModalHeader'
 import Loading from './../../_utils/Loading'
 
-function isValidEmail(str){
+function isValidEmail(str) {
     var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regex.test(str + "@utexas.edu")
 }
@@ -89,7 +89,7 @@ function SignupComponent(props) {
                         .test(
                             'Invalid email',
                             'Invalid email',
-                            function(value){
+                            function (value) {
                                 return isValidEmail(value);
                             }
                         )
@@ -322,12 +322,12 @@ function SignupComponent(props) {
 
     return (
         <div className="modal fade" id="signup-modal" role="dialog">
-            <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div className="modal-content">
 
                     <ModalHeader text="Sign Up" />
 
-                    <div className="modal-body">
+                    <div id='signup-modal-content' className="modal-body signup">
 
                         {props.data.loading && loading}
                         <p className='text-danger'>

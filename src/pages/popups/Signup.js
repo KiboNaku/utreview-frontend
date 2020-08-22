@@ -76,6 +76,8 @@ class Signup extends Component {
     }
 
     onSubmit(values) {
+        $('#signup-modal-content').animate({ scrollTop: 0 }, 'fast');
+
         let major = values.major
         let otherMajor = values.otherMajor
         if (values.showOtherMajor) {
