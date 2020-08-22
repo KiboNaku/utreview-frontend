@@ -36,7 +36,7 @@ class ContactUs extends Component {
 		setTimeout(() => {
 			let response = sendMessage(values)
 			if (response !== null) {
-				$('#feedback-received').toast('show')
+				$('#toast-contact-us').toast('show')
 			}
 			setSubmitting(false)
 			resetForm()
