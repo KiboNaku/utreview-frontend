@@ -16,6 +16,11 @@ class Home extends Component {
 
     render() {
 
+        const homeBackDefault = require('./../../res/img/backgrounds/utreview-homebackground.jpg')
+        const homeBackSmall = require('./../../res/img/backgrounds/utreview-homebackground-320w.jpg')
+        const homeBackMed = require('./../../res/img/backgrounds/utreview-homebackground-640w.jpg')
+        const homeBackBig = require('./../../res/img/backgrounds/utreview-homebackground-1024w.jpg')
+
         return (
             <div>
                 <MetaTags>
@@ -26,8 +31,15 @@ class Home extends Component {
                 <div className="all-wrapper">
                     <div className="home-wrapper">
                         <div className="top-wrapper">
-                            <img alt="top background" className="top-background"
-                                src={require('./../../res/img/backgrounds/utreview-homebackground.jpg')} />
+
+                            <picture>
+                                <source media="(max-width:320px)" srcset={homeBackSmall} />
+                                <source media="(max-width:640px)" srcset={homeBackMed} />
+                                <source media="(max-width:1024px)" srcset={homeBackBig} />
+                                <img src={homeBackDefault} alt="UT Review Home Page Background" className="top-background"/>
+                            </picture>
+                            {/* <img alt="top background" className="top-background"
+                                src={homeBackDefault} srcSet={`${homeBackSmall} 400w, ${homeBackMed} 650w, ${homeBackBig} 900w`} /> */}
                         </div>
 
                         <div className="bottom-wrapper">
