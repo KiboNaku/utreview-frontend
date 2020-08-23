@@ -10,7 +10,7 @@ $transition: 0.2s ease-out all;
   height: 40px;
   align-items: center;
   justify-content: center;
-  margin-left: 10px;
+  margin-left: 12px;
   & .btn-nav {
     background-color: transparent;
     width: 80px;
@@ -27,9 +27,9 @@ $transition: 0.2s ease-out all;
       line-height: $height - 3;
       box-sizing: border-box;
       z-index: 1;
-      top: -1px;
-      left: -5.6px;
-      width: 77.5px;
+      top: -1.2px;
+      left: -5.9px;
+      width: 77.2px;
       position: relative;
       overflow: hidden;
       & .btn-nav-background {
@@ -37,7 +37,7 @@ $transition: 0.2s ease-out all;
         position: absolute;
         background: $orange;
         width: 0;
-        height: 38.5px;
+        height: 38.2px;
         z-index: 3;
         transition: $transition;
         transform: skewX(-10deg);
@@ -49,6 +49,7 @@ $transition: 0.2s ease-out all;
         position: absolute;
         left: 0;
         top: 1.5px;
+        font-weight: bold;
       }
     }
     &:hover {
