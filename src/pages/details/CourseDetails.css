@@ -55,7 +55,7 @@
 }
 
 .course-details-block-wrapper {
-    margin-top: 50px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
@@ -65,7 +65,7 @@
 
 .topics-requisites {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-bottom: 50px;
     justify-content: center;
     align-content: center;
@@ -96,23 +96,12 @@
 }
 
 @media screen and (max-width: 1170px) {
-
-    .courseTopics {
-        margin-right: -50px;
-        width: 350px;
-    }
-
     .course-requisites{
         margin-left: 0px;
     }
 }
 
 @media screen and (max-width: 949px){
-    .courseTopics {
-        font-size: 14px;
-        width: 300px;
-    }
-
     .requisites-title {
         font-size: 18px;
     }
@@ -141,12 +130,6 @@
     .topics-requisites {
         flex-direction: column;
         margin-bottom: 50px;
-    }
-
-    .courseTopics {
-        width: 80%;
-        font-size: 14px;
-        margin-left: 10.1%;
     }
 }
 

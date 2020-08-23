@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&family=Open+Sans&family=Questrial&family=Trirong&family=Zilla+Slab&display=swap');
 
 .all-wrapper {
 }
@@ -29,75 +30,80 @@
 
 .circle-logo {
     position: relative;
-    height: 550px;
-    margin-top: -227px;
-    margin-left: -70px;
+    width: 53%;
+    margin-top: -16.3%;
+    margin-left: -3.5%;
 }
 
 .floating-box {
-    height: 120px;
-    width: 500px;
+    height: 9.3vw;
+    width: 42%;
     position: relative;
-    margin-left: 615px;
-    margin-top: -420px;
+    margin-left: 47.5%;
+    margin-top: -31vw;
     background-color: #333f48;
     border-radius: 20px;
     border: 2.5px solid white;
 }
 
 .floating-box-content {
-    margin-top: 23px;
-    margin-left: 50px;
+    margin-top: 2.5%;
     color: white;
 }
 
 .floating-box-text {
     margin-top: 10px;
     font-style: italic;
+    font-size: 1.25vw;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .find-your-class {
     float: left;
+    margin-left: 2.9vw;
 }
 
 .plan-your-schedule {
     float: left;
-    margin-left: 32px;
+    margin-left: 2.9vw;
 }
 
 .leave-a-review {
     float: left;
-    margin-left: 32px;
+    margin-left: 2.9vw;
+
 }
 
 .magnifying-glass {
-    width: 50px;
-    margin-left: 25px;
+    width: 4.5vw;
+    margin-left: 2.2vw;
 }
 
 .schedule {
-    width: 50px;
-    margin-left: 40px;
+    width: 4.5vw;
+    margin-left: 3.5vw;
 }
 
 .checklist {
-    width: 50px;
-    margin-left: 29px;
+    width: 4.5vw;
+    margin-left: 2.4vw;
 }
 
 .searchbar-wrapper-home {
     position: relative;
     margin-top: 35px;
-    margin-left: 615px;
+    margin-left: 47.5%;
+    width: 42%;
 }
 
 .homepage-sentence {
     position: relative;
     color: white;
-    margin-left: 620px;
-    margin-top: 60px;
-    font-size: 27px;
+    margin-left: 48%;
+    margin-top: 40px;
+    font-size: 2vw;
     font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .sentence-underline {
@@ -105,53 +111,7 @@
 }
 
 .bottom-sentence {
-    margin-left: 160px;
-}
-
-.arrow {
-	position: relative;
-    margin-left: 820px;
-    margin-top: -95px;
-    width: 100px;
-}
-
-.arrow .curve {
-	border: 2px solid white;
-	border-color: white white transparent transparent;
-	height: 70px;
-	width: 100px;
-    border-radius: 650px 400px 400px 0;
-}
-
-.arrow .point {
-	position: relative;
-	left: 40px;
-	top: 170px;
-}
-
-.arrow .point:before, .arrow .point:after {
-	border: 1px solid white;
-	height: 20px;
-	content: "";
-	position: absolute;
-}
-
-.arrow .point:before {
-	top: -200px;
-	left: 48.5px;
-	transform:rotate(5deg);
-	-webkit-transform:rotate(5deg);
-    -moz-transform:rotate(5deg);
-    -ms-transform: rotate(5deg);
-}
-
-.arrow .point:after {
-    top: -196px;
-    left: 57.5px;
-    transform:rotate(60deg);
-    -webkit-transform: rotate(60deg);
-    -moz-transform:rotate(60deg);
-    -ms-transform: rotate(60deg);
+    margin-left: 12vw;
 }
 
 .background-credits-mobile{
@@ -176,320 +136,42 @@
 }
 
 /** for larger and 4k displays **/
-
 @media screen and (min-width: 2000px) {
     .home-wrapper {
         grid-template-rows: minmax(380px, 35vh) minmax(400px, 62vh);
-    }
-
-    .circle-logo {
-        height: 860px;
-        margin-top: -355px;
-        margin-left: 30px;
-    }
-
-    .floating-box {
-        height: 10rem;
-        width: 800px;
-        margin-left: 1070px;
-        margin-top: -640px;
-    }
-
-    .floating-box-content {
-        margin-top: 30px;
-        margin-left: 64px;
-    }
-    
-    .floating-box-text {
-        margin-top: 10px;
-        font-size: 26px;
-    }
-    
-    .plan-your-schedule {
-        margin-left: 49px;
-    }
-    
-    .leave-a-review {
-        margin-left: 49px;
-    }
-    
-    .magnifying-glass {
-        width: 65px;
-        margin-left: 45px;
-    }
-    
-    .schedule {
-        width: 65px;
-        margin-left: 70px;
-    }
-    
-    .checklist {
-        width: 65px;
-        margin-left: 53px;
-    }
-    
-    .searchbar-wrapper-home {
-        margin-top: 50px;
-        margin-left: 1080px;
-    }
-
-    .homepage-sentence {
-        margin-left: 1080px;
-        margin-top: 100px;
-        font-size: 38px;
-    }
-
-    .arrow {
-        margin-left: 1350px;
-        margin-top: -125px;
     }
 }
 
 
 /** for bigger displays **/
-
 @media screen and (min-width: 1600px) and (max-width: 2001px){
     .home-wrapper {
         grid-template-rows: minmax(300px, 35vh) minmax(400px, 62vh);
     }
-
-    .circle-logo {
-        height: 660px;
-        margin-top: -275px;
-        margin-left: -20px;
-    }
-
-    .floating-box {
-        height: 8.5rem;
-        width: 650px;
-        margin-left: 820px;
-        margin-top: -490px;
-    }
-
-    .floating-box-content {
-        margin-top: 20px;
-        margin-left: 45px;
-    }
-    
-    .floating-box-text {
-        margin-top: 10px;
-        font-size: 21px;
-    }
-    
-    .plan-your-schedule {
-        margin-left: 49px;
-    }
-    
-    .leave-a-review {
-        margin-left: 49px;
-    }
-    
-    .magnifying-glass {
-        width: 55px;
-        margin-left: 35px;
-    }
-    
-    .schedule {
-        width: 55px;
-        margin-left: 60px;
-    }
-    
-    .checklist {
-        width: 55px;
-        margin-left: 43px;
-    }
-    
-    .searchbar-wrapper-home {
-        margin-top: 40px;
-        margin-left: 820px;
-    }
-
-    .homepage-sentence {
-        margin-left: 825px;
-        margin-top: 55px;
-        font-size: 32px;
-    }
-
-    .arrow {
-        margin-left: 1050px;
-        margin-top: -105px;
-    }
 }
 
 /** for smaller laptop displays **/
-
 @media screen and (min-width: 1040px) and (max-width: 1185px){
     .home-wrapper {
         grid-template-rows: minmax(230px, 35vh) minmax(400px, 62vh);
     }
 
-    .circle-logo {
-        height: 480px;
-        margin-top: -200px;
-        margin-left: -50px;
-    }
-
-    .floating-box {
-        height: 115px;
-        width: 430px;
-        margin-left: 560px;
-        margin-top: -365px;
-    }
-
-    .floating-box-content {
-        margin-top: 20px;
-        margin-left: 35px;
-    }
-    
-    .floating-box-text {
-        margin-top: 10px;
-        font-size: 15px;
-    }
-    
-    .plan-your-schedule {
-        margin-left: 21px;
-    }
-    
-    .leave-a-review {
-        margin-left: 24px;
-    }
-    
-    .magnifying-glass {
-        width: 47px;
-        margin-left: 25px;
-    }
-    
-    .schedule {
-        width: 47px;
-        margin-left: 40px;
-    }
-    
-    .checklist {
-        width: 47px;
-        margin-left: 28px;
-    }
-    
-    .searchbar-wrapper-home {
-        margin-top: 30px;
-        margin-left: 560px;
-    }
-
-    .homepage-sentence {
-        margin-left: 566px;
-        margin-top: 60px;
-        font-size: 20px;
-    }
-
-    .arrow {
-        margin-left: 690px;
-        margin-top: -89px;
+    .background-credits {
+        font-size: 12px;
     }
 }
 
 /** for tiny laptop displays **/
-
 @media screen and (min-width: 850px) and (max-width: 1040px){
     .home-wrapper {
         grid-template-rows: minmax(200px, 35vh) minmax(400px, 62vh);
     }
-
-    .circle-logo {
-        height: 380px;
-        margin-top: -157px;
-        margin-left: -50px;
-    }
-
-    .floating-box {
-        height: 100px;
-        width: 400px;
-        margin-left: 410px;
-        margin-top: -305px;
-    }
-
-    .floating-box-content {
-        margin-top: 15px;
-        margin-left: 25px;
-    }
-    
-    .floating-box-text {
-        margin-top: 10px;
-        font-size: 14px;
-    }
-    
-    .plan-your-schedule {
-        margin-left: 21px;
-    }
-    
-    .leave-a-review {
-        margin-left: 24px;
-    }
-    
-    .magnifying-glass {
-        width: 40px;
-        margin-left: 25px;
-    }
-    
-    .schedule {
-        width: 40px;
-        margin-left: 40px;
-    }
-    
-    .checklist {
-        width: 40px;
-        margin-left: 28px;
-    }
-    
-    .searchbar-wrapper-home {
-        margin-top: 30px;
-        margin-left: 408px;
-    }
-
-    .homepage-sentence {
-        margin-left: 420px;
-        margin-top: 60px;
-        font-size: 18px;
-    }
-
-    .arrow {
-        margin-left: 545px;
-        margin-top: -82px;
-    }
-
-    .arrow .curve {
-        height: 60px;
-        width: 90px;
-        border-radius: 750px 400px 400px 0;
-    }
-    
-    .arrow .point {
-        left: 32px;
-        top: 102px;
-    }
-    
-    .arrow .point:before, .arrow .point:after {
-        height: 15px;
-    }
-    
-    .arrow .point:before {
-        top: -124.9px;
-        left: 46.8px;
-        transform:rotate(0deg);
-        -webkit-transform:rotate(0deg);
-        -moz-transform:rotate(0deg);
-        -ms-transform: rotate(0deg);
-    }
-    
-    .arrow .point:after {
-        top: -120.5px;
-        left: 54.2px;
-        transform:rotate(70deg);
-        -webkit-transform: rotate(70deg);
-        -moz-transform:rotate(70deg);
-        -ms-transform: rotate(70deg);
-    }
-
     .background-credits {
-        font-size: 12px;
+        font-size: 11px;
+    }
+    .homepage-sentence {
+        margin-left: 49.5%;
+        margin-top: 30px;
     }
 }
 
@@ -499,109 +181,20 @@
     .home-wrapper {
         grid-template-rows: minmax(220px, 35vh) minmax(400px, 62vh);
     }
-
-    .circle-logo {
-        height: 280px;
-        margin-top: -116px;
-        margin-left: -50px;
-    }
-
-    .floating-box {
-        height: 85px;
-        width: 320px;
-        margin-left: 310px;
-        margin-top: -230px;
-    }
-
-    .floating-box-content {
-        margin-top: 15px;
-        margin-left: 17px;
-    }
-    
-    .floating-box-text {
-        margin-top: 8px;
-        font-size: 11px;
-    }
-    
-    .plan-your-schedule {
-        margin-left: 18px;
-    }
-    
-    .leave-a-review {
-        margin-left: 18px;
-    }
-    
-    .magnifying-glass {
-        width: 30px;
-        margin-left: 23px;
-    }
-    
-    .schedule {
-        width: 30px;
-        margin-left: 32px;
-    }
-    
-    .checklist {
-        width: 30px;
-        margin-left: 23px;
-    }
-    
-    .searchbar-wrapper-home {
-        margin-top: 20px;
-        margin-left: 306px;
-    }
-
-    .homepage-sentence {
-        margin-left: 320px;
-        margin-top: 40px;
-        font-size: 15px;
-    }
-
-    .bottom-sentence {
-        margin-left: 130px;
-    }
-
-    .arrow {
-        margin-left: 419px;
-        margin-top: -59px;
-    }
-
-    .arrow .curve {
-        height: 40px;
-        width: 70px;
-        border-radius: 1450px 1150px 475px 0;
-    }
-    
-    .arrow .point {
-        left: 16.9px;
-        top: 107px;
-    }
-    
-    .arrow .point:before, .arrow .point:after {
-        height: 10px;
-    }
-    
-    .arrow .point:before {
-        top: -120.9px;
-        left: 46.8px;
-        transform:rotate(-5deg);
-        -webkit-transform:rotate(-5deg);
-        -moz-transform:rotate(-5deg);
-        -ms-transform: rotate(-5deg);
-    }
-    
-    .arrow .point:after {
-        top: -118.5px;
-        left: 52.2px;
-        transform:rotate(70deg);
-        -webkit-transform: rotate(70deg);
-        -moz-transform:rotate(70deg);
-        -ms-transform: rotate(70deg);
-    }
-
     .background-credits {
         font-size: 11px;
     }
+
+    .floating-box {
+        height: 10vw;
+        margin-top: -32.5vw;
+    }
+    
+    .homepage-sentence {
+        margin-left: 49.5%;
+        margin-top: 30px;
+    }
+    
 }
 
 /** for large mobile displays **/
@@ -623,6 +216,7 @@
 
     .circle-logo {
         height: 180px;
+        width: auto;
         left: 50%;
         margin-left: -122px;
         margin-top: -75px;
@@ -679,52 +273,13 @@
 
     .homepage-sentence {
         left: 50%;
-        margin-left: -130px;
+        margin-left: -70px;
         margin-top: 3.5rem;
-        font-size: 14px;
+        font-size: 18px;
     }
 
     .bottom-sentence {
-        margin-left: 70px;
-    }
-
-    .arrow {
-        left: 50%;
-        margin-left: -40px;
-        margin-top: -3.5rem;
-    }
-
-    .arrow .curve {
-        height: 40px;
-        width: 70px;
-        border-radius: 1300px 1000px 450px 0;
-    }
-    
-    .arrow .point {
-        left: 16px;
-        top: 108px;
-    }
-    
-    .arrow .point:before, .arrow .point:after {
-        height: 10px;
-    }
-    
-    .arrow .point:before {
-        top: -120.9px;
-        left: 46.8px;
-        transform:rotate(-5deg);
-        -webkit-transform:rotate(-5deg);
-        -moz-transform:rotate(-5deg);
-        -ms-transform: rotate(-5deg);
-    }
-    
-    .arrow .point:after {
-        top: -118.5px;
-        left: 52px;
-        transform:rotate(70deg);
-        -webkit-transform: rotate(70deg);
-        -moz-transform:rotate(70deg);
-        -ms-transform: rotate(70deg);
+        margin-left: -56px;
     }
 
     .background-credits {
@@ -760,6 +315,7 @@
 
     .circle-logo {
         height: 180px;
+        width: auto;
         left: 50%;
         margin-left: -122px;
         margin-top: -75px;
@@ -775,7 +331,7 @@
 
     .floating-box-content {
         margin-top: 15px;
-        margin-left: 22px;
+        margin-left: 20px;
     }
     
     .floating-box-text {
@@ -815,52 +371,13 @@
 
     .homepage-sentence {
         left: 50%;
-        margin-left: -130px;
+        margin-left: -60px;
         margin-top: 3.5rem;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .bottom-sentence {
-        margin-left: 70px;
-    }
-
-    .arrow {
-        left: 50%;
-        margin-left: -38px;
-        margin-top: -3.25rem;
-    }
-
-    .arrow .curve {
-        height: 30px;
-        width: 60px;
-        border-radius: 1100px 1000px 200px 0;
-    }
-    
-    .arrow .point {
-        left: 8.5px;
-        top: 109.5px;
-    }
-    
-    .arrow .point:before, .arrow .point:after {
-        height: 10px;
-    }
-    
-    .arrow .point:before {
-        top: -120px;
-        left: 46px;
-        transform:rotate(-35deg);
-        -webkit-transform:rotate(-35deg);
-        -moz-transform:rotate(-35deg);
-        -ms-transform: rotate(-35deg);
-    }
-    
-    .arrow .point:after {
-        top: -118.9px;
-        left: 52.2px;
-        transform:rotate(50deg);
-        -webkit-transform: rotate(50deg);
-        -moz-transform:rotate(50deg);
-        -ms-transform: rotate(50deg);
+        margin-left: -50px;
     }
 
     .bottom-links {

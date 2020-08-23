@@ -47,7 +47,7 @@ class NavBar extends Component {
 
             <span>
                 <span className="align-self-center mr-2 d-none d-md-inline btn-nav-wrapper">
-                    <button style={transparent ? { color: "black", border: "1.4px black solid", backgroundColor: "rgba(232, 232, 232, .5)"} : { color: "white", border: "0.4px white solid" }}
+                    <button style={transparent ? { color: "black", border: "1.4px black solid", backgroundColor: "rgba(232, 232, 232, .5)"} : { color: "white", border: "1.2px white solid" }}
                         type="button" className="btn-nav" data-toggle="modal" data-target="#signup-modal">
                             <div className="btn-nav-text-wrapper">
                                 <div className="btn-nav-background"></div>
@@ -58,7 +58,7 @@ class NavBar extends Component {
                     </button>
                 </span>
                 <span className="align-self-center mr-2 d-md-inline btn-nav-wrapper">
-                    <button style={transparent ? { color: "black", border: "1.4px black solid", backgroundColor: "rgba(232, 232, 232, .5)"} : { color: "white", border: "0.4px white solid" }}
+                    <button style={transparent ? { color: "black", border: "1.4px black solid", backgroundColor: "rgba(232, 232, 232, .5)"} : { color: "white", border: "1.2px white solid" }}
                         type="button" className="btn-nav" data-toggle="modal" data-target="#login-modal">
                             <div className="btn-nav-text-wrapper">
                                 <div className="btn-nav-background"></div>

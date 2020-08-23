@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SearchBarHome from './../_utils/SearchBarHome'
 import $ from './../../../node_modules/jquery'
 import './Home.css'
+import './Home.scss'
 import MetaTags from 'react-meta-tags';
 
 class Home extends Component {
@@ -69,13 +70,12 @@ class Home extends Component {
                             </div>
 
                             <div className="homepage-sentence">
-                                What starts <span className="sentence-underline">here</span> <br></br>
-                                <div className="bottom-sentence">changes your course schedule</div>
-                            </div>
-
-                            <div className="arrow">
-                                <div className="curve"></div>
-                                <div className="point"></div>
+                                <div className="homepage-sentence-text">
+                                    What starts <span className="sentence-underline">here</span> <br></br>
+                                </div>
+                                <div className="bottom-sentence homepage-sentence-text">
+                                    changes your course schedule
+                                </div>
                             </div>
 
                             <div className="background-credits-mobile">
