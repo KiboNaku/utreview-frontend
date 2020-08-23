@@ -37,7 +37,7 @@ class Home extends Component {
                                 <source media="(max-width:320px)" srcset={homeBackSmall} />
                                 <source media="(max-width:640px)" srcset={homeBackMed} />
                                 <source media="(max-width:1024px)" srcset={homeBackBig} />
-                                <img src={homeBackDefault} alt="UT Review Home Page Background" className="top-background"/>
+                                <img src={homeBackDefault} alt="UT Review Home Page Background" className="top-background" />
                             </picture>
                             {/* <img alt="top background" className="top-background"
                                 src={homeBackDefault} srcSet={`${homeBackSmall} 400w, ${homeBackMed} 650w, ${homeBackBig} 900w`} /> */}
@@ -90,18 +90,18 @@ class Home extends Component {
                                 </div>
                             </div>
 
-                            <div className="background-credits-mobile">
+                            {/* <div className="background-credits-mobile">
                                 <a className="credits" href="https://www.freepik.com/vectors/background">
                                     Background vector created by starline - www.freepik.com
                             </a>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
-                    <div className="background-credits">
+                    {/* <div className="background-credits">
                         <a className="credits" href="https://www.freepik.com/vectors/background">
                             Background vector created by starline - www.freepik.com
                     </a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )

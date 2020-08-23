@@ -6,31 +6,34 @@ class Footer extends Component {
 
     render() {
         return (
-            <footer className="footer-main py-2 footer-txt">
-                <ul className="nav justify-content-end">
-                    <li className="nav-item" className="nav-link">
+            <footer className="footer-main pt-4 pb-3 footer-txt">
+                <ul className="px-3 footer-nav">
+                    <li className="nav-item nav-link">
                         <Link className="footer-link" to="/">
                             Home
                         </Link>
                     </li>
-                    <li className="nav-item" className="nav-link">
+                    <li className="nav-item nav-link">
                         <Link className="footer-link" to="/about">
                             About
                         </Link>
                     </li>
-                    <li className="nav-item" className="nav-link">
+                    <li className="nav-item nav-link">
                         <Link className="footer-link" to="/privacy-policy">
                             Privacy Policy
                         </Link>
                     </li>
-                    <li className="nav-item" className="nav-link">
+                    <li className="nav-item nav-link">
                         <Link className="footer-link" to="/contact-us">
                             Contact Us
                         </Link>
                     </li>
-                    <li className="nav-item" className="nav-link">
+                    <li className="nav-item nav-link right">
+                        <a href="https://www.facebook.com/utreview" className="fab fa-facebook fa-lg"></a>
+                    </li>
+                    <li className="nav-item nav-link right">
                         <Link className="footer-link" data-toggle="modal" data-target="#report-bug">
-                            <i className="fas fa-exclamation-triangle"></i>
+                            <i className="fas fa-lg fa-exclamation-triangle"></i>
                         </Link>
                     </li>
                 </ul>
