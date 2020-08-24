@@ -28,6 +28,8 @@ class Footer extends Component {
                             Contact Us
                         </Link>
                     </li>
+                    <br className="small-screen-br"/>
+                    <br className="small-screen-br"/>
                     <li className="nav-item nav-link right">
                         <a href="https://www.facebook.com/utreview" className="fab fa-facebook fa-lg"></a>
                     </li>

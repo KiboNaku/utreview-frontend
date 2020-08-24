@@ -44,3 +44,15 @@ ul.footer-nav {
     float: none;
     display: inline-block;
 }
+
+.small-screen-br {
+    display: none;
+}
+
+
+
+@media screen and (max-width: 600px) {
+    .small-screen-br {
+        display: block;
+    }
+}

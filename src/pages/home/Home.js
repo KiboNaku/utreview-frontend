@@ -89,6 +89,9 @@ class Home extends Component {
                                     changes your course schedule
                                 </div>
                             </div>
+                            <div className="fb-like-share">
+                                <div id="fboverlay" class="fb-like px-2 py-2" data-href="https://www.facebook.com/utreview" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="true"></div>
+                            </div>
 
                             {/* <div className="background-credits-mobile">
                                 <a className="credits" href="https://www.freepik.com/vectors/background">
