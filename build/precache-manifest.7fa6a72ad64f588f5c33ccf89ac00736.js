@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "661ec03f32f92b2d7a0b191f45e9c86c",
+    "revision": "367929cb282713cbbd5c8909c0ad90f2",
     "url": "/index.html"
   },
   {
-    "revision": "e9d60fda532fd13a0752",
+    "revision": "69be2d12fe8e26501ad1",
     "url": "/static/css/2.af3c1da9.chunk.css"
   },
   {
-    "revision": "8d46b64ee7e45dcdfbf9",
-    "url": "/static/css/main.a1a70ff9.chunk.css"
+    "revision": "c2b1ee244f3be5d0b373",
+    "url": "/static/css/main.776714d3.chunk.css"
   },
   {
-    "revision": "e9d60fda532fd13a0752",
-    "url": "/static/js/2.b6db924c.chunk.js"
+    "revision": "69be2d12fe8e26501ad1",
+    "url": "/static/js/2.7e34bd6b.chunk.js"
   },
   {
     "revision": "2b156bd3db49f128b32cdca8ac5e35e1",
-    "url": "/static/js/2.b6db924c.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.7e34bd6b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8d46b64ee7e45dcdfbf9",
-    "url": "/static/js/main.7fad093b.chunk.js"
+    "revision": "c2b1ee244f3be5d0b373",
+    "url": "/static/js/main.325b796b.chunk.js"
   },
   {
     "revision": "5965b389e27dd0dc5b93",
@@ -40,8 +40,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/blackboard-prof-background.f6777fea.jpg"
   },
   {
-    "revision": "820bd03412a04e49e4e24f60696f42c9",
-    "url": "/static/media/colin.820bd034.jpg"
+    "revision": "8ff0529f91f393044079d816cf69a5c5",
+    "url": "/static/media/colin.8ff0529f.jpg"
   },
   {
     "revision": "d43b531e801f43d3018516834e16105f",
@@ -92,15 +92,27 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/technology-course-background.e3bfbd76.jpg"
   },
   {
-    "revision": "2818b1f779639674df69b28557046471",
-    "url": "/static/media/utreview-homebackground.2818b1f7.jpg"
+    "revision": "8a0995c77d0e5c64d8c8bb4d3a9d3ef7",
+    "url": "/static/media/utreview-homebackground-1024w.8a0995c7.jpg"
+  },
+  {
+    "revision": "a15eea5c78126e62f3c3de8cbec96c61",
+    "url": "/static/media/utreview-homebackground-320w.a15eea5c.jpg"
+  },
+  {
+    "revision": "b953dc10b09aafa9fc3af5fc083c2613",
+    "url": "/static/media/utreview-homebackground-640w.b953dc10.jpg"
+  },
+  {
+    "revision": "427dc376876c0cb56dc78cc203ca6397",
+    "url": "/static/media/utreview-homebackground.427dc376.jpg"
   },
   {
     "revision": "b1ed0dcef610ac3c48a8e0ffd3e70173",
     "url": "/static/media/utreview-homelogotransparent-orangewhite.b1ed0dce.png"
   },
   {
-    "revision": "752d55ab0e365d5a31d68cb1401ceb3d",
-    "url": "/static/media/vina.752d55ab.jpg"
+    "revision": "c5845b82709da832a0a23c8c98f1f8ba",
+    "url": "/static/media/vina.c5845b82.jpg"
   }
 ]);
