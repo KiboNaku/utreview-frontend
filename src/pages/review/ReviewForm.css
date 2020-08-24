@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&family=Open+Sans&family=Questrial&family=Trirong&family=Zilla+Slab&display=swap');
 
 li > span{
     font-weight: bold
@@ -9,6 +10,21 @@ li > span{
 
 li * {
     font-weight: normal
+}
+
+.review-form-opening {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+}
+
+.review-title {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.review-subtitle {
+    font-family: 'Open Sans', sans-serif;
 }
 
 .review-form {
