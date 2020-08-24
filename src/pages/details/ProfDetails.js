@@ -180,7 +180,7 @@ class ProfDetails extends React.Component {
 
                 <main className="prof-details-main">
                     <div className="main-sub">
-                        {this.state.validProf ? (this.state.loaded ? content : loading) : <NotFound />}
+                        {this.state.validProf ? (this.state.loaded ? content : loading) : <NotFound title={this.props.notFoundPageTitle} mainTitle={this.props.mainTitle} description={this.props.notFoundPageDescription}/>}
                     </div>
                 </main>
             </div>

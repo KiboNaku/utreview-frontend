@@ -229,7 +229,7 @@ class CourseDetails extends React.Component {
 
                 <main className="course-details-main">
                     <div className="main-sub">
-                        {this.state.validCourse ? (this.state.loaded ? content : loading) : <NotFound />}
+                        {this.state.validCourse ? (this.state.loaded ? content : loading) : <NotFound title={this.props.notFoundPageTitle} mainTitle={this.props.mainTitle} description={this.props.notFoundPageDescription}/>}
                     </div>
                 </main>
             </div>

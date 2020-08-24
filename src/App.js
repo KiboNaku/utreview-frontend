@@ -159,73 +159,75 @@ class App extends Component {
 						<Route
 							path="/about"
 							component={() =>
-								<About title={aboutPageTitle} mainTitle={mainPageTitle} description={aboutPageDescription}/>
+								<About title={aboutPageTitle} mainTitle={mainPageTitle} description={aboutPageDescription} />
 							}
 						/>
 						<Route
 							path="/privacy-policy"
 							component={() =>
-								<PrivacyPolicy title={privacyPolicyPageTitle} mainTitle={mainPageTitle} description={privacyPolicyPageDescription}/>
+								<PrivacyPolicy title={privacyPolicyPageTitle} mainTitle={mainPageTitle} description={privacyPolicyPageDescription} />
 							}
 						/>
 						<Route
 							exact path="/results"
 							render={(props) =>
 								<Results title={resultsPageTitle} mainTitle={mainPageTitle} description={resultsPageDescription}
-								handleSearchValueChange={this.handleSearchValueChange} />
+									handleSearchValueChange={this.handleSearchValueChange} />
 							}
 						/>
 						<Route
 							path="/add-review"
 							render={(props) =>
-								<ReviewForm title={addReviewPageTitle} mainTitle={mainPageTitle} description={addReviewPageDescription}/>
+								<ReviewForm title={addReviewPageTitle} mainTitle={mainPageTitle} description={addReviewPageDescription} />
 							}
 						/>
 						<Route
 							path="/edit-review"
 							component={() =>
-								<ReviewForm title={editReviewPageTitle} mainTitle={mainPageTitle} description={editReviewPageDescription}/>
+								<ReviewForm title={editReviewPageTitle} mainTitle={mainPageTitle} description={editReviewPageDescription} />
 							}
 						/>
 						<Route
 							path="/confirm-email"
 							component={() =>
-								<ConfirmEmail title={confirmEmailPageTitle} mainTitle={mainPageTitle} description={confirmEmailPageDescription}/>
+								<ConfirmEmail title={confirmEmailPageTitle} mainTitle={mainPageTitle} description={confirmEmailPageDescription} />
 							}
 						/>
 						<Route
 							path="/reset-password"
 							component={() =>
-								<ResetPassword title={resetPasswordPageTitle} mainTitle={mainPageTitle} description={resetPasswordPageDescription}/>
+								<ResetPassword title={resetPasswordPageTitle} mainTitle={mainPageTitle} description={resetPasswordPageDescription} />
 							}
 						/>
 						<Route
 							path="/create-password"
 							component={() =>
-								<ResetPassword title={createPasswordPageTitle} mainTitle={mainPageTitle} description={createPasswordPageDescription}/>
+								<ResetPassword title={createPasswordPageTitle} mainTitle={mainPageTitle} description={createPasswordPageDescription} />
 							}
 						/>
 						<Route
 							path={"/course-results/:courseId"}
 							component={() =>
-								<CourseDetails title={defaultCourseDetailsPageTitle} mainTitle={mainPageTitle} description={defaultCourseDetailsPageDescription}/>
+								<CourseDetails title={defaultCourseDetailsPageTitle} mainTitle={mainPageTitle} description={defaultCourseDetailsPageDescription}
+									notFoundPageTitle={notFoundPageTitle} notFoundPageDescription={notFoundPageDescription} />
 							}
 						/>
 						<Route
 							path={"/prof-results/:profId"}
 							component={() =>
-								<ProfDetails title={defaultProfDetailsPageTitle} mainTitle={mainPageTitle} description={defaultProfDetailsPageDescription}/>
+								<ProfDetails title={defaultProfDetailsPageTitle} mainTitle={mainPageTitle} description={defaultProfDetailsPageDescription}
+									notFoundPageTitle={notFoundPageTitle} notFoundPageDescription={notFoundPageDescription} />
 							}
 						/>
 						<Route
 							path="/contact-us"
 							render={() =>
-								<ContactUs title={contactUsPageTitle} mainTitle={mainPageTitle} description={contactUsPageDescription}/>
+								<ContactUs title={contactUsPageTitle} mainTitle={mainPageTitle} description={contactUsPageDescription} />
 							}
 						/>
 						<Route
 							component={() =>
-								<NotFound title={notFoundPageTitle} mainTitle={mainPageTitle} description={notFoundPageDescription}/>
+								<NotFound title={notFoundPageTitle} mainTitle={mainPageTitle} description={notFoundPageDescription} />
 							}
 						/>
 					</Switch>
