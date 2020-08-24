@@ -6,8 +6,6 @@ import './Filter.css'
 function CourseFilter(props) {
 
     let numRatingOptions = props.minNumRatings.length - 1
-    console.log(props)
-
     return (
 
         <div className='card'>
