@@ -18,3 +18,41 @@
 .footer-txt {
     font-size: 90%;
 }
+
+.fa-facebook {
+    background: #333f48;
+    color: white;
+}
+
+.fa-facebook:hover {
+    color: #f8971f;
+    text-decoration: none;
+}
+
+ul.footer-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+.footer-nav li {
+    float: left;
+}
+
+.footer-nav .right {
+    float: none;
+    display: inline-block;
+}
+
+.small-screen-br {
+    display: none;
+}
+
+
+
+@media screen and (max-width: 600px) {
+    .small-screen-br {
+        display: block;
+    }
+}

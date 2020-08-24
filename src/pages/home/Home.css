@@ -23,6 +23,7 @@
 }
 
 .bottom-wrapper {
+    position: relative;
     grid-area: bottom;
     border-top: 3px solid white;
     background-image: linear-gradient(#bf5600bd, #bf5600e8);
@@ -125,6 +126,20 @@
     margin-left: 15px;
     text-decoration: none;
     font-size: 13px;
+}
+
+.fb-like-share {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#fboverlay {
+    -webkit-filter: grayscale(50%);
+    -moz-filter: grayscale(50%);
+    -o-filter: grayscale(50%);
+    -ms-filter: grayscale(50%);
+    filter: grayscale(50%);
 }
 
 .credits {

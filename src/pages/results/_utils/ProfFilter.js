@@ -35,19 +35,23 @@ function ProfFilter(props) {
                         <input className="form-check-input mb-0 utcolor" type="radio" name="semester" value="all"
                             checked={props.filter.sem === "all"} />
                         <label className="form-check-labe text-left mb-0 ">All</label>
-                    </div>
+                    </div>zxz
                     <br />
-                    <div className="form-check sem-radio" onClick={() => { props.handleFilterChange(null, -1, "current") }}>
-                        <input className="form-check-input utcolor" type="radio" name="semester" value="current"
-                            checked={props.filter.sem === "current"} />
-                        <label className="form-check-label text-left ">Current {props.semesters && ('(' + props.semesters.current + ')')}</label>
-                    </div>
+                    {(props.semesters != null && props.semesters.current != null) &&
+                        <div className="form-check sem-radio" onClick={() => { props.handleFilterChange(null, -1, "current") }}>
+                            <input className="form-check-input utcolor" type="radio" name="semester" value="current"
+                                checked={props.filter.sem === "current"} />
+                            <label className="form-check-label text-left ">Current {'(' + props.semesters.current + ')'}</label>
+                        </div>
+                    }
                     <br />
-                    <div className="form-check sem-radio" onClick={() => { props.handleFilterChange(null, -1, "next") }} >
-                        <input className="form-check-input utcolor" type="radio" name="semester" value="next"
-                            checked={props.filter.sem === "next"} />
-                        <label className="form-check-label text-left ">Next {props.semesters && ('(' + props.semesters.next + ')')}</label>
-                    </div>
+                    {(props.semesters != null && props.semesters.next != null) &&
+                        <div className="form-check sem-radio" onClick={() => { props.handleFilterChange(null, -1, "next") }} >
+                            <input className="form-check-input utcolor" type="radio" name="semester" value="next"
+                                checked={props.filter.sem === "next"} />
+                            <label className="form-check-label text-left ">Next {'(' + props.semesters.next + ')'}</label>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
