@@ -1,17 +1,20 @@
-.homepage-sentence-text {
-    background-image: linear-gradient(
-    transparent calc(65% - 5px),
-    darken(rgba(0, 0, 0, 0.123), 15%) 5px,
-    );
-    background-size: 0;
-    background-repeat: no-repeat;
-    display: inline;
-    transition: 0.7s ease;
-}
 
-.homepage-sentence:hover {
+@media screen and (min-width: 687px) {
     .homepage-sentence-text {
-        background-size: 100%;
+        background-image: linear-gradient(
+        transparent calc(65% - 5px),
+        darken(rgba(0, 0, 0, 0.123), 15%) 5px,
+        );
+        background-size: 0;
+        background-repeat: no-repeat;
+        display: inline;
+        transition: 0.7s ease;
+    }
+
+    .homepage-sentence:hover {
+        .homepage-sentence-text {
+            background-size: 100%;
+        }
     }
 }
 

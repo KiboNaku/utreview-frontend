@@ -331,7 +331,7 @@
 
     .floating-box-content {
         margin-top: 15px;
-        margin-left: 20px;
+        margin-left: 10px;
     }
     
     .floating-box-text {
@@ -371,7 +371,7 @@
 
     .homepage-sentence {
         left: 50%;
-        margin-left: -60px;
+        margin-left: -70px;
         margin-top: 3.5rem;
         font-size: 16px;
     }
