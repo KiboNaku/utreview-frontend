@@ -4,8 +4,8 @@ import ModalHeader from './../../popups/_utils/ModalHeader'
 import $ from './../../../../node_modules/jquery'
 
 function ReviewDetails(props) {
-	const profPath = props.data.prof.firstName.toLowerCase().replaceAll(" ", "") + "_" + props.data.prof.lastName.toLowerCase().replaceAll(" ", "")
-	let coursePath = props.data.course.dept.abr.toLowerCase().replaceAll(' ', '') + "_" + props.data.course.num.toLowerCase()
+	const profPath = props.data.prof.firstName.toLowerCase().replace(/ /g,'') + "_" + props.data.prof.lastName.toLowerCase().replace(/ /g,'')
+	let coursePath = props.data.course.dept.abr.toLowerCase().replace(/ /g,'') + "_" + props.data.course.num.toLowerCase()
 	if (props.data.course.topicNum >= 0) {
 		coursePath += "_" + props.data.course.topicNum.toString()
 	}

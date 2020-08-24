@@ -3,7 +3,7 @@ import { withRouter, Link } from 'react-router-dom'
 
 function ProfAddReview(props) {
     
-    const profPath = props.firstName.toLowerCase().replaceAll(" ", "") + "_" + props.lastName.toLowerCase().replaceAll(" ", "")
+    const profPath = props.firstName.toLowerCase().replace(/ /g,'') + "_" + props.lastName.toLowerCase().replace(/ /g,'')
     
     const addReviewLink = (
         <Link className="utcolor"

@@ -35,7 +35,7 @@ function ProfFilter(props) {
                         <input className="form-check-input mb-0 utcolor" type="radio" name="semester" value="all"
                             checked={props.filter.sem === "all"} />
                         <label className="form-check-labe text-left mb-0 ">All</label>
-                    </div>zxz
+                    </div>
                     <br />
                     {(props.semesters != null && props.semesters.current != null) &&
                         <div className="form-check sem-radio" onClick={() => { props.handleFilterChange(null, -1, "current") }}>
