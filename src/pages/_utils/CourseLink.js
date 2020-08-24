@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 function CourseLink(props) {
 
-    let coursePath = props.courseDept.toLowerCase().replace(' ', '') + "_" + props.courseNum.toLowerCase()
+    let coursePath = props.courseDept.toLowerCase().replaceAll(' ', '') + "_" + props.courseNum.toLowerCase()
     if (props.topicNum > -1) {
         coursePath += "_" + props.topicNum.toString()
     }

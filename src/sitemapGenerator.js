@@ -32,7 +32,7 @@ connection.connect(function (err) {
 		result.forEach((item) => {
 			const firstName = item.first_name
 			const lastName = item.last_name
-			const profPath = firstName.toLowerCase().replace(" ", "") + "_" + lastName.toLowerCase().replace(" ", "")
+			const profPath = firstName.toLowerCase().replaceAll(" ", "") + "_" + lastName.toLowerCase().replaceAll(" ", "")
 			professors.push({ profId: profPath })
 		})
 

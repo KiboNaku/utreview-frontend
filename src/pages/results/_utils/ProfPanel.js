@@ -73,7 +73,7 @@ function ProfPanel(props) {
                     return (
                         <tr key={prof.id}>
                             <td colSpan="3" className="class-name">{
-                                <ProfLink 
+                                <ProfLink
                                     profId={prof.id}
                                     firstName={firstName}
                                     lastName={lastName}
@@ -83,8 +83,8 @@ function ProfPanel(props) {
                                 {prof.eCIS !== null ? prof.eCIS : "N/A"}
                             </td>
                             <td colSpan="1">
-                                {prof.approval !== null ? prof.approval+'%' : "N/A"}
-							</td>
+                                {prof.approval !== null ? prof.approval + '%' : "N/A"}
+                            </td>
                             <td colSpan="1">
                                 {prof.numRatings}
                             </td>
@@ -113,11 +113,11 @@ function ProfPanel(props) {
     }
 
     let sortedProfs = props.filtered
-    .sort(sortTypes[sortDir].fn)
-    .slice(0, props.calcTableEdge(props.page, props.filtered.length))
-        
-    let moreResults = hasMore 
-    if (props.calcTableEdge(props.page, props.filtered.length) >= props.filtered.length){
+        .sort(sortTypes[sortDir].fn)
+        .slice(0, props.calcTableEdge(props.page, props.filtered.length))
+
+    let moreResults = hasMore
+    if (props.calcTableEdge(props.page, props.filtered.length) >= props.filtered.length) {
         moreResults = false
     }
 
@@ -156,7 +156,7 @@ function ProfPanel(props) {
             </table>
             {moreResults &&
                 <div className="d-flex justify-content-center">
-                    <button onClick={loadCourses} className="btn btn-block btn-more-results col-12 col-sm-9 col-md-8 col-lg-7" 
+                    <button onClick={loadCourses} className="btn btn-block btn-more-results col-12 col-sm-9 col-md-8 col-lg-7"
                         ref={(buttonDOM) => { setButtonDOM(buttonDOM) }}>
                         More results
                     </button>
