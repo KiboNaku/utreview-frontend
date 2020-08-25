@@ -109,8 +109,10 @@ function ReviewFormComponent(props) {
 
                 <form className="px-4 py-5" onSubmit={props.handleSubmit}>
 
-                    <h4>Let us know about your experience.</h4>
-                    <h6 className="pb-4"> Your review will be anonymous. </h6>
+                    <div className="review-form-opening">
+                        <h4 className="review-title">Let us know about your experience.</h4>
+                        <h6 className="pb-4 review-subtitle"> Your review will be anonymous. </h6>
+                    </div>
 
                     <ol className="px-5">
 
