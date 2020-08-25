@@ -28,11 +28,11 @@ function ReviewFormComponent(props) {
         <li className="py-2">
 
             <span >
-                Select a topic:
-                            </span>
+                Select a topic
+            </span>
 
             <Select
-                className="basic-single col-12 col-sm-10 col-md-8 mt-2"
+                className="col review-form-dropdown"
                 classNamePrefix="select"
                 name="topicName"
                 options={props.data.topicList}
@@ -50,16 +50,16 @@ function ReviewFormComponent(props) {
 
     let courseSelect = (
 
-        <div>
+        <div className="review-form-selector">
 
-            <li className="py-2">
+            <li className="py-3">
 
-                <span >
+                <span>
                     Select a course<small className='text-danger'> *</small>
                 </span>
 
                 <Select
-                    className="basic-single col-12 col-sm-10 col-md-8 mt-2"
+                    className="col review-form-dropdown"
                     classNamePrefix="select"
                     name="courseName"
                     options={props.data.courseList}
@@ -80,14 +80,14 @@ function ReviewFormComponent(props) {
     )
 
     let profSelect = (
-        <li className="py-3" >
+        <li className="py-3 review-form-selector">
 
             <span>
                 Select a professor<small className='text-danger'> *</small>
             </span>
 
             <Select
-                className="basic-single col-12 col-sm-10 col-md-8 mt-2"
+                className="col review-form-dropdown"
                 classNamePrefix="select"
                 name="ProfessorName"
                 options={props.data.profList}
@@ -104,101 +104,107 @@ function ReviewFormComponent(props) {
     )
 
     return (
-        <div style={{ width: "100%", backgroundColor: "#9cadb7" }}>
-            <div className="container-fluid col-12 col-sm-10 col-md-8 col-lg-6 border rounded" style={{ backgroundColor: "white" }}>
 
-                <form className="px-4 py-5" onSubmit={props.handleSubmit}>
+        <div className="review-page-wrapper">
+            <div className="review-form-wrapper">
+                <div className="review-form-card container-fluid col-12 col-sm-10 col-md-80 col-lg-60">
 
-                    <div className="review-form-opening">
-                        <h4 className="review-title">Let us know about your experience.</h4>
-                        <h6 className="pb-4 review-subtitle"> Your review will be anonymous. </h6>
-                    </div>
+                    <form className="px-4 py-5" onSubmit={props.handleSubmit}>
 
-                    <ol className="px-5">
+                        <div className="review-form-opening">
+                            <h4 className="review-title">Let us know about your experience.</h4>
+                            <h6 className="pb-4 review-subtitle"> Your review will be anonymous. </h6>
+                        </div>
 
-                        {props.data.order === 0 ? courseSelect : profSelect}
-                        {props.data.order === 0 ? profSelect : courseSelect}
-
-                        <li className="py-3">
-
-                            <span >
-                                Select a semester<small className='text-danger'> *</small>
-                            </span>
-                            <br />
-
-                            <div className="semester-select">
-                                <Select
-                                    className="basic-single col-12 col-sm-10 col-md-8 mt-2"
-                                    classNamePrefix="select"
-                                    name="semester"
-                                    options={props.data.semesterList}
-                                    onChange={props.handleSemesterChange}
-                                    placeholder="Semester"
-                                    isClearable={true}
-                                    isSearchable={true}
-                                    isDisabled={props.data.oldReview !== null ? true : false}
-                                    value={props.data.semester.semester !== "" ?
-                                        props.data.semesterList.filter(sem => sem.value === props.data.semester.semester) : null}
-                                />
-                                <Select
-                                    className="basic-single col-12 col-sm-10 col-md-8 mt-2"
-                                    classNamePrefix="select"
-                                    name="year"
-                                    options={props.data.yearList}
-                                    onChange={props.handleYearChange}
-                                    placeholder="Year"
-                                    isClearable={true}
-                                    isSearchable={true}
-                                    isDisabled={props.data.oldReview !== null ? true : false}
-                                    value={props.data.semester.year !== null ?
-                                        props.data.yearList.filter(year => year.value === props.data.semester.year) : null}
-                                />
+                        <ol className="review-questions-wrapper">
+                            <div className="course-and-prof">
+                                {props.data.order === 0 ? courseSelect : profSelect}
+                                {props.data.order === 0 ? profSelect : courseSelect}
                             </div>
 
-                        </li>
+                            <li className="py-3">
 
-                        <li className="py-3" style={disableStyle}>
-                            <span>
-                                Give us your review for {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}<small className='text-danger'> *</small>
-                            </span>
-                            <ReviewCourse {...props} />
-                        </li>
+                                <span >
+                                    Select a semester<small className='text-danger'> *</small>
+                                </span>
+                                <br />
 
-                        <li className="py-3" style={disableStyle}>
-                            <span>
-                                Give us your review for {props.data.prof.id !== null ? props.data.prof.firstName + " " + props.data.prof.lastName : '...'}<small className='text-danger'> *</small>
-                            </span>
-                            <ReviewProfessor {...props} />
-                        </li>
-                        <li className="py-3" style={disableStyle}>
-                            <span>
-                                Give us the grade you obtained in {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}
-                            </span>
-                            <div className="review-form-grade">
-                                <Select
-                                    className="basic-single col-12 col-sm-10 col-md-8 mt-2"
-                                    classNamePrefix="select"
-                                    name="grade"
-                                    options={gradeList}
-                                    onChange={props.handleGradeChange}
-                                    placeholder="Letter Grade"
-                                    isClearable={true}
-                                    isDisabled={props.data.formDisabled ? true : false}
-                                    value={props.data.grade !== null ?
-                                        gradeList.filter(grade => grade.value === props.data.grade) : null}
-                                />
+                                <div className="semester-select">
+                                    <Select
+                                        className="col review-form-dropdown semester-form-shortener"
+                                        classNamePrefix="select"
+                                        name="semester"
+                                        options={props.data.semesterList}
+                                        onChange={props.handleSemesterChange}
+                                        placeholder="Semester"
+                                        isClearable={true}
+                                        isSearchable={true}
+                                        isDisabled={props.data.oldReview !== null ? true : false}
+                                        value={props.data.semester.semester !== "" ?
+                                            props.data.semesterList.filter(sem => sem.value === props.data.semester.semester) : null}
+                                    />
+                                    <Select
+                                        className="col review-form-dropdown semester-year-shortener"
+                                        classNamePrefix="select"
+                                        name="year"
+                                        options={props.data.yearList}
+                                        onChange={props.handleYearChange}
+                                        placeholder="Year"
+                                        isClearable={true}
+                                        isSearchable={true}
+                                        isDisabled={props.data.oldReview !== null ? true : false}
+                                        value={props.data.semester.year !== null ?
+                                            props.data.yearList.filter(year => year.value === props.data.semester.year) : null}
+                                    />
+                                </div>
+
+                            </li>
+
+                            <div class="row mt-2">
+                                <li className="py-3 col-md-6"  style={disableStyle}>
+                                    <span>
+                                        Give us your review for {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}<small className='text-danger'> *</small>
+                                    </span>
+                                    <ReviewCourse {...props} />
+                                </li>
+
+                                <li className="py-3 col-md-6" style={disableStyle}>
+                                    <span>
+                                        Give us your review for {props.data.prof.id !== null ? props.data.prof.firstName + " " + props.data.prof.lastName : '...'}<small className='text-danger'> *</small>
+                                    </span>
+                                    <ReviewProfessor {...props} />
+                                </li>
                             </div>
+                            <li className="py-3" style={disableStyle}>
+                                <span>
+                                    Give us the grade you obtained in {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}
+                                </span>
+                                <div className="review-form-grade">
+                                    <Select
+                                        className="col review-form-dropdown"
+                                        classNamePrefix="select"
+                                        name="grade"
+                                        options={gradeList}
+                                        onChange={props.handleGradeChange}
+                                        placeholder="Letter Grade"
+                                        isClearable={true}
+                                        isDisabled={props.data.formDisabled ? true : false}
+                                        value={props.data.grade !== null ?
+                                            gradeList.filter(grade => grade.value === props.data.grade) : null}
+                                    />
+                                </div>
 
-                        </li>
-                    </ol>
+                            </li>
+                        </ol>
 
-                    <div className="text-center pt-4" style={disableStyle}>
+                        <div className="text-center pt-4" style={disableStyle}>
 
-                        <button className="btn btn-lg btn-utcolor font-weight-bold" disabled={props.data.submitPressed} type="submit">
-                            {props.data.oldReview ? "Update" : "Submit"}
-                        </button>
-                    </div>
-                </form>
+                            <button className="btn btn-lg btn-utcolor font-weight-bold" disabled={props.data.submitPressed} type="submit">
+                                {props.data.oldReview ? "Update" : "Submit"}
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div >
     )
