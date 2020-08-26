@@ -134,6 +134,10 @@
 }
 
 @media screen and (max-width: 550px){
+    .course-info{
+        margin-top: 0px;
+    }
+
     .courseTopics {
         width: 80%;
         margin-left: 10.1%;
@@ -148,6 +152,10 @@
 
     .course-details-block-wrapper {
         margin-bottom: -20px;
+    }
+
+    .view-reviews-wrapper {
+        margin-left: -64.5%;
     }
 }
 
