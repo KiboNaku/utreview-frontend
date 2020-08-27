@@ -171,7 +171,7 @@ function ProfReviewEntry(props) {
                     </div>
                     <div className="rowRating">
                         <div className="col">
-                            <span className="p-review"> Grading: </span>
+                            <span className="p-review"> Grading Rigor: </span>
                         </div>
                         <StyledRating
                             defaultValue={props.review.grading}

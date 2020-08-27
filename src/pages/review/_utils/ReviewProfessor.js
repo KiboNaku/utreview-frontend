@@ -223,7 +223,7 @@ function ReviewProfessor(props) {
             </div>
             <div className="review-row">
                 <div className="col" style={{ alignItems: 'center' }} >
-                    <span>Grading</span>
+                    <span>Grading Rigor</span>
                     <ClickAwayListener onClickAway={handleGradingClose}>
                         <StyledTooltip
                             title={gradingDescription}
