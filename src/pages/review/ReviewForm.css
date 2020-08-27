@@ -160,12 +160,15 @@ li * {
 
 @media screen and (max-width: 478px){
     .review-form-wrapper {
-        padding-top: 0px;
-        padding-bottom: 0px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     .review-form-card {
         border-radius: 0px;
+    }
+
+    .review-questions-wrapper {
     }
 
     .review-title {
@@ -173,7 +176,7 @@ li * {
     }
 
     .review-form-dropdown {
-        margin-left: -2vw;
+        margin-left: -2.5vw;
     }
 
     .semester-form-shortener {
@@ -193,7 +196,7 @@ li * {
     }
 
     li > span{
-        font-size: 15px;
+        font-size: 13.5px;
     }
 
     .course-prof-forms {
