@@ -9,8 +9,8 @@ function VerifyNewPasswordComponent(props) {
 			<Loading size='30px' bare="True" />
 		</div>
 
-	let loadingText = 
-		<p className="text-center loading-text">
+	let loadingText =
+		<p className="text-center">
 			Please wait {props.data.loading} seconds before requesting another resend.
 		</p>
 
@@ -34,6 +34,10 @@ function VerifyNewPasswordComponent(props) {
 							</form>
 
 						</div>
+						
+						<p className="text-center loading-text">
+							The email may take up to 2-3 minutes to send.
+						</p>
 
 						{props.data.loading > 0 && loadingText}
 					</div>

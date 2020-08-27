@@ -32,7 +32,7 @@ class VerifyPassword extends Component {
     onSubmit(e) {
 
         e.preventDefault()
-        this.setState({ loading: 5 })
+        this.setState({ loading: 30 })
 
         this.timeout()
 

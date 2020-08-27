@@ -87,7 +87,7 @@ function ProfRatings(props) {
                     />
                 </div>
                 <div className="rating">
-                    <p className="p-rating"> Grading: {grading} </p>
+                    <p className="p-rating"> Grading Rigor: {grading} </p>
                     <StyledRating
                         style={{ verticalAlign: "middle" }}
                         defaultValue={gradingValue}
