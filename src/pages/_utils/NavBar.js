@@ -24,6 +24,7 @@ class NavBar extends Component {
             localStorage.setItem("logout-message", true)
         }else{
             $("#toast-logout-success").toast("show")
+            window.location.reload()
         }
         
     }
