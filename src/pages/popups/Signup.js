@@ -67,7 +67,7 @@ class Signup extends Component {
 
     handleLoginFailureGoogle(error, response) {
         if (error.error !== 'idpiframe_initialization_failed') {
-            alert('Failed to log in')
+            alert('Failed to sign up')
         }
     }
 
