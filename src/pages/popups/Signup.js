@@ -68,12 +68,13 @@ class Signup extends Component {
     handleLoginFailureGoogle(error, response) {
         if (error.error !== 'idpiframe_initialization_failed') {
             alert('Failed to log in')
-            this.setState({
-                isLogined: false,
-                accessToken: '',
-                googleSignup: false
-            });                   
+                             
         }
+        this.setState({
+            isLogined: false,
+            accessToken: '',
+            googleSignup: false
+        });
     }
 
     onChange(e) {
@@ -111,6 +112,11 @@ class Signup extends Component {
             if (res.error) {
                 if (this.state.googleSignup) {
                     alert(res.error)
+                    this.setState({
+                        isLogined: false,
+                        accessToken: '',
+                        googleSignup: false
+                    });  
                 } else {
                     this.setState({ error: res.error })
                 }
