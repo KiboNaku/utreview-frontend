@@ -361,11 +361,10 @@ class ProfReviews extends React.Component {
 		}
 
 		return (
-			<div>
-				<div className="profReviews">
-					<div className="card prof-card">
-						<div className="card-header prof-header" >
-							<h4> Reviews ({this.state.reviewsFiltered.length}) </h4>
+			<div className="prof-card-wrapper">
+				<div className="course-card">
+						<div className="card-header course-header" >
+							<h4 className="details-header"> Reviews ({this.state.reviewsFiltered.length}) </h4>
 						</div>
 						<div className="card-body">
 							<div className="review-filters">
@@ -383,7 +382,6 @@ class ProfReviews extends React.Component {
 							}
 						</div>
 					</div>
-				</div>
 				{reportCommentList}
 			</div>
 		)

@@ -27,16 +27,14 @@
 
 @media screen and (max-width: 992px){
     .profSchedule{
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 50px;
-        margin-bottom: 50px;
+        margin-left: 30px;
+        margin-right: 30px;
     }
 }
 
 @media screen and (max-width: 768px){
     .profSchedule{
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }

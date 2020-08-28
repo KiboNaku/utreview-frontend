@@ -151,7 +151,7 @@ class ProfCourses extends React.Component {
         )
 
         let courseTable = (
-            <table className='table table-hover table-responsive course-table' >
+            <table className='table table-hover table-responsive prof-table' style={{border: "none"}} >
                 <thead>
                     <tr>
                     <th className="sortable" scope="col" onClick={() => this.handleSortChange('courseName')}>
@@ -190,13 +190,13 @@ class ProfCourses extends React.Component {
         let arrowIcon = this.state.open ? <i className="fas fa-angle-up rotate-icon"></i> : <i className="fas fa-angle-down rotate-icon"></i>
         return (
             <div>
-                <div className="profCourses">
-                    <div className="card prof-card">
-                        <div className="card-header prof-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#courses-collapse">
+                <div className="courseProfs prof-courses">
+                    <div className="course-card">
+                        <div className="card-header course-header" onClick={this.handleCollapse} role="button" data-toggle="collapse" data-target="#courses-collapse">
                             <h4 className="details-header"> Courses {arrowIcon}</h4>
                         </div>
                         <div className="collapse show" id="courses-collapse" role="tabpanel">
-                            <div className="card-body card-table">
+                            <div className="card-body card-table" style={{border: "none"}}>
                                 {profCourseList.length > 0 ? courseTable : noCourses}
                             </div>
                         </div>
