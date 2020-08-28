@@ -65,7 +65,7 @@ function ReviewDetails(props) {
 								<tr>
 									<td> Workload: </td>
 									<td> {props.data.courseRating.workload}</td>
-									<td> Grading: </td>
+									<td> Grading Rigor: </td>
 									<td> {props.data.profRating.grading}</td>
 								</tr>
 								<tr>

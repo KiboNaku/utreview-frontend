@@ -109,6 +109,24 @@ function ReviewFormComponent(props) {
         </li>
     )
 
+    let courseReview = (
+        <li className="py-3 col-md-6" style={disableStyle}>
+            <span>
+                Give us your review for {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}<small className='text-danger'> *</small>
+            </span>
+            <ReviewCourse {...props} />
+        </li>
+    )
+
+    let profReview = (
+        <li className="py-3 col-md-6" style={disableStyle} >
+            <span>
+                Give us your review for {props.data.prof.id !== null ? props.data.prof.firstName + " " + props.data.prof.lastName : '...'}<small className='text-danger'> *</small>
+            </span>
+            <ReviewProfessor {...props} />
+        </li >
+    )
+
     return (
 
         <div className="review-page-wrapper">
@@ -167,19 +185,8 @@ function ReviewFormComponent(props) {
                             </li>
 
                             <div class="row mt-2">
-                                <li className="py-3 col-md-6"  style={disableStyle}>
-                                    <span>
-                                        Give us your review for {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}<small className='text-danger'> *</small>
-                                    </span>
-                                    <ReviewCourse {...props} />
-                                </li>
-
-                                <li className="py-3 col-md-6" style={disableStyle}>
-                                    <span>
-                                        Give us your review for {props.data.prof.id !== null ? props.data.prof.firstName + " " + props.data.prof.lastName : '...'}<small className='text-danger'> *</small>
-                                    </span>
-                                    <ReviewProfessor {...props} />
-                                </li>
+                                {props.data.order === 0 ? courseReview : profReview}
+                                {props.data.order === 0 ? profReview : courseReview}
                             </div>
                             <li className="py-3" style={disableStyle}>
                                 <div className="row">
