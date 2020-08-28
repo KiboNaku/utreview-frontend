@@ -57,6 +57,7 @@
     position: relative;
     z-index: 2;
     font-size: 70px;
+    word-wrap: break-word;
 }
 
 .userRatings{
@@ -174,6 +175,11 @@
         flex-direction: column;
     }
 
+    .prof-name-info{
+        font-size: 50px;
+    }
+    
+
     .profInfo{
         margin-right: 50px;
         margin-left: 50px;
@@ -196,7 +202,12 @@
 
 @media screen and (max-width: 646px) {
     .prof-name {
-        font-size: 40px;
+        font-size: 30px;
+    }
+
+    .prof-info {
+        margin-top: 0px;
+        margin-left: 0px;
     }
 
     .view-reviews-prof-wrapper {
@@ -213,6 +224,10 @@
         flex-direction: column;
         justify-content: center;
         justify-items: center;
+    }
+
+    .prof-name-info{
+        font-size: 38px;
     }
 
     .userRatings{
@@ -235,5 +250,13 @@
         justify-content: center;
         width: auto;
         display: inline-block;
+    }
+
+    .view-reviews-prof-wrapper {
+        margin-left: -48%;
+    }
+
+    .profReviews {
+        margin-bottom: 100px;
     }
 }

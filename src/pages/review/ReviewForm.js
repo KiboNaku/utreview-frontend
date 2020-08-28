@@ -90,6 +90,8 @@ class ReviewForm extends Component {
 
 			grade: null,
 
+			anonymous: true,
+
 			error: {
 				course: {
 					approval: "",
@@ -198,7 +200,8 @@ class ReviewForm extends Component {
 				prof_clear: this.state.profRating.clear,
 				prof_engaging: this.state.profRating.engaging,
 				prof_grading: this.state.profRating.grading,
-				grade: this.state.grade
+				grade: this.state.grade,
+				anonymous: this.state.anonymous
 			}
 
 			if (this.state.oldReview !== null) {
@@ -486,6 +489,10 @@ class ReviewForm extends Component {
 			this.setState({ grade: inputValue.value })
 		}
 
+	}
+
+	handleAnonymousChange = (inputValue, { action }) => {
+		this.setState({ anonymous: inputValue.value })
 	}
 
 	beforeunload(e) {
@@ -895,6 +902,7 @@ class ReviewForm extends Component {
 				comments: oldReview.profRating.comments
 			},
 			grade: oldReview.grade,
+			anonymous: oldReview.anonymous,
 			formDisabled: false
 		}))
 
@@ -956,6 +964,7 @@ class ReviewForm extends Component {
 			handleCourseRatingChange={this.handleCourseRatingChange}
 			handleProfRatingChange={this.handleProfRatingChange}
 			handleGradeChange={this.handleGradeChange}
+			handleAnonymousChange={this.handleAnonymousChange}
 			handleLike={this.handleLike}
 			handleDislike={this.handleDislike}
 			data={this.state} />

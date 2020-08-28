@@ -33,7 +33,8 @@ export const newReview = review => {
       prof_clear: review.prof_clear,
       prof_engaging: review.prof_engaging,
       prof_grading: review.prof_grading,
-      grade: review.grade
+      grade: review.grade,
+      anonymous: review.anonymous
     })
     .then(response => {
       return response.data
@@ -59,7 +60,8 @@ export const saveReview = review => {
       prof_clear: review.prof_clear,
       prof_engaging: review.prof_engaging,
       prof_grading: review.prof_grading,
-      grade: review.grade
+      grade: review.grade,
+      anonymous: review.anonymous
     })
     .then(response => {
       return response.data
@@ -85,7 +87,8 @@ export const editReview = review => {
       prof_clear: review.prof_clear,
       prof_engaging: review.prof_engaging,
       prof_grading: review.prof_grading,
-      grade: review.grade
+      grade: review.grade,
+      anonymous: review.anonymous
     })
     .then(response => {
       return response.data

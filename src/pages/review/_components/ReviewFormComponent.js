@@ -20,6 +20,12 @@ function ReviewFormComponent(props) {
         { value: "F", label: "F" },
         { value: "P", label: "P" },
     ]
+
+    let anonymousStatus = [
+        { value: true, label: "Yes" },
+        { value: false, label: "No" },
+    ]
+
     let disableStyle = (props.data.formDisabled ? {
         pointerEvents: "none",
         opacity: "0.4"
@@ -176,22 +182,44 @@ function ReviewFormComponent(props) {
                                 </li>
                             </div>
                             <li className="py-3" style={disableStyle}>
-                                <span>
-                                    Give us the grade you obtained in {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}
-                                </span>
-                                <div className="review-form-grade">
-                                    <Select
-                                        className="col review-form-dropdown"
-                                        classNamePrefix="select"
-                                        name="grade"
-                                        options={gradeList}
-                                        onChange={props.handleGradeChange}
-                                        placeholder="Letter Grade"
-                                        isClearable={true}
-                                        isDisabled={props.data.formDisabled ? true : false}
-                                        value={props.data.grade !== null ?
-                                            gradeList.filter(grade => grade.value === props.data.grade) : null}
-                                    />
+                                <div className="row">
+                                    <div style={{marginRight: "1vw"}}>
+                                        <span className="review-form-bottom-questions">
+                                            Give us the grade you obtained in {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}
+                                        </span>
+                                            <div>
+                                                <Select
+                                                    className="col review-form-dropdown-2"
+                                                    classNamePrefix="select"
+                                                    name="grade"
+                                                    options={gradeList}
+                                                    onChange={props.handleGradeChange}
+                                                    placeholder="Letter Grade"
+                                                    isClearable={true}
+                                                    isDisabled={props.data.formDisabled ? true : false}
+                                                    value={props.data.grade !== null ?
+                                                        gradeList.filter(grade => grade.value === props.data.grade) : null}
+                                                />
+                                        </div>
+                                    </div>  
+                                    <div>
+                                        <span className="review-form-bottom-questions"> 
+                                            Would you like your review to be anonymous?
+                                        </span>
+                                            <Select
+                                                className="col review-form-dropdown-2"
+                                                classNamePrefix="select"
+                                                name="anonymous"
+                                                options={anonymousStatus}
+                                                onChange={props.handleAnonymousChange}
+                                                placeholder="Anonymous Status"
+                                                isClearable={false}
+                                                isDisabled={props.data.formDisabled ? true : false}
+                                                value={
+                                                    anonymousStatus.filter(anonymous => anonymous.value === props.data.anonymous)
+                                                }
+                                            />
+                                    </div>
                                 </div>
 
                             </li>

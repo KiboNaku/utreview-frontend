@@ -1,8 +1,7 @@
-.profCourses{
+.prof-courses{
     margin-right: 100px;
     margin-left: 100px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 50px;;
 }
 
 .course-table{
@@ -26,18 +25,15 @@
 }
 
 @media screen and (max-width: 992px){
-    .profCourses{
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 50px;
-        margin-bottom: 50px;
+    .prof-courses{
+        margin-left: 30px;
+        margin-right: 30px;
     }
 }
 
 @media screen and (max-width: 768px){
-    .profCourses{
-        margin-left: 10px;
-        margin-right: 10px;
+    .prof-courses{
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }
-

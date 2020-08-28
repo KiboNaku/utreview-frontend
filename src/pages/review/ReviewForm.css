@@ -145,6 +145,11 @@ li * {
     margin-top: 7.5px;
 }
 
+.review-form-dropdown-2 {
+    width: 36.75vw;
+    margin-top: 7px;
+}
+
 .course-prof-forms {
     max-width: 92%;
 }
@@ -157,6 +162,31 @@ li * {
     font-size: 14px;
     font-style: italic;
 }
+
+.review-form-bottom-questions {
+    font-size: 15px;
+    margin-left: 1.4vw;
+}
+
+
+@media screen and (max-width: 934px){
+    .review-form-dropdown-2 {
+        margin-bottom: 20px;
+    }
+}
+
+
+@media screen and (max-width: 560px){
+    .review-form-dropdown-2 {
+        width: 70vw;
+    }
+
+    .review-form-bottom-questions {
+        font-size: 14px;
+    }
+}
+
+
 
 @media screen and (max-width: 478px){
     .review-form-wrapper {
@@ -222,6 +252,15 @@ li * {
 
     .semester-form-shortener {
         margin-right: 0.6vw;
+    }
+
+    .review-form-dropdown-2 {
+        width: 37.9vw;
+    }
+
+    .review-form-bottom-questions {
+        font-size: 16px;
+        margin-left: 1vw;
     }
 
 }

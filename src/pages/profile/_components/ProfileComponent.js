@@ -18,6 +18,7 @@ function ProfileComponent(props) {
 		Upload Courses
 	</button>
 	)
+
 	return (
 		<div className='main-sub container-fluid profile-container'>
 			<div className='d-flex justify-content-center'>

@@ -99,7 +99,10 @@ function ProfReviewEntry(props) {
         </button>
     )
 
-    let author = props.review.writtenByUser ? "You," : (props.review.userMajor !== null ? props.review.userMajor + " student," : "Student")
+    let author = props.review.writtenByUser ? "You," : 
+                !props.review.anonymous ? props.review.firstName + " " + props.review.lastName :
+                props.review.userMajor !== null ? props.review.userMajor + " student," : 
+                "Student"
 
     return (
         <div className="list-group-item review-list-item">
