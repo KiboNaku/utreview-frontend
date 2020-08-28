@@ -137,7 +137,6 @@ function ReviewFormComponent(props) {
 
                         <div className="review-form-opening">
                             <h4 className="review-title">Let us know about your experience.</h4>
-                            <h6 className="pb-4 review-subtitle"> Your review will be anonymous. </h6>
                         </div>
 
                         <ol className="review-questions-wrapper">
