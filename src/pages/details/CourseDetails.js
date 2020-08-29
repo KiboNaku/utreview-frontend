@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios'
 import PropTypes from 'prop-types';
 import NotFound from './../not-found/NotFound'
 import CourseInfo from './_course/CourseInfo/CourseInfo';
@@ -58,7 +59,7 @@ class CourseDetails extends React.Component {
 
         this.state = {
             // specific title for this page, dependent on course name, used in meta tags
-            title: null, 
+            title: null,
 
             // stores basic course information (name, dept, number, description, median grade)
             // also stores info about topic courses and cross-listed courses
@@ -159,7 +160,7 @@ class CourseDetails extends React.Component {
                 let courseString = {
                     courseString: coursePath
                 }
-                
+
                 // use course name to find the course id
                 getCourseId(courseString).then(res => {
                     if (res.error) {
@@ -179,7 +180,7 @@ class CourseDetails extends React.Component {
 
             } else {
 
-                // get courseId from state, then feth course details info
+                // get courseId from state, then fetch course details info
                 courseId = this.props.location.state.courseId
                 const course = {
                     courseId: courseId,
@@ -231,6 +232,17 @@ class CourseDetails extends React.Component {
 
     render() {
 
+        if (this.state.courseInfo !== null) {
+            // axios
+            //     .post('/api/utplus_course', {
+            //         courseDept: this.state.courseInfo.courseDept,
+            //         courseNum: this.state.courseInfo.courseNum
+            //     })
+            //     .then(response => {
+            //         console.log(response.data)
+            //     })
+        }
+
         let loading = <Loading />
         let childTopics = null
         let crossListed = null
@@ -247,10 +259,10 @@ class CourseDetails extends React.Component {
                     />
                 </div>
             )
-            
+
             // cross listed courses, if any
             crossListed = this.state.courseSchedule.futureSem && this.state.courseSchedule.futureSem.length > 0 ? this.state.courseSchedule.futureSem[0].crossListed : null
-            
+
             // main course details content
             content = (
                 <div className="CourseDetails">
@@ -299,7 +311,7 @@ class CourseDetails extends React.Component {
                 </MetaTags>
                 <main className="course-details-main">
                     <div className="main-sub">
-                        {this.state.validCourse ? (this.state.loaded ? content : loading) : <NotFound title={this.props.notFoundPageTitle} mainTitle={this.props.mainTitle} description={this.props.notFoundPageDescription}/>}
+                        {this.state.validCourse ? (this.state.loaded ? content : loading) : <NotFound title={this.props.notFoundPageTitle} mainTitle={this.props.mainTitle} description={this.props.notFoundPageDescription} />}
                     </div>
                 </main>
             </div>

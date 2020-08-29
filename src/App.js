@@ -90,6 +90,13 @@ class App extends Component {
 		this.setState({ searchValue: searchValue })
 	}
 
+	componentDidMount() {
+        if (localStorage.getItem("logout-message")) {
+            $("#toast-logout-success").toast("show")
+            localStorage.removeItem("logout-message")
+        }
+    }
+
 	render() {
 		let mainPageTitle = "UT Review"
 		let profilePageTitle = "Profile"

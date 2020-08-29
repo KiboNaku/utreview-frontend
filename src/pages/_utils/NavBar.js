@@ -19,11 +19,11 @@ class NavBar extends Component {
         e.preventDefault()
         this.setState({profilePic: 'corgi1.jpg'})
         localStorage.removeItem('usertoken')
+        localStorage.setItem("logout-message", true)
         if(this.props.location.pathname === "/profile" || this.props.location.pathname === "/add-review"){
             this.props.history.push('/')
-            localStorage.setItem("logout-message", true)
         }else{
-            $("#toast-logout-success").toast("show")
+            window.location.reload()
         }
         
     }
