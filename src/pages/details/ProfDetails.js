@@ -160,11 +160,16 @@ class ProfDetails extends React.Component {
                     </div>
 
                     <ProfSchedule profSchedule={this.state.profSchedule} key={this.state.profSchedule.currentSem} />
+
+                    <div className="course-reviews-block-wrapper">
+                    <div className="add-review-wrapper">
                     <ProfAddReview
                         {...this.state.profInfo}
                     />
-                    <div ref={this.reviewRef}>
+                    </div>
+                    <div ref={this.reviewRef} className="course-reviews-wrapper">
                         <ProfReviews profReviews={this.state.profReviews} key={this.state.profReviews} />
+                    </div>
                     </div>
 
                 </div>

@@ -25,6 +25,7 @@ import Rating from '@material-ui/lab/Rating';
 */
 
 function CourseReviewEntry(props) {
+
     let thumbsIcon = props.review.approval ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} />
     let likeIcon = props.review.likePressed ?
@@ -101,7 +102,10 @@ function CourseReviewEntry(props) {
         </button>
     )
 
-    let author = props.review.writtenByUser ? "You," : (props.review.userMajor !== null ? props.review.userMajor + " student," : "Student")
+    let author = props.review.writtenByUser ? "You," : 
+                !props.review.anonymous ? props.review.firstName + " " + props.review.lastName :
+                props.review.userMajor !== null ? props.review.userMajor + " student," : 
+                "Student"
 
     return (
         <div className="list-group-item review-list-item">

@@ -178,7 +178,7 @@ class CourseProfs extends React.Component {
                             <i className={'pl-3 fas fa-sort-' + this.state.sortDir + (this.state.sortBy === 'profEngaging' ? '' : ' invisible')}></i>
                         </th>
                         <th className="sortable" scope="col" onClick={() => this.handleSortChange('profGrading')}>
-                            <span>Grading</span>
+                            <span>Grading Rigor</span>
                             <i className={'pl-3 fas fa-sort-' + this.state.sortDir + (this.state.sortBy === 'profGrading' ? '' : ' invisible')}></i>
                         </th>
                         <th scope="col">Syllabi</th>

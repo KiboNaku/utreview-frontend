@@ -20,6 +20,12 @@ function ReviewFormComponent(props) {
         { value: "F", label: "F" },
         { value: "P", label: "P" },
     ]
+
+    let anonymousStatus = [
+        { value: true, label: "Yes" },
+        { value: false, label: "No" },
+    ]
+
     let disableStyle = (props.data.formDisabled ? {
         pointerEvents: "none",
         opacity: "0.4"
@@ -103,6 +109,24 @@ function ReviewFormComponent(props) {
         </li>
     )
 
+    let courseReview = (
+        <li className="py-3 col-md-6" style={disableStyle}>
+            <span>
+                Give us your review for {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}<small className='text-danger'> *</small>
+            </span>
+            <ReviewCourse {...props} />
+        </li>
+    )
+
+    let profReview = (
+        <li className="py-3 col-md-6" style={disableStyle} >
+            <span>
+                Give us your review for {props.data.prof.id !== null ? props.data.prof.firstName + " " + props.data.prof.lastName : '...'}<small className='text-danger'> *</small>
+            </span>
+            <ReviewProfessor {...props} />
+        </li >
+    )
+
     return (
 
         <div className="review-page-wrapper">
@@ -113,7 +137,6 @@ function ReviewFormComponent(props) {
 
                         <div className="review-form-opening">
                             <h4 className="review-title">Let us know about your experience.</h4>
-                            <h6 className="pb-4 review-subtitle"> Your review will be anonymous. </h6>
                         </div>
 
                         <ol className="review-questions-wrapper">
@@ -161,37 +184,48 @@ function ReviewFormComponent(props) {
                             </li>
 
                             <div class="row mt-2">
-                                <li className="py-3 col-md-6"  style={disableStyle}>
-                                    <span>
-                                        Give us your review for {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}<small className='text-danger'> *</small>
-                                    </span>
-                                    <ReviewCourse {...props} />
-                                </li>
-
-                                <li className="py-3 col-md-6" style={disableStyle}>
-                                    <span>
-                                        Give us your review for {props.data.prof.id !== null ? props.data.prof.firstName + " " + props.data.prof.lastName : '...'}<small className='text-danger'> *</small>
-                                    </span>
-                                    <ReviewProfessor {...props} />
-                                </li>
+                                {props.data.order === 0 ? courseReview : profReview}
+                                {props.data.order === 0 ? profReview : courseReview}
                             </div>
                             <li className="py-3" style={disableStyle}>
-                                <span>
-                                    Give us the grade you obtained in {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}
-                                </span>
-                                <div className="review-form-grade">
-                                    <Select
-                                        className="col review-form-dropdown"
-                                        classNamePrefix="select"
-                                        name="grade"
-                                        options={gradeList}
-                                        onChange={props.handleGradeChange}
-                                        placeholder="Letter Grade"
-                                        isClearable={true}
-                                        isDisabled={props.data.formDisabled ? true : false}
-                                        value={props.data.grade !== null ?
-                                            gradeList.filter(grade => grade.value === props.data.grade) : null}
-                                    />
+                                <div className="row">
+                                    <div style={{marginRight: "1vw"}}>
+                                        <span className="review-form-bottom-questions">
+                                            Give us the grade you obtained in {props.data.course.id !== null ? props.data.course.dept + " " + props.data.course.num : '...'}
+                                        </span>
+                                            <div>
+                                                <Select
+                                                    className="col review-form-dropdown-2"
+                                                    classNamePrefix="select"
+                                                    name="grade"
+                                                    options={gradeList}
+                                                    onChange={props.handleGradeChange}
+                                                    placeholder="Letter Grade"
+                                                    isClearable={true}
+                                                    isDisabled={props.data.formDisabled ? true : false}
+                                                    value={props.data.grade !== null ?
+                                                        gradeList.filter(grade => grade.value === props.data.grade) : null}
+                                                />
+                                        </div>
+                                    </div>  
+                                    <div>
+                                        <span className="review-form-bottom-questions"> 
+                                            Would you like your review to be anonymous?
+                                        </span>
+                                            <Select
+                                                className="col review-form-dropdown-2"
+                                                classNamePrefix="select"
+                                                name="anonymous"
+                                                options={anonymousStatus}
+                                                onChange={props.handleAnonymousChange}
+                                                placeholder="Anonymous Status"
+                                                isClearable={false}
+                                                isDisabled={props.data.formDisabled ? true : false}
+                                                value={
+                                                    anonymousStatus.filter(anonymous => anonymous.value === props.data.anonymous)
+                                                }
+                                            />
+                                    </div>
                                 </div>
 
                             </li>
