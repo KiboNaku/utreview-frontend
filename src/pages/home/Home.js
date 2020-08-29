@@ -7,14 +7,6 @@ import MetaTags from 'react-meta-tags';
 
 class Home extends Component {
 
-
-    componentDidMount() {
-        if (localStorage.getItem("logout-message")) {
-            $("#toast-logout-success").toast("show")
-            localStorage.removeItem("logout-message")
-        }
-    }
-
     render() {
 
         const homeBackDefault = require('./../../res/img/backgrounds/utreview-homebackground.jpg')

@@ -113,7 +113,7 @@ class ReviewForm extends Component {
 			invalidReview: false,
 			errorMessage: '',
 			submitPressed: false,
-			reviewId: null
+			reviewId: null,
 		}
 		this.beforeunload.bind(this)
 		this.isBackButtonClicked = false

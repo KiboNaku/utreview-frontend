@@ -129,6 +129,10 @@ class ProfReviews extends React.Component {
 
 	handleLike(id) {
 		const token = localStorage.usertoken
+		if(token === null || token === undefined){
+			$("#login-modal").modal("show")
+			return
+		}
 		const decoded = jwt_decode(token)
 
 		let feedback = {
@@ -162,6 +166,10 @@ class ProfReviews extends React.Component {
 	handleDislike(id) {
 
 		const token = localStorage.usertoken
+		if(token === null || token === undefined){
+			$("#login-modal").modal("show")
+			return
+		}
 		const decoded = jwt_decode(token)
 
 		let feedback = {
