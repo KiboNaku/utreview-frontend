@@ -1,7 +1,53 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ProfCourseEntry from './ProfCourseEntry'
 import GradeDistributions from './../../../grade-distributions/GradeDistributions'
 import './ProfCourses.css'
+
+const propTypes = {
+
+    // contains information of the prof
+    profInfo: PropTypes.shape({
+        // id of the prof
+        id: PropTypes.number.isRequired,
+
+        // first name of the prof
+        firstName: PropTypes.string.isRequired,
+
+        // last name of the prof
+        lastName: PropTypes.string.isRequired,
+
+        // the median grade that the prof gives with all courses factored in
+        medianGrade: PropTypes.string.isRequired,
+
+        // scrolls to the review section of the page
+        handleScrollToReview: PropTypes.func.isRequired
+    }),
+    
+    // the department that the course taught by the prof is in
+    courseDept: PropTypes.string.isRequired,
+
+    // percentage of students who liked the prof
+    courseNum: PropTypes.string.isRequired,
+
+    // average rating for the clearness for the prof
+    topicNum: PropTypes.number,
+
+    // percentage of people who liked the course taught by the prof
+    percentLiked: PropTypes.number,
+
+    // average rating for difficulty of the course taught by the prof
+    difficulty: PropTypes.number,
+    
+    // average rating for usefulness of the course taught by the prof
+    usefulness: PropTypes.number,
+
+    // average rating for workload of the course taught by the prof
+    workload: PropTypes.number,
+
+    // average rating for eCIS of the course taught by the prof
+    eCIS: PropTypes.number
+}
 
 class ProfCourses extends React.Component {
     constructor(props) {
@@ -14,10 +60,12 @@ class ProfCourses extends React.Component {
             open: true
         }
 
+        // allow the tables to be sorted and minimized
         this.handleCollapse = this.handleCollapse.bind(this)
         this.handleSortChange = this.handleSortChange.bind(this)
     }
 
+    // sorts the courses by a specific value (name, liked, ecis, usefulness, difficulty, workload)
     handleSortChange(sortByName){
         let nextSort
         if (this.state.sortBy !== sortByName) nextSort = 'down';
@@ -30,6 +78,7 @@ class ProfCourses extends React.Component {
         })
     }
 
+    // compare a specific value (name, liked, ecis, usefulness, difficulty, workload) to sort the courses
     sortRows(a, b) {
 
         const sortBy = this.state.sortBy
@@ -114,6 +163,7 @@ class ProfCourses extends React.Component {
 
     render() {
 
+        // direction of the sort
         const sortTypes = {
             up: {
                 class: 'sortUp',
@@ -150,6 +200,7 @@ class ProfCourses extends React.Component {
             </h5>
         )
 
+        // table containing all the courses that the prof teaches with their ratings
         let courseTable = (
             <table className='table table-hover table-responsive prof-table' style={{border: "none"}} >
                 <thead>
@@ -209,5 +260,7 @@ class ProfCourses extends React.Component {
     }
 
 }
+
+ProfCourses.props = propTypes;
 
 export default ProfCourses;
