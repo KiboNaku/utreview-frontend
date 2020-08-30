@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NotFound from './../not-found/NotFound'
 import ProfInfo from './_prof/ProfInfo/ProfInfo';
 import ProfRatings from './_prof/ProfInfo/ProfRatings';
@@ -14,20 +15,68 @@ import MetaTags from 'react-meta-tags';
 import './Details.css'
 import './ProfDetails.css'
 
+const propTypes = {
+    // specific title for this page, dependent on prof name, used in meta tags
+    title: PropTypes.string.isRequired,
+
+    // main title (UT Review), used in meta tags
+    mainTitle: PropTypes.string.isRequired,
+
+    // specific description for this page, dependent on the prof, used in meta tags
+    description: PropTypes.string.isRequired,
+
+    // title of page if not found, used in meta tags
+    notFoundPageTitle: PropTypes.string.isRequired,
+
+    // description of page if not found, used in meta tags
+    notFoundPageDescription: PropTypes.string.isRequired,
+
+    // prop sent when page accessed through the React Link component
+    location: PropTypes.shape({
+
+        // url of the link
+        pathname: PropTypes.string,
+
+        // stores information not included in the pathname
+        state: PropTypes.shape({
+
+            // id of the prof being displayed
+            profId: PropTypes.number
+        }),
+    })
+}
+
+
 class ProfDetails extends React.Component {
     constructor(props) {
         super(props)
 
+        // reference to the ProfReviews component
         this.reviewRef = React.createRef()
 
         this.state = {
+            // specific title for this page, dependent on prof name, used in meta tags
             title: null,
+
+            // stores basic prof information (first name, last name, prof id)
             profInfo: null,
+
+            // stores user rating information about the prof (approval, eCIS, clear, engaging, grading rigor)
             profRatings: null,
+
+            // stores information about the courses that the prof teaches
             profCourses: null,
+
+            // stores information about the ratings and comments for the prof
             profReviews: null,
+
+            // stores information about the time of the courses the prof teaches
             profSchedule: null,
+
+            // is set to false, when the user inputs the wrong link for a prof
             validProf: true,
+
+            // is set to true, when all the api requests to fetch the prof information have finished
             loaded: false
         }
 
@@ -35,6 +84,7 @@ class ProfDetails extends React.Component {
 
     }
 
+    // scrolls to review component
     handleScrollToReview() {
         const scrollToRef = () => window.scrollTo(0, this.reviewRef.current.offsetTop - 100)
         scrollToRef()
@@ -42,6 +92,7 @@ class ProfDetails extends React.Component {
 
     componentDidMount() {
 
+        // get user email if logged in
         let loggedIn = false
         let email = ''
         const token = localStorage.usertoken
@@ -51,18 +102,23 @@ class ProfDetails extends React.Component {
             email = decoded.identity.email
         }
 
+        // find profId, either from url or from props
         let profId = null
         if (this.props.location.state === undefined) {
 
+            // state is undefined, so parse url to find prof name
             let profPath = window.location.pathname.split("/").pop()
             let profString = {
                 profString: profPath
             }
 
+            // use prof name to find the prof id
             getProfId(profString).then(res => {
                 if (res.error) {
                     this.setState({ validProf: false })
                 } else {
+
+                    // after finding prof id, fetch prof details info
                     profId = res.profId
                     const prof = {
                         profId: profId,
@@ -74,17 +130,22 @@ class ProfDetails extends React.Component {
             })
 
         } else {
+            // state is defined, so check the state to see if it has profId
             if (this.props.location.state.profId === undefined) {
 
+                // profId is undefined, so parse url to find prof name
                 let profPath = window.location.pathname.split("/").pop()
                 let profString = {
                     profString: profPath
                 }
 
+                // use prof name to find the prof id
                 getProfId(profString).then(res => {
                     if (res.error) {
                         this.setState({ validProf: false })
                     } else {
+
+                        // after finding prof id, fetch prof details info
                         profId = res.profId
                         const prof = {
                             profId: profId,
@@ -96,6 +157,8 @@ class ProfDetails extends React.Component {
                 })
 
             } else {
+
+                // get profId from state, then fetch prof details info
                 profId = this.props.location.state.profId
                 const prof = {
                     profId: profId,
@@ -108,12 +171,15 @@ class ProfDetails extends React.Component {
 
     }
 
+    // makes an api request to fetch all prof details information
     profDetailsRequest = (prof) => {
 
         getProfInfo(prof).then(res => {
             if (res.error) {
                 alert(res.error)
             } else {
+
+                // create new Date() object for each review date
                 let profRevs = res.prof_reviews.map(review => {
                     let dateTimeParsed = review.date.split(' ')
                     let dateParsed = dateTimeParsed[0].split('-')
@@ -125,6 +191,7 @@ class ProfDetails extends React.Component {
                     }
                 })
 
+                // set state variables with data fetched from the backend
                 const { firstName, lastName } = res.prof_info
                 this.setState({
                     title: firstName + " " + lastName,
@@ -144,7 +211,11 @@ class ProfDetails extends React.Component {
         let loading = <Loading />
 
         let content = null
+
+         // only display if prof details info has loaded
         if (this.state.loaded) {
+
+            // main prof details content
             content = (
                 <div className="profDetails">
                     <div className="prof-stats">
