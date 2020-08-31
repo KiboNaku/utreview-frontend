@@ -1,21 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+    // course pre-requisites
+    preReqs: PropTypes.string,
+
+	// course restrictions
+	restrictions: PropTypes.string,
+}
 
 class CourseRequisites extends React.Component {
-
-    constructor() {
-        super()
-        this.state = {
-            open: true
-        }
-
-        this.handleCollapse = this.handleCollapse.bind(this)
-    }
-
-    handleCollapse() {
-        this.setState((prevState) => ({
-            open: !prevState.open
-        }))
-    }
 
     render() {
         return (
@@ -29,7 +23,6 @@ class CourseRequisites extends React.Component {
                             </li>
                         </ul>
                     </div>
-
                     <div className="restrictions-wrapper">
                         <div className="requisites-title">Restrictions</div>
                         <ul>
@@ -42,7 +35,8 @@ class CourseRequisites extends React.Component {
             </div>
         );
     }
-
 }
+
+CourseRequisites.propTypes = propTypes
 
 export default CourseRequisites;

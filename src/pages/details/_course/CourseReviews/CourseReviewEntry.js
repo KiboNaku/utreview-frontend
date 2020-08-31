@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import ProfLink from './../../../_utils/ProfLink'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,21 +12,93 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import FlagRoundedIcon from '@material-ui/icons/FlagRounded';
 import Rating from '@material-ui/lab/Rating';
 
-/* 
-    Properties:
-    liked
-    review
-    profPic (img URL)
-    profName
-    difficulty
-    workload
-    usefulness
-    numLiked
-    numDisliked
-*/
+const propTypes = {
+    review: PropTypes.shape({
+        // review id
+        id: PropTypes.number.isRequired,
+
+        // review's course comments
+        comments: PropTypes.string,
+
+        // review's course approval rating
+        approval: PropTypes.bool.isRequired,
+
+        // review's course difficulty rating
+        difficulty: PropTypes.number.isRequired,
+
+        // review's course usefulness rating
+        usefulness: PropTypes.number.isRequired,
+
+        // review's course workload rating
+        workload: PropTypes.number.isRequired,
+
+        // review author's major
+		userMajor: PropTypes.string,
+		
+		// review author's profile pic file name
+		profilePic: PropTypes.string.isRequired,
+		
+		// review's prof id
+		profId: PropTypes.number.isRequired,
+		
+		// review's prof first name
+		profFirst: PropTypes.string.isRequired,
+		
+		// review's prof last name
+		profLast: PropTypes.string.isRequired,
+
+		// grade the author achieved in the course
+		grade: PropTypes.string,
+		
+		// how many likes the review's course comment received
+		numLiked: PropTypes.number.isRequired,
+		
+		// how many dislikes the review's course comment received
+        numDisliked: PropTypes.number.isRequired,
+
+        // indicates whether the review was written by the current logged in user
+        writtenByUser: PropTypes.bool.isRequired,
+
+        // indicates whether the review was liked by the current logged in user
+		likePressed: PropTypes.bool.isRequired,
+		
+		// indicates whether the review was disliked by the current logged in user
+		dislikePressed: PropTypes.bool.isRequired,
+		
+		// time ago format of when the review was last updated
+		dateString: PropTypes.string.isRequired,
+		
+		// Date object representing when the review was last updated
+		date: PropTypes.instanceOf(Date),
+		
+		// year the review's author took the course
+		year: PropTypes.number.isRequired,
+
+		// semester season the review's author took the course
+		semester: PropTypes.number.isRequired,
+
+		// review's author first name
+		firstName: PropTypes.string.isRequired,
+
+		// review's author last name
+		lastName: PropTypes.string.isRequired,
+
+		// indicate whether the review's author wants to remain anonymous
+		anonymous: PropTypes.bool.isRequired,
+    }),
+
+    // handles a user press of the like button
+    handleLike: PropTypes.func.isRequired,
+
+    // handles a user press of the dislike button
+    handleDislike: PropTypes.func.isRequired,
+
+    // handles a user press of the report button
+    handleReport: PropTypes.func.isRequired
+}
 
 function CourseReviewEntry(props) {
-
+    // generate icons for the like button, dislike button, report button, and review author approval
     let thumbsIcon = props.review.approval ?
         <ThumbUpRoundedIcon style={{ fill: '#a6cd57' }} /> : <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} />
     let likeIcon = props.review.likePressed ?
@@ -34,6 +107,7 @@ function CourseReviewEntry(props) {
         <ThumbDownRoundedIcon style={{ fill: '#ed7f7b' }} /> : <ThumbDownRoundedIcon style={{ fill: 'gray' }} />
     let reportIcon = <FlagRoundedIcon style={{ fill: 'gray' }} />
 
+    // generate styles for profile pic avatar
     const useStyles = makeStyles((theme) => ({
         large: {
             width: theme.spacing(8),
@@ -41,12 +115,15 @@ function CourseReviewEntry(props) {
         },
     }));
     const classes = useStyles()
+
+    // generate styled rating
     const StyledRating = withStyles({
         iconFilled: {
             color: '#bf5700',
         },
     })(Rating);
 
+    // generate report comment button
     const reportButton = (
         <span>
             <button
@@ -56,9 +133,9 @@ function CourseReviewEntry(props) {
                 {reportIcon}
             </button>
         </span>
-
     )
-
+    
+    // generate login button for the like icon (in case the user isn't logged in)
     const likeLoginLink = (
         <span>
             <button
@@ -71,7 +148,8 @@ function CourseReviewEntry(props) {
         </span>
 
     )
-
+    
+    // generate login button for the dislike icon (in case the user isn't logged in)
     const dislikeLoginLink = (
         <span>
             <button
@@ -83,7 +161,8 @@ function CourseReviewEntry(props) {
             </button>
         </span>
     )
-
+    
+    // generate the like comment button
     const likeButton = (
         <button
             className="likeButton"
@@ -93,6 +172,7 @@ function CourseReviewEntry(props) {
         </button>
     )
 
+    // generate the dislike comment button
     const dislikeButton = (
         <button
             className="dislikeButton"
@@ -101,7 +181,8 @@ function CourseReviewEntry(props) {
             {dislikeIcon}
         </button>
     )
-
+    
+    // determine the author name to be shown depending on whether author is anonymous
     let author = props.review.writtenByUser ? "You," : 
                 !props.review.anonymous ? props.review.firstName + " " + props.review.lastName :
                 props.review.userMajor !== null ? props.review.userMajor + " student," : 
@@ -190,5 +271,7 @@ function CourseReviewEntry(props) {
         </div>
     );
 }
+
+CourseReviewEntry.propTypes = propTypes
 
 export default CourseReviewEntry;

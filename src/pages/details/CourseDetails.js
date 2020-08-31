@@ -232,16 +232,16 @@ class CourseDetails extends React.Component {
 
     render() {
 
-        if (this.state.courseInfo !== null) {
-            // axios
-            //     .post('/api/utplus_course', {
-            //         courseDept: this.state.courseInfo.courseDept,
-            //         courseNum: this.state.courseInfo.courseNum
-            //     })
-            //     .then(response => {
-            //         console.log(response.data)
-            //     })
-        }
+        // if (this.state.courseInfo !== null) {
+        //     axios
+        //         .post('/api/utplus_course', {
+        //             courseDept: this.state.courseInfo.courseDept,
+        //             courseNum: this.state.courseInfo.courseNum
+        //         })
+        //         .then(response => {
+        //             console.log(response.data)
+        //         })
+        // }
 
         let loading = <Loading />
         let childTopics = null
