@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Select from 'react-select'
 import ProfReviewEntry from './ProfReviewEntry';
 import ReportComment from './../../../report-comment/ReportComment'
@@ -7,17 +8,104 @@ import jwt_decode from 'jwt-decode'
 import $ from './../../../../../node_modules/jquery'
 import './ProfReviews.css'
 
+const propTypes = {
+	// id of the prof
+	id: PropTypes.number.isRequired,
+
+	// the review's prof comments
+	comments: PropTypes.string,
+
+	// true or false depending on whether if the author liked or disliked the prof
+	approval: PropTypes.bool.isRequired,
+
+    // average rating for the clearness for the prof
+    clear: PropTypes.number.isRequired,
+
+    // average rating for the engagingness of the prof
+	engaging: PropTypes.number.isRequired,
+
+	// average rating for the grading of the prof
+    grading: PropTypes.number.isRequired,
+    
+    // the major of the author or "" if the author doesn't have a major
+	userMajor: PropTypes.string,
+
+	// the profile picture file name of the author
+	profilePic: PropTypes.string.isRequired,
+
+	// the id of the course
+	courseId: PropTypes.string.isRequired,
+
+	// the department that the course taught by the prof is in
+    courseDept: PropTypes.string.isRequired,
+
+    // the course number
+    courseNum: PropTypes.string.isRequired,
+
+    // the course topic number
+	courseTopic: PropTypes.number,
+	
+	// the grade the author achieved in the course
+	grade: PropTypes.string,
+
+	// the number of likes the comment has
+	numLiked: PropTypes.number.isRequired,
+
+	// the number of dislikes the comment has
+	numDisliked: PropTypes.number.isRequired,
+
+	// true or false depending on whether if the the review was written by the logged-in user
+	writtenByUser: PropTypes.bool.isRequired,
+
+	// true or false depending on whether if the like was pressed by the logged-in user
+	likePressed: PropTypes.bool.isRequired,
+
+	// true or false depending on whether if the dislike was pressed by the logged-in user
+	dislikePressed: PropTypes.bool.isRequired,
+
+	// the "time-ago" format the review was last updated
+	dateString: PropTypes.string.isRequired,
+
+	// the date the review was last updated
+	date: PropTypes.instanceOf(Date).isRequired,
+
+	// the year the author had the prof
+	year: PropTypes.number.isRequired,
+
+	// the semester the author had the prof
+	semester: PropTypes.string.isRequired,
+
+	// first name of the author
+	firstName: PropTypes.string.isRequired,
+
+	// last name of the author
+	lastName: PropTypes.string.isRequired,
+
+	// true or false depending on whether the author decided to keep their review anonymous or not
+    anonymous: PropTypes.bool.isRequired
+}
+
 class ProfReviews extends React.Component {
 	constructor(props) {
 		super(props)
 
+		// sort the reviews by date updated by default
 		const updatedReviews = props.profReviews.slice().sort((a, b) => b.date - a.date)
 
 		this.state = {
+			// list of reviews for the prof
 			profReviews: props.profReviews,
+
+			// list of filtered and sorted reviews for the prof
 			reviewsFiltered: updatedReviews,
+
+			// indicate how the reviews will be sorted
 			sortBy: "most-recent",
+
+			// page number to determine whether to "show more" reviews
 			page: 0,
+
+			// indicates whether if there are more reviews to be shown
 			hasMore: true,
 		}
 
@@ -35,8 +123,11 @@ class ProfReviews extends React.Component {
 	}
 
 	loadReviews() {
+		// triggered when the "show more" button is pressed
+		// loads the next page of reviews, if any left
 		if (this.buttonDOM != null) this.buttonDOM.current.blur();
 		if (this.state.hasMore) {
+			// increment the page number and determine whether there are more reviews to be shown
 			this.handlePageInc()
 			if (this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length) {
 				this.setState({ hasMore: false })
@@ -45,10 +136,12 @@ class ProfReviews extends React.Component {
 	}
 
 	calcTableEdge(page, length) {
+		// calculate the index of the last review to be shown
 		return Math.min(10 * (page + 1), length)
 	}
 
 	handlePageInc() {
+		// increment the page number 
 		this.setState(
 			prevState => ({
 				page: prevState.page + 1
@@ -57,16 +150,19 @@ class ProfReviews extends React.Component {
 	}
 
 	handleReport(id) {
+		// displays the report comment modal
 		this.setState({ reviewId: id })
 		$(`#report-comment-modal-${id}`).modal("show");
 	}
 
 	likeReview(profReview, id) {
+		// determine previous like and dislike values
 		let dislike = profReview.dislikePressed
 		let dislikeNum = profReview.numDisliked
 		let likeNum = profReview.numLiked
 		let like = profReview.likePressed
 
+		// determines the result likes/dislikes of the review after the user presses the like button
 		if (id === profReview.id) {
 			if (dislike) {
 				dislike = false
@@ -95,11 +191,13 @@ class ProfReviews extends React.Component {
 	}
 
 	dislikeReview(profReview, id) {
+		// determine previous like and dislike values
 		let dislike = profReview.dislikePressed
 		let dislikeNum = profReview.numDisliked
 		let likeNum = profReview.numLiked
 		let like = profReview.likePressed
 
+		// determines the result likes/dislikes of the review after the user presses the dislike button
 		if (id === profReview.id) {
 			if (like) {
 				like = false
@@ -128,13 +226,17 @@ class ProfReviews extends React.Component {
 	}
 
 	handleLike(id) {
+		// check if the user is logged in, if not show the login modal
 		const token = localStorage.usertoken
 		if(token === null || token === undefined){
 			$("#login-modal").modal("show")
 			return
 		}
+
+		// if the user is logged in, grab the user access token
 		const decoded = jwt_decode(token)
 
+		// generate feedback object to send to the backend
 		let feedback = {
 			like: true,
 			isCourse: false,
@@ -143,6 +245,7 @@ class ProfReviews extends React.Component {
 		}
 
 		this.setState(prevState => {
+			// update both profReviews and reviewsFiltered with the new like/dislike values for the specified review
 			const updatedReviews = prevState.profReviews.map(profReview => {
 				return this.likeReview(profReview, id)
 			})
@@ -156,6 +259,7 @@ class ProfReviews extends React.Component {
 			}
 		})
 
+		// send feedback information to the backend
 		reviewFeedback(feedback).then(res => {
 			if (res.error) {
 				alert(res.error)
@@ -163,15 +267,18 @@ class ProfReviews extends React.Component {
 		})
 	}
 
-	handleDislike(id) {
-
+	handleDislike(id) {	
+		// check if the user is logged in, if not show the login modal
 		const token = localStorage.usertoken
 		if(token === null || token === undefined){
 			$("#login-modal").modal("show")
 			return
 		}
+
+		// if the user is logged in, grab the user access token
 		const decoded = jwt_decode(token)
 
+		// generate feedback object to send to the backend
 		let feedback = {
 			like: false,
 			isCourse: false,
@@ -180,6 +287,7 @@ class ProfReviews extends React.Component {
 		}
 
 		this.setState(prevState => {
+			// update both profReviews and reviewsFiltered with the new like/dislike values for the specified review
 			const updatedReviews = prevState.profReviews.map(profReview => {
 				return this.dislikeReview(profReview, id)
 			})
@@ -193,6 +301,7 @@ class ProfReviews extends React.Component {
 			}
 		})
 
+		// send feedback information to the backend
 		reviewFeedback(feedback).then(res => {
 			if (res.error) {
 				alert(res.error)
@@ -202,11 +311,13 @@ class ProfReviews extends React.Component {
 
 	handleSortChange(value) {
 
+		// calculates whether there are more reviews to be shown
 		let hasMore = true
 		if (this.calcTableEdge(0, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length) {
 			hasMore = false
 		}
 
+		// depending on sortBy value, sort reviewsFiltered by the most recent or most helpful
 		if (value.value === "most-recent") {
 			const updatedReviews = this.state.reviewsFiltered.slice().sort((a, b) => b.date - a.date)
 			this.setState({ reviewsFiltered: updatedReviews, sortBy: value.value, page: 0, hasMore: hasMore })
@@ -227,14 +338,20 @@ class ProfReviews extends React.Component {
 
 	handleCourseChange(values) {
 
+		// initialize updateReviews list
 		let updatedReviews = []
+
+		// if no course selected, add all the reviews
 		if (values.length === 0) {
 			updatedReviews = this.state.profReviews
 		} else {
+			// add courses selected by the user
 			let courses = []
 			for (let i = 0; i < values.length; i++) {
 				courses.push(values[i])
 			}
+
+			// only add the review if the course name matches one of the courses in the list
 			this.state.profReviews.map(review => {
 				let courseName = review.courseDept + " " + review.courseNum
 				if (courses.includes(courseName)) {
@@ -243,11 +360,13 @@ class ProfReviews extends React.Component {
 			})
 		}
 
+		// calculate whether there are more reviews to be shown
 		let hasMore = true
 		if (this.calcTableEdge(0, updatedReviews.length) >= updatedReviews.length) {
 			hasMore = false
 		}
 
+		// depending on sortBy value, sort reviewsFiltered by the most recent or most helpful
 		if (this.state.sortBy === "most-recent") {
 			updatedReviews = updatedReviews.slice().sort((a, b) => b.date - a.date)
 			this.setState({ reviewsFiltered: updatedReviews, sortBy: "most-recent", page: 0, hasMore: hasMore })
@@ -258,6 +377,8 @@ class ProfReviews extends React.Component {
 	}
 
 	render() {
+
+		// generate list of ProfReviewEntry components depending on the page number, filters, and sortBy
 		const profReviewList = this.state.reviewsFiltered.slice(0, this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length)).map(review => {
 			return (
 				<div>
@@ -271,12 +392,14 @@ class ProfReviews extends React.Component {
 			)
 		})
 
+		// generate a ReportComment component for each review
 		const reportCommentList = this.state.profReviews.map(review => {
 			return (
 				<ReportComment reviewId={review.id} isCourse={false} />
 			)
 		})
 
+		// initializes courseOptions with all the possible courses from the reviews
 		const courses = []
 		const courseOptions = []
 		for (let i = 0; i < this.state.profReviews.length; i++) {
@@ -293,16 +416,19 @@ class ProfReviews extends React.Component {
 			courseOptions.push(obj)
 		}
 
+		// generate component to be rendered when there are no reviews
 		let noReviews = (
 			<h5> No reviews yet for this professor </h5>
 		)
 
+		// generate list of prof reviews component
 		let reviews = (
 			<div className="list-group review-list">
 				{profReviewList}
 			</div>
 		)
 
+		// generate list of sortBy options
 		let sortOptions = [
 			{
 				value: "most-recent",
@@ -314,11 +440,11 @@ class ProfReviews extends React.Component {
 			}
 		]
 
+		// generate select for the sortBy options
 		let sort = (
 			<div className="review-sort">
 				<label className="float-left font-weight-bold">Sort by: </label>
 				<Select
-					// add deptList, handleDeptChange
 					className="basic-multi-select my-3 clear-both"
 					classNamePrefix="select"
 					name="review-sort"
@@ -335,6 +461,7 @@ class ProfReviews extends React.Component {
 			</div>
 		)
 
+		// generate select for the course options
 		let courseFilter = (
 			<div className="review-sort">
 				<label className="float-left font-weight-bold">Filter by course: </label>
@@ -363,6 +490,7 @@ class ProfReviews extends React.Component {
 			</div>
 		)
 
+		// calculate whether there are more reviews to be shown
 		let hasMore = this.state.hasMore
 		if (this.calcTableEdge(this.state.page, this.state.reviewsFiltered.length) >= this.state.reviewsFiltered.length) {
 			hasMore = false
@@ -395,5 +523,7 @@ class ProfReviews extends React.Component {
 		)
 	}
 }
+
+ProfReviews.props = propTypes;
 
 export default ProfReviews;

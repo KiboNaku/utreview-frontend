@@ -1,9 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+
+const propTypes = {
+    // average rating eCIS of the prof
+    eCIS: PropTypes.number,
+
+    // percentage of students who liked the prof
+    percentLiked: PropTypes.number,
+
+    // average rating for the clearness for the prof
+    clear: PropTypes.number,
+
+    // average rating for the engagingness of the prof
+	engaging: PropTypes.number,
+
+	// average rating for the grading of the prof
+    grading: PropTypes.number,
+    
+    // the number of ratings that the prof has gotten
+    numRatings: PropTypes.number
+}
 
 function ProfRatings(props) {
 
@@ -13,6 +34,8 @@ function ProfRatings(props) {
         },
     })(Rating);
 
+
+    // determine rating values depending on whether if they are null or exist
     const percentLikedValue = props.percentLiked === null ? 100 : props.percentLiked
     const percentLiked = props.percentLiked === null ? "N/A" : props.percentLiked.toString() + "%"
 
@@ -50,6 +73,7 @@ function ProfRatings(props) {
                 </div>
             </div>
             <div className="userRatings">
+                
                 <div className="rating">
                     <p className="p-rating"> eCIS: {eCIS} </p>
                     <StyledRating
@@ -61,6 +85,7 @@ function ProfRatings(props) {
                         readOnly
                     />
                 </div>
+
                 <div className="rating">
                     <p className="p-rating"> Clear: {clear} </p>
                     <StyledRating
@@ -102,5 +127,7 @@ function ProfRatings(props) {
 
     );
 }
+
+ProfRatings.props = propTypes;
 
 export default ProfRatings;

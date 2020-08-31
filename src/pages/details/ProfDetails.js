@@ -275,4 +275,6 @@ class ProfDetails extends React.Component {
     }
 }
 
+ProfDetails.propTypes = propTypes
+
 export default withRouter(ProfDetails);
