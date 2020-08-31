@@ -208,6 +208,17 @@ class ProfDetails extends React.Component {
 
     render() {
 
+        // if (this.state.profInfo !== null) {
+        //     axios
+        //         .post('/api/utplus_prof', {
+        //             firstName: this.state.profInfo.firstName,
+        //             lastName: this.state.profInfo.lastName
+        //         })
+        //         .then(response => {
+        //             console.log(response.data)
+        //         })
+        // }
+
         let loading = <Loading />
 
         let content = null
