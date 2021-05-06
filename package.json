@@ -14,7 +14,7 @@
 		"bootstrap": "^4.5.0",
 		"dot-prop": "^5.2.0",
 		"formik": "^2.1.5",
-		"highcharts": "^8.1.2",
+		"highcharts": "^9.0.0",
 		"jquery": "^3.5.1",
 		"jwt-decode": "^2.2.0",
 		"mysql": "^2.18.1",
